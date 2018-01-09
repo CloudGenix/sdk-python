@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#000000"/>
   <link rel="shortcut icon" href="favicon.ico">
     <title>cloudgenix.ca_bundle documentation</title>
-    <meta name="description" content="CloudGenix Explicit CA Certificate Bundle for API calls.
+    <meta name="description" content="CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).
 
 **Author:** CloudGenix
 
-**Copyright:** (c)..." />
+**Cop..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -2576,30 +2576,30 @@ table {
 
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix.ca_bundle</span> module</h1>
-  <p>CloudGenix Explicit CA Certificate Bundle for API calls.</p>
+  <p>CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017, 2018 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ca_bundle', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.ca_bundle" class="source">
     <div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">CloudGenix Explicit CA Certificate Bundle for API calls.</span>
+<span class="sd">CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017, 2018 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017, 2018 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017, 2018 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2620,9 +2620,32 @@ table {
 <span class="s2">    SOFTWARE.</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
+<span class="c1"># DigiCert Global Root G2</span>
 <span class="c1"># verisign class 3 public primary certification authority - g4</span>
 <span class="c1"># VeriSign Universal Root Certification Authority</span>
 <span class="n">CG_CA_BUNDLE</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;-----BEGIN CERTIFICATE-----</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;MIIDjjCCAnagAwIBAgIQAzrx5qcRqaC7KGSxHQn65TANBgkqhkiG9w0BAQsFADBh</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBH</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;MjAeFw0xMzA4MDExMjAwMDBaFw0zODAxMTUxMjAwMDBaMGExCzAJBgNVBAYTAlVT</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5j</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;b20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IEcyMIIBIjANBgkqhkiG</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuzfNNNx7a8myaJCtSnX/RrohCgiN9RlUyfuI</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;2/Ou8jqJkTx65qsGGmvPrC3oXgkkRLpimn7Wo6h+4FR1IAWsULecYxpsMNzaHxmx</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;1x7e/dfgy5SDN67sH0NO3Xss0r0upS/kqbitOtSZpLYl6ZtrAGCSYP9PIUkY92eQ</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;q2EGnI/yuum06ZIya7XzV+hdG82MHauVBJVJ8zUtluNJbd134/tJS7SsVQepj5Wz</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;tCO7TG1F8PapspUwtP1MVYwnSlcUfIKdzXOS0xZKBgyMUNGPHgm+F6HmIcr9g+UQ</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;vIOlCsRnKPZzFBQ9RnbDhxSJITRNrw9FDKZJobq7nMWxM4MphQIDAQABo0IwQDAP</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;BgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNVHQ4EFgQUTiJUIBiV</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;5uNu5g/6+rkS7QYXjzkwDQYJKoZIhvcNAQELBQADggEBAGBnKJRvDkhj6zHd6mcY</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;1Yl9PMWLSn/pvtsrF9+wX3N3KjITOYFnQoQj8kVnNeyIv/iPsGEMNKSuIEyExtv4</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;NeF22d+mQrvHRAiGfzZ0JFrabA0UWTW98kndth/Jsw1HKj2ZL7tcu7XUIOGZX1NG</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;Fdtom/DzMNU+MeKNhJ7jitralj41E6Vf8PlwUHBHQRFXGU7Aj64GxJUTFy8bJZ91</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;8rGOmaFvE7FBcf6IKshPECBV1/MUReXgRPTqh5Uykw7+U0b6LJ3/iyK5S9kJRaTe</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;pLiaWN0bfVKfjllDiIGknibVb63dDcY3fe0Dkhvld1927jyNxF1WW6LZZm6zNTfl</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;MrY=</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;-----END CERTIFICATE-----</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="sa">b</span><span class="s2">&quot;-----BEGIN CERTIFICATE-----</span><span class="se">\n</span><span class="s2">&quot;</span> \
                <span class="sa">b</span><span class="s2">&quot;MIIDhDCCAwqgAwIBAgIQL4D+I4wOIg9IZxIokYesszAKBggqhkjOPQQDAzCByjEL</span><span class="se">\n</span><span class="s2">&quot;</span> \
                <span class="sa">b</span><span class="s2">&quot;MAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQLExZW</span><span class="se">\n</span><span class="s2">&quot;</span> \
                <span class="sa">b</span><span class="s2">&quot;ZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTowOAYDVQQLEzEoYykgMjAwNyBWZXJpU2ln</span><span class="se">\n</span><span class="s2">&quot;</span> \
@@ -2675,6 +2698,7 @@ table {
 <span class="sd">The license for the content in CA Root certificates may differ from the license the code file they are contained in.</span>
 <span class="sd">For more info, see the CA certificate page corosponding to the root CA certificate:</span>
 <span class="sd">  </span>
+<span class="sd">  * &lt;https://www.digicert.com/digicert-root-certificates.htm&gt;</span>
 <span class="sd">  * &lt;https://www.symantec.com/theme/roots&gt;</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
@@ -2692,6 +2716,7 @@ table {
     <div class="desc"><p>The license for the content in CA Root certificates may differ from the license the code file they are contained in.
 For more info, see the CA certificate page corosponding to the root CA certificate:</p>
 <ul>
+<li><a href="https://www.digicert.com/digicert-root-certificates.htm">https://www.digicert.com/digicert-root-certificates.htm</a></li>
 <li><a href="https://www.symantec.com/theme/roots">https://www.symantec.com/theme/roots</a></li>
 </ul></div>
   <div class="source_cont">
