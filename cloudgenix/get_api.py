@@ -4,7 +4,7 @@ CloudGenix Python SDK - GET
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017 CloudGenix, Inc
+**Copyright:** (c) 2017, 2018 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017 CloudGenix, Inc
+    Copyright (c) 2017, 2018 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -45,20 +45,21 @@ api_logger = logging.getLogger(__name__)
 class Get(object):
     """
     CloudGenix API - GET requests
-    
-    Object to handle making Get requests via shared Requests Session. 
+
+    Object to handle making Get requests via shared Requests Session.
     """
 
     # placeholder for parent class namespace
     _parent_class = None
 
-    def networkcontexts_single(self, networkcontext_id, tenant_id=None, api_version="v2.0"):
+    def access_elementusers(self, elementuser_id, access_id=None, tenant_id=None, api_version="v2.0"):
         """
-        Get LAN segment
+        Get all accesses for a particular user
 
           **Parameters:**:
 
-          - **networkcontext_id**: Network Context ID
+          - **elementuser_id**: Element User ID
+          - **access_id**: (optional) Access ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -73,20 +74,25 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/networkcontexts/{}".format(api_version,
-                                                                             tenant_id,
-                                                                             networkcontext_id)
+        if not access_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access".format(api_version,
+                                                                                     tenant_id,
+                                                                                     elementuser_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        elementuser_id,
+                                                                                        access_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def vfflicense_tokens(self, vfflicense_id, tenant_id=None, api_version="v2.0"):
+    def aggregates_monitor(self, tenant_id=None, api_version="v2.0"):
         """
-        Get all Tokens for Tenant
+        GET Aggregates_Monitor API Function
 
           **Parameters:**:
 
-          - **vfflicense_id**: Virtual Form Factor License ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -101,21 +107,233 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/tokens".format(api_version,
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aggregates".format(api_version,
+                                                                             tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def appdefs(self, appdef_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all application definitions
+
+          **Parameters:**:
+
+          - **appdef_id**: (optional) Application Definition ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not appdef_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs".format(api_version,
+                                                                      tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs/{}".format(api_version,
+                                                                         tenant_id,
+                                                                         appdef_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def appdefs_version(self, appdefs_version_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get application version for a tenant
+
+          **Parameters:**:
+
+          - **appdefs_version_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not appdefs_version_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs_version".format(api_version,
+                                                                              tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs_version/{}".format(api_version,
+                                                                                 tenant_id,
+                                                                                 appdefs_version_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def base_permissions(self, base_permission_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Base_Permissions API Function
+
+          **Parameters:**:
+
+          - **base_permission_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not base_permission_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions".format(api_version,
+                                                                               tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  base_permission_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def base_permissions_clients(self, client_id, base_permission_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Base_Permissions_Clients API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **base_permission_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not base_permission_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions".format(api_version,
+                                                                                          tenant_id,
+                                                                                          client_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             client_id,
+                                                                                             base_permission_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def base_roles(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Base_Roles API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_roles".format(api_version,
+                                                                     tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def base_roles_clients(self, client_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Base_Roles_Clients API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_roles".format(api_version,
                                                                                 tenant_id,
-                                                                                vfflicense_id)
+                                                                                client_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def coreroutepeers_single(self, site_id, coreroutepeer_id, tenant_id=None, api_version="v2.1"):
+    def bulk_metrics_monitor(self, bulk_metric_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Bulk_Metrics_Monitor API Function
+
+          **Parameters:**:
+
+          - **bulk_metric_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/bulk_metrics/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  bulk_metric_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def coreroutepeers(self, site_id, coreroutepeer_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get config for core route peer config for a site
 
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **coreroutepeer_id**: Core Router peer ID
+          - **coreroutepeer_id**: (optional) Core Router peer ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -130,148 +348,15 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}".format(api_version,
-                                                                                     tenant_id,
-                                                                                     site_id,
-                                                                                     coreroutepeer_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def edgeroutepeers_single(self, site_id, edgeroutepeer_id, tenant_id=None, api_version="v2.1"):
-        """
-        Get config for a single wan edge router for a site
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **edgeroutepeer_id**: Edge Router peer ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/{}".format(api_version,
-                                                                                     tenant_id,
-                                                                                     site_id,
-                                                                                     edgeroutepeer_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_operators(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get a list of tenant operators
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators".format(api_version,
-                                                                    tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_passages(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Tenant_Passages API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/passages".format(api_version,
-                                                                   tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def idps_single(self, idp_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get idp
-
-          **Parameters:**:
-
-          - **idp_id**: SAML IDentity provider configuration ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/idps/{}".format(api_version,
-                                                                  tenant_id,
-                                                                  idp_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elements_single(self, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Elements_Single API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}".format(api_version,
-                                                                      tenant_id,
-                                                                      element_id)
+        if not coreroutepeer_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         coreroutepeer_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -304,17 +389,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def snmpagents_single(self, site_id, element_id, snmpagent_id, tenant_id=None, api_version="v2.0"):
+    def corerouterpeers_status_single(self, site_id, coreroutepeer_id, tenant_id=None, api_version="v2.1"):
         """
-        get SNMP Agent
+        GET Corerouterpeers_Status_Single API Function
 
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **snmpagent_id**: SNMP Agent ID
+          - **coreroutepeer_id**: Core Router peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -327,22 +411,22 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmpagents/{}".format(api_version,
-                                                                                             tenant_id,
-                                                                                             site_id,
-                                                                                             element_id,
-                                                                                             snmpagent_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}/status".format(api_version,
+                                                                                            tenant_id,
+                                                                                            site_id,
+                                                                                            coreroutepeer_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def vpnlinks_status(self, vpnlink_id, tenant_id=None, api_version="v2.0"):
+    def dhcpservers(self, site_id, dhcpserver_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Vpnlinks_Status API Function
+        GET Dhcpservers API Function
 
           **Parameters:**:
 
-          - **vpnlink_id**: VPN Link ID
+          - **site_id**: Site ID
+          - **dhcpserver_id**: (optional) DHCP Server ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -357,22 +441,29 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vpnlinks/{}/status".format(api_version,
-                                                                             tenant_id,
-                                                                             vpnlink_id)
+        if not dhcpserver_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/dhcpservers".format(api_version,
+                                                                                   tenant_id,
+                                                                                   site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/dhcpservers/{}".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id,
+                                                                                      dhcpserver_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def securitypolicyrules(self, securitypolicyset_id, tenant_id=None, api_version="v2.0"):
+    def edgeroutepeers(self, site_id, edgeroutepeer_id=None, tenant_id=None, api_version="v2.1"):
         """
-        Get tenant security policy rules.
+        Get config for wan edge routers for a site
 
           **Parameters:**:
 
-          - **securitypolicyset_id**: Security Policy Set ID
+          - **site_id**: Site ID
+          - **edgeroutepeer_id**: (optional) Edge Router peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -385,21 +476,28 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}/securitypolicyrules".format(api_version,
-                                                                                                    tenant_id,
-                                                                                                    securitypolicyset_id)
+        if not edgeroutepeer_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         edgeroutepeer_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenants_single(self, tenant_id=None, api_version="v2.0"):
+    def edgerouterpeers_status(self, site_id, tenant_id=None, api_version="v2.1"):
         """
-        Get tenant details for tenant id
+        GET Edgerouterpeers_Status API Function
 
           **Parameters:**:
 
+          - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -412,8 +510,9 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}".format(api_version,
-                                                          tenant_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/status".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -448,7 +547,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def element_extensions(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
+    def element_extensions(self, site_id, element_id, extension_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all element level extensions from NB
 
@@ -456,6 +555,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
+          - **extension_id**: (optional) Extension ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -470,51 +570,158 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/extensions".format(api_version,
+        if not extension_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/extensions".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/extensions/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id,
+                                                                                                 extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def element_images(self, element_image_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Element_Images API Function
+
+          **Parameters:**:
+
+          - **element_image_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not element_image_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/element_images".format(api_version,
+                                                                             tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/element_images/{}".format(api_version,
+                                                                                tenant_id,
+                                                                                element_image_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def element_passages(self, element_id, passage_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Element_Passages API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **passage_id**: (optional) Passage Configuration ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not passage_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/passages".format(api_version,
+                                                                                   tenant_id,
+                                                                                   element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/passages/{}".format(api_version,
+                                                                                      tenant_id,
+                                                                                      element_id,
+                                                                                      passage_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.1"):
+        """
+        Get specific element's ElementAccess Config
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **elementaccessconfig_id**: (optional) Element Access Config ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not elementaccessconfig_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs".format(api_version,
+                                                                                               tenant_id,
+                                                                                               element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs/{}".format(api_version,
+                                                                                                  tenant_id,
+                                                                                                  element_id,
+                                                                                                  elementaccessconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def elementaccessstates(self, element_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get specific element's Access State
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessstates".format(api_version,
                                                                                           tenant_id,
-                                                                                          site_id,
                                                                                           element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def roles_single(self, role_id, tenant_id=None, api_version="v2.0"):
+    def elementpassageconfigs(self, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Roles_Single API Function
+        GET Elementpassageconfigs API Function
 
           **Parameters:**:
 
-          - **role_id**: Role ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/roles/{}".format(api_version,
-                                                                   tenant_id,
-                                                                   role_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def snmptraps_single(self, site_id, element_id, snmptrap_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get SNMP trap on an element
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **snmptrap_id**: SNMP Trap ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -529,21 +736,20 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmptraps/{}".format(api_version,
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementpassageconfigs".format(api_version,
                                                                                             tenant_id,
-                                                                                            site_id,
-                                                                                            element_id,
-                                                                                            snmptrap_id)
+                                                                                            element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def securityzones(self, tenant_id=None, api_version="v2.0"):
+    def elements(self, element_id=None, tenant_id=None, api_version="v2.0"):
         """
-        Get security zones
+        Get Elements of a tenant
 
           **Parameters:**:
 
+          - **element_id**: (optional) Element (Device) ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -558,126 +764,24 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securityzones".format(api_version,
-                                                                        tenant_id)
+        if not element_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements".format(api_version,
+                                                                       tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def siteciphers(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get Site Ciphers
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/siteciphers".format(api_version,
-                                                                               tenant_id,
-                                                                               site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def servicelabels_single(self, servicelabel_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get a GetServiceLabel
-
-          **Parameters:**:
-
-          - **servicelabel_id**: Service Label ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/servicelabels/{}".format(api_version,
-                                                                           tenant_id,
-                                                                           servicelabel_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def object_stats_monitor(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Object_Stats_Monitor API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/object_stats".format(api_version,
-                                                                               tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def policysets(self, tenant_id=None, api_version="v3.0"):
-        """
-        Get all policy sets of tenant.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets".format(api_version,
-                                                                     tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elementusers(self, tenant_id=None, api_version="v2.0"):
+    def elementusers(self, elementuser_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all element User
 
           **Parameters:**:
 
+          - **elementuser_id**: (optional) Element User ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -692,194 +796,246 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers".format(api_version,
-                                                                       tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_anynetlinks_single(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
-        """
-        GET Tenant_Anynetlinks_Single API Function
-
-          **Parameters:**:
-
-          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/anynetlinks/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         anynetlink_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def policyrules_single(self, policyset_id, policyrule_id, tenant_id=None, api_version="v3.1"):
-        """
-        Get a specific policy rule of tenant
-
-          **Parameters:**:
-
-          - **policyset_id**: Policy Set ID
-          - **policyrule_id**: Policy Rule ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/policyrules/{}".format(api_version,
-                                                                                       tenant_id,
-                                                                                       policyset_id,
-                                                                                       policyrule_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_anynetlinks_single(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Site_Anynetlinks_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  anynetlink_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wannetworks(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET all tenant WAN networks
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wannetworks".format(api_version,
-                                                                      tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def permissions(self, api_version="v2.0"):
-        """
-        Get list of permitted APIs that the current operator can invoke
-
-          **Parameters:**:
-
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/permissions".format(api_version)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_permissions(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Tenant_Permissions API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions".format(api_version,
-                                                                      tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def base_permissions_single(self, base_permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Base_Permissions_Single API Function
-
-          **Parameters:**:
-
-          - **base_permission_id**: 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions/{}".format(api_version,
+        if not elementuser_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers".format(api_version,
+                                                                           tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}".format(api_version,
                                                                               tenant_id,
-                                                                              base_permission_id)
+                                                                              elementuser_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def enterpriseprefixset(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Enterpriseprefixset API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/enterpriseprefixset".format(api_version,
+                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def esp(self, tenant_id=None, api_version="v2.0"):
+        """
+        Get esp tenant details for tenant id
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/esp".format(api_version,
+                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def esp_operator_permissions(self, operator_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get esp operator permissions assigned under all clients
+
+          **Parameters:**:
+
+          - **operator_id**: Operator ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/clients/permissions".format(api_version,
+                                                                                           tenant_id,
+                                                                                           operator_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get esp operator permissions assigned under a client
+
+          **Parameters:**:
+
+          - **operator_id**: Operator ID
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/clients/{}/permissions".format(api_version,
+                                                                                              tenant_id,
+                                                                                              operator_id,
+                                                                                              client_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def esp_tenant_permissions(self, client_id, permission_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Esp_Tenant_Permissions API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **permission_id**: (optional) Permission ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not permission_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions".format(api_version,
+                                                                                     tenant_id,
+                                                                                     client_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        client_id,
+                                                                                        permission_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def events(self, event_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Events API Function
+
+          **Parameters:**:
+
+          - **event_id**: Event ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/events/{}".format(api_version,
+                                                                    tenant_id,
+                                                                    event_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def globalprefixfilters(self, globalprefixfilter_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get global prefix filters.
+
+          **Parameters:**:
+
+          - **globalprefixfilter_id**: (optional) Global Prefix Filter ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not globalprefixfilter_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/globalprefixfilters".format(api_version,
+                                                                                  tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/globalprefixfilters/{}".format(api_version,
+                                                                                     tenant_id,
+                                                                                     globalprefixfilter_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def hardwarebypass(self, element_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get Elements of a tenant
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/hardwarebypass".format(api_version,
+                                                                                     tenant_id,
+                                                                                     element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -914,13 +1070,118 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def esp_tenant_permissions(self, client_id, tenant_id=None, api_version="v2.0"):
+    def hubclustermember_status(self, site_id, hubcluster_id, hubclustermember_id, tenant_id=None, api_version="v3.0"):
         """
-        GET Esp_Tenant_Permissions API Function
+        Get specific hub cluster member state.
 
           **Parameters:**:
 
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **site_id**: Site ID
+          - **hubcluster_id**: Hub (DC) Cluster ID
+          - **hubclustermember_id**: Hub Cluster Member ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers/{}/status".format(api_version,
+                                                                                                              tenant_id,
+                                                                                                              site_id,
+                                                                                                              hubcluster_id,
+                                                                                                              hubclustermember_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def hubclustermembers(self, site_id, hubcluster_id, hubclustermember_id=None, tenant_id=None, api_version="v3.0"):
+        """
+        Get all hub cluster members
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **hubcluster_id**: Hub (DC) Cluster ID
+          - **hubclustermember_id**: (optional) Hub Cluster Member ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not hubclustermember_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers".format(api_version,
+                                                                                                        tenant_id,
+                                                                                                        site_id,
+                                                                                                        hubcluster_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers/{}".format(api_version,
+                                                                                                           tenant_id,
+                                                                                                           site_id,
+                                                                                                           hubcluster_id,
+                                                                                                           hubclustermember_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def hubclusters(self, site_id, hubcluster_id=None, tenant_id=None, api_version="v3.0"):
+        """
+        Get all hub clusters
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **hubcluster_id**: (optional) Hub (DC) Cluster ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not hubcluster_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters".format(api_version,
+                                                                                   tenant_id,
+                                                                                   site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id,
+                                                                                      hubcluster_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def idps(self, idp_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all idps
+
+          **Parameters:**:
+
+          - **idp_id**: (optional) SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -935,9 +1196,51 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions".format(api_version,
-                                                                                 tenant_id,
-                                                                                 client_id)
+        if not idp_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/idps".format(api_version,
+                                                                   tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/idps/{}".format(api_version,
+                                                                      tenant_id,
+                                                                      idp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.1"):
+        """
+        Get element interface ids
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **interface_id**: (optional) Interface ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v4.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not interface_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id,
+                                                                                                 interface_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -974,13 +1277,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def appdefs_version_single(self, appdefs_version_id, tenant_id=None, api_version="v2.0"):
+    def lannetworks(self, site_id, lannetwork_id=None, tenant_id=None, api_version="v2.0"):
         """
-        Get system application definitions
+        Get LAN Networks
 
           **Parameters:**:
 
-          - **appdefs_version_id**: 
+          - **site_id**: Site ID
+          - **lannetwork_id**: (optional) LAN Network ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -995,16 +1299,164 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs_version/{}".format(api_version,
+        if not lannetwork_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/lannetworks".format(api_version,
+                                                                                   tenant_id,
+                                                                                   site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/lannetworks/{}".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id,
+                                                                                      lannetwork_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def localprefixfilters(self, localprefixfilter_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get local prefix filters.
+
+          **Parameters:**:
+
+          - **localprefixfilter_id**: (optional) Local Prefix Filter ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not localprefixfilter_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    localprefixfilter_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def logout(self, api_version="v2.0"):
+        """
+        Logout current session
+
+          **Parameters:**:
+
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/logout".format(api_version)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def machines(self, machine_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all machines of tenant
+
+          **Parameters:**:
+
+          - **machine_id**: (optional) Machine ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not machine_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/machines".format(api_version,
+                                                                       tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          machine_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def metrics_monitor(self, metric_id, tenant_id=None, api_version="v2.1"):
+        """
+        GET Metrics_Monitor API Function
+
+          **Parameters:**:
+
+          - **metric_id**: Metric ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/metrics/{}".format(api_version,
                                                                              tenant_id,
-                                                                             appdefs_version_id)
+                                                                             metric_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def idps(self, tenant_id=None, api_version="v2.0"):
+    def networkcontexts(self, networkcontext_id=None, tenant_id=None, api_version="v2.0"):
         """
-        Get all idps
+        Get LAN segments
+
+          **Parameters:**:
+
+          - **networkcontext_id**: (optional) Network Context ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkcontext_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkcontexts".format(api_version,
+                                                                              tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkcontexts/{}".format(api_version,
+                                                                                 tenant_id,
+                                                                                 networkcontext_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def object_stats_monitor(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Object_Stats_Monitor API Function
 
           **Parameters:**:
 
@@ -1022,21 +1474,21 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/idps".format(api_version,
-                                                               tenant_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/object_stats".format(api_version,
+                                                                               tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def edgeroutepeers(self, site_id, tenant_id=None, api_version="v2.1"):
+    def operator_sessions(self, operator_id, tenant_id=None, api_version="v2.0"):
         """
-        Get config for wan edge routers for a site
+        Get all sessions for operator id belonging to a tenant id
 
           **Parameters:**:
 
-          - **site_id**: Site ID
+          - **operator_id**: Operator ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1049,23 +1501,21 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions".format(api_version,
+                                                                                tenant_id,
+                                                                                operator_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def corerouterpeers_status_single(self, site_id, coreroutepeer_id, tenant_id=None, api_version="v2.1"):
+    def otpaccessconfigs(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Corerouterpeers_Status_Single API Function
+        Get specific element's Access Config
 
           **Parameters:**:
 
-          - **site_id**: Site ID
-          - **coreroutepeer_id**: Core Router peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1078,21 +1528,98 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}/status".format(api_version,
-                                                                                            tenant_id,
-                                                                                            site_id,
-                                                                                            coreroutepeer_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/otpaccessconfigs".format(api_version,
+                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def policyrules(self, policyset_id, tenant_id=None, api_version="v3.1"):
+    def password_elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Password_Elementusers API Function
+
+          **Parameters:**:
+
+          - **elementuser_id**: Element User ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/password".format(api_version,
+                                                                                   tenant_id,
+                                                                                   elementuser_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def pathgroups(self, pathgroup_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        get all Path Groups for a tenant.
+
+          **Parameters:**:
+
+          - **pathgroup_id**: (optional) Path Group ID (for network service/DC routing)
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not pathgroup_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/pathgroups".format(api_version,
+                                                                         tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/pathgroups/{}".format(api_version,
+                                                                            tenant_id,
+                                                                            pathgroup_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def permissions(self, api_version="v2.0"):
+        """
+        Get list of permitted APIs that the current operator can invoke
+
+          **Parameters:**:
+
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/permissions".format(api_version)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def policyrules(self, policyset_id, policyrule_id=None, tenant_id=None, api_version="v3.1"):
         """
         Get policy rules of tenant
 
           **Parameters:**:
 
           - **policyset_id**: Policy Set ID
+          - **policyrule_id**: (optional) Policy Rule ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.1)
 
@@ -1107,20 +1634,87 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/policyrules".format(api_version,
-                                                                                    tenant_id,
-                                                                                    policyset_id)
+        if not policyrule_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/policyrules".format(api_version,
+                                                                                        tenant_id,
+                                                                                        policyset_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/policyrules/{}".format(api_version,
+                                                                                           tenant_id,
+                                                                                           policyset_id,
+                                                                                           policyrule_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def roles_clients(self, client_id, tenant_id=None, api_version="v2.0"):
+    def policysets(self, policyset_id=None, tenant_id=None, api_version="v3.0"):
         """
-        GET Roles_Clients API Function
+        Get all policy sets of tenant.
 
           **Parameters:**:
 
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **policyset_id**: (optional) Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not policyset_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets".format(api_version,
+                                                                         tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}".format(api_version,
+                                                                            tenant_id,
+                                                                            policyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def policysets_status(self, policyset_id, tenant_id=None, api_version="v3.0"):
+        """
+        Get a specific policy set status of tenant.
+
+          **Parameters:**:
+
+          - **policyset_id**: Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/status".format(api_version,
+                                                                               tenant_id,
+                                                                               policyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def prefixfilters(self, site_id, prefixfilter_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get site security filters
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **prefixfilter_id**: (optional) Prefix Filter ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1135,20 +1729,681 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles".format(api_version,
-                                                                           tenant_id,
-                                                                           client_id)
+        if not prefixfilter_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prefixfilters".format(api_version,
+                                                                                     tenant_id,
+                                                                                     site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prefixfilters/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        site_id,
+                                                                                        prefixfilter_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def snmpagents(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
+    def profile(self, api_version="v2.0"):
+        """
+        Get current user profile
+
+          **Parameters:**:
+
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/profile".format(api_version)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def request_get_site_best_art(self, request_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Request_Get_Site_Best_Art API Function
+
+          **Parameters:**:
+
+          - **request_id**: Request ID to be queried for status.
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/get_site_best_art/request/{}".format(api_version,
+                                                                                       tenant_id,
+                                                                                       request_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def request_get_site_best_bw_usage(self, request_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Request_Get_Site_Best_Bw_Usage API Function
+
+          **Parameters:**:
+
+          - **request_id**: Request ID to be queried for status.
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/get_site_best_bw_usage/request/{}".format(api_version,
+                                                                                            tenant_id,
+                                                                                            request_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def request_site_best_app_path(self, request_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Request_Site_Best_App_Path API Function
+
+          **Parameters:**:
+
+          - **request_id**: Request ID to be queried for status.
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/site_best_app_path/request/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        request_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def request_sites_best_app_path(self, request_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Request_Sites_Best_App_Path API Function
+
+          **Parameters:**:
+
+          - **request_id**: Request ID to be queried for status.
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites_best_app_path/request/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         request_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def roles(self, role_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Roles API Function
+
+          **Parameters:**:
+
+          - **role_id**: (optional) Role ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not role_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/roles".format(api_version,
+                                                                    tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/roles/{}".format(api_version,
+                                                                       tenant_id,
+                                                                       role_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def roles_clients(self, client_id, role_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Roles_Clients API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **role_id**: (optional) Role ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not role_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles".format(api_version,
+                                                                               tenant_id,
+                                                                               client_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  client_id,
+                                                                                  role_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def securitypolicyrules(self, securitypolicyset_id, securitypolicyrule_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get tenant security policy rules.
+
+          **Parameters:**:
+
+          - **securitypolicyset_id**: Security Policy Set ID
+          - **securitypolicyrule_id**: (optional) Security Policy Rule ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not securitypolicyrule_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}/securitypolicyrules".format(api_version,
+                                                                                                        tenant_id,
+                                                                                                        securitypolicyset_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}/securitypolicyrules/{}".format(api_version,
+                                                                                                           tenant_id,
+                                                                                                           securitypolicyset_id,
+                                                                                                           securitypolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def securitypolicysets(self, securitypolicyset_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get tenant security policy sets.
+
+          **Parameters:**:
+
+          - **securitypolicyset_id**: (optional) Security Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not securitypolicyset_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    securitypolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def securityzones(self, securityzone_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get security zones
+
+          **Parameters:**:
+
+          - **securityzone_id**: (optional) Security Zone (ZBFW) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not securityzone_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securityzones".format(api_version,
+                                                                            tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/securityzones/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               securityzone_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def servicebindingmaps(self, servicebindingmap_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get getServiceBindingMapList
+
+          **Parameters:**:
+
+          - **servicebindingmap_id**: (optional) Service Binding Map ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not servicebindingmap_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/servicebindingmaps".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/servicebindingmaps/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    servicebindingmap_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def serviceendpoints(self, serviceendpoint_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get ServiceEndpointList
+
+          **Parameters:**:
+
+          - **serviceendpoint_id**: (optional) Service Endpoint ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not serviceendpoint_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/serviceendpoints".format(api_version,
+                                                                               tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/serviceendpoints/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  serviceendpoint_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def servicelabels(self, servicelabel_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get getServiceLabelList
+
+          **Parameters:**:
+
+          - **servicelabel_id**: (optional) Service Label ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not servicelabel_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/servicelabels".format(api_version,
+                                                                            tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/servicelabels/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               servicelabel_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_anynetlinks(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Anynetlinks API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  site_id,
+                                                                                  anynetlink_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_extensions(self, site_id, extension_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all site level extensions from NB
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **extension_id**: (optional) Extension ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not extension_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/extensions".format(api_version,
+                                                                                  tenant_id,
+                                                                                  site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/extensions/{}".format(api_version,
+                                                                                     tenant_id,
+                                                                                     site_id,
+                                                                                     extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_status(self, site_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Status API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/status".format(api_version,
+                                                                          tenant_id,
+                                                                          site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def siteciphers(self, site_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get Site Ciphers
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/siteciphers".format(api_version,
+                                                                               tenant_id,
+                                                                               site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sites(self, site_id=None, tenant_id=None, api_version="v4.1"):
+        """
+        Get Sites of a tenant
+
+          **Parameters:**:
+
+          - **site_id**: (optional) Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v4.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not site_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites".format(api_version,
+                                                                    tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}".format(api_version,
+                                                                       tenant_id,
+                                                                       site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sitesecurityzones(self, site_id, sitesecurityzone_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get site security zones
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **sitesecurityzone_id**: (optional) Site Security Zone ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not sitesecurityzone_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones/{}".format(api_version,
+                                                                                            tenant_id,
+                                                                                            site_id,
+                                                                                            sitesecurityzone_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def snmpagents(self, site_id, element_id, snmpagent_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get SNMP Agent on an element
 
           **Parameters:**:
 
           - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **snmpagent_id**: (optional) SNMP Agent ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not snmpagent_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmpagents".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmpagents/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id,
+                                                                                                 snmpagent_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def snmptraps(self, site_id, element_id, snmptrap_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get All SNMP Trap on an element
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **snmptrap_id**: (optional) SNMP Trap ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not snmptrap_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmptraps".format(api_version,
+                                                                                             tenant_id,
+                                                                                             site_id,
+                                                                                             element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmptraps/{}".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id,
+                                                                                                snmptrap_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def software_status(self, element_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Software_Status API Function
+
+          **Parameters:**:
+
           - **element_id**: Element (Device) ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -1164,339 +2419,9 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmpagents".format(api_version,
-                                                                                          tenant_id,
-                                                                                          site_id,
-                                                                                          element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def appdefs_single(self, appdef_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get application definition
-
-          **Parameters:**:
-
-          - **appdef_id**: Application Definition ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs/{}".format(api_version,
-                                                                     tenant_id,
-                                                                     appdef_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_permissions_single(self, permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Tenant_Permissions_Single API Function
-
-          **Parameters:**:
-
-          - **permission_id**: Permission ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wanoverlaychannels_single(self, wanoverlaychannel_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Wanoverlaychannels_Single API Function
-
-          **Parameters:**:
-
-          - **wanoverlaychannel_id**: WAN Overlay Channel ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlaychannels/{}".format(api_version,
-                                                                                tenant_id,
-                                                                                wanoverlaychannel_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_clients(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get esp tenant clients details for tenant id
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients".format(api_version,
-                                                                  tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def globalprefixfilters(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get global prefix filters.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/globalprefixfilters".format(api_version,
-                                                                              tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def element_images(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Element_Images API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/element_images".format(api_version,
-                                                                         tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def machines(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get all machines of tenant
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/machines".format(api_version,
-                                                                   tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def roles_clients_single(self, client_id, role_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Roles_Clients_Single API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **role_id**: Role ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              client_id,
-                                                                              role_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def securitypolicyrules_single(self, securitypolicyset_id, securitypolicyrule_id, tenant_id=None,
-                                   api_version="v2.0"):
-        """
-        Get tenant security policy rule.
-
-          **Parameters:**:
-
-          - **securitypolicyset_id**: Security Policy Set ID
-          - **securitypolicyrule_id**: Security Policy Rule ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}/securitypolicyrules/{}".format(api_version,
-                                                                                                       tenant_id,
-                                                                                                       securitypolicyset_id,
-                                                                                                       securitypolicyrule_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def esp(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get esp tenant details for tenant id
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/esp".format(api_version,
-                                                              tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def sites(self, tenant_id=None, api_version="v4.1"):
-        """
-        Get Sites of a tenant
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites".format(api_version,
-                                                                tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def vfflicense_status(self, vfflicense_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Vfflicense_Status API Function
-
-          **Parameters:**:
-
-          - **vfflicense_id**: Virtual Form Factor License ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/status".format(api_version,
-                                                                                tenant_id,
-                                                                                vfflicense_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/software/status".format(api_version,
+                                                                                      tenant_id,
+                                                                                      element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -1557,101 +2482,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def waninterfaces_single(self, site_id, waninterface_id, tenant_id=None, api_version="v2.1"):
+    def staticroutes(self, site_id, element_id, staticroute_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Waninterfaces_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **waninterface_id**: WAN Interface ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/waninterfaces/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    site_id,
-                                                                                    waninterface_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def bulk_metrics_monitor_single(self, bulk_metric_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Bulk_Metrics_Monitor_Single API Function
-
-          **Parameters:**:
-
-          - **bulk_metric_id**: 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/bulk_metrics/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  bulk_metric_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def interfaces(self, site_id, element_id, tenant_id=None, api_version="v4.1"):
-        """
-        Get element interface ids
+        GET Staticroutes API Function
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces".format(api_version,
-                                                                                          tenant_id,
-                                                                                          site_id,
-                                                                                          element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def request_sites_best_app_path_single(self, request_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Request_Sites_Best_App_Path_Single API Function
-
-          **Parameters:**:
-
-          - **request_id**: Request ID to be queried for status.
+          - **staticroute_id**: (optional) Static Route ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1666,120 +2505,24 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites_best_app_path/request/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         request_id)
+        if not staticroute_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/staticroutes".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/staticroutes/{}".format(api_version,
+                                                                                                   tenant_id,
+                                                                                                   site_id,
+                                                                                                   element_id,
+                                                                                                   staticroute_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def base_permissions_clients_single(self, client_id, base_permission_id, tenant_id=None, api_version="v2.0"):
+    def sys_metrics_monitor(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Permissions_Clients_Single API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **base_permission_id**: 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         client_id,
-                                                                                         base_permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def users_single(self, user_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Users_Single API Function
-
-          **Parameters:**:
-
-          - **user_id**: User ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/users/{}".format(api_version,
-                                                                   tenant_id,
-                                                                   user_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def edgerouterpeers_status(self, site_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Edgerouterpeers_Status API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/status".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def logout(self, api_version="v2.0"):
-        """
-        Logout current session
-
-          **Parameters:**:
-
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/logout".format(api_version)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenantpassageconfigs(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Tenantpassageconfigs API Function
+        GET Sys_Metrics_Monitor API Function
 
           **Parameters:**:
 
@@ -1797,103 +2540,19 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/tenantpassageconfigs".format(api_version,
-                                                                               tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def machines_single(self, machine_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get specific machine belonging to tenant
-
-          **Parameters:**:
-
-          - **machine_id**: Machine ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/{}".format(api_version,
-                                                                      tenant_id,
-                                                                      machine_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def sitesecurityzones_single(self, site_id, sitesecurityzone_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get site security zone
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **sitesecurityzone_id**: Site Security Zone ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones/{}".format(api_version,
-                                                                                        tenant_id,
-                                                                                        site_id,
-                                                                                        sitesecurityzone_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def enterpriseprefixset(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Enterpriseprefixset API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/enterpriseprefixset".format(api_version,
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/sys_metrics".format(api_version,
                                                                               tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elementpassageconfigs(self, element_id, tenant_id=None, api_version="v2.0"):
+    def tenant_access(self, access_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Elementpassageconfigs API Function
+        Get full invocation trail for given tenant
 
           **Parameters:**:
 
-          - **element_id**: Element (Device) ID
+          - **access_id**: (optional) Access ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1908,134 +2567,24 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementpassageconfigs".format(api_version,
-                                                                                            tenant_id,
-                                                                                            element_id)
+        if not access_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/access".format(api_version,
+                                                                     tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/access/{}".format(api_version,
+                                                                        tenant_id,
+                                                                        access_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def appdefs_version(self, tenant_id=None, api_version="v2.0"):
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
         """
-        Get application version for a tenant
+        GET Tenant_Anynetlinks API Function
 
           **Parameters:**:
 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs_version".format(api_version,
-                                                                          tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def localprefixfilters_single(self, localprefixfilter_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get a specific local prefix filter.
-
-          **Parameters:**:
-
-          - **localprefixfilter_id**: Local Prefix Filter ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters/{}".format(api_version,
-                                                                                tenant_id,
-                                                                                localprefixfilter_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def lannetworks_single(self, site_id, lannetwork_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get LAN Network
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **lannetwork_id**: LAN Network ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/lannetworks/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  lannetwork_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def request_get_site_best_art_single(self, request_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Request_Get_Site_Best_Art_Single API Function
-
-          **Parameters:**:
-
-          - **request_id**: Request ID to be queried for status.
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/get_site_best_art/request/{}".format(api_version,
-                                                                                       tenant_id,
-                                                                                       request_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hubclustermembers_single(self, site_id, hubcluster_id, hubclustermember_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get specific hub cluster member.
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **hubcluster_id**: Hub (DC) Cluster ID
-          - **hubclustermember_id**: Hub Cluster Member ID
+          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.0)
 
@@ -2050,349 +2599,9 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers/{}".format(api_version,
-                                                                                                       tenant_id,
-                                                                                                       site_id,
-                                                                                                       hubcluster_id,
-                                                                                                       hubclustermember_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hardwarebypass(self, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get Elements of a tenant
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/hardwarebypass".format(api_version,
-                                                                                     tenant_id,
-                                                                                     element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def prefixfilters_single(self, site_id, prefixfilter_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get site security prefix filter
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **prefixfilter_id**: Prefix Filter ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prefixfilters/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    site_id,
-                                                                                    prefixfilter_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def element_images_single(self, element_image_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Element_Images_Single API Function
-
-          **Parameters:**:
-
-          - **element_image_id**: 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/element_images/{}".format(api_version,
-                                                                            tenant_id,
-                                                                            element_image_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def otpaccessconfigs(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get specific element's Access Config
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/otpaccessconfigs".format(api_version,
-                                                                           tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elementaccessstates(self, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get specific element's Access State
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessstates".format(api_version,
-                                                                                          tenant_id,
-                                                                                          element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wanpaths(self, site_id, tenant_id=None, api_version="v3.0"):
-        """
-        GET Wanpaths API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/wanpaths".format(api_version,
-                                                                            tenant_id,
-                                                                            site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def element_extensions_single(self, site_id, element_id, extension_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get extension from NB
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **extension_id**: Extension ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/extensions/{}".format(api_version,
-                                                                                             tenant_id,
-                                                                                             site_id,
-                                                                                             element_id,
-                                                                                             extension_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wanoverlaychannels(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Wanoverlaychannels API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlaychannels".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def password_elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Password_Elementusers API Function
-
-          **Parameters:**:
-
-          - **elementuser_id**: Element User ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/password".format(api_version,
-                                                                                   tenant_id,
-                                                                                   elementuser_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def globalprefixfilters_single(self, globalprefixfilter_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get a specific global prefix filter.
-
-          **Parameters:**:
-
-          - **globalprefixfilter_id**: Global Prefix Filter ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/globalprefixfilters/{}".format(api_version,
-                                                                                 tenant_id,
-                                                                                 globalprefixfilter_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def prefixfilters(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get site security filters
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prefixfilters".format(api_version,
-                                                                                 tenant_id,
-                                                                                 site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elementaccessconfigs(self, element_id, tenant_id=None, api_version="v2.1"):
-        """
-        Get specific element's ElementAccess Config
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs".format(api_version,
-                                                                                           tenant_id,
-                                                                                           element_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/anynetlinks/{}".format(api_version,
+                                                                         tenant_id,
+                                                                         anynetlink_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -2423,13 +2632,12 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenant_operators_single(self, operator_id, tenant_id=None, api_version="v2.0"):
+    def tenant_clients(self, tenant_id=None, api_version="v2.0"):
         """
-        Get a tenant operator
+        Get esp tenant clients details for tenant id
 
           **Parameters:**:
 
-          - **operator_id**: Operator ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2444,20 +2652,18 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}".format(api_version,
-                                                                       tenant_id,
-                                                                       operator_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients".format(api_version,
+                                                                  tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def operator_sessions(self, operator_id, tenant_id=None, api_version="v2.0"):
+    def tenant_elementpassageconfigs(self, tenant_id=None, api_version="v2.0"):
         """
-        Get all sessions for operator id belonging to a tenant id
+        GET Tenant_Elementpassageconfigs API Function
 
           **Parameters:**:
 
-          - **operator_id**: Operator ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2472,9 +2678,372 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions".format(api_version,
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementpassageconfigs".format(api_version,
+                                                                                tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenant_operators(self, operator_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get a list of tenant operators
+
+          **Parameters:**:
+
+          - **operator_id**: (optional) Operator ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not operator_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators".format(api_version,
+                                                                        tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           operator_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenant_passages(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Passages API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/passages".format(api_version,
+                                                                   tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenant_permissions(self, permission_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Permissions API Function
+
+          **Parameters:**:
+
+          - **permission_id**: (optional) Permission ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not permission_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions".format(api_version,
+                                                                          tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions/{}".format(api_version,
+                                                                             tenant_id,
+                                                                             permission_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenantpassageconfigs(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenantpassageconfigs API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/tenantpassageconfigs".format(api_version,
+                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenants(self, tenant_id=None, api_version="v2.0"):
+        """
+        Get tenant details for tenant id
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}".format(api_version,
+                                                          tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def users(self, user_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Users API Function
+
+          **Parameters:**:
+
+          - **user_id**: (optional) User ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not user_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/users".format(api_version,
+                                                                    tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/users/{}".format(api_version,
+                                                                       tenant_id,
+                                                                       user_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def vfflicense_status(self, vfflicense_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Vfflicense_Status API Function
+
+          **Parameters:**:
+
+          - **vfflicense_id**: Virtual Form Factor License ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/status".format(api_version,
                                                                                 tenant_id,
-                                                                                operator_id)
+                                                                                vfflicense_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def vfflicense_tokens(self, vfflicense_id, token_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all Tokens for Tenant
+
+          **Parameters:**:
+
+          - **vfflicense_id**: Virtual Form Factor License ID
+          - **token_id**: (optional) Token ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not token_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/tokens".format(api_version,
+                                                                                    tenant_id,
+                                                                                    vfflicense_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/tokens/{}".format(api_version,
+                                                                                       tenant_id,
+                                                                                       vfflicense_id,
+                                                                                       token_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def vfflicenses(self, vfflicense_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all License for Tenant
+
+          **Parameters:**:
+
+          - **vfflicense_id**: (optional) Virtual Form Factor License ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not vfflicense_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses".format(api_version,
+                                                                          tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}".format(api_version,
+                                                                             tenant_id,
+                                                                             vfflicense_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def vpnlinks_status(self, vpnlink_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Vpnlinks_Status API Function
+
+          **Parameters:**:
+
+          - **vpnlink_id**: VPN Link ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/vpnlinks/{}/status".format(api_version,
+                                                                             tenant_id,
+                                                                             vpnlink_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def waninterfacelabels(self, waninterfacelabel_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get WAN interface labels for a tenant.
+
+          **Parameters:**:
+
+          - **waninterfacelabel_id**: (optional) WAN Interface Label ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not waninterfacelabel_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/waninterfacelabels".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/waninterfacelabels/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    waninterfacelabel_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def waninterfaces(self, site_id, waninterface_id=None, tenant_id=None, api_version="v2.1"):
+        """
+        GET Waninterfaces API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **waninterface_id**: (optional) WAN Interface ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not waninterface_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/waninterfaces".format(api_version,
+                                                                                     tenant_id,
+                                                                                     site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/waninterfaces/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        site_id,
+                                                                                        waninterface_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -2509,13 +3078,13 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def waninterfacelabels_single(self, waninterfacelabel_id, tenant_id=None, api_version="v2.0"):
+    def wannetworks(self, wannetwork_id=None, tenant_id=None, api_version="v2.0"):
         """
-        Get specific WAN interface label.
+        GET all tenant WAN networks
 
           **Parameters:**:
 
-          - **waninterfacelabel_id**: WAN Interface Label ID
+          - **wannetwork_id**: (optional) WAN Network ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2530,329 +3099,24 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/waninterfacelabels/{}".format(api_version,
-                                                                                tenant_id,
-                                                                                waninterfacelabel_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def element_passages(self, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Element_Passages API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/passages".format(api_version,
-                                                                               tenant_id,
-                                                                               element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def coreroutepeers(self, site_id, tenant_id=None, api_version="v2.1"):
-        """
-        Get config for core route peer config for a site
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hubclusters(self, site_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get all hub clusters
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters".format(api_version,
-                                                                               tenant_id,
-                                                                               site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def pathgroups_single(self, pathgroup_id, tenant_id=None, api_version="v2.0"):
-        """
-        get A Path Group of a tenant.
-
-          **Parameters:**:
-
-          - **pathgroup_id**: Path Group ID (for network service/DC routing)
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/pathgroups/{}".format(api_version,
-                                                                        tenant_id,
-                                                                        pathgroup_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hubclustermember_status(self, site_id, hubcluster_id, hubclustermember_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get specific hub cluster member state.
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **hubcluster_id**: Hub (DC) Cluster ID
-          - **hubclustermember_id**: Hub Cluster Member ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers/{}/status".format(
-            api_version,
-            tenant_id,
-            site_id,
-            hubcluster_id,
-            hubclustermember_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def esp_tenant_permissions_single(self, client_id, permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Esp_Tenant_Permissions_Single API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **permission_id**: Permission ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    client_id,
-                                                                                    permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def base_permissions(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Base_Permissions API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions".format(api_version,
-                                                                           tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def dhcpservers(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Dhcpservers API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/dhcpservers".format(api_version,
-                                                                               tenant_id,
-                                                                               site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def aggregates_monitor(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Aggregates_Monitor API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aggregates".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def request_site_best_app_path_single(self, request_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Request_Site_Best_App_Path_Single API Function
-
-          **Parameters:**:
-
-          - **request_id**: Request ID to be queried for status.
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/site_best_app_path/request/{}".format(api_version,
-                                                                                        tenant_id,
-                                                                                        request_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def networkcontexts(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get LAN segments
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/networkcontexts".format(api_version,
+        if not wannetwork_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wannetworks".format(api_version,
                                                                           tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wannetworks/{}".format(api_version,
+                                                                             tenant_id,
+                                                                             wannetwork_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def base_roles_clients(self, client_id, tenant_id=None, api_version="v2.0"):
+    def wanoverlaychannels(self, wanoverlaychannel_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Roles_Clients API Function
+        GET Wanoverlaychannels API Function
 
           **Parameters:**:
 
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **wanoverlaychannel_id**: (optional) WAN Overlay Channel ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2867,1181 +3131,24 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_roles".format(api_version,
-                                                                                tenant_id,
-                                                                                client_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hubclusters_single(self, site_id, hubcluster_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get all hub cluster
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **hubcluster_id**: Hub (DC) Cluster ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  hubcluster_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def pathgroups(self, tenant_id=None, api_version="v2.0"):
-        """
-        get all Path Groups for a tenant.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/pathgroups".format(api_version,
-                                                                     tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def waninterfaces(self, site_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Waninterfaces API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/waninterfaces".format(api_version,
-                                                                                 tenant_id,
-                                                                                 site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_access(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get full invocation trail for given tenant
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/access".format(api_version,
-                                                                 tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def servicelabels(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get getServiceLabelList
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/servicelabels".format(api_version,
-                                                                        tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def roles(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Roles API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/roles".format(api_version,
-                                                                tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def vfflicenses_single(self, vfflicense_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get Specific License for Tenant
-
-          **Parameters:**:
-
-          - **vfflicense_id**: Virtual Form Factor License ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         vfflicense_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_elementpassageconfigs(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Tenant_Elementpassageconfigs API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementpassageconfigs".format(api_version,
-                                                                                tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get esp operator permissions assigned under a client
-
-          **Parameters:**:
-
-          - **operator_id**: Operator ID
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/clients/{}/permissions".format(api_version,
-                                                                                              tenant_id,
-                                                                                              operator_id,
-                                                                                              client_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def appdefs(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get all application definitions
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs".format(api_version,
-                                                                  tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def serviceendpoints_single(self, serviceendpoint_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get a ServiceEndpoint
-
-          **Parameters:**:
-
-          - **serviceendpoint_id**: Service Endpoint ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/serviceendpoints/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              serviceendpoint_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_status(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Site_Status API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/status".format(api_version,
-                                                                          tenant_id,
-                                                                          site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elementaccessconfigs_single(self, element_id, elementaccessconfig_id, tenant_id=None, api_version="v2.1"):
-        """
-        Get specific element's Access Config
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **elementaccessconfig_id**: Element Access Config ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs/{}".format(api_version,
-                                                                                              tenant_id,
-                                                                                              element_id,
-                                                                                              elementaccessconfig_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def securitypolicysets(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get tenant security policy sets.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wannetworks_single(self, wannetwork_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET an existing WAN
-
-          **Parameters:**:
-
-          - **wannetwork_id**: WAN Network ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wannetworks/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         wannetwork_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def sys_metrics_monitor(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Sys_Metrics_Monitor API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/sys_metrics".format(api_version,
-                                                                              tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def lannetworks(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get LAN Networks
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/lannetworks".format(api_version,
-                                                                               tenant_id,
-                                                                               site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def localprefixfilters(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get local prefix filters.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def vfflicenses(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get all License for Tenant
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses".format(api_version,
-                                                                      tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def sitesecurityzones(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get site security zones
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones".format(api_version,
-                                                                                     tenant_id,
-                                                                                     site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def software_status(self, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Software_Status API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/software/status".format(api_version,
-                                                                                      tenant_id,
-                                                                                      element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def securityzones_single(self, securityzone_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get security zone
-
-          **Parameters:**:
-
-          - **securityzone_id**: Security Zone (ZBFW) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securityzones/{}".format(api_version,
-                                                                           tenant_id,
-                                                                           securityzone_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def servicebindingmaps(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get getServiceBindingMapList
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/servicebindingmaps".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def esp_operator_permissions(self, operator_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get esp operator permissions assigned under all clients
-
-          **Parameters:**:
-
-          - **operator_id**: Operator ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/clients/permissions".format(api_version,
-                                                                                           tenant_id,
-                                                                                           operator_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_extensions_single(self, site_id, extension_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get extension from NB
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **extension_id**: Extension ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/extensions/{}".format(api_version,
-                                                                                 tenant_id,
-                                                                                 site_id,
-                                                                                 extension_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def policysets_single(self, policyset_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get a specific policy set of tenant.
-
-          **Parameters:**:
-
-          - **policyset_id**: Policy Set ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}".format(api_version,
-                                                                        tenant_id,
-                                                                        policyset_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def hubclustermembers(self, site_id, hubcluster_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get all hub cluster members
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **hubcluster_id**: Hub (DC) Cluster ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/hubclustermembers".format(api_version,
-                                                                                                    tenant_id,
-                                                                                                    site_id,
-                                                                                                    hubcluster_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def profile(self, api_version="v2.0"):
-        """
-        Get current user profile
-
-          **Parameters:**:
-
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/profile".format(api_version)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elements(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get Elements of a tenant
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements".format(api_version,
-                                                                   tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def users(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Users API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/users".format(api_version,
-                                                                tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def staticroutes_single(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Staticroutes_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **staticroute_id**: Static Route ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/staticroutes/{}".format(api_version,
-                                                                                               tenant_id,
-                                                                                               site_id,
-                                                                                               element_id,
-                                                                                               staticroute_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def dhcpservers_single(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Dhcpservers_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **dhcpserver_id**: DHCP Server ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/dhcpservers/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  dhcpserver_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def tenant_access_single(self, access_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get invocation details for given tenant and access id
-
-          **Parameters:**:
-
-          - **access_id**: Access ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/access/{}".format(api_version,
-                                                                    tenant_id,
-                                                                    access_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def request_get_site_best_bw_usage_single(self, request_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Request_Get_Site_Best_Bw_Usage_Single API Function
-
-          **Parameters:**:
-
-          - **request_id**: Request ID to be queried for status.
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/get_site_best_bw_usage/request/{}".format(api_version,
-                                                                                            tenant_id,
-                                                                                            request_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def base_roles(self, tenant_id=None, api_version="v2.0"):
-        """
-        GET Base_Roles API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_roles".format(api_version,
-                                                                     tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wanoverlays_single(self, wanoverlay_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get app/wan context
-
-          **Parameters:**:
-
-          - **wanoverlay_id**: WAN Overlay ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlays/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         wanoverlay_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def access_elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get all accesses for a particular user
-
-          **Parameters:**:
-
-          - **elementuser_id**: Element User ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access".format(api_version,
-                                                                                 tenant_id,
-                                                                                 elementuser_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def interfaces_single(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.1"):
-        """
-        Get element interface details
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **interface_id**: Interface ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces/{}".format(api_version,
-                                                                                             tenant_id,
-                                                                                             site_id,
-                                                                                             element_id,
-                                                                                             interface_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def access_elementusers_single(self, elementuser_id, access_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get specific element User access
-
-          **Parameters:**:
-
-          - **elementuser_id**: Element User ID
-          - **access_id**: Access ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access/{}".format(api_version,
+        if not wanoverlaychannel_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlaychannels".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlaychannels/{}".format(api_version,
                                                                                     tenant_id,
-                                                                                    elementuser_id,
-                                                                                    access_id)
+                                                                                    wanoverlaychannel_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def vfflicense_tokens_single(self, vfflicense_id, token_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get Specific Token for Tenant
-
-          **Parameters:**:
-
-          - **vfflicense_id**: Virtual Form Factor License ID
-          - **token_id**: Token ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/vfflicenses/{}/tokens/{}".format(api_version,
-                                                                                   tenant_id,
-                                                                                   vfflicense_id,
-                                                                                   token_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elementusers_single(self, elementuser_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get specific element User
-
-          **Parameters:**:
-
-          - **elementuser_id**: Element User ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}".format(api_version,
-                                                                          tenant_id,
-                                                                          elementuser_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def policysets_status(self, policyset_id, tenant_id=None, api_version="v3.0"):
-        """
-        Get a specific policy set status of tenant.
-
-          **Parameters:**:
-
-          - **policyset_id**: Policy Set ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/policysets/{}/status".format(api_version,
-                                                                               tenant_id,
-                                                                               policyset_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def wanoverlays(self, tenant_id=None, api_version="v2.0"):
+    def wanoverlays(self, wanoverlay_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get app/wan contexts
 
           **Parameters:**:
 
+          - **wanoverlay_id**: (optional) WAN Overlay ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -4056,331 +3163,26 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlays".format(api_version,
-                                                                      tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def base_permissions_clients(self, client_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Base_Permissions_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions".format(api_version,
-                                                                                      tenant_id,
-                                                                                      client_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def element_passages_single(self, element_id, passage_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Element_Passages_Single API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **passage_id**: Passage Configuration ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/passages/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  element_id,
-                                                                                  passage_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_extensions(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get all site level extensions from NB
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/extensions".format(api_version,
-                                                                              tenant_id,
-                                                                              site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def sites_single(self, site_id, tenant_id=None, api_version="v4.1"):
-        """
-        Get Site of a tenant
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}".format(api_version,
-                                                                   tenant_id,
-                                                                   site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def staticroutes(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Staticroutes API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/staticroutes".format(api_version,
-                                                                                            tenant_id,
-                                                                                            site_id,
-                                                                                            element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def snmptraps(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get All SNMP Trap on an element
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/snmptraps".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def waninterfacelabels(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get WAN interface labels for a tenant.
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/waninterfacelabels".format(api_version,
-                                                                             tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def serviceendpoints(self, tenant_id=None, api_version="v2.0"):
-        """
-        Get ServiceEndpointList
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/serviceendpoints".format(api_version,
-                                                                           tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def servicebindingmaps_single(self, servicebindingmap_id, tenant_id=None, api_version="v2.0"):
-        """
-        Get a ServiceBindingMap
-
-          **Parameters:**:
-
-          - **servicebindingmap_id**: Service Binding Map ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/servicebindingmaps/{}".format(api_version,
-                                                                                tenant_id,
-                                                                                servicebindingmap_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def events_single(self, event_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Events_Single API Function
-
-          **Parameters:**:
-
-          - **event_id**: Event ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/events/{}".format(api_version,
-                                                                    tenant_id,
-                                                                    event_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def metrics_monitor_single(self, metric_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Metrics_Monitor_Single API Function
-
-          **Parameters:**:
-
-          - **metric_id**: Metric ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/metrics/{}".format(api_version,
+        if not wanoverlay_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlays".format(api_version,
+                                                                          tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/wanoverlays/{}".format(api_version,
                                                                              tenant_id,
-                                                                             metric_id)
+                                                                             wanoverlay_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def securitypolicysets_single(self, securitypolicyset_id, tenant_id=None, api_version="v2.0"):
+    def wanpaths(self, site_id, tenant_id=None, api_version="v3.0"):
         """
-        Get tenant security policy set.
+        GET Wanpaths API Function
 
           **Parameters:**:
 
-          - **securitypolicyset_id**: Security Policy Set ID
+          - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4393,9 +3195,9 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}".format(api_version,
-                                                                                tenant_id,
-                                                                                securitypolicyset_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/wanpaths".format(api_version,
+                                                                            tenant_id,
+                                                                            site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4403,110 +3205,26 @@ class Get(object):
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
 
-    status_waninterfaces = waninterfaces_status
-    """ Backwards-compatibility alias of `status_waninterfaces` to `waninterfaces_status`"""
+    access_t = tenant_access
+    """ Backwards-compatibility alias of `access_t` to `tenant_access`"""
 
-    passages_e_single = element_passages_single
-    """ Backwards-compatibility alias of `passages_e_single` to `element_passages_single`"""
+    anynetlinks_s = site_anynetlinks
+    """ Backwards-compatibility alias of `anynetlinks_s` to `site_anynetlinks`"""
 
-    sessions_t = operator_sessions
-    """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
-
-    status_i = hubcluster_status
-    """ Backwards-compatibility alias of `status_i` to `hubcluster_status`"""
-
-    extensions_i_single = element_extensions_single
-    """ Backwards-compatibility alias of `extensions_i_single` to `element_extensions_single`"""
-
-    status_vfflicenses = vfflicense_status
-    """ Backwards-compatibility alias of `status_vfflicenses` to `vfflicense_status`"""
-
-    status_coreroutepeers_i = corerouterpeers_status_single
-    """ Backwards-compatibility alias of `status_coreroutepeers_i` to `corerouterpeers_status_single`"""
-
-    access_t_single = tenant_access_single
-    """ Backwards-compatibility alias of `access_t_single` to `tenant_access_single`"""
-
-    status_hubclustermembers = hubclustermember_status
-    """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
-
-    clients_t = tenant_clients
-    """ Backwards-compatibility alias of `clients_t` to `tenant_clients`"""
-
-    tokens_vfflicenses = vfflicense_tokens
-    """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
-
-    operators_t = tenant_operators
-    """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""
-
-    permissions_clients_d = esp_operator_permissions
-    """ Backwards-compatibility alias of `permissions_clients_d` to `esp_operator_permissions`"""
-
-    permissions_clients_o = esp_operator_permissions_client
-    """ Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`"""
-
-    status_edgeroutepeers_i = edgerouterpeers_status_single
-    """ Backwards-compatibility alias of `status_edgeroutepeers_i` to `edgerouterpeers_status_single`"""
-
-    permissions_t_single = tenant_permissions_single
-    """ Backwards-compatibility alias of `permissions_t_single` to `tenant_permissions_single`"""
-
-    tokens_vfflicenses_single = vfflicense_tokens_single
-    """ Backwards-compatibility alias of `tokens_vfflicenses_single` to `vfflicense_tokens_single`"""
-
-    status_policysets = policysets_status
-    """ Backwards-compatibility alias of `status_policysets` to `policysets_status`"""
-
-    permissions_t = tenant_permissions
-    """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
-
-    status_vpnlinks = vpnlinks_status
-    """ Backwards-compatibility alias of `status_vpnlinks` to `vpnlinks_status`"""
-
-    status_software = software_status
-    """ Backwards-compatibility alias of `status_software` to `software_status`"""
+    anynetlinks_t = tenant_anynetlinks
+    """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
 
     api_versions_t = tenant_api_versions
     """ Backwards-compatibility alias of `api_versions_t` to `tenant_api_versions`"""
 
-    extensions_s_single = site_extensions_single
-    """ Backwards-compatibility alias of `extensions_s_single` to `site_extensions_single`"""
-
-    anynetlinks_s_single = site_anynetlinks_single
-    """ Backwards-compatibility alias of `anynetlinks_s_single` to `site_anynetlinks_single`"""
+    clients_t = tenant_clients
+    """ Backwards-compatibility alias of `clients_t` to `tenant_clients`"""
 
     elementpassageconfigs_e = elementpassageconfigs
     """ Backwards-compatibility alias of `elementpassageconfigs_e` to `elementpassageconfigs`"""
 
-    access_t = tenant_access
-    """ Backwards-compatibility alias of `access_t` to `tenant_access`"""
-
     elementpassageconfigs_t = tenant_elementpassageconfigs
     """ Backwards-compatibility alias of `elementpassageconfigs_t` to `tenant_elementpassageconfigs`"""
-
-    operators_t_single = tenant_operators_single
-    """ Backwards-compatibility alias of `operators_t_single` to `tenant_operators_single`"""
-
-    permissions_clients_t = esp_tenant_permissions
-    """ Backwards-compatibility alias of `permissions_clients_t` to `esp_tenant_permissions`"""
-
-    permissions_clients_t_single = esp_tenant_permissions_single
-    """ Backwards-compatibility alias of `permissions_clients_t_single` to `esp_tenant_permissions_single`"""
-
-    status_coreroutepeers_s = corerouterpeers_status
-    """ Backwards-compatibility alias of `status_coreroutepeers_s` to `corerouterpeers_status`"""
-
-    status_s = site_status
-    """ Backwards-compatibility alias of `status_s` to `site_status`"""
-
-    anynetlinks_t_single = tenant_anynetlinks_single
-    """ Backwards-compatibility alias of `anynetlinks_t_single` to `tenant_anynetlinks_single`"""
-
-    status_interfaces = interfaces_status
-    """ Backwards-compatibility alias of `status_interfaces` to `interfaces_status`"""
-
-    passages_t = tenant_passages
-    """ Backwards-compatibility alias of `passages_t` to `tenant_passages`"""
 
     extensions_i = element_extensions
     """ Backwards-compatibility alias of `extensions_i` to `element_extensions`"""
@@ -4514,8 +3232,558 @@ class Get(object):
     extensions_s = site_extensions
     """ Backwards-compatibility alias of `extensions_s` to `site_extensions`"""
 
+    operators_t = tenant_operators
+    """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""
+
     passages_e = element_passages
     """ Backwards-compatibility alias of `passages_e` to `element_passages`"""
 
+    passages_t = tenant_passages
+    """ Backwards-compatibility alias of `passages_t` to `tenant_passages`"""
+
+    permissions_clients_d = esp_operator_permissions
+    """ Backwards-compatibility alias of `permissions_clients_d` to `esp_operator_permissions`"""
+
+    permissions_clients_o = esp_operator_permissions_client
+    """ Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`"""
+
+    permissions_clients_t = esp_tenant_permissions
+    """ Backwards-compatibility alias of `permissions_clients_t` to `esp_tenant_permissions`"""
+
+    permissions_t = tenant_permissions
+    """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
+
+    sessions_t = operator_sessions
+    """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
+
+    status_coreroutepeers_i = corerouterpeers_status_single
+    """ Backwards-compatibility alias of `status_coreroutepeers_i` to `corerouterpeers_status_single`"""
+
+    status_coreroutepeers_s = corerouterpeers_status
+    """ Backwards-compatibility alias of `status_coreroutepeers_s` to `corerouterpeers_status`"""
+
+    status_edgeroutepeers_i = edgerouterpeers_status_single
+    """ Backwards-compatibility alias of `status_edgeroutepeers_i` to `edgerouterpeers_status_single`"""
+
     status_edgeroutepeers_s = edgerouterpeers_status
     """ Backwards-compatibility alias of `status_edgeroutepeers_s` to `edgerouterpeers_status`"""
+
+    status_hubclustermembers = hubclustermember_status
+    """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
+
+    status_i = hubcluster_status
+    """ Backwards-compatibility alias of `status_i` to `hubcluster_status`"""
+
+    status_interfaces = interfaces_status
+    """ Backwards-compatibility alias of `status_interfaces` to `interfaces_status`"""
+
+    status_policysets = policysets_status
+    """ Backwards-compatibility alias of `status_policysets` to `policysets_status`"""
+
+    status_s = site_status
+    """ Backwards-compatibility alias of `status_s` to `site_status`"""
+
+    status_software = software_status
+    """ Backwards-compatibility alias of `status_software` to `software_status`"""
+
+    status_vfflicenses = vfflicense_status
+    """ Backwards-compatibility alias of `status_vfflicenses` to `vfflicense_status`"""
+
+    status_vpnlinks = vpnlinks_status
+    """ Backwards-compatibility alias of `status_vpnlinks` to `vpnlinks_status`"""
+
+    status_waninterfaces = waninterfaces_status
+    """ Backwards-compatibility alias of `status_waninterfaces` to `waninterfaces_status`"""
+
+    tokens_vfflicenses = vfflicense_tokens
+    """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
+
+    # "XYZ_single" compatibility maps below, mapping what is available previously
+    # with a depreciation message.
+
+    def access_elementusers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.
+
+        """
+        api_logger.warning("WARN: access_elementusers_single() is depreciated, and will be removed in a future release."
+                           " Use access_elementusers() instead.")
+        return self.access_elementusers(*args, **kwargs)
+
+    def appdefs_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `appdefs_single` to `appdefs`.
+
+        """
+        api_logger.warning("WARN: appdefs_single() is depreciated, and will be removed in a future release."
+                           " Use appdefs() instead.")
+        return self.appdefs(*args, **kwargs)
+
+    def appdefs_version_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.
+
+        """
+        api_logger.warning("WARN: appdefs_version_single() is depreciated, and will be removed in a future release."
+                           " Use appdefs_version() instead.")
+        return self.appdefs_version(*args, **kwargs)
+
+    def base_permissions_clients_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.
+
+        """
+        api_logger.warning("WARN: base_permissions_clients_single() is depreciated, and will be removed in a future release."
+                           " Use base_permissions_clients() instead.")
+        return self.base_permissions_clients(*args, **kwargs)
+
+    def base_permissions_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.
+
+        """
+        api_logger.warning("WARN: base_permissions_single() is depreciated, and will be removed in a future release."
+                           " Use base_permissions() instead.")
+        return self.base_permissions(*args, **kwargs)
+
+    def coreroutepeers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.
+
+        """
+        api_logger.warning("WARN: coreroutepeers_single() is depreciated, and will be removed in a future release."
+                           " Use coreroutepeers() instead.")
+        return self.coreroutepeers(*args, **kwargs)
+
+    def dhcpservers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.
+
+        """
+        api_logger.warning("WARN: dhcpservers_single() is depreciated, and will be removed in a future release."
+                           " Use dhcpservers() instead.")
+        return self.dhcpservers(*args, **kwargs)
+
+    def edgeroutepeers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.
+
+        """
+        api_logger.warning("WARN: edgeroutepeers_single() is depreciated, and will be removed in a future release."
+                           " Use edgeroutepeers() instead.")
+        return self.edgeroutepeers(*args, **kwargs)
+
+    def element_extensions_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.
+
+        """
+        api_logger.warning("WARN: element_extensions_single() is depreciated, and will be removed in a future release."
+                           " Use element_extensions() instead.")
+        return self.element_extensions(*args, **kwargs)
+
+    def element_images_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `element_images_single` to `element_images`.
+
+        """
+        api_logger.warning("WARN: element_images_single() is depreciated, and will be removed in a future release."
+                           " Use element_images() instead.")
+        return self.element_images(*args, **kwargs)
+
+    def element_passages_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `element_passages_single` to `element_passages`.
+
+        """
+        api_logger.warning("WARN: element_passages_single() is depreciated, and will be removed in a future release."
+                           " Use element_passages() instead.")
+        return self.element_passages(*args, **kwargs)
+
+    def elementaccessconfigs_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.
+
+        """
+        api_logger.warning("WARN: elementaccessconfigs_single() is depreciated, and will be removed in a future release."
+                           " Use elementaccessconfigs() instead.")
+        return self.elementaccessconfigs(*args, **kwargs)
+
+    def elements_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `elements_single` to `elements`.
+
+        """
+        api_logger.warning("WARN: elements_single() is depreciated, and will be removed in a future release."
+                           " Use elements() instead.")
+        return self.elements(*args, **kwargs)
+
+    def elementusers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `elementusers_single` to `elementusers`.
+
+        """
+        api_logger.warning("WARN: elementusers_single() is depreciated, and will be removed in a future release."
+                           " Use elementusers() instead.")
+        return self.elementusers(*args, **kwargs)
+
+    def esp_tenant_permissions_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.
+
+        """
+        api_logger.warning("WARN: esp_tenant_permissions_single() is depreciated, and will be removed in a future release."
+                           " Use esp_tenant_permissions() instead.")
+        return self.esp_tenant_permissions(*args, **kwargs)
+
+    def globalprefixfilters_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.
+
+        """
+        api_logger.warning("WARN: globalprefixfilters_single() is depreciated, and will be removed in a future release."
+                           " Use globalprefixfilters() instead.")
+        return self.globalprefixfilters(*args, **kwargs)
+
+    def hubclustermembers_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.
+
+        """
+        api_logger.warning("WARN: hubclustermembers_single() is depreciated, and will be removed in a future release."
+                           " Use hubclustermembers() instead.")
+        return self.hubclustermembers(*args, **kwargs)
+
+    def hubclusters_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.
+
+        """
+        api_logger.warning("WARN: hubclusters_single() is depreciated, and will be removed in a future release."
+                           " Use hubclusters() instead.")
+        return self.hubclusters(*args, **kwargs)
+
+    def idps_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `idps_single` to `idps`.
+
+        """
+        api_logger.warning("WARN: idps_single() is depreciated, and will be removed in a future release."
+                           " Use idps() instead.")
+        return self.idps(*args, **kwargs)
+
+    def interfaces_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `interfaces_single` to `interfaces`.
+
+        """
+        api_logger.warning("WARN: interfaces_single() is depreciated, and will be removed in a future release."
+                           " Use interfaces() instead.")
+        return self.interfaces(*args, **kwargs)
+
+    def lannetworks_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.
+
+        """
+        api_logger.warning("WARN: lannetworks_single() is depreciated, and will be removed in a future release."
+                           " Use lannetworks() instead.")
+        return self.lannetworks(*args, **kwargs)
+
+    def localprefixfilters_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.
+
+        """
+        api_logger.warning("WARN: localprefixfilters_single() is depreciated, and will be removed in a future release."
+                           " Use localprefixfilters() instead.")
+        return self.localprefixfilters(*args, **kwargs)
+
+    def machines_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `machines_single` to `machines`.
+
+        """
+        api_logger.warning("WARN: machines_single() is depreciated, and will be removed in a future release."
+                           " Use machines() instead.")
+        return self.machines(*args, **kwargs)
+
+    def networkcontexts_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.
+
+        """
+        api_logger.warning("WARN: networkcontexts_single() is depreciated, and will be removed in a future release."
+                           " Use networkcontexts() instead.")
+        return self.networkcontexts(*args, **kwargs)
+
+    def pathgroups_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.
+
+        """
+        api_logger.warning("WARN: pathgroups_single() is depreciated, and will be removed in a future release."
+                           " Use pathgroups() instead.")
+        return self.pathgroups(*args, **kwargs)
+
+    def policyrules_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `policyrules_single` to `policyrules`.
+
+        """
+        api_logger.warning("WARN: policyrules_single() is depreciated, and will be removed in a future release."
+                           " Use policyrules() instead.")
+        return self.policyrules(*args, **kwargs)
+
+    def policysets_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `policysets_single` to `policysets`.
+
+        """
+        api_logger.warning("WARN: policysets_single() is depreciated, and will be removed in a future release."
+                           " Use policysets() instead.")
+        return self.policysets(*args, **kwargs)
+
+    def prefixfilters_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.
+
+        """
+        api_logger.warning("WARN: prefixfilters_single() is depreciated, and will be removed in a future release."
+                           " Use prefixfilters() instead.")
+        return self.prefixfilters(*args, **kwargs)
+
+    def roles_clients_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.
+
+        """
+        api_logger.warning("WARN: roles_clients_single() is depreciated, and will be removed in a future release."
+                           " Use roles_clients() instead.")
+        return self.roles_clients(*args, **kwargs)
+
+    def roles_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `roles_single` to `roles`.
+
+        """
+        api_logger.warning("WARN: roles_single() is depreciated, and will be removed in a future release."
+                           " Use roles() instead.")
+        return self.roles(*args, **kwargs)
+
+    def securitypolicyrules_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.
+
+        """
+        api_logger.warning("WARN: securitypolicyrules_single() is depreciated, and will be removed in a future release."
+                           " Use securitypolicyrules() instead.")
+        return self.securitypolicyrules(*args, **kwargs)
+
+    def securitypolicysets_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.
+
+        """
+        api_logger.warning("WARN: securitypolicysets_single() is depreciated, and will be removed in a future release."
+                           " Use securitypolicysets() instead.")
+        return self.securitypolicysets(*args, **kwargs)
+
+    def securityzones_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `securityzones_single` to `securityzones`.
+
+        """
+        api_logger.warning("WARN: securityzones_single() is depreciated, and will be removed in a future release."
+                           " Use securityzones() instead.")
+        return self.securityzones(*args, **kwargs)
+
+    def servicebindingmaps_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.
+
+        """
+        api_logger.warning("WARN: servicebindingmaps_single() is depreciated, and will be removed in a future release."
+                           " Use servicebindingmaps() instead.")
+        return self.servicebindingmaps(*args, **kwargs)
+
+    def serviceendpoints_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.
+
+        """
+        api_logger.warning("WARN: serviceendpoints_single() is depreciated, and will be removed in a future release."
+                           " Use serviceendpoints() instead.")
+        return self.serviceendpoints(*args, **kwargs)
+
+    def servicelabels_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.
+
+        """
+        api_logger.warning("WARN: servicelabels_single() is depreciated, and will be removed in a future release."
+                           " Use servicelabels() instead.")
+        return self.servicelabels(*args, **kwargs)
+
+    def site_extensions_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.
+
+        """
+        api_logger.warning("WARN: site_extensions_single() is depreciated, and will be removed in a future release."
+                           " Use site_extensions() instead.")
+        return self.site_extensions(*args, **kwargs)
+
+    def sites_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `sites_single` to `sites`.
+
+        """
+        api_logger.warning("WARN: sites_single() is depreciated, and will be removed in a future release."
+                           " Use sites() instead.")
+        return self.sites(*args, **kwargs)
+
+    def sitesecurityzones_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.
+
+        """
+        api_logger.warning("WARN: sitesecurityzones_single() is depreciated, and will be removed in a future release."
+                           " Use sitesecurityzones() instead.")
+        return self.sitesecurityzones(*args, **kwargs)
+
+    def snmpagents_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.
+
+        """
+        api_logger.warning("WARN: snmpagents_single() is depreciated, and will be removed in a future release."
+                           " Use snmpagents() instead.")
+        return self.snmpagents(*args, **kwargs)
+
+    def snmptraps_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.
+
+        """
+        api_logger.warning("WARN: snmptraps_single() is depreciated, and will be removed in a future release."
+                           " Use snmptraps() instead.")
+        return self.snmptraps(*args, **kwargs)
+
+    def staticroutes_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.
+
+        """
+        api_logger.warning("WARN: staticroutes_single() is depreciated, and will be removed in a future release."
+                           " Use staticroutes() instead.")
+        return self.staticroutes(*args, **kwargs)
+
+    def tenant_access_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.
+
+        """
+        api_logger.warning("WARN: tenant_access_single() is depreciated, and will be removed in a future release."
+                           " Use tenant_access() instead.")
+        return self.tenant_access(*args, **kwargs)
+
+    def tenant_operators_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.
+
+        """
+        api_logger.warning("WARN: tenant_operators_single() is depreciated, and will be removed in a future release."
+                           " Use tenant_operators() instead.")
+        return self.tenant_operators(*args, **kwargs)
+
+    def tenant_permissions_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
+
+        """
+        api_logger.warning("WARN: tenant_permissions_single() is depreciated, and will be removed in a future release."
+                           " Use tenant_permissions() instead.")
+        return self.tenant_permissions(*args, **kwargs)
+
+    def tenants_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
+
+        """
+        api_logger.warning("WARN: tenants_single() is depreciated, and will be removed in a future release."
+                           " Use tenants() instead.")
+        return self.tenants(*args, **kwargs)
+
+    def users_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `users_single` to `users`.
+
+        """
+        api_logger.warning("WARN: users_single() is depreciated, and will be removed in a future release."
+                           " Use users() instead.")
+        return self.users(*args, **kwargs)
+
+    def vfflicense_tokens_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.
+
+        """
+        api_logger.warning("WARN: vfflicense_tokens_single() is depreciated, and will be removed in a future release."
+                           " Use vfflicense_tokens() instead.")
+        return self.vfflicense_tokens(*args, **kwargs)
+
+    def vfflicenses_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.
+
+        """
+        api_logger.warning("WARN: vfflicenses_single() is depreciated, and will be removed in a future release."
+                           " Use vfflicenses() instead.")
+        return self.vfflicenses(*args, **kwargs)
+
+    def waninterfacelabels_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.
+
+        """
+        api_logger.warning("WARN: waninterfacelabels_single() is depreciated, and will be removed in a future release."
+                           " Use waninterfacelabels() instead.")
+        return self.waninterfacelabels(*args, **kwargs)
+
+    def waninterfaces_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.
+
+        """
+        api_logger.warning("WARN: waninterfaces_single() is depreciated, and will be removed in a future release."
+                           " Use waninterfaces() instead.")
+        return self.waninterfaces(*args, **kwargs)
+
+    def wannetworks_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.
+
+        """
+        api_logger.warning("WARN: wannetworks_single() is depreciated, and will be removed in a future release."
+                           " Use wannetworks() instead.")
+        return self.wannetworks(*args, **kwargs)
+
+    def wanoverlaychannels_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.
+
+        """
+        api_logger.warning("WARN: wanoverlaychannels_single() is depreciated, and will be removed in a future release."
+                           " Use wanoverlaychannels() instead.")
+        return self.wanoverlaychannels(*args, **kwargs)
+
+    def wanoverlays_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.
+
+        """
+        api_logger.warning("WARN: wanoverlays_single() is depreciated, and will be removed in a future release."
+                           " Use wanoverlays() instead.")
+        return self.wanoverlays(*args, **kwargs)
+

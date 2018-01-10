@@ -1,11 +1,11 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.5.5b2
+**Version:** v4.5.5b3
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017 CloudGenix, Inc
+**Copyright:** (c) 2017, 2018 CloudGenix, Inc
 
 **License:** MIT
 
@@ -19,7 +19,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Active CloudGenix Account
 * Python >= 2.7 or >=3.6
 * Python modules:
-    * Requests >=2.18.4 - <http://docs.python-requests.org/en/master/>
+    * Requests + Security Extras >=2.18.4 - <http://docs.python-requests.org/en/master/>
 
 #### Code Example
 Super-simplified example code (rewrite of example.py in ~5 lines of code):
@@ -37,7 +37,7 @@ Super-simplified example code (rewrite of example.py in ~5 lines of code):
     cgx_sess.interactive.login()
 
     # Print a dump of the list of sites for your selected account
-    print json.dumps(cgx_sess.get.sites().cgx_content, indent=4)
+    print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))
 
     # Cleanup and logout
     cgx_sess.interactive.logout()
@@ -84,18 +84,18 @@ else:
 
 BYTE_CA_BUNDLE = binary_type(_CG_CA_BUNDLE)
 """
-Explicit CA bundle - Root Certificates for the CloudGenix Controller API Endpoint.
+Explicit CA bundle for CA Pinning - Root Certificates for the CloudGenix Controller API Endpoint.
 
 Loaded from `cloudgenix.ca_bundle.CG_CA_BUNDLE`
 """
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
 __license__ = """
     MIT License
     
-    Copyright (c) 2017 CloudGenix, Inc
+    Copyright (c) 2017, 2018 CloudGenix, Inc
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -121,7 +121,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "4.5.5b2"
+version = "4.5.5b3"
 """SDK Version string"""
 
 
@@ -543,6 +543,7 @@ class API(object):
 
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
 
+
                 api_logger.info("Error, %s.", text_type(e))
 
                 if retry:
@@ -564,7 +565,7 @@ class API(object):
                     response.cgx_content = {
                         '_error': [
                             {
-                                'message': 'Request Timeout Reached.',
+                                'message': 'REST Request Exception: {}'.format(e),
                                 'data': {},
                             }
                         ]

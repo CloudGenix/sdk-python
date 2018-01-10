@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v4.5.5b2
+# CloudGenix Python SDK v4.5.5b3
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -9,7 +9,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Active CloudGenix Account
 * Python >= 2.7 or >=3.6
 * Python modules:
-    * Requests >=2.18.4 - <http://docs.python-requests.org/en/master/>
+    * Requests + Security Extras >=2.18.4 - <http://docs.python-requests.org/en/master/>
 
 #### Code Example
 Comes with `example.py` that shows usage to get a JSON list of sites.
@@ -28,7 +28,7 @@ cgx_sess = cloudgenix.API()
 cgx_sess.interactive.login()
 
 # Print a dump of the list of sites for your selected account
-print json.dumps(cgx_sess.get.sites().cgx_content, indent=4)
+print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))
 
 # Cleanup and logout
 cgx_sess.interactive.logout()
@@ -40,6 +40,7 @@ MIT
 #### Version
 Version | Changes
 ------- | --------
+**4.5.5b3**| CA Pinning update, *_single function deprecation, add missed 'security' extras requirement.
 **4.5.5b2**| Various fixes and cleanup for public release.
 **4.5.5b1**| Update for 15/12/2017 API additions.
 **4.5.3b2**| Initial Internal Release.

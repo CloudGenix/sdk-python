@@ -4,7 +4,7 @@ CloudGenix Python Interactive SDK Helper functions
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017 CloudGenix, Inc
+**Copyright:** (c) 2017, 2018 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -16,11 +16,11 @@ import sys
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017 CloudGenix, Inc
+    Copyright (c) 2017, 2018 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -246,7 +246,7 @@ class Interactive(object):
         **Returns:** Boolean on success/failure,
         """
         api_logger.info('interactive_tenant_update_vars function:')
-        tenant_resp = self._parent_class.get.tenants_single(self._parent_class.tenant_id)
+        tenant_resp = self._parent_class.get.tenants(self._parent_class.tenant_id)
         status = tenant_resp.cgx_status
         tenant_dict = tenant_resp.cgx_content
 

@@ -8,7 +8,7 @@ setup(name='cloudgenix',
       author_email='developers@cloudgenix.com',
       license='MIT',
       install_requires=[
-            'requests>= 2.18.4'
+            'requests[security] >= 2.18.4'
       ],
       packages=['cloudgenix'],
       classifiers=[
