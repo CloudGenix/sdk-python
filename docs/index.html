@@ -3209,6 +3209,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
             <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
+
                 <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
                 <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
@@ -3230,7 +3231,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                     <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
                         <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
                             <span class="p">{</span>
-                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Request Timeout Reached.&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                                 <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                             <span class="p">}</span>
                         <span class="p">]</span>
@@ -3902,6 +3903,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
             <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
+
                 <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
                 <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
@@ -3923,7 +3925,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                     <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
                         <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
                             <span class="p">{</span>
-                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Request Timeout Reached.&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                                 <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                             <span class="p">}</span>
                         <span class="p">]</span>
@@ -4879,7 +4881,7 @@ re-parses the original login request and applies cookies to the session if they 
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
                     <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
-                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Request Timeout Reached.&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                             <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                         <span class="p">}</span>
                     <span class="p">]</span>
