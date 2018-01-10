@@ -543,6 +543,7 @@ class API(object):
 
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
 
+
                 api_logger.info("Error, %s.", text_type(e))
 
                 if retry:
@@ -564,7 +565,7 @@ class API(object):
                     response.cgx_content = {
                         '_error': [
                             {
-                                'message': 'Request Timeout Reached.',
+                                'message': 'REST Request Exception: {}'.format(e),
                                 'data': {},
                             }
                         ]
