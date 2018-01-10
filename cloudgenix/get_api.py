@@ -3706,6 +3706,15 @@ class Get(object):
                            " Use tenant_permissions() instead.")
         return self.tenant_permissions(*args, **kwargs)
 
+    def tenants_single(self, *args, **kwargs):
+        """
+        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
+
+        """
+        api_logger.warning("WARN: tenants_single() is depreciated, and will be removed in a future release."
+                           " Use tenants() instead.")
+        return self.tenants(*args, **kwargs)
+
     def users_single(self, *args, **kwargs):
         """
         Backwards-compatibility alias of `users_single` to `users`.

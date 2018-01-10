@@ -2850,7 +2850,7 @@ table {
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;interactive_tenant_update_vars function:&#39;</span><span class="p">)</span>
-        <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_status</span>
         <span class="n">tenant_dict</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_content</span>
 
@@ -3281,7 +3281,7 @@ table {
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;interactive_tenant_update_vars function:&#39;</span><span class="p">)</span>
-        <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_status</span>
         <span class="n">tenant_dict</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_content</span>
 
@@ -3633,7 +3633,7 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
 <span class="sd">    **Returns:** Boolean on success/failure,</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;interactive_tenant_update_vars function:&#39;</span><span class="p">)</span>
-    <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+    <span class="n">tenant_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_status</span>
     <span class="n">tenant_dict</span> <span class="o">=</span> <span class="n">tenant_resp</span><span class="o">.</span><span class="n">cgx_content</span>
     <span class="k">if</span> <span class="n">status</span><span class="p">:</span>

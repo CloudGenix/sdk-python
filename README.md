@@ -28,7 +28,7 @@ cgx_sess = cloudgenix.API()
 cgx_sess.interactive.login()
 
 # Print a dump of the list of sites for your selected account
-print json.dumps(cgx_sess.get.sites().cgx_content, indent=4)
+print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))
 
 # Cleanup and logout
 cgx_sess.interactive.logout()

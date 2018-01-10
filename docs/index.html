@@ -2646,7 +2646,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="n">cgx_sess</span><span class="o">.</span><span class="n">interactive</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
 
 <span class="c1"># Print a dump of the list of sites for your selected account</span>
-<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cgx_sess</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sites</span><span class="p">()</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cgx_sess</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sites</span><span class="p">()</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
 <span class="c1"># Cleanup and logout</span>
 <span class="n">cgx_sess</span><span class="o">.</span><span class="n">interactive</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
@@ -2703,7 +2703,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">    cgx_sess.interactive.login()</span>
 
 <span class="sd">    # Print a dump of the list of sites for your selected account</span>
-<span class="sd">    print json.dumps(cgx_sess.get.sites().cgx_content, indent=4)</span>
+<span class="sd">    print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))</span>
 
 <span class="sd">    # Cleanup and logout</span>
 <span class="sd">    cgx_sess.interactive.logout()</span>

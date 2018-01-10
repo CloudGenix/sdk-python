@@ -2707,6 +2707,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_permissions_single">tenant_permissions_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenantpassageconfigs">tenantpassageconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenants">tenants</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.tenants_single">tenants_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.users">users</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.users_single">users_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.vfflicense_status">vfflicense_status</a></li>
@@ -6460,6 +6461,15 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+                           <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">users_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -10225,6 +10235,15 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+                           <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">users_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -16472,6 +16491,33 @@ table {
                                                       <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.tenants_single">
+    <div class="name def">
+    <p>def <span class="ident">tenants_single</span>(</p><p>self, *args, **kwargs)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>tenant_permissions_single</code> to <code>tenant_permissions</code>.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.tenants_single', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.tenants_single" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+                       <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
   </div>
