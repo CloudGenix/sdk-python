@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='cloudgenix',
-      version='4.5.5b2',
+      version='4.5.5b3',
       description='Python2 and Python3 SDK for the CloudGenix AppFabric',
       url='https://github.com/CloudGenix/sdk-python',
       author='CloudGenix Developer Support',
