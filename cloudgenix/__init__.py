@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.5.5b3
+**Version:** v4.5.5b4
 
 **Author:** CloudGenix
 
