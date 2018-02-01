@@ -3299,14 +3299,14 @@ class Get(object):
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
 
     # "XYZ_single" compatibility maps below, mapping what is available previously
-    # with a depreciation message.
+    # with a deprecated message.
 
     def access_elementusers_single(self, *args, **kwargs):
         """
         Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.
 
         """
-        api_logger.warning("WARN: access_elementusers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: access_elementusers_single() is deprecated, and will be removed in a future release."
                            " Use access_elementusers() instead.")
         return self.access_elementusers(*args, **kwargs)
 
@@ -3315,7 +3315,7 @@ class Get(object):
         Backwards-compatibility alias of `appdefs_single` to `appdefs`.
 
         """
-        api_logger.warning("WARN: appdefs_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: appdefs_single() is deprecated, and will be removed in a future release."
                            " Use appdefs() instead.")
         return self.appdefs(*args, **kwargs)
 
@@ -3324,7 +3324,7 @@ class Get(object):
         Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.
 
         """
-        api_logger.warning("WARN: appdefs_version_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: appdefs_version_single() is deprecated, and will be removed in a future release."
                            " Use appdefs_version() instead.")
         return self.appdefs_version(*args, **kwargs)
 
@@ -3333,7 +3333,7 @@ class Get(object):
         Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.
 
         """
-        api_logger.warning("WARN: base_permissions_clients_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: base_permissions_clients_single() is deprecated, and will be removed in a future release."
                            " Use base_permissions_clients() instead.")
         return self.base_permissions_clients(*args, **kwargs)
 
@@ -3342,7 +3342,7 @@ class Get(object):
         Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.
 
         """
-        api_logger.warning("WARN: base_permissions_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: base_permissions_single() is deprecated, and will be removed in a future release."
                            " Use base_permissions() instead.")
         return self.base_permissions(*args, **kwargs)
 
@@ -3351,7 +3351,7 @@ class Get(object):
         Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.
 
         """
-        api_logger.warning("WARN: coreroutepeers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: coreroutepeers_single() is deprecated, and will be removed in a future release."
                            " Use coreroutepeers() instead.")
         return self.coreroutepeers(*args, **kwargs)
 
@@ -3360,7 +3360,7 @@ class Get(object):
         Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.
 
         """
-        api_logger.warning("WARN: dhcpservers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: dhcpservers_single() is deprecated, and will be removed in a future release."
                            " Use dhcpservers() instead.")
         return self.dhcpservers(*args, **kwargs)
 
@@ -3369,7 +3369,7 @@ class Get(object):
         Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.
 
         """
-        api_logger.warning("WARN: edgeroutepeers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: edgeroutepeers_single() is deprecated, and will be removed in a future release."
                            " Use edgeroutepeers() instead.")
         return self.edgeroutepeers(*args, **kwargs)
 
@@ -3378,7 +3378,7 @@ class Get(object):
         Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.
 
         """
-        api_logger.warning("WARN: element_extensions_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: element_extensions_single() is deprecated, and will be removed in a future release."
                            " Use element_extensions() instead.")
         return self.element_extensions(*args, **kwargs)
 
@@ -3387,7 +3387,7 @@ class Get(object):
         Backwards-compatibility alias of `element_images_single` to `element_images`.
 
         """
-        api_logger.warning("WARN: element_images_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: element_images_single() is deprecated, and will be removed in a future release."
                            " Use element_images() instead.")
         return self.element_images(*args, **kwargs)
 
@@ -3396,7 +3396,7 @@ class Get(object):
         Backwards-compatibility alias of `element_passages_single` to `element_passages`.
 
         """
-        api_logger.warning("WARN: element_passages_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: element_passages_single() is deprecated, and will be removed in a future release."
                            " Use element_passages() instead.")
         return self.element_passages(*args, **kwargs)
 
@@ -3405,7 +3405,7 @@ class Get(object):
         Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.
 
         """
-        api_logger.warning("WARN: elementaccessconfigs_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: elementaccessconfigs_single() is deprecated, and will be removed in a future release."
                            " Use elementaccessconfigs() instead.")
         return self.elementaccessconfigs(*args, **kwargs)
 
@@ -3414,7 +3414,7 @@ class Get(object):
         Backwards-compatibility alias of `elements_single` to `elements`.
 
         """
-        api_logger.warning("WARN: elements_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: elements_single() is deprecated, and will be removed in a future release."
                            " Use elements() instead.")
         return self.elements(*args, **kwargs)
 
@@ -3423,7 +3423,7 @@ class Get(object):
         Backwards-compatibility alias of `elementusers_single` to `elementusers`.
 
         """
-        api_logger.warning("WARN: elementusers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: elementusers_single() is deprecated, and will be removed in a future release."
                            " Use elementusers() instead.")
         return self.elementusers(*args, **kwargs)
 
@@ -3432,7 +3432,7 @@ class Get(object):
         Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.
 
         """
-        api_logger.warning("WARN: esp_tenant_permissions_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: esp_tenant_permissions_single() is deprecated, and will be removed in a future release."
                            " Use esp_tenant_permissions() instead.")
         return self.esp_tenant_permissions(*args, **kwargs)
 
@@ -3441,7 +3441,7 @@ class Get(object):
         Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.
 
         """
-        api_logger.warning("WARN: globalprefixfilters_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: globalprefixfilters_single() is deprecated, and will be removed in a future release."
                            " Use globalprefixfilters() instead.")
         return self.globalprefixfilters(*args, **kwargs)
 
@@ -3450,7 +3450,7 @@ class Get(object):
         Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.
 
         """
-        api_logger.warning("WARN: hubclustermembers_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: hubclustermembers_single() is deprecated, and will be removed in a future release."
                            " Use hubclustermembers() instead.")
         return self.hubclustermembers(*args, **kwargs)
 
@@ -3459,7 +3459,7 @@ class Get(object):
         Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.
 
         """
-        api_logger.warning("WARN: hubclusters_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: hubclusters_single() is deprecated, and will be removed in a future release."
                            " Use hubclusters() instead.")
         return self.hubclusters(*args, **kwargs)
 
@@ -3468,7 +3468,7 @@ class Get(object):
         Backwards-compatibility alias of `idps_single` to `idps`.
 
         """
-        api_logger.warning("WARN: idps_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: idps_single() is deprecated, and will be removed in a future release."
                            " Use idps() instead.")
         return self.idps(*args, **kwargs)
 
@@ -3477,7 +3477,7 @@ class Get(object):
         Backwards-compatibility alias of `interfaces_single` to `interfaces`.
 
         """
-        api_logger.warning("WARN: interfaces_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: interfaces_single() is deprecated, and will be removed in a future release."
                            " Use interfaces() instead.")
         return self.interfaces(*args, **kwargs)
 
@@ -3486,7 +3486,7 @@ class Get(object):
         Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.
 
         """
-        api_logger.warning("WARN: lannetworks_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: lannetworks_single() is deprecated, and will be removed in a future release."
                            " Use lannetworks() instead.")
         return self.lannetworks(*args, **kwargs)
 
@@ -3495,7 +3495,7 @@ class Get(object):
         Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.
 
         """
-        api_logger.warning("WARN: localprefixfilters_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: localprefixfilters_single() is deprecated, and will be removed in a future release."
                            " Use localprefixfilters() instead.")
         return self.localprefixfilters(*args, **kwargs)
 
@@ -3504,7 +3504,7 @@ class Get(object):
         Backwards-compatibility alias of `machines_single` to `machines`.
 
         """
-        api_logger.warning("WARN: machines_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: machines_single() is deprecated, and will be removed in a future release."
                            " Use machines() instead.")
         return self.machines(*args, **kwargs)
 
@@ -3513,7 +3513,7 @@ class Get(object):
         Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.
 
         """
-        api_logger.warning("WARN: networkcontexts_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: networkcontexts_single() is deprecated, and will be removed in a future release."
                            " Use networkcontexts() instead.")
         return self.networkcontexts(*args, **kwargs)
 
@@ -3522,7 +3522,7 @@ class Get(object):
         Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.
 
         """
-        api_logger.warning("WARN: pathgroups_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: pathgroups_single() is deprecated, and will be removed in a future release."
                            " Use pathgroups() instead.")
         return self.pathgroups(*args, **kwargs)
 
@@ -3531,7 +3531,7 @@ class Get(object):
         Backwards-compatibility alias of `policyrules_single` to `policyrules`.
 
         """
-        api_logger.warning("WARN: policyrules_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: policyrules_single() is deprecated, and will be removed in a future release."
                            " Use policyrules() instead.")
         return self.policyrules(*args, **kwargs)
 
@@ -3540,7 +3540,7 @@ class Get(object):
         Backwards-compatibility alias of `policysets_single` to `policysets`.
 
         """
-        api_logger.warning("WARN: policysets_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: policysets_single() is deprecated, and will be removed in a future release."
                            " Use policysets() instead.")
         return self.policysets(*args, **kwargs)
 
@@ -3549,7 +3549,7 @@ class Get(object):
         Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.
 
         """
-        api_logger.warning("WARN: prefixfilters_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: prefixfilters_single() is deprecated, and will be removed in a future release."
                            " Use prefixfilters() instead.")
         return self.prefixfilters(*args, **kwargs)
 
@@ -3558,7 +3558,7 @@ class Get(object):
         Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.
 
         """
-        api_logger.warning("WARN: roles_clients_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: roles_clients_single() is deprecated, and will be removed in a future release."
                            " Use roles_clients() instead.")
         return self.roles_clients(*args, **kwargs)
 
@@ -3567,7 +3567,7 @@ class Get(object):
         Backwards-compatibility alias of `roles_single` to `roles`.
 
         """
-        api_logger.warning("WARN: roles_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: roles_single() is deprecated, and will be removed in a future release."
                            " Use roles() instead.")
         return self.roles(*args, **kwargs)
 
@@ -3576,7 +3576,7 @@ class Get(object):
         Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.
 
         """
-        api_logger.warning("WARN: securitypolicyrules_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: securitypolicyrules_single() is deprecated, and will be removed in a future release."
                            " Use securitypolicyrules() instead.")
         return self.securitypolicyrules(*args, **kwargs)
 
@@ -3585,7 +3585,7 @@ class Get(object):
         Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.
 
         """
-        api_logger.warning("WARN: securitypolicysets_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: securitypolicysets_single() is deprecated, and will be removed in a future release."
                            " Use securitypolicysets() instead.")
         return self.securitypolicysets(*args, **kwargs)
 
@@ -3594,7 +3594,7 @@ class Get(object):
         Backwards-compatibility alias of `securityzones_single` to `securityzones`.
 
         """
-        api_logger.warning("WARN: securityzones_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: securityzones_single() is deprecated, and will be removed in a future release."
                            " Use securityzones() instead.")
         return self.securityzones(*args, **kwargs)
 
@@ -3603,7 +3603,7 @@ class Get(object):
         Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.
 
         """
-        api_logger.warning("WARN: servicebindingmaps_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: servicebindingmaps_single() is deprecated, and will be removed in a future release."
                            " Use servicebindingmaps() instead.")
         return self.servicebindingmaps(*args, **kwargs)
 
@@ -3612,7 +3612,7 @@ class Get(object):
         Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.
 
         """
-        api_logger.warning("WARN: serviceendpoints_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: serviceendpoints_single() is deprecated, and will be removed in a future release."
                            " Use serviceendpoints() instead.")
         return self.serviceendpoints(*args, **kwargs)
 
@@ -3621,7 +3621,7 @@ class Get(object):
         Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.
 
         """
-        api_logger.warning("WARN: servicelabels_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: servicelabels_single() is deprecated, and will be removed in a future release."
                            " Use servicelabels() instead.")
         return self.servicelabels(*args, **kwargs)
 
@@ -3630,7 +3630,7 @@ class Get(object):
         Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.
 
         """
-        api_logger.warning("WARN: site_extensions_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: site_extensions_single() is deprecated, and will be removed in a future release."
                            " Use site_extensions() instead.")
         return self.site_extensions(*args, **kwargs)
 
@@ -3639,7 +3639,7 @@ class Get(object):
         Backwards-compatibility alias of `sites_single` to `sites`.
 
         """
-        api_logger.warning("WARN: sites_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: sites_single() is deprecated, and will be removed in a future release."
                            " Use sites() instead.")
         return self.sites(*args, **kwargs)
 
@@ -3648,7 +3648,7 @@ class Get(object):
         Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.
 
         """
-        api_logger.warning("WARN: sitesecurityzones_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: sitesecurityzones_single() is deprecated, and will be removed in a future release."
                            " Use sitesecurityzones() instead.")
         return self.sitesecurityzones(*args, **kwargs)
 
@@ -3657,7 +3657,7 @@ class Get(object):
         Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.
 
         """
-        api_logger.warning("WARN: snmpagents_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: snmpagents_single() is deprecated, and will be removed in a future release."
                            " Use snmpagents() instead.")
         return self.snmpagents(*args, **kwargs)
 
@@ -3666,7 +3666,7 @@ class Get(object):
         Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.
 
         """
-        api_logger.warning("WARN: snmptraps_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: snmptraps_single() is deprecated, and will be removed in a future release."
                            " Use snmptraps() instead.")
         return self.snmptraps(*args, **kwargs)
 
@@ -3675,7 +3675,7 @@ class Get(object):
         Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.
 
         """
-        api_logger.warning("WARN: staticroutes_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: staticroutes_single() is deprecated, and will be removed in a future release."
                            " Use staticroutes() instead.")
         return self.staticroutes(*args, **kwargs)
 
@@ -3684,7 +3684,7 @@ class Get(object):
         Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.
 
         """
-        api_logger.warning("WARN: tenant_access_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_access_single() is deprecated, and will be removed in a future release."
                            " Use tenant_access() instead.")
         return self.tenant_access(*args, **kwargs)
 
@@ -3693,7 +3693,7 @@ class Get(object):
         Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.
 
         """
-        api_logger.warning("WARN: tenant_operators_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_operators_single() is deprecated, and will be removed in a future release."
                            " Use tenant_operators() instead.")
         return self.tenant_operators(*args, **kwargs)
 
@@ -3702,16 +3702,16 @@ class Get(object):
         Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
 
         """
-        api_logger.warning("WARN: tenant_permissions_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_permissions_single() is deprecated, and will be removed in a future release."
                            " Use tenant_permissions() instead.")
         return self.tenant_permissions(*args, **kwargs)
 
     def tenants_single(self, *args, **kwargs):
         """
-        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
+        Backwards-compatibility alias of `tenant_single` to `tenants`.
 
         """
-        api_logger.warning("WARN: tenants_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_single() is deprecated, and will be removed in a future release."
                            " Use tenants() instead.")
         return self.tenants(*args, **kwargs)
 
@@ -3720,7 +3720,7 @@ class Get(object):
         Backwards-compatibility alias of `users_single` to `users`.
 
         """
-        api_logger.warning("WARN: users_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: users_single() is deprecated, and will be removed in a future release."
                            " Use users() instead.")
         return self.users(*args, **kwargs)
 
@@ -3729,7 +3729,7 @@ class Get(object):
         Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.
 
         """
-        api_logger.warning("WARN: vfflicense_tokens_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: vfflicense_tokens_single() is deprecated, and will be removed in a future release."
                            " Use vfflicense_tokens() instead.")
         return self.vfflicense_tokens(*args, **kwargs)
 
@@ -3738,7 +3738,7 @@ class Get(object):
         Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.
 
         """
-        api_logger.warning("WARN: vfflicenses_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: vfflicenses_single() is deprecated, and will be removed in a future release."
                            " Use vfflicenses() instead.")
         return self.vfflicenses(*args, **kwargs)
 
@@ -3747,7 +3747,7 @@ class Get(object):
         Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.
 
         """
-        api_logger.warning("WARN: waninterfacelabels_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: waninterfacelabels_single() is deprecated, and will be removed in a future release."
                            " Use waninterfacelabels() instead.")
         return self.waninterfacelabels(*args, **kwargs)
 
@@ -3756,7 +3756,7 @@ class Get(object):
         Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.
 
         """
-        api_logger.warning("WARN: waninterfaces_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: waninterfaces_single() is deprecated, and will be removed in a future release."
                            " Use waninterfaces() instead.")
         return self.waninterfaces(*args, **kwargs)
 
@@ -3765,7 +3765,7 @@ class Get(object):
         Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.
 
         """
-        api_logger.warning("WARN: wannetworks_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: wannetworks_single() is deprecated, and will be removed in a future release."
                            " Use wannetworks() instead.")
         return self.wannetworks(*args, **kwargs)
 
@@ -3774,7 +3774,7 @@ class Get(object):
         Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.
 
         """
-        api_logger.warning("WARN: wanoverlaychannels_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: wanoverlaychannels_single() is deprecated, and will be removed in a future release."
                            " Use wanoverlaychannels() instead.")
         return self.wanoverlaychannels(*args, **kwargs)
 
@@ -3783,7 +3783,7 @@ class Get(object):
         Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.
 
         """
-        api_logger.warning("WARN: wanoverlays_single() is depreciated, and will be removed in a future release."
+        api_logger.warning("WARN: wanoverlays_single() is deprecated, and will be removed in a future release."
                            " Use wanoverlays() instead.")
         return self.wanoverlays(*args, **kwargs)
 

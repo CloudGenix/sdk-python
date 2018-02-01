@@ -6055,14 +6055,14 @@ table {
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`&quot;&quot;&quot;</span>
 
     <span class="c1"># &quot;XYZ_single&quot; compatibility maps below, mapping what is available previously</span>
-    <span class="c1"># with a depreciation message.</span>
+    <span class="c1"># with a deprecated message.</span>
 
     <span class="k">def</span> <span class="nf">access_elementusers_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use access_elementusers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6071,7 +6071,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `appdefs_single` to `appdefs`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use appdefs() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6080,7 +6080,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use appdefs_version() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs_version</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6089,7 +6089,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use base_permissions_clients() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6098,7 +6098,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use base_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6107,7 +6107,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use coreroutepeers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coreroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6116,7 +6116,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use dhcpservers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dhcpservers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6125,7 +6125,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use edgeroutepeers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edgeroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6134,7 +6134,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_extensions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6143,7 +6143,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_images_single` to `element_images`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_images() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_images</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6152,7 +6152,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_passages_single` to `element_passages`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_passages() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_passages</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6161,7 +6161,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elementaccessconfigs() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementaccessconfigs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6170,7 +6170,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elements_single` to `elements`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elements() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6179,7 +6179,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elementusers_single` to `elementusers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elementusers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6188,7 +6188,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use esp_tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esp_tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6197,7 +6197,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use globalprefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">globalprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6206,7 +6206,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use hubclustermembers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclustermembers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6215,7 +6215,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use hubclusters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclusters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6224,7 +6224,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `idps_single` to `idps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use idps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6233,7 +6233,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `interfaces_single` to `interfaces`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use interfaces() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6242,7 +6242,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use lannetworks() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6251,7 +6251,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use localprefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">localprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6260,7 +6260,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `machines_single` to `machines`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use machines() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">machines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6269,7 +6269,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use networkcontexts() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkcontexts</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6278,7 +6278,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use pathgroups() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathgroups</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6287,7 +6287,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `policyrules_single` to `policyrules`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use policyrules() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6296,7 +6296,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `policysets_single` to `policysets`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use policysets() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6305,7 +6305,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use prefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6314,7 +6314,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use roles_clients() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6323,7 +6323,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `roles_single` to `roles`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use roles() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6332,7 +6332,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securitypolicyrules() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6341,7 +6341,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securitypolicysets() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6350,7 +6350,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securityzones_single` to `securityzones`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securityzones() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6359,7 +6359,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use servicebindingmaps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicebindingmaps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6368,7 +6368,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use serviceendpoints() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">serviceendpoints</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6377,7 +6377,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use servicelabels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6386,7 +6386,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use site_extensions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6395,7 +6395,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `sites_single` to `sites`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use sites() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sites</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6404,7 +6404,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use sitesecurityzones() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sitesecurityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6413,7 +6413,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use snmpagents() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmpagents</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6422,7 +6422,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use snmptraps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmptraps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6431,7 +6431,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use staticroutes() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticroutes</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6440,7 +6440,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6449,7 +6449,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_operators() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6458,16 +6458,16 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+<span class="sd">        Backwards-compatibility alias of `tenant_single` to `tenants`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6476,7 +6476,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `users_single` to `users`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use users() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6485,7 +6485,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use vfflicense_tokens() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicense_tokens</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6494,7 +6494,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use vfflicenses() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicenses</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6503,7 +6503,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use waninterfacelabels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfacelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6512,7 +6512,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use waninterfaces() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6521,7 +6521,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wannetworks() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6530,7 +6530,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wanoverlaychannels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlaychannels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -6539,7 +6539,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wanoverlays() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlays</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -9829,14 +9829,14 @@ table {
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`&quot;&quot;&quot;</span>
 
     <span class="c1"># &quot;XYZ_single&quot; compatibility maps below, mapping what is available previously</span>
-    <span class="c1"># with a depreciation message.</span>
+    <span class="c1"># with a deprecated message.</span>
 
     <span class="k">def</span> <span class="nf">access_elementusers_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use access_elementusers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9845,7 +9845,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `appdefs_single` to `appdefs`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use appdefs() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9854,7 +9854,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use appdefs_version() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs_version</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9863,7 +9863,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use base_permissions_clients() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9872,7 +9872,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use base_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9881,7 +9881,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use coreroutepeers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coreroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9890,7 +9890,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use dhcpservers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dhcpservers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9899,7 +9899,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use edgeroutepeers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edgeroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9908,7 +9908,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_extensions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9917,7 +9917,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_images_single` to `element_images`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_images() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_images</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9926,7 +9926,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `element_passages_single` to `element_passages`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use element_passages() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_passages</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9935,7 +9935,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elementaccessconfigs() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementaccessconfigs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9944,7 +9944,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elements_single` to `elements`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elements() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9953,7 +9953,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `elementusers_single` to `elementusers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use elementusers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9962,7 +9962,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use esp_tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esp_tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9971,7 +9971,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use globalprefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">globalprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9980,7 +9980,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use hubclustermembers() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclustermembers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9989,7 +9989,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use hubclusters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclusters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -9998,7 +9998,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `idps_single` to `idps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use idps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10007,7 +10007,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `interfaces_single` to `interfaces`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use interfaces() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10016,7 +10016,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use lannetworks() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10025,7 +10025,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use localprefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">localprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10034,7 +10034,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `machines_single` to `machines`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use machines() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">machines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10043,7 +10043,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use networkcontexts() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkcontexts</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10052,7 +10052,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use pathgroups() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathgroups</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10061,7 +10061,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `policyrules_single` to `policyrules`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use policyrules() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10070,7 +10070,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `policysets_single` to `policysets`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use policysets() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10079,7 +10079,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use prefixfilters() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10088,7 +10088,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use roles_clients() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10097,7 +10097,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `roles_single` to `roles`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use roles() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10106,7 +10106,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securitypolicyrules() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10115,7 +10115,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securitypolicysets() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10124,7 +10124,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `securityzones_single` to `securityzones`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use securityzones() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10133,7 +10133,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use servicebindingmaps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicebindingmaps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10142,7 +10142,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use serviceendpoints() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">serviceendpoints</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10151,7 +10151,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use servicelabels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10160,7 +10160,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use site_extensions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10169,7 +10169,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `sites_single` to `sites`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use sites() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sites</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10178,7 +10178,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use sitesecurityzones() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sitesecurityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10187,7 +10187,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use snmpagents() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmpagents</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10196,7 +10196,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use snmptraps() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmptraps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10205,7 +10205,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use staticroutes() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticroutes</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10214,7 +10214,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10223,7 +10223,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_operators() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10232,16 +10232,16 @@ table {
 <span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenant_permissions() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+<span class="sd">        Backwards-compatibility alias of `tenant_single` to `tenants`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10250,7 +10250,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `users_single` to `users`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use users() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10259,7 +10259,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use vfflicense_tokens() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicense_tokens</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10268,7 +10268,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use vfflicenses() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicenses</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10277,7 +10277,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use waninterfacelabels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfacelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10286,7 +10286,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use waninterfaces() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10295,7 +10295,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wannetworks() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10304,7 +10304,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wanoverlaychannels() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlaychannels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -10313,7 +10313,7 @@ table {
 <span class="sd">        Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is depreciated, and will be removed in a future release.&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is deprecated, and will be removed in a future release.&quot;</span>
                            <span class="s2">&quot; Use wanoverlays() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlays</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -10744,7 +10744,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: access_elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use access_elementusers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -10868,7 +10868,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `appdefs_single` to `appdefs`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use appdefs() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -10947,7 +10947,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: appdefs_version_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use appdefs_version() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appdefs_version</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11082,7 +11082,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use base_permissions_clients() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11109,7 +11109,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: base_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use base_permissions() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11333,7 +11333,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: coreroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use coreroutepeers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coreroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11515,7 +11515,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: dhcpservers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use dhcpservers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dhcpservers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11598,7 +11598,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: edgeroutepeers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use edgeroutepeers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edgeroutepeers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11784,7 +11784,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use element_extensions() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11863,7 +11863,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `element_images_single` to `element_images`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_images_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use element_images() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_images</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -11946,7 +11946,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `element_passages_single` to `element_passages`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: element_passages_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use element_passages() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_passages</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12029,7 +12029,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementaccessconfigs_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use elementaccessconfigs() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementaccessconfigs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12204,7 +12204,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `elements_single` to `elements`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elements_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use elements() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12283,7 +12283,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `elementusers_single` to `elementusers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: elementusers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use elementusers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elementusers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12555,7 +12555,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: esp_tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use esp_tenant_permissions() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esp_tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12682,7 +12682,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: globalprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use globalprefixfilters() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">globalprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -12922,7 +12922,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclustermembers_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use hubclustermembers() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclustermembers</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13005,7 +13005,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: hubclusters_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use hubclusters() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubclusters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13084,7 +13084,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `idps_single` to `idps`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: idps_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use idps() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13171,7 +13171,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `interfaces_single` to `interfaces`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: interfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use interfaces() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13308,7 +13308,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: lannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use lannetworks() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13387,7 +13387,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: localprefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use localprefixfilters() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">localprefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13502,7 +13502,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `machines_single` to `machines`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: machines_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use machines() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">machines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13629,7 +13629,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: networkcontexts_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use networkcontexts() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkcontexts</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -13894,7 +13894,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: pathgroups_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use pathgroups() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathgroups</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14013,7 +14013,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `policyrules_single` to `policyrules`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use policyrules() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14092,7 +14092,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `policysets_single` to `policysets`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: policysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use policysets() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14223,7 +14223,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: prefixfilters_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use prefixfilters() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixfilters</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14586,7 +14586,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_clients_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use roles_clients() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles_clients</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14613,7 +14613,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `roles_single` to `roles`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: roles_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use roles() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14696,7 +14696,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicyrules_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use securitypolicyrules() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicyrules</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14775,7 +14775,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securitypolicysets_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use securitypolicysets() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securitypolicysets</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14854,7 +14854,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `securityzones_single` to `securityzones`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: securityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use securityzones() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">securityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -14933,7 +14933,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicebindingmaps_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use servicebindingmaps() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicebindingmaps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15012,7 +15012,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: serviceendpoints_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use serviceendpoints() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">serviceendpoints</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15091,7 +15091,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: servicelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use servicelabels() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">servicelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15225,7 +15225,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: site_extensions_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use site_extensions() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15400,7 +15400,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `sites_single` to `sites`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sites_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use sites() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sites</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15483,7 +15483,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: sitesecurityzones_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use sitesecurityzones() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sitesecurityzones</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15570,7 +15570,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmpagents_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use snmpagents() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmpagents</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15657,7 +15657,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: snmptraps_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use snmptraps() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snmptraps</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -15888,7 +15888,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use staticroutes() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticroutes</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16012,7 +16012,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16274,7 +16274,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_operators_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use tenant_operators() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16398,7 +16398,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_permissions_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use tenant_permissions() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_permissions</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16507,15 +16507,15 @@ table {
 
     
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>tenant_permissions_single</code> to <code>tenant_permissions</code>.</p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>tenant_single</code> to <code>tenants</code>.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.tenants_single', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.tenants_single" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.</span>
+<span class="sd">    Backwards-compatibility alias of `tenant_single` to `tenants`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenants_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use tenants() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenants</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16594,7 +16594,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `users_single` to `users`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: users_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use users() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16725,7 +16725,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicense_tokens_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use vfflicense_tokens() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicense_tokens</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16804,7 +16804,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: vfflicenses_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use vfflicenses() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vfflicenses</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -16931,7 +16931,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfacelabels_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use waninterfacelabels() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfacelabels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -17014,7 +17014,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: waninterfaces_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use waninterfaces() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">waninterfaces</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -17144,7 +17144,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wannetworks_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use wannetworks() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wannetworks</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -17223,7 +17223,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlaychannels_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use wanoverlaychannels() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlaychannels</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -17302,7 +17302,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is depreciated, and will be removed in a future release.&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: wanoverlays_single() is deprecated, and will be removed in a future release.&quot;</span>
                        <span class="s2">&quot; Use wanoverlays() instead.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wanoverlays</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>

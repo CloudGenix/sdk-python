@@ -218,13 +218,12 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def bulk_metrics_monitor(self, bulk_metric_id, data, tenant_id=None, api_version="v2.0"):
+    def bulk_metrics_monitor(self, data, tenant_id=None, api_version="v2.0"):
         """
         POST Bulk_Metrics_Monitor API Function
 
           **Parameters:**:
 
-          - **bulk_metric_id**: 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -241,8 +240,7 @@ class Post(object):
         cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/bulk_metrics".format(api_version,
-                                                                               tenant_id,
-                                                                               bulk_metric_id)
+                                                                               tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -979,13 +977,12 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def metrics_monitor(self, metric_id, data, tenant_id=None, api_version="v2.1"):
+    def metrics_monitor(self, data, tenant_id=None, api_version="v2.1"):
         """
         POST Metrics_Monitor API Function
 
           **Parameters:**:
 
-          - **metric_id**: Metric ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -1002,8 +999,7 @@ class Post(object):
         cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/metrics".format(api_version,
-                                                                          tenant_id,
-                                                                          metric_id)
+                                                                          tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -1997,13 +1993,12 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def tenant_anynetlinks(self, anynetlink_id, data, tenant_id=None, api_version="v3.0"):
+    def tenant_anynetlinks(self, data, tenant_id=None, api_version="v3.0"):
         """
         POST Tenant_Anynetlinks API Function
 
           **Parameters:**:
 
-          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.0)
@@ -2020,8 +2015,7 @@ class Post(object):
         cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/anynetlinks".format(api_version,
-                                                                      tenant_id,
-                                                                      anynetlink_id)
+                                                                      tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
