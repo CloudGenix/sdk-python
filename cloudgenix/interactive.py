@@ -246,7 +246,7 @@ class Interactive(object):
         **Returns:** Boolean on success/failure,
         """
         api_logger.info('interactive_tenant_update_vars function:')
-        tenant_resp = self._parent_class.get.tenants_single(self._parent_class.tenant_id)
+        tenant_resp = self._parent_class.get.tenants(self._parent_class.tenant_id)
         status = tenant_resp.cgx_status
         tenant_dict = tenant_resp.cgx_content
 
