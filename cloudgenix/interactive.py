@@ -230,7 +230,7 @@ class Interactive(object):
             # log response when debug
             api_logger.debug("LOGIN_FAIL_RESPONSE = %s", json.dumps(response.cgx_content, indent=4))
             # print login error
-            print('Login failed, please try again', response.cgx_content)
+            print('Login failed, please try again:', response.cgx_content)
             # Flush command-line entered login info if failure.
             self._parent_class.email = None
             self._parent_class.password = None

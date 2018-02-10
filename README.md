@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v4.5.5b4
+# CloudGenix Python SDK v4.5.7b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -38,13 +38,14 @@ cgx_sess.interactive.logout()
 MIT
 
 #### Version
-Version | Changes
-------- | --------
-**4.5.5b4**| Bugfix for certain POST APIs, other minor fixes.
-**4.5.5b3**| CA Pinning update, *_single function deprecation, add missed 'security' extras requirement.
-**4.5.5b2**| Various fixes and cleanup for public release.
-**4.5.5b1**| Update for 15/12/2017 API additions.
-**4.5.3b2**| Initial Internal Release.
+Version | Build | Changes
+------- | ----- | -------
+**4.5.7**| **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4
+**4.5.5**| **b4** | Bugfix for certain POST APIs, other minor fixes.
+         | **b3** | CA Pinning update, *_single function deprecation, add missed 'security' extras requirement.
+         | **b2** | Various fixes and cleanup for public release.
+         | **b1** | Update for 15/12/2017 API additions.
+**4.5.3**| **b2** | Initial Internal Release.
 
 ## For more info
  * Get help and additional CloudGenix Documentation at <http://support.cloudgenix.com>
