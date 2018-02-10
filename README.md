@@ -38,14 +38,14 @@ cgx_sess.interactive.logout()
 MIT
 
 #### Version
-Version | Build | Changes
-------- | ----- | -------
-**4.5.7**| **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4
-**4.5.5**| **b4** | Bugfix for certain POST APIs, other minor fixes.
-         | **b3** | CA Pinning update, *_single function deprecation, add missed 'security' extras requirement.
-         | **b2** | Various fixes and cleanup for public release.
-         | **b1** | Update for 15/12/2017 API additions.
-**4.5.3**| **b2** | Initial Internal Release.
+| Version | Build | Changes |
+| ------- | ----- | ------- |
+| **4.5.7** | **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4 |
+| **4.5.5** | **b4** | Bugfix for certain POST APIs, other minor fixes. |
+|           | **b3** | CA Pinning update, *_single function deprecation, add missed 'security' extras requirement. |
+|           | **b2** | Various fixes and cleanup for public release. |
+|           | **b1** | Update for 15/12/2017 API additions. |
+| **4.5.3** | **b2** | Initial Internal Release. |
 
 ## For more info
  * Get help and additional CloudGenix Documentation at <http://support.cloudgenix.com>
