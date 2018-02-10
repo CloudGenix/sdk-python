@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.5.5b4
+**Version:** v4.5.7b1
 
 **Author:** CloudGenix
 
@@ -121,7 +121,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "4.5.5b4"
+version = "4.5.7b1"
 """SDK Version string"""
 
 
@@ -513,7 +513,7 @@ class API(object):
                         run_once = False
                         # CGX extend requests.Response for return
                         response.cgx_status = False
-                        response.cgx_content = self._catch_nonjson_streamresponse(response.content)
+                        response.cgx_content = self._catch_nonjson_streamresponse(response.text)
                         return response
 
                 else:
@@ -538,7 +538,7 @@ class API(object):
                     run_once = False
                     # CGX extend requests.Response for return
                     response.cgx_status = True
-                    response.cgx_content = self._catch_nonjson_streamresponse(response.content)
+                    response.cgx_content = self._catch_nonjson_streamresponse(response.text)
                     return response
 
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
