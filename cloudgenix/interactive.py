@@ -267,8 +267,8 @@ class Interactive(object):
         api_logger.info('use_token function:')
 
         # check token is a string.
-        if not isinstance(token, text_type):
-            api_logger.debug('"token" was not a text string: {}'.format(text_type(token)))
+        if not isinstance(token, (text_type, binary_type)):
+            api_logger.debug('"token" was not a text-style string: {}'.format(text_type(token)))
             return False
 
         # Start setup of constructor.

@@ -2873,8 +2873,8 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
 
         <span class="c1"># check token is a string.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
             <span class="k">return</span> <span class="bp">False</span>
 
         <span class="c1"># Start setup of constructor.</span>
@@ -3472,8 +3472,8 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
 
         <span class="c1"># check token is a string.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
             <span class="k">return</span> <span class="bp">False</span>
 
         <span class="c1"># Start setup of constructor.</span>
@@ -4443,8 +4443,8 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
     <span class="c1"># check token is a string.</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="c1"># Start setup of constructor.</span>
     <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
