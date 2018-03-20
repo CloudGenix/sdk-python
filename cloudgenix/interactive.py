@@ -50,12 +50,20 @@ try:
 except NameError:
     compat_input = input
 
+# python 2 and 3 handling
+if sys.version_info < (3,):
+    text_type = unicode
+    binary_type = str
+else:
+    text_type = str
+    binary_type = bytes
+
 
 class Interactive(object):
     """
     CloudGenix API - Interactive helper functions
 
-    Object to help with interactive complex functions instead of raw API accesses 
+    Object to help with interactive complex functions instead of raw API accesses
     """
 
     # placeholder for parent class namespace
@@ -65,6 +73,11 @@ class Interactive(object):
         """
         Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.
         Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.
+
+        **Parameters:**:
+
+          - **email**: Email to log in for, will prompt if not entered.
+          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.
 
         **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.
         """
@@ -223,6 +236,7 @@ class Interactive(object):
             api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
             api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
             api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
+            api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
 
             # remove referer header prior to continuing.
             self._parent_class.remove_header('Referer')
@@ -238,6 +252,112 @@ class Interactive(object):
             # remove referer header prior to continuing.
             self._parent_class.remove_header('Referer')
         return False
+
+    def use_token(self, token=None):
+        """
+        Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.
+
+        **Parameters:**:
+
+          - **token**: Static AUTH_TOKEN
+
+        **Returns:** Bool on success or failure. In addition the function will mutate the `cloudgenix.API`
+                     constructor items as needed.
+        """
+        api_logger.info('use_token function:')
+
+        # check token is a string.
+        if not isinstance(token, text_type):
+            api_logger.debug('"token" was not a text string: {}'.format(text_type(token)))
+            return False
+
+        # Start setup of constructor.
+        session = self._parent_class.expose_session()
+
+        # clear cookies
+        session.cookies.clear()
+
+        # Static Token uses X-Auth-Token header instead of cookies.
+        self._parent_class.add_headers({
+            'X-Auth-Token': token
+        })
+
+        # Step 2: Get operator profile for tenant ID and other info.
+        if self.interactive_update_profile_vars():
+
+            # pull tenant detail
+            if self._parent_class.tenant_id:
+
+                # add tenant values to API() object
+                if self.interactive_tenant_update_vars():
+
+                    # Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.
+                    if self._parent_class.is_esp:
+                        # ESP/MSP!
+                        choose_status, chosen_client_id = self.interactive_client_choice()
+
+                        if choose_status:
+                            # attempt to login as client
+                            clogin_resp = self._parent_class.post.login_clients(chosen_client_id, {})
+
+                            if clogin_resp.cgx_status:
+                                # login successful, update profile and tenant info
+                                c_profile = self.interactive_update_profile_vars()
+                                t_profile = self.interactive_tenant_update_vars()
+
+                                if c_profile and t_profile:
+                                    # successful full client login.
+                                    self._parent_class._password = None
+                                    return True
+
+                                else:
+                                    if t_profile:
+                                        print("ESP Client Tenant detail retrieval failed.")
+                                    # clear password out of memory
+                                    self._parent_class.email = None
+                                    self._parent_class._password = None
+                                    return False
+
+                            else:
+                                print("ESP Client Login failed.")
+                                # clear password out of memory
+                                self._parent_class.email = None
+                                self._parent_class._password = None
+                                return False
+
+                        else:
+                            print("ESP Client Choice failed.")
+                            # clear password out of memory
+                            self._parent_class.email = None
+                            self._parent_class._password = None
+                            return False
+
+                    # successful!
+                    # clear password out of memory
+                    self._parent_class._password = None
+                    return True
+
+                else:
+                    print("Tenant detail retrieval failed.")
+                    # clear password out of memory
+                    self._parent_class.email = None
+                    self._parent_class._password = None
+                    return False
+
+        else:
+            # Profile detail retrieval failed
+            self._parent_class.email = None
+            self._parent_class._password = None
+            return False
+
+        api_logger.info("EMAIL = %s", self._parent_class.email)
+        api_logger.info("USER_ID = %s", self._parent_class._user_id)
+        api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
+        api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
+        api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
+        api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
+
+        return True
 
     def interactive_tenant_update_vars(self):
         """
@@ -291,6 +411,7 @@ class Interactive(object):
             self._parent_class.email = profile.cgx_content.get('email')
             self._parent_class._user_id = profile.cgx_content.get('id')
             self._parent_class.roles = profile.cgx_content.get('roles', [])
+            self._parent_class.token_session = profile.cgx_content.get('token_session')
 
             return True
 
@@ -433,14 +554,44 @@ class Interactive(object):
 
         return response
 
-    def logout(self):
+    def logout(self, force=False):
         """
         Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.
 
+        **Parameters:**:
+
+          - **force**: Bool, force logout API call, even when using a static AUTH_TOKEN.
+
         **Returns:** Bool of whether the operation succeeded.
         """
-        result = self._parent_class.get.logout()
-        if result.cgx_status:
+        # Extract requests session for manipulation.
+        session = self._parent_class.expose_session()
+
+        # if force = True, or token_session = None/False, call logout API.
+        if force or not self._parent_class.token_session:
+            # Call Logout
+            result = self._parent_class.get.logout()
+            if result.cgx_status:
+                # clear info from session.
+                self._parent_class.tenant_id = None
+                self._parent_class.tenant_name = None
+                self._parent_class.is_esp = None
+                self._parent_class.client_id = None
+                self._parent_class.address_string = None
+                self._parent_class.email = None
+                self._parent_class._user_id = None
+                self._parent_class._password = None
+                self._parent_class.roles = None
+                self._parent_class.token_session = None
+                # Cookies are removed via LOGOUT API call. if X-Auth-Token set, clear.
+                if session.headers.get('X-Auth-Token'):
+                    self._parent_class.remove_header('X-Auth-Token')
+
+            return result.cgx_status
+
+        else:
+            # Token Session and not forced.
+            api_logger.debug('TOKEN SESSION, LOGOUT API NOT CALLED.')
             # clear info from session.
             self._parent_class.tenant_id = None
             self._parent_class.tenant_name = None
@@ -451,5 +602,30 @@ class Interactive(object):
             self._parent_class._user_id = None
             self._parent_class._password = None
             self._parent_class.roles = None
+            self._parent_class.token_session = None
+            # if X-Auth-Token set, clear.
+            if session.headers.get('X-Auth-Token'):
+                self._parent_class.remove_header('X-Auth-Token')
 
-        return result.cgx_status
+            return True
+
+    @staticmethod
+    def jd(api_response):
+        """
+        JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.
+
+        Example: `jd(cgx_sess.get.sites())`
+
+        **Returns:** No Return, directly prints all output.
+        """
+        try:
+            # attempt to print the cgx_content. should always be a Dict if it exists.
+            print(json.dumps(api_response.cgx_content, indent=4))
+        except (TypeError, ValueError, AttributeError):
+            # cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.
+            try:
+                print(json.dumps(api_response, indent=4))
+            except (TypeError, ValueError, AttributeError):
+                # Same issue, just raw print the passed data. Let any exceptions happen here.
+                print(api_response)
+        return

@@ -87,14 +87,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def aggregates_monitor(self, tenant_id=None, api_version="v2.0"):
+    def aggregates_monitor(self, tenant_id=None, api_version="v3.0"):
         """
         GET Aggregates_Monitor API Function
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -109,6 +109,36 @@ class Get(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aggregates".format(api_version,
                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def anynetlinks_s(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Anynetlinks_S API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  site_id,
+                                                                                  anynetlink_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -151,7 +181,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **appdefs_version_id**: (optional) 
+          - **appdefs_version_id**: (optional)
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -177,13 +207,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def base_permissions(self, base_permission_id=None, tenant_id=None, api_version="v2.0"):
+    def authtokens(self, operator_id, authtoken_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Permissions API Function
+        GET Authtokens API Function
 
           **Parameters:**:
 
-          - **base_permission_id**: (optional) 
+          - **operator_id**: Operator ID
+          - **authtoken_id**: (optional)
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -198,25 +229,25 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        if not base_permission_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions".format(api_version,
-                                                                               tenant_id)
+        if not authtoken_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/authtokens".format(api_version,
+                                                                                      tenant_id,
+                                                                                      operator_id)
         else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  base_permission_id)
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/authtokens/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         operator_id,
+                                                                                         authtoken_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def base_permissions_clients(self, client_id, base_permission_id=None, tenant_id=None, api_version="v2.0"):
+    def base_permissions(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Permissions_Clients API Function
+        Get a list of tenant base permissions
 
           **Parameters:**:
 
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **base_permission_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -231,22 +262,15 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        if not base_permission_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions".format(api_version,
-                                                                                          tenant_id,
-                                                                                          client_id)
-        else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions/{}".format(api_version,
-                                                                                             tenant_id,
-                                                                                             client_id,
-                                                                                             base_permission_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions".format(api_version,
+                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
     def base_roles(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Roles API Function
+        Get a list of tenant base roles
 
           **Parameters:**:
 
@@ -272,7 +296,7 @@ class Get(object):
 
     def base_roles_clients(self, client_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Base_Roles_Clients API Function
+        Get a list of client base roles
 
           **Parameters:**:
 
@@ -304,7 +328,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **bulk_metric_id**: 
+          - **bulk_metric_id**:
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -591,7 +615,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **element_image_id**: (optional) 
+          - **element_image_id**: (optional)
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -917,41 +941,6 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def esp_tenant_permissions(self, client_id, permission_id=None, tenant_id=None, api_version="v2.0"):
-        """
-        GET Esp_Tenant_Permissions API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **permission_id**: (optional) Permission ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        if not permission_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions".format(api_version,
-                                                                                     tenant_id,
-                                                                                     client_id)
-        else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions/{}".format(api_version,
-                                                                                        tenant_id,
-                                                                                        client_id,
-                                                                                        permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
     def events(self, event_id, tenant_id=None, api_version="v2.0"):
         """
         GET Events API Function
@@ -1207,7 +1196,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.1"):
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.2"):
         """
         Get element interface ids
 
@@ -1217,7 +1206,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: (optional) Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
+          - **api_version**: API version to use (default v4.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1480,13 +1469,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def operator_sessions(self, operator_id, tenant_id=None, api_version="v2.0"):
+    def operator_sessions(self, operator_id, session_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all sessions for operator id belonging to a tenant id
 
           **Parameters:**:
 
           - **operator_id**: Operator ID
+          - **session_id**: (optional)
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1501,9 +1491,15 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions".format(api_version,
-                                                                                tenant_id,
-                                                                                operator_id)
+        if not session_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions".format(api_version,
+                                                                                    tenant_id,
+                                                                                    operator_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions/{}".format(api_version,
+                                                                                       tenant_id,
+                                                                                       operator_id,
+                                                                                       session_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -1874,7 +1870,7 @@ class Get(object):
 
     def roles(self, role_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Roles API Function
+        Get a list of custom roles
 
           **Parameters:**:
 
@@ -1906,7 +1902,7 @@ class Get(object):
 
     def roles_clients(self, client_id, role_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Roles_Clients API Function
+        Get a list of client custom roles
 
           **Parameters:**:
 
@@ -2130,36 +2126,6 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/servicelabels/{}".format(api_version,
                                                                                tenant_id,
                                                                                servicelabel_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_anynetlinks(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Site_Anynetlinks API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  anynetlink_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -2546,6 +2512,44 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def syslogservers(self, site_id, element_id, syslogserver_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Syslogservers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **syslogserver_id**: (optional)
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not syslogserver_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/syslogservers".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/syslogservers/{}".format(api_version,
+                                                                                                    tenant_id,
+                                                                                                    site_id,
+                                                                                                    element_id,
+                                                                                                    syslogserver_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def tenant_access(self, access_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get full invocation trail for given tenant
@@ -2744,7 +2748,7 @@ class Get(object):
 
     def tenant_permissions(self, permission_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Tenant_Permissions API Function
+        Get a list of custom permissions
 
           **Parameters:**:
 
@@ -2802,7 +2806,7 @@ class Get(object):
 
     def tenants(self, tenant_id=None, api_version="v2.0"):
         """
-        Get tenant details for tenant id
+        GET Tenants API Function
 
           **Parameters:**:
 
@@ -3208,9 +3212,6 @@ class Get(object):
     access_t = tenant_access
     """ Backwards-compatibility alias of `access_t` to `tenant_access`"""
 
-    anynetlinks_s = site_anynetlinks
-    """ Backwards-compatibility alias of `anynetlinks_s` to `site_anynetlinks`"""
-
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
 
@@ -3246,9 +3247,6 @@ class Get(object):
 
     permissions_clients_o = esp_operator_permissions_client
     """ Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`"""
-
-    permissions_clients_t = esp_tenant_permissions
-    """ Backwards-compatibility alias of `permissions_clients_t` to `esp_tenant_permissions`"""
 
     permissions_t = tenant_permissions
     """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
@@ -3305,8 +3303,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: access_elementusers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: access_elementusers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use access_elementusers() instead.")
         return self.access_elementusers(*args, **kwargs)
 
@@ -3314,8 +3314,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `appdefs_single` to `appdefs`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: appdefs_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: appdefs_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use appdefs() instead.")
         return self.appdefs(*args, **kwargs)
 
@@ -3323,35 +3325,21 @@ class Get(object):
         """
         Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: appdefs_version_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: appdefs_version_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use appdefs_version() instead.")
         return self.appdefs_version(*args, **kwargs)
-
-    def base_permissions_clients_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `base_permissions_clients_single` to `base_permissions_clients`.
-
-        """
-        api_logger.warning("WARN: base_permissions_clients_single() is deprecated, and will be removed in a future release."
-                           " Use base_permissions_clients() instead.")
-        return self.base_permissions_clients(*args, **kwargs)
-
-    def base_permissions_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `base_permissions_single` to `base_permissions`.
-
-        """
-        api_logger.warning("WARN: base_permissions_single() is deprecated, and will be removed in a future release."
-                           " Use base_permissions() instead.")
-        return self.base_permissions(*args, **kwargs)
 
     def coreroutepeers_single(self, *args, **kwargs):
         """
         Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: coreroutepeers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: coreroutepeers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use coreroutepeers() instead.")
         return self.coreroutepeers(*args, **kwargs)
 
@@ -3359,8 +3347,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: dhcpservers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: dhcpservers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use dhcpservers() instead.")
         return self.dhcpservers(*args, **kwargs)
 
@@ -3368,8 +3358,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: edgeroutepeers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: edgeroutepeers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use edgeroutepeers() instead.")
         return self.edgeroutepeers(*args, **kwargs)
 
@@ -3377,8 +3369,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: element_extensions_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: element_extensions_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use element_extensions() instead.")
         return self.element_extensions(*args, **kwargs)
 
@@ -3386,8 +3380,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `element_images_single` to `element_images`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: element_images_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: element_images_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use element_images() instead.")
         return self.element_images(*args, **kwargs)
 
@@ -3395,8 +3391,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `element_passages_single` to `element_passages`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: element_passages_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: element_passages_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use element_passages() instead.")
         return self.element_passages(*args, **kwargs)
 
@@ -3404,8 +3402,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: elementaccessconfigs_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: elementaccessconfigs_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use elementaccessconfigs() instead.")
         return self.elementaccessconfigs(*args, **kwargs)
 
@@ -3413,8 +3413,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `elements_single` to `elements`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: elements_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: elements_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use elements() instead.")
         return self.elements(*args, **kwargs)
 
@@ -3422,26 +3424,21 @@ class Get(object):
         """
         Backwards-compatibility alias of `elementusers_single` to `elementusers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: elementusers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: elementusers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use elementusers() instead.")
         return self.elementusers(*args, **kwargs)
-
-    def esp_tenant_permissions_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `esp_tenant_permissions_single` to `esp_tenant_permissions`.
-
-        """
-        api_logger.warning("WARN: esp_tenant_permissions_single() is deprecated, and will be removed in a future release."
-                           " Use esp_tenant_permissions() instead.")
-        return self.esp_tenant_permissions(*args, **kwargs)
 
     def globalprefixfilters_single(self, *args, **kwargs):
         """
         Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: globalprefixfilters_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: globalprefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use globalprefixfilters() instead.")
         return self.globalprefixfilters(*args, **kwargs)
 
@@ -3449,8 +3446,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: hubclustermembers_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: hubclustermembers_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use hubclustermembers() instead.")
         return self.hubclustermembers(*args, **kwargs)
 
@@ -3458,8 +3457,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: hubclusters_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: hubclusters_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use hubclusters() instead.")
         return self.hubclusters(*args, **kwargs)
 
@@ -3467,8 +3468,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `idps_single` to `idps`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: idps_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: idps_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use idps() instead.")
         return self.idps(*args, **kwargs)
 
@@ -3476,8 +3479,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `interfaces_single` to `interfaces`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: interfaces_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: interfaces_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use interfaces() instead.")
         return self.interfaces(*args, **kwargs)
 
@@ -3485,8 +3490,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: lannetworks_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: lannetworks_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use lannetworks() instead.")
         return self.lannetworks(*args, **kwargs)
 
@@ -3494,8 +3501,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: localprefixfilters_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: localprefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use localprefixfilters() instead.")
         return self.localprefixfilters(*args, **kwargs)
 
@@ -3503,8 +3512,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `machines_single` to `machines`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: machines_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: machines_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use machines() instead.")
         return self.machines(*args, **kwargs)
 
@@ -3512,8 +3523,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: networkcontexts_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: networkcontexts_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use networkcontexts() instead.")
         return self.networkcontexts(*args, **kwargs)
 
@@ -3521,8 +3534,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: pathgroups_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: pathgroups_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use pathgroups() instead.")
         return self.pathgroups(*args, **kwargs)
 
@@ -3530,8 +3545,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `policyrules_single` to `policyrules`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: policyrules_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: policyrules_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use policyrules() instead.")
         return self.policyrules(*args, **kwargs)
 
@@ -3539,8 +3556,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `policysets_single` to `policysets`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: policysets_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: policysets_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use policysets() instead.")
         return self.policysets(*args, **kwargs)
 
@@ -3548,8 +3567,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: prefixfilters_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: prefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use prefixfilters() instead.")
         return self.prefixfilters(*args, **kwargs)
 
@@ -3557,8 +3578,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: roles_clients_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: roles_clients_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use roles_clients() instead.")
         return self.roles_clients(*args, **kwargs)
 
@@ -3566,8 +3589,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `roles_single` to `roles`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: roles_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: roles_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use roles() instead.")
         return self.roles(*args, **kwargs)
 
@@ -3575,8 +3600,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: securitypolicyrules_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: securitypolicyrules_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use securitypolicyrules() instead.")
         return self.securitypolicyrules(*args, **kwargs)
 
@@ -3584,8 +3611,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: securitypolicysets_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: securitypolicysets_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use securitypolicysets() instead.")
         return self.securitypolicysets(*args, **kwargs)
 
@@ -3593,8 +3622,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `securityzones_single` to `securityzones`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: securityzones_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: securityzones_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use securityzones() instead.")
         return self.securityzones(*args, **kwargs)
 
@@ -3602,8 +3633,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: servicebindingmaps_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: servicebindingmaps_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use servicebindingmaps() instead.")
         return self.servicebindingmaps(*args, **kwargs)
 
@@ -3611,8 +3644,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: serviceendpoints_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: serviceendpoints_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use serviceendpoints() instead.")
         return self.serviceendpoints(*args, **kwargs)
 
@@ -3620,8 +3655,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: servicelabels_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: servicelabels_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use servicelabels() instead.")
         return self.servicelabels(*args, **kwargs)
 
@@ -3629,8 +3666,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: site_extensions_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: site_extensions_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use site_extensions() instead.")
         return self.site_extensions(*args, **kwargs)
 
@@ -3638,8 +3677,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `sites_single` to `sites`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: sites_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: sites_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use sites() instead.")
         return self.sites(*args, **kwargs)
 
@@ -3647,8 +3688,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: sitesecurityzones_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: sitesecurityzones_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use sitesecurityzones() instead.")
         return self.sitesecurityzones(*args, **kwargs)
 
@@ -3656,8 +3699,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: snmpagents_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: snmpagents_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use snmpagents() instead.")
         return self.snmpagents(*args, **kwargs)
 
@@ -3665,8 +3710,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: snmptraps_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: snmptraps_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use snmptraps() instead.")
         return self.snmptraps(*args, **kwargs)
 
@@ -3674,8 +3721,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: staticroutes_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: staticroutes_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use staticroutes() instead.")
         return self.staticroutes(*args, **kwargs)
 
@@ -3683,8 +3732,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: tenant_access_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_access_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use tenant_access() instead.")
         return self.tenant_access(*args, **kwargs)
 
@@ -3692,8 +3743,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: tenant_operators_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_operators_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use tenant_operators() instead.")
         return self.tenant_operators(*args, **kwargs)
 
@@ -3701,26 +3754,21 @@ class Get(object):
         """
         Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: tenant_permissions_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: tenant_permissions_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use tenant_permissions() instead.")
         return self.tenant_permissions(*args, **kwargs)
-
-    def tenants_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `tenant_single` to `tenants`.
-
-        """
-        api_logger.warning("WARN: tenant_single() is deprecated, and will be removed in a future release."
-                           " Use tenants() instead.")
-        return self.tenants(*args, **kwargs)
 
     def users_single(self, *args, **kwargs):
         """
         Backwards-compatibility alias of `users_single` to `users`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: users_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: users_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use users() instead.")
         return self.users(*args, **kwargs)
 
@@ -3728,8 +3776,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: vfflicense_tokens_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: vfflicense_tokens_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use vfflicense_tokens() instead.")
         return self.vfflicense_tokens(*args, **kwargs)
 
@@ -3737,8 +3787,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: vfflicenses_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: vfflicenses_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use vfflicenses() instead.")
         return self.vfflicenses(*args, **kwargs)
 
@@ -3746,8 +3798,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: waninterfacelabels_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: waninterfacelabels_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use waninterfacelabels() instead.")
         return self.waninterfacelabels(*args, **kwargs)
 
@@ -3755,8 +3809,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: waninterfaces_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: waninterfaces_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use waninterfaces() instead.")
         return self.waninterfaces(*args, **kwargs)
 
@@ -3764,8 +3820,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: wannetworks_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: wannetworks_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use wannetworks() instead.")
         return self.wannetworks(*args, **kwargs)
 
@@ -3773,8 +3831,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: wanoverlaychannels_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: wanoverlaychannels_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use wanoverlaychannels() instead.")
         return self.wanoverlaychannels(*args, **kwargs)
 
@@ -3782,8 +3842,10 @@ class Get(object):
         """
         Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.
 
+        **TO BE REMOVED** on Sept 1, 2018.
+
         """
-        api_logger.warning("WARN: wanoverlays_single() is deprecated, and will be removed in a future release."
+        api_logger.warning("WARN: wanoverlays_single() is deprecated, and will be removed on Sept 1, 2018."
                            " Use wanoverlays() instead.")
         return self.wanoverlays(*args, **kwargs)
 

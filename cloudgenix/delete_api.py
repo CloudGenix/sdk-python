@@ -110,13 +110,14 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def base_permissions(self, base_permission_id, tenant_id=None, api_version="v2.0"):
+    def authtokens(self, operator_id, authtoken_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Base_Permissions API Function
+        DELETE Authtokens API Function
 
           **Parameters:**:
 
-          - **base_permission_id**: 
+          - **operator_id**: Operator ID
+          - **authtoken_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -131,39 +132,10 @@ class Delete(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              base_permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def base_permissions_clients(self, client_id, base_permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Base_Permissions_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **base_permission_id**: 
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         client_id,
-                                                                                         base_permission_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/authtokens/{}".format(api_version,
+                                                                                     tenant_id,
+                                                                                     operator_id,
+                                                                                     authtoken_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -408,36 +380,6 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def esp_tenant_permissions(self, client_id, permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Esp_Tenant_Permissions API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **permission_id**: Permission ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    client_id,
-                                                                                    permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
     def globalprefixfilters(self, globalprefixfilter_id, tenant_id=None, api_version="v2.0"):
         """
         Delete a global prefix filter.
@@ -556,7 +498,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.1"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.2"):
         """
         Delete an element interface
 
@@ -566,7 +508,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
+          - **api_version**: API version to use (default v4.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -670,6 +612,36 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/networkcontexts/{}".format(api_version,
                                                                              tenant_id,
                                                                              networkcontext_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def operator_sessions(self, operator_id, session_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Operator_Sessions API Function
+
+          **Parameters:**:
+
+          - **operator_id**: Operator ID
+          - **session_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions/{}".format(api_version,
+                                                                                   tenant_id,
+                                                                                   operator_id,
+                                                                                   session_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -792,7 +764,7 @@ class Delete(object):
 
     def roles(self, role_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Roles API Function
+        Delete a custom role
 
           **Parameters:**:
 
@@ -814,36 +786,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/roles/{}".format(api_version,
                                                                    tenant_id,
                                                                    role_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def roles_clients(self, client_id, role_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Roles_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **role_id**: Role ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              client_id,
-                                                                              role_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1202,6 +1144,38 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Syslogservers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **syslogserver_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/syslogservers/{}".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id,
+                                                                                                syslogserver_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
         """
         DELETE Tenant_Anynetlinks API Function
@@ -1254,34 +1228,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}".format(api_version,
                                                                        tenant_id,
                                                                        operator_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def tenant_permissions(self, permission_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Tenant_Permissions API Function
-
-          **Parameters:**:
-
-          - **permission_id**: Permission ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         permission_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1452,9 +1398,6 @@ class Delete(object):
     permissions_clients_o = esp_operator_permissions_client
     """ Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`"""
 
-    permissions_clients_t = esp_tenant_permissions
-    """ Backwards-compatibility alias of `permissions_clients_t` to `esp_tenant_permissions`"""
-
-    permissions_t = tenant_permissions
-    """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
+    sessions_t = operator_sessions
+    """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
 

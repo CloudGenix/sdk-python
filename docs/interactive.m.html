@@ -2569,6 +2569,7 @@ table {
         
           
   <ul>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.jd">jd</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.check_sso_login">check_sso_login</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.interactive_client_choice">interactive_client_choice</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.interactive_tenant_update_vars">interactive_tenant_update_vars</a></li>
@@ -2576,6 +2577,7 @@ table {
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.login">login</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.logout">logout</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.quick_menu">quick_menu</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.use_token">use_token</a></li>
   </ul>
 
         </li>
@@ -2654,12 +2656,20 @@ table {
 <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
     <span class="n">compat_input</span> <span class="o">=</span> <span class="nb">input</span>
 
+<span class="c1"># python 2 and 3 handling</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+    <span class="n">text_type</span> <span class="o">=</span> <span class="nb">unicode</span>
+    <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">str</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">text_type</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">bytes</span>
+
 
 <span class="k">class</span> <span class="nc">Interactive</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CloudGenix API - Interactive helper functions</span>
 
-<span class="sd">    Object to help with interactive complex functions instead of raw API accesses </span>
+<span class="sd">    Object to help with interactive complex functions instead of raw API accesses</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
@@ -2669,6 +2679,11 @@ table {
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
+
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **email**: Email to log in for, will prompt if not entered.</span>
+<span class="sd">          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2827,6 +2842,7 @@ table {
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
 
             <span class="c1"># remove referer header prior to continuing.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
@@ -2834,7 +2850,7 @@ table {
             <span class="c1"># log response when debug</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
             <span class="c1"># print login error</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again:&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
             <span class="c1"># Flush command-line entered login info if failure.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -2842,6 +2858,112 @@ table {
             <span class="c1"># remove referer header prior to continuing.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
+
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **token**: Static AUTH_TOKEN</span>
+
+<span class="sd">        **Returns:** Bool on success or failure. In addition the function will mutate the `cloudgenix.API`</span>
+<span class="sd">                     constructor items as needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
+
+        <span class="c1"># check token is a string.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="c1"># Start setup of constructor.</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+
+        <span class="c1"># clear cookies</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
+
+            <span class="c1"># pull tenant detail</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+
+                <span class="c1"># add tenant values to API() object</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">():</span>
+
+                    <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
+                        <span class="c1"># ESP/MSP!</span>
+                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+
+                        <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
+                            <span class="c1"># attempt to login as client</span>
+                            <span class="n">clogin_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login_clients</span><span class="p">(</span><span class="n">chosen_client_id</span><span class="p">,</span> <span class="p">{})</span>
+
+                            <span class="k">if</span> <span class="n">clogin_resp</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+                                <span class="c1"># login successful, update profile and tenant info</span>
+                                <span class="n">c_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">()</span>
+                                <span class="n">t_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">()</span>
+
+                                <span class="k">if</span> <span class="n">c_profile</span> <span class="ow">and</span> <span class="n">t_profile</span><span class="p">:</span>
+                                    <span class="c1"># successful full client login.</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="k">return</span> <span class="bp">True</span>
+
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
+                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                    <span class="c1"># clear password out of memory</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="k">return</span> <span class="bp">False</span>
+
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                <span class="c1"># clear password out of memory</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="k">return</span> <span class="bp">False</span>
+
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                            <span class="c1"># clear password out of memory</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="k">return</span> <span class="bp">False</span>
+
+                    <span class="c1"># successful!</span>
+                    <span class="c1"># clear password out of memory</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                    <span class="c1"># clear password out of memory</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Profile detail retrieval failed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">interactive_tenant_update_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2895,6 +3017,7 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;roles&#39;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token_session&#39;</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="bp">True</span>
 
@@ -3037,14 +3160,44 @@ table {
 
         <span class="k">return</span> <span class="n">response</span>
 
-    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
 
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **force**: Bool, force logout API call, even when using a static AUTH_TOKEN.</span>
+
 <span class="sd">        **Returns:** Bool of whether the operation succeeded.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+        <span class="c1"># Extract requests session for manipulation.</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+
+        <span class="c1"># if force = True, or token_session = None/False, call logout API.</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">:</span>
+            <span class="c1"># Call Logout</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+                <span class="c1"># clear info from session.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">address_string</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="c1"># Cookies are removed via LOGOUT API call. if X-Auth-Token set, clear.</span>
+                <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Token Session and not forced.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;TOKEN SESSION, LOGOUT API NOT CALLED.&#39;</span><span class="p">)</span>
             <span class="c1"># clear info from session.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3055,8 +3208,33 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="c1"># if X-Auth-Token set, clear.</span>
+            <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+
+<span class="sd">        Example: `jd(cgx_sess.get.sites())`</span>
+
+<span class="sd">        **Returns:** No Return, directly prints all output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+                <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+        <span class="k">return</span>
 </pre></div>
 
   </div>
@@ -3090,7 +3268,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CloudGenix API - Interactive helper functions</span>
 
-<span class="sd">    Object to help with interactive complex functions instead of raw API accesses </span>
+<span class="sd">    Object to help with interactive complex functions instead of raw API accesses</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
@@ -3100,6 +3278,11 @@ table {
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
+
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **email**: Email to log in for, will prompt if not entered.</span>
+<span class="sd">          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3258,6 +3441,7 @@ table {
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
 
             <span class="c1"># remove referer header prior to continuing.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
@@ -3265,7 +3449,7 @@ table {
             <span class="c1"># log response when debug</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
             <span class="c1"># print login error</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again:&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
             <span class="c1"># Flush command-line entered login info if failure.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3273,6 +3457,112 @@ table {
             <span class="c1"># remove referer header prior to continuing.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
+
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **token**: Static AUTH_TOKEN</span>
+
+<span class="sd">        **Returns:** Bool on success or failure. In addition the function will mutate the `cloudgenix.API`</span>
+<span class="sd">                     constructor items as needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
+
+        <span class="c1"># check token is a string.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="c1"># Start setup of constructor.</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+
+        <span class="c1"># clear cookies</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
+
+            <span class="c1"># pull tenant detail</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+
+                <span class="c1"># add tenant values to API() object</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">():</span>
+
+                    <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
+                        <span class="c1"># ESP/MSP!</span>
+                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+
+                        <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
+                            <span class="c1"># attempt to login as client</span>
+                            <span class="n">clogin_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login_clients</span><span class="p">(</span><span class="n">chosen_client_id</span><span class="p">,</span> <span class="p">{})</span>
+
+                            <span class="k">if</span> <span class="n">clogin_resp</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+                                <span class="c1"># login successful, update profile and tenant info</span>
+                                <span class="n">c_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">()</span>
+                                <span class="n">t_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">()</span>
+
+                                <span class="k">if</span> <span class="n">c_profile</span> <span class="ow">and</span> <span class="n">t_profile</span><span class="p">:</span>
+                                    <span class="c1"># successful full client login.</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="k">return</span> <span class="bp">True</span>
+
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
+                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                    <span class="c1"># clear password out of memory</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                    <span class="k">return</span> <span class="bp">False</span>
+
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                <span class="c1"># clear password out of memory</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="k">return</span> <span class="bp">False</span>
+
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                            <span class="c1"># clear password out of memory</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="k">return</span> <span class="bp">False</span>
+
+                    <span class="c1"># successful!</span>
+                    <span class="c1"># clear password out of memory</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                    <span class="c1"># clear password out of memory</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Profile detail retrieval failed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">interactive_tenant_update_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -3326,6 +3616,7 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;roles&#39;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token_session&#39;</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="bp">True</span>
 
@@ -3468,14 +3759,44 @@ table {
 
         <span class="k">return</span> <span class="n">response</span>
 
-    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
 
+<span class="sd">        **Parameters:**:</span>
+
+<span class="sd">          - **force**: Bool, force logout API call, even when using a static AUTH_TOKEN.</span>
+
 <span class="sd">        **Returns:** Bool of whether the operation succeeded.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+        <span class="c1"># Extract requests session for manipulation.</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+
+        <span class="c1"># if force = True, or token_session = None/False, call logout API.</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">:</span>
+            <span class="c1"># Call Logout</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+                <span class="c1"># clear info from session.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">address_string</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="c1"># Cookies are removed via LOGOUT API call. if X-Auth-Token set, clear.</span>
+                <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Token Session and not forced.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;TOKEN SESSION, LOGOUT API NOT CALLED.&#39;</span><span class="p">)</span>
             <span class="c1"># clear info from session.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3486,8 +3807,33 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="c1"># if X-Auth-Token set, clear.</span>
+            <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+
+<span class="sd">        Example: `jd(cgx_sess.get.sites())`</span>
+
+<span class="sd">        **Returns:** No Return, directly prints all output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+                <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+        <span class="k">return</span>
 </pre></div>
 
   </div>
@@ -3500,6 +3846,47 @@ table {
           <li><a href="#cloudgenix.interactive.Interactive">Interactive</a></li>
           <li>__builtin__.object</li>
           </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.jd">
+    <div class="name def">
+    <p>def <span class="ident">jd</span>(</p><p>api_response)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</p>
+<p>Example: <code>jd(cgx_sess.get.sites())</code></p>
+<p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.jd', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.jd" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+<span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
           <h3>Methods</h3>
             
   <div class="item" id="cloudgenix.interactive.Interactive.check_sso_login">
@@ -3691,6 +4078,7 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;roles&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token_session&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Profile retrieval failed.&quot;</span><span class="p">)</span>
@@ -3715,6 +4103,11 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
   
     <div class="desc"><p>Interactive login using the <code>cloudgenix.API</code> object. This function is more robust and handles SAML and MSP accounts.
 Expects interactive capability. if this is not available, use <code>cloudenix.API.post.login</code> directly.</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>email</strong>: Email to log in for, will prompt if not entered.</li>
+<li><strong>password</strong>: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</li>
+</ul>
 <p><strong>Returns:</strong> Bool. In addition the function will mutate the <code>cloudgenix.API</code> constructor items as needed.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.login', this);">Show source &equiv;</a></p>
@@ -3723,6 +4116,9 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">    Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
+<span class="sd">    **Parameters:**:</span>
+<span class="sd">      - **email**: Email to log in for, will prompt if not entered.</span>
+<span class="sd">      - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
 <span class="sd">    **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># if email not given in function, or if first login fails, prompt.</span>
@@ -3859,13 +4255,14 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
         <span class="c1"># remove referer header prior to continuing.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># log response when debug</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
         <span class="c1"># print login error</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Login failed, please try again:&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">)</span>
         <span class="c1"># Flush command-line entered login info if failure.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3882,24 +4279,53 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
             
   <div class="item" id="cloudgenix.interactive.Interactive.logout">
     <div class="name def">
-    <p>def <span class="ident">logout</span>(</p><p>self)</p>
+    <p>def <span class="ident">logout</span>(</p><p>self, force=False)</p>
     </div>
     
 
     
   
     <div class="desc"><p>Interactive logout - ensures uid/tid cleared so <code>cloudgenix.API</code> object/ requests.Session can be re-used.</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>force</strong>: Bool, force logout API call, even when using a static AUTH_TOKEN.</li>
+</ul>
 <p><strong>Returns:</strong> Bool of whether the operation succeeded.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.logout', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.logout" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
+<span class="sd">    **Parameters:**:</span>
+<span class="sd">      - **force**: Bool, force logout API call, even when using a static AUTH_TOKEN.</span>
 <span class="sd">    **Returns:** Bool of whether the operation succeeded.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+    <span class="c1"># Extract requests session for manipulation.</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+    <span class="c1"># if force = True, or token_session = None/False, call logout API.</span>
+    <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">:</span>
+        <span class="c1"># Call Logout</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+            <span class="c1"># clear info from session.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">address_string</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="c1"># Cookies are removed via LOGOUT API call. if X-Auth-Token set, clear.</span>
+            <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Token Session and not forced.</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;TOKEN SESSION, LOGOUT API NOT CALLED.&#39;</span><span class="p">)</span>
         <span class="c1"># clear info from session.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3910,7 +4336,11 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">cgx_status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c1"># if X-Auth-Token set, clear.</span>
+        <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
 </pre></div>
 
   </div>
@@ -3977,6 +4407,115 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
     <span class="c1"># return the choice_list tuple that matches the entry.</span>
     <span class="k">return</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.use_token">
+    <div class="name def">
+    <p>def <span class="ident">use_token</span>(</p><p>self, token=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>token</strong>: Static AUTH_TOKEN</li>
+</ul>
+<p><strong>Returns:</strong> Bool on success or failure. In addition the function will mutate the <code>cloudgenix.API</code>
+             constructor items as needed.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.use_token', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.use_token" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
+<span class="sd">    **Parameters:**:</span>
+<span class="sd">      - **token**: Static AUTH_TOKEN</span>
+<span class="sd">    **Returns:** Bool on success or failure. In addition the function will mutate the `cloudgenix.API`</span>
+<span class="sd">                 constructor items as needed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
+    <span class="c1"># check token is a string.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># Start setup of constructor.</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
+    <span class="c1"># clear cookies</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+        <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
+    <span class="p">})</span>
+    <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
+        <span class="c1"># pull tenant detail</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># add tenant values to API() object</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">():</span>
+                <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
+                    <span class="c1"># ESP/MSP!</span>
+                    <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
+                        <span class="c1"># attempt to login as client</span>
+                        <span class="n">clogin_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login_clients</span><span class="p">(</span><span class="n">chosen_client_id</span><span class="p">,</span> <span class="p">{})</span>
+                        <span class="k">if</span> <span class="n">clogin_resp</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
+                            <span class="c1"># login successful, update profile and tenant info</span>
+                            <span class="n">c_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">()</span>
+                            <span class="n">t_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_tenant_update_vars</span><span class="p">()</span>
+                            <span class="k">if</span> <span class="n">c_profile</span> <span class="ow">and</span> <span class="n">t_profile</span><span class="p">:</span>
+                                <span class="c1"># successful full client login.</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="k">return</span> <span class="bp">True</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
+                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                <span class="c1"># clear password out of memory</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                                <span class="k">return</span> <span class="bp">False</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                            <span class="c1"># clear password out of memory</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="k">return</span> <span class="bp">False</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                        <span class="c1"># clear password out of memory</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                        <span class="k">return</span> <span class="bp">False</span>
+                <span class="c1"># successful!</span>
+                <span class="c1"># clear password out of memory</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                <span class="c1"># clear password out of memory</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Profile detail retrieval failed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">True</span>
 </pre></div>
 
   </div>

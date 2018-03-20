@@ -201,66 +201,6 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def base_permissions(self, base_permission_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Base_Permissions API Function
-
-          **Parameters:**:
-
-          - **base_permission_id**: 
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/base_permissions/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              base_permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
-    def base_permissions_clients(self, client_id, base_permission_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Base_Permissions_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **base_permission_id**: 
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/base_permissions/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         client_id,
-                                                                                         base_permission_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
     def coreroutepeers(self, site_id, coreroutepeer_id, data, tenant_id=None, api_version="v2.1"):
         """
         Updates a existing a core route peer config
@@ -534,14 +474,13 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def esp_tenant_permissions(self, client_id, permission_id, data, tenant_id=None, api_version="v2.0"):
+    def events(self, event_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Esp_Tenant_Permissions API Function
+        PUT Events API Function
 
           **Parameters:**:
 
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **permission_id**: Permission ID
+          - **event_id**: Event ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -557,10 +496,9 @@ class Put(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/permissions/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    client_id,
-                                                                                    permission_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/events/{}".format(api_version,
+                                                                    tenant_id,
+                                                                    event_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -687,7 +625,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.1"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.2"):
         """
         Provision an element interface
 
@@ -698,7 +636,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
+          - **api_version**: API version to use (default v4.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -960,7 +898,7 @@ class Put(object):
 
     def roles(self, role_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Roles API Function
+        Update a custom role
 
           **Parameters:**:
 
@@ -983,37 +921,6 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/roles/{}".format(api_version,
                                                                    tenant_id,
                                                                    role_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
-    def roles_clients(self, client_id, role_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Roles_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **role_id**: Role ID
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/roles/{}".format(api_version,
-                                                                              tenant_id,
-                                                                              client_id,
-                                                                              role_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -1471,6 +1378,39 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def syslogservers(self, site_id, element_id, syslogserver_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Syslogservers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **syslogserver_id**: 
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/syslogservers/{}".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id,
+                                                                                                syslogserver_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     def tenant_anynetlinks(self, anynetlink_id, data, tenant_id=None, api_version="v3.0"):
         """
         PUT Tenant_Anynetlinks API Function
@@ -1525,35 +1465,6 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}".format(api_version,
                                                                        tenant_id,
                                                                        operator_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
-    def tenant_permissions(self, permission_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Tenant_Permissions API Function
-
-          **Parameters:**:
-
-          - **permission_id**: Permission ID
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions/{}".format(api_version,
-                                                                         tenant_id,
-                                                                         permission_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -1780,12 +1691,6 @@ class Put(object):
 
     permissions_clients_o = esp_operator_permissions_client
     """ Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`"""
-
-    permissions_clients_t = esp_tenant_permissions
-    """ Backwards-compatibility alias of `permissions_clients_t` to `esp_tenant_permissions`"""
-
-    permissions_t = tenant_permissions
-    """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
 
     tokens_vfflicenses = vfflicense_tokens
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
