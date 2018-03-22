@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.5.7b1
+**Version:** v4.6.1b1
 
 **Author:** CloudGenix
 ..." />
@@ -2615,7 +2615,7 @@ table {
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python2 and Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v4.5.7b1</p>
+<p><strong>Version:</strong> v4.6.1b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017, 2018 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
@@ -2667,7 +2667,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python2 and Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v4.5.7b1</span>
+<span class="sd">**Version:** v4.6.1b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2787,7 +2787,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4.5.7b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4.6.1b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 
 
@@ -2826,6 +2826,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
+    <span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
+
     <span class="n">is_esp</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
 
@@ -2849,6 +2852,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="n">verify</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
+
+    <span class="n">version</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
     <span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Filename to use for CA verification.&quot;&quot;&quot;</span>
@@ -2884,6 +2890,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **controller:** Initial Controller URL String</span>
 <span class="sd">          - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set version from outer scope.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller</span>
@@ -2894,9 +2903,20 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="c1"># Create Requests Session.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+        <span class="c1"># Identify SDK in the User-Agent.</span>
+        <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_agent</span><span class="p">:</span>
+            <span class="n">user_agent</span> <span class="o">+=</span> <span class="s1">&#39; (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;python-requests/UNKNOWN (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+
+        <span class="c1"># Update Headers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">text_type</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
         <span class="p">})</span>
+
         <span class="c1"># except Exception as e:</span>
         <span class="c1">#     raise ValueError(&quot;Unable to create Requests session object: {0}.&quot;.format(e))</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;DEBUG: URL: </span><span class="si">%s</span><span class="s2">, SSL Verify: </span><span class="si">%s</span><span class="s2">, Session: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -3519,6 +3539,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <span class="n">tenant_name</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
+    <span class="n">token_session</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
+
     <span class="n">is_esp</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
 
@@ -3542,6 +3565,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="n">verify</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
+
+    <span class="n">version</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
     <span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;Filename to use for CA verification.&quot;&quot;&quot;</span>
@@ -3577,6 +3603,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **controller:** Initial Controller URL String</span>
 <span class="sd">          - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set version from outer scope.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller</span>
@@ -3587,9 +3616,20 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="c1"># Create Requests Session.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+        <span class="c1"># Identify SDK in the User-Agent.</span>
+        <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_agent</span><span class="p">:</span>
+            <span class="n">user_agent</span> <span class="o">+=</span> <span class="s1">&#39; (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;python-requests/UNKNOWN (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+
+        <span class="c1"># Update Headers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+            <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">text_type</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
         <span class="p">})</span>
+
         <span class="c1"># except Exception as e:</span>
         <span class="c1">#     raise ValueError(&quot;Unable to create Requests session object: {0}.&quot;.format(e))</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;DEBUG: URL: </span><span class="si">%s</span><span class="s2">, SSL Verify: </span><span class="si">%s</span><span class="s2">, Session: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -4321,6 +4361,17 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.API.token_session">
+            <p class="name">var <span class="ident">token_session</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Is this login from a static AUTH_TOKEN (True), or a standard login (False)</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.API.verify">
             <p class="name">var <span class="ident">verify</span></p>
             
@@ -4328,6 +4379,17 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             
   
     <div class="desc"><p>Verify SSL certificate.</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.API.version">
+            <p class="name">var <span class="ident">version</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Version string for use once Constructor created.</p></div>
   <div class="source_cont">
 </div>
 
@@ -4434,6 +4496,16 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.API.version">
+            <p class="name">var <span class="ident">version</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
           <h3>Methods</h3>
             
   <div class="item" id="cloudgenix.API.__init__">
@@ -4458,6 +4530,8 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">      - **controller:** Initial Controller URL String</span>
 <span class="sd">      - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># set version from outer scope.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
     <span class="c1"># try:</span>
     <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller</span>
@@ -4466,8 +4540,16 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="bp">self</span><span class="o">.</span><span class="n">ssl_verify</span><span class="p">(</span><span class="n">ssl_verify</span><span class="p">)</span>
     <span class="c1"># Create Requests Session.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="c1"># Identify SDK in the User-Agent.</span>
+    <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_agent</span><span class="p">:</span>
+        <span class="n">user_agent</span> <span class="o">+=</span> <span class="s1">&#39; (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;python-requests/UNKNOWN (CGX SDK v{0})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+    <span class="c1"># Update Headers</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">text_type</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
     <span class="p">})</span>
     <span class="c1"># except Exception as e:</span>
     <span class="c1">#     raise ValueError(&quot;Unable to create Requests session object: {0}.&quot;.format(e))</span>

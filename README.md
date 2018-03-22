@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v4.5.7b1
+# CloudGenix Python SDK v4.6.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -40,6 +40,7 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
+| **4.6.1** | **b1** | Support for Mar 2018 Controller release. |
 | **4.5.7** | **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4 |
 | **4.5.5** | **b4** | Bugfix for certain POST APIs, other minor fixes. |
 |           | **b3** | CA Pinning update, *_single function deprecation, add missed 'security' extras requirement. |

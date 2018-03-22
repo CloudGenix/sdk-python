@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.5.7b1
+**Version:** v4.6.1b1
 
 **Author:** CloudGenix
 
@@ -121,7 +121,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "4.5.7b1"
+version = "4.6.1b1"
 """SDK Version string"""
 
 
@@ -160,6 +160,9 @@ class API(object):
     tenant_name = None
     """Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data"""
 
+    token_session = None
+    """Is this login from a static AUTH_TOKEN (True), or a standard login (False)"""
+
     is_esp = None
     """Is the current tenant an ESP/MSP?"""
 
@@ -183,6 +186,9 @@ class API(object):
 
     verify = True
     """Verify SSL certificate."""
+
+    version = None
+    """Version string for use once Constructor created."""
 
     ca_verify_filename = None
     """Filename to use for CA verification."""
@@ -218,6 +224,9 @@ class API(object):
           - **controller:** Initial Controller URL String
           - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.
         """
+        # set version from outer scope.
+        self.version = version
+
         # try:
         if controller and isinstance(controller, (binary_type, text_type)):
             self.controller = controller
@@ -228,9 +237,20 @@ class API(object):
 
         # Create Requests Session.
         self._session = requests.Session()
+
+        # Identify SDK in the User-Agent.
+        user_agent = self._session.headers.get('User-Agent')
+        if user_agent:
+            user_agent += ' (CGX SDK v{0})'.format(self.version)
+        else:
+            user_agent = 'python-requests/UNKNOWN (CGX SDK v{0})'.format(self.version)
+
+        # Update Headers
         self._session.headers.update({
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'User-Agent': text_type(user_agent)
         })
+
         # except Exception as e:
         #     raise ValueError("Unable to create Requests session object: {0}.".format(e))
         api_logger.debug("DEBUG: URL: %s, SSL Verify: %s, Session: %s",
