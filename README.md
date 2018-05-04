@@ -40,7 +40,7 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
-| **4.6.7** | **b1** | Support for May 2018 Controller release. |
+| **4.7.1** | **b1** | Support for May 2018 Controller release. |
 | **4.6.1** | **b1** | Support for Mar 2018 Controller release. |
 | **4.5.7** | **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4 |
 | **4.5.5** | **b4** | Bugfix for certain POST APIs, other minor fixes. |
