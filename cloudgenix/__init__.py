@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.6.1b1
+**Version:** v4.7.1b1
 
 **Author:** CloudGenix
 
@@ -121,7 +121,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "4.6.1b1"
+version = "4.7.1b1"
 """SDK Version string"""
 
 
