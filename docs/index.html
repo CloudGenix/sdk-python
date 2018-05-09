@@ -2564,6 +2564,13 @@ table {
 
     </li>
 
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#cloudgenix.jd">jd</a></li>
+  </ul>
+
+    </li>
 
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
@@ -2789,6 +2796,27 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="c1"># Version of SDK</span>
 <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4.7.1b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+
+<span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
+
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">return</span>
 
 
 <span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -3485,6 +3513,48 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
       </div>
 
+    <h3 class="section-title" id="header-functions">Functions</h3>
+      
+  <div class="item" id="cloudgenix.jd">
+    <div class="name def">
+    <p>def <span class="ident">jd</span>(</p><p>api_response)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</p>
+<p>Example: <code>jd(cgx_sess.get.sites())</code></p>
+<p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jd', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.jd" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+
+<span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
+
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
 
     <h3 class="section-title" id="header-classes">Classes</h3>
       
