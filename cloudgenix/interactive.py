@@ -629,3 +629,106 @@ class Interactive(object):
                 # Same issue, just raw print the passed data. Let any exceptions happen here.
                 print(api_response)
         return
+
+    @staticmethod
+    def quick_confirm(prompt, default_value):
+        """
+        Function to display a quick confirmation for user input
+
+        **Parameters:**
+
+          - **prompt:** Text to display before confirm
+          - **default_value:** Default value for no entry
+
+        **Returns:** 'y', 'n', or Default value.
+        """
+        valid = False
+        value = default_value.lower()
+        while not valid:
+            input_val = compat_input(prompt + "[{0}]: ".format(default_value))
+
+            if input_val == "":
+                value = default_value.lower()
+                valid = True
+            else:
+                try:
+                    if input_val.lower() in ['y', 'n']:
+                        value = input_val.lower()
+                        valid = True
+                    else:
+                        print("ERROR: enter 'Y' or 'N'.")
+                        valid = False
+
+                except ValueError:
+                    print("ERROR: enter 'Y' or 'N'.")
+                    valid = False
+
+        return value
+
+    @staticmethod
+    def quick_int_input(prompt, default_value, min_val=1, max_val=30):
+        """
+        Function to display a quick question for integer user input
+
+        **Parameters:**
+
+          - **prompt:** Text / question to display
+          - **default_value:** Default value for no entry
+          - **min_val:** Lowest allowed integer
+          - **max_val:** Highest allowed integer
+
+        **Returns:** integer or default_value.
+        """
+        valid = False
+        num_val = default_value
+        while not valid:
+            input_val = compat_input(prompt + "[{0}]: ".format(default_value))
+
+            if input_val == "":
+                num_val = default_value
+                valid = True
+            else:
+                try:
+                    num_val = int(input_val)
+                    if min_val <= num_val <= max_val:
+                        valid = True
+                    else:
+                        print("ERROR: must be between {0} and {1}.".format(min, max))
+                        valid = False
+
+                except ValueError:
+                    print("ERROR: must be a number.")
+                    valid = False
+
+        return num_val
+
+    @staticmethod
+    def quick_str_input(prompt, default_value):
+        """
+        Function to display a quick question for text input.
+
+        **Parameters:**
+
+          - **prompt:** Text / question to display
+          - **default_value:** Default value for no entry
+
+        **Returns:** text_type() or default_value.
+        """
+        valid = False
+        str_val = default_value
+        while not valid:
+            input_val = raw_input(prompt + "[{0}]: ".format(default_value))
+
+            if input_val == "":
+                str_val = default_value
+                valid = True
+            else:
+                try:
+                    str_val = text_type(input_val)
+                    valid = True
+
+                except ValueError:
+                    print("ERROR: must be text.")
+                    valid = False
+
+        return str_val

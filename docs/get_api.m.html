@@ -2579,6 +2579,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.appdefs_single">appdefs_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.appdefs_version">appdefs_version</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.appdefs_version_single">appdefs_version_single</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.auditlog">auditlog</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.authtokens">authtokens</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.base_permissions">base_permissions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.base_roles">base_roles</a></li>
@@ -2627,6 +2628,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.interfaces">interfaces</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.interfaces_single">interfaces_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.interfaces_status">interfaces_status</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.ipsecprofiles">ipsecprofiles</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.lannetworks">lannetworks</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.lannetworks_single">lannetworks_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.localprefixfilters">localprefixfilters</a></li>
@@ -2637,6 +2639,8 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.metrics_monitor">metrics_monitor</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.networkcontexts">networkcontexts</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.networkcontexts_single">networkcontexts_single</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.ntp">ntp</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.ntp_templates">ntp_templates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.object_stats_monitor">object_stats_monitor</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.operator_sessions">operator_sessions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.otpaccessconfigs">otpaccessconfigs</a></li>
@@ -2689,10 +2693,9 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.state_vpnlinks">state_vpnlinks</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.staticroutes">staticroutes</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.staticroutes_single">staticroutes_single</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.status_ntp">status_ntp</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.sys_metrics_monitor">sys_metrics_monitor</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.syslogservers">syslogservers</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_access">tenant_access</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_access_single">tenant_access_single</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_anynetlinks">tenant_anynetlinks</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_api_versions">tenant_api_versions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_clients">tenant_clients</a></li>
@@ -2933,7 +2936,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **appdefs_version_id**: (optional)</span>
+<span class="sd">          - **appdefs_version_id**: (optional) Application Definition Version ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -2959,14 +2962,46 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">auditlog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auditlog_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Auditlog API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **auditlog_id**: (optional) Audit Log ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">auditlog_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">auditlog_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Authtokens API Function</span>
+<span class="sd">        Get a list of auth tokens</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: (optional)</span>
+<span class="sd">          - **authtoken_id**: (optional) Static AUTH_TOKEN ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3080,7 +3115,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **bulk_metric_id**:</span>
+<span class="sd">          - **bulk_metric_id**: Bulk Metric ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3367,7 +3402,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **element_image_id**: (optional)</span>
+<span class="sd">          - **element_image_id**: (optional) Element Code Image ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3948,7 +3983,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -3958,7 +3993,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3986,7 +4021,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Interfaces_Status API Function</span>
 
@@ -3996,7 +4031,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4014,6 +4049,38 @@ table {
                                                                                                     <span class="n">site_id</span><span class="p">,</span>
                                                                                                     <span class="n">element_id</span><span class="p">,</span>
                                                                                                     <span class="n">interface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get IPSECProfileList</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ipsecprofile_id**: (optional) IPSEC Profile ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ipsecprofile_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">ipsecprofile_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -4195,6 +4262,73 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all element NTP</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                              <span class="n">element_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                 <span class="n">element_id</span><span class="p">,</span>
+                                                                                 <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all existing NTP Template of tenant.</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">object_stats_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Object_Stats_Monitor API Function</span>
@@ -4228,7 +4362,7 @@ table {
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **session_id**: (optional)</span>
+<span class="sd">          - **session_id**: (optional) User Session ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4310,7 +4444,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        get all Path Groups for a tenant.</span>
 
@@ -4318,7 +4452,7 @@ table {
 
 <span class="sd">          - **pathgroup_id**: (optional) Path Group ID (for network service/DC routing)</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4786,7 +4920,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get getServiceBindingMapList</span>
 
@@ -4794,7 +4928,7 @@ table {
 
 <span class="sd">          - **servicebindingmap_id**: (optional) Service Binding Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4818,7 +4952,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get ServiceEndpointList</span>
 
@@ -4826,7 +4960,7 @@ table {
 
 <span class="sd">          - **serviceendpoint_id**: (optional) Service Endpoint ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5238,6 +5372,36 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">status_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Status_Ntp API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}/status&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">element_id</span><span class="p">,</span>
+                                                                                    <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">sys_metrics_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Sys_Metrics_Monitor API Function</span>
@@ -5266,13 +5430,13 @@ table {
 
     <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Syslogservers API Function</span>
+<span class="sd">        Get Syslog Servers on an element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: (optional)</span>
+<span class="sd">          - **syslogserver_id**: (optional) SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5298,38 +5462,6 @@ table {
                                                                                                     <span class="n">site_id</span><span class="p">,</span>
                                                                                                     <span class="n">element_id</span><span class="p">,</span>
                                                                                                     <span class="n">syslogserver_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tenant_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get full invocation trail for given tenant</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **access_id**: (optional) Access ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">access_id</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                     <span class="n">tenant_id</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                        <span class="n">tenant_id</span><span class="p">,</span>
-                                                                        <span class="n">access_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -5558,7 +5690,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenants API Function</span>
+<span class="sd">        Get tenant details for tenant id</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5960,9 +6092,6 @@ table {
 
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
-
-    <span class="n">access_t</span> <span class="o">=</span> <span class="n">tenant_access</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `access_t` to `tenant_access`&quot;&quot;&quot;</span>
 
     <span class="n">anynetlinks_t</span> <span class="o">=</span> <span class="n">tenant_anynetlinks</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`&quot;&quot;&quot;</span>
@@ -6479,17 +6608,6 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: staticroutes_single() is deprecated, and will be removed on Sept 1, 2018.&quot;</span>
                            <span class="s2">&quot; Use staticroutes() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticroutes</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tenant_access_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
-
-<span class="sd">        **TO BE REMOVED** on Sept 1, 2018.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed on Sept 1, 2018.&quot;</span>
-                           <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tenant_operators_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -6769,7 +6887,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **appdefs_version_id**: (optional)</span>
+<span class="sd">          - **appdefs_version_id**: (optional) Application Definition Version ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6795,14 +6913,46 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">auditlog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auditlog_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Auditlog API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **auditlog_id**: (optional) Audit Log ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">auditlog_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">auditlog_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Authtokens API Function</span>
+<span class="sd">        Get a list of auth tokens</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: (optional)</span>
+<span class="sd">          - **authtoken_id**: (optional) Static AUTH_TOKEN ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6916,7 +7066,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **bulk_metric_id**:</span>
+<span class="sd">          - **bulk_metric_id**: Bulk Metric ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7203,7 +7353,7 @@ table {
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **element_image_id**: (optional)</span>
+<span class="sd">          - **element_image_id**: (optional) Element Code Image ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7784,7 +7934,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -7794,7 +7944,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -7822,7 +7972,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Interfaces_Status API Function</span>
 
@@ -7832,7 +7982,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -7850,6 +8000,38 @@ table {
                                                                                                     <span class="n">site_id</span><span class="p">,</span>
                                                                                                     <span class="n">element_id</span><span class="p">,</span>
                                                                                                     <span class="n">interface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get IPSECProfileList</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ipsecprofile_id**: (optional) IPSEC Profile ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ipsecprofile_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">ipsecprofile_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -8031,6 +8213,73 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all element NTP</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                              <span class="n">element_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                 <span class="n">element_id</span><span class="p">,</span>
+                                                                                 <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all existing NTP Template of tenant.</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">object_stats_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Object_Stats_Monitor API Function</span>
@@ -8064,7 +8313,7 @@ table {
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **session_id**: (optional)</span>
+<span class="sd">          - **session_id**: (optional) User Session ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8146,7 +8395,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        get all Path Groups for a tenant.</span>
 
@@ -8154,7 +8403,7 @@ table {
 
 <span class="sd">          - **pathgroup_id**: (optional) Path Group ID (for network service/DC routing)</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8622,7 +8871,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get getServiceBindingMapList</span>
 
@@ -8630,7 +8879,7 @@ table {
 
 <span class="sd">          - **servicebindingmap_id**: (optional) Service Binding Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8654,7 +8903,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get ServiceEndpointList</span>
 
@@ -8662,7 +8911,7 @@ table {
 
 <span class="sd">          - **serviceendpoint_id**: (optional) Service Endpoint ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -9074,6 +9323,36 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">status_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Status_Ntp API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}/status&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">element_id</span><span class="p">,</span>
+                                                                                    <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">sys_metrics_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Sys_Metrics_Monitor API Function</span>
@@ -9102,13 +9381,13 @@ table {
 
     <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Syslogservers API Function</span>
+<span class="sd">        Get Syslog Servers on an element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: (optional)</span>
+<span class="sd">          - **syslogserver_id**: (optional) SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9134,38 +9413,6 @@ table {
                                                                                                     <span class="n">site_id</span><span class="p">,</span>
                                                                                                     <span class="n">element_id</span><span class="p">,</span>
                                                                                                     <span class="n">syslogserver_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tenant_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get full invocation trail for given tenant</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **access_id**: (optional) Access ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">access_id</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                     <span class="n">tenant_id</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                        <span class="n">tenant_id</span><span class="p">,</span>
-                                                                        <span class="n">access_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -9394,7 +9641,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenants API Function</span>
+<span class="sd">        Get tenant details for tenant id</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9796,9 +10043,6 @@ table {
 
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
-
-    <span class="n">access_t</span> <span class="o">=</span> <span class="n">tenant_access</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `access_t` to `tenant_access`&quot;&quot;&quot;</span>
 
     <span class="n">anynetlinks_t</span> <span class="o">=</span> <span class="n">tenant_anynetlinks</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`&quot;&quot;&quot;</span>
@@ -10316,17 +10560,6 @@ table {
                            <span class="s2">&quot; Use staticroutes() instead.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">staticroutes</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenant_access_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
-
-<span class="sd">        **TO BE REMOVED** on Sept 1, 2018.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed on Sept 1, 2018.&quot;</span>
-                           <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">tenant_operators_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.</span>
@@ -10446,20 +10679,9 @@ table {
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
           <li><a href="#cloudgenix.get_api.Get">Get</a></li>
-          <li>__builtin__.object</li>
+          <li>builtins.object</li>
           </ul>
           <h3>Class variables</h3>
-            <div class="item" id="cloudgenix.get_api.Get.access_t">
-            <p class="name">var <span class="ident">access_t</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Backwards-compatibility alias of <code>access_t</code> to <code>tenant_access</code></p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
             <div class="item" id="cloudgenix.get_api.Get.anynetlinks_t">
             <p class="name">var <span class="ident">anynetlinks_t</span></p>
             
@@ -10768,7 +10990,7 @@ table {
 </div>
 
             </div>
-          <h3>Methods</h3>
+          <h3>Static methods</h3>
             
   <div class="item" id="cloudgenix.get_api.Get.access_elementusers">
     <div class="name def">
@@ -11043,7 +11265,7 @@ table {
     <div class="desc"><p>Get application version for a tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>appdefs_version_id</strong>: (optional)</li>
+<li><strong>appdefs_version_id</strong>: (optional) Application Definition Version ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11055,7 +11277,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get application version for a tenant</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **appdefs_version_id**: (optional)</span>
+<span class="sd">      - **appdefs_version_id**: (optional) Application Definition Version ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11113,6 +11335,58 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.auditlog">
+    <div class="name def">
+    <p>def <span class="ident">auditlog</span>(</p><p>self, auditlog_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Auditlog API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>auditlog_id</strong>: (optional) Audit Log ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.auditlog', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.auditlog" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">auditlog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auditlog_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Auditlog API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **auditlog_id**: (optional) Audit Log ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">auditlog_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                   <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/auditlog/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                      <span class="n">auditlog_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.authtokens">
     <div class="name def">
     <p>def <span class="ident">authtokens</span>(</p><p>self, operator_id, authtoken_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -11121,11 +11395,11 @@ table {
 
     
   
-    <div class="desc"><p>GET Authtokens API Function</p>
+    <div class="desc"><p>Get a list of auth tokens</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>authtoken_id</strong>: (optional)</li>
+<li><strong>authtoken_id</strong>: (optional) Static AUTH_TOKEN ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11135,10 +11409,10 @@ table {
   <div id="source-cloudgenix.get_api.Get.authtokens" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Authtokens API Function</span>
+<span class="sd">    Get a list of auth tokens</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **authtoken_id**: (optional)</span>
+<span class="sd">      - **authtoken_id**: (optional) Static AUTH_TOKEN ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11318,7 +11592,7 @@ table {
     <div class="desc"><p>GET Bulk_Metrics_Monitor API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>bulk_metric_id</strong>:</li>
+<li><strong>bulk_metric_id</strong>: Bulk Metric ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11330,7 +11604,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Bulk_Metrics_Monitor API Function</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **bulk_metric_id**:</span>
+<span class="sd">      - **bulk_metric_id**: Bulk Metric ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11908,7 +12182,7 @@ table {
     <div class="desc"><p>GET Element_Images API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>element_image_id</strong>: (optional)</li>
+<li><strong>element_image_id</strong>: (optional) Element Code Image ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11920,7 +12194,7 @@ table {
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Element_Images API Function</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **element_image_id**: (optional)</span>
+<span class="sd">      - **element_image_id**: (optional) Element Code Image ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13134,7 +13408,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.2&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.3&#39;)</p>
     </div>
     
 
@@ -13147,13 +13421,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: (optional) Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.2)</li>
+<li><strong>api_version</strong>: API version to use (default v4.3)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get element interface ids</span>
 <span class="sd">      **Parameters:**:</span>
@@ -13161,7 +13435,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: (optional) Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -13223,7 +13497,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.interfaces_status">
     <div class="name def">
-    <p>def <span class="ident">interfaces_status</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">interfaces_status</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v3.0&#39;)</p>
     </div>
     
 
@@ -13236,13 +13510,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v3.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.interfaces_status', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.interfaces_status" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Interfaces_Status API Function</span>
 <span class="sd">      **Parameters:**:</span>
@@ -13250,7 +13524,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -13265,6 +13539,58 @@ table {
                                                                                                 <span class="n">site_id</span><span class="p">,</span>
                                                                                                 <span class="n">element_id</span><span class="p">,</span>
                                                                                                 <span class="n">interface_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.ipsecprofiles">
+    <div class="name def">
+    <p>def <span class="ident">ipsecprofiles</span>(</p><p>self, ipsecprofile_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Get IPSECProfileList</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>ipsecprofile_id</strong>: (optional) IPSEC Profile ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.ipsecprofiles', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.ipsecprofiles" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get IPSECProfileList</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **ipsecprofile_id**: (optional) IPSEC Profile ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ipsecprofile_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                        <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ipsecprofile_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>
@@ -13687,6 +14013,114 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.ntp">
+    <div class="name def">
+    <p>def <span class="ident">ntp</span>(</p><p>self, element_id, ntp_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Get all element NTP</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>element_id</strong>: Element (Device) ID</li>
+<li><strong>ntp_id</strong>: (optional) NTP Configuration ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.ntp', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.ntp" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all element NTP</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **element_id**: Element (Device) ID</span>
+<span class="sd">      - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">element_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                             <span class="n">tenant_id</span><span class="p">,</span>
+                                                                             <span class="n">element_id</span><span class="p">,</span>
+                                                                             <span class="n">ntp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.ntp_templates">
+    <div class="name def">
+    <p>def <span class="ident">ntp_templates</span>(</p><p>self, ntp_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Get all existing NTP Template of tenant.</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>ntp_id</strong>: (optional) NTP Configuration ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.ntp_templates', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.ntp_templates" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all existing NTP Template of tenant.</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **ntp_id**: (optional) NTP Configuration ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ntp_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                        <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ntp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.object_stats_monitor">
     <div class="name def">
     <p>def <span class="ident">object_stats_monitor</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -13744,7 +14178,7 @@ table {
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>session_id</strong>: (optional)</li>
+<li><strong>session_id</strong>: (optional) User Session ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13757,7 +14191,7 @@ table {
 <span class="sd">    Get all sessions for operator id belonging to a tenant id</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **session_id**: (optional)</span>
+<span class="sd">      - **session_id**: (optional) User Session ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13883,7 +14317,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.pathgroups">
     <div class="name def">
-    <p>def <span class="ident">pathgroups</span>(</p><p>self, pathgroup_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">pathgroups</span>(</p><p>self, pathgroup_id=None, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -13894,19 +14328,19 @@ table {
 <ul>
 <li><strong>pathgroup_id</strong>: (optional) Path Group ID (for network service/DC routing)</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.pathgroups', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.pathgroups" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get all Path Groups for a tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **pathgroup_id**: (optional) Path Group ID (for network service/DC routing)</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -14940,7 +15374,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.servicebindingmaps">
     <div class="name def">
-    <p>def <span class="ident">servicebindingmaps</span>(</p><p>self, servicebindingmap_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">servicebindingmaps</span>(</p><p>self, servicebindingmap_id=None, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -14951,19 +15385,19 @@ table {
 <ul>
 <li><strong>servicebindingmap_id</strong>: (optional) Service Binding Map ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.servicebindingmaps', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.servicebindingmaps" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get getServiceBindingMapList</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **servicebindingmap_id**: (optional) Service Binding Map ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -15021,7 +15455,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.serviceendpoints">
     <div class="name def">
-    <p>def <span class="ident">serviceendpoints</span>(</p><p>self, serviceendpoint_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">serviceendpoints</span>(</p><p>self, serviceendpoint_id=None, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -15032,19 +15466,19 @@ table {
 <ul>
 <li><strong>serviceendpoint_id</strong>: (optional) Service Endpoint ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.serviceendpoints', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.serviceendpoints" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get ServiceEndpointList</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **serviceendpoint_id**: (optional) Service Endpoint ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -15939,6 +16373,57 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.status_ntp">
+    <div class="name def">
+    <p>def <span class="ident">status_ntp</span>(</p><p>self, element_id, ntp_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Status_Ntp API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>element_id</strong>: Element (Device) ID</li>
+<li><strong>ntp_id</strong>: NTP Configuration ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.status_ntp', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.status_ntp" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">status_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Status_Ntp API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **element_id**: Element (Device) ID</span>
+<span class="sd">      - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ntp/{}/status&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                <span class="n">element_id</span><span class="p">,</span>
+                                                                                <span class="n">ntp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.sys_metrics_monitor">
     <div class="name def">
     <p>def <span class="ident">sys_metrics_monitor</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -15992,12 +16477,12 @@ table {
 
     
   
-    <div class="desc"><p>GET Syslogservers API Function</p>
+    <div class="desc"><p>Get Syslog Servers on an element</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>syslogserver_id</strong>: (optional)</li>
+<li><strong>syslogserver_id</strong>: (optional) SYSLOG server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -16007,11 +16492,11 @@ table {
   <div id="source-cloudgenix.get_api.Get.syslogservers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Syslogservers API Function</span>
+<span class="sd">    Get Syslog Servers on an element</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **syslogserver_id**: (optional)</span>
+<span class="sd">      - **syslogserver_id**: (optional) SYSLOG server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16036,87 +16521,6 @@ table {
                                                                                                 <span class="n">syslogserver_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.get_api.Get.tenant_access">
-    <div class="name def">
-    <p>def <span class="ident">tenant_access</span>(</p><p>self, access_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Get full invocation trail for given tenant</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>access_id</strong>: (optional) Access ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.tenant_access', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.tenant_access" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get full invocation trail for given tenant</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **access_id**: (optional) Access ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">access_id</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                 <span class="n">tenant_id</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/access/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                    <span class="n">tenant_id</span><span class="p">,</span>
-                                                                    <span class="n">access_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.get_api.Get.tenant_access_single">
-    <div class="name def">
-    <p>def <span class="ident">tenant_access_single</span>(</p><p>self, *args, **kwargs)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Backwards-compatibility alias of <code>tenant_access_single</code> to <code>tenant_access</code>.</p>
-<p><strong>TO BE REMOVED</strong> on Sept 1, 2018.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.tenant_access_single', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.tenant_access_single" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_access_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Backwards-compatibility alias of `tenant_access_single` to `tenant_access`.</span>
-<span class="sd">    **TO BE REMOVED** on Sept 1, 2018.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;WARN: tenant_access_single() is deprecated, and will be removed on Sept 1, 2018.&quot;</span>
-                       <span class="s2">&quot; Use tenant_access() instead.&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_access</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -16568,7 +16972,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Tenants API Function</p>
+    <div class="desc"><p>Get tenant details for tenant id</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
@@ -16580,7 +16984,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.tenants" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Tenants API Function</span>
+<span class="sd">    Get tenant details for tenant id</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>

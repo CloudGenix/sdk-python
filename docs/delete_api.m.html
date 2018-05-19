@@ -2585,9 +2585,11 @@ table {
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.hubclusters">hubclusters</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.idps">idps</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.interfaces">interfaces</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.ipsecprofiles">ipsecprofiles</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.lannetworks">lannetworks</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.localprefixfilters">localprefixfilters</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.networkcontexts">networkcontexts</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.ntp_templates">ntp_templates</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.operator_sessions">operator_sessions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.pathgroups">pathgroups</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.policyrules">policyrules</a></li>
@@ -2609,6 +2611,7 @@ table {
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.syslogservers">syslogservers</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_anynetlinks">tenant_anynetlinks</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_operators">tenant_operators</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_permissions">tenant_permissions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenantpassageconfigs">tenantpassageconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.users">users</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.waninterfaces">waninterfaces</a></li>
@@ -2754,12 +2757,12 @@ table {
 
     <span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Authtokens API Function</span>
+<span class="sd">        Delete an auth token</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: </span>
+<span class="sd">          - **authtoken_id**: Static AUTH_TOKEN ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3140,7 +3143,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete an element interface</span>
 
@@ -3150,7 +3153,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3168,6 +3171,34 @@ table {
                                                                                              <span class="n">site_id</span><span class="p">,</span>
                                                                                              <span class="n">element_id</span><span class="p">,</span>
                                                                                              <span class="n">interface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a IPSEC Profile</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ipsecprofile_id**: IPSEC Profile ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ipsecprofile_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -3258,6 +3289,34 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Ntp_Templates API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">operator_sessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Operator_Sessions API Function</span>
@@ -3265,7 +3324,7 @@ table {
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **session_id**: </span>
+<span class="sd">          - **session_id**: User Session ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3288,7 +3347,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete A Path Group of a tenant.</span>
 
@@ -3296,7 +3355,7 @@ table {
 
 <span class="sd">          - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3518,7 +3577,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete a Service Binding Map</span>
 
@@ -3526,7 +3585,7 @@ table {
 
 <span class="sd">          - **servicebindingmap_id**: Service Binding Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3546,7 +3605,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete a Service Endpoint</span>
 
@@ -3554,7 +3613,7 @@ table {
 
 <span class="sd">          - **serviceendpoint_id**: Service Endpoint ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3788,13 +3847,13 @@ table {
 
     <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Syslogservers API Function</span>
+<span class="sd">        delete Syslog Server</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: </span>
+<span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3870,6 +3929,34 @@ table {
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                        <span class="n">tenant_id</span><span class="p">,</span>
                                                                        <span class="n">operator_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tenant_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permission_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a tenant custom permission</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **permission_id**: Permission ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/permissions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                         <span class="n">tenant_id</span><span class="p">,</span>
+                                                                         <span class="n">permission_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -4039,6 +4126,9 @@ table {
 
     <span class="n">permissions_clients_o</span> <span class="o">=</span> <span class="n">esp_operator_permissions_client</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`&quot;&quot;&quot;</span>
+
+    <span class="n">permissions_t</span> <span class="o">=</span> <span class="n">tenant_permissions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `permissions_t` to `tenant_permissions`&quot;&quot;&quot;</span>
 
     <span class="n">sessions_t</span> <span class="o">=</span> <span class="n">operator_sessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `sessions_t` to `operator_sessions`&quot;&quot;&quot;</span>
@@ -4142,12 +4232,12 @@ table {
 
     <span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Authtokens API Function</span>
+<span class="sd">        Delete an auth token</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: </span>
+<span class="sd">          - **authtoken_id**: Static AUTH_TOKEN ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4528,7 +4618,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete an element interface</span>
 
@@ -4538,7 +4628,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4556,6 +4646,34 @@ table {
                                                                                              <span class="n">site_id</span><span class="p">,</span>
                                                                                              <span class="n">element_id</span><span class="p">,</span>
                                                                                              <span class="n">interface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a IPSEC Profile</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ipsecprofile_id**: IPSEC Profile ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ipsecprofile_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -4646,6 +4764,34 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Ntp_Templates API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">ntp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">operator_sessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Operator_Sessions API Function</span>
@@ -4653,7 +4799,7 @@ table {
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **session_id**: </span>
+<span class="sd">          - **session_id**: User Session ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4676,7 +4822,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete A Path Group of a tenant.</span>
 
@@ -4684,7 +4830,7 @@ table {
 
 <span class="sd">          - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4906,7 +5052,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete a Service Binding Map</span>
 
@@ -4914,7 +5060,7 @@ table {
 
 <span class="sd">          - **servicebindingmap_id**: Service Binding Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4934,7 +5080,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete a Service Endpoint</span>
 
@@ -4942,7 +5088,7 @@ table {
 
 <span class="sd">          - **serviceendpoint_id**: Service Endpoint ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5176,13 +5322,13 @@ table {
 
     <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Syslogservers API Function</span>
+<span class="sd">        delete Syslog Server</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: </span>
+<span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5258,6 +5404,34 @@ table {
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                        <span class="n">tenant_id</span><span class="p">,</span>
                                                                        <span class="n">operator_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tenant_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permission_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a tenant custom permission</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **permission_id**: Permission ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/permissions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                         <span class="n">tenant_id</span><span class="p">,</span>
+                                                                         <span class="n">permission_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -5428,6 +5602,9 @@ table {
     <span class="n">permissions_clients_o</span> <span class="o">=</span> <span class="n">esp_operator_permissions_client</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `permissions_clients_o` to `esp_operator_permissions_client`&quot;&quot;&quot;</span>
 
+    <span class="n">permissions_t</span> <span class="o">=</span> <span class="n">tenant_permissions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `permissions_t` to `tenant_permissions`&quot;&quot;&quot;</span>
+
     <span class="n">sessions_t</span> <span class="o">=</span> <span class="n">operator_sessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `sessions_t` to `operator_sessions`&quot;&quot;&quot;</span>
 </pre></div>
@@ -5440,7 +5617,7 @@ table {
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
           <li><a href="#cloudgenix.delete_api.Delete">Delete</a></li>
-          <li>__builtin__.object</li>
+          <li>builtins.object</li>
           </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.delete_api.Delete.anynetlinks_t">
@@ -5520,6 +5697,17 @@ table {
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.delete_api.Delete.permissions_t">
+            <p class="name">var <span class="ident">permissions_t</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>permissions_t</code> to <code>tenant_permissions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.delete_api.Delete.sessions_t">
             <p class="name">var <span class="ident">sessions_t</span></p>
             
@@ -5531,7 +5719,7 @@ table {
 </div>
 
             </div>
-          <h3>Methods</h3>
+          <h3>Static methods</h3>
             
   <div class="item" id="cloudgenix.delete_api.Delete.access_elementusers">
     <div class="name def">
@@ -5640,11 +5828,11 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Authtokens API Function</p>
+    <div class="desc"><p>Delete an auth token</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>authtoken_id</strong>: </li>
+<li><strong>authtoken_id</strong>: Static AUTH_TOKEN ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -5654,10 +5842,10 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.authtokens" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">authtokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">authtoken_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Authtokens API Function</span>
+<span class="sd">    Delete an auth token</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **authtoken_id**: </span>
+<span class="sd">      - **authtoken_id**: Static AUTH_TOKEN ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -6294,7 +6482,7 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.2&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.3&#39;)</p>
     </div>
     
 
@@ -6307,13 +6495,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.2)</li>
+<li><strong>api_version</strong>: API version to use (default v4.3)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.2&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.3&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete an element interface</span>
 <span class="sd">      **Parameters:**:</span>
@@ -6321,7 +6509,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.2)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -6336,6 +6524,54 @@ table {
                                                                                          <span class="n">site_id</span><span class="p">,</span>
                                                                                          <span class="n">element_id</span><span class="p">,</span>
                                                                                          <span class="n">interface_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.delete_api.Delete.ipsecprofiles">
+    <div class="name def">
+    <p>def <span class="ident">ipsecprofiles</span>(</p><p>self, ipsecprofile_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Delete a IPSEC Profile</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>ipsecprofile_id</strong>: IPSEC Profile ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.ipsecprofiles', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.ipsecprofiles" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipsecprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipsecprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete a IPSEC Profile</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **ipsecprofile_id**: IPSEC Profile ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ipsecprofiles/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">,</span>
+                                                                       <span class="n">ipsecprofile_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>
@@ -6493,6 +6729,54 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.delete_api.Delete.ntp_templates">
+    <div class="name def">
+    <p>def <span class="ident">ntp_templates</span>(</p><p>self, ntp_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>DELETE Ntp_Templates API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>ntp_id</strong>: NTP Configuration ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.ntp_templates', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.ntp_templates" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ntp_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DELETE Ntp_Templates API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **ntp_id**: NTP Configuration ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/templates/ntp/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">,</span>
+                                                                       <span class="n">ntp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.delete_api.Delete.operator_sessions">
     <div class="name def">
     <p>def <span class="ident">operator_sessions</span>(</p><p>self, operator_id, session_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -6505,7 +6789,7 @@ table {
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>session_id</strong>: </li>
+<li><strong>session_id</strong>: User Session ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -6518,7 +6802,7 @@ table {
 <span class="sd">    DELETE Operator_Sessions API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **session_id**: </span>
+<span class="sd">      - **session_id**: User Session ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -6546,7 +6830,7 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.pathgroups">
     <div class="name def">
-    <p>def <span class="ident">pathgroups</span>(</p><p>self, pathgroup_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">pathgroups</span>(</p><p>self, pathgroup_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -6557,19 +6841,19 @@ table {
 <ul>
 <li><strong>pathgroup_id</strong>: Path Group ID (for network service/DC routing)</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.pathgroups', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.pathgroups" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">pathgroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathgroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete A Path Group of a tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -6939,7 +7223,7 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.servicebindingmaps">
     <div class="name def">
-    <p>def <span class="ident">servicebindingmaps</span>(</p><p>self, servicebindingmap_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">servicebindingmaps</span>(</p><p>self, servicebindingmap_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -6950,19 +7234,19 @@ table {
 <ul>
 <li><strong>servicebindingmap_id</strong>: Service Binding Map ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.servicebindingmaps', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.servicebindingmaps" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">servicebindingmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">servicebindingmap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a Service Binding Map</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **servicebindingmap_id**: Service Binding Map ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -6987,7 +7271,7 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.serviceendpoints">
     <div class="name def">
-    <p>def <span class="ident">serviceendpoints</span>(</p><p>self, serviceendpoint_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">serviceendpoints</span>(</p><p>self, serviceendpoint_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -6998,19 +7282,19 @@ table {
 <ul>
 <li><strong>serviceendpoint_id</strong>: Service Endpoint ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.serviceendpoints', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.serviceendpoints" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">serviceendpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceendpoint_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a Service Endpoint</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **serviceendpoint_id**: Service Endpoint ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -7401,12 +7685,12 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Syslogservers API Function</p>
+    <div class="desc"><p>delete Syslog Server</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>syslogserver_id</strong>: </li>
+<li><strong>syslogserver_id</strong>: SYSLOG server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -7416,11 +7700,11 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.syslogservers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Syslogservers API Function</span>
+<span class="sd">    delete Syslog Server</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **syslogserver_id**: </span>
+<span class="sd">      - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -7533,6 +7817,54 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                    <span class="n">tenant_id</span><span class="p">,</span>
                                                                    <span class="n">operator_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.delete_api.Delete.tenant_permissions">
+    <div class="name def">
+    <p>def <span class="ident">tenant_permissions</span>(</p><p>self, permission_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Delete a tenant custom permission</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>permission_id</strong>: Permission ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.tenant_permissions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.tenant_permissions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permission_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete a tenant custom permission</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **permission_id**: Permission ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/permissions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                     <span class="n">tenant_id</span><span class="p">,</span>
+                                                                     <span class="n">permission_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>
