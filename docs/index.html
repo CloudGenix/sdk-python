@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.7.1b1
+**Version:** v5.0.1b1
 
 **Author:** CloudGenix
 ..." />
@@ -2568,6 +2568,9 @@ table {
       
   <ul>
     <li class="mono"><a href="#cloudgenix.jd">jd</a></li>
+    <li class="mono"><a href="#cloudgenix.jd_detailed">jd_detailed</a></li>
+    <li class="mono"><a href="#cloudgenix.jdout">jdout</a></li>
+    <li class="mono"><a href="#cloudgenix.jdout_detailed">jdout_detailed</a></li>
   </ul>
 
     </li>
@@ -2622,7 +2625,7 @@ table {
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python2 and Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v4.7.1b1</p>
+<p><strong>Version:</strong> v5.0.1b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017, 2018 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
@@ -2640,23 +2643,18 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 </li>
 </ul>
 <h4>Code Example</h4>
-<p>Super-simplified example code (rewrite of example.py in ~5 lines of code):</p>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<p>Super-simplified example code (rewrite of example.py in ~4 lines of code):</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Import the CloudGenix SDK API constructor and JSON response pretty printer</span>
+<span class="kn">from</span> <span class="nn">cloudgenix</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">jd</span>
 
-<span class="c1"># Import CloudGenix SDK</span>
-<span class="kn">import</span> <span class="nn">cloudgenix</span>
+<span class="c1"># Instantiate the CloudGenix API constructor</span>
+<span class="n">cgx_sess</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
 
-<span class="c1"># Create CloudGenix API constructor</span>
-<span class="n">cgx_sess</span> <span class="o">=</span> <span class="n">cloudgenix</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
-
-<span class="c1"># Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too).</span>
+<span class="c1"># Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).</span>
 <span class="n">cgx_sess</span><span class="o">.</span><span class="n">interactive</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
 
 <span class="c1"># Print a dump of the list of sites for your selected account</span>
-<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cgx_sess</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sites</span><span class="p">()</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-
-<span class="c1"># Cleanup and logout</span>
-<span class="n">cgx_sess</span><span class="o">.</span><span class="n">interactive</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">jd</span><span class="p">(</span><span class="n">cgx_sess</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sites</span><span class="p">())</span>
 </pre></div>
 
 
@@ -2674,7 +2672,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python2 and Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v4.7.1b1</span>
+<span class="sd">**Version:** v5.0.1b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2695,25 +2693,20 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">    * Requests + Security Extras &gt;=2.18.4 - &lt;http://docs.python-requests.org/en/master/&gt;</span>
 
 <span class="sd">#### Code Example</span>
-<span class="sd">Super-simplified example code (rewrite of example.py in ~5 lines of code):</span>
+<span class="sd">Super-simplified example code (rewrite of example.py in ~4 lines of code):</span>
 
 <span class="sd">    #!python</span>
-<span class="sd">    import json</span>
+<span class="sd">    # Import the CloudGenix SDK API constructor and JSON response pretty printer</span>
+<span class="sd">    from cloudgenix import API, jd</span>
 
-<span class="sd">    # Import CloudGenix SDK</span>
-<span class="sd">    import cloudgenix</span>
+<span class="sd">    # Instantiate the CloudGenix API constructor</span>
+<span class="sd">    cgx_sess = API()</span>
 
-<span class="sd">    # Create CloudGenix API constructor</span>
-<span class="sd">    cgx_sess = cloudgenix.API()</span>
-
-<span class="sd">    # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too).</span>
+<span class="sd">    # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).</span>
 <span class="sd">    cgx_sess.interactive.login()</span>
 
 <span class="sd">    # Print a dump of the list of sites for your selected account</span>
-<span class="sd">    print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))</span>
-
-<span class="sd">    # Cleanup and logout</span>
-<span class="sd">    cgx_sess.interactive.logout()</span>
+<span class="sd">    jd(cgx_sess.get.sites())</span>
 
 <span class="sd">#### License</span>
 <span class="sd">MIT</span>
@@ -2794,29 +2787,129 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4.7.1b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.0.1b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.</span>
 
 <span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
 
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+
 <span class="sd">    **Returns:** No Return, directly prints all output.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">))</span>
     <span class="k">return</span>
+
+
+<span class="k">def</span> <span class="nf">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string</span>
+<span class="sd">    instead of directly printing content.</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+
+<span class="sd">    **Returns:** Pretty-formatted text of the Response body</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to output the cgx_content. should always be a Dict if it exists.</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw output the passed data. Let any exceptions happen here.</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">api_response</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+
+<span class="k">def</span> <span class="nf">jd_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
+<span class="sd">    objects for troubleshooting.</span>
+
+<span class="sd">    Example: `jd_detailed(cgx_sess.get.sites())`</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+<span class="sd">      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</span>
+
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="n">sensitive</span><span class="p">))</span>
+    <span class="k">return</span>
+
+
+<span class="k">def</span> <span class="nf">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
+<span class="sd">    objects for troubleshooting. This function returns a string instead of directly printing content.</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+<span class="sd">      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</span>
+
+<span class="sd">    **Returns:** Pretty-formatted text of the Request, Request Headers, Request body, Response, Response Headers,</span>
+<span class="sd">    and Response Body.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try to be super verbose.</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;REQUEST: {0} {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">path_url</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST HEADERS:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># look for sensitive values</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cookie&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="c1"># we need to do some work to watch for the AUTH_TOKEN cookie. Split on cookie separator</span>
+                <span class="n">cookie_list</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;; &#39;</span><span class="p">)</span>
+                <span class="n">muted_cookie_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">cookie_list</span><span class="p">:</span>
+                    <span class="c1"># check if cookie starts with a permutation of AUTH_TOKEN/whitespace.</span>
+                    <span class="k">if</span> <span class="n">cookie</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;auth_token=&#39;</span><span class="p">):</span>
+                        <span class="c1"># first 11 chars of cookie with whitespace removed + mute string.</span>
+                        <span class="n">newcookie</span> <span class="o">=</span> <span class="n">cookie</span><span class="o">.</span><span class="n">strip</span><span class="p">()[:</span><span class="mi">11</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&lt;SENSITIVE - NOT SHOWN BY DEFAULT&gt;</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+                        <span class="n">muted_cookie_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newcookie</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">muted_cookie_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cookie</span><span class="p">)</span>
+                <span class="c1"># got list of cookies, muted as needed. recombine.</span>
+                <span class="n">muted_value</span> <span class="o">=</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">muted_cookie_list</span><span class="p">)</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">muted_value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x-auth-token&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;&lt;SENSITIVE - NOT SHOWN BY DEFAULT&gt;&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="c1"># if body not present, output blank.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">({})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Attempt to load JSON from string to make it look beter.</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+                <span class="c1"># if pretty call above didn&#39;t work, just toss it to jdout to best effort it.</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE: {0} {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">api_response</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE HEADERS:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">api_response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE DATA:</span><span class="se">\n</span><span class="s2">{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw output the passed data. Let any exceptions happen here.</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">api_response</span>
+    <span class="k">return</span> <span class="n">output</span>
 
 
 <span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -3126,8 +3219,8 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="n">DeleteWrapper</span><span class="p">,</span>
                 <span class="s2">&quot;interactive&quot;</span><span class="p">:</span> <span class="n">InteractiveWrapper</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                  <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                  <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
 
@@ -3148,6 +3241,15 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pull retry related items from Constructor if not specified.</span>
+        <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
+        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
 
         <span class="c1"># Retry loop counter</span>
         <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3523,31 +3625,211 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     
   
-    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</p>
+    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.</p>
 <p>Example: <code>jd(cgx_sess.get.sites())</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>api_response:</strong> A CloudGenix-attribute extended <code>requests.Response</code> object</li>
+</ul>
 <p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jd', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.jd" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.</span>
 
 <span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
 
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+
 <span class="sd">    **Returns:** No Return, directly prints all output.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">))</span>
     <span class="k">return</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item" id="cloudgenix.jd_detailed">
+    <div class="name def">
+    <p>def <span class="ident">jd_detailed</span>(</p><p>api_response, sensitive=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response
+objects for troubleshooting.</p>
+<p>Example: <code>jd_detailed(cgx_sess.get.sites())</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>api_response:</strong> A CloudGenix-attribute extended <code>requests.Response</code> object</li>
+<li><strong>sensitive:</strong> Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</li>
+</ul>
+<p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jd_detailed', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.jd_detailed" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jd_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
+<span class="sd">    objects for troubleshooting.</span>
+
+<span class="sd">    Example: `jd_detailed(cgx_sess.get.sites())`</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+<span class="sd">      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</span>
+
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="n">sensitive</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item" id="cloudgenix.jdout">
+    <div class="name def">
+    <p>def <span class="ident">jdout</span>(</p><p>api_response)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string
+instead of directly printing content.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>api_response:</strong> A CloudGenix-attribute extended <code>requests.Response</code> object</li>
+</ul>
+<p><strong>Returns:</strong> Pretty-formatted text of the Response body</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jdout', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.jdout" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string</span>
+<span class="sd">    instead of directly printing content.</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+
+<span class="sd">    **Returns:** Pretty-formatted text of the Response body</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to output the cgx_content. should always be a Dict if it exists.</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw output the passed data. Let any exceptions happen here.</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">api_response</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item" id="cloudgenix.jdout_detailed">
+    <div class="name def">
+    <p>def <span class="ident">jdout_detailed</span>(</p><p>api_response, sensitive=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response
+objects for troubleshooting. This function returns a string instead of directly printing content.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>api_response:</strong> A CloudGenix-attribute extended <code>requests.Response</code> object</li>
+<li><strong>sensitive:</strong> Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</li>
+</ul>
+<p><strong>Returns:</strong> Pretty-formatted text of the Request, Request Headers, Request body, Response, Response Headers,
+and Response Body.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jdout_detailed', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.jdout_detailed" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
+<span class="sd">    objects for troubleshooting. This function returns a string instead of directly printing content.</span>
+
+<span class="sd">      **Parameters:**</span>
+
+<span class="sd">      - **api_response:** A CloudGenix-attribute extended `requests.Response` object</span>
+<span class="sd">      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).</span>
+
+<span class="sd">    **Returns:** Pretty-formatted text of the Request, Request Headers, Request body, Response, Response Headers,</span>
+<span class="sd">    and Response Body.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try to be super verbose.</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;REQUEST: {0} {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">path_url</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST HEADERS:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># look for sensitive values</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cookie&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="c1"># we need to do some work to watch for the AUTH_TOKEN cookie. Split on cookie separator</span>
+                <span class="n">cookie_list</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;; &#39;</span><span class="p">)</span>
+                <span class="n">muted_cookie_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">cookie_list</span><span class="p">:</span>
+                    <span class="c1"># check if cookie starts with a permutation of AUTH_TOKEN/whitespace.</span>
+                    <span class="k">if</span> <span class="n">cookie</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;auth_token=&#39;</span><span class="p">):</span>
+                        <span class="c1"># first 11 chars of cookie with whitespace removed + mute string.</span>
+                        <span class="n">newcookie</span> <span class="o">=</span> <span class="n">cookie</span><span class="o">.</span><span class="n">strip</span><span class="p">()[:</span><span class="mi">11</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&lt;SENSITIVE - NOT SHOWN BY DEFAULT&gt;</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+                        <span class="n">muted_cookie_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newcookie</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">muted_cookie_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cookie</span><span class="p">)</span>
+                <span class="c1"># got list of cookies, muted as needed. recombine.</span>
+                <span class="n">muted_value</span> <span class="o">=</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">muted_cookie_list</span><span class="p">)</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">muted_value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x-auth-token&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;&lt;SENSITIVE - NOT SHOWN BY DEFAULT&gt;&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="c1"># if body not present, output blank.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">({})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Attempt to load JSON from string to make it look beter.</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+                <span class="c1"># if pretty call above didn&#39;t work, just toss it to jdout to best effort it.</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;REQUEST BODY:</span><span class="se">\n</span><span class="s2">{0}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE: {0} {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">api_response</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE HEADERS:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">api_response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">{0}: {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;RESPONSE DATA:</span><span class="se">\n</span><span class="s2">{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw output the passed data. Let any exceptions happen here.</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">api_response</span>
+    <span class="k">return</span> <span class="n">output</span>
 </pre></div>
 
   </div>
@@ -3881,8 +4163,8 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="n">DeleteWrapper</span><span class="p">,</span>
                 <span class="s2">&quot;interactive&quot;</span><span class="p">:</span> <span class="n">InteractiveWrapper</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                  <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                  <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
 
@@ -3903,6 +4185,15 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pull retry related items from Constructor if not specified.</span>
+        <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
+        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
 
         <span class="c1"># Retry loop counter</span>
         <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -4766,7 +5057,7 @@ re-parses the original login request and applies cookies to the session if they 
             
   <div class="item" id="cloudgenix.API.rest_call">
     <div class="name def">
-    <p>def <span class="ident">rest_call</span>(</p><p>self, url, method, data=None, sensitive=False, timeout=60, content_json=True, retry=None, max_retry=30, retry_sleep=10)</p>
+    <p>def <span class="ident">rest_call</span>(</p><p>self, url, method, data=None, sensitive=False, timeout=None, content_json=True, retry=None, max_retry=None, retry_sleep=None)</p>
     </div>
     
 
@@ -4792,8 +5083,8 @@ re-parses the original login request and applies cookies to the session if they 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.rest_call', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.rest_call" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-              <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+              <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic REST call worker function</span>
 <span class="sd">    **Parameters:**</span>
@@ -4811,6 +5102,15 @@ re-parses the original login request and applies cookies to the session if they 
 <span class="sd">      - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">      will be converted to a Dict response.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pull retry related items from Constructor if not specified.</span>
+    <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
+    <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+    <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
+    <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
     <span class="c1"># Retry loop counter</span>
     <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># Get logging level, use this to bypass logging functions with possible large content if not set.</span>
