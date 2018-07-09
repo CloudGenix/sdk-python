@@ -578,7 +578,7 @@ class API(object):
         if max_retry is None:
             max_retry = self.rest_call_retry
         if retry_sleep is None:
-            retry = self.rest_call_sleep
+            retry_sleep = self.rest_call_sleep
 
         # Retry loop counter
         retry_count = 0
