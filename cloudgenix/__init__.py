@@ -119,6 +119,25 @@ api_logger = logging.getLogger(__name__)
 version = "5.0.1b1"
 """SDK Version string"""
 
+# PyPI URL for checking for updates.
+update_info_url = "https://pypi.org/pypi/cloudgenix/json"
+"""URL for checking for updates."""
+
+
+# regex
+SDK_BUILD_REGEX = re.compile(
+    r'^'                        # start of string
+    r'(?P<major>[0-9]+)'        # major number
+    r'\.'                       # literal . character
+    r'(?P<minor>[0-9]+)'        # minor number
+    r'\.'                       # literal . character
+    r'(?P<patch>[0-9]+)'        # patch number
+    r'b'                        # literal 'b' character
+    r'(?P<build>[0-9]+)'        # build number
+    r'$'                        # end of string
+)
+"""REGEX for parsing SDK builds"""
+
 
 def jd(api_response):
     """
@@ -230,8 +249,13 @@ def jdout_detailed(api_response, sensitive=False):
         output += "RESPONSE HEADERS:\n"
         for key, value in api_response.headers.items():
             output += "\t{0}: {1}\n".format(key, value)
-        output += "RESPONSE DATA:\n{0}".format(json.dumps(api_response.cgx_content, indent=4))
-    except (TypeError, ValueError, AttributeError):
+        try:
+            # look for CGX content first.
+            output += "RESPONSE DATA:\n{0}".format(json.dumps(api_response.cgx_content, indent=4))
+        except (TypeError, ValueError, AttributeError):
+            # look for standard response data.
+            output += "RESPONSE DATA:\n{0}".format(json.dumps(json.loads(api_response.content), indent=4))
+    except (TypeError, ValueError, AttributeError, UnicodeDecodeError):
         # cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.
         try:
             output = json.dumps(api_response, indent=4)
@@ -333,15 +357,22 @@ class API(object):
     _session = None
     """holder for requests.Session() object"""
 
-    def __init__(self, controller=controller, ssl_verify=verify):
+    update_check = True
+    """Notify users of available update to SDK"""
+
+    update_info_url = None
+    """Update Info URL for use once Constructor Created."""
+
+    def __init__(self, controller=controller, ssl_verify=verify, update_check=True):
         """
         Create the API constructor object
 
           - **controller:** Initial Controller URL String
           - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.
         """
-        # set version from outer scope.
+        # set version and update url from outer scope.
         self.version = version
+        self.update_info_url = update_info_url
 
         # try:
         if controller and isinstance(controller, (binary_type, text_type)):
@@ -350,6 +381,13 @@ class API(object):
 
         if isinstance(ssl_verify, (binary_type, text_type, bool)):
             self.ssl_verify(ssl_verify)
+
+        # handle update check
+        if isinstance(update_check, bool):
+            self.update_check = update_check
+
+        if update_check:
+            self.notify_for_new_version()
 
         # Create Requests Session.
         self._session = requests.Session()
@@ -395,6 +433,65 @@ class API(object):
         """API object link to `cloudgenix.interactive.Interactive`"""
 
         return
+
+    def notify_for_new_version(self):
+        """
+        Check for a new version of the SDK on API constructor instantiation. If new version found, print
+        Notification to STDERR.
+
+        On failure of this check, fail silently.
+
+        **Returns:** No item returned, directly prints notification to `sys.stderr`.
+        """
+
+        # broad exception clause, if this fails for any reason just return.
+        try:
+            recommend_update = False
+            update_check_resp = requests.get(self.update_info_url, timeout=3)
+            web_version = update_check_resp.json()["info"]["version"]
+            api_logger.debug("RETRIEVED_VERSION: %s", web_version)
+
+            available_version = SDK_BUILD_REGEX.search(web_version).groupdict()
+            current_version = SDK_BUILD_REGEX.search(self.version).groupdict()
+
+            available_major = available_version.get('major')
+            available_minor = available_version.get('minor')
+            available_patch = available_version.get('patch')
+            available_build = available_version.get('build')
+            current_major = current_version.get('major')
+            current_minor = current_version.get('minor')
+            current_patch = current_version.get('patch')
+            current_build = current_version.get('build')
+
+            api_logger.debug("AVAILABLE_VERSION: %s", available_version)
+            api_logger.debug("CURRENT_VERSION: %s", current_version)
+
+            # check for major/minor version differences, do not alert for build differences.
+            if available_major > current_major:
+                recommend_update = True
+            elif available_major >= current_major and available_minor > current_minor:
+                recommend_update = True
+            elif available_major >= current_major and available_minor >= current_minor and \
+                    available_patch > current_patch:
+                recommend_update = True
+
+            api_logger.debug("NEED_UPDATE: %s", recommend_update)
+
+            # notify.
+            if recommend_update:
+                sys.stderr.write("WARNING: CloudGenix Python SDK upgrade available. Errors/issues may occur if the "
+                                 "SDK is not current.\n"
+                                 "\tLatest Version: {0}\n"
+                                 "\tCurrent Version: {1}\n"
+                                 "\tFor more info, see 'https://github.com/cloudgenix/sdk-python'. Additionally, this "
+                                 "message can be suppressed by instantiating the API with API(update_check=False).\n\n"
+                                 "".format(web_version, self.version))
+
+            return
+
+        except Exception:
+            # just return and continue.
+            return
 
     def ssl_verify(self, ssl_verify):
         """
@@ -443,9 +540,7 @@ class API(object):
         """
         Call to expose the Requests Session object
 
-        **Parameters:**
-
-        **Returns:** requests.Session object
+        **Returns:** `requests.Session` object
         """
         return self._session
 
@@ -457,7 +552,7 @@ class API(object):
 
           - **headers:** dict with header/value
 
-        **Returns:** Mutates requests.Session() object, no return.
+        **Returns:** Mutates `requests.Session()` object, no return.
         """
         self._session.headers.update(headers)
         return
@@ -470,7 +565,7 @@ class API(object):
 
           - **header:** str of single header to remove
 
-        **Returns:** Mutates requests.Session() object, no return.
+        **Returns:** Mutates `requests.Session()` object, no return.
         """
         del self._session.headers[header]
         return
