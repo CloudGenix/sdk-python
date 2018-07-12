@@ -369,10 +369,14 @@ class API(object):
 
           - **controller:** Initial Controller URL String
           - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.
+          - **update_check:** Disable SDK update check and new release notifications.
         """
         # set version and update url from outer scope.
         self.version = version
+        """Version string for use once Constructor created."""
+
         self.update_info_url = update_info_url
+        """Update Info URL for use once Constructor Created."""
 
         # try:
         if controller and isinstance(controller, (binary_type, text_type)):

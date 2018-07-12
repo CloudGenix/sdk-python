@@ -3043,10 +3043,14 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="sd">          - **controller:** Initial Controller URL String</span>
 <span class="sd">          - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
+<span class="sd">          - **update_check:** Disable SDK update check and new release notifications.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># set version and update url from outer scope.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
+        <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
@@ -4081,10 +4085,14 @@ and Response Body.</p></div>
 
 <span class="sd">          - **controller:** Initial Controller URL String</span>
 <span class="sd">          - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
+<span class="sd">          - **update_check:** Disable SDK update check and new release notifications.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># set version and update url from outer scope.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
+        <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
@@ -4983,6 +4991,7 @@ and Response Body.</p></div>
 <ul>
 <li><strong>controller:</strong> Initial Controller URL String</li>
 <li><strong>ssl_verify:</strong> Should SSL be verified for this system. Can be file or BOOL. See <a href="#cloudgenix.API.ssl_verify"><code>ssl_verify</code></a> for more details.</li>
+<li><strong>update_check:</strong> Disable SDK update check and new release notifications.</li>
 </ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.__init__', this);">Show source &equiv;</a></p>
@@ -4992,10 +5001,13 @@ and Response Body.</p></div>
 <span class="sd">    Create the API constructor object</span>
 <span class="sd">      - **controller:** Initial Controller URL String</span>
 <span class="sd">      - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
+<span class="sd">      - **update_check:** Disable SDK update check and new release notifications.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># set version and update url from outer scope.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
+    <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
     <span class="c1"># try:</span>
     <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller</span>
@@ -5817,6 +5829,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
 
             
   
+    <div class="desc"><p>Update Info URL for use once Constructor Created.</p></div>
   <div class="source_cont">
 </div>
 
@@ -5827,6 +5840,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
 
             
   
+    <div class="desc"><p>Version string for use once Constructor created.</p></div>
   <div class="source_cont">
 </div>
 
