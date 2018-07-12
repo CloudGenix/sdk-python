@@ -191,9 +191,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def aspathaccesslists_query_routing(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
+    def routing_aspathaccesslists_query(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Aspathaccesslists_Query_Routing API Function
+        POST Routing_Aspathaccesslists_Query API Function
 
           **Parameters:**:
 
@@ -827,9 +827,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def ipcommunitylists_query_routing(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
+    def routing_ipcommunitylists_query(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipcommunitylists_Query_Routing API Function
+        POST Routing_Ipcommunitylists_Query API Function
 
           **Parameters:**:
 
@@ -1481,7 +1481,7 @@ class Post(object):
 
     def otpaccess(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Verify Challenge phrase and generate response phrase 
+        Verify Challenge phrase and generate response phrase
 
           **Parameters:**:
 
@@ -1732,9 +1732,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def prefixlists_query_routing(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
+    def routing_prefixlists_query(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Prefixlists_Query_Routing API Function
+        POST Routing_Prefixlists_Query API Function
 
           **Parameters:**:
 
@@ -2035,9 +2035,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def routemaps_query_routing(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
+    def routing_routemaps_query(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Routemaps_Query_Routing API Function
+        POST Routing_Routemaps_Query API Function
 
           **Parameters:**:
 
@@ -3647,17 +3647,17 @@ class Post(object):
     query_prioritypolicysetstacks = prioritypolicysetstacks_query
     """ Backwards-compatibility alias of `query_prioritypolicysetstacks` to `prioritypolicysetstacks_query`"""
 
-    query_routing_aspathaccesslists = aspathaccesslists_query_routing
-    """ Backwards-compatibility alias of `query_routing_aspathaccesslists` to `aspathaccesslists_query_routing`"""
+    query_routing_aspathaccesslists = routing_aspathaccesslists_query
+    """ Backwards-compatibility alias of `query_routing_aspathaccesslists` to `routing_aspathaccesslists_query`"""
 
-    query_routing_ipcommunitylists = ipcommunitylists_query_routing
-    """ Backwards-compatibility alias of `query_routing_ipcommunitylists` to `ipcommunitylists_query_routing`"""
+    query_routing_ipcommunitylists = routing_ipcommunitylists_query
+    """ Backwards-compatibility alias of `query_routing_ipcommunitylists` to `routing_ipcommunitylists_query`"""
 
-    query_routing_prefixlists = prefixlists_query_routing
-    """ Backwards-compatibility alias of `query_routing_prefixlists` to `prefixlists_query_routing`"""
+    query_routing_prefixlists = routing_prefixlists_query
+    """ Backwards-compatibility alias of `query_routing_prefixlists` to `routing_prefixlists_query`"""
 
-    query_routing_routemaps = routemaps_query_routing
-    """ Backwards-compatibility alias of `query_routing_routemaps` to `routemaps_query_routing`"""
+    query_routing_routemaps = routing_routemaps_query
+    """ Backwards-compatibility alias of `query_routing_routemaps` to `routing_routemaps_query`"""
 
     query_s = sites_query
     """ Backwards-compatibility alias of `query_s` to `sites_query`"""
