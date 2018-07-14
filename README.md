@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v4.7.1b1
+# CloudGenix Python SDK v5.0.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -14,24 +14,19 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 #### Code Example
 Comes with `example.py` that shows usage to get a JSON list of sites.
 
-Super-simplified example code (rewrite of example.py in ~5 lines of code):
+Super-simplified example code (rewrite of example.py in ~4 lines of code):
 ```python
-import json
+# Import the CloudGenix SDK API constructor and JSON response pretty printer
+from cloudgenix import API, jd
 
-# Import CloudGenix SDK
-import cloudgenix
+# Instantiate the CloudGenix API constructor
+cgx_sess = API()
 
-# Create CloudGenix API constructor
-cgx_sess = cloudgenix.API()
-
-# Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too).
+# Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).
 cgx_sess.interactive.login()
 
 # Print a dump of the list of sites for your selected account
-print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))
-
-# Cleanup and logout
-cgx_sess.interactive.logout()
+jd(cgx_sess.get.sites())
 ```
 
 #### License
@@ -40,6 +35,7 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
+| **5.0.1** | **b1** | Support for July 2018 Controller release, New version notifications, Depreciate legacy _single functions. |
 | **4.7.1** | **b1** | Support for May 2018 Controller release. |
 | **4.6.1** | **b1** | Support for Mar 2018 Controller release. |
 | **4.5.7** | **b1** | Support for Feb 2018 Controller release, Bugfix for issue #4 |

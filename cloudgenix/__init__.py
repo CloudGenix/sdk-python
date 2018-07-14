@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v4.7.1b1
+**Version:** v5.0.1b1
 
 **Author:** CloudGenix
 
@@ -22,25 +22,20 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     * Requests + Security Extras >=2.18.4 - <http://docs.python-requests.org/en/master/>
 
 #### Code Example
-Super-simplified example code (rewrite of example.py in ~5 lines of code):
+Super-simplified example code (rewrite of example.py in ~4 lines of code):
 
     #!python
-    import json
+    # Import the CloudGenix SDK API constructor and JSON response pretty printer
+    from cloudgenix import API, jd
 
-    # Import CloudGenix SDK
-    import cloudgenix
+    # Instantiate the CloudGenix API constructor
+    cgx_sess = API()
 
-    # Create CloudGenix API constructor
-    cgx_sess = cloudgenix.API()
-
-    # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too).
+    # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).
     cgx_sess.interactive.login()
 
     # Print a dump of the list of sites for your selected account
-    print(json.dumps(cgx_sess.get.sites().cgx_content, indent=4))
-
-    # Cleanup and logout
-    cgx_sess.interactive.logout()
+    jd(cgx_sess.get.sites())
 
 #### License
 MIT
@@ -121,29 +116,153 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "4.7.1b1"
+version = "5.0.1b1"
 """SDK Version string"""
+
+# PyPI URL for checking for updates.
+update_info_url = "https://pypi.org/pypi/cloudgenix/json"
+"""URL for checking for updates."""
+
+
+# regex
+SDK_BUILD_REGEX = re.compile(
+    r'^'                        # start of string
+    r'(?P<major>[0-9]+)'        # major number
+    r'\.'                       # literal . character
+    r'(?P<minor>[0-9]+)'        # minor number
+    r'\.'                       # literal . character
+    r'(?P<patch>[0-9]+)'        # patch number
+    r'b'                        # literal 'b' character
+    r'(?P<build>[0-9]+)'        # build number
+    r'$'                        # end of string
+)
+"""REGEX for parsing SDK builds"""
 
 
 def jd(api_response):
     """
-    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.
+    JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.
 
     Example: `jd(cgx_sess.get.sites())`
 
+      **Parameters:**
+
+      - **api_response:** A CloudGenix-attribute extended `requests.Response` object
+
     **Returns:** No Return, directly prints all output.
     """
-    try:
-        # attempt to print the cgx_content. should always be a Dict if it exists.
-        print(json.dumps(api_response.cgx_content, indent=4))
-    except (TypeError, ValueError, AttributeError):
-        # cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.
-        try:
-            print(json.dumps(api_response, indent=4))
-        except (TypeError, ValueError, AttributeError):
-            # Same issue, just raw print the passed data. Let any exceptions happen here.
-            print(api_response)
+    print(jdout(api_response))
     return
+
+
+def jdout(api_response):
+    """
+    JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string
+    instead of directly printing content.
+
+      **Parameters:**
+
+      - **api_response:** A CloudGenix-attribute extended `requests.Response` object
+
+    **Returns:** Pretty-formatted text of the Response body
+    """
+    try:
+        # attempt to output the cgx_content. should always be a Dict if it exists.
+        output = json.dumps(api_response.cgx_content, indent=4)
+    except (TypeError, ValueError, AttributeError):
+        # cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.
+        try:
+            output = json.dumps(api_response, indent=4)
+        except (TypeError, ValueError, AttributeError):
+            # Same issue, just raw output the passed data. Let any exceptions happen here.
+            output = api_response
+    return output
+
+
+def jd_detailed(api_response, sensitive=False):
+    """
+    JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response
+    objects for troubleshooting.
+
+    Example: `jd_detailed(cgx_sess.get.sites())`
+
+      **Parameters:**
+
+      - **api_response:** A CloudGenix-attribute extended `requests.Response` object
+      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).
+
+    **Returns:** No Return, directly prints all output.
+    """
+    print(jdout_detailed(api_response, sensitive=sensitive))
+    return
+
+
+def jdout_detailed(api_response, sensitive=False):
+    """
+    JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response
+    objects for troubleshooting. This function returns a string instead of directly printing content.
+
+      **Parameters:**
+
+      - **api_response:** A CloudGenix-attribute extended `requests.Response` object
+      - **sensitive:** Boolean, if True will print sensitive content (specifically, authentication cookies/headers).
+
+    **Returns:** Pretty-formatted text of the Request, Request Headers, Request body, Response, Response Headers,
+    and Response Body.
+    """
+    try:
+        # try to be super verbose.
+        output = "REQUEST: {0} {1}\n".format(api_response.request.method, api_response.request.path_url)
+        output += "REQUEST HEADERS:\n"
+        for key, value in api_response.request.headers.items():
+            # look for sensitive values
+            if key.lower() in ['cookie'] and not sensitive:
+                # we need to do some work to watch for the AUTH_TOKEN cookie. Split on cookie separator
+                cookie_list = value.split('; ')
+                muted_cookie_list = []
+                for cookie in cookie_list:
+                    # check if cookie starts with a permutation of AUTH_TOKEN/whitespace.
+                    if cookie.lower().strip().startswith('auth_token='):
+                        # first 11 chars of cookie with whitespace removed + mute string.
+                        newcookie = cookie.strip()[:11] + "\"<SENSITIVE - NOT SHOWN BY DEFAULT>\""
+                        muted_cookie_list.append(newcookie)
+                    else:
+                        muted_cookie_list.append(cookie)
+                # got list of cookies, muted as needed. recombine.
+                muted_value = "; ".join(muted_cookie_list)
+                output += "\t{0}: {1}\n".format(key, muted_value)
+            elif key.lower() in ['x-auth-token'] and not sensitive:
+                output += "\t{0}: {1}\n".format(key, "<SENSITIVE - NOT SHOWN BY DEFAULT>")
+            else:
+                output += "\t{0}: {1}\n".format(key, value)
+        # if body not present, output blank.
+        if not api_response.request.body:
+            output += "REQUEST BODY:\n{0}\n\n".format({})
+        else:
+            try:
+                # Attempt to load JSON from string to make it look beter.
+                output += "REQUEST BODY:\n{0}\n\n".format(json.dumps(json.loads(api_response.request.body), indent=4))
+            except (TypeError, ValueError, AttributeError):
+                # if pretty call above didn't work, just toss it to jdout to best effort it.
+                output += "REQUEST BODY:\n{0}\n\n".format(jdout(api_response.request.body))
+        output += "RESPONSE: {0} {1}\n".format(api_response.status_code, api_response.reason)
+        output += "RESPONSE HEADERS:\n"
+        for key, value in api_response.headers.items():
+            output += "\t{0}: {1}\n".format(key, value)
+        try:
+            # look for CGX content first.
+            output += "RESPONSE DATA:\n{0}".format(json.dumps(api_response.cgx_content, indent=4))
+        except (TypeError, ValueError, AttributeError):
+            # look for standard response data.
+            output += "RESPONSE DATA:\n{0}".format(json.dumps(json.loads(api_response.content), indent=4))
+    except (TypeError, ValueError, AttributeError, UnicodeDecodeError):
+        # cgx_content did not exist, or was not JSON serializable. Try pretty output the base obj.
+        try:
+            output = json.dumps(api_response, indent=4)
+        except (TypeError, ValueError, AttributeError):
+            # Same issue, just raw output the passed data. Let any exceptions happen here.
+            output = api_response
+    return output
 
 
 class API(object):
@@ -238,15 +357,26 @@ class API(object):
     _session = None
     """holder for requests.Session() object"""
 
-    def __init__(self, controller=controller, ssl_verify=verify):
+    update_check = True
+    """Notify users of available update to SDK"""
+
+    update_info_url = None
+    """Update Info URL for use once Constructor Created."""
+
+    def __init__(self, controller=controller, ssl_verify=verify, update_check=True):
         """
         Create the API constructor object
 
           - **controller:** Initial Controller URL String
           - **ssl_verify:** Should SSL be verified for this system. Can be file or BOOL. See `cloudgenix.API.ssl_verify` for more details.
+          - **update_check:** Bool to Enable/Disable SDK update check and new release notifications.
         """
-        # set version from outer scope.
+        # set version and update url from outer scope.
         self.version = version
+        """Version string for use once Constructor created."""
+
+        self.update_info_url = update_info_url
+        """Update Info URL for use once Constructor Created."""
 
         # try:
         if controller and isinstance(controller, (binary_type, text_type)):
@@ -255,6 +385,13 @@ class API(object):
 
         if isinstance(ssl_verify, (binary_type, text_type, bool)):
             self.ssl_verify(ssl_verify)
+
+        # handle update check
+        if isinstance(update_check, bool):
+            self.update_check = update_check
+
+        if update_check:
+            self.notify_for_new_version()
 
         # Create Requests Session.
         self._session = requests.Session()
@@ -300,6 +437,65 @@ class API(object):
         """API object link to `cloudgenix.interactive.Interactive`"""
 
         return
+
+    def notify_for_new_version(self):
+        """
+        Check for a new version of the SDK on API constructor instantiation. If new version found, print
+        Notification to STDERR.
+
+        On failure of this check, fail silently.
+
+        **Returns:** No item returned, directly prints notification to `sys.stderr`.
+        """
+
+        # broad exception clause, if this fails for any reason just return.
+        try:
+            recommend_update = False
+            update_check_resp = requests.get(self.update_info_url, timeout=3)
+            web_version = update_check_resp.json()["info"]["version"]
+            api_logger.debug("RETRIEVED_VERSION: %s", web_version)
+
+            available_version = SDK_BUILD_REGEX.search(web_version).groupdict()
+            current_version = SDK_BUILD_REGEX.search(self.version).groupdict()
+
+            available_major = available_version.get('major')
+            available_minor = available_version.get('minor')
+            available_patch = available_version.get('patch')
+            available_build = available_version.get('build')
+            current_major = current_version.get('major')
+            current_minor = current_version.get('minor')
+            current_patch = current_version.get('patch')
+            current_build = current_version.get('build')
+
+            api_logger.debug("AVAILABLE_VERSION: %s", available_version)
+            api_logger.debug("CURRENT_VERSION: %s", current_version)
+
+            # check for major/minor version differences, do not alert for build differences.
+            if available_major > current_major:
+                recommend_update = True
+            elif available_major >= current_major and available_minor > current_minor:
+                recommend_update = True
+            elif available_major >= current_major and available_minor >= current_minor and \
+                    available_patch > current_patch:
+                recommend_update = True
+
+            api_logger.debug("NEED_UPDATE: %s", recommend_update)
+
+            # notify.
+            if recommend_update:
+                sys.stderr.write("WARNING: CloudGenix Python SDK upgrade available. Errors/issues may occur if the "
+                                 "SDK is not current.\n"
+                                 "\tLatest Version: {0}\n"
+                                 "\tCurrent Version: {1}\n"
+                                 "\tFor more info, see 'https://github.com/cloudgenix/sdk-python'. Additionally, this "
+                                 "message can be suppressed by instantiating the API with API(update_check=False).\n\n"
+                                 "".format(web_version, self.version))
+
+            return
+
+        except Exception:
+            # just return and continue.
+            return
 
     def ssl_verify(self, ssl_verify):
         """
@@ -348,9 +544,7 @@ class API(object):
         """
         Call to expose the Requests Session object
 
-        **Parameters:**
-
-        **Returns:** requests.Session object
+        **Returns:** `requests.Session` object
         """
         return self._session
 
@@ -362,7 +556,7 @@ class API(object):
 
           - **headers:** dict with header/value
 
-        **Returns:** Mutates requests.Session() object, no return.
+        **Returns:** Mutates `requests.Session()` object, no return.
         """
         self._session.headers.update(headers)
         return
@@ -375,7 +569,7 @@ class API(object):
 
           - **header:** str of single header to remove
 
-        **Returns:** Mutates requests.Session() object, no return.
+        **Returns:** Mutates `requests.Session()` object, no return.
         """
         del self._session.headers[header]
         return
@@ -453,8 +647,8 @@ class API(object):
                 "delete": DeleteWrapper,
                 "interactive": InteractiveWrapper}
 
-    def rest_call(self, url, method, data=None, sensitive=False, timeout=60, content_json=True,
-                  retry=None, max_retry=30, retry_sleep=10):
+    def rest_call(self, url, method, data=None, sensitive=False, timeout=None, content_json=True,
+                  retry=None, max_retry=None, retry_sleep=None):
         """
         Generic REST call worker function
 
@@ -475,6 +669,15 @@ class API(object):
           - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
           will be converted to a Dict response.
         """
+        # pull retry related items from Constructor if not specified.
+        if timeout is None:
+            timeout = self.rest_call_timeout
+        if retry is None:
+            retry = self.rest_call_retry
+        if max_retry is None:
+            max_retry = self.rest_call_retry
+        if retry_sleep is None:
+            retry_sleep = self.rest_call_sleep
 
         # Retry loop counter
         retry_count = 0

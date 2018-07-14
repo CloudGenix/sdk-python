@@ -87,6 +87,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def advertisedprefixes_bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Advertisedprefixes_Bgppeers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **bgppeer_id**: BGP Peer ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers/{}/advertisedprefixes".format(api_version,
+                                                                                                              tenant_id,
+                                                                                                              site_id,
+                                                                                                              element_id,
+                                                                                                              bgppeer_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def aggregates_monitor(self, tenant_id=None, api_version="v3.0"):
         """
         GET Aggregates_Monitor API Function
@@ -113,37 +145,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def anynetlinks_s(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Anynetlinks_S API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
-                                                                                  tenant_id,
-                                                                                  site_id,
-                                                                                  anynetlink_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def appdefs(self, appdef_id=None, tenant_id=None, api_version="v2.0"):
+    def appdefs(self, appdef_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get all application definitions
 
@@ -151,7 +153,7 @@ class Get(object):
 
           - **appdef_id**: (optional) Application Definition ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -171,6 +173,41 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs/{}".format(api_version,
                                                                          tenant_id,
                                                                          appdef_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def appdefs_overrides(self, appdef_id, override_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Appdefs_Overrides API Function
+
+          **Parameters:**:
+
+          - **appdef_id**: Application Definition ID
+          - **override_id**: (optional) AppDef Override ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not override_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs/{}/overrides".format(api_version,
+                                                                                   tenant_id,
+                                                                                   appdef_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/appdefs/{}/overrides/{}".format(api_version,
+                                                                                      tenant_id,
+                                                                                      appdef_id,
+                                                                                      override_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -354,6 +391,144 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def bgpconfigs(self, site_id, element_id, bgpconfig_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Bgpconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **bgpconfig_id**: (optional) BGP Configuration ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not bgpconfig_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgpconfigs".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgpconfigs/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id,
+                                                                                                 bgpconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def bgppeers(self, site_id, element_id, bgppeer_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Bgppeers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **bgppeer_id**: (optional) BGP Peer ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not bgppeer_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers".format(api_version,
+                                                                                            tenant_id,
+                                                                                            site_id,
+                                                                                            element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers/{}".format(api_version,
+                                                                                               tenant_id,
+                                                                                               site_id,
+                                                                                               element_id,
+                                                                                               bgppeer_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def bgppeers_reachableprefixes(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Bgppeers_Reachableprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **bgppeer_id**: BGP Peer ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers/{}/reachableprefixes".format(api_version,
+                                                                                                             tenant_id,
+                                                                                                             site_id,
+                                                                                                             element_id,
+                                                                                                             bgppeer_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def bgppeers_status(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Bgppeers_Status API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers/status".format(api_version,
+                                                                                               tenant_id,
+                                                                                               site_id,
+                                                                                               element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def bulk_metrics_monitor(self, bulk_metric_id, tenant_id=None, api_version="v2.0"):
         """
         GET Bulk_Metrics_Monitor API Function
@@ -378,99 +553,6 @@ class Get(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/bulk_metrics/{}".format(api_version,
                                                                                   tenant_id,
                                                                                   bulk_metric_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def coreroutepeers(self, site_id, coreroutepeer_id=None, tenant_id=None, api_version="v2.1"):
-        """
-        Get config for core route peer config for a site
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **coreroutepeer_id**: (optional) Core Router peer ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        if not coreroutepeer_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers".format(api_version,
-                                                                                      tenant_id,
-                                                                                      site_id)
-        else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         coreroutepeer_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def corerouterpeers_status(self, site_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Corerouterpeers_Status API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/status".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def corerouterpeers_status_single(self, site_id, coreroutepeer_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Corerouterpeers_Status_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **coreroutepeer_id**: Core Router peer ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/coreroutepeers/{}/status".format(api_version,
-                                                                                            tenant_id,
-                                                                                            site_id,
-                                                                                            coreroutepeer_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -510,16 +592,17 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def edgeroutepeers(self, site_id, edgeroutepeer_id=None, tenant_id=None, api_version="v2.1"):
+    def element_bgppeers_status(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.0"):
         """
-        Get config for wan edge routers for a site
+        GET Element_Bgppeers_Status API Function
 
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **edgeroutepeer_id**: (optional) Edge Router peer ID
+          - **element_id**: Element (Device) ID
+          - **bgppeer_id**: BGP Peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -532,73 +615,11 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        if not edgeroutepeer_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers".format(api_version,
-                                                                                      tenant_id,
-                                                                                      site_id)
-        else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         edgeroutepeer_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def edgerouterpeers_status(self, site_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Edgerouterpeers_Status API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/status".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def edgerouterpeers_status_single(self, site_id, edgeroutepeer_id, tenant_id=None, api_version="v2.1"):
-        """
-        GET Edgerouterpeers_Status_Single API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **edgeroutepeer_id**: Edge Router peer ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/edgeroutepeers/{}/status".format(api_version,
-                                                                                            tenant_id,
-                                                                                            site_id,
-                                                                                            edgeroutepeer_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers/{}/status".format(api_version,
+                                                                                                  tenant_id,
+                                                                                                  site_id,
+                                                                                                  element_id,
+                                                                                                  bgppeer_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -708,7 +729,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.1"):
+    def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.2"):
         """
         Get specific element's ElementAccess Config
 
@@ -717,7 +738,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **elementaccessconfig_id**: (optional) Element Access Config ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -799,7 +820,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elements(self, element_id=None, tenant_id=None, api_version="v2.0"):
+    def elements(self, element_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get Elements of a tenant
 
@@ -807,7 +828,7 @@ class Get(object):
 
           - **element_id**: (optional) Element (Device) ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1228,7 +1249,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.3"):
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.4"):
         """
         Get element interface ids
 
@@ -1238,7 +1259,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: (optional) Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.3)
+          - **api_version**: API version to use (default v4.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1330,7 +1351,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def lannetworks(self, site_id, lannetwork_id=None, tenant_id=None, api_version="v2.0"):
+    def lannetworks(self, site_id, lannetwork_id=None, tenant_id=None, api_version="v3.0"):
         """
         Get LAN Networks
 
@@ -1339,7 +1360,7 @@ class Get(object):
           - **site_id**: Site ID
           - **lannetwork_id**: (optional) LAN Network ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1507,6 +1528,165 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def networkpolicyglobalprefixes(self, networkpolicyglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Networkpolicyglobalprefixes API Function
+
+          **Parameters:**:
+
+          - **networkpolicyglobalprefix_id**: (optional) Network Policy Global Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicyglobalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicyglobalprefixes".format(api_version,
+                                                                                          tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicyglobalprefixes/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             networkpolicyglobalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Networkpolicyrules API Function
+
+          **Parameters:**:
+
+          - **networkpolicyset_id**: Network Policy Set ID
+          - **networkpolicyrule_id**: (optional) Network Policy Rule ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicyrule_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysets/{}/networkpolicyrules".format(api_version,
+                                                                                                      tenant_id,
+                                                                                                      networkpolicyset_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysets/{}/networkpolicyrules/{}".format(api_version,
+                                                                                                         tenant_id,
+                                                                                                         networkpolicyset_id,
+                                                                                                         networkpolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def networkpolicysets(self, networkpolicyset_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Networkpolicysets API Function
+
+          **Parameters:**:
+
+          - **networkpolicyset_id**: (optional) Network Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicyset_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysets".format(api_version,
+                                                                                tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysets/{}".format(api_version,
+                                                                                   tenant_id,
+                                                                                   networkpolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def networkpolicysets_status(self, networkpolicyset_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Networkpolicysets_Status API Function
+
+          **Parameters:**:
+
+          - **networkpolicyset_id**: Network Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysets/{}/status".format(api_version,
+                                                                                      tenant_id,
+                                                                                      networkpolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def networkpolicysetstacks(self, networkpolicysetstack_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Networkpolicysetstacks API Function
+
+          **Parameters:**:
+
+          - **networkpolicysetstack_id**: (optional) Network Policy Set Stack ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicysetstack_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysetstacks".format(api_version,
+                                                                                     tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysetstacks/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        networkpolicysetstack_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def ntp(self, element_id, ntp_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all element NTP
@@ -1538,6 +1718,36 @@ class Get(object):
                                                                                  tenant_id,
                                                                                  element_id,
                                                                                  ntp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def ntp_status(self, element_id, ntp_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Status_Ntp API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **ntp_id**: NTP Configuration ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/ntp/{}/status".format(api_version,
+                                                                                    tenant_id,
+                                                                                    element_id,
+                                                                                    ntp_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -1869,6 +2079,165 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def prioritypolicyglobalprefixes(self, prioritypolicyglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Prioritypolicyglobalprefixes API Function
+
+          **Parameters:**:
+
+          - **prioritypolicyglobalprefix_id**: (optional) Priority Policy Global Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicyglobalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicyglobalprefixes".format(api_version,
+                                                                                           tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicyglobalprefixes/{}".format(api_version,
+                                                                                              tenant_id,
+                                                                                              prioritypolicyglobalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def prioritypolicyrules(self, prioritypolicyset_id, prioritypolicyrule_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Prioritypolicyrules API Function
+
+          **Parameters:**:
+
+          - **prioritypolicyset_id**: Priority Policy Set ID
+          - **prioritypolicyrule_id**: (optional) Priority Policy Rule ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicyrule_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysets/{}/prioritypolicyrules".format(api_version,
+                                                                                                        tenant_id,
+                                                                                                        prioritypolicyset_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysets/{}/prioritypolicyrules/{}".format(api_version,
+                                                                                                           tenant_id,
+                                                                                                           prioritypolicyset_id,
+                                                                                                           prioritypolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def prioritypolicysets(self, prioritypolicyset_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Prioritypolicysets API Function
+
+          **Parameters:**:
+
+          - **prioritypolicyset_id**: (optional) Priority Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicyset_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysets".format(api_version,
+                                                                                 tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysets/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    prioritypolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def prioritypolicysets_status(self, prioritypolicyset_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Prioritypolicysets_Status API Function
+
+          **Parameters:**:
+
+          - **prioritypolicyset_id**: Priority Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysets/{}/status".format(api_version,
+                                                                                       tenant_id,
+                                                                                       prioritypolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def prioritypolicysetstacks(self, prioritypolicysetstack_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Prioritypolicysetstacks API Function
+
+          **Parameters:**:
+
+          - **prioritypolicysetstack_id**: (optional) Priority Policy Stack ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicysetstack_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysetstacks".format(api_version,
+                                                                                      tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysetstacks/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         prioritypolicysetstack_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def profile(self, api_version="v2.0"):
         """
         Get current user profile
@@ -2062,6 +2431,158 @@ class Get(object):
                                                                                   tenant_id,
                                                                                   client_id,
                                                                                   role_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Routing_Aspathaccesslists API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **routing_aspathaccesslist_id**: (optional) Routing AS-PATH Access List ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not routing_aspathaccesslist_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_aspathaccesslists".format(api_version,
+                                                                                                             tenant_id,
+                                                                                                             site_id,
+                                                                                                             element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_aspathaccesslists/{}".format(api_version,
+                                                                                                                tenant_id,
+                                                                                                                site_id,
+                                                                                                                element_id,
+                                                                                                                routing_aspathaccesslist_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def routing_ipcommunitylists(self, site_id, element_id, routing_ipcommunitylist_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Routing_Ipcommunitylists API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **routing_ipcommunitylist_id**: (optional) Routing IP Community List ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not routing_ipcommunitylist_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_ipcommunitylists".format(api_version,
+                                                                                                            tenant_id,
+                                                                                                            site_id,
+                                                                                                            element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_ipcommunitylists/{}".format(api_version,
+                                                                                                               tenant_id,
+                                                                                                               site_id,
+                                                                                                               element_id,
+                                                                                                               routing_ipcommunitylist_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def routing_prefixlists(self, site_id, element_id, routing_prefixlist_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Routing_Prefixlists API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **routing_prefixlist_id**: (optional) Routing IP Prefix List ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not routing_prefixlist_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_prefixlists".format(api_version,
+                                                                                                       tenant_id,
+                                                                                                       site_id,
+                                                                                                       element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_prefixlists/{}".format(api_version,
+                                                                                                          tenant_id,
+                                                                                                          site_id,
+                                                                                                          element_id,
+                                                                                                          routing_prefixlist_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Routing_Routemaps API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **routing_routemap_id**: (optional) Routing Route Map ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not routing_routemap_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_routemaps".format(api_version,
+                                                                                                     tenant_id,
+                                                                                                     site_id,
+                                                                                                     element_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/routing_routemaps/{}".format(api_version,
+                                                                                                        tenant_id,
+                                                                                                        site_id,
+                                                                                                        element_id,
+                                                                                                        routing_routemap_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -2261,6 +2782,36 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def site_anynetlinks(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Anynetlinks_S API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **anynetlink_id**: Anynet (Secure Fabric) Link ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/anynetlinks/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  site_id,
+                                                                                  anynetlink_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def site_extensions(self, site_id, extension_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all site level extensions from NB
@@ -2292,6 +2843,76 @@ class Get(object):
                                                                                      tenant_id,
                                                                                      site_id,
                                                                                      extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Networkpolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **networkpolicylocalprefix_id**: (optional) Network Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicylocalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/networkpolicylocalprefixes".format(api_version,
+                                                                                                  tenant_id,
+                                                                                                  site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/networkpolicylocalprefixes/{}".format(api_version,
+                                                                                                     tenant_id,
+                                                                                                     site_id,
+                                                                                                     networkpolicylocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Prioritypolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **prioritypolicylocalprefix_id**: (optional) Priority Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicylocalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prioritypolicylocalprefixes".format(api_version,
+                                                                                                   tenant_id,
+                                                                                                   site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prioritypolicylocalprefixes/{}".format(api_version,
+                                                                                                      tenant_id,
+                                                                                                      site_id,
+                                                                                                      prioritypolicylocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -2352,7 +2973,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sites(self, site_id=None, tenant_id=None, api_version="v4.1"):
+    def sites(self, site_id=None, tenant_id=None, api_version="v4.2"):
         """
         Get Sites of a tenant
 
@@ -2360,7 +2981,7 @@ class Get(object):
 
           - **site_id**: (optional) Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.1)
+          - **api_version**: API version to use (default v4.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2617,36 +3238,6 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def status_ntp(self, element_id, ntp_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Status_Ntp API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **ntp_id**: NTP Configuration ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/ntp/{}/status".format(api_version,
-                                                                                    tenant_id,
-                                                                                    element_id,
-                                                                                    ntp_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
     def sys_metrics_monitor(self, tenant_id=None, api_version="v2.0"):
         """
         GET Sys_Metrics_Monitor API Function
@@ -2817,6 +3408,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def tenant_networkpolicylocalprefixes(self, networkpolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Networkpolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **networkpolicylocalprefix_id**: (optional) Network Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not networkpolicylocalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicylocalprefixes".format(api_version,
+                                                                                         tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicylocalprefixes/{}".format(api_version,
+                                                                                            tenant_id,
+                                                                                            networkpolicylocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def tenant_operators(self, operator_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get a list of tenant operators
@@ -2903,6 +3526,38 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/permissions/{}".format(api_version,
                                                                              tenant_id,
                                                                              permission_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def tenant_prioritypolicylocalprefixes(self, prioritypolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Prioritypolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **prioritypolicylocalprefix_id**: (optional) Priority Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not prioritypolicylocalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicylocalprefixes".format(api_version,
+                                                                                          tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicylocalprefixes/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             prioritypolicylocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -3338,6 +3993,9 @@ class Get(object):
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
 
+    anynetlinks_s = site_anynetlinks
+    """ Backwards-compatibility alias of `anynetlinks_s` to `site_anynetlinks`"""
+
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
 
@@ -3359,8 +4017,17 @@ class Get(object):
     extensions_s = site_extensions
     """ Backwards-compatibility alias of `extensions_s` to `site_extensions`"""
 
+    networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
+    """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""
+
+    networkpolicylocalprefixes_t = tenant_networkpolicylocalprefixes
+    """ Backwards-compatibility alias of `networkpolicylocalprefixes_t` to `tenant_networkpolicylocalprefixes`"""
+
     operators_t = tenant_operators
     """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""
+
+    overrides_appdefs = appdefs_overrides
+    """ Backwards-compatibility alias of `overrides_appdefs` to `appdefs_overrides`"""
 
     passages_e = element_passages
     """ Backwards-compatibility alias of `passages_e` to `element_passages`"""
@@ -3377,20 +4044,23 @@ class Get(object):
     permissions_t = tenant_permissions
     """ Backwards-compatibility alias of `permissions_t` to `tenant_permissions`"""
 
+    prioritypolicylocalprefixes_s = site_prioritypolicylocalprefixes
+    """ Backwards-compatibility alias of `prioritypolicylocalprefixes_s` to `site_prioritypolicylocalprefixes`"""
+
+    prioritypolicylocalprefixes_t = tenant_prioritypolicylocalprefixes
+    """ Backwards-compatibility alias of `prioritypolicylocalprefixes_t` to `tenant_prioritypolicylocalprefixes`"""
+
+    reachableprefixes_bgppeers = bgppeers_reachableprefixes
+    """ Backwards-compatibility alias of `reachableprefixes_bgppeers` to `bgppeers_reachableprefixes`"""
+
     sessions_t = operator_sessions
     """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
 
-    status_coreroutepeers_i = corerouterpeers_status_single
-    """ Backwards-compatibility alias of `status_coreroutepeers_i` to `corerouterpeers_status_single`"""
+    status_bgppeers = bgppeers_status
+    """ Backwards-compatibility alias of `status_bgppeers` to `bgppeers_status`"""
 
-    status_coreroutepeers_s = corerouterpeers_status
-    """ Backwards-compatibility alias of `status_coreroutepeers_s` to `corerouterpeers_status`"""
-
-    status_edgeroutepeers_i = edgerouterpeers_status_single
-    """ Backwards-compatibility alias of `status_edgeroutepeers_i` to `edgerouterpeers_status_single`"""
-
-    status_edgeroutepeers_s = edgerouterpeers_status
-    """ Backwards-compatibility alias of `status_edgeroutepeers_s` to `edgerouterpeers_status`"""
+    status_bgppeers_i = element_bgppeers_status
+    """ Backwards-compatibility alias of `status_bgppeers_i` to `element_bgppeers_status`"""
 
     status_hubclustermembers = hubclustermember_status
     """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
@@ -3401,8 +4071,17 @@ class Get(object):
     status_interfaces = interfaces_status
     """ Backwards-compatibility alias of `status_interfaces` to `interfaces_status`"""
 
+    status_networkpolicysets = networkpolicysets_status
+    """ Backwards-compatibility alias of `status_networkpolicysets` to `networkpolicysets_status`"""
+
+    status_ntp = ntp_status
+    """ Backwards-compatibility alias of `status_ntp` to `ntp_status`"""
+
     status_policysets = policysets_status
     """ Backwards-compatibility alias of `status_policysets` to `policysets_status`"""
+
+    status_prioritypolicysets = prioritypolicysets_status
+    """ Backwards-compatibility alias of `status_prioritypolicysets` to `prioritypolicysets_status`"""
 
     status_s = site_status
     """ Backwards-compatibility alias of `status_s` to `site_status`"""
@@ -3421,546 +4100,4 @@ class Get(object):
 
     tokens_vfflicenses = vfflicense_tokens
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
-
-    # "XYZ_single" compatibility maps below, mapping what is available previously
-    # with a deprecated message.
-
-    def access_elementusers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `access_elementusers_single` to `access_elementusers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: access_elementusers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use access_elementusers() instead.")
-        return self.access_elementusers(*args, **kwargs)
-
-    def appdefs_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `appdefs_single` to `appdefs`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: appdefs_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use appdefs() instead.")
-        return self.appdefs(*args, **kwargs)
-
-    def appdefs_version_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `appdefs_version_single` to `appdefs_version`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: appdefs_version_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use appdefs_version() instead.")
-        return self.appdefs_version(*args, **kwargs)
-
-    def coreroutepeers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `coreroutepeers_single` to `coreroutepeers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: coreroutepeers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use coreroutepeers() instead.")
-        return self.coreroutepeers(*args, **kwargs)
-
-    def dhcpservers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `dhcpservers_single` to `dhcpservers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: dhcpservers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use dhcpservers() instead.")
-        return self.dhcpservers(*args, **kwargs)
-
-    def edgeroutepeers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `edgeroutepeers_single` to `edgeroutepeers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: edgeroutepeers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use edgeroutepeers() instead.")
-        return self.edgeroutepeers(*args, **kwargs)
-
-    def element_extensions_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `element_extensions_single` to `element_extensions`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: element_extensions_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use element_extensions() instead.")
-        return self.element_extensions(*args, **kwargs)
-
-    def element_images_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `element_images_single` to `element_images`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: element_images_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use element_images() instead.")
-        return self.element_images(*args, **kwargs)
-
-    def element_passages_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `element_passages_single` to `element_passages`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: element_passages_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use element_passages() instead.")
-        return self.element_passages(*args, **kwargs)
-
-    def elementaccessconfigs_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `elementaccessconfigs_single` to `elementaccessconfigs`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: elementaccessconfigs_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use elementaccessconfigs() instead.")
-        return self.elementaccessconfigs(*args, **kwargs)
-
-    def elements_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `elements_single` to `elements`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: elements_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use elements() instead.")
-        return self.elements(*args, **kwargs)
-
-    def elementusers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `elementusers_single` to `elementusers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: elementusers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use elementusers() instead.")
-        return self.elementusers(*args, **kwargs)
-
-    def globalprefixfilters_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `globalprefixfilters_single` to `globalprefixfilters`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: globalprefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use globalprefixfilters() instead.")
-        return self.globalprefixfilters(*args, **kwargs)
-
-    def hubclustermembers_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `hubclustermembers_single` to `hubclustermembers`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: hubclustermembers_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use hubclustermembers() instead.")
-        return self.hubclustermembers(*args, **kwargs)
-
-    def hubclusters_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `hubclusters_single` to `hubclusters`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: hubclusters_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use hubclusters() instead.")
-        return self.hubclusters(*args, **kwargs)
-
-    def idps_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `idps_single` to `idps`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: idps_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use idps() instead.")
-        return self.idps(*args, **kwargs)
-
-    def interfaces_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `interfaces_single` to `interfaces`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: interfaces_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use interfaces() instead.")
-        return self.interfaces(*args, **kwargs)
-
-    def lannetworks_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `lannetworks_single` to `lannetworks`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: lannetworks_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use lannetworks() instead.")
-        return self.lannetworks(*args, **kwargs)
-
-    def localprefixfilters_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `localprefixfilters_single` to `localprefixfilters`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: localprefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use localprefixfilters() instead.")
-        return self.localprefixfilters(*args, **kwargs)
-
-    def machines_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `machines_single` to `machines`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: machines_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use machines() instead.")
-        return self.machines(*args, **kwargs)
-
-    def networkcontexts_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `networkcontexts_single` to `networkcontexts`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: networkcontexts_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use networkcontexts() instead.")
-        return self.networkcontexts(*args, **kwargs)
-
-    def pathgroups_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `pathgroups_single` to `pathgroups`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: pathgroups_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use pathgroups() instead.")
-        return self.pathgroups(*args, **kwargs)
-
-    def policyrules_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `policyrules_single` to `policyrules`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: policyrules_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use policyrules() instead.")
-        return self.policyrules(*args, **kwargs)
-
-    def policysets_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `policysets_single` to `policysets`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: policysets_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use policysets() instead.")
-        return self.policysets(*args, **kwargs)
-
-    def prefixfilters_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `prefixfilters_single` to `prefixfilters`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: prefixfilters_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use prefixfilters() instead.")
-        return self.prefixfilters(*args, **kwargs)
-
-    def roles_clients_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `roles_clients_single` to `roles_clients`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: roles_clients_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use roles_clients() instead.")
-        return self.roles_clients(*args, **kwargs)
-
-    def roles_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `roles_single` to `roles`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: roles_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use roles() instead.")
-        return self.roles(*args, **kwargs)
-
-    def securitypolicyrules_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `securitypolicyrules_single` to `securitypolicyrules`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: securitypolicyrules_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use securitypolicyrules() instead.")
-        return self.securitypolicyrules(*args, **kwargs)
-
-    def securitypolicysets_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `securitypolicysets_single` to `securitypolicysets`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: securitypolicysets_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use securitypolicysets() instead.")
-        return self.securitypolicysets(*args, **kwargs)
-
-    def securityzones_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `securityzones_single` to `securityzones`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: securityzones_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use securityzones() instead.")
-        return self.securityzones(*args, **kwargs)
-
-    def servicebindingmaps_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `servicebindingmaps_single` to `servicebindingmaps`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: servicebindingmaps_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use servicebindingmaps() instead.")
-        return self.servicebindingmaps(*args, **kwargs)
-
-    def serviceendpoints_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `serviceendpoints_single` to `serviceendpoints`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: serviceendpoints_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use serviceendpoints() instead.")
-        return self.serviceendpoints(*args, **kwargs)
-
-    def servicelabels_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `servicelabels_single` to `servicelabels`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: servicelabels_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use servicelabels() instead.")
-        return self.servicelabels(*args, **kwargs)
-
-    def site_extensions_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `site_extensions_single` to `site_extensions`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: site_extensions_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use site_extensions() instead.")
-        return self.site_extensions(*args, **kwargs)
-
-    def sites_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `sites_single` to `sites`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: sites_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use sites() instead.")
-        return self.sites(*args, **kwargs)
-
-    def sitesecurityzones_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `sitesecurityzones_single` to `sitesecurityzones`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: sitesecurityzones_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use sitesecurityzones() instead.")
-        return self.sitesecurityzones(*args, **kwargs)
-
-    def snmpagents_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `snmpagents_single` to `snmpagents`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: snmpagents_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use snmpagents() instead.")
-        return self.snmpagents(*args, **kwargs)
-
-    def snmptraps_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `snmptraps_single` to `snmptraps`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: snmptraps_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use snmptraps() instead.")
-        return self.snmptraps(*args, **kwargs)
-
-    def staticroutes_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `staticroutes_single` to `staticroutes`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: staticroutes_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use staticroutes() instead.")
-        return self.staticroutes(*args, **kwargs)
-
-    def tenant_operators_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `tenant_operators_single` to `tenant_operators`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: tenant_operators_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use tenant_operators() instead.")
-        return self.tenant_operators(*args, **kwargs)
-
-    def tenant_permissions_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `tenant_permissions_single` to `tenant_permissions`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: tenant_permissions_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use tenant_permissions() instead.")
-        return self.tenant_permissions(*args, **kwargs)
-
-    def users_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `users_single` to `users`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: users_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use users() instead.")
-        return self.users(*args, **kwargs)
-
-    def vfflicense_tokens_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `vfflicense_tokens_single` to `vfflicense_tokens`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: vfflicense_tokens_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use vfflicense_tokens() instead.")
-        return self.vfflicense_tokens(*args, **kwargs)
-
-    def vfflicenses_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `vfflicenses_single` to `vfflicenses`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: vfflicenses_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use vfflicenses() instead.")
-        return self.vfflicenses(*args, **kwargs)
-
-    def waninterfacelabels_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `waninterfacelabels_single` to `waninterfacelabels`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: waninterfacelabels_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use waninterfacelabels() instead.")
-        return self.waninterfacelabels(*args, **kwargs)
-
-    def waninterfaces_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `waninterfaces_single` to `waninterfaces`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: waninterfaces_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use waninterfaces() instead.")
-        return self.waninterfaces(*args, **kwargs)
-
-    def wannetworks_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `wannetworks_single` to `wannetworks`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: wannetworks_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use wannetworks() instead.")
-        return self.wannetworks(*args, **kwargs)
-
-    def wanoverlaychannels_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `wanoverlaychannels_single` to `wanoverlaychannels`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: wanoverlaychannels_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use wanoverlaychannels() instead.")
-        return self.wanoverlaychannels(*args, **kwargs)
-
-    def wanoverlays_single(self, *args, **kwargs):
-        """
-        Backwards-compatibility alias of `wanoverlays_single` to `wanoverlays`.
-
-        **TO BE REMOVED** on Sept 1, 2018.
-
-        """
-        api_logger.warning("WARN: wanoverlays_single() is deprecated, and will be removed on Sept 1, 2018."
-                           " Use wanoverlays() instead.")
-        return self.wanoverlays(*args, **kwargs)
 
