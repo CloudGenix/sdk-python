@@ -2646,6 +2646,7 @@ table {
     <li class="mono"><a href="#cloudgenix.put_api.Put.waninterfaces">waninterfaces</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.wannetworks">wannetworks</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.wanoverlays">wanoverlays</a></li>
+    <li class="mono"><a href="#cloudgenix.put_api.Put.ws_extensions">ws_extensions</a></li>
   </ul>
 
         </li>
@@ -2788,7 +2789,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Appdefs_Overrides API Function</span>
+<span class="sd">        Update a application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2848,7 +2849,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Bgpconfigs API Function</span>
+<span class="sd">        Updates BGP config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2881,7 +2882,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Bgppeers API Function</span>
+<span class="sd">        Updates BGP Peer config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2945,7 +2946,7 @@ table {
 
     <span class="k">def</span> <span class="nf">element_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Admin_State_I API Function</span>
+<span class="sd">        PUT Element_Admin_State API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3305,7 +3306,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provision an element interface</span>
 
@@ -3316,7 +3317,7 @@ table {
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3458,7 +3459,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Update a Network global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3487,7 +3488,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicyrules API Function</span>
+<span class="sd">        Update network policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3518,7 +3519,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicysets API Function</span>
+<span class="sd">        Update Network Policy Set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3547,7 +3548,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicysetstacks API Function</span>
+<span class="sd">        Update a NetworkPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3785,7 +3786,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Update a  Priority global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3814,7 +3815,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicyrules API Function</span>
+<span class="sd">        Update priority policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3845,7 +3846,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicysets API Function</span>
+<span class="sd">        Update Priority Policy Set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3874,7 +3875,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicysetstacks API Function</span>
+<span class="sd">        Update a PriorityPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3932,7 +3933,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Updates Access List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3965,7 +3966,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Updates Community List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3998,7 +3999,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Prefixlists API Function</span>
+<span class="sd">        Updates Prefix List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4031,7 +4032,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Routemaps API Function</span>
+<span class="sd">        Updates Route Map</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4240,7 +4241,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Admin_State_S API Function</span>
+<span class="sd">        PUT Site_Admin_State API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4300,7 +4301,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Update an existing Site Network policy local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4331,7 +4332,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Update an existing Site Priority policy local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4670,7 +4671,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Update a  Network Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4757,7 +4758,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Update a  Priority Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4900,9 +4901,9 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Waninterfaces API Function</span>
+<span class="sd">        Update the site WAN interface</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4910,7 +4911,7 @@ table {
 <span class="sd">          - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4989,6 +4990,35 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PUT Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: Extension ID</span>
+<span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -5006,6 +5036,9 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -5135,7 +5168,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Appdefs_Overrides API Function</span>
+<span class="sd">        Update a application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5195,7 +5228,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Bgpconfigs API Function</span>
+<span class="sd">        Updates BGP config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5228,7 +5261,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Bgppeers API Function</span>
+<span class="sd">        Updates BGP Peer config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5292,7 +5325,7 @@ table {
 
     <span class="k">def</span> <span class="nf">element_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Admin_State_I API Function</span>
+<span class="sd">        PUT Element_Admin_State API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5652,7 +5685,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provision an element interface</span>
 
@@ -5663,7 +5696,7 @@ table {
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5805,7 +5838,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Update a Network global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5834,7 +5867,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicyrules API Function</span>
+<span class="sd">        Update network policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5865,7 +5898,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicysets API Function</span>
+<span class="sd">        Update Network Policy Set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5894,7 +5927,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Networkpolicysetstacks API Function</span>
+<span class="sd">        Update a NetworkPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6132,7 +6165,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Update a  Priority global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6161,7 +6194,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicyrules API Function</span>
+<span class="sd">        Update priority policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6192,7 +6225,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicysets API Function</span>
+<span class="sd">        Update Priority Policy Set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6221,7 +6254,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Prioritypolicysetstacks API Function</span>
+<span class="sd">        Update a PriorityPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6279,7 +6312,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Updates Access List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6312,7 +6345,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Updates Community List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6345,7 +6378,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Prefixlists API Function</span>
+<span class="sd">        Updates Prefix List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6378,7 +6411,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Routing_Routemaps API Function</span>
+<span class="sd">        Updates Route Map</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6587,7 +6620,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Admin_State_S API Function</span>
+<span class="sd">        PUT Site_Admin_State API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6647,7 +6680,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Update an existing Site Network policy local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6678,7 +6711,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Update an existing Site Priority policy local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7017,7 +7050,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Update a  Network Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7104,7 +7137,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Update a  Priority Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7247,9 +7280,9 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Waninterfaces API Function</span>
+<span class="sd">        Update the site WAN interface</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7257,7 +7290,7 @@ table {
 <span class="sd">          - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -7336,6 +7369,35 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PUT Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: Extension ID</span>
+<span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -7353,6 +7415,9 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -7444,6 +7509,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>extensions_s</code> to <code>site_extensions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.put_api.Put.extensions_ws">
+            <p class="name">var <span class="ident">extensions_ws</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>extensions_ws</code> to <code>ws_extensions</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -7660,7 +7736,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Appdefs_Overrides API Function</p>
+    <div class="desc"><p>Update a application definition overrides for system appdef</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>appdef_id</strong>: Application Definition ID</li>
@@ -7675,7 +7751,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.appdefs_overrides" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Appdefs_Overrides API Function</span>
+<span class="sd">    Update a application definition overrides for system appdef</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **appdef_id**: Application Definition ID</span>
 <span class="sd">      - **override_id**: AppDef Override ID</span>
@@ -7763,7 +7839,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Bgpconfigs API Function</p>
+    <div class="desc"><p>Updates BGP config</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -7779,7 +7855,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.bgpconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Bgpconfigs API Function</span>
+<span class="sd">    Updates BGP config</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -7819,7 +7895,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Bgppeers API Function</p>
+    <div class="desc"><p>Updates BGP Peer config</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -7835,7 +7911,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.bgppeers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Bgppeers API Function</span>
+<span class="sd">    Updates BGP Peer config</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -7928,7 +8004,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Admin_State_I API Function</p>
+    <div class="desc"><p>PUT Element_Admin_State API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -7943,7 +8019,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.element_admin_state" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Admin_State_I API Function</span>
+<span class="sd">    PUT Element_Admin_State API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -8543,7 +8619,7 @@ table {
             
   <div class="item" id="cloudgenix.put_api.Put.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, data, tenant_id=None, api_version=&#39;v4.4&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, data, tenant_id=None, api_version=&#39;v4.5&#39;)</p>
     </div>
     
 
@@ -8557,13 +8633,13 @@ table {
 <li><strong>interface_id</strong>: Interface ID</li>
 <li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.4)</li>
+<li><strong>api_version</strong>: API version to use (default v4.5)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provision an element interface</span>
 <span class="sd">      **Parameters:**:</span>
@@ -8572,7 +8648,7 @@ table {
 <span class="sd">      - **interface_id**: Interface ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.5)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -8808,7 +8884,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Networkpolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Update a Network global prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyglobalprefix_id</strong>: Network Policy Global Prefix ID</li>
@@ -8822,7 +8898,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.networkpolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Networkpolicyglobalprefixes API Function</span>
+<span class="sd">    Update a Network global prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyglobalprefix_id**: Network Policy Global Prefix ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -8858,7 +8934,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Networkpolicyrules API Function</p>
+    <div class="desc"><p>Update network policy rule of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: Network Policy Set ID</li>
@@ -8873,7 +8949,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.networkpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Networkpolicyrules API Function</span>
+<span class="sd">    Update network policy rule of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: Network Policy Set ID</span>
 <span class="sd">      - **networkpolicyrule_id**: Network Policy Rule ID</span>
@@ -8911,7 +8987,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Networkpolicysets API Function</p>
+    <div class="desc"><p>Update Network Policy Set.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: Network Policy Set ID</li>
@@ -8925,7 +9001,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.networkpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Networkpolicysets API Function</span>
+<span class="sd">    Update Network Policy Set.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: Network Policy Set ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -8961,7 +9037,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Networkpolicysetstacks API Function</p>
+    <div class="desc"><p>Update a NetworkPolicySetStack</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicysetstack_id</strong>: Network Policy Set Stack ID</li>
@@ -8975,7 +9051,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.networkpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Networkpolicysetstacks API Function</span>
+<span class="sd">    Update a NetworkPolicySetStack</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicysetstack_id**: Network Policy Set Stack ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -9370,7 +9446,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Prioritypolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Update a  Priority global prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyglobalprefix_id</strong>: Priority Policy Global Prefix ID</li>
@@ -9384,7 +9460,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.prioritypolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">    Update a  Priority global prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyglobalprefix_id**: Priority Policy Global Prefix ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -9420,7 +9496,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Prioritypolicyrules API Function</p>
+    <div class="desc"><p>Update priority policy rule of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: Priority Policy Set ID</li>
@@ -9435,7 +9511,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.prioritypolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Prioritypolicyrules API Function</span>
+<span class="sd">    Update priority policy rule of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: Priority Policy Set ID</span>
 <span class="sd">      - **prioritypolicyrule_id**: Priority Policy Rule ID</span>
@@ -9473,7 +9549,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Prioritypolicysets API Function</p>
+    <div class="desc"><p>Update Priority Policy Set.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: Priority Policy Set ID</li>
@@ -9487,7 +9563,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.prioritypolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Prioritypolicysets API Function</span>
+<span class="sd">    Update Priority Policy Set.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: Priority Policy Set ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -9523,7 +9599,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Prioritypolicysetstacks API Function</p>
+    <div class="desc"><p>Update a PriorityPolicySetStack</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicysetstack_id</strong>: Priority Policy Stack ID</li>
@@ -9537,7 +9613,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.prioritypolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Prioritypolicysetstacks API Function</span>
+<span class="sd">    Update a PriorityPolicySetStack</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicysetstack_id**: Priority Policy Stack ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -9623,7 +9699,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Routing_Aspathaccesslists API Function</p>
+    <div class="desc"><p>Updates Access List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9639,7 +9715,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.routing_aspathaccesslists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Routing_Aspathaccesslists API Function</span>
+<span class="sd">    Updates Access List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -9679,7 +9755,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Routing_Ipcommunitylists API Function</p>
+    <div class="desc"><p>Updates Community List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9695,7 +9771,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.routing_ipcommunitylists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Routing_Ipcommunitylists API Function</span>
+<span class="sd">    Updates Community List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -9735,7 +9811,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Routing_Prefixlists API Function</p>
+    <div class="desc"><p>Updates Prefix List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9751,7 +9827,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.routing_prefixlists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Routing_Prefixlists API Function</span>
+<span class="sd">    Updates Prefix List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -9791,7 +9867,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Routing_Routemaps API Function</p>
+    <div class="desc"><p>Updates Route Map</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9807,7 +9883,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.routing_routemaps" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Routing_Routemaps API Function</span>
+<span class="sd">    Updates Route Map</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -10150,7 +10226,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Admin_State_S API Function</p>
+    <div class="desc"><p>PUT Site_Admin_State API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -10164,7 +10240,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.site_admin_state" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_admin_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Admin_State_S API Function</span>
+<span class="sd">    PUT Site_Admin_State API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -10253,7 +10329,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Site_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Update an existing Site Network policy local prefix</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -10268,7 +10344,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.site_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Update an existing Site Network policy local prefix</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: Network Policy Local Prefix ID</span>
@@ -10306,7 +10382,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Site_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Update an existing Site Priority policy local prefix</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -10321,7 +10397,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.site_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Update an existing Site Priority policy local prefix</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: Priority Policy Local Prefix ID</span>
@@ -10886,7 +10962,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Tenant_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Update a  Network Policy local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicylocalprefix_id</strong>: Network Policy Local Prefix ID</li>
@@ -10900,7 +10976,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.tenant_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Update a  Network Policy local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: Network Policy Local Prefix ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -11036,7 +11112,7 @@ table {
 
     
   
-    <div class="desc"><p>PUT Tenant_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Update a  Priority Policy local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicylocalprefix_id</strong>: Priority Policy Local Prefix ID</li>
@@ -11050,7 +11126,7 @@ table {
   <div id="source-cloudgenix.put_api.Put.tenant_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Update a  Priority Policy local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: Priority Policy Local Prefix ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
@@ -11280,34 +11356,34 @@ table {
             
   <div class="item" id="cloudgenix.put_api.Put.waninterfaces">
     <div class="name def">
-    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id, data, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id, data, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>PUT Waninterfaces API Function</p>
+    <div class="desc"><p>Update the site WAN interface</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>waninterface_id</strong>: WAN Interface ID</li>
 <li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.waninterfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.waninterfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Waninterfaces API Function</span>
+<span class="sd">    Update the site WAN interface</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -11421,6 +11497,56 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/wanoverlays/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                      <span class="n">tenant_id</span><span class="p">,</span>
                                                                      <span class="n">wanoverlay_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.put_api.Put.ws_extensions">
+    <div class="name def">
+    <p>def <span class="ident">ws_extensions</span>(</p><p>self, extension_id, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>PUT Ws_Extensions API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>extension_id</strong>: Extension ID</li>
+<li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.ws_extensions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.put_api.Put.ws_extensions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    PUT Ws_Extensions API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **extension_id**: Extension ID</span>
+<span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">,</span>
+                                                                       <span class="n">extension_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </pre></div>

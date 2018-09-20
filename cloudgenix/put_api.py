@@ -114,7 +114,7 @@ class Put(object):
 
     def appdefs_overrides(self, appdef_id, override_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Appdefs_Overrides API Function
+        Update a application definition overrides for system appdef
 
           **Parameters:**:
 
@@ -174,7 +174,7 @@ class Put(object):
 
     def bgpconfigs(self, site_id, element_id, bgpconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Bgpconfigs API Function
+        Updates BGP config
 
           **Parameters:**:
 
@@ -207,7 +207,7 @@ class Put(object):
 
     def bgppeers(self, site_id, element_id, bgppeer_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Bgppeers API Function
+        Updates BGP Peer config
 
           **Parameters:**:
 
@@ -271,7 +271,7 @@ class Put(object):
 
     def element_admin_state(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Admin_State_I API Function
+        PUT Element_Admin_State API Function
 
           **Parameters:**:
 
@@ -631,7 +631,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.4"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.5"):
         """
         Provision an element interface
 
@@ -642,7 +642,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -784,7 +784,7 @@ class Put(object):
 
     def networkpolicyglobalprefixes(self, networkpolicyglobalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Networkpolicyglobalprefixes API Function
+        Update a Network global prefix.
 
           **Parameters:**:
 
@@ -813,7 +813,7 @@ class Put(object):
 
     def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Networkpolicyrules API Function
+        Update network policy rule of tenant.
 
           **Parameters:**:
 
@@ -844,7 +844,7 @@ class Put(object):
 
     def networkpolicysets(self, networkpolicyset_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Networkpolicysets API Function
+        Update Network Policy Set.
 
           **Parameters:**:
 
@@ -873,7 +873,7 @@ class Put(object):
 
     def networkpolicysetstacks(self, networkpolicysetstack_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Networkpolicysetstacks API Function
+        Update a NetworkPolicySetStack
 
           **Parameters:**:
 
@@ -1111,7 +1111,7 @@ class Put(object):
 
     def prioritypolicyglobalprefixes(self, prioritypolicyglobalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Prioritypolicyglobalprefixes API Function
+        Update a  Priority global prefix.
 
           **Parameters:**:
 
@@ -1140,7 +1140,7 @@ class Put(object):
 
     def prioritypolicyrules(self, prioritypolicyset_id, prioritypolicyrule_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Prioritypolicyrules API Function
+        Update priority policy rule of tenant.
 
           **Parameters:**:
 
@@ -1171,7 +1171,7 @@ class Put(object):
 
     def prioritypolicysets(self, prioritypolicyset_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Prioritypolicysets API Function
+        Update Priority Policy Set.
 
           **Parameters:**:
 
@@ -1200,7 +1200,7 @@ class Put(object):
 
     def prioritypolicysetstacks(self, prioritypolicysetstack_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Prioritypolicysetstacks API Function
+        Update a PriorityPolicySetStack
 
           **Parameters:**:
 
@@ -1258,7 +1258,7 @@ class Put(object):
 
     def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Routing_Aspathaccesslists API Function
+        Updates Access List
 
           **Parameters:**:
 
@@ -1291,7 +1291,7 @@ class Put(object):
 
     def routing_ipcommunitylists(self, site_id, element_id, routing_ipcommunitylist_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Routing_Ipcommunitylists API Function
+        Updates Community List
 
           **Parameters:**:
 
@@ -1324,7 +1324,7 @@ class Put(object):
 
     def routing_prefixlists(self, site_id, element_id, routing_prefixlist_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Routing_Prefixlists API Function
+        Updates Prefix List
 
           **Parameters:**:
 
@@ -1357,7 +1357,7 @@ class Put(object):
 
     def routing_routemaps(self, site_id, element_id, routing_routemap_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Routing_Routemaps API Function
+        Updates Route Map
 
           **Parameters:**:
 
@@ -1566,7 +1566,7 @@ class Put(object):
 
     def site_admin_state(self, site_id, data, tenant_id=None, api_version="v3.0"):
         """
-        PUT Admin_State_S API Function
+        PUT Site_Admin_State API Function
 
           **Parameters:**:
 
@@ -1626,7 +1626,7 @@ class Put(object):
 
     def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Site_Networkpolicylocalprefixes API Function
+        Update an existing Site Network policy local prefix
 
           **Parameters:**:
 
@@ -1657,7 +1657,7 @@ class Put(object):
 
     def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Site_Prioritypolicylocalprefixes API Function
+        Update an existing Site Priority policy local prefix
 
           **Parameters:**:
 
@@ -1996,7 +1996,7 @@ class Put(object):
 
     def tenant_networkpolicylocalprefixes(self, networkpolicylocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Tenant_Networkpolicylocalprefixes API Function
+        Update a  Network Policy local prefix.
 
           **Parameters:**:
 
@@ -2083,7 +2083,7 @@ class Put(object):
 
     def tenant_prioritypolicylocalprefixes(self, prioritypolicylocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Tenant_Prioritypolicylocalprefixes API Function
+        Update a  Priority Policy local prefix.
 
           **Parameters:**:
 
@@ -2226,9 +2226,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.1"):
+    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.2"):
         """
-        PUT Waninterfaces API Function
+        Update the site WAN interface
 
           **Parameters:**:
 
@@ -2236,7 +2236,7 @@ class Put(object):
           - **waninterface_id**: WAN Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2315,6 +2315,35 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def ws_extensions(self, extension_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ws_Extensions API Function
+
+          **Parameters:**:
+
+          - **extension_id**: Extension ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ws/extensions/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
 
@@ -2332,6 +2361,9 @@ class Put(object):
 
     extensions_s = site_extensions
     """ Backwards-compatibility alias of `extensions_s` to `site_extensions`"""
+
+    extensions_ws = ws_extensions
+    """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
     networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""

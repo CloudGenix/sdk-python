@@ -179,7 +179,7 @@ class Get(object):
 
     def appdefs_overrides(self, appdef_id, override_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Appdefs_Overrides API Function
+        Get application definition overrides for system appdef
 
           **Parameters:**:
 
@@ -393,7 +393,7 @@ class Get(object):
 
     def bgpconfigs(self, site_id, element_id, bgpconfig_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Bgpconfigs API Function
+        Get all BGP configs from NB
 
           **Parameters:**:
 
@@ -431,7 +431,7 @@ class Get(object):
 
     def bgppeers(self, site_id, element_id, bgppeer_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Bgppeers API Function
+        Get all BGP Peer configs from NB
 
           **Parameters:**:
 
@@ -1249,7 +1249,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.4"):
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.5"):
         """
         Get element interface ids
 
@@ -1259,7 +1259,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: (optional) Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1530,7 +1530,7 @@ class Get(object):
 
     def networkpolicyglobalprefixes(self, networkpolicyglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Networkpolicyglobalprefixes API Function
+        Get all Network policy global prefixes.
 
           **Parameters:**:
 
@@ -1562,7 +1562,7 @@ class Get(object):
 
     def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Networkpolicyrules API Function
+        Get network policy rules of tenant
 
           **Parameters:**:
 
@@ -1597,7 +1597,7 @@ class Get(object):
 
     def networkpolicysets(self, networkpolicyset_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Networkpolicysets API Function
+        Get all network policy sets of tenant.
 
           **Parameters:**:
 
@@ -1629,7 +1629,7 @@ class Get(object):
 
     def networkpolicysets_status(self, networkpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Networkpolicysets_Status API Function
+        Get a specific network policy set status of tenant.
 
           **Parameters:**:
 
@@ -1657,7 +1657,7 @@ class Get(object):
 
     def networkpolicysetstacks(self, networkpolicysetstack_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Networkpolicysetstacks API Function
+        Get all network policy set stacks of tenant.
 
           **Parameters:**:
 
@@ -1724,7 +1724,7 @@ class Get(object):
 
     def ntp_status(self, element_id, ntp_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Status_Ntp API Function
+        GET Ntp_Status API Function
 
           **Parameters:**:
 
@@ -2081,7 +2081,7 @@ class Get(object):
 
     def prioritypolicyglobalprefixes(self, prioritypolicyglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Prioritypolicyglobalprefixes API Function
+        Get all Priority policy prefixes.
 
           **Parameters:**:
 
@@ -2113,7 +2113,7 @@ class Get(object):
 
     def prioritypolicyrules(self, prioritypolicyset_id, prioritypolicyrule_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Prioritypolicyrules API Function
+        Get priority policy rules of tenant
 
           **Parameters:**:
 
@@ -2148,7 +2148,7 @@ class Get(object):
 
     def prioritypolicysets(self, prioritypolicyset_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Prioritypolicysets API Function
+        Get all priority policy sets of tenant.
 
           **Parameters:**:
 
@@ -2180,7 +2180,7 @@ class Get(object):
 
     def prioritypolicysets_status(self, prioritypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Prioritypolicysets_Status API Function
+        Get a specific priority policy set status of tenant.
 
           **Parameters:**:
 
@@ -2208,7 +2208,7 @@ class Get(object):
 
     def prioritypolicysetstacks(self, prioritypolicysetstack_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Prioritypolicysetstacks API Function
+        Get all Priority policy set stacks of tenant.
 
           **Parameters:**:
 
@@ -2437,7 +2437,7 @@ class Get(object):
 
     def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Routing_Aspathaccesslists API Function
+        Get all Access List for Element
 
           **Parameters:**:
 
@@ -2475,7 +2475,7 @@ class Get(object):
 
     def routing_ipcommunitylists(self, site_id, element_id, routing_ipcommunitylist_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Routing_Ipcommunitylists API Function
+        Get all Community List for Element
 
           **Parameters:**:
 
@@ -2513,7 +2513,7 @@ class Get(object):
 
     def routing_prefixlists(self, site_id, element_id, routing_prefixlist_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Routing_Prefixlists API Function
+        Get all Prefix List for Element
 
           **Parameters:**:
 
@@ -2551,7 +2551,7 @@ class Get(object):
 
     def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Routing_Routemaps API Function
+        Get all Route Map for Element
 
           **Parameters:**:
 
@@ -2784,7 +2784,7 @@ class Get(object):
 
     def site_anynetlinks(self, site_id, anynetlink_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Anynetlinks_S API Function
+        GET Site_Anynetlinks API Function
 
           **Parameters:**:
 
@@ -2849,7 +2849,7 @@ class Get(object):
 
     def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Site_Networkpolicylocalprefixes API Function
+        Get site Network policy prefix associations
 
           **Parameters:**:
 
@@ -2884,7 +2884,7 @@ class Get(object):
 
     def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Site_Prioritypolicylocalprefixes API Function
+        Get site Priority policy prefix associations
 
           **Parameters:**:
 
@@ -3408,9 +3408,41 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def tenant_extensions(self, extension_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Extensions API Function
+
+          **Parameters:**:
+
+          - **extension_id**: (optional) Extension ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not extension_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/extensions".format(api_version,
+                                                                         tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/extensions/{}".format(api_version,
+                                                                            tenant_id,
+                                                                            extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def tenant_networkpolicylocalprefixes(self, networkpolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Tenant_Networkpolicylocalprefixes API Function
+        Get Network Policy local prefixes.
 
           **Parameters:**:
 
@@ -3532,7 +3564,7 @@ class Get(object):
 
     def tenant_prioritypolicylocalprefixes(self, prioritypolicylocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Tenant_Prioritypolicylocalprefixes API Function
+        Get Priority Policy local prefixes.
 
           **Parameters:**:
 
@@ -3801,16 +3833,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def waninterfaces(self, site_id, waninterface_id=None, tenant_id=None, api_version="v2.1"):
+    def waninterfaces(self, site_id, waninterface_id=None, tenant_id=None, api_version="v2.2"):
         """
-        GET Waninterfaces API Function
+        Get WAN interfaces
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **waninterface_id**: (optional) WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3990,6 +4022,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def ws_extensions(self, extension_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Ws_Extensions API Function
+
+          **Parameters:**:
+
+          - **extension_id**: (optional) Extension ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not extension_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/ws/extensions".format(api_version,
+                                                                            tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/ws/extensions/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
 
@@ -4016,6 +4080,12 @@ class Get(object):
 
     extensions_s = site_extensions
     """ Backwards-compatibility alias of `extensions_s` to `site_extensions`"""
+
+    extensions_t = tenant_extensions
+    """ Backwards-compatibility alias of `extensions_t` to `tenant_extensions`"""
+
+    extensions_ws = ws_extensions
+    """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
     networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""
