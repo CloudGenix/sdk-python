@@ -2678,6 +2678,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_api_versions">tenant_api_versions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_clients">tenant_clients</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_elementpassageconfigs">tenant_elementpassageconfigs</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_extensions">tenant_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_networkpolicylocalprefixes">tenant_networkpolicylocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_operators">tenant_operators</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_passages">tenant_passages</a></li>
@@ -2697,6 +2698,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.wanoverlaychannels">wanoverlaychannels</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.wanoverlays">wanoverlays</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.wanpaths">wanpaths</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.ws_extensions">ws_extensions</a></li>
   </ul>
 
         </li>
@@ -2904,7 +2906,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Appdefs_Overrides API Function</span>
+<span class="sd">        Get application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3118,7 +3120,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Bgpconfigs API Function</span>
+<span class="sd">        Get all BGP configs from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3156,7 +3158,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Bgppeers API Function</span>
+<span class="sd">        Get all BGP Peer configs from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3974,7 +3976,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -3984,7 +3986,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4255,7 +4257,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Get all Network policy global prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4287,7 +4289,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicyrules API Function</span>
+<span class="sd">        Get network policy rules of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4322,7 +4324,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysets API Function</span>
+<span class="sd">        Get all network policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4354,7 +4356,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysets_Status API Function</span>
+<span class="sd">        Get a specific network policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4382,7 +4384,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysetstacks API Function</span>
+<span class="sd">        Get all network policy set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4449,7 +4451,7 @@ table {
 
     <span class="k">def</span> <span class="nf">ntp_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Status_Ntp API Function</span>
+<span class="sd">        GET Ntp_Status API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4806,7 +4808,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Get all Priority policy prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4838,7 +4840,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicyrules API Function</span>
+<span class="sd">        Get priority policy rules of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4873,7 +4875,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysets API Function</span>
+<span class="sd">        Get all priority policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4905,7 +4907,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysets_Status API Function</span>
+<span class="sd">        Get a specific priority policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4933,7 +4935,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysetstacks API Function</span>
+<span class="sd">        Get all Priority policy set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5162,7 +5164,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Get all Access List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5200,7 +5202,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Get all Community List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5238,7 +5240,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Prefixlists API Function</span>
+<span class="sd">        Get all Prefix List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5276,7 +5278,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Routemaps API Function</span>
+<span class="sd">        Get all Route Map for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5509,7 +5511,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_anynetlinks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">anynetlink_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Anynetlinks_S API Function</span>
+<span class="sd">        GET Site_Anynetlinks API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5574,7 +5576,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Get site Network policy prefix associations</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5609,7 +5611,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Get site Priority policy prefix associations</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6133,9 +6135,41 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">tenant_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Tenant_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: (optional) Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                         <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">,</span>
+                                                                            <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Get Network Policy local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6257,7 +6291,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Get Priority Policy local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6526,16 +6560,16 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Waninterfaces API Function</span>
+<span class="sd">        Get WAN interfaces</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **waninterface_id**: (optional) WAN Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6715,6 +6749,38 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: (optional) Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -6741,6 +6807,12 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_t</span> <span class="o">=</span> <span class="n">tenant_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_t` to `tenant_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -6992,7 +7064,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Appdefs_Overrides API Function</span>
+<span class="sd">        Get application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7206,7 +7278,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Bgpconfigs API Function</span>
+<span class="sd">        Get all BGP configs from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7244,7 +7316,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Bgppeers API Function</span>
+<span class="sd">        Get all BGP Peer configs from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8062,7 +8134,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -8072,7 +8144,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8343,7 +8415,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Get all Network policy global prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8375,7 +8447,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicyrules API Function</span>
+<span class="sd">        Get network policy rules of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8410,7 +8482,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysets API Function</span>
+<span class="sd">        Get all network policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8442,7 +8514,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysets_Status API Function</span>
+<span class="sd">        Get a specific network policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8470,7 +8542,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Networkpolicysetstacks API Function</span>
+<span class="sd">        Get all network policy set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8537,7 +8609,7 @@ table {
 
     <span class="k">def</span> <span class="nf">ntp_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Status_Ntp API Function</span>
+<span class="sd">        GET Ntp_Status API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8894,7 +8966,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Get all Priority policy prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8926,7 +8998,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicyrules API Function</span>
+<span class="sd">        Get priority policy rules of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8961,7 +9033,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysets API Function</span>
+<span class="sd">        Get all priority policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8993,7 +9065,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysets_Status API Function</span>
+<span class="sd">        Get a specific priority policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9021,7 +9093,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Prioritypolicysetstacks API Function</span>
+<span class="sd">        Get all Priority policy set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9250,7 +9322,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Get all Access List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9288,7 +9360,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Get all Community List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9326,7 +9398,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Prefixlists API Function</span>
+<span class="sd">        Get all Prefix List for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9364,7 +9436,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Routing_Routemaps API Function</span>
+<span class="sd">        Get all Route Map for Element</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9597,7 +9669,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_anynetlinks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">anynetlink_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Anynetlinks_S API Function</span>
+<span class="sd">        GET Site_Anynetlinks API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9662,7 +9734,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Get site Network policy prefix associations</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9697,7 +9769,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Get site Priority policy prefix associations</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10221,9 +10293,41 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">tenant_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Tenant_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: (optional) Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                         <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">,</span>
+                                                                            <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Get Network Policy local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10345,7 +10449,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Get Priority Policy local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10614,16 +10718,16 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Waninterfaces API Function</span>
+<span class="sd">        Get WAN interfaces</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **waninterface_id**: (optional) WAN Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10803,6 +10907,38 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: (optional) Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                               <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -10829,6 +10965,12 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_t</span> <span class="o">=</span> <span class="n">tenant_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_t` to `tenant_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -11010,6 +11152,28 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>extensions_s</code> to <code>site_extensions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.extensions_t">
+            <p class="name">var <span class="ident">extensions_t</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>extensions_t</code> to <code>tenant_extensions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.extensions_ws">
+            <p class="name">var <span class="ident">extensions_ws</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>extensions_ws</code> to <code>ws_extensions</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -11539,7 +11703,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Appdefs_Overrides API Function</p>
+    <div class="desc"><p>Get application definition overrides for system appdef</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>appdef_id</strong>: Application Definition ID</li>
@@ -11553,7 +11717,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.appdefs_overrides" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Appdefs_Overrides API Function</span>
+<span class="sd">    Get application definition overrides for system appdef</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **appdef_id**: Application Definition ID</span>
 <span class="sd">      - **override_id**: (optional) AppDef Override ID</span>
@@ -11893,7 +12057,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Bgpconfigs API Function</p>
+    <div class="desc"><p>Get all BGP configs from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -11908,7 +12072,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.bgpconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgpconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgpconfig_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Bgpconfigs API Function</span>
+<span class="sd">    Get all BGP configs from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -11953,7 +12117,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Bgppeers API Function</p>
+    <div class="desc"><p>Get all BGP Peer configs from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -11968,7 +12132,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.bgppeers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Bgppeers API Function</span>
+<span class="sd">    Get all BGP Peer configs from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -13304,7 +13468,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.4&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.5&#39;)</p>
     </div>
     
 
@@ -13317,13 +13481,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: (optional) Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.4)</li>
+<li><strong>api_version</strong>: API version to use (default v4.5)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get element interface ids</span>
 <span class="sd">      **Parameters:**:</span>
@@ -13331,7 +13495,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: (optional) Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.5)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -13772,7 +13936,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Networkpolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Get all Network policy global prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyglobalprefix_id</strong>: (optional) Network Policy Global Prefix ID</li>
@@ -13785,7 +13949,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.networkpolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Networkpolicyglobalprefixes API Function</span>
+<span class="sd">    Get all Network policy global prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyglobalprefix_id**: (optional) Network Policy Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -13824,7 +13988,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Networkpolicyrules API Function</p>
+    <div class="desc"><p>Get network policy rules of tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: Network Policy Set ID</li>
@@ -13838,7 +14002,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.networkpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Networkpolicyrules API Function</span>
+<span class="sd">    Get network policy rules of tenant</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: Network Policy Set ID</span>
 <span class="sd">      - **networkpolicyrule_id**: (optional) Network Policy Rule ID</span>
@@ -13880,7 +14044,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Networkpolicysets API Function</p>
+    <div class="desc"><p>Get all network policy sets of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: (optional) Network Policy Set ID</li>
@@ -13893,7 +14057,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.networkpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Networkpolicysets API Function</span>
+<span class="sd">    Get all network policy sets of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: (optional) Network Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -13932,7 +14096,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Networkpolicysets_Status API Function</p>
+    <div class="desc"><p>Get a specific network policy set status of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: Network Policy Set ID</li>
@@ -13945,7 +14109,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.networkpolicysets_status" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Networkpolicysets_Status API Function</span>
+<span class="sd">    Get a specific network policy set status of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: Network Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -13980,7 +14144,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Networkpolicysetstacks API Function</p>
+    <div class="desc"><p>Get all network policy set stacks of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicysetstack_id</strong>: (optional) Network Policy Set Stack ID</li>
@@ -13993,7 +14157,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.networkpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Networkpolicysetstacks API Function</span>
+<span class="sd">    Get all network policy set stacks of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicysetstack_id**: (optional) Network Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14088,7 +14252,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Status_Ntp API Function</p>
+    <div class="desc"><p>GET Ntp_Status API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
@@ -14102,7 +14266,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.ntp_status" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ntp_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Status_Ntp API Function</span>
+<span class="sd">    GET Ntp_Status API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **ntp_id**: NTP Configuration ID</span>
@@ -14685,7 +14849,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Prioritypolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Get all Priority policy prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyglobalprefix_id</strong>: (optional) Priority Policy Global Prefix ID</li>
@@ -14698,7 +14862,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.prioritypolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">    Get all Priority policy prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyglobalprefix_id**: (optional) Priority Policy Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14737,7 +14901,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Prioritypolicyrules API Function</p>
+    <div class="desc"><p>Get priority policy rules of tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: Priority Policy Set ID</li>
@@ -14751,7 +14915,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.prioritypolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Prioritypolicyrules API Function</span>
+<span class="sd">    Get priority policy rules of tenant</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: Priority Policy Set ID</span>
 <span class="sd">      - **prioritypolicyrule_id**: (optional) Priority Policy Rule ID</span>
@@ -14793,7 +14957,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Prioritypolicysets API Function</p>
+    <div class="desc"><p>Get all priority policy sets of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: (optional) Priority Policy Set ID</li>
@@ -14806,7 +14970,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.prioritypolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Prioritypolicysets API Function</span>
+<span class="sd">    Get all priority policy sets of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: (optional) Priority Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14845,7 +15009,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Prioritypolicysets_Status API Function</p>
+    <div class="desc"><p>Get a specific priority policy set status of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: Priority Policy Set ID</li>
@@ -14858,7 +15022,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.prioritypolicysets_status" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Prioritypolicysets_Status API Function</span>
+<span class="sd">    Get a specific priority policy set status of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: Priority Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14893,7 +15057,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Prioritypolicysetstacks API Function</p>
+    <div class="desc"><p>Get all Priority policy set stacks of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicysetstack_id</strong>: (optional) Priority Policy Stack ID</li>
@@ -14906,7 +15070,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.prioritypolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Prioritypolicysetstacks API Function</span>
+<span class="sd">    Get all Priority policy set stacks of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicysetstack_id**: (optional) Priority Policy Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15281,7 +15445,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Routing_Aspathaccesslists API Function</p>
+    <div class="desc"><p>Get all Access List for Element</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15296,7 +15460,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.routing_aspathaccesslists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Routing_Aspathaccesslists API Function</span>
+<span class="sd">    Get all Access List for Element</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -15341,7 +15505,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Routing_Ipcommunitylists API Function</p>
+    <div class="desc"><p>Get all Community List for Element</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15356,7 +15520,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.routing_ipcommunitylists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Routing_Ipcommunitylists API Function</span>
+<span class="sd">    Get all Community List for Element</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -15401,7 +15565,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Routing_Prefixlists API Function</p>
+    <div class="desc"><p>Get all Prefix List for Element</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15416,7 +15580,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.routing_prefixlists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Routing_Prefixlists API Function</span>
+<span class="sd">    Get all Prefix List for Element</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -15461,7 +15625,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Routing_Routemaps API Function</p>
+    <div class="desc"><p>Get all Route Map for Element</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15476,7 +15640,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.routing_routemaps" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Routing_Routemaps API Function</span>
+<span class="sd">    Get all Route Map for Element</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -15837,7 +16001,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Anynetlinks_S API Function</p>
+    <div class="desc"><p>GET Site_Anynetlinks API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15851,7 +16015,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.site_anynetlinks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_anynetlinks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">anynetlink_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Anynetlinks_S API Function</span>
+<span class="sd">    GET Site_Anynetlinks API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **anynetlink_id**: Anynet (Secure Fabric) Link ID</span>
@@ -15944,7 +16108,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Site_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Get site Network policy prefix associations</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -15958,7 +16122,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.site_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Get site Network policy prefix associations</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: (optional) Network Policy Local Prefix ID</span>
@@ -16000,7 +16164,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Site_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Get site Priority policy prefix associations</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -16014,7 +16178,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.site_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Get site Priority policy prefix associations</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: (optional) Priority Policy Local Prefix ID</span>
@@ -16864,6 +17028,58 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.tenant_extensions">
+    <div class="name def">
+    <p>def <span class="ident">tenant_extensions</span>(</p><p>self, extension_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Tenant_Extensions API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>extension_id</strong>: (optional) Extension ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.tenant_extensions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.tenant_extensions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Tenant_Extensions API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **extension_id**: (optional) Extension ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                     <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                        <span class="n">tenant_id</span><span class="p">,</span>
+                                                                        <span class="n">extension_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.tenant_networkpolicylocalprefixes">
     <div class="name def">
     <p>def <span class="ident">tenant_networkpolicylocalprefixes</span>(</p><p>self, networkpolicylocalprefix_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -16872,7 +17088,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Tenant_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Get Network Policy local prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicylocalprefix_id</strong>: (optional) Network Policy Local Prefix ID</li>
@@ -16885,7 +17101,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.tenant_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Get Network Policy local prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: (optional) Network Policy Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17073,7 +17289,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Tenant_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Get Priority Policy local prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicylocalprefix_id</strong>: (optional) Priority Policy Local Prefix ID</li>
@@ -17086,7 +17302,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.tenant_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Get Priority Policy local prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: (optional) Priority Policy Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17517,32 +17733,32 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.waninterfaces">
     <div class="name def">
-    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id=None, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id=None, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>GET Waninterfaces API Function</p>
+    <div class="desc"><p>Get WAN interfaces</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>waninterface_id</strong>: (optional) WAN Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.waninterfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.waninterfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Waninterfaces API Function</span>
+<span class="sd">    Get WAN interfaces</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **waninterface_id**: (optional) WAN Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -17816,6 +18032,58 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sites/{}/wanpaths&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                         <span class="n">tenant_id</span><span class="p">,</span>
                                                                         <span class="n">site_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.ws_extensions">
+    <div class="name def">
+    <p>def <span class="ident">ws_extensions</span>(</p><p>self, extension_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Ws_Extensions API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>extension_id</strong>: (optional) Extension ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.ws_extensions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.ws_extensions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Ws_Extensions API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **extension_id**: (optional) Extension ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">extension_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                        <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">extension_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>

@@ -112,7 +112,7 @@ class Delete(object):
 
     def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Appdefs_Overrides API Function
+        Delete application definition overrides for system appdef
 
           **Parameters:**:
 
@@ -172,7 +172,7 @@ class Delete(object):
 
     def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bgppeers API Function
+        Delete BGP Peer config
 
           **Parameters:**:
 
@@ -500,7 +500,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.4"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.5"):
         """
         Delete an element interface
 
@@ -510,7 +510,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -648,7 +648,7 @@ class Delete(object):
 
     def networkpolicyglobalprefixes(self, networkpolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Networkpolicyglobalprefixes API Function
+        Delete a Network Policy Global Prefix.
 
           **Parameters:**:
 
@@ -676,7 +676,7 @@ class Delete(object):
 
     def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Networkpolicyrules API Function
+        Delete network policy rule of tenant.
 
           **Parameters:**:
 
@@ -734,7 +734,7 @@ class Delete(object):
 
     def networkpolicysetstacks(self, networkpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Networkpolicysetstacks API Function
+        Delete a NetworkPolicySetStack
 
           **Parameters:**:
 
@@ -936,7 +936,7 @@ class Delete(object):
 
     def prioritypolicyglobalprefixes(self, prioritypolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prioritypolicyglobalprefixes API Function
+        Delete a Priority Policy Global Prefix.
 
           **Parameters:**:
 
@@ -964,7 +964,7 @@ class Delete(object):
 
     def prioritypolicyrules(self, prioritypolicyset_id, prioritypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prioritypolicyrules API Function
+        Delete priority policy rule of tenant.
 
           **Parameters:**:
 
@@ -1022,7 +1022,7 @@ class Delete(object):
 
     def prioritypolicysetstacks(self, prioritypolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prioritypolicysetstacks API Function
+        Delete a PriorityPolicySetStack
 
           **Parameters:**:
 
@@ -1078,7 +1078,7 @@ class Delete(object):
 
     def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Routing_Aspathaccesslists API Function
+        Delete Access List
 
           **Parameters:**:
 
@@ -1110,7 +1110,7 @@ class Delete(object):
 
     def routing_ipcommunitylists(self, site_id, element_id, routing_ipcommunitylist_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Routing_Ipcommunitylists API Function
+        Delete Community List
 
           **Parameters:**:
 
@@ -1142,7 +1142,7 @@ class Delete(object):
 
     def routing_prefixlists(self, site_id, element_id, routing_prefixlist_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Routing_Prefixlists API Function
+        Delete Prefix List
 
           **Parameters:**:
 
@@ -1174,7 +1174,7 @@ class Delete(object):
 
     def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Routing_Routemaps API Function
+        Delete Route Map
 
           **Parameters:**:
 
@@ -1406,7 +1406,7 @@ class Delete(object):
 
     def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Site_Networkpolicylocalprefixes API Function
+        Delete an existing Site Network Policy local prefix association
 
           **Parameters:**:
 
@@ -1436,7 +1436,7 @@ class Delete(object):
 
     def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Site_Prioritypolicylocalprefixes API Function
+        Delete an existing Site Priority Policy local prefix association
 
           **Parameters:**:
 
@@ -1680,7 +1680,7 @@ class Delete(object):
 
     def tenant_networkpolicylocalprefixes(self, networkpolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tenant_Networkpolicylocalprefixes API Function
+        Delete a Network Policy local prefix.
 
           **Parameters:**:
 
@@ -1764,7 +1764,7 @@ class Delete(object):
 
     def tenant_prioritypolicylocalprefixes(self, prioritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tenant_Prioritypolicylocalprefixes API Function
+        Delete a Priority Policy local prefix.
 
           **Parameters:**:
 
@@ -1846,16 +1846,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.1"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.2"):
         """
-        DELETE Waninterfaces API Function
+        Delete existing WAN interface
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1932,6 +1932,34 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def ws_extensions(self, extension_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ws_Extensions API Function
+
+          **Parameters:**:
+
+          - **extension_id**: Extension ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ws/extensions/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
 
@@ -1946,6 +1974,9 @@ class Delete(object):
 
     extensions_s = site_extensions
     """ Backwards-compatibility alias of `extensions_s` to `site_extensions`"""
+
+    extensions_ws = ws_extensions
+    """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
     networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""

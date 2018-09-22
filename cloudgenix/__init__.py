@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.0.1b1
+**Version:** v5.0.3b1
 
 **Author:** CloudGenix
 
@@ -116,7 +116,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "5.0.1b1"
+version = "5.0.3b1"
 """SDK Version string"""
 
 # PyPI URL for checking for updates.
@@ -483,8 +483,8 @@ class API(object):
 
             # notify.
             if recommend_update:
-                sys.stderr.write("WARNING: CloudGenix Python SDK upgrade available. Errors/issues may occur if the "
-                                 "SDK is not current.\n"
+                sys.stderr.write("WARNING: CloudGenix Python SDK upgrade available. SDKs are typically deprecated 6 "
+                                 "months after release of a new version.\n"
                                  "\tLatest Version: {0}\n"
                                  "\tCurrent Version: {1}\n"
                                  "\tFor more info, see 'https://github.com/cloudgenix/sdk-python'. Additionally, this "

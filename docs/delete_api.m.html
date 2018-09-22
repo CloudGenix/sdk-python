@@ -2633,6 +2633,7 @@ table {
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.waninterfaces">waninterfaces</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.wannetworks">wannetworks</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.wanoverlays">wanoverlays</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.ws_extensions">ws_extensions</a></li>
   </ul>
 
         </li>
@@ -2773,7 +2774,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Appdefs_Overrides API Function</span>
+<span class="sd">        Delete application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2833,7 +2834,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bgppeers API Function</span>
+<span class="sd">        Delete BGP Peer config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3161,7 +3162,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete an element interface</span>
 
@@ -3171,7 +3172,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3309,7 +3310,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Delete a Network Policy Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3337,7 +3338,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicyrules API Function</span>
+<span class="sd">        Delete network policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3395,7 +3396,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicysetstacks API Function</span>
+<span class="sd">        Delete a NetworkPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3597,7 +3598,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Delete a Priority Policy Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3625,7 +3626,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicyrules API Function</span>
+<span class="sd">        Delete priority policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3683,7 +3684,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicysetstacks API Function</span>
+<span class="sd">        Delete a PriorityPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3739,7 +3740,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Delete Access List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3771,7 +3772,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Delete Community List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3803,7 +3804,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Prefixlists API Function</span>
+<span class="sd">        Delete Prefix List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3835,7 +3836,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Routemaps API Function</span>
+<span class="sd">        Delete Route Map</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4067,7 +4068,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site Network Policy local prefix association</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4097,7 +4098,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site Priority Policy local prefix association</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4341,7 +4342,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Delete a Network Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4425,7 +4426,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Delete a Priority Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4507,16 +4508,16 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Waninterfaces API Function</span>
+<span class="sd">        Delete existing WAN interface</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4593,6 +4594,34 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -4607,6 +4636,9 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -4737,7 +4769,7 @@ table {
 
     <span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Appdefs_Overrides API Function</span>
+<span class="sd">        Delete application definition overrides for system appdef</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4797,7 +4829,7 @@ table {
 
     <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bgppeers API Function</span>
+<span class="sd">        Delete BGP Peer config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5125,7 +5157,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete an element interface</span>
 
@@ -5135,7 +5167,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.5)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5273,7 +5305,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicyglobalprefixes API Function</span>
+<span class="sd">        Delete a Network Policy Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5301,7 +5333,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicyrules API Function</span>
+<span class="sd">        Delete network policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5359,7 +5391,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Networkpolicysetstacks API Function</span>
+<span class="sd">        Delete a NetworkPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5561,7 +5593,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">        Delete a Priority Policy Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5589,7 +5621,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicyrules API Function</span>
+<span class="sd">        Delete priority policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5647,7 +5679,7 @@ table {
 
     <span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prioritypolicysetstacks API Function</span>
+<span class="sd">        Delete a PriorityPolicySetStack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5703,7 +5735,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Aspathaccesslists API Function</span>
+<span class="sd">        Delete Access List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5735,7 +5767,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Ipcommunitylists API Function</span>
+<span class="sd">        Delete Community List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5767,7 +5799,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Prefixlists API Function</span>
+<span class="sd">        Delete Prefix List</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5799,7 +5831,7 @@ table {
 
     <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Routing_Routemaps API Function</span>
+<span class="sd">        Delete Route Map</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6031,7 +6063,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site Network Policy local prefix association</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6061,7 +6093,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site Priority Policy local prefix association</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6305,7 +6337,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">        Delete a Network Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6389,7 +6421,7 @@ table {
 
     <span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">        Delete a Priority Policy local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6471,16 +6503,16 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Waninterfaces API Function</span>
+<span class="sd">        Delete existing WAN interface</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6557,6 +6589,34 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Ws_Extensions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **extension_id**: Extension ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                           <span class="n">extension_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
     <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
 
@@ -6571,6 +6631,9 @@ table {
 
     <span class="n">extensions_s</span> <span class="o">=</span> <span class="n">site_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_s` to `site_extensions`&quot;&quot;&quot;</span>
+
+    <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
     <span class="n">networkpolicylocalprefixes_s</span> <span class="o">=</span> <span class="n">site_networkpolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`&quot;&quot;&quot;</span>
@@ -6654,6 +6717,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>extensions_s</code> to <code>site_extensions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.delete_api.Delete.extensions_ws">
+            <p class="name">var <span class="ident">extensions_ws</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>extensions_ws</code> to <code>ws_extensions</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -6877,7 +6951,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Appdefs_Overrides API Function</p>
+    <div class="desc"><p>Delete application definition overrides for system appdef</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>appdef_id</strong>: Application Definition ID</li>
@@ -6891,7 +6965,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.appdefs_overrides" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">appdefs_overrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appdef_id</span><span class="p">,</span> <span class="n">override_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Appdefs_Overrides API Function</span>
+<span class="sd">    Delete application definition overrides for system appdef</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **appdef_id**: Application Definition ID</span>
 <span class="sd">      - **override_id**: AppDef Override ID</span>
@@ -6979,7 +7053,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Bgppeers API Function</p>
+    <div class="desc"><p>Delete BGP Peer config</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -6994,7 +7068,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.bgppeers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">bgppeer_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Bgppeers API Function</span>
+<span class="sd">    Delete BGP Peer config</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -7534,7 +7608,7 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.4&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.5&#39;)</p>
     </div>
     
 
@@ -7547,13 +7621,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.4)</li>
+<li><strong>api_version</strong>: API version to use (default v4.5)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.4&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.5&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete an element interface</span>
 <span class="sd">      **Parameters:**:</span>
@@ -7561,7 +7635,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.4)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.5)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -7789,7 +7863,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Networkpolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Delete a Network Policy Global Prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyglobalprefix_id</strong>: Network Policy Global Prefix ID</li>
@@ -7802,7 +7876,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.networkpolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Networkpolicyglobalprefixes API Function</span>
+<span class="sd">    Delete a Network Policy Global Prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyglobalprefix_id**: Network Policy Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -7837,7 +7911,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Networkpolicyrules API Function</p>
+    <div class="desc"><p>Delete network policy rule of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicyset_id</strong>: Network Policy Set ID</li>
@@ -7851,7 +7925,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.networkpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicyset_id</span><span class="p">,</span> <span class="n">networkpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Networkpolicyrules API Function</span>
+<span class="sd">    Delete network policy rule of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicyset_id**: Network Policy Set ID</span>
 <span class="sd">      - **networkpolicyrule_id**: Network Policy Rule ID</span>
@@ -7936,7 +8010,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Networkpolicysetstacks API Function</p>
+    <div class="desc"><p>Delete a NetworkPolicySetStack</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicysetstack_id</strong>: Network Policy Set Stack ID</li>
@@ -7949,7 +8023,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.networkpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networkpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Networkpolicysetstacks API Function</span>
+<span class="sd">    Delete a NetworkPolicySetStack</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicysetstack_id**: Network Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8281,7 +8355,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Prioritypolicyglobalprefixes API Function</p>
+    <div class="desc"><p>Delete a Priority Policy Global Prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyglobalprefix_id</strong>: Priority Policy Global Prefix ID</li>
@@ -8294,7 +8368,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.prioritypolicyglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Prioritypolicyglobalprefixes API Function</span>
+<span class="sd">    Delete a Priority Policy Global Prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyglobalprefix_id**: Priority Policy Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8329,7 +8403,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Prioritypolicyrules API Function</p>
+    <div class="desc"><p>Delete priority policy rule of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicyset_id</strong>: Priority Policy Set ID</li>
@@ -8343,7 +8417,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.prioritypolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicyset_id</span><span class="p">,</span> <span class="n">prioritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Prioritypolicyrules API Function</span>
+<span class="sd">    Delete priority policy rule of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicyset_id**: Priority Policy Set ID</span>
 <span class="sd">      - **prioritypolicyrule_id**: Priority Policy Rule ID</span>
@@ -8428,7 +8502,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Prioritypolicysetstacks API Function</p>
+    <div class="desc"><p>Delete a PriorityPolicySetStack</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicysetstack_id</strong>: Priority Policy Stack ID</li>
@@ -8441,7 +8515,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.prioritypolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prioritypolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Prioritypolicysetstacks API Function</span>
+<span class="sd">    Delete a PriorityPolicySetStack</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicysetstack_id**: Priority Policy Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8524,7 +8598,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Routing_Aspathaccesslists API Function</p>
+    <div class="desc"><p>Delete Access List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -8539,7 +8613,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.routing_aspathaccesslists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_aspathaccesslists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_aspathaccesslist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Routing_Aspathaccesslists API Function</span>
+<span class="sd">    Delete Access List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -8578,7 +8652,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Routing_Ipcommunitylists API Function</p>
+    <div class="desc"><p>Delete Community List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -8593,7 +8667,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.routing_ipcommunitylists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_ipcommunitylists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_ipcommunitylist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Routing_Ipcommunitylists API Function</span>
+<span class="sd">    Delete Community List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -8632,7 +8706,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Routing_Prefixlists API Function</p>
+    <div class="desc"><p>Delete Prefix List</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -8647,7 +8721,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.routing_prefixlists" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_prefixlists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_prefixlist_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Routing_Prefixlists API Function</span>
+<span class="sd">    Delete Prefix List</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -8686,7 +8760,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Routing_Routemaps API Function</p>
+    <div class="desc"><p>Delete Route Map</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -8701,7 +8775,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.routing_routemaps" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Routing_Routemaps API Function</span>
+<span class="sd">    Delete Route Map</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -9082,7 +9156,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Site_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Delete an existing Site Network Policy local prefix association</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9096,7 +9170,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.site_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Site_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Delete an existing Site Network Policy local prefix association</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: Network Policy Local Prefix ID</span>
@@ -9133,7 +9207,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Site_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Delete an existing Site Priority Policy local prefix association</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -9147,7 +9221,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.site_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Site_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Delete an existing Site Priority Policy local prefix association</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: Priority Policy Local Prefix ID</span>
@@ -9547,7 +9621,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Tenant_Networkpolicylocalprefixes API Function</p>
+    <div class="desc"><p>Delete a Network Policy local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>networkpolicylocalprefix_id</strong>: Network Policy Local Prefix ID</li>
@@ -9560,7 +9634,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.tenant_networkpolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_networkpolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">networkpolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tenant_Networkpolicylocalprefixes API Function</span>
+<span class="sd">    Delete a Network Policy local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **networkpolicylocalprefix_id**: Network Policy Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -9691,7 +9765,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Tenant_Prioritypolicylocalprefixes API Function</p>
+    <div class="desc"><p>Delete a Priority Policy local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>prioritypolicylocalprefix_id</strong>: Priority Policy Local Prefix ID</li>
@@ -9704,7 +9778,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.tenant_prioritypolicylocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_prioritypolicylocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prioritypolicylocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tenant_Prioritypolicylocalprefixes API Function</span>
+<span class="sd">    Delete a Priority Policy local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **prioritypolicylocalprefix_id**: Priority Policy Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -9829,32 +9903,32 @@ table {
             
   <div class="item" id="cloudgenix.delete_api.Delete.waninterfaces">
     <div class="name def">
-    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">waninterfaces</span>(</p><p>self, site_id, waninterface_id, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>DELETE Waninterfaces API Function</p>
+    <div class="desc"><p>Delete existing WAN interface</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>waninterface_id</strong>: WAN Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.waninterfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.waninterfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Waninterfaces API Function</span>
+<span class="sd">    Delete existing WAN interface</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **waninterface_id**: WAN Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -9964,6 +10038,54 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/wanoverlays/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                      <span class="n">tenant_id</span><span class="p">,</span>
                                                                      <span class="n">wanoverlay_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.delete_api.Delete.ws_extensions">
+    <div class="name def">
+    <p>def <span class="ident">ws_extensions</span>(</p><p>self, extension_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>DELETE Ws_Extensions API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>extension_id</strong>: Extension ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.ws_extensions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.ws_extensions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ws_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extension_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DELETE Ws_Extensions API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **extension_id**: Extension ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws/extensions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">,</span>
+                                                                       <span class="n">extension_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>
