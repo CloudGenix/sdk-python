@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.0.3b1
+**Version:** v5.0.3b2
 
 **Author:** CloudGenix
 
@@ -56,6 +56,7 @@ import atexit
 import sys
 
 import requests
+from requests.adapters import HTTPAdapter
 from requests.packages import urllib3
 
 from .get_api import Get
@@ -116,7 +117,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "5.0.3b1"
+version = "5.0.3b2"
 """SDK Version string"""
 
 # PyPI URL for checking for updates.
@@ -279,6 +280,7 @@ class API(object):
     """
     # Global structure, previously sdk_vars
     # Authentication is now stored as cookies, as part of the requests.Session() object.
+    # Authentication can also be stored as an 'X-Auth-Token:' header, but cookies take precedence.
     controller = 'https://api.elcapitan.cloudgenix.com'
     """Current active controller URL"""
 
@@ -337,15 +339,15 @@ class API(object):
     """File handle for CA verification"""
 
     rest_call_retry = False
-    """Boolean to Automatically retry failed REST calls. (Should NOT be True for APIs that CREATE objects.)"""
+    """DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`."""
 
     rest_call_max_retry = 30
-    """REST call maximum retry attempts."""
+    """DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`."""
 
     rest_call_sleep = 10
-    """Seconds to wait between REST retries."""
+    """DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`."""
 
-    rest_call_timeout = 60
+    rest_call_timeout = 240
     """Maximum time to wait for any data from REST server."""
 
     cache = {}
@@ -395,6 +397,9 @@ class API(object):
 
         # Create Requests Session.
         self._session = requests.Session()
+
+        # Set default REST retry parameters
+        self.modify_rest_retry()
 
         # Identify SDK in the User-Agent.
         user_agent = self._session.headers.get('User-Agent')
@@ -540,6 +545,66 @@ class API(object):
             self.ca_verify_filename = self.verify
         return
 
+    def modify_rest_retry(self, total=100, connect=None, read=None, redirect=None, status=None,
+                          method_whitelist=urllib3.util.retry.Retry.DEFAULT_METHOD_WHITELIST, status_forcelist=None,
+                          backoff_factor=2, raise_on_redirect=True, raise_on_status=True,
+                          respect_retry_after_header=True, adapter_url="https://"):
+        """
+        Modify retry parameters for the SDK's rest call object.
+
+        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to
+        the underlying `requests.Session` object.
+
+        **Parameters:**
+
+          - **total:** int, Total number of retries to allow. Takes precedence over other counts.
+          - **connect:** int, How many connection-related errors to retry on.
+          - **read:** int, How many times to retry on read errors.
+          - **redirect:** int, How many redirects to perform. loops.
+          - **status:** int, How many times to retry on bad status codes.
+          - **method_whitelist:** iterable, Set of uppercased HTTP method verbs that we should retry on.
+          - **status_forcelist:** iterable, A set of integer HTTP status codes that we should force a retry on.
+          - **backoff_factor:** float, A backoff factor to apply between attempts after the second try.
+          - **raise_on_redirect:** bool, True = raise a MaxRetryError, False = return latest 3xx response.
+          - **raise_on_status:** bool, Similar logic to ``raise_on_redirect`` but for status responses.
+          - **respect_retry_after_header:** bool, Whether to respect Retry-After header on status codes.
+          - **adapter_url:** string, URL match for these retry values (default `https://`)
+
+        **Returns:** No return, mutates the session directly
+        """
+        # Cloudgenix responses with 502/504 are usually recoverable. Use them if no list specified.
+        if status_forcelist is None:
+            status_forcelist = (502, 504)
+
+        retry = urllib3.util.retry.Retry(total=total,
+                                         connect=connect,
+                                         read=read,
+                                         redirect=redirect,
+                                         status=status,
+                                         method_whitelist=method_whitelist,
+                                         status_forcelist=status_forcelist,
+                                         backoff_factor=backoff_factor,
+                                         raise_on_redirect=raise_on_redirect,
+                                         raise_on_status=raise_on_status,
+                                         respect_retry_after_header=respect_retry_after_header)
+        adapter = requests.adapters.HTTPAdapter(max_retries=retry)
+        self._session.mount(adapter_url, adapter)
+        return
+
+    def view_rest_retry(self, url=None):
+        """
+        View current rest retry settings in the `requests.Session()` object
+
+        **Parameters:**
+
+          - **url:** URL to use to determine retry methods for. Defaults to 'https://'
+
+        **Returns:** Dict, Key header, value is header value.
+        """
+        if url is None:
+            url = "https://"
+        return vars(self._session.get_adapter(url).max_retries)
+
     def expose_session(self):
         """
         Call to expose the Requests Session object
@@ -573,6 +638,26 @@ class API(object):
         """
         del self._session.headers[header]
         return
+
+    def view_headers(self):
+        """
+        View current headers in the `requests.Session()` object
+
+        **Returns:** Dict, Key header, value is header value.
+        """
+        return dict(self._session.headers)
+
+    def view_cookies(self):
+        """
+        View current cookies in the `requests.Session()` object
+
+        **Returns:** List of Dicts, one cookie per Dict.
+        """
+        return_list = []
+        for cookie in self._session.cookies:
+            return_list.append(vars(cookie))
+
+        return return_list
 
     def set_debug(self, debuglevel):
         """
@@ -660,11 +745,12 @@ class API(object):
           - **sensitive:** Flag if content request/response should be hidden from logging functions
           - **timeout:** Requests Timeout
           - **content_json:** Bool on whether the Content-Type header should be set to application/json
-          - **retry:** Boolean if request should be retried if failure.
-          - **max_retry:** Maximum number of retries before giving up
-          - **retry_sleep:** Time inbetween retries.
+          - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
+          - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
+          - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
 
         **Returns:** Requests.Response object, extended with:
+
           - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.
           - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
           will be converted to a Dict response.
@@ -672,148 +758,116 @@ class API(object):
         # pull retry related items from Constructor if not specified.
         if timeout is None:
             timeout = self.rest_call_timeout
-        if retry is None:
-            retry = self.rest_call_retry
-        if max_retry is None:
-            max_retry = self.rest_call_retry
-        if retry_sleep is None:
-            retry_sleep = self.rest_call_sleep
-
-        # Retry loop counter
-        retry_count = 0
+        if retry is not None:
+            # Someone using deprecated retry code. Notify.
+            sys.stderr.write("WARNING: 'retry' option of rest_call() has been deprecated. "
+                             "Please use 'API.modify_rest_retry()' instead.")
+        if max_retry is not None:
+            # Someone using deprecated retry code. Notify.
+            sys.stderr.write("WARNING: 'max_retry' option of rest_call() has been deprecated. "
+                             "Please use 'API.modify_rest_retry()' instead.")
+        if retry_sleep is not None:
+            # Someone using deprecated retry code. Notify.
+            sys.stderr.write("WARNING: 'max_retry' option of rest_call() has been deprecated. "
+                             "Please use 'API.modify_rest_retry()' instead.")
 
         # Get logging level, use this to bypass logging functions with possible large content if not set.
         logger_level = api_logger.getEffectiveLevel()
 
-        # Run once logic.
-        if not retry:
-            run_once = True
+        # populate headers and cookies from session.
+        if content_json and method.lower() not in ['get', 'delete']:
+            headers = {
+                'Content-Type': 'application/json'
+            }
         else:
-            run_once = False
+            headers = {}
 
-        while retry or run_once:
+        # add session headers
+        headers.update(self._session.headers)
+        cookie = self._session.cookies.get_dict()
 
-            # populate headers and cookies from session.
-            if content_json and method.lower() not in ['get', 'delete']:
-                headers = {
-                    'Content-Type': 'application/json'
-                }
-            else:
-                headers = {}
+        # make sure data is populated if present.
+        if isinstance(data, (list, dict)):
+            data = json.dumps(data)
 
-            # add session headers
-            headers.update(self._session.headers)
-            cookie = self._session.cookies.get_dict()
+        api_logger.debug('REST_CALL URL = %s', url)
 
-            # make sure data is populated if present.
-            if isinstance(data, (list, dict)):
-                data = json.dumps(data)
+        # make request
+        try:
+            if not sensitive:
+                api_logger.debug('\n\tREQUEST: %s %s\n\tHEADERS: %s\n\tCOOKIES: %s\n\tDATA: %s\n',
+                                 method.upper(), url, headers, cookie, data)
 
-            api_logger.debug('REST_CALL URL = %s', url)
+            # Actual request
+            response = self._session.request(method, url, data=data, verify=self.ca_verify_filename,
+                                             stream=True, timeout=timeout, headers=headers, allow_redirects=False)
 
-            # make request
-            try:
+            # Request complete - lets parse.
+            # if it's a non-CGX-good response, return with cgx_status = False
+            if response.status_code not in [requests.codes.ok,
+                                            requests.codes.no_content,
+                                            requests.codes.found,
+                                            requests.codes.moved]:
+
+                # Simple JSON debug
                 if not sensitive:
-                    api_logger.debug('\n\tREQUEST: %s %s\n\tHEADERS: %s\n\tCOOKIES: %s\n\tDATA: %s\n',
-                                     method.upper(), url, headers, cookie, data)
-
-                # Actual request
-                response = self._session.request(method, url, data=data, verify=self.ca_verify_filename,
-                                                 stream=True, timeout=timeout, headers=headers, allow_redirects=False)
-
-                # Request complete - lets parse.
-                # if it's a non-CGX-good response, don't accept it - wait and retry
-                if response.status_code not in [requests.codes.ok,
-                                                requests.codes.no_content,
-                                                requests.codes.found,
-                                                requests.codes.moved]:
-
-                    # Simple JSON debug
-                    if not sensitive:
-                        try:
-                            api_logger.debug('RESPONSE HEADERS: %s\n', json.dumps(
-                                json.loads(text_type(response.headers)), indent=4))
-                        except ValueError:
-                            api_logger.debug('RESPONSE HEADERS: %s\n', text_type(response.headers))
-                        try:
-                            api_logger.debug('RESPONSE: %s\n', json.dumps(response.json(), indent=4))
-                        except ValueError:
-                            api_logger.debug('RESPONSE: %s\n', text_type(response.text))
-                    else:
-                        api_logger.debug('RESPONSE NOT LOGGED (sensitive content)')
-
-                    api_logger.debug("Error, non-200 response received: %s", response.status_code)
-
-                    if retry:
-                        # keep retrying
-                        retry_count += 1
-                        if retry_count >= max_retry:
-                            api_logger.info("Max retries of %s reached.", max_retry)
-                            retry = False
-                        # wait a bit to see if issue clears.
-                        sleep(retry_sleep)
-                    else:
-                        # run once is over.
-                        run_once = False
-                        # CGX extend requests.Response for return
-                        response.cgx_status = False
-                        response.cgx_content = self._catch_nonjson_streamresponse(response.text)
-                        return response
-
+                    try:
+                        api_logger.debug('RESPONSE HEADERS: %s\n', json.dumps(
+                            json.loads(text_type(response.headers)), indent=4))
+                    except ValueError:
+                        api_logger.debug('RESPONSE HEADERS: %s\n', text_type(response.headers))
+                    try:
+                        api_logger.debug('RESPONSE: %s\n', json.dumps(response.json(), indent=4))
+                    except ValueError:
+                        api_logger.debug('RESPONSE: %s\n', text_type(response.text))
                 else:
+                    api_logger.debug('RESPONSE NOT LOGGED (sensitive content)')
 
-                    # Simple JSON debug
-                    if not sensitive and (logger_level <= logging.DEBUG and logger_level != logging.NOTSET):
-                        try:
-                            api_logger.debug('RESPONSE HEADERS: %s\n', json.dumps(
-                                json.loads(text_type(response.headers)), indent=4))
-                            api_logger.debug('RESPONSE: %s\n', json.dumps(response.json(), indent=4))
-                        except ValueError:
-                            api_logger.debug('RESPONSE HEADERS: %s\n', text_type(response.headers))
-                            api_logger.debug('RESPONSE: %s\n', text_type(response.text))
-                    elif sensitive:
-                        api_logger.debug('RESPONSE NOT LOGGED (sensitive content)')
+                api_logger.debug("Error, non-200 response received: %s", response.status_code)
 
-                    # if retries have been done, update log if requested.
-                    if retry_count > 0:
-                        api_logger.debug("Got good response after %s retries.", retry_count)
+                # CGX extend requests.Response for return
+                response.cgx_status = False
+                response.cgx_content = self._catch_nonjson_streamresponse(response.text)
+                return response
 
-                    # run once is over, if set.
-                    run_once = False
-                    # CGX extend requests.Response for return
-                    response.cgx_status = True
-                    response.cgx_content = self._catch_nonjson_streamresponse(response.text)
-                    return response
+            else:
 
-            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+                # Simple JSON debug
+                if not sensitive and (logger_level <= logging.DEBUG and logger_level != logging.NOTSET):
+                    try:
+                        api_logger.debug('RESPONSE HEADERS: %s\n', json.dumps(
+                            json.loads(text_type(response.headers)), indent=4))
+                        api_logger.debug('RESPONSE: %s\n', json.dumps(response.json(), indent=4))
+                    except ValueError:
+                        api_logger.debug('RESPONSE HEADERS: %s\n', text_type(response.headers))
+                        api_logger.debug('RESPONSE: %s\n', text_type(response.text))
+                elif sensitive:
+                    api_logger.debug('RESPONSE NOT LOGGED (sensitive content)')
 
-                api_logger.info("Error, %s.", text_type(e))
+                # CGX extend requests.Response for return
+                response.cgx_status = True
+                response.cgx_content = self._catch_nonjson_streamresponse(response.text)
+                return response
 
-                if retry:
-                    # keep retrying
-                    retry_count += 1
-                    if retry_count >= max_retry:
-                        api_logger.info("Max retries of %s reached.", max_retry)
-                        retry = False
-                    # wait a bit to see if issue clears.
-                    sleep(retry_sleep)
-                else:
-                    # run once is over.
-                    run_once = False
-                    # make a requests.Response object for return since we didn't get one.
-                    response = requests.Response
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError, urllib3.exceptions.MaxRetryError)\
+                as e:
 
-                    # CGX extend requests.Response for return
-                    response.cgx_status = False
-                    response.cgx_content = {
-                        '_error': [
-                            {
-                                'message': 'REST Request Exception: {}'.format(e),
-                                'data': {},
-                            }
-                        ]
+            api_logger.info("Error, %s.", text_type(e))
+
+            # make a requests.Response object for return since we didn't get one.
+            response = requests.Response
+
+            # CGX extend requests.Response for return
+            response.cgx_status = False
+            response.cgx_content = {
+                '_error': [
+                    {
+                        'message': 'REST Request Exception: {}'.format(e),
+                        'data': {},
                     }
-                    return response
+                ]
+            }
+            return response
 
     def _cleanup_ca_temp_file(self):
         """
