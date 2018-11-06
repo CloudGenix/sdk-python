@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.0.3b1
+**Version:** v5.0.3b2
 
 **Author:** CloudGenix
 ..." />
@@ -2587,6 +2587,7 @@ table {
     <li class="mono"><a href="#cloudgenix.API.__init__">__init__</a></li>
     <li class="mono"><a href="#cloudgenix.API.add_headers">add_headers</a></li>
     <li class="mono"><a href="#cloudgenix.API.expose_session">expose_session</a></li>
+    <li class="mono"><a href="#cloudgenix.API.modify_rest_retry">modify_rest_retry</a></li>
     <li class="mono"><a href="#cloudgenix.API.notify_for_new_version">notify_for_new_version</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_auth_token">parse_auth_token</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_region">parse_region</a></li>
@@ -2597,6 +2598,9 @@ table {
     <li class="mono"><a href="#cloudgenix.API.ssl_verify">ssl_verify</a></li>
     <li class="mono"><a href="#cloudgenix.API.update_region_to_controller">update_region_to_controller</a></li>
     <li class="mono"><a href="#cloudgenix.API.url_decode">url_decode</a></li>
+    <li class="mono"><a href="#cloudgenix.API.view_cookies">view_cookies</a></li>
+    <li class="mono"><a href="#cloudgenix.API.view_headers">view_headers</a></li>
+    <li class="mono"><a href="#cloudgenix.API.view_rest_retry">view_rest_retry</a></li>
   </ul>
 
         </li>
@@ -2628,7 +2632,7 @@ table {
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python2 and Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v5.0.3b1</p>
+<p><strong>Version:</strong> v5.0.3b2</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017, 2018 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
@@ -2675,7 +2679,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python2 and Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v5.0.3b1</span>
+<span class="sd">**Version:** v5.0.3b2</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2730,6 +2734,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span>
 <span class="kn">from</span> <span class="nn">requests.packages</span> <span class="kn">import</span> <span class="n">urllib3</span>
 
 <span class="kn">from</span> <span class="nn">.get_api</span> <span class="kn">import</span> <span class="n">Get</span>
@@ -2790,7 +2795,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.0.3b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.0.3b2&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 
 <span class="c1"># PyPI URL for checking for updates.</span>
@@ -2953,6 +2958,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Global structure, previously sdk_vars</span>
     <span class="c1"># Authentication is now stored as cookies, as part of the requests.Session() object.</span>
+    <span class="c1"># Authentication can also be stored as an &#39;X-Auth-Token:&#39; header, but cookies take precedence.</span>
     <span class="n">controller</span> <span class="o">=</span> <span class="s1">&#39;https://api.elcapitan.cloudgenix.com&#39;</span>
     <span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
 
@@ -3011,15 +3017,15 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_retry</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="sd">&quot;&quot;&quot;Boolean to Automatically retry failed REST calls. (Should NOT be True for APIs that CREATE objects.)&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_max_retry</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="sd">&quot;&quot;&quot;REST call maximum retry attempts.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_sleep</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="sd">&quot;&quot;&quot;Seconds to wait between REST retries.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
-    <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">60</span>
+    <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">240</span>
     <span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
@@ -3069,6 +3075,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="c1"># Create Requests Session.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+        <span class="c1"># Set default REST retry parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modify_rest_retry</span><span class="p">()</span>
 
         <span class="c1"># Identify SDK in the User-Agent.</span>
         <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
@@ -3214,6 +3223,66 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span>
         <span class="k">return</span>
 
+    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                          <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                          <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify retry parameters for the SDK&#39;s rest call object.</span>
+
+<span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
+<span class="sd">        the underlying `requests.Session` object.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **total:** int, Total number of retries to allow. Takes precedence over other counts.</span>
+<span class="sd">          - **connect:** int, How many connection-related errors to retry on.</span>
+<span class="sd">          - **read:** int, How many times to retry on read errors.</span>
+<span class="sd">          - **redirect:** int, How many redirects to perform. loops.</span>
+<span class="sd">          - **status:** int, How many times to retry on bad status codes.</span>
+<span class="sd">          - **method_whitelist:** iterable, Set of uppercased HTTP method verbs that we should retry on.</span>
+<span class="sd">          - **status_forcelist:** iterable, A set of integer HTTP status codes that we should force a retry on.</span>
+<span class="sd">          - **backoff_factor:** float, A backoff factor to apply between attempts after the second try.</span>
+<span class="sd">          - **raise_on_redirect:** bool, True = raise a MaxRetryError, False = return latest 3xx response.</span>
+<span class="sd">          - **raise_on_status:** bool, Similar logic to ``raise_on_redirect`` but for status responses.</span>
+<span class="sd">          - **respect_retry_after_header:** bool, Whether to respect Retry-After header on status codes.</span>
+<span class="sd">          - **adapter_url:** string, URL match for these retry values (default `https://`)</span>
+
+<span class="sd">        **Returns:** No return, mutates the session directly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Cloudgenix responses with 502/504 are usually recoverable. Use them if no list specified.</span>
+        <span class="k">if</span> <span class="n">status_forcelist</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">status_forcelist</span> <span class="o">=</span> <span class="p">(</span><span class="mi">413</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">)</span>
+
+        <span class="n">retry</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+                                         <span class="n">connect</span><span class="o">=</span><span class="n">connect</span><span class="p">,</span>
+                                         <span class="n">read</span><span class="o">=</span><span class="n">read</span><span class="p">,</span>
+                                         <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span>
+                                         <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span>
+                                         <span class="n">method_whitelist</span><span class="o">=</span><span class="n">method_whitelist</span><span class="p">,</span>
+                                         <span class="n">status_forcelist</span><span class="o">=</span><span class="n">status_forcelist</span><span class="p">,</span>
+                                         <span class="n">backoff_factor</span><span class="o">=</span><span class="n">backoff_factor</span><span class="p">,</span>
+                                         <span class="n">raise_on_redirect</span><span class="o">=</span><span class="n">raise_on_redirect</span><span class="p">,</span>
+                                         <span class="n">raise_on_status</span><span class="o">=</span><span class="n">raise_on_status</span><span class="p">,</span>
+                                         <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="n">respect_retry_after_header</span><span class="p">)</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="n">retry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">adapter_url</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current rest retry settings in the `requests.Session()` object</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **url:** URL to use to determine retry methods for. Defaults to &#39;https://&#39;</span>
+
+<span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">url</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://&quot;</span>
+        <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">max_retries</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">expose_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call to expose the Requests Session object</span>
@@ -3248,6 +3317,26 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
         <span class="k">return</span>
 
+    <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current headers in the `requests.Session()` object</span>
+
+<span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current cookies in the `requests.Session()` object</span>
+
+<span class="sd">        **Returns:** List of Dicts, one cookie per Dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">return_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="p">:</span>
+            <span class="n">return_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">cookie</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">return_list</span>
+
     <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
@@ -3261,11 +3350,19 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                                 <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                                 <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Remove all handlers</span>
             <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
@@ -3334,11 +3431,12 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">          - **timeout:** Requests Timeout</span>
 <span class="sd">          - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
-<span class="sd">          - **retry:** Boolean if request should be retried if failure.</span>
-<span class="sd">          - **max_retry:** Maximum number of retries before giving up</span>
-<span class="sd">          - **retry_sleep:** Time inbetween retries.</span>
+<span class="sd">          - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">          - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">          - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 
 <span class="sd">        **Returns:** Requests.Response object, extended with:</span>
+
 <span class="sd">          - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
@@ -3346,148 +3444,116 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="c1"># pull retry related items from Constructor if not specified.</span>
         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
-        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">retry_sleep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
-
-        <span class="c1"># Retry loop counter</span>
-        <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
 
         <span class="c1"># Get logging level, use this to bypass logging functions with possible large content if not set.</span>
         <span class="n">logger_level</span> <span class="o">=</span> <span class="n">api_logger</span><span class="o">.</span><span class="n">getEffectiveLevel</span><span class="p">()</span>
 
-        <span class="c1"># Run once logic.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">retry</span><span class="p">:</span>
-            <span class="n">run_once</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="c1"># populate headers and cookies from session.</span>
+        <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+            <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">while</span> <span class="n">retry</span> <span class="ow">or</span> <span class="n">run_once</span><span class="p">:</span>
+        <span class="c1"># add session headers</span>
+        <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
 
-            <span class="c1"># populate headers and cookies from session.</span>
-            <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
-                <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
-                <span class="p">}</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># make sure data is populated if present.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-            <span class="c1"># add session headers</span>
-            <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-            <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
-            <span class="c1"># make sure data is populated if present.</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># make request</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+                                 <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+            <span class="c1"># Actual request</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
+                                             <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-            <span class="c1"># make request</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Request complete - lets parse.</span>
+            <span class="c1"># if it&#39;s a non-CGX-good response, return with cgx_status = False</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
+
+                <span class="c1"># Simple JSON debug</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                                     <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-                <span class="c1"># Actual request</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
-                                                 <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-                <span class="c1"># Request complete - lets parse.</span>
-                <span class="c1"># if it&#39;s a non-CGX-good response, don&#39;t accept it - wait and retry</span>
-                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
-
-                    <span class="c1"># Simple JSON debug</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                                <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
-
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-
-                    <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                        <span class="c1"># keep retrying</span>
-                        <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                        <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                            <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="c1"># wait a bit to see if issue clears.</span>
-                        <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="c1"># run once is over.</span>
-                        <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="c1"># CGX extend requests.Response for return</span>
-                        <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                        <span class="k">return</span> <span class="n">response</span>
-
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
 
-                    <span class="c1"># Simple JSON debug</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                                <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                    <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
 
-                    <span class="c1"># if retries have been done, update log if requested.</span>
-                    <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Got good response after </span><span class="si">%s</span><span class="s2"> retries.&quot;</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">)</span>
+                <span class="c1"># CGX extend requests.Response for return</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
 
-                    <span class="c1"># run once is over, if set.</span>
-                    <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># CGX extend requests.Response for return</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="n">response</span>
+            <span class="k">else</span><span class="p">:</span>
 
-            <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Simple JSON debug</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
 
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                <span class="c1"># CGX extend requests.Response for return</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
 
-                <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                    <span class="c1"># keep retrying</span>
-                    <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                        <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># wait a bit to see if issue clears.</span>
-                    <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># run once is over.</span>
-                    <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
-                    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
+                <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-                    <span class="c1"># CGX extend requests.Response for return</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
-                        <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
-                            <span class="p">{</span>
-                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-                                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
-                            <span class="p">}</span>
-                        <span class="p">]</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+            <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
+
+            <span class="c1"># CGX extend requests.Response for return</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                     <span class="p">}</span>
-                    <span class="k">return</span> <span class="n">response</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">_cleanup_ca_temp_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -3995,6 +4061,7 @@ and Response Body.</p></div>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Global structure, previously sdk_vars</span>
     <span class="c1"># Authentication is now stored as cookies, as part of the requests.Session() object.</span>
+    <span class="c1"># Authentication can also be stored as an &#39;X-Auth-Token:&#39; header, but cookies take precedence.</span>
     <span class="n">controller</span> <span class="o">=</span> <span class="s1">&#39;https://api.elcapitan.cloudgenix.com&#39;</span>
     <span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
 
@@ -4053,15 +4120,15 @@ and Response Body.</p></div>
     <span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_retry</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="sd">&quot;&quot;&quot;Boolean to Automatically retry failed REST calls. (Should NOT be True for APIs that CREATE objects.)&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_max_retry</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="sd">&quot;&quot;&quot;REST call maximum retry attempts.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_sleep</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="sd">&quot;&quot;&quot;Seconds to wait between REST retries.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
-    <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">60</span>
+    <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">240</span>
     <span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
@@ -4111,6 +4178,9 @@ and Response Body.</p></div>
 
         <span class="c1"># Create Requests Session.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+        <span class="c1"># Set default REST retry parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modify_rest_retry</span><span class="p">()</span>
 
         <span class="c1"># Identify SDK in the User-Agent.</span>
         <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
@@ -4256,6 +4326,66 @@ and Response Body.</p></div>
             <span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span>
         <span class="k">return</span>
 
+    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                          <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                          <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify retry parameters for the SDK&#39;s rest call object.</span>
+
+<span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
+<span class="sd">        the underlying `requests.Session` object.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **total:** int, Total number of retries to allow. Takes precedence over other counts.</span>
+<span class="sd">          - **connect:** int, How many connection-related errors to retry on.</span>
+<span class="sd">          - **read:** int, How many times to retry on read errors.</span>
+<span class="sd">          - **redirect:** int, How many redirects to perform. loops.</span>
+<span class="sd">          - **status:** int, How many times to retry on bad status codes.</span>
+<span class="sd">          - **method_whitelist:** iterable, Set of uppercased HTTP method verbs that we should retry on.</span>
+<span class="sd">          - **status_forcelist:** iterable, A set of integer HTTP status codes that we should force a retry on.</span>
+<span class="sd">          - **backoff_factor:** float, A backoff factor to apply between attempts after the second try.</span>
+<span class="sd">          - **raise_on_redirect:** bool, True = raise a MaxRetryError, False = return latest 3xx response.</span>
+<span class="sd">          - **raise_on_status:** bool, Similar logic to ``raise_on_redirect`` but for status responses.</span>
+<span class="sd">          - **respect_retry_after_header:** bool, Whether to respect Retry-After header on status codes.</span>
+<span class="sd">          - **adapter_url:** string, URL match for these retry values (default `https://`)</span>
+
+<span class="sd">        **Returns:** No return, mutates the session directly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Cloudgenix responses with 502/504 are usually recoverable. Use them if no list specified.</span>
+        <span class="k">if</span> <span class="n">status_forcelist</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">status_forcelist</span> <span class="o">=</span> <span class="p">(</span><span class="mi">413</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">)</span>
+
+        <span class="n">retry</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+                                         <span class="n">connect</span><span class="o">=</span><span class="n">connect</span><span class="p">,</span>
+                                         <span class="n">read</span><span class="o">=</span><span class="n">read</span><span class="p">,</span>
+                                         <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span>
+                                         <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span>
+                                         <span class="n">method_whitelist</span><span class="o">=</span><span class="n">method_whitelist</span><span class="p">,</span>
+                                         <span class="n">status_forcelist</span><span class="o">=</span><span class="n">status_forcelist</span><span class="p">,</span>
+                                         <span class="n">backoff_factor</span><span class="o">=</span><span class="n">backoff_factor</span><span class="p">,</span>
+                                         <span class="n">raise_on_redirect</span><span class="o">=</span><span class="n">raise_on_redirect</span><span class="p">,</span>
+                                         <span class="n">raise_on_status</span><span class="o">=</span><span class="n">raise_on_status</span><span class="p">,</span>
+                                         <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="n">respect_retry_after_header</span><span class="p">)</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="n">retry</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">adapter_url</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current rest retry settings in the `requests.Session()` object</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **url:** URL to use to determine retry methods for. Defaults to &#39;https://&#39;</span>
+
+<span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">url</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://&quot;</span>
+        <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">max_retries</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">expose_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call to expose the Requests Session object</span>
@@ -4290,6 +4420,26 @@ and Response Body.</p></div>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
         <span class="k">return</span>
 
+    <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current headers in the `requests.Session()` object</span>
+
+<span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        View current cookies in the `requests.Session()` object</span>
+
+<span class="sd">        **Returns:** List of Dicts, one cookie per Dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">return_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="p">:</span>
+            <span class="n">return_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">cookie</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">return_list</span>
+
     <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
@@ -4303,11 +4453,19 @@ and Response Body.</p></div>
             <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                                 <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                                 <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Remove all handlers</span>
             <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
@@ -4376,11 +4534,12 @@ and Response Body.</p></div>
 <span class="sd">          - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">          - **timeout:** Requests Timeout</span>
 <span class="sd">          - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
-<span class="sd">          - **retry:** Boolean if request should be retried if failure.</span>
-<span class="sd">          - **max_retry:** Maximum number of retries before giving up</span>
-<span class="sd">          - **retry_sleep:** Time inbetween retries.</span>
+<span class="sd">          - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">          - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">          - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 
 <span class="sd">        **Returns:** Requests.Response object, extended with:</span>
+
 <span class="sd">          - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
@@ -4388,148 +4547,116 @@ and Response Body.</p></div>
         <span class="c1"># pull retry related items from Constructor if not specified.</span>
         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
-        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">retry_sleep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
-
-        <span class="c1"># Retry loop counter</span>
-        <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Someone using deprecated retry code. Notify.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                             <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
 
         <span class="c1"># Get logging level, use this to bypass logging functions with possible large content if not set.</span>
         <span class="n">logger_level</span> <span class="o">=</span> <span class="n">api_logger</span><span class="o">.</span><span class="n">getEffectiveLevel</span><span class="p">()</span>
 
-        <span class="c1"># Run once logic.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">retry</span><span class="p">:</span>
-            <span class="n">run_once</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="c1"># populate headers and cookies from session.</span>
+        <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+            <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">while</span> <span class="n">retry</span> <span class="ow">or</span> <span class="n">run_once</span><span class="p">:</span>
+        <span class="c1"># add session headers</span>
+        <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
 
-            <span class="c1"># populate headers and cookies from session.</span>
-            <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
-                <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
-                <span class="p">}</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># make sure data is populated if present.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-            <span class="c1"># add session headers</span>
-            <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-            <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
-            <span class="c1"># make sure data is populated if present.</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># make request</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+                                 <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+            <span class="c1"># Actual request</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
+                                             <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-            <span class="c1"># make request</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Request complete - lets parse.</span>
+            <span class="c1"># if it&#39;s a non-CGX-good response, return with cgx_status = False</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
+                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
+
+                <span class="c1"># Simple JSON debug</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                                     <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-                <span class="c1"># Actual request</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
-                                                 <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-                <span class="c1"># Request complete - lets parse.</span>
-                <span class="c1"># if it&#39;s a non-CGX-good response, don&#39;t accept it - wait and retry</span>
-                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
-                                                <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
-
-                    <span class="c1"># Simple JSON debug</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                                <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
-
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-
-                    <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                        <span class="c1"># keep retrying</span>
-                        <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                        <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                            <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="c1"># wait a bit to see if issue clears.</span>
-                        <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="c1"># run once is over.</span>
-                        <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="c1"># CGX extend requests.Response for return</span>
-                        <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                        <span class="k">return</span> <span class="n">response</span>
-
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
 
-                    <span class="c1"># Simple JSON debug</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                                <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                    <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
 
-                    <span class="c1"># if retries have been done, update log if requested.</span>
-                    <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Got good response after </span><span class="si">%s</span><span class="s2"> retries.&quot;</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">)</span>
+                <span class="c1"># CGX extend requests.Response for return</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
 
-                    <span class="c1"># run once is over, if set.</span>
-                    <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># CGX extend requests.Response for return</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="n">response</span>
+            <span class="k">else</span><span class="p">:</span>
 
-            <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Simple JSON debug</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
 
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                <span class="c1"># CGX extend requests.Response for return</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
 
-                <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                    <span class="c1"># keep retrying</span>
-                    <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                        <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># wait a bit to see if issue clears.</span>
-                    <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># run once is over.</span>
-                    <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
-                    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
+                <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-                    <span class="c1"># CGX extend requests.Response for return</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
-                        <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
-                            <span class="p">{</span>
-                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-                                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
-                            <span class="p">}</span>
-                        <span class="p">]</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+            <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
+
+            <span class="c1"># CGX extend requests.Response for return</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                     <span class="p">}</span>
-                    <span class="k">return</span> <span class="n">response</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">_cleanup_ca_temp_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -4851,7 +4978,7 @@ and Response Body.</p></div>
 
             
   
-    <div class="desc"><p>REST call maximum retry attempts.</p></div>
+    <div class="desc"><p>DEPRECATED: Please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a>.</p></div>
   <div class="source_cont">
 </div>
 
@@ -4862,7 +4989,7 @@ and Response Body.</p></div>
 
             
   
-    <div class="desc"><p>Boolean to Automatically retry failed REST calls. (Should NOT be True for APIs that CREATE objects.)</p></div>
+    <div class="desc"><p>DEPRECATED: Please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a>.</p></div>
   <div class="source_cont">
 </div>
 
@@ -4873,7 +5000,7 @@ and Response Body.</p></div>
 
             
   
-    <div class="desc"><p>Seconds to wait between REST retries.</p></div>
+    <div class="desc"><p>DEPRECATED: Please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a>.</p></div>
   <div class="source_cont">
 </div>
 
@@ -5021,6 +5148,8 @@ and Response Body.</p></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_for_new_version</span><span class="p">()</span>
     <span class="c1"># Create Requests Session.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="c1"># Set default REST retry parameters</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">modify_rest_retry</span><span class="p">()</span>
     <span class="c1"># Identify SDK in the User-Agent.</span>
     <span class="n">user_agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">user_agent</span><span class="p">:</span>
@@ -5114,6 +5243,84 @@ and Response Body.</p></div>
 <span class="sd">    **Returns:** `requests.Session` object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.API.modify_rest_retry">
+    <div class="name def">
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=100, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;GET&#39;, &#39;OPTIONS&#39;, &#39;HEAD&#39;, &#39;PUT&#39;, &#39;DELETE&#39;, &#39;TRACE&#39;}), status_forcelist=None, backoff_factor=2, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Modify retry parameters for the SDK's rest call object.</p>
+<p>Parameters are directly from and passed directly to <code>urllib3.util.retry.Retry</code>, and get applied directly to
+the underlying <code>requests.Session</code> object.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>total:</strong> int, Total number of retries to allow. Takes precedence over other counts.</li>
+<li><strong>connect:</strong> int, How many connection-related errors to retry on.</li>
+<li><strong>read:</strong> int, How many times to retry on read errors.</li>
+<li><strong>redirect:</strong> int, How many redirects to perform. loops.</li>
+<li><strong>status:</strong> int, How many times to retry on bad status codes.</li>
+<li><strong>method_whitelist:</strong> iterable, Set of uppercased HTTP method verbs that we should retry on.</li>
+<li><strong>status_forcelist:</strong> iterable, A set of integer HTTP status codes that we should force a retry on.</li>
+<li><strong>backoff_factor:</strong> float, A backoff factor to apply between attempts after the second try.</li>
+<li><strong>raise_on_redirect:</strong> bool, True = raise a MaxRetryError, False = return latest 3xx response.</li>
+<li><strong>raise_on_status:</strong> bool, Similar logic to <code>raise_on_redirect</code> but for status responses.</li>
+<li><strong>respect_retry_after_header:</strong> bool, Whether to respect Retry-After header on status codes.</li>
+<li><strong>adapter_url:</strong> string, URL match for these retry values (default <code>https://</code>)</li>
+</ul>
+<p><strong>Returns:</strong> No return, mutates the session directly</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.modify_rest_retry', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.modify_rest_retry" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                      <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                      <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                      <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modify retry parameters for the SDK&#39;s rest call object.</span>
+<span class="sd">    Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
+<span class="sd">    the underlying `requests.Session` object.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **total:** int, Total number of retries to allow. Takes precedence over other counts.</span>
+<span class="sd">      - **connect:** int, How many connection-related errors to retry on.</span>
+<span class="sd">      - **read:** int, How many times to retry on read errors.</span>
+<span class="sd">      - **redirect:** int, How many redirects to perform. loops.</span>
+<span class="sd">      - **status:** int, How many times to retry on bad status codes.</span>
+<span class="sd">      - **method_whitelist:** iterable, Set of uppercased HTTP method verbs that we should retry on.</span>
+<span class="sd">      - **status_forcelist:** iterable, A set of integer HTTP status codes that we should force a retry on.</span>
+<span class="sd">      - **backoff_factor:** float, A backoff factor to apply between attempts after the second try.</span>
+<span class="sd">      - **raise_on_redirect:** bool, True = raise a MaxRetryError, False = return latest 3xx response.</span>
+<span class="sd">      - **raise_on_status:** bool, Similar logic to ``raise_on_redirect`` but for status responses.</span>
+<span class="sd">      - **respect_retry_after_header:** bool, Whether to respect Retry-After header on status codes.</span>
+<span class="sd">      - **adapter_url:** string, URL match for these retry values (default `https://`)</span>
+<span class="sd">    **Returns:** No return, mutates the session directly</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Cloudgenix responses with 502/504 are usually recoverable. Use them if no list specified.</span>
+    <span class="k">if</span> <span class="n">status_forcelist</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">status_forcelist</span> <span class="o">=</span> <span class="p">(</span><span class="mi">413</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">)</span>
+    <span class="n">retry</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+                                     <span class="n">connect</span><span class="o">=</span><span class="n">connect</span><span class="p">,</span>
+                                     <span class="n">read</span><span class="o">=</span><span class="n">read</span><span class="p">,</span>
+                                     <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span>
+                                     <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span>
+                                     <span class="n">method_whitelist</span><span class="o">=</span><span class="n">method_whitelist</span><span class="p">,</span>
+                                     <span class="n">status_forcelist</span><span class="o">=</span><span class="n">status_forcelist</span><span class="p">,</span>
+                                     <span class="n">backoff_factor</span><span class="o">=</span><span class="n">backoff_factor</span><span class="p">,</span>
+                                     <span class="n">raise_on_redirect</span><span class="o">=</span><span class="n">raise_on_redirect</span><span class="p">,</span>
+                                     <span class="n">raise_on_status</span><span class="o">=</span><span class="n">raise_on_status</span><span class="p">,</span>
+                                     <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="n">respect_retry_after_header</span><span class="p">)</span>
+    <span class="n">adapter</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="n">retry</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">adapter_url</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+    <span class="k">return</span>
 </pre></div>
 
   </div>
@@ -5372,14 +5579,16 @@ re-parses the original login request and applies cookies to the session if they 
 <li><strong>sensitive:</strong> Flag if content request/response should be hidden from logging functions</li>
 <li><strong>timeout:</strong> Requests Timeout</li>
 <li><strong>content_json:</strong> Bool on whether the Content-Type header should be set to application/json</li>
-<li><strong>retry:</strong> Boolean if request should be retried if failure.</li>
-<li><strong>max_retry:</strong> Maximum number of retries before giving up</li>
-<li><strong>retry_sleep:</strong> Time inbetween retries.</li>
+<li><strong>retry:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
+<li><strong>max_retry:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
+<li><strong>retry_sleep:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
 </ul>
-<p><strong>Returns:</strong> Requests.Response object, extended with:
-  - <strong>cgx_status</strong>: Bool, True if a successful CloudGenix response, False if error.
-  - <strong>cgx_content</strong>: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
-  will be converted to a Dict response.</p></div>
+<p><strong>Returns:</strong> Requests.Response object, extended with:</p>
+<ul>
+<li><strong>cgx_status</strong>: Bool, True if a successful CloudGenix response, False if error.</li>
+<li><strong>cgx_content</strong>: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
+  will be converted to a Dict response.</li>
+</ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.rest_call', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.rest_call" class="source">
@@ -5394,9 +5603,9 @@ re-parses the original login request and applies cookies to the session if they 
 <span class="sd">      - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">      - **timeout:** Requests Timeout</span>
 <span class="sd">      - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
-<span class="sd">      - **retry:** Boolean if request should be retried if failure.</span>
-<span class="sd">      - **max_retry:** Maximum number of retries before giving up</span>
-<span class="sd">      - **retry_sleep:** Time inbetween retries.</span>
+<span class="sd">      - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">      - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
+<span class="sd">      - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">    **Returns:** Requests.Response object, extended with:</span>
 <span class="sd">      - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">      - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
@@ -5405,126 +5614,98 @@ re-parses the original login request and applies cookies to the session if they 
     <span class="c1"># pull retry related items from Constructor if not specified.</span>
     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_timeout</span>
-    <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-    <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">max_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_retry</span>
-    <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">retry_sleep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_call_sleep</span>
-    <span class="c1"># Retry loop counter</span>
-    <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Someone using deprecated retry code. Notify.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                         <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">max_retry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Someone using deprecated retry code. Notify.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                         <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">retry_sleep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Someone using deprecated retry code. Notify.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WARNING: &#39;max_retry&#39; option of rest_call() has been deprecated. &quot;</span>
+                         <span class="s2">&quot;Please use &#39;API.modify_rest_retry()&#39; instead.&quot;</span><span class="p">)</span>
     <span class="c1"># Get logging level, use this to bypass logging functions with possible large content if not set.</span>
     <span class="n">logger_level</span> <span class="o">=</span> <span class="n">api_logger</span><span class="o">.</span><span class="n">getEffectiveLevel</span><span class="p">()</span>
-    <span class="c1"># Run once logic.</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">retry</span><span class="p">:</span>
-        <span class="n">run_once</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c1"># populate headers and cookies from session.</span>
+    <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">while</span> <span class="n">retry</span> <span class="ow">or</span> <span class="n">run_once</span><span class="p">:</span>
-        <span class="c1"># populate headers and cookies from session.</span>
-        <span class="k">if</span> <span class="n">content_json</span> <span class="ow">and</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]:</span>
-            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
-            <span class="p">}</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="c1"># add session headers</span>
-        <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-        <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
-        <span class="c1"># make sure data is populated if present.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="c1"># make request</span>
-        <span class="k">try</span><span class="p">:</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># add session headers</span>
+    <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">cookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get_dict</span><span class="p">()</span>
+    <span class="c1"># make sure data is populated if present.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;REST_CALL URL = </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="c1"># make request</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+                             <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="c1"># Actual request</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
+                                         <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c1"># Request complete - lets parse.</span>
+        <span class="c1"># if it&#39;s a non-CGX-good response, return with cgx_status = False</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
+                                        <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
+                                        <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
+                                        <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
+            <span class="c1"># Simple JSON debug</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">REQUEST: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">HEADERS: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">COOKIES: </span><span class="si">%s</span><span class="se">\n\t</span><span class="s1">DATA: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                                 <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">cookie</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-            <span class="c1"># Actual request</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span><span class="p">,</span>
-                                             <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-            <span class="c1"># Request complete - lets parse.</span>
-            <span class="c1"># if it&#39;s a non-CGX-good response, don&#39;t accept it - wait and retry</span>
-            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span>
-                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">no_content</span><span class="p">,</span>
-                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">found</span><span class="p">,</span>
-                                            <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">moved</span><span class="p">]:</span>
-                <span class="c1"># Simple JSON debug</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                    <span class="c1"># keep retrying</span>
-                    <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                        <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># wait a bit to see if issue clears.</span>
-                    <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># run once is over.</span>
-                    <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="c1"># CGX extend requests.Response for return</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="n">response</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                        <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># Simple JSON debug</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
-                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-                <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
-                <span class="c1"># if retries have been done, update log if requested.</span>
-                <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Got good response after </span><span class="si">%s</span><span class="s2"> retries.&quot;</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">)</span>
-                <span class="c1"># run once is over, if set.</span>
-                <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="c1"># CGX extend requests.Response for return</span>
-                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">response</span>
-        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">retry</span><span class="p">:</span>
-                <span class="c1"># keep retrying</span>
-                <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&gt;=</span> <span class="n">max_retry</span><span class="p">:</span>
-                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max retries of </span><span class="si">%s</span><span class="s2"> reached.&quot;</span><span class="p">,</span> <span class="n">max_retry</span><span class="p">)</span>
-                    <span class="n">retry</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="c1"># wait a bit to see if issue clears.</span>
-                <span class="n">sleep</span><span class="p">(</span><span class="n">retry_sleep</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># run once is over.</span>
-                <span class="n">run_once</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
-                <span class="c1"># CGX extend requests.Response for return</span>
-                <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span>
-                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-                            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
-                        <span class="p">}</span>
-                    <span class="p">]</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error, non-200 response received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+            <span class="c1"># CGX extend requests.Response for return</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Simple JSON debug</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sensitive</span> <span class="ow">and</span> <span class="p">(</span><span class="n">logger_level</span> <span class="o">&lt;=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">logger_level</span> <span class="o">!=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                        <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE HEADERS: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE: </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">sensitive</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RESPONSE NOT LOGGED (sensitive content)&#39;</span><span class="p">)</span>
+            <span class="c1"># CGX extend requests.Response for return</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
+            <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Error, </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">text_type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="c1"># make a requests.Response object for return since we didn&#39;t get one.</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span>
+        <span class="c1"># CGX extend requests.Response for return</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;_error&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;REST Request Exception: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{},</span>
                 <span class="p">}</span>
-                <span class="k">return</span> <span class="n">response</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">response</span>
 </pre></div>
 
   </div>
@@ -5557,11 +5738,19 @@ re-parses the original login request and applies cookies to the session if they 
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                             <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                             <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                            <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Remove all handlers</span>
         <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
@@ -5749,6 +5938,98 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
 <span class="sd">    **Returns:** Non URLENCODED string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;%([0-9a-fA-F]{2})&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">16</span><span class="p">)),</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.API.view_cookies">
+    <div class="name def">
+    <p>def <span class="ident">view_cookies</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>View current cookies in the <code>requests.Session()</code> object</p>
+<p><strong>Returns:</strong> List of Dicts, one cookie per Dict.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_cookies', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.view_cookies" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View current cookies in the `requests.Session()` object</span>
+<span class="sd">    **Returns:** List of Dicts, one cookie per Dict.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">return_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">cookies</span><span class="p">:</span>
+        <span class="n">return_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">cookie</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">return_list</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.API.view_headers">
+    <div class="name def">
+    <p>def <span class="ident">view_headers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>View current headers in the <code>requests.Session()</code> object</p>
+<p><strong>Returns:</strong> Dict, Key header, value is header value.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_headers', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.view_headers" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View current headers in the `requests.Session()` object</span>
+<span class="sd">    **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.API.view_rest_retry">
+    <div class="name def">
+    <p>def <span class="ident">view_rest_retry</span>(</p><p>self, url=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>View current rest retry settings in the <code>requests.Session()</code> object</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>url:</strong> URL to use to determine retry methods for. Defaults to 'https://'</li>
+</ul>
+<p><strong>Returns:</strong> Dict, Key header, value is header value.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_rest_retry', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.view_rest_retry" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    View current rest retry settings in the `requests.Session()` object</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **url:** URL to use to determine retry methods for. Defaults to &#39;https://&#39;</span>
+<span class="sd">    **Returns:** Dict, Key header, value is header value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">url</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://&quot;</span>
+    <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">max_retries</span><span class="p">)</span>
 </pre></div>
 
   </div>
