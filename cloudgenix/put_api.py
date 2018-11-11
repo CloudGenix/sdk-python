@@ -364,7 +364,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def elements(self, element_id, data, tenant_id=None, api_version="v2.1"):
+    def elements(self, element_id, data, tenant_id=None, api_version="v2.2"):
         """
         Used for associations and element updates
 
@@ -373,7 +373,7 @@ class Put(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -389,6 +389,39 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}".format(api_version,
                                                                       tenant_id,
                                                                       element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def elementsecurityzones(self, site_id, element_id, securityzone_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Update an existing element security zone
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/securityzones/{}".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id,
+                                                                                                securityzone_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -449,7 +482,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def esp_operator_permissions_client(self, operator_id, client_id, data, tenant_id=None, api_version="v2.0"):
+    def esp_operator_permissions_client(self, operator_id, client_id, data, tenant_id=None, api_version="v2.1"):
         """
         Create or update esp operator permissions assigned under a client
 
@@ -459,7 +492,7 @@ class Put(object):
           - **client_id**: ESP/MSP Client ID (typically their tenant_id)
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -631,7 +664,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.5"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.6"):
         """
         Provision an element interface
 
@@ -642,7 +675,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.5)
+          - **api_version**: API version to use (default v4.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -693,7 +726,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def lannetworks(self, site_id, lannetwork_id, data, tenant_id=None, api_version="v3.0"):
+    def lannetworks(self, site_id, lannetwork_id, data, tenant_id=None, api_version="v3.1"):
         """
         Update existing LAN
 
@@ -703,7 +736,7 @@ class Put(object):
           - **lannetwork_id**: LAN Network ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1388,6 +1421,37 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def sdwanapps_configs(self, sdwanapp_id, config_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Sdwanapps_Configs API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **config_id**: SDWAN App Config ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/configs/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  sdwanapp_id,
+                                                                                  config_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     def securitypolicyrules(self, securitypolicyset_id, securitypolicyrule_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update a tenant security policy rule.
@@ -1506,7 +1570,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def serviceendpoints(self, serviceendpoint_id, data, tenant_id=None, api_version="v2.1"):
+    def serviceendpoints(self, serviceendpoint_id, data, tenant_id=None, api_version="v2.2"):
         """
         Update a ServiceEndpoint
 
@@ -1515,7 +1579,7 @@ class Put(object):
           - **serviceendpoint_id**: Service Endpoint ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1715,7 +1779,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def sites(self, site_id, data, tenant_id=None, api_version="v4.2"):
+    def sites(self, site_id, data, tenant_id=None, api_version="v4.3"):
         """
         Update an existing site
 
@@ -1724,7 +1788,7 @@ class Put(object):
           - **site_id**: Site ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.2)
+          - **api_version**: API version to use (default v4.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1837,6 +1901,97 @@ class Put(object):
                                                                                             site_id,
                                                                                             element_id,
                                                                                             snmptrap_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def software(self, machine_id, software_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Software API Function
+
+          **Parameters:**:
+
+          - **machine_id**: Machine ID
+          - **software_id**: Software ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/{}/software/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  machine_id,
+                                                                                  software_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def software_state(self, element_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Upgrade an element.
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/software/state".format(api_version,
+                                                                                     tenant_id,
+                                                                                     element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def spokeclusters(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Update Spoke Cluster
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **spokecluster_id**: Spoke Cluster ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/spokeclusters/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    site_id,
+                                                                                    spokecluster_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -2197,16 +2352,16 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.0"):
+    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.1"):
         """
-        PUT Waninterfacelabels API Function
+        Update specific WAN interface label.
 
           **Parameters:**:
 
           - **waninterfacelabel_id**: WAN Interface Label ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2226,7 +2381,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.2"):
+    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.3"):
         """
         Update the site WAN interface
 
@@ -2236,7 +2391,7 @@ class Put(object):
           - **waninterface_id**: WAN Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2257,7 +2412,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def wannetworks(self, wannetwork_id, data, tenant_id=None, api_version="v2.0"):
+    def wannetworks(self, wannetwork_id, data, tenant_id=None, api_version="v2.1"):
         """
         Update an existing WAN
 
@@ -2266,7 +2421,7 @@ class Put(object):
           - **wannetwork_id**: WAN Network ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2356,6 +2511,9 @@ class Put(object):
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
 
+    configs_sdwanapps = sdwanapps_configs
+    """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
+
     extensions_i = element_extensions
     """ Backwards-compatibility alias of `extensions_i` to `element_extensions`"""
 
@@ -2388,6 +2546,9 @@ class Put(object):
 
     prioritypolicylocalprefixes_t = tenant_prioritypolicylocalprefixes
     """ Backwards-compatibility alias of `prioritypolicylocalprefixes_t` to `tenant_prioritypolicylocalprefixes`"""
+
+    state_software = software_state
+    """ Backwards-compatibility alias of `state_software` to `software_state`"""
 
     tokens_vfflicenses = vfflicense_tokens
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""

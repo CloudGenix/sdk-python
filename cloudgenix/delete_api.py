@@ -324,6 +324,38 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.0"):
+        """
+        Delete an existing security zone
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/securityzones/{}".format(api_version,
+                                                                                                tenant_id,
+                                                                                                site_id,
+                                                                                                element_id,
+                                                                                                securityzone_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
         """
         Delete element user 
@@ -352,7 +384,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.0"):
+    def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.1"):
         """
         Delete esp operator permissions assigned under a client
 
@@ -361,7 +393,7 @@ class Delete(object):
           - **operator_id**: Operator ID
           - **client_id**: ESP/MSP Client ID (typically their tenant_id)
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -500,7 +532,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.5"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.6"):
         """
         Delete an element interface
 
@@ -510,7 +542,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.5)
+          - **api_version**: API version to use (default v4.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -560,7 +592,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def lannetworks(self, site_id, lannetwork_id, tenant_id=None, api_version="v3.0"):
+    def lannetworks(self, site_id, lannetwork_id, tenant_id=None, api_version="v3.1"):
         """
         Delete existing LAN
 
@@ -569,7 +601,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **lannetwork_id**: LAN Network ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1204,6 +1236,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def sdwanapps_configs(self, sdwanapp_id, config_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Sdwanapps_Configs API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **config_id**: SDWAN App Config ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/configs/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  sdwanapp_id,
+                                                                                  config_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def securitypolicyrules(self, securitypolicyset_id, securitypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
         Delete a security policyrule.
@@ -1318,7 +1380,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.1"):
+    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.2"):
         """
         Delete a Service Endpoint
 
@@ -1326,7 +1388,7 @@ class Delete(object):
 
           - **serviceendpoint_id**: Service Endpoint ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1464,7 +1526,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.2"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.3"):
         """
         Delete a site
 
@@ -1472,7 +1534,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.2)
+          - **api_version**: API version to use (default v4.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1582,6 +1644,36 @@ class Delete(object):
                                                                                             site_id,
                                                                                             element_id,
                                                                                             snmptrap_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def spokeclusters(self, site_id, spokecluster_id, tenant_id=None, api_version="v2.0"):
+        """
+        Delete spoke cluster.
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **spokecluster_id**: Spoke Cluster ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/spokeclusters/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    site_id,
+                                                                                    spokecluster_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1846,7 +1938,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.2"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.3"):
         """
         Delete existing WAN interface
 
@@ -1855,7 +1947,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1876,7 +1968,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def wannetworks(self, wannetwork_id, tenant_id=None, api_version="v2.0"):
+    def wannetworks(self, wannetwork_id, tenant_id=None, api_version="v2.1"):
         """
         Delete an existing WAN
 
@@ -1884,7 +1976,7 @@ class Delete(object):
 
           - **wannetwork_id**: WAN Network ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1965,6 +2057,9 @@ class Delete(object):
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
+
+    configs_sdwanapps = sdwanapps_configs
+    """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
 
     elementpassageconfigs_e = elementpassageconfigs
     """ Backwards-compatibility alias of `elementpassageconfigs_e` to `elementpassageconfigs`"""
