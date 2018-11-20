@@ -3223,15 +3223,27 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                           <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                           <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify retry parameters for the SDK&#39;s rest call object.</span>
 
 <span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
 <span class="sd">        the underlying `requests.Session` object.</span>
+
+<span class="sd">        Default retry with total=8 and backoff_factor=0.705883:</span>
+<span class="sd">         - Try 1, 0 delay (0 total seconds)</span>
+<span class="sd">         - Try 2, 0 delay (0 total seconds)</span>
+<span class="sd">         - Try 3, 0.705883 delay (0.705883 total seconds)</span>
+<span class="sd">         - Try 4, 1.411766 delay (2.117649 total seconds)</span>
+<span class="sd">         - Try 5, 2.823532 delay (4.941181 total seconds)</span>
+<span class="sd">         - Try 6, 5.647064 delay (10.588245 total seconds)</span>
+<span class="sd">         - Try 7, 11.294128 delay (21.882373 total seconds)</span>
+<span class="sd">         - Try 8, 22.588256 delay (44.470629 total seconds)</span>
+<span class="sd">         - Try 9, 45.176512 delay (89.647141 total seconds)</span>
+<span class="sd">         - Try 10, 90.353024 delay (180.000165 total seconds)</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -4326,15 +4338,27 @@ and Response Body.</p></div>
             <span class="bp">self</span><span class="o">.</span><span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">verify</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                           <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                          <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                           <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify retry parameters for the SDK&#39;s rest call object.</span>
 
 <span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
 <span class="sd">        the underlying `requests.Session` object.</span>
+
+<span class="sd">        Default retry with total=8 and backoff_factor=0.705883:</span>
+<span class="sd">         - Try 1, 0 delay (0 total seconds)</span>
+<span class="sd">         - Try 2, 0 delay (0 total seconds)</span>
+<span class="sd">         - Try 3, 0.705883 delay (0.705883 total seconds)</span>
+<span class="sd">         - Try 4, 1.411766 delay (2.117649 total seconds)</span>
+<span class="sd">         - Try 5, 2.823532 delay (4.941181 total seconds)</span>
+<span class="sd">         - Try 6, 5.647064 delay (10.588245 total seconds)</span>
+<span class="sd">         - Try 7, 11.294128 delay (21.882373 total seconds)</span>
+<span class="sd">         - Try 8, 22.588256 delay (44.470629 total seconds)</span>
+<span class="sd">         - Try 9, 45.176512 delay (89.647141 total seconds)</span>
+<span class="sd">         - Try 10, 90.353024 delay (180.000165 total seconds)</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -5253,7 +5277,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=100, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;TRACE&#39;, &#39;OPTIONS&#39;, &#39;DELETE&#39;, &#39;GET&#39;, &#39;HEAD&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=2, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;HEAD&#39;, &#39;DELETE&#39;, &#39;GET&#39;, &#39;OPTIONS&#39;, &#39;TRACE&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
@@ -5262,6 +5286,17 @@ and Response Body.</p></div>
     <div class="desc"><p>Modify retry parameters for the SDK's rest call object.</p>
 <p>Parameters are directly from and passed directly to <code>urllib3.util.retry.Retry</code>, and get applied directly to
 the underlying <code>requests.Session</code> object.</p>
+<p>Default retry with total=8 and backoff_factor=0.705883:
+ - Try 1, 0 delay (0 total seconds)
+ - Try 2, 0 delay (0 total seconds)
+ - Try 3, 0.705883 delay (0.705883 total seconds)
+ - Try 4, 1.411766 delay (2.117649 total seconds)
+ - Try 5, 2.823532 delay (4.941181 total seconds)
+ - Try 6, 5.647064 delay (10.588245 total seconds)
+ - Try 7, 11.294128 delay (21.882373 total seconds)
+ - Try 8, 22.588256 delay (44.470629 total seconds)
+ - Try 9, 45.176512 delay (89.647141 total seconds)
+ - Try 10, 90.353024 delay (180.000165 total seconds)</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><strong>total:</strong> int, Total number of retries to allow. Takes precedence over other counts.</li>
@@ -5281,14 +5316,25 @@ the underlying <code>requests.Session</code> object.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.modify_rest_retry', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.modify_rest_retry" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">modify_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">connect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                       <span class="n">method_whitelist</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_METHOD_WHITELIST</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                      <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                      <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                       <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Modify retry parameters for the SDK&#39;s rest call object.</span>
 <span class="sd">    Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
 <span class="sd">    the underlying `requests.Session` object.</span>
+<span class="sd">    Default retry with total=8 and backoff_factor=0.705883:</span>
+<span class="sd">     - Try 1, 0 delay (0 total seconds)</span>
+<span class="sd">     - Try 2, 0 delay (0 total seconds)</span>
+<span class="sd">     - Try 3, 0.705883 delay (0.705883 total seconds)</span>
+<span class="sd">     - Try 4, 1.411766 delay (2.117649 total seconds)</span>
+<span class="sd">     - Try 5, 2.823532 delay (4.941181 total seconds)</span>
+<span class="sd">     - Try 6, 5.647064 delay (10.588245 total seconds)</span>
+<span class="sd">     - Try 7, 11.294128 delay (21.882373 total seconds)</span>
+<span class="sd">     - Try 8, 22.588256 delay (44.470629 total seconds)</span>
+<span class="sd">     - Try 9, 45.176512 delay (89.647141 total seconds)</span>
+<span class="sd">     - Try 10, 90.353024 delay (180.000165 total seconds)</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **total:** int, Total number of retries to allow. Takes precedence over other counts.</span>
 <span class="sd">      - **connect:** int, How many connection-related errors to retry on.</span>
