@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v5.0.3b2
+# CloudGenix Python SDK v5.1.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -35,6 +35,7 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
+| **5.1.1** | **b1** | Support for November 2018 Controller release. |
 | **5.0.3** | **b2** | Enhanced REST API retry handling and options. |
 |           | **b1** | Support for September 2018 Controller release. |
 | **5.0.1** | **b1** | Support for July 2018 Controller release, New version notifications, Depreciate legacy _single functions. |

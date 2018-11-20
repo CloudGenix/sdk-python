@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.0.3b2
+**Version:** v5.1.1b1
 
 **Author:** CloudGenix
 
@@ -117,7 +117,7 @@ api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 # Version of SDK
-version = "5.0.3b2"
+version = "5.1.1b1"
 """SDK Version string"""
 
 # PyPI URL for checking for updates.
@@ -545,15 +545,27 @@ class API(object):
             self.ca_verify_filename = self.verify
         return
 
-    def modify_rest_retry(self, total=100, connect=None, read=None, redirect=None, status=None,
+    def modify_rest_retry(self, total=8, connect=None, read=None, redirect=None, status=None,
                           method_whitelist=urllib3.util.retry.Retry.DEFAULT_METHOD_WHITELIST, status_forcelist=None,
-                          backoff_factor=2, raise_on_redirect=True, raise_on_status=True,
+                          backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True,
                           respect_retry_after_header=True, adapter_url="https://"):
         """
         Modify retry parameters for the SDK's rest call object.
 
         Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to
         the underlying `requests.Session` object.
+
+        Default retry with total=8 and backoff_factor=0.705883:
+         - Try 1, 0 delay (0 total seconds)
+         - Try 2, 0 delay (0 total seconds)
+         - Try 3, 0.705883 delay (0.705883 total seconds)
+         - Try 4, 1.411766 delay (2.117649 total seconds)
+         - Try 5, 2.823532 delay (4.941181 total seconds)
+         - Try 6, 5.647064 delay (10.588245 total seconds)
+         - Try 7, 11.294128 delay (21.882373 total seconds)
+         - Try 8, 22.588256 delay (44.470629 total seconds)
+         - Try 9, 45.176512 delay (89.647141 total seconds)
+         - Try 10, 90.353024 delay (180.000165 total seconds)
 
         **Parameters:**
 
