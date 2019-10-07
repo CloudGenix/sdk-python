@@ -358,7 +358,7 @@ class Delete(object):
 
     def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete element user 
+        Delete element user
 
           **Parameters:**:
 
