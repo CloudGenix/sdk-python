@@ -3601,7 +3601,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.1"):
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
         """
         GET Tenant_Anynetlinks API Function
 

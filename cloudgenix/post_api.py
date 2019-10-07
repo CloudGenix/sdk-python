@@ -3372,7 +3372,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def tenant_anynetlinks(self, data, tenant_id=None, api_version="v3.1"):
+    def tenant_anynetlinks(self, data, tenant_id=None, api_version="v3.0"):
         """
         POST Tenant_Anynetlinks API Function
 
@@ -3619,7 +3619,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def topology(self, data, tenant_id=None, api_version="v3.1"):
+    def topology(self, data, tenant_id=None, api_version="v3.0"):
         """
         POST Topology API Function
 
