@@ -2663,7 +2663,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sdwanapps(self, sdwanapp_id=None, tenant_id=None, api_version="v2.0"):
+    def sdwanapps(self, sdwanapp_id=None, tenant_id=None, api_version="v2.1"):
         """
         GET Sdwanapps API Function
 
@@ -3601,7 +3601,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.1"):
         """
         GET Tenant_Anynetlinks API Function
 
