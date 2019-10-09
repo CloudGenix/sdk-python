@@ -4,11 +4,12 @@ CloudGenix Python Interactive SDK Helper functions
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2018 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 """
 import getpass
+import webbrowser
 import json
 import logging
 import time
@@ -16,11 +17,11 @@ import sys
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017, 2018 CloudGenix, Inc
+    Copyright (c) 2017-2020 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -51,12 +52,21 @@ except NameError:
     compat_input = input
 
 # python 2 and 3 handling
-if sys.version_info < (3,):
-    text_type = unicode
-    binary_type = str
-else:
+if sys.version_info >= (3, 6,):
+    # Python 3.6 or higher
+    PYTHON36_FEATURES = True
     text_type = str
     binary_type = bytes
+elif sys.version_info >= (3, ):
+    # Python 3.x, not supported but try - but no asyncio/websockets.
+    PYTHON36_FEATURES = False
+    text_type = str
+    binary_type = bytes
+else:
+    # Python 2.x, supported - but no asyncio/websockets.
+    PYTHON36_FEATURES = False
+    text_type = unicode
+    binary_type = str
 
 
 class Interactive(object):
@@ -69,7 +79,8 @@ class Interactive(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def login(self, email=None, password=None):
+    def login(self, email=None, password=None, saml_auto_browser=True,
+              saml_wait_loops=20, saml_wait_delay=5):
         """
         Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.
         Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.
@@ -78,6 +89,9 @@ class Interactive(object):
 
           - **email**: Email to log in for, will prompt if not entered.
           - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.
+          - **saml_auto_browser**: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.
+          - **saml_wait_loop**: Number of times to wait `saml_wait_delay` in seconds. Default: 20
+          - **saml_wait_delay**: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5
 
         **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.
         """
@@ -106,23 +120,38 @@ class Interactive(object):
         response = self._parent_class.post.login({"email": email, "password": password})
 
         if response.cgx_status:
-
-            # Check for SAML 2.0 login
+            # Check for SAML 2.0 login or different region
             if not response.cgx_content.get('x_auth_token'):
+                # SAML attributes
                 urlpath = response.cgx_content.get("urlpath", "")
                 request_id = response.cgx_content.get("requestId", "")
+                login_region = response.cgx_content.get("login_region", "")
                 if urlpath and request_id:
                     # SAML 2.0
-                    print('SAML 2.0: To finish login open the following link in a browser\n\n{0}\n\n'.format(urlpath))
+                    # try to open web browser automatically
+                    if saml_auto_browser:
+                        # attempt to open web browser.
+                        opened_webbrowser = webbrowser.open(urlpath, new=2, autoraise=False)
+                    else:
+                        opened_webbrowser = False
+
+                    # if was able to open a browser, print reduced prompt.
+                    if opened_webbrowser:
+                        print("SAML 2.0: Opened the following SSO login page in new browser tab/window:\n\n{0}\n"
+                              "".format(urlpath))
+                    else:
+                        print('SAML 2.0: To finish login open the following link in a browser\n\n{0}\n'
+                              ''.format(urlpath))
+                    # wait for SSO to finish.
                     found_auth_token = False
-                    for i in range(20):
+                    for i in range(saml_wait_loops):
                         print('Waiting for {0} seconds for authentication...'.format((20 - i) * 5))
                         saml_response = self.check_sso_login(email, request_id)
                         if saml_response.cgx_status and saml_response.cgx_content.get('x_auth_token'):
                             found_auth_token = True
                             break
                         # wait before retry.
-                        time.sleep(5)
+                        time.sleep(saml_wait_delay)
                     if not found_auth_token:
                         print("Login time expired! Please re-login.\n")
                         # log response when debug
@@ -137,8 +166,18 @@ class Interactive(object):
                         self._parent_class.email = None
                         self._parent_class.password = None
                         return False
+                elif login_region:
+                    # were we told to ignore regions?
+                    if not self._parent_class.ignore_region:
+                        # We are on the wrong region. We need to change regions and resubmit login request.
+                        self._parent_class.update_region_to_controller(login_region)
+                        # recall the login function with the new region. Return the result.
+                        return self.login(email, password, saml_auto_browser, saml_wait_loops, saml_wait_delay)
+                    else:
+                        # ignore region set, just continue without re-parsing.
+                        api_logger.debug('Ignoring all region info due to ignore_region.')
 
-            api_logger.info('Login successful:')
+            api_logger.info('Login API response OK.')
             # if we got here, we either got an x_auth_token in the original login, or
             # we got an auth_token cookie set via SAML. Figure out which.
             auth_token = response.cgx_content.get('x_auth_token')
@@ -163,7 +202,7 @@ class Interactive(object):
                         # Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.
                         if self._parent_class.is_esp:
                             # ESP/MSP!
-                            choose_status, chosen_client_id = self.interactive_client_choice()
+                            choose_status, chosen_client_id, chosen_client_region = self.interactive_client_choice()
 
                             if choose_status:
                                 # attempt to login as client
@@ -183,7 +222,7 @@ class Interactive(object):
 
                                     else:
                                         if t_profile:
-                                            print("ESP Client Tenant detail retrieval failed.")
+                                            print("ESP Client Tenant detail retrieval failed. ESP login successful..")
                                         # clear password out of memory
                                         self._parent_class.email = None
                                         self._parent_class._password = None
@@ -192,7 +231,7 @@ class Interactive(object):
                                         return False
 
                                 else:
-                                    print("ESP Client Login failed.")
+                                    print("ESP Client Login failed. ESP login successful..")
                                     # clear password out of memory
                                     self._parent_class.email = None
                                     self._parent_class._password = None
@@ -201,7 +240,7 @@ class Interactive(object):
                                     return False
 
                             else:
-                                print("ESP Client Choice failed.")
+                                print("ESP Client Choice failed or canceled. ESP login successful..")
                                 # clear password out of memory
                                 self._parent_class.email = None
                                 self._parent_class._password = None
@@ -268,8 +307,26 @@ class Interactive(object):
 
         # check token is a string.
         if not isinstance(token, (text_type, binary_type)):
-            api_logger.debug('"token" was not a text-style string: {}'.format(text_type(token)))
+            api_logger.error('"token" was not a text-style string: {}'.format(text_type(token)))
             return False
+
+        if not self._parent_class.ignore_region:
+            # parse the token.
+            parsed_token = self._parent_class.parse_auth_token(token)
+            token_region = parsed_token.get('region')
+
+            if not token_region:
+                # Could not get token region. warn and continue.
+                api_logger.warning('Could not get region from AUTH_TOKEN. Attempting to continue with URL region.')
+            elif token_region != self._parent_class.controller_region:
+                # Region is different. update.
+                api_logger.debug('Region needs update. Original: {0}, Token: {1}'
+                                 ''.format(self._parent_class.controller_region, token_region))
+                # setting the region.
+                self._parent_class.update_region_to_controller(token_region)
+        else:
+            # ignore region set, just continue without re-parsing.
+            api_logger.debug('Ignoring all region info in AUTH_TOKEN')
 
         # Start setup of constructor.
         session = self._parent_class.expose_session()
@@ -278,9 +335,12 @@ class Interactive(object):
         session.cookies.clear()
 
         # Static Token uses X-Auth-Token header instead of cookies.
-        self._parent_class.add_headers({
+        x_auth_header = {
             'X-Auth-Token': token
-        })
+        }
+        self._parent_class.add_headers(x_auth_header)
+        if PYTHON36_FEATURES:
+            self._parent_class.websocket_add_headers(x_auth_header)
 
         # Step 2: Get operator profile for tenant ID and other info.
         if self.interactive_update_profile_vars():
@@ -294,7 +354,7 @@ class Interactive(object):
                     # Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.
                     if self._parent_class.is_esp:
                         # ESP/MSP!
-                        choose_status, chosen_client_id = self.interactive_client_choice()
+                        choose_status, chosen_client_id, chosen_client_region = self.interactive_client_choice()
 
                         if choose_status:
                             # attempt to login as client
@@ -312,21 +372,21 @@ class Interactive(object):
 
                                 else:
                                     if t_profile:
-                                        print("ESP Client Tenant detail retrieval failed.")
+                                        print("ESP Client Tenant detail retrieval failed. ESP login successful..")
                                     # clear password out of memory
                                     self._parent_class.email = None
                                     self._parent_class._password = None
                                     return False
 
                             else:
-                                print("ESP Client Login failed.")
+                                print("ESP Client Login failed. ESP login successful..")
                                 # clear password out of memory
                                 self._parent_class.email = None
                                 self._parent_class._password = None
                                 return False
 
                         else:
-                            print("ESP Client Choice failed.")
+                            print("ESP Client Choice failed or canceled. ESP login successful..")
                             # clear password out of memory
                             self._parent_class.email = None
                             self._parent_class._password = None
@@ -439,21 +499,26 @@ class Interactive(object):
         # Build MSP/ESP id-name dict, get list of allowed tenants.
         if client_status and c_perms_status:
             client_id_name = {}
+            menu_list = []
             for client in clients_dict.get('items', []):
                 if type(client) is dict:
                     # create client ID to name map table.
-                    client_id_name[client.get('id', "err")] = client.get('canonical_name')
+                    client_id = client.get('id', "err")
+                    client_name = client.get('name', "")
+                    client_canonical_name = client.get('canonical_name', "")
+                    # Create ID to name map from Clients response.
+                    client_id_name[client_id] = "{0} ({1})".format(client_name, client_canonical_name)
 
-            # Valid clients w/permissions - create list of tuples for menu
-            menu_list = []
-            for client in c_perms_dict.get('items', []):
-                if type(client) is dict:
-                    # add entry
-                    client_id = client.get('client_id')
-                    # create tuple of ( client name, client id ) to append to list
+            # add menu list items
+            for client_perm in c_perms_dict.get('items', []):
+                if type(client_perm) is dict:
+                    client_id = client_perm.get('client_id')
+                    client_region = client_perm.get('region')
+                    # create tuple of ( client name, client id, client region ) to append to list
                     menu_list.append(
-                        (client_id_name.get(client_id, client_id), client_id)
+                        (client_id_name.get(client_id, client_id), client_id, client_region)
                     )
+
             # empty menu?
             if not menu_list:
                 # no clients
@@ -461,9 +526,15 @@ class Interactive(object):
                 return False, {}
 
             # ask user to select client
-            _, chosen_client_id = self.quick_menu("ESP/MSP Detected. Select a client to use:", "{0}) {1}", menu_list)
+            status, chosen_client_result = self.quick_menu("ESP/MSP Detected. Select a client to use:",
+                                                           "{0}) {1} Region: {3}", menu_list)
 
-            return True, chosen_client_id
+            if status:
+                # Chosen client ID is the 2nd item in the tuple, client_region is 3rd item
+                return True, chosen_client_result[1], chosen_client_result[2]
+            else:
+                # failed - likely canceled.
+                return False, None
 
         else:
             print("ESP/MSP detail retrieval failed.")
@@ -479,7 +550,7 @@ class Interactive(object):
           - **list_line_format:** Print'ing string with format spots for index + tuple values
           - **choice_list:** List of tuple values that you want returned if selected (and printed)
 
-        **Returns:** Tuple that was selected.
+        **Returns:** Boolean Status, Tuple that was selected.
         """
         # Setup menu
         invalid = True
@@ -496,10 +567,9 @@ class Interactive(object):
 
             if str(menu_choice).lower() in ['q']:
                 # exit
-                print("Exiting..")
+                print("Canceling Menu..")
                 # best effort logout
-                self._parent_class.get.logout()
-                sys.exit(0)
+                return False, None
 
             # verify number entered
             try:
@@ -517,7 +587,7 @@ class Interactive(object):
                 print("Invalid input, needs to be between 1 and {0}.\n".format(len(choice_list)))
 
         # return the choice_list tuple that matches the entry.
-        return choice_list[int(menu_int) - 1]
+        return True, choice_list[int(menu_int) - 1]
 
     def check_sso_login(self, operator_email, request_id):
         """

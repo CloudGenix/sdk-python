@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2018 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017, 2018 CloudGenix, Inc
+    Copyright (c) 2017-2020 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -82,15 +82,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.1"):
+    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete a custom application definition
+        Delete a application definition
 
           **Parameters:**:
 
           - **appdef_id**: Application Definition ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -110,7 +110,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.0"):
+    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.1"):
         """
         Delete application definition overrides for system appdef
 
@@ -119,7 +119,7 @@ class Delete(object):
           - **appdef_id**: Application Definition ID
           - **override_id**: AppDef Override ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -140,7 +140,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def authtokens(self, operator_id, authtoken_id, tenant_id=None, api_version="v2.0"):
+    def authtokens(self, operator_id, authtoken_id, tenant_id=None, api_version="v2.1"):
         """
         Delete an auth token
 
@@ -149,7 +149,7 @@ class Delete(object):
           - **operator_id**: Operator ID
           - **authtoken_id**: Static AUTH_TOKEN ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -170,7 +170,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.0"):
+    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.1"):
         """
         Delete BGP Peer config
 
@@ -180,7 +180,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **bgppeer_id**: BGP Peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -202,16 +202,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def dhcpservers(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.0"):
+    def dhcpservers(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Dhcpservers API Function
+        Delete DHCPServer for a Tenant on a site
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **dhcpserver_id**: DHCP Server ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -326,7 +326,7 @@ class Delete(object):
 
     def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security zone
+        DELETE Elementsecurityzones API Function
 
           **Parameters:**:
 
@@ -358,7 +358,7 @@ class Delete(object):
 
     def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete element user
+        Delete element user 
 
           **Parameters:**:
 
@@ -532,7 +532,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.6"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.7"):
         """
         Delete an element interface
 
@@ -542,7 +542,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.6)
+          - **api_version**: API version to use (default v4.7)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -564,7 +564,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def ipsecprofiles(self, ipsecprofile_id, tenant_id=None, api_version="v2.0"):
+    def ipsecprofiles(self, ipsecprofile_id, tenant_id=None, api_version="v2.1"):
         """
         Delete a IPSEC Profile
 
@@ -572,7 +572,7 @@ class Delete(object):
 
           - **ipsecprofile_id**: IPSEC Profile ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -650,6 +650,204 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def natglobalprefixes(self, natglobalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natglobalprefixes API Function
+
+          **Parameters:**:
+
+          - **natglobalprefix_id**: NAT Global Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natglobalprefixes/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               natglobalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natlocalprefixes(self, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natlocalprefixes API Function
+
+          **Parameters:**:
+
+          - **natlocalprefix_id**: NAT Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natlocalprefixes/{}".format(api_version,
+                                                                              tenant_id,
+                                                                              natlocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natpolicypools(self, natpolicypool_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natpolicypools API Function
+
+          **Parameters:**:
+
+          - **natpolicypool_id**: NAT Policy Pool ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natpolicypools/{}".format(api_version,
+                                                                            tenant_id,
+                                                                            natpolicypool_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natpolicyrules(self, natpolicyset_id, natpolicyrule_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natpolicyrules API Function
+
+          **Parameters:**:
+
+          - **natpolicyset_id**: NAT Policy Set ID
+          - **natpolicyrule_id**: NAT Policy Rule ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natpolicysets/{}/natpolicyrules/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             natpolicyset_id,
+                                                                                             natpolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natpolicysets(self, natpolicyset_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natpolicysets API Function
+
+          **Parameters:**:
+
+          - **natpolicyset_id**: NAT Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natpolicysets/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           natpolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natpolicysetstacks(self, natpolicysetstack_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natpolicysetstacks API Function
+
+          **Parameters:**:
+
+          - **natpolicysetstack_id**: NAT Policy Set Stack ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natpolicysetstacks/{}".format(api_version,
+                                                                                tenant_id,
+                                                                                natpolicysetstack_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def natzones(self, natzone_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Natzones API Function
+
+          **Parameters:**:
+
+          - **natzone_id**: NAT Zone ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/natzones/{}".format(api_version,
+                                                                      tenant_id,
+                                                                      natzone_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def networkcontexts(self, networkcontext_id, tenant_id=None, api_version="v2.0"):
         """
         Delete LAN segment
@@ -706,7 +904,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.0"):
+    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.1"):
         """
         Delete network policy rule of tenant.
 
@@ -715,7 +913,7 @@ class Delete(object):
           - **networkpolicyset_id**: Network Policy Set ID
           - **networkpolicyrule_id**: Network Policy Rule ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -738,7 +936,7 @@ class Delete(object):
 
     def networkpolicysets(self, networkpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Networkpolicysets API Function
+        Delete Network Policy Set.
 
           **Parameters:**:
 
@@ -788,34 +986,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/networkpolicysetstacks/{}".format(api_version,
                                                                                     tenant_id,
                                                                                     networkpolicysetstack_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def ntp_templates(self, ntp_id, tenant_id=None, api_version="v2.0"):
-        """
-        Delete an existing NTP Template
-
-          **Parameters:**:
-
-          - **ntp_id**: NTP Configuration ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/templates/ntp/{}".format(api_version,
-                                                                           tenant_id,
-                                                                           ntp_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1080,7 +1250,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def roles(self, role_id, tenant_id=None, api_version="v2.0"):
+    def roles(self, role_id, tenant_id=None, api_version="v2.1"):
         """
         Delete a custom role
 
@@ -1088,7 +1258,7 @@ class Delete(object):
 
           - **role_id**: Role ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1466,6 +1636,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def site_natlocalprefixes(self, site_id, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Site_Natlocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **natlocalprefix_id**: NAT Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/natlocalprefixes/{}".format(api_version,
+                                                                                       tenant_id,
+                                                                                       site_id,
+                                                                                       natlocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
         Delete an existing Site Network Policy local prefix association
@@ -1526,7 +1726,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.3"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.4"):
         """
         Delete a site
 
@@ -1534,7 +1734,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.3)
+          - **api_version**: API version to use (default v4.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1650,7 +1850,7 @@ class Delete(object):
 
     def spokeclusters(self, site_id, spokecluster_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete spoke cluster.
+        DELETE Spokeclusters API Function
 
           **Parameters:**:
 
@@ -1742,7 +1942,35 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.0"):
+    def templates_ntp(self, ntp_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Templates_Ntp API Function
+
+          **Parameters:**:
+
+          - **ntp_id**: NTP Configuration ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/templates/ntp/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           ntp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.1"):
         """
         DELETE Tenant_Anynetlinks API Function
 
@@ -1750,7 +1978,7 @@ class Delete(object):
 
           - **anynetlink_id**: Anynet (Secure Fabric) Link ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1798,7 +2026,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.0"):
+    def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.1"):
         """
         Delete a tenant operator
 
@@ -1806,7 +2034,7 @@ class Delete(object):
 
           - **operator_id**: Operator ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1910,6 +2138,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def toolkitsessions(self, element_id, toolkitsession_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Toolkitsessions API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **toolkitsession_id**: Toolkit Session ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/toolkitsessions/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         element_id,
+                                                                                         toolkitsession_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def users(self, user_id, tenant_id=None, api_version="v2.0"):
         """
         DELETE Users API Function
@@ -1938,7 +2196,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.3"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.4"):
         """
         Delete existing WAN interface
 
@@ -1947,7 +2205,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2073,11 +2331,20 @@ class Delete(object):
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
+    natlocalprefixes_s = site_natlocalprefixes
+    """ Backwards-compatibility alias of `natlocalprefixes_s` to `site_natlocalprefixes`"""
+
+    natlocalprefixes_t = natlocalprefixes
+    """ Backwards-compatibility alias of `natlocalprefixes_t` to `natlocalprefixes`"""
+
     networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""
 
     networkpolicylocalprefixes_t = tenant_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_t` to `tenant_networkpolicylocalprefixes`"""
+
+    ntp_templates = templates_ntp
+    """ Backwards-compatibility alias of `ntp_templates` to `templates_ntp`"""
 
     operators_t = tenant_operators
     """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""

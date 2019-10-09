@@ -1,4 +1,4 @@
-# CloudGenix Python SDK v5.1.5b1
+# CloudGenix Python SDK v5.2.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -20,13 +20,13 @@ Super-simplified example code (rewrite of example.py in ~4 lines of code):
 from cloudgenix import API, jd
 
 # Instantiate the CloudGenix API constructor
-cgx_sess = API()
+sdk = API()
 
 # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).
-cgx_sess.interactive.login()
+sdk.interactive.login()
 
 # Print a dump of the list of sites for your selected account
-jd(cgx_sess.get.sites())
+jd(sdk.get.sites())
 ```
 
 #### License
@@ -35,6 +35,7 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
+| **5.2.1** | **b1** | Support for December 2019 Controller release. |
 | **5.1.5** | **b1** | Support for June 2019 Controller release. |
 | **5.1.1** | **b1** | Support for November 2018 Controller release. |
 | **5.0.3** | **b2** | Enhanced REST API retry handling and options. |

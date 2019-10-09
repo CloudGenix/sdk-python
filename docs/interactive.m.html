@@ -10,7 +10,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017,..." />
+**Copyright:** (c) 2017-..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -2556,6 +2556,7 @@ table {
     <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
       
   <ul>
+    <li class="mono"><a href="#cloudgenix.interactive.PYTHON36_FEATURES">PYTHON36_FEATURES</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.api_logger">api_logger</a></li>
   </ul>
 
@@ -2602,7 +2603,7 @@ table {
   <h1 class="title"><span class="name">cloudgenix.interactive</span> module</h1>
   <p>CloudGenix Python Interactive SDK Helper functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017, 2018 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2020 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive', this);">Show source &equiv;</a></p>
@@ -2613,11 +2614,12 @@ table {
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017, 2018 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2020 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">webbrowser</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -2625,11 +2627,11 @@ table {
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017, 2018 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2020 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017, 2018 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2020 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2660,12 +2662,21 @@ table {
     <span class="n">compat_input</span> <span class="o">=</span> <span class="nb">input</span>
 
 <span class="c1"># python 2 and 3 handling</span>
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
-    <span class="n">text_type</span> <span class="o">=</span> <span class="nb">unicode</span>
-    <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">str</span>
-<span class="k">else</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,):</span>
+    <span class="c1"># Python 3.6 or higher</span>
+    <span class="n">PYTHON36_FEATURES</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="n">text_type</span> <span class="o">=</span> <span class="nb">str</span>
     <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">bytes</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">):</span>
+    <span class="c1"># Python 3.x, not supported but try - but no asyncio/websockets.</span>
+    <span class="n">PYTHON36_FEATURES</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">text_type</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">bytes</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Python 2.x, supported - but no asyncio/websockets.</span>
+    <span class="n">PYTHON36_FEATURES</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">text_type</span> <span class="o">=</span> <span class="nb">unicode</span>
+    <span class="n">binary_type</span> <span class="o">=</span> <span class="nb">str</span>
 
 
 <span class="k">class</span> <span class="nc">Interactive</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -2678,7 +2689,8 @@ table {
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
@@ -2687,6 +2699,9 @@ table {
 
 <span class="sd">          - **email**: Email to log in for, will prompt if not entered.</span>
 <span class="sd">          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
+<span class="sd">          - **saml_auto_browser**: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.</span>
+<span class="sd">          - **saml_wait_loop**: Number of times to wait `saml_wait_delay` in seconds. Default: 20</span>
+<span class="sd">          - **saml_wait_delay**: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2715,23 +2730,38 @@ table {
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login</span><span class="p">({</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
-
-            <span class="c1"># Check for SAML 2.0 login</span>
+            <span class="c1"># Check for SAML 2.0 login or different region</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
+                <span class="c1"># SAML attributes</span>
                 <span class="n">urlpath</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urlpath&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="n">request_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requestId&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">login_region</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;login_region&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">urlpath</span> <span class="ow">and</span> <span class="n">request_id</span><span class="p">:</span>
                     <span class="c1"># SAML 2.0</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="c1"># try to open web browser automatically</span>
+                    <span class="k">if</span> <span class="n">saml_auto_browser</span><span class="p">:</span>
+                        <span class="c1"># attempt to open web browser.</span>
+                        <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">urlpath</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">autoraise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="bp">False</span>
+
+                    <span class="c1"># if was able to open a browser, print reduced prompt.</span>
+                    <span class="k">if</span> <span class="n">opened_webbrowser</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;SAML 2.0: Opened the following SSO login page in new browser tab/window:</span><span class="se">\n\n</span><span class="s2">{0}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                              <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="c1"># wait for SSO to finish.</span>
                     <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">saml_wait_loops</span><span class="p">):</span>
                         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Waiting for {0} seconds for authentication...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mi">20</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">))</span>
                         <span class="n">saml_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_sso_login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
                             <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">True</span>
                             <span class="k">break</span>
                         <span class="c1"># wait before retry.</span>
-                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">saml_wait_delay</span><span class="p">)</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_auth_token</span><span class="p">:</span>
                         <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Login time expired! Please re-login.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                         <span class="c1"># log response when debug</span>
@@ -2746,8 +2776,18 @@ table {
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="k">return</span> <span class="bp">False</span>
+                <span class="k">elif</span> <span class="n">login_region</span><span class="p">:</span>
+                    <span class="c1"># were we told to ignore regions?</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+                        <span class="c1"># We are on the wrong region. We need to change regions and resubmit login request.</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">login_region</span><span class="p">)</span>
+                        <span class="c1"># recall the login function with the new region. Return the result.</span>
+                        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="p">,</span> <span class="n">saml_wait_loops</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># ignore region set, just continue without re-parsing.</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info due to ignore_region.&#39;</span><span class="p">)</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login successful:&#39;</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login API response OK.&#39;</span><span class="p">)</span>
             <span class="c1"># if we got here, we either got an x_auth_token in the original login, or</span>
             <span class="c1"># we got an auth_token cookie set via SAML. Figure out which.</span>
             <span class="n">auth_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">)</span>
@@ -2772,7 +2812,7 @@ table {
                         <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                             <span class="c1"># ESP/MSP!</span>
-                            <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                            <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
 
                             <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                                 <span class="c1"># attempt to login as client</span>
@@ -2792,7 +2832,7 @@ table {
 
                                     <span class="k">else</span><span class="p">:</span>
                                         <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                         <span class="c1"># clear password out of memory</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -2801,7 +2841,7 @@ table {
                                         <span class="k">return</span> <span class="bp">False</span>
 
                                 <span class="k">else</span><span class="p">:</span>
-                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                                     <span class="c1"># clear password out of memory</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -2810,7 +2850,7 @@ table {
                                     <span class="k">return</span> <span class="bp">False</span>
 
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -2877,8 +2917,26 @@ table {
 
         <span class="c1"># check token is a string.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
             <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+            <span class="c1"># parse the token.</span>
+            <span class="n">parsed_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">parse_auth_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="n">token_region</span> <span class="o">=</span> <span class="n">parsed_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">token_region</span><span class="p">:</span>
+                <span class="c1"># Could not get token region. warn and continue.</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Could not get region from AUTH_TOKEN. Attempting to continue with URL region.&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token_region</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">:</span>
+                <span class="c1"># Region is different. update.</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Region needs update. Original: {0}, Token: {1}&#39;</span>
+                                 <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">,</span> <span class="n">token_region</span><span class="p">))</span>
+                <span class="c1"># setting the region.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">token_region</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># ignore region set, just continue without re-parsing.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info in AUTH_TOKEN&#39;</span><span class="p">)</span>
 
         <span class="c1"># Start setup of constructor.</span>
         <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
@@ -2887,9 +2945,12 @@ table {
         <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
         <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+        <span class="n">x_auth_header</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
-        <span class="p">})</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
 
         <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
@@ -2903,7 +2964,7 @@ table {
                     <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                         <span class="c1"># ESP/MSP!</span>
-                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
 
                         <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                             <span class="c1"># attempt to login as client</span>
@@ -2921,21 +2982,21 @@ table {
 
                                 <span class="k">else</span><span class="p">:</span>
                                     <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                     <span class="c1"># clear password out of memory</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="k">return</span> <span class="bp">False</span>
 
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="k">return</span> <span class="bp">False</span>
 
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                             <span class="c1"># clear password out of memory</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3048,21 +3109,26 @@ table {
         <span class="c1"># Build MSP/ESP id-name dict, get list of allowed tenants.</span>
         <span class="k">if</span> <span class="n">client_status</span> <span class="ow">and</span> <span class="n">c_perms_status</span><span class="p">:</span>
             <span class="n">client_id_name</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
                     <span class="c1"># create client ID to name map table.</span>
-                    <span class="n">client_id_name</span><span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">)</span>
+                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)</span>
+                    <span class="n">client_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="n">client_canonical_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="c1"># Create ID to name map from Clients response.</span>
+                    <span class="n">client_id_name</span><span class="p">[</span><span class="n">client_id</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_name</span><span class="p">,</span> <span class="n">client_canonical_name</span><span class="p">)</span>
 
-            <span class="c1"># Valid clients w/permissions - create list of tuples for menu</span>
-            <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
-                    <span class="c1"># add entry</span>
-                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
-                    <span class="c1"># create tuple of ( client name, client id ) to append to list</span>
+            <span class="c1"># add menu list items</span>
+            <span class="k">for</span> <span class="n">client_perm</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client_perm</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
+                    <span class="n">client_region</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+                    <span class="c1"># create tuple of ( client name, client id, client region ) to append to list</span>
                     <span class="n">menu_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_region</span><span class="p">)</span>
                     <span class="p">)</span>
+
             <span class="c1"># empty menu?</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">menu_list</span><span class="p">:</span>
                 <span class="c1"># no clients</span>
@@ -3070,9 +3136,15 @@ table {
                 <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="p">{}</span>
 
             <span class="c1"># ask user to select client</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span> <span class="s2">&quot;{0}) {1}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
+            <span class="n">status</span><span class="p">,</span> <span class="n">chosen_client_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span>
+                                                           <span class="s2">&quot;{0}) {1} Region: {3}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
 
-            <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_id</span>
+            <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+                <span class="c1"># Chosen client ID is the 2nd item in the tuple, client_region is 3rd item</span>
+                <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># failed - likely canceled.</span>
+                <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP/MSP detail retrieval failed.&quot;</span><span class="p">)</span>
@@ -3088,7 +3160,7 @@ table {
 <span class="sd">          - **list_line_format:** Print&#39;ing string with format spots for index + tuple values</span>
 <span class="sd">          - **choice_list:** List of tuple values that you want returned if selected (and printed)</span>
 
-<span class="sd">        **Returns:** Tuple that was selected.</span>
+<span class="sd">        **Returns:** Boolean Status, Tuple that was selected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Setup menu</span>
         <span class="n">invalid</span> <span class="o">=</span> <span class="bp">True</span>
@@ -3105,10 +3177,9 @@ table {
 
             <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]:</span>
                 <span class="c1"># exit</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Exiting..&quot;</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Canceling Menu..&quot;</span><span class="p">)</span>
                 <span class="c1"># best effort logout</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
 
             <span class="c1"># verify number entered</span>
             <span class="k">try</span><span class="p">:</span>
@@ -3126,7 +3197,7 @@ table {
                 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
 
         <span class="c1"># return the choice_list tuple that matches the entry.</span>
-        <span class="k">return</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">check_sso_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -3349,6 +3420,14 @@ table {
 
   <section id="section-items">
     <h3 class="section-title" id="header-variables">Module variables</h3>
+      <div class="item" id="cloudgenix.interactive.PYTHON36_FEATURES">
+      <p class="name">var <span class="ident">PYTHON36_FEATURES</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
       <div class="item" id="cloudgenix.interactive.api_logger">
       <p class="name">var <span class="ident">api_logger</span></p>
       
@@ -3380,7 +3459,8 @@ table {
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
@@ -3389,6 +3469,9 @@ table {
 
 <span class="sd">          - **email**: Email to log in for, will prompt if not entered.</span>
 <span class="sd">          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
+<span class="sd">          - **saml_auto_browser**: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.</span>
+<span class="sd">          - **saml_wait_loop**: Number of times to wait `saml_wait_delay` in seconds. Default: 20</span>
+<span class="sd">          - **saml_wait_delay**: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3417,23 +3500,38 @@ table {
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login</span><span class="p">({</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
-
-            <span class="c1"># Check for SAML 2.0 login</span>
+            <span class="c1"># Check for SAML 2.0 login or different region</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
+                <span class="c1"># SAML attributes</span>
                 <span class="n">urlpath</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urlpath&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="n">request_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requestId&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">login_region</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;login_region&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">urlpath</span> <span class="ow">and</span> <span class="n">request_id</span><span class="p">:</span>
                     <span class="c1"># SAML 2.0</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="c1"># try to open web browser automatically</span>
+                    <span class="k">if</span> <span class="n">saml_auto_browser</span><span class="p">:</span>
+                        <span class="c1"># attempt to open web browser.</span>
+                        <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">urlpath</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">autoraise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="bp">False</span>
+
+                    <span class="c1"># if was able to open a browser, print reduced prompt.</span>
+                    <span class="k">if</span> <span class="n">opened_webbrowser</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;SAML 2.0: Opened the following SSO login page in new browser tab/window:</span><span class="se">\n\n</span><span class="s2">{0}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                              <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                    <span class="c1"># wait for SSO to finish.</span>
                     <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">False</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">saml_wait_loops</span><span class="p">):</span>
                         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Waiting for {0} seconds for authentication...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mi">20</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">))</span>
                         <span class="n">saml_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_sso_login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
                             <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">True</span>
                             <span class="k">break</span>
                         <span class="c1"># wait before retry.</span>
-                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">saml_wait_delay</span><span class="p">)</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_auth_token</span><span class="p">:</span>
                         <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Login time expired! Please re-login.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                         <span class="c1"># log response when debug</span>
@@ -3448,8 +3546,18 @@ table {
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="k">return</span> <span class="bp">False</span>
+                <span class="k">elif</span> <span class="n">login_region</span><span class="p">:</span>
+                    <span class="c1"># were we told to ignore regions?</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+                        <span class="c1"># We are on the wrong region. We need to change regions and resubmit login request.</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">login_region</span><span class="p">)</span>
+                        <span class="c1"># recall the login function with the new region. Return the result.</span>
+                        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="p">,</span> <span class="n">saml_wait_loops</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># ignore region set, just continue without re-parsing.</span>
+                        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info due to ignore_region.&#39;</span><span class="p">)</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login successful:&#39;</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login API response OK.&#39;</span><span class="p">)</span>
             <span class="c1"># if we got here, we either got an x_auth_token in the original login, or</span>
             <span class="c1"># we got an auth_token cookie set via SAML. Figure out which.</span>
             <span class="n">auth_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">)</span>
@@ -3474,7 +3582,7 @@ table {
                         <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                             <span class="c1"># ESP/MSP!</span>
-                            <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                            <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
 
                             <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                                 <span class="c1"># attempt to login as client</span>
@@ -3494,7 +3602,7 @@ table {
 
                                     <span class="k">else</span><span class="p">:</span>
                                         <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                         <span class="c1"># clear password out of memory</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3503,7 +3611,7 @@ table {
                                         <span class="k">return</span> <span class="bp">False</span>
 
                                 <span class="k">else</span><span class="p">:</span>
-                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                                     <span class="c1"># clear password out of memory</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3512,7 +3620,7 @@ table {
                                     <span class="k">return</span> <span class="bp">False</span>
 
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3579,8 +3687,26 @@ table {
 
         <span class="c1"># check token is a string.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
             <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+            <span class="c1"># parse the token.</span>
+            <span class="n">parsed_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">parse_auth_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="n">token_region</span> <span class="o">=</span> <span class="n">parsed_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">token_region</span><span class="p">:</span>
+                <span class="c1"># Could not get token region. warn and continue.</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Could not get region from AUTH_TOKEN. Attempting to continue with URL region.&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token_region</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">:</span>
+                <span class="c1"># Region is different. update.</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Region needs update. Original: {0}, Token: {1}&#39;</span>
+                                 <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">,</span> <span class="n">token_region</span><span class="p">))</span>
+                <span class="c1"># setting the region.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">token_region</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># ignore region set, just continue without re-parsing.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info in AUTH_TOKEN&#39;</span><span class="p">)</span>
 
         <span class="c1"># Start setup of constructor.</span>
         <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
@@ -3589,9 +3715,12 @@ table {
         <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
         <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+        <span class="n">x_auth_header</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
-        <span class="p">})</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
 
         <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
@@ -3605,7 +3734,7 @@ table {
                     <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                         <span class="c1"># ESP/MSP!</span>
-                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
 
                         <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                             <span class="c1"># attempt to login as client</span>
@@ -3623,21 +3752,21 @@ table {
 
                                 <span class="k">else</span><span class="p">:</span>
                                     <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                     <span class="c1"># clear password out of memory</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="k">return</span> <span class="bp">False</span>
 
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="k">return</span> <span class="bp">False</span>
 
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                             <span class="c1"># clear password out of memory</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -3750,21 +3879,26 @@ table {
         <span class="c1"># Build MSP/ESP id-name dict, get list of allowed tenants.</span>
         <span class="k">if</span> <span class="n">client_status</span> <span class="ow">and</span> <span class="n">c_perms_status</span><span class="p">:</span>
             <span class="n">client_id_name</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
                     <span class="c1"># create client ID to name map table.</span>
-                    <span class="n">client_id_name</span><span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">)</span>
+                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)</span>
+                    <span class="n">client_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="n">client_canonical_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="c1"># Create ID to name map from Clients response.</span>
+                    <span class="n">client_id_name</span><span class="p">[</span><span class="n">client_id</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_name</span><span class="p">,</span> <span class="n">client_canonical_name</span><span class="p">)</span>
 
-            <span class="c1"># Valid clients w/permissions - create list of tuples for menu</span>
-            <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
-                    <span class="c1"># add entry</span>
-                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
-                    <span class="c1"># create tuple of ( client name, client id ) to append to list</span>
+            <span class="c1"># add menu list items</span>
+            <span class="k">for</span> <span class="n">client_perm</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client_perm</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+                    <span class="n">client_id</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
+                    <span class="n">client_region</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+                    <span class="c1"># create tuple of ( client name, client id, client region ) to append to list</span>
                     <span class="n">menu_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_region</span><span class="p">)</span>
                     <span class="p">)</span>
+
             <span class="c1"># empty menu?</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">menu_list</span><span class="p">:</span>
                 <span class="c1"># no clients</span>
@@ -3772,9 +3906,15 @@ table {
                 <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="p">{}</span>
 
             <span class="c1"># ask user to select client</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span> <span class="s2">&quot;{0}) {1}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
+            <span class="n">status</span><span class="p">,</span> <span class="n">chosen_client_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span>
+                                                           <span class="s2">&quot;{0}) {1} Region: {3}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
 
-            <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_id</span>
+            <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+                <span class="c1"># Chosen client ID is the 2nd item in the tuple, client_region is 3rd item</span>
+                <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># failed - likely canceled.</span>
+                <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP/MSP detail retrieval failed.&quot;</span><span class="p">)</span>
@@ -3790,7 +3930,7 @@ table {
 <span class="sd">          - **list_line_format:** Print&#39;ing string with format spots for index + tuple values</span>
 <span class="sd">          - **choice_list:** List of tuple values that you want returned if selected (and printed)</span>
 
-<span class="sd">        **Returns:** Tuple that was selected.</span>
+<span class="sd">        **Returns:** Boolean Status, Tuple that was selected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Setup menu</span>
         <span class="n">invalid</span> <span class="o">=</span> <span class="bp">True</span>
@@ -3807,10 +3947,9 @@ table {
 
             <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]:</span>
                 <span class="c1"># exit</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Exiting..&quot;</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Canceling Menu..&quot;</span><span class="p">)</span>
                 <span class="c1"># best effort logout</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
 
             <span class="c1"># verify number entered</span>
             <span class="k">try</span><span class="p">:</span>
@@ -3828,7 +3967,7 @@ table {
                 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
 
         <span class="c1"># return the choice_list tuple that matches the entry.</span>
-        <span class="k">return</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">check_sso_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -4136,19 +4275,23 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
     <span class="c1"># Build MSP/ESP id-name dict, get list of allowed tenants.</span>
     <span class="k">if</span> <span class="n">client_status</span> <span class="ow">and</span> <span class="n">c_perms_status</span><span class="p">:</span>
         <span class="n">client_id_name</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
             <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
                 <span class="c1"># create client ID to name map table.</span>
-                <span class="n">client_id_name</span><span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">)</span>
-        <span class="c1"># Valid clients w/permissions - create list of tuples for menu</span>
-        <span class="n">menu_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
-                <span class="c1"># add entry</span>
-                <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
-                <span class="c1"># create tuple of ( client name, client id ) to append to list</span>
+                <span class="n">client_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;err&quot;</span><span class="p">)</span>
+                <span class="n">client_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">client_canonical_name</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;canonical_name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="c1"># Create ID to name map from Clients response.</span>
+                <span class="n">client_id_name</span><span class="p">[</span><span class="n">client_id</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_name</span><span class="p">,</span> <span class="n">client_canonical_name</span><span class="p">)</span>
+        <span class="c1"># add menu list items</span>
+        <span class="k">for</span> <span class="n">client_perm</span> <span class="ow">in</span> <span class="n">c_perms_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">client_perm</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="n">client_id</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
+                <span class="n">client_region</span> <span class="o">=</span> <span class="n">client_perm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+                <span class="c1"># create tuple of ( client name, client id, client region ) to append to list</span>
                 <span class="n">menu_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">client_id_name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">),</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_region</span><span class="p">)</span>
                 <span class="p">)</span>
         <span class="c1"># empty menu?</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">menu_list</span><span class="p">:</span>
@@ -4156,8 +4299,14 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;No ESP/MSP clients allowed for user.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="p">{}</span>
         <span class="c1"># ask user to select client</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span> <span class="s2">&quot;{0}) {1}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_id</span>
+        <span class="n">status</span><span class="p">,</span> <span class="n">chosen_client_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quick_menu</span><span class="p">(</span><span class="s2">&quot;ESP/MSP Detected. Select a client to use:&quot;</span><span class="p">,</span>
+                                                       <span class="s2">&quot;{0}) {1} Region: {3}&quot;</span><span class="p">,</span> <span class="n">menu_list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+            <span class="c1"># Chosen client ID is the 2nd item in the tuple, client_region is 3rd item</span>
+            <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">chosen_client_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># failed - likely canceled.</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP/MSP detail retrieval failed.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="p">{}</span>
@@ -4303,7 +4452,7 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
             
   <div class="item" id="cloudgenix.interactive.Interactive.login">
     <div class="name def">
-    <p>def <span class="ident">login</span>(</p><p>self, email=None, password=None)</p>
+    <p>def <span class="ident">login</span>(</p><p>self, email=None, password=None, saml_auto_browser=True, saml_wait_loops=20, saml_wait_delay=5)</p>
     </div>
     
 
@@ -4315,18 +4464,25 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <ul>
 <li><strong>email</strong>: Email to log in for, will prompt if not entered.</li>
 <li><strong>password</strong>: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</li>
+<li><strong>saml_auto_browser</strong>: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.</li>
+<li><strong>saml_wait_loop</strong>: Number of times to wait <code>saml_wait_delay</code> in seconds. Default: 20</li>
+<li><strong>saml_wait_delay</strong>: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5</li>
 </ul>
 <p><strong>Returns:</strong> Bool. In addition the function will mutate the <code>cloudgenix.API</code> constructor items as needed.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.login', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.login" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+          <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">    Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
 <span class="sd">    **Parameters:**:</span>
 <span class="sd">      - **email**: Email to log in for, will prompt if not entered.</span>
 <span class="sd">      - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.</span>
+<span class="sd">      - **saml_auto_browser**: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.</span>
+<span class="sd">      - **saml_wait_loop**: Number of times to wait `saml_wait_delay` in seconds. Default: 20</span>
+<span class="sd">      - **saml_wait_delay**: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5</span>
 <span class="sd">    **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># if email not given in function, or if first login fails, prompt.</span>
@@ -4349,22 +4505,37 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
     <span class="c1"># call the login API.</span>
     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login</span><span class="p">({</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">})</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span><span class="p">:</span>
-        <span class="c1"># Check for SAML 2.0 login</span>
+        <span class="c1"># Check for SAML 2.0 login or different region</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
+            <span class="c1"># SAML attributes</span>
             <span class="n">urlpath</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urlpath&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="n">request_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requestId&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">login_region</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;login_region&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">urlpath</span> <span class="ow">and</span> <span class="n">request_id</span><span class="p">:</span>
                 <span class="c1"># SAML 2.0</span>
-                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                <span class="c1"># try to open web browser automatically</span>
+                <span class="k">if</span> <span class="n">saml_auto_browser</span><span class="p">:</span>
+                    <span class="c1"># attempt to open web browser.</span>
+                    <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">urlpath</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">autoraise</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">opened_webbrowser</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="c1"># if was able to open a browser, print reduced prompt.</span>
+                <span class="k">if</span> <span class="n">opened_webbrowser</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;SAML 2.0: Opened the following SSO login page in new browser tab/window:</span><span class="se">\n\n</span><span class="s2">{0}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                          <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;SAML 2.0: To finish login open the following link in a browser</span><span class="se">\n\n</span><span class="s1">{0}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                          <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">urlpath</span><span class="p">))</span>
+                <span class="c1"># wait for SSO to finish.</span>
                 <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">saml_wait_loops</span><span class="p">):</span>
                     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Waiting for {0} seconds for authentication...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mi">20</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">))</span>
                     <span class="n">saml_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_sso_login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">saml_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">):</span>
                         <span class="n">found_auth_token</span> <span class="o">=</span> <span class="bp">True</span>
                         <span class="k">break</span>
                     <span class="c1"># wait before retry.</span>
-                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">saml_wait_delay</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">found_auth_token</span><span class="p">:</span>
                     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Login time expired! Please re-login.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                     <span class="c1"># log response when debug</span>
@@ -4379,7 +4550,17 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">None</span>
                     <span class="k">return</span> <span class="bp">False</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login successful:&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">login_region</span><span class="p">:</span>
+                <span class="c1"># were we told to ignore regions?</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+                    <span class="c1"># We are on the wrong region. We need to change regions and resubmit login request.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">login_region</span><span class="p">)</span>
+                    <span class="c1"># recall the login function with the new region. Return the result.</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="p">,</span> <span class="n">saml_wait_loops</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># ignore region set, just continue without re-parsing.</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info due to ignore_region.&#39;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Login API response OK.&#39;</span><span class="p">)</span>
         <span class="c1"># if we got here, we either got an x_auth_token in the original login, or</span>
         <span class="c1"># we got an auth_token cookie set via SAML. Figure out which.</span>
         <span class="n">auth_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_auth_token&#39;</span><span class="p">)</span>
@@ -4400,7 +4581,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                     <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                         <span class="c1"># ESP/MSP!</span>
-                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                        <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
                         <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                             <span class="c1"># attempt to login as client</span>
                             <span class="n">clogin_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login_clients</span><span class="p">(</span><span class="n">chosen_client_id</span><span class="p">,</span> <span class="p">{})</span>
@@ -4416,7 +4597,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                                     <span class="k">return</span> <span class="bp">True</span>
                                 <span class="k">else</span><span class="p">:</span>
                                     <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                     <span class="c1"># clear password out of memory</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -4424,7 +4605,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                                     <span class="k">return</span> <span class="bp">False</span>
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -4432,7 +4613,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                                 <span class="k">return</span> <span class="bp">False</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                             <span class="c1"># clear password out of memory</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
@@ -4684,7 +4865,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <li><strong>list_line_format:</strong> Print'ing string with format spots for index + tuple values</li>
 <li><strong>choice_list:</strong> List of tuple values that you want returned if selected (and printed)</li>
 </ul>
-<p><strong>Returns:</strong> Tuple that was selected.</p></div>
+<p><strong>Returns:</strong> Boolean Status, Tuple that was selected.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_menu', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.quick_menu" class="source">
@@ -4695,7 +4876,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <span class="sd">      - **banner:** Text to display before menu</span>
 <span class="sd">      - **list_line_format:** Print&#39;ing string with format spots for index + tuple values</span>
 <span class="sd">      - **choice_list:** List of tuple values that you want returned if selected (and printed)</span>
-<span class="sd">    **Returns:** Tuple that was selected.</span>
+<span class="sd">    **Returns:** Boolean Status, Tuple that was selected.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Setup menu</span>
     <span class="n">invalid</span> <span class="o">=</span> <span class="bp">True</span>
@@ -4708,10 +4889,9 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="n">menu_choice</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Choose a Number or (Q)uit: &quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]:</span>
             <span class="c1"># exit</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Exiting..&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Canceling Menu..&quot;</span><span class="p">)</span>
             <span class="c1"># best effort logout</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
         <span class="c1"># verify number entered</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">menu_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span>
@@ -4726,7 +4906,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
     <span class="c1"># return the choice_list tuple that matches the entry.</span>
-    <span class="k">return</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
   </div>
@@ -4814,16 +4994,35 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
     <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;use_token function:&#39;</span><span class="p">)</span>
     <span class="c1"># check token is a string.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="p">(</span><span class="n">text_type</span><span class="p">,</span> <span class="n">binary_type</span><span class="p">)):</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;&quot;token&quot; was not a text-style string: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_type</span><span class="p">(</span><span class="n">token</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">ignore_region</span><span class="p">:</span>
+        <span class="c1"># parse the token.</span>
+        <span class="n">parsed_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">parse_auth_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="n">token_region</span> <span class="o">=</span> <span class="n">parsed_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">token_region</span><span class="p">:</span>
+            <span class="c1"># Could not get token region. warn and continue.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Could not get region from AUTH_TOKEN. Attempting to continue with URL region.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">token_region</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">:</span>
+            <span class="c1"># Region is different. update.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Region needs update. Original: {0}, Token: {1}&#39;</span>
+                             <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller_region</span><span class="p">,</span> <span class="n">token_region</span><span class="p">))</span>
+            <span class="c1"># setting the region.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">update_region_to_controller</span><span class="p">(</span><span class="n">token_region</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># ignore region set, just continue without re-parsing.</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Ignoring all region info in AUTH_TOKEN&#39;</span><span class="p">)</span>
     <span class="c1"># Start setup of constructor.</span>
     <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">expose_session</span><span class="p">()</span>
     <span class="c1"># clear cookies</span>
     <span class="n">session</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="c1"># Static Token uses X-Auth-Token header instead of cookies.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">({</span>
+    <span class="n">x_auth_header</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="n">token</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_add_headers</span><span class="p">(</span><span class="n">x_auth_header</span><span class="p">)</span>
     <span class="c1"># Step 2: Get operator profile for tenant ID and other info.</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_update_profile_vars</span><span class="p">():</span>
         <span class="c1"># pull tenant detail</span>
@@ -4833,7 +5032,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                 <span class="c1"># Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">is_esp</span><span class="p">:</span>
                     <span class="c1"># ESP/MSP!</span>
-                    <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
+                    <span class="n">choose_status</span><span class="p">,</span> <span class="n">chosen_client_id</span><span class="p">,</span> <span class="n">chosen_client_region</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive_client_choice</span><span class="p">()</span>
                     <span class="k">if</span> <span class="n">choose_status</span><span class="p">:</span>
                         <span class="c1"># attempt to login as client</span>
                         <span class="n">clogin_resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">login_clients</span><span class="p">(</span><span class="n">chosen_client_id</span><span class="p">,</span> <span class="p">{})</span>
@@ -4847,19 +5046,19 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                                 <span class="k">return</span> <span class="bp">True</span>
                             <span class="k">else</span><span class="p">:</span>
                                 <span class="k">if</span> <span class="n">t_profile</span><span class="p">:</span>
-                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
+                                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Tenant detail retrieval failed. ESP login successful..&quot;</span><span class="p">)</span>
                                 <span class="c1"># clear password out of memory</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                                 <span class="k">return</span> <span class="bp">False</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed.&quot;</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Login failed. ESP login successful..&quot;</span><span class="p">)</span>
                             <span class="c1"># clear password out of memory</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
                             <span class="k">return</span> <span class="bp">False</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed.&quot;</span><span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ESP Client Choice failed or canceled. ESP login successful..&quot;</span><span class="p">)</span>
                         <span class="c1"># clear password out of memory</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>

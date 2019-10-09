@@ -1,11 +1,11 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.1.5b1
+**Version:** v5.2.1b1
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2018 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 
@@ -29,13 +29,13 @@ Super-simplified example code (rewrite of example.py in ~4 lines of code):
     from cloudgenix import API, jd
 
     # Instantiate the CloudGenix API constructor
-    cgx_sess = API()
+    sdk = API()
 
     # Call CloudGenix API login using the Interactive helpers (Handle SAML2.0 login and MSP functions too!).
-    cgx_sess.interactive.login()
+    sdk.interactive.login()
 
     # Print a dump of the list of sites for your selected account
-    jd(cgx_sess.get.sites())
+    jd(sdk.get.sites())
 
 #### License
 MIT
@@ -70,13 +70,31 @@ from .interactive import Interactive
 from tempfile import NamedTemporaryFile as temp_ca_bundle
 from .ca_bundle import CG_CA_BUNDLE as _CG_CA_BUNDLE
 
+PYTHON36_FEATURES = False
+""" Boolean: This flag is automatically set based on detected Python version. if 3.6.1+, enables additional features."""
+
 # python 2 and 3 handling
-if sys.version_info < (3,):
-    text_type = unicode
-    binary_type = str
-else:
+if sys.version_info >= (3, 6,):
+    # Python 3.6 or higher
+    PYTHON36_FEATURES = True
     text_type = str
     binary_type = bytes
+elif sys.version_info >= (3, ):
+    # Python 3.x, not supported but try - but no websockets.
+    PYTHON36_FEATURES = False
+    text_type = str
+    binary_type = bytes
+else:
+    # Python 2.x, supported - but no websockets.
+    PYTHON36_FEATURES = False
+    text_type = unicode
+    binary_type = str
+
+# Enable WebSockets for Python 3.6+
+if PYTHON36_FEATURES:
+    import ssl
+    import websockets
+    from .ws_api import WebSockets
 
 BYTE_CA_BUNDLE = binary_type(_CG_CA_BUNDLE)
 """
@@ -87,11 +105,11 @@ Loaded from `cloudgenix.ca_bundle.CG_CA_BUNDLE`
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
 __license__ = """
     MIT License
     
-    Copyright (c) 2017, 2018 CloudGenix, Inc
+    Copyright (c) 2017-2020 CloudGenix, Inc
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -116,9 +134,14 @@ __license__ = """
 api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
 
+if PYTHON36_FEATURES:
+    ws_logger = logging.getLogger('websockets')
+
+
 # Version of SDK
-version = "5.1.5b1"
+version = "5.2.1b1"
 """SDK Version string"""
+___version___ = version
 
 # PyPI URL for checking for updates.
 update_info_url = "https://pypi.org/pypi/cloudgenix/json"
@@ -266,6 +289,13 @@ def jdout_detailed(api_response, sensitive=False):
     return output
 
 
+class CloudGenixAPIError(Exception):
+    """
+    Custom exception for errors when not exiting.
+    """
+    pass
+
+
 class API(object):
     """
     Class for interacting with the CloudGenix API.
@@ -338,6 +368,9 @@ class API(object):
     _ca_verify_file_handle = None
     """File handle for CA verification"""
 
+    _ca_ssl_context = None
+    """`ssl` library context for WebSocket connections (Python 3.6+ Only)"""
+
     rest_call_retry = False
     """DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`."""
 
@@ -358,6 +391,9 @@ class API(object):
 
     _session = None
     """holder for requests.Session() object"""
+
+    _websocket_headers = None
+    """holder for WebSocket Headers (Python 3.6+ Only)"""
 
     update_check = True
     """Notify users of available update to SDK"""
@@ -382,8 +418,8 @@ class API(object):
 
         # try:
         if controller and isinstance(controller, (binary_type, text_type)):
-            self.controller = controller
-            self.controller_orig = controller
+            self.controller = controller.lower()
+            self.controller_orig = controller.lower()
 
         if isinstance(ssl_verify, (binary_type, text_type, bool)):
             self.ssl_verify(ssl_verify)
@@ -421,6 +457,23 @@ class API(object):
                          self.verify,
                          self._session)
 
+        # Websocket/Python 3.6_ features
+        if PYTHON36_FEATURES:
+            # Update Headers for WebSocket requests
+            websocketlib_name = websockets.__name__
+            websocketlib_version = websockets.version.version
+            if not websocketlib_name:
+                websocketlib_name = 'websockets'
+            if not websocketlib_version:
+                websocketlib_version = 'UNKNOWN'
+            ws_user_agent = 'python-{0}/{1} (CGX SDK v{2})'.format(websocketlib_name,
+                                                                   websocketlib_version,
+                                                                   self.version)
+            self._websocket_headers = {
+                'Accept': 'application/json',
+                'User-Agent': text_type(ws_user_agent)
+            }
+
         # Bind API method classes to this object
         subclasses = self._subclass_container()
         self.get = subclasses["get"]()
@@ -440,6 +493,10 @@ class API(object):
 
         self.interactive = subclasses["interactive"]()
         """API object link to `cloudgenix.interactive.Interactive`"""
+
+        if PYTHON36_FEATURES:
+            self.ws = subclasses["ws"]()
+            """API object link to `cloudgenix.ws.WebSockets`"""
 
         return
 
@@ -527,12 +584,20 @@ class API(object):
                     self.ca_verify_filename = self._ca_verify_file_handle.name
                     self._ca_verify_file_handle.close()
 
+                    if PYTHON36_FEATURES:
+                        # set ssl context for websocket
+                        self._ca_ssl_context = ssl.create_default_context(cadata=BYTE_CA_BUNDLE.decode('ascii'))
+
                 # Other (POSIX/Unix/Linux/OSX)
                 else:
                     self._ca_verify_file_handle = temp_ca_bundle()
                     self._ca_verify_file_handle.write(BYTE_CA_BUNDLE)
                     self._ca_verify_file_handle.flush()
                     self.ca_verify_filename = self._ca_verify_file_handle.name
+
+                    if PYTHON36_FEATURES:
+                        # set ssl context for websocket
+                        self._ca_ssl_context = ssl.create_default_context(cadata=BYTE_CA_BUNDLE.decode('ascii'))
 
                 # register cleanup function for temp file.
                 atexit.register(self._cleanup_ca_temp_file)
@@ -541,8 +606,17 @@ class API(object):
                 # disable warnings for SSL certs.
                 urllib3.disable_warnings()
                 self.ca_verify_filename = False
-        else:  # Not True/False, assume path to file/dir for Requests
+                if PYTHON36_FEATURES:
+                    # websocket: create default ssl context that does no verification
+                    self._ca_ssl_context = ssl.SSLContext()
+                    self._ca_ssl_context.verify_mode = ssl.CERT_NONE
+
+        else:
+            # Not True/False, assume path to file/dir for Requests
             self.ca_verify_filename = self.verify
+            # set filename/filepath for context
+            self._ca_ssl_context = ssl.create_default_context(cafile=self.verify, capath=self.verify)
+
         return
 
     def modify_rest_retry(self, total=8, connect=None, read=None, redirect=None, status=None,
@@ -556,6 +630,7 @@ class API(object):
         the underlying `requests.Session` object.
 
         Default retry with total=8 and backoff_factor=0.705883:
+
          - Try 1, 0 delay (0 total seconds)
          - Try 2, 0 delay (0 total seconds)
          - Try 3, 0.705883 delay (0.705883 total seconds)
@@ -659,6 +734,52 @@ class API(object):
         """
         return dict(self._session.headers)
 
+    def websocket_add_headers(self, headers):
+        """
+        Permanently add/overwrite headers to the `API()` WebSocket object (Python 3.6+ Only)
+
+        **Parameters:**
+
+          - **headers:** dict with header/value
+
+        **Returns:** Mutates `API()` object, no return.
+        """
+        if PYTHON36_FEATURES:
+            self._websocket_headers.update(headers)
+            return
+        else:
+            self.throw_error("WebSocket Operations are only supported in Python 3.6.1+")
+            return None
+
+    def websocket_remove_header(self, header):
+        """
+        Permanently remove a single header from the `API()` WebSocket object (Python 3.6+ Only)
+
+        **Parameters:**
+
+          - **header:** str of single header to remove
+
+        **Returns:** Mutates `API()` object, no return.
+        """
+        if PYTHON36_FEATURES:
+            del self._websocket_headers[header]
+            return
+        else:
+            self.throw_error("WebSocket Operations are only supported in Python 3.6.1+")
+            return None
+
+    def websocket_view_headers(self):
+        """
+        View current headers in the `API()` WebSocket object (Python 3.6+ Only)
+
+        **Returns:** Dict, Key header, value is header value.
+        """
+        if PYTHON36_FEATURES:
+            return dict(self._websocket_headers)
+        else:
+            self.throw_error("WebSocket Operations are only supported in Python 3.6.1+")
+            return None
+
     def view_cookies(self):
         """
         View current cookies in the `requests.Session()` object
@@ -684,16 +805,22 @@ class API(object):
             logging.basicConfig(level=logging.INFO,
                                 format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
             api_logger.setLevel(logging.INFO)
+            if PYTHON36_FEATURES:
+                ws_logger.setLevel(logging.INFO)
         elif self._debuglevel == 2:
             logging.basicConfig(level=logging.DEBUG,
                                 format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
             requests.cookies.cookielib.debug = True
             api_logger.setLevel(logging.DEBUG)
+            if PYTHON36_FEATURES:
+                ws_logger.setLevel(logging.DEBUG)
         elif self._debuglevel >= 3:
             logging.basicConfig(level=logging.DEBUG,
                                 format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
             requests.cookies.cookielib.debug = True
             api_logger.setLevel(logging.DEBUG)
+            if PYTHON36_FEATURES:
+                ws_logger.setLevel(logging.DEBUG)
             urllib3_logger = logging.getLogger("requests.packages.urllib3")
             urllib3_logger.setLevel(logging.DEBUG)
             urllib3_logger.propagate = True
@@ -715,42 +842,53 @@ class API(object):
         """
         _parent_class = self
 
+        return_object = {}
+
         class GetWrapper(Get):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['get'] = GetWrapper
 
         class PostWrapper(Post):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['post'] = PostWrapper
 
         class PutWrapper(Put):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['put'] = PutWrapper
 
         class PatchWrapper(Patch):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['patch'] = PatchWrapper
 
         class DeleteWrapper(Delete):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['delete'] = DeleteWrapper
 
         class InteractiveWrapper(Interactive):
 
             def __init__(self):
                 self._parent_class = _parent_class
+        return_object['interactive'] = InteractiveWrapper
 
-        return {"get": GetWrapper,
-                "post": PostWrapper,
-                "put": PutWrapper,
-                "patch": PatchWrapper,
-                "delete": DeleteWrapper,
-                "interactive": InteractiveWrapper}
+        if PYTHON36_FEATURES:
+            class WebSocketsWrapper(WebSockets):
+
+                def __init__(self):
+                    self._parent_class = _parent_class
+
+            return_object['ws'] = WebSocketsWrapper
+
+        return return_object
 
     def rest_call(self, url, method, data=None, sensitive=False, timeout=None, content_json=True,
                   retry=None, max_retry=None, retry_sleep=None):
@@ -888,6 +1026,53 @@ class API(object):
                 ]
             }
             return response
+
+    def websocket_call(self, url, *args, **kwargs):
+        """
+        Generic WebSocket worker function, automatically uses authentication from `API()` session.
+
+        **Parameters:**
+
+          - **url:** URL for the REST call
+          - Any other `websocket.client.Connect` argument or keyword argument (see NOTE: below)
+
+        **Returns:** `websocket.client.Connect` object.
+
+        **NOTE:** Any `websocket.client.Connect` supported argument or keyword argument will be accepted, and will
+        be passed to the underlying Connect() request. **`ssl` and `extra_header` keyword arguments will override the SDK
+        auto-generated cookies/headers and SSL contexts used for authentication.** For more info on available options, see
+        <https://websockets.readthedocs.io/en/stable/api.html#websockets.client.connect>
+        """
+        if PYTHON36_FEATURES:
+
+            headers = {}
+            # add session headers
+            headers.update(self._websocket_headers)
+            # Get cookies from requests.
+            cookies = self._session.cookies.get_dict()
+
+            # create cookie header from the cookies in Requests
+            headers["Cookie"] = "; ".join(["{0}={1}".format(key, value) for key, value in cookies.items()])
+
+            # convert the headers dictionary to a list of tuples.
+            header_tuple_list = [(key, value) for key, value in headers.items()]
+
+            # Create argument tuple
+            ws_args = (url,) + args
+
+            # Create keyword args
+            ws_kwargs = {
+                "ssl": self._ca_ssl_context,
+                "extra_headers": header_tuple_list
+            }
+            # Override automatic with any manually passed kwargs
+            ws_kwargs.update(kwargs)
+
+            return websockets.connect(*ws_args, **ws_kwargs)
+
+        else:
+            self.throw_error("WebSocket Operations are only supported in Python 3.6.1+")
+            return None
 
     def _cleanup_ca_temp_file(self):
         """
@@ -1080,3 +1265,143 @@ class API(object):
         **Returns:** Non URLENCODED string
         """
         return re.compile('%([0-9a-fA-F]{2})', re.M).sub(lambda m: chr(int(m.group(1), 16)), url)
+
+    @staticmethod
+    def throw_error(message, resp=None, cr=True, exception=CloudGenixAPIError):
+        """
+        Non-recoverable error, write message to STDERR and raise exception
+
+        **Parameters:**
+
+          - **message:** Message text
+          - **resp:** Optional - CloudGenix SDK Response object
+          - **cr:** Optional - Use (or not) Carriage Returns.
+          - **exception:** Optional - Custom Exception to throw, otherwise uses `CloudGenixAPIError`
+
+        **Returns:** No Return, throws exception.
+        """
+        output = "ERROR: " + str(message)
+        if cr:
+            output += "\n"
+        sys.stderr.write(output)
+        if resp is not None:
+            output2 = str(jdout_detailed(resp))
+            if cr:
+                output2 += "\n"
+            sys.stderr.write(output2)
+        raise exception(message)
+
+    @staticmethod
+    def throw_warning(message, resp=None, cr=True):
+        """
+        Recoverable Warning.
+
+        **Parameters:**
+
+          - **message:** Message text
+          - **resp:** Optional - CloudGenix SDK Response object
+          - **cr:** Optional - Use (or not) Carriage Returns.
+
+        **Returns:** No Return.
+        """
+        output = "WARNING: " + str(message)
+        if cr:
+            output += "\n"
+        sys.stderr.write(output)
+        if resp is not None:
+            output2 = str(jdout_detailed(resp))
+            if cr:
+                output2 += "\n"
+            sys.stderr.write(output2)
+        return
+
+    def extract_items(self, resp_object, error_label=None, pass_code_list=None):
+        """
+        Extract list of items from a CloudGenix API Response object.
+
+        **Parameters:**
+
+          - **resp_object:** CloudGenix Extended `requests.Response` object.
+          - **error_label:** Optional - text to describe operation on error.
+          - **pass_code_list:** Optional - list of HTTP response codes to silently pass with empty list response.
+
+        **Returns:** list of 'items' objects.
+        """
+
+        if pass_code_list is None:
+            pass_code_list = [404, 400]
+
+        items = resp_object.cgx_content.get('items')
+
+        if resp_object.cgx_status and items is not None:
+            return items
+
+        # handle 404 and other error codes for certain APIs where objects may not exist
+        elif resp_object.status_code in pass_code_list:
+            return [{}]
+
+        else:
+            if error_label is not None:
+                self.throw_error("Unable to extract items from {0}.".format(error_label), resp_object)
+                return [{}]
+            else:
+                self.throw_error("Unable to extract items from response.".format(error_label), resp_object)
+                return [{}]
+
+    def build_lookup_dict(self, list_content, key_val='name', value_val='id', force_nag=False, nag_cache=None):
+        """
+        Build key/value lookup dictionary from a list of dictionaries with specified key/value entries.
+
+        **Parameters:**
+
+          - **list_content:** List of dicts to derive lookup structs from
+          - **key_val:** Optional - Value to extract from entry to be key
+          - **value_val:** Optional - Value to extract from entry to be value
+          - **force_nag:** Optional - Bool, if True will nag even if key in `nag_cache`
+          - **nag_cache:** Optional - List of keys that already exist in a lookup dict that should be duplicate checked.
+
+        **Returns:** Lookup Dictionary
+        """
+        if nag_cache and isinstance(nag_cache, list):
+            already_nagged_dup_keys = nag_cache
+        else:
+            already_nagged_dup_keys = []
+
+        lookup_dict = {}
+        blacklist_duplicate_keys = []
+        blacklist_duplicate_entries = []
+
+        for item in list_content:
+            item_key = item.get(key_val)
+            item_value = item.get(value_val)
+            # print(item_key, item_value)
+            if item_key and item_value is not None:
+                # check if it's a duplicate key.
+                if str(item_key) in lookup_dict:
+                    # First duplicate we've seen - save for warning.
+                    duplicate_value = lookup_dict.get(item_key)
+                    blacklist_duplicate_keys.append(item_key)
+                    blacklist_duplicate_entries.append({item_key: duplicate_value})
+                    blacklist_duplicate_entries.append({item_key: item_value})
+                    # remove from lookup dict to prevent accidental overlap usage
+                    del lookup_dict[str(item_key)]
+
+                # check if it was a third+ duplicate key for a previous key
+                elif item_key in blacklist_duplicate_keys:
+                    # save for warning.
+                    blacklist_duplicate_entries.append({item_key: item_value})
+
+                else:
+                    # no duplicates, append
+                    lookup_dict[str(item_key)] = item_value
+
+        for duplicate_key in blacklist_duplicate_keys:
+            matching_entries = [entry for entry in blacklist_duplicate_entries if duplicate_key in entry]
+            # check if force_nag set and if not, has key already been notified to the end user.
+            if force_nag or duplicate_key not in already_nagged_dup_keys:
+                self.throw_warning(
+                    "Lookup value '{0}' was seen two or more times. To use, please remove duplicates in the controller,"
+                    " or reference it explicitly by the actual value: ".format(duplicate_key), matching_entries)
+                # we've now notified, add to notified list.
+                already_nagged_dup_keys.append(duplicate_key)
+        return lookup_dict
