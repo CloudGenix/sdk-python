@@ -723,7 +723,9 @@ class API(object):
 
         **Returns:** Mutates `requests.Session()` object, no return.
         """
-        del self._session.headers[header]
+        # check for header first. Return silently if it does not exist.
+        if self._session.headers.get(header) is not None:
+            del self._session.headers[header]
         return
 
     def view_headers(self):
@@ -762,7 +764,9 @@ class API(object):
         **Returns:** Mutates `API()` object, no return.
         """
         if PYTHON36_FEATURES:
-            del self._websocket_headers[header]
+            # check for header first. Return silently if it does not exist.
+            if self._websocket_headers.get(header) is not None:
+                del self._websocket_headers[header]
             return
         else:
             self.throw_error("WebSocket Operations are only supported in Python 3.6.1+")
@@ -1153,12 +1157,16 @@ class API(object):
         for idx, part in enumerate(controller_full_part_list):
             # is the region already in the controller string?
             if region == part:
-                # yes, controller already has apropriate region
-                api_logger.debug("REGION %s ALREADY IN CONTROLLER AT INDEX = %s", region, idx)
+                # yes, controller already has appropriate region
+                api_logger.debug("REGION %s ALREADY IN BASE CONTROLLER AT INDEX = %s", region, idx)
                 # update region if it is not already set.
                 if self.controller_region != region:
                     self.controller_region = region
                     api_logger.debug("UPDATED_CONTROLLER_REGION = %s", self.controller_region)
+                # Update controller if not already matching
+                if self.controller != controller_base:
+                    self.controller = controller_base
+                    api_logger.debug("UPDATED_CONTROLLER = %s", self.controller)
                 return
 
         controller_part_count = len(controller_full_part_list)
@@ -1405,3 +1413,112 @@ class API(object):
                 # we've now notified, add to notified list.
                 already_nagged_dup_keys.append(duplicate_key)
         return lookup_dict
+
+    @staticmethod
+    def pull_error(resp_object, raw=False):
+        """
+        Parse API response object, return text for printing on error in response.
+
+        **Parameters:**
+
+          - **resp_object:** CloudGenix Extended `requests.Response` object.
+          - **raw:** Optional. If True, return list of dicts (raw error messages.) Default False.
+
+        **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.
+        """
+        api_logger.info('pull_error function:')
+
+        try:
+            # attempt to grab the cgx_content. should always be a Dict if it exists.
+            data = resp_object.cgx_content
+        except (TypeError, ValueError, AttributeError):
+            # cgx_content did not exist. check root object for dict as end-user may pass the content and not the
+            # extended `requests.Response` object.
+            data = resp_object
+
+        if not isinstance(data, dict):
+            # fast fail if data isn't correct format.
+            api_logger.debug('PULL_ERROR: not able to find a valid dict object in resp_object: {0}'.format(resp_object))
+            return None
+
+        parsed_messages = []
+        errors = []
+
+        if isinstance(data, dict):
+            # got a parsed response.
+            errors = data.get('_error')
+            if isinstance(errors, list):
+                # Some errors in the response
+                if raw is True:
+                    # just return raw error list
+                    return errors
+                else:
+                    for error in errors:
+                        code = error.get('code')
+                        message = error.get('message')
+                        if code and message:
+                            parsed_messages.append("{0} ({1})".format(message, code))
+
+        # is parsed_messages empty and errors exist? dump errors as txt
+        if not parsed_messages and len(errors) > 1:
+            return text_type(errors)
+        elif len(parsed_messages) == 1:
+            return text_type(parsed_messages[0])
+        else:
+            # return comma separated string of errors
+            return text_type("{0}, and {1}".format(", ".join(parsed_messages[:-1]),  parsed_messages[-1]))
+
+    @staticmethod
+    def pull_warning(resp_object, raw=False):
+        """
+        Parse API response object, return text for printing on warning in response.
+
+        **Parameters:**
+
+          - **resp_object:** CloudGenix Extended `requests.Response` object.
+          - **raw:** Optional. If True, return list of dicts (raw warning messages.) Default False.
+
+        **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.
+        """
+        api_logger.info('pull_warning function:')
+
+        try:
+            # attempt to grab the cgx_content. should always be a Dict if it exists.
+            data = resp_object.cgx_content
+        except (TypeError, ValueError, AttributeError):
+            # cgx_content did not exist. check root object for dict as end-user may pass the content and not the
+            # extended `requests.Response` object.
+            data = resp_object
+
+        if not isinstance(data, dict):
+            # fast fail if data isn't correct format.
+            api_logger.debug('PULL_WARNING: not able to find a valid dict object in resp_object: {0}'.format(resp_object))
+            return None
+
+        parsed_messages = []
+        warnings = []
+
+        if isinstance(data, dict):
+            # got a parsed response.
+            warnings = data.get('_warning')
+            if isinstance(warnings, list):
+                # Some warnings in the response
+                if raw is True:
+                    # just return raw warning list
+                    return warnings
+                else:
+                    for warning in warnings:
+                        code = warning.get('code')
+                        message = warning.get('message')
+                        if code and message:
+                            parsed_messages.append("{0} ({1})".format(message, code))
+
+        # is parsed_messages empty and warnings exist? dump warnings as txt
+        if not parsed_messages and len(warnings) > 1:
+            return text_type(warnings)
+        elif len(parsed_messages) == 1:
+            return text_type(parsed_messages[0])
+        else:
+            # return comma separated string of warnings
+            return text_type("{0}, and {1}".format(", ".join(parsed_messages[:-1]),  parsed_messages[-1]))
+

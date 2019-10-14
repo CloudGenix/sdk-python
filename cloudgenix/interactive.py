@@ -80,21 +80,27 @@ class Interactive(object):
     _parent_class = None
 
     def login(self, email=None, password=None, saml_auto_browser=True,
-              saml_wait_loops=20, saml_wait_delay=5):
+              saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None):
         """
         Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.
         Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.
 
         **Parameters:**:
 
-          - **email**: Email to log in for, will prompt if not entered.
-          - **password**: Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.
-          - **saml_auto_browser**: Attempt to automatically open a browser tab/window for SAML v2.0 users. Default True.
-          - **saml_wait_loop**: Number of times to wait `saml_wait_delay` in seconds. Default: 20
-          - **saml_wait_delay**: Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5
+          - **email**: Optional. Email to log in for, will prompt if not entered.
+          - **password**: Optional. Password to log in with, will prompt if not entered. Ignored for SAML v2.0 users.
+          - **saml_auto_browser**: Optional. Attempt to automatically open a browser tab/window for SAML v2.0 users.
+                                   Default True.
+          - **saml_wait_loop**: Optional. Number of times to wait `saml_wait_delay` in seconds. Default: 20
+          - **saml_wait_delay**: Optional. Time (seconds) to wait for SAML 2.0 Authentication each loop. Default: 5
+          - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True
+          - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
+                        If None, will prompt with menu. Default: None
 
         **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.
         """
+        api_logger.info('login function:')
+
         # if email not given in function, or if first login fails, prompt.
 
         if email is None:
@@ -172,7 +178,9 @@ class Interactive(object):
                         # We are on the wrong region. We need to change regions and resubmit login request.
                         self._parent_class.update_region_to_controller(login_region)
                         # recall the login function with the new region. Return the result.
-                        return self.login(email, password, saml_auto_browser, saml_wait_loops, saml_wait_delay)
+                        return self.login(email=email, password=password, saml_auto_browser=saml_auto_browser,
+                                          saml_wait_loops=saml_wait_loops, saml_wait_delay=saml_wait_delay,
+                                          client_login=client_login, client=client)
                     else:
                         # ignore region set, just continue without re-parsing.
                         api_logger.debug('Ignoring all region info due to ignore_region.')
@@ -190,84 +198,37 @@ class Interactive(object):
             # debug info if needed
             api_logger.debug("AUTH_TOKEN=%s", response.cgx_content.get('x_auth_token'))
 
-            # Step 2: Get operator profile for tenant ID and other info.
-            if self.interactive_update_profile_vars():
+            # Step 2: Get operator profile for tenant ID and other info. Verify we have tenant_id.
+            if self.update_profile_vars() and self._parent_class.tenant_id:
 
-                # pull tenant detail
-                if self._parent_class.tenant_id:
+                # add tenant values to API() object
+                if self.tenant_update_vars():
 
-                    # add tenant values to API() object
-                    if self.interactive_tenant_update_vars():
+                    # Step 3: Check for ESP/MSP. If client login is enabled, handle client login.
+                    if self._parent_class.is_esp and client_login:
+                        return self.client_login(client=client)
+                    # successful!
+                    # clear password out of memory
+                    self._parent_class._password = None
+                    # remove referer header prior to continuing.
+                    self._parent_class.remove_header('Referer')
+                    return True
 
-                        # Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.
-                        if self._parent_class.is_esp:
-                            # ESP/MSP!
-                            choose_status, chosen_client_id, chosen_client_region = self.interactive_client_choice()
-
-                            if choose_status:
-                                # attempt to login as client
-                                clogin_resp = self._parent_class.post.login_clients(chosen_client_id, {})
-
-                                if clogin_resp.cgx_status:
-                                    # login successful, update profile and tenant info
-                                    c_profile = self.interactive_update_profile_vars()
-                                    t_profile = self.interactive_tenant_update_vars()
-
-                                    if c_profile and t_profile:
-                                        # successful full client login.
-                                        self._parent_class._password = None
-                                        # remove referer header prior to continuing.
-                                        self._parent_class.remove_header('Referer')
-                                        return True
-
-                                    else:
-                                        if t_profile:
-                                            print("ESP Client Tenant detail retrieval failed. ESP login successful..")
-                                        # clear password out of memory
-                                        self._parent_class.email = None
-                                        self._parent_class._password = None
-                                        # remove referer header prior to continuing.
-                                        self._parent_class.remove_header('Referer')
-                                        return False
-
-                                else:
-                                    print("ESP Client Login failed. ESP login successful..")
-                                    # clear password out of memory
-                                    self._parent_class.email = None
-                                    self._parent_class._password = None
-                                    # remove referer header prior to continuing.
-                                    self._parent_class.remove_header('Referer')
-                                    return False
-
-                            else:
-                                print("ESP Client Choice failed or canceled. ESP login successful..")
-                                # clear password out of memory
-                                self._parent_class.email = None
-                                self._parent_class._password = None
-                                # remove referer header prior to continuing.
-                                self._parent_class.remove_header('Referer')
-                                return False
-
-                        # successful!
-                        # clear password out of memory
-                        self._parent_class._password = None
-                        # remove referer header prior to continuing.
-                        self._parent_class.remove_header('Referer')
-                        return True
-
-                    else:
-                        print("Tenant detail retrieval failed.")
-                        # clear password out of memory
-                        self._parent_class.email = None
-                        self._parent_class._password = None
-                        # remove referer header prior to continuing.
-                        self._parent_class.remove_header('Referer')
-                        return False
+                else:
+                    print("Tenant detail retrieval failed.")
+                    # clear password out of memory
+                    self._parent_class.email = None
+                    self._parent_class._password = None
+                    # remove referer header prior to continuing.
+                    self._parent_class.remove_header('Referer')
+                    return False
 
             else:
+                print("Profile retrieval failed.")
                 # Profile detail retrieval failed
                 self._parent_class.email = None
                 self._parent_class._password = None
+                self._parent_class.remove_header('Referer')
                 return False
 
             api_logger.info("EMAIL = %s", self._parent_class.email)
@@ -283,7 +244,11 @@ class Interactive(object):
             # log response when debug
             api_logger.debug("LOGIN_FAIL_RESPONSE = %s", json.dumps(response.cgx_content, indent=4))
             # print login error
-            print('Login failed, please try again:', response.cgx_content)
+            error_text = self._parent_class.pull_error(response)
+            if error_text:
+                print("Login failed: {0}".format(error_text))
+            else:
+                print('Login failed, please try again:', response.cgx_content)
             # Flush command-line entered login info if failure.
             self._parent_class.email = None
             self._parent_class.password = None
@@ -292,13 +257,16 @@ class Interactive(object):
             self._parent_class.remove_header('Referer')
         return False
 
-    def use_token(self, token=None):
+    def use_token(self, token=None, client_login=True, client=None):
         """
         Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.
 
         **Parameters:**:
 
           - **token**: Static AUTH_TOKEN
+          - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True
+          - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
+                        If None, will prompt with menu. Default: None
 
         **Returns:** Bool on success or failure. In addition the function will mutate the `cloudgenix.API`
                      constructor items as needed.
@@ -343,68 +311,31 @@ class Interactive(object):
             self._parent_class.websocket_add_headers(x_auth_header)
 
         # Step 2: Get operator profile for tenant ID and other info.
-        if self.interactive_update_profile_vars():
+        if self.update_profile_vars() and self._parent_class.tenant_id:
 
-            # pull tenant detail
-            if self._parent_class.tenant_id:
+            # add tenant values to API() object
+            if self.tenant_update_vars():
 
-                # add tenant values to API() object
-                if self.interactive_tenant_update_vars():
+                # For future use, if AUTH_TOKENs are ever permitted for client login/logout.
+                # # Step 3: Check for ESP/MSP. If client login is enabled, handle client login.
+                # if self._parent_class.is_esp and client_login:
+                #     # ESP/MSP!
+                #     return self.client_login(client=client)
 
-                    # Step 3: Check for ESP/MSP. If so, ask which tenant this session should be for.
-                    if self._parent_class.is_esp:
-                        # ESP/MSP!
-                        choose_status, chosen_client_id, chosen_client_region = self.interactive_client_choice()
+                # successful!
+                # clear password out of memory
+                self._parent_class._password = None
+                return True
 
-                        if choose_status:
-                            # attempt to login as client
-                            clogin_resp = self._parent_class.post.login_clients(chosen_client_id, {})
-
-                            if clogin_resp.cgx_status:
-                                # login successful, update profile and tenant info
-                                c_profile = self.interactive_update_profile_vars()
-                                t_profile = self.interactive_tenant_update_vars()
-
-                                if c_profile and t_profile:
-                                    # successful full client login.
-                                    self._parent_class._password = None
-                                    return True
-
-                                else:
-                                    if t_profile:
-                                        print("ESP Client Tenant detail retrieval failed. ESP login successful..")
-                                    # clear password out of memory
-                                    self._parent_class.email = None
-                                    self._parent_class._password = None
-                                    return False
-
-                            else:
-                                print("ESP Client Login failed. ESP login successful..")
-                                # clear password out of memory
-                                self._parent_class.email = None
-                                self._parent_class._password = None
-                                return False
-
-                        else:
-                            print("ESP Client Choice failed or canceled. ESP login successful..")
-                            # clear password out of memory
-                            self._parent_class.email = None
-                            self._parent_class._password = None
-                            return False
-
-                    # successful!
-                    # clear password out of memory
-                    self._parent_class._password = None
-                    return True
-
-                else:
-                    print("Tenant detail retrieval failed.")
-                    # clear password out of memory
-                    self._parent_class.email = None
-                    self._parent_class._password = None
-                    return False
+            else:
+                print("Tenant detail retrieval failed.")
+                # clear password out of memory
+                self._parent_class.email = None
+                self._parent_class._password = None
+                return False
 
         else:
+            print("Profile retrieval failed.")
             # Profile detail retrieval failed
             self._parent_class.email = None
             self._parent_class._password = None
@@ -419,13 +350,200 @@ class Interactive(object):
 
         return True
 
-    def interactive_tenant_update_vars(self):
+    def client_login(self, client=None):
+        """
+        If logged into an ESP/MSP, now login to a client.
+
+        **Parameters:**:
+
+          - **client**: Optional. ESP/MSP managed Client Canonical Name, Client Name, or Client ID
+                        (matched in this order)
+
+        **Returns:** Boolean Success.
+        """
+        api_logger.info('client_login function:')
+
+        if self._parent_class.token_session is True:
+            # AUTH_TOKENs are not allowed to do client login/logout.
+            print("Static AUTH_TOKENs are not allowed to perform client login/logout operations.")
+            return False
+
+        # sanity check if ESP
+        if self._parent_class.is_esp:
+            # ESP/MSP! Pass any client info through to client choice.
+            choose_status, chosen_client_id, chosen_client_region = self.client_choice(client=client)
+
+            if choose_status:
+                # attempt to login as client
+                clogin_resp = self._parent_class.post.clients_login(chosen_client_id, {})
+
+                if clogin_resp.cgx_status:
+                    # see if we need to change regions.
+                    redirect_region = clogin_resp.cgx_content.get('redirect_region')
+                    redirect_x_auth_token = clogin_resp.cgx_content.get('redirect_x_auth_token')
+                    redirect_urlpath = clogin_resp.cgx_content.get('redirect_urlpath')
+
+                    if redirect_region is not None and redirect_x_auth_token is not None:
+                        api_logger.debug('CLIENT REGION SWITCH: %s -> %s', self._parent_class.controller_region,
+                                         redirect_region)
+                        # Need to change regions.
+                        self._parent_class.update_region_to_controller(redirect_region)
+
+                        # Now set a temporary X-Auth-Token header, overwriting previous if there.
+                        # if using a static AUTH_TOKEN, client login will switch to dynamic via
+                        # Cookies.
+                        self._parent_class.add_headers({'X-Auth-Token': redirect_x_auth_token})
+
+                    # login successful, update profile
+
+                    # Profile call will set new login cookies if switching regions.
+                    c_profile = self.update_profile_vars()
+                    if redirect_region is not None and redirect_x_auth_token is not None:
+                        # if region switch, we need to clear the X-Auth-Token header, as it was a temporary value
+                        # and now we are using cookies for ephemeral AUTH_TOKENs.
+                        self._parent_class.remove_header('X-Auth-Token')
+
+                    # Update tenant info.
+                    t_profile = self.tenant_update_vars()
+
+                    if c_profile and t_profile:
+                        # successful full client login.
+                        self._parent_class._password = None
+                        # remove referer header prior to continuing.
+                        self._parent_class.remove_header('Referer')
+                        return True
+
+                    else:
+                        if t_profile:
+                            print("ESP Client Tenant detail retrieval failed. ESP may no longer be valid.")
+                        # clear password out of memory
+                        self._parent_class.email = None
+                        self._parent_class._password = None
+                        # remove referer header prior to continuing.
+                        self._parent_class.remove_header('Referer')
+                        return False
+
+                else:
+                    print("ESP Client Login failed. ESP session active.")
+                    # clear password out of memory
+                    self._parent_class.email = None
+                    self._parent_class._password = None
+                    # remove referer header prior to continuing.
+                    self._parent_class.remove_header('Referer')
+                    return False
+
+            else:
+                print("ESP Client Choice failed or canceled. ESP session active.")
+                # clear password out of memory
+                self._parent_class.email = None
+                self._parent_class._password = None
+                # remove referer header prior to continuing.
+                self._parent_class.remove_header('Referer')
+                return False
+        else:
+            # Not ESP
+            print("ESP Client login failed. Current session is not an ESP/MSP.")
+            # clear password out of memory
+            self._parent_class.email = None
+            self._parent_class._password = None
+            # remove referer header prior to continuing.
+            self._parent_class.remove_header('Referer')
+            return False
+
+    def client_logout(self, client_login=True, client=None):
+        """
+        If logged into a client, go back to ESP/MSP.
+
+        **Parameters:**:
+
+          - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True
+          - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
+                        If None, will prompt with menu. Default: None
+
+        **Returns:** Boolean Success.
+        """
+        api_logger.info('client_logout function:')
+
+        if self._parent_class.token_session is True:
+            # AUTH_TOKENs are not allowed to do client login/logout.
+            print("Static AUTH_TOKENs are not allowed to perform client login/logout operations.")
+            return False
+
+        # make the client_logout call.
+        clogout_resp = self._parent_class.post.clients_logout({})
+
+        if clogout_resp.cgx_status:
+            # see if we need to change regions.
+            redirect_region = clogout_resp.cgx_content.get('redirect_region')
+            redirect_x_auth_token = clogout_resp.cgx_content.get('redirect_x_auth_token')
+            redirect_urlpath = clogout_resp.cgx_content.get('redirect_urlpath')
+
+            if redirect_region is not None and redirect_x_auth_token is not None:
+                api_logger.debug('CLIENT REGION SWITCH: %s -> %s', self._parent_class.controller_region,
+                                 redirect_region)
+                # Need to change regions.
+                self._parent_class.update_region_to_controller(redirect_region)
+
+                # Now set a temporary X-Auth-Token header, overwriting previous if there.
+                # if using a static AUTH_TOKEN, client logout will switch to dynamic via
+                # Cookies.
+                self._parent_class.add_headers({'X-Auth-Token': redirect_x_auth_token})
+            else:
+                # If client login works, and we aren't going cross region - we need to flush the X-Auth-Token header
+                # here. This is because it's invalid once we move to a client; we're now using cookies.
+                # If we are going cross-region, cookie stays until after the profile call.
+                self._parent_class.remove_header('X-Auth-Token')
+
+            # login successful, update profile
+
+            # Profile call will set new login cookies if switching regions.
+            c_profile = self.update_profile_vars()
+            if redirect_region is not None and redirect_x_auth_token is not None:
+                # if region switch, we need to clear the X-Auth-Token header, as it was a temporary value
+                # and now we are using cookies for ephemeral AUTH_TOKENs.
+                self._parent_class.remove_header('X-Auth-Token')
+
+            # Update tenant info.
+            t_profile = self.tenant_update_vars()
+
+            if c_profile and t_profile:
+                # successful full client login.
+                self._parent_class._password = None
+                # remove referer header prior to continuing.
+                self._parent_class.remove_header('Referer')
+
+                # check if client_login set. If so, relogin to next client.
+                if client_login:
+                    return self.client_login(client=client)
+                else:
+                    return True
+
+            else:
+                if t_profile:
+                    print("ESP Tenant detail retrieval failed. Session may no longer be valid.")
+                # clear password out of memory
+                self._parent_class.email = None
+                self._parent_class._password = None
+                # remove referer header prior to continuing.
+                self._parent_class.remove_header('Referer')
+                return False
+
+        else:
+            print("ESP Client Logout failed. Client session may or may not still be active.")
+            # clear password out of memory
+            self._parent_class.email = None
+            self._parent_class._password = None
+            # remove referer header prior to continuing.
+            self._parent_class.remove_header('Referer')
+            return False
+
+    def tenant_update_vars(self):
         """
         Function to update the `cloudgenix.API` object with tenant login info. Run after login or client login.
 
         **Returns:** Boolean on success/failure,
         """
-        api_logger.info('interactive_tenant_update_vars function:')
+        api_logger.info('tenant_update_vars function:')
         tenant_resp = self._parent_class.get.tenants(self._parent_class.tenant_id)
         status = tenant_resp.cgx_status
         tenant_dict = tenant_resp.cgx_content
@@ -455,12 +573,13 @@ class Interactive(object):
             # update failed
             return False
 
-    def interactive_update_profile_vars(self):
+    def update_profile_vars(self):
         """
         Function to update the `cloudgenix.API` object with profile info. Run after login or client login.
 
         **Returns:** Boolean on success/failure,
         """
+        api_logger.info('update_profile_vars function:')
 
         profile = self._parent_class.get.profile()
 
@@ -481,66 +600,151 @@ class Interactive(object):
             self._parent_class._password = None
             return False
 
-    def interactive_client_choice(self):
+    def session_allowed_clients(self):
         """
-        Present a menu for user to select from ESP/MSP managed clients they have permission to.
+        Get the current ESP session allowed clients info.
 
-        **Returns:** Tuple with (Boolean success, selected client ID).
+        **Returns:** Tuple of (Boolean Success status,
+                               Client Name to ID dict, Client Canonical Name to ID dict, Client ID to Region dict.)
         """
+        api_logger.info('session_allowed_clients function:')
 
-        clients = self._parent_class.get.clients_t()
-        clients_perms = self._parent_class.get.permissions_clients_d(self._parent_class._user_id)
+        # sanity check if ESP
+        if self._parent_class.is_esp:
+            # Make API requests
+            clients = self._parent_class.get.tenant_clients()
+            clients_perms = self._parent_class.get.esp_operator_permissions(self._parent_class._user_id)
 
-        client_status = clients.cgx_status
-        clients_dict = clients.cgx_content
-        c_perms_status = clients_perms.cgx_status
-        c_perms_dict = clients_perms.cgx_content
+            client_status = clients.cgx_status
+            clients_dict = clients.cgx_content
+            c_perms_status = clients_perms.cgx_status
+            c_perms_dict = clients_perms.cgx_content
 
-        # Build MSP/ESP id-name dict, get list of allowed tenants.
-        if client_status and c_perms_status:
-            client_id_name = {}
-            menu_list = []
-            for client in clients_dict.get('items', []):
-                if type(client) is dict:
-                    # create client ID to name map table.
-                    client_id = client.get('id', "err")
-                    client_name = client.get('name', "")
-                    client_canonical_name = client.get('canonical_name', "")
-                    # Create ID to name map from Clients response.
-                    client_id_name[client_id] = "{0} ({1})".format(client_name, client_canonical_name)
+            # Build MSP/ESP id-name dict, get list of allowed tenants.
+            if client_status and c_perms_status:
+                # Client maps, name to ID, Canonical Name to ID, and ID to Region.
+                tenant_client_id2n = {}
+                tenant_client_canonical_id2n = {}
+                client_n2id = {}
+                client_canonical_n2id = {}
+                client_id2r = {}
+                for client_entry in clients_dict.get('items', []):
+                    if type(client_entry) is dict:
+                        # create client ID to name map table.
+                        client_id = client_entry.get('id', "err")
+                        client_name = client_entry.get('name', "")
+                        client_canonical_name = client_entry.get('canonical_name', "")
+                        # update tenant client canonical name/name tables. Current session may not have access to
+                        # all of these. Will filter to specific client accessible ones later before return.
+                        tenant_client_canonical_id2n[client_id] = client_canonical_name
+                        tenant_client_id2n[client_id] = client_name
 
-            # add menu list items
-            for client_perm in c_perms_dict.get('items', []):
-                if type(client_perm) is dict:
-                    client_id = client_perm.get('client_id')
-                    client_region = client_perm.get('region')
-                    # create tuple of ( client name, client id, client region ) to append to list
+                # Using Tenant client list, build dicts for this session.
+                for client_perm in c_perms_dict.get('items', []):
+                    if type(client_perm) is dict:
+                        client_id = client_perm.get('client_id')
+                        client_region = client_perm.get('region')
+                        # update client id to region map
+                        client_id2r[client_id] = client_region
+                        # build session specific name maps.
+                        client_n2id[tenant_client_id2n.get(client_id, client_id)] = client_id
+                        client_canonical_n2id[tenant_client_canonical_id2n.get(client_id, client_id)] = client_id
+                # return results.
+                return True, client_n2id, client_canonical_n2id, client_id2r
+
+            else:
+                # Could not get a specific API response..
+                api_logger.debug("API request failure. "
+                                 "Response status - tenant_clients: %s, esp_operator_permissions: %s.",
+                                 client_status,
+                                 c_perms_status)
+                return False, {}, {}, {}
+        else:
+            # not ESP/MSP. Fail.
+            api_logger.debug("Not ESP/MSP, cannot get allowed clients")
+            return False, {}, {}, {}
+
+    def client_choice(self, client=None):
+        """
+        Get info for ESP/MSP managed clients this session has access to. If passed a valid Client Canonical Name,
+        Client Name, or Client ID - return the info for that client. Otherwise, present a menu and let the user
+        choose.
+
+        **Parameters:**:
+
+          - **client**: ESP/MSP managed Client Canonical Name, Client Name, or Client ID (matched in this order)
+
+        **Returns:** Tuple with (Boolean success, selected client ID, selected client Region).
+        """
+        api_logger.info('client_choice function:')
+
+        # Get client session access info
+        session_status, client_n2id, client_canonical_n2id, client_id2r = self.session_allowed_clients()
+
+        if session_status:
+            # got client info. Lets go.
+            if client:
+                # got name/id specified in function. Use that to return client choice to login function.
+                # lets see what we can find. first check canonical.
+                client_id = client_canonical_n2id.get(client)
+
+                # did it match? If not, check client name.
+                if client_id is None:
+                    api_logger.debug("ESP/MSP Specified client '%s' no match in Client Canonical Names", client)
+                    client_id = client_n2id.get(client)
+
+                    # Again, match check. If not, ID is last shot.
+                    if client_id is None:
+                        api_logger.debug("ESP/MSP Specified client '%s' no match in Client Names", client)
+                        # use client id to region dict keys to check if valid ID.
+                        if client in client_id2r.keys():
+                            # matched valid client ID. Set client_id direct to client.
+                            client_id = client
+                        else:
+                            # client doesn't match anything. Fail.
+                            api_logger.debug("ESP/MSP Specified client '%s' not found in Client IDs.", client)
+                            return False, None, None
+
+                # if we got here, client_id should have been found. Return.
+                return True, client_id, client_id2r.get(client_id)
+
+            else:
+                # no name. Use menu.
+                menu_list = []
+                # need a id->Name dict to create the menu list. Reverse the existing n2id dict.
+                client_id2n = {v: k for k, v in client_n2id.items()}
+
+                # iterate the canonical name dict to create the client menu
+                for client_canonical_name, client_id in client_canonical_n2id.items():
+                    client_name = client_id2n.get(client_id, client_id)
+                    client_region = client_id2r.get(client_id)
+                    # Create the menu entry tuple
                     menu_list.append(
-                        (client_id_name.get(client_id, client_id), client_id, client_region)
+                        ("{0} ({1})".format(client_name, client_canonical_name), client_id, client_region)
                     )
 
-            # empty menu?
-            if not menu_list:
-                # no clients
-                print("No ESP/MSP clients allowed for user.")
-                return False, {}
+                # empty menu/no clients?
+                if not menu_list:
+                    # no clients
+                    print("No ESP/MSP clients allowed for user.")
+                    return False, None, None
 
-            # ask user to select client
-            status, chosen_client_result = self.quick_menu("ESP/MSP Detected. Select a client to use:",
-                                                           "{0}) {1} Region: {3}", menu_list)
+                # ask user to select client
+                status, chosen_client_result = self.quick_menu("ESP/MSP Detected. Select a client to use:",
+                                                               "{0}) {1} Region: {3}", menu_list)
 
-            if status:
-                # Chosen client ID is the 2nd item in the tuple, client_region is 3rd item
-                return True, chosen_client_result[1], chosen_client_result[2]
-            else:
-                # failed - likely canceled.
-                return False, None
-
+                if status:
+                    # Chosen client ID is the 2nd item in the tuple, client_region is 3rd item
+                    return True, chosen_client_result[1], chosen_client_result[2]
+                else:
+                    # failed - likely canceled.
+                    return False, None, None
         else:
             print("ESP/MSP detail retrieval failed.")
-            return False, {}
+            return False, None, None
 
-    def quick_menu(self, banner, list_line_format, choice_list):
+    @staticmethod
+    def quick_menu(banner, list_line_format, choice_list):
         """
         Function to display a quick menu for user input
 
@@ -552,6 +756,8 @@ class Interactive(object):
 
         **Returns:** Boolean Status, Tuple that was selected.
         """
+        api_logger.info('quick_menu function:')
+
         # Setup menu
         invalid = True
         menu_int = -1
@@ -601,6 +807,7 @@ class Interactive(object):
 
         **Returns:** Tuple (Boolean success, Token on success, JSON response on error.)
         """
+        api_logger.info('check_sso_login function:')
 
         data = {
             "email": operator_email,
@@ -634,6 +841,8 @@ class Interactive(object):
 
         **Returns:** Bool of whether the operation succeeded.
         """
+        api_logger.info('logout function:')
+
         # Extract requests session for manipulation.
         session = self._parent_class.expose_session()
 
@@ -787,7 +996,7 @@ class Interactive(object):
         valid = False
         str_val = default_value
         while not valid:
-            input_val = raw_input(prompt + "[{0}]: ".format(default_value))
+            input_val = compat_input(prompt + "[{0}]: ".format(default_value))
 
             if input_val == "":
                 str_val = default_value
@@ -802,3 +1011,12 @@ class Interactive(object):
                     valid = False
 
         return str_val
+
+    interactive_client_choice = client_choice
+    """ Backwards-compatibility alias of `interactive_client_choice` to `client_choice`"""
+
+    interactive_tenant_update_vars = tenant_update_vars
+    """ Backwards-compatibility alias of `interactive_tenant_update_vars` to `tenant_update_vars`"""
+
+    interactive_update_profile_vars = update_profile_vars
+    """ Backwards-compatibility alias of `interactive_update_profile_vars` to `update_profile_vars`"""
