@@ -44,6 +44,10 @@ __license__ = """
 
 # Set logging to function name
 api_logger = logging.getLogger(__name__)
+"""`logging.getlogger` object to enable debug printing via `cloudgenix.API.set_debug`"""
+
+PYTHON36_FEATURES = False
+""" Boolean: This flag is automatically set based on detected Python version. if 3.6.1+, enables additional features."""
 
 # python 2 to 3 support
 try:

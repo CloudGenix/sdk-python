@@ -1033,7 +1033,7 @@ class API(object):
 
     def websocket_call(self, url, *args, **kwargs):
         """
-        Generic WebSocket worker function, automatically uses authentication from `API()` session.
+        Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.
 
         **Parameters:**
 

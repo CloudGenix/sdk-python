@@ -2594,6 +2594,8 @@ table {
     <li class="mono"><a href="#cloudgenix.API.notify_for_new_version">notify_for_new_version</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_auth_token">parse_auth_token</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_region">parse_region</a></li>
+    <li class="mono"><a href="#cloudgenix.API.pull_error">pull_error</a></li>
+    <li class="mono"><a href="#cloudgenix.API.pull_warning">pull_warning</a></li>
     <li class="mono"><a href="#cloudgenix.API.remove_header">remove_header</a></li>
     <li class="mono"><a href="#cloudgenix.API.reparse_login_cookie_after_region_update">reparse_login_cookie_after_region_update</a></li>
     <li class="mono"><a href="#cloudgenix.API.rest_call">rest_call</a></li>
@@ -2979,6 +2981,13 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="c1"># Same issue, just raw output the passed data. Let any exceptions happen here.</span>
             <span class="n">output</span> <span class="o">=</span> <span class="n">api_response</span>
     <span class="k">return</span> <span class="n">output</span>
+
+
+<span class="k">class</span> <span class="nc">CloudGenixAPIError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Custom exception for errors when not exiting.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
 
 
 <span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -3408,7 +3417,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="sd">        **Returns:** Mutates `requests.Session()` object, no return.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+        <span class="c1"># check for header first. Return silently if it does not exist.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3447,7 +3458,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">        **Returns:** Mutates `API()` object, no return.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+            <span class="c1"># check for header first. Return silently if it does not exist.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
             <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;WebSocket Operations are only supported in Python 3.6.1+&quot;</span><span class="p">)</span>
@@ -3714,7 +3727,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generic WebSocket worker function, automatically uses authentication from `API()` session.</span>
+<span class="sd">        Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -3838,12 +3851,16 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">):</span>
             <span class="c1"># is the region already in the controller string?</span>
             <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="n">part</span><span class="p">:</span>
-                <span class="c1"># yes, controller already has apropriate region</span>
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+                <span class="c1"># yes, controller already has appropriate region</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN BASE CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
                 <span class="c1"># update region if it is not already set.</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">!=</span> <span class="n">region</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">=</span> <span class="n">region</span>
                     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER_REGION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span><span class="p">)</span>
+                <span class="c1"># Update controller if not already matching</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="n">controller_base</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller_base</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
                 <span class="k">return</span>
 
         <span class="n">controller_part_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">)</span>
@@ -3952,7 +3969,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;%([0-9a-fA-F]{2})&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">16</span><span class="p">)),</span> <span class="n">url</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Non-recoverable error, write message to STDERR and raise exception</span>
 
@@ -3961,6 +3978,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **message:** Message text</span>
 <span class="sd">          - **resp:** Optional - CloudGenix SDK Response object</span>
 <span class="sd">          - **cr:** Optional - Use (or not) Carriage Returns.</span>
+<span class="sd">          - **exception:** Optional - Custom Exception to throw, otherwise uses `CloudGenixAPIError`</span>
 
 <span class="sd">        **Returns:** No Return, throws exception.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3973,7 +3991,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="k">if</span> <span class="n">cr</span><span class="p">:</span>
                 <span class="n">output2</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">CloudGenixAPIError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
@@ -4090,12 +4108,113 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="n">already_nagged_dup_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">duplicate_key</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">lookup_dict</span>
 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse API response object, return text for printing on error in response.</span>
 
-<span class="k">class</span> <span class="nc">CloudGenixAPIError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Custom exception for errors when not exiting.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">          - **raw:** Optional. If True, return list of dicts (raw error messages.) Default False.</span>
+
+<span class="sd">        **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+            <span class="c1"># extended `requests.Response` object.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_ERROR: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># got a parsed response.</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_error&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># Some errors in the response</span>
+                <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="c1"># just return raw error list</span>
+                    <span class="k">return</span> <span class="n">errors</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+                        <span class="n">code</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                        <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                            <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+
+        <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># return comma separated string of errors</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse API response object, return text for printing on warning in response.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">          - **raw:** Optional. If True, return list of dicts (raw warning messages.) Default False.</span>
+
+<span class="sd">        **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+            <span class="c1"># extended `requests.Response` object.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># got a parsed response.</span>
+            <span class="n">warnings</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_warning&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">warnings</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># Some warnings in the response</span>
+                <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="c1"># just return raw warning list</span>
+                    <span class="k">return</span> <span class="n">warnings</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">warning</span> <span class="ow">in</span> <span class="n">warnings</span><span class="p">:</span>
+                        <span class="n">code</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                        <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                            <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+
+        <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># return comma separated string of warnings</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
   </div>
@@ -4833,7 +4952,9 @@ and Response Body.</p></div>
 
 <span class="sd">        **Returns:** Mutates `requests.Session()` object, no return.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+        <span class="c1"># check for header first. Return silently if it does not exist.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -4872,7 +4993,9 @@ and Response Body.</p></div>
 <span class="sd">        **Returns:** Mutates `API()` object, no return.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+            <span class="c1"># check for header first. Return silently if it does not exist.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
             <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;WebSocket Operations are only supported in Python 3.6.1+&quot;</span><span class="p">)</span>
@@ -5139,7 +5262,7 @@ and Response Body.</p></div>
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generic WebSocket worker function, automatically uses authentication from `API()` session.</span>
+<span class="sd">        Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -5263,12 +5386,16 @@ and Response Body.</p></div>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">):</span>
             <span class="c1"># is the region already in the controller string?</span>
             <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="n">part</span><span class="p">:</span>
-                <span class="c1"># yes, controller already has apropriate region</span>
-                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+                <span class="c1"># yes, controller already has appropriate region</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN BASE CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
                 <span class="c1"># update region if it is not already set.</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">!=</span> <span class="n">region</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">=</span> <span class="n">region</span>
                     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER_REGION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span><span class="p">)</span>
+                <span class="c1"># Update controller if not already matching</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="n">controller_base</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller_base</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
                 <span class="k">return</span>
 
         <span class="n">controller_part_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">)</span>
@@ -5377,7 +5504,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;%([0-9a-fA-F]{2})&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">16</span><span class="p">)),</span> <span class="n">url</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Non-recoverable error, write message to STDERR and raise exception</span>
 
@@ -5386,6 +5513,7 @@ and Response Body.</p></div>
 <span class="sd">          - **message:** Message text</span>
 <span class="sd">          - **resp:** Optional - CloudGenix SDK Response object</span>
 <span class="sd">          - **cr:** Optional - Use (or not) Carriage Returns.</span>
+<span class="sd">          - **exception:** Optional - Custom Exception to throw, otherwise uses `CloudGenixAPIError`</span>
 
 <span class="sd">        **Returns:** No Return, throws exception.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5398,7 +5526,7 @@ and Response Body.</p></div>
             <span class="k">if</span> <span class="n">cr</span><span class="p">:</span>
                 <span class="n">output2</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">CloudGenixAPIError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
@@ -5514,6 +5642,114 @@ and Response Body.</p></div>
                 <span class="c1"># we&#39;ve now notified, add to notified list.</span>
                 <span class="n">already_nagged_dup_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">duplicate_key</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">lookup_dict</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse API response object, return text for printing on error in response.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">          - **raw:** Optional. If True, return list of dicts (raw error messages.) Default False.</span>
+
+<span class="sd">        **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+            <span class="c1"># extended `requests.Response` object.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_ERROR: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># got a parsed response.</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_error&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># Some errors in the response</span>
+                <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="c1"># just return raw error list</span>
+                    <span class="k">return</span> <span class="n">errors</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+                        <span class="n">code</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                        <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                            <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+
+        <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># return comma separated string of errors</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse API response object, return text for printing on warning in response.</span>
+
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">          - **raw:** Optional. If True, return list of dicts (raw warning messages.) Default False.</span>
+
+<span class="sd">        **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+            <span class="c1"># extended `requests.Response` object.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># got a parsed response.</span>
+            <span class="n">warnings</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_warning&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">warnings</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># Some warnings in the response</span>
+                <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="c1"># just return raw warning list</span>
+                    <span class="k">return</span> <span class="n">warnings</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">warning</span> <span class="ow">in</span> <span class="n">warnings</span><span class="p">:</span>
+                        <span class="n">code</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                        <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                            <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+
+        <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># return comma separated string of warnings</span>
+            <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
   </div>
@@ -6066,7 +6302,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;PUT&#39;, &#39;DELETE&#39;, &#39;TRACE&#39;, &#39;GET&#39;, &#39;HEAD&#39;, &#39;OPTIONS&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;HEAD&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;TRACE&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
@@ -6318,6 +6554,148 @@ Notification to STDERR.</p>
   </div>
   
             
+  <div class="item" id="cloudgenix.API.pull_error">
+    <div class="name def">
+    <p>def <span class="ident">pull_error</span>(</p><p>resp_object, raw=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Parse API response object, return text for printing on error in response.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>resp_object:</strong> CloudGenix Extended <code>requests.Response</code> object.</li>
+<li><strong>raw:</strong> Optional. If True, return list of dicts (raw error messages.) Default False.</li>
+</ul>
+<p><strong>Returns:</strong> text_type error message, or list of dicts (if raw=True). None if no errors.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_error', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.pull_error" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse API response object, return text for printing on error in response.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">      - **raw:** Optional. If True, return list of dicts (raw error messages.) Default False.</span>
+<span class="sd">    **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+        <span class="c1"># extended `requests.Response` object.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_ERROR: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># got a parsed response.</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_error&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="c1"># Some errors in the response</span>
+            <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="c1"># just return raw error list</span>
+                <span class="k">return</span> <span class="n">errors</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+                    <span class="n">code</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                        <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+    <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># return comma separated string of errors</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.API.pull_warning">
+    <div class="name def">
+    <p>def <span class="ident">pull_warning</span>(</p><p>resp_object, raw=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Parse API response object, return text for printing on warning in response.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>resp_object:</strong> CloudGenix Extended <code>requests.Response</code> object.</li>
+<li><strong>raw:</strong> Optional. If True, return list of dicts (raw warning messages.) Default False.</li>
+</ul>
+<p><strong>Returns:</strong> text_type warning message, or list of dicts (if raw=True). None if no warnings.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_warning', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.pull_warning" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse API response object, return text for printing on warning in response.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
+<span class="sd">      - **raw:** Optional. If True, return list of dicts (raw warning messages.) Default False.</span>
+<span class="sd">    **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist. check root object for dict as end-user may pass the content and not the</span>
+        <span class="c1"># extended `requests.Response` object.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># fast fail if data isn&#39;t correct format.</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># got a parsed response.</span>
+        <span class="n">warnings</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_warning&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">warnings</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="c1"># Some warnings in the response</span>
+            <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="c1"># just return raw warning list</span>
+                <span class="k">return</span> <span class="n">warnings</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">warning</span> <span class="ow">in</span> <span class="n">warnings</span><span class="p">:</span>
+                    <span class="n">code</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+                        <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+    <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># return comma separated string of warnings</span>
+        <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.API.remove_header">
     <div class="name def">
     <p>def <span class="ident">remove_header</span>(</p><p>self, header)</p>
@@ -6342,7 +6720,9 @@ Notification to STDERR.</p>
 <span class="sd">      - **header:** str of single header to remove</span>
 <span class="sd">    **Returns:** Mutates `requests.Session()` object, no return.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+    <span class="c1"># check for header first. Return silently if it does not exist.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
     <span class="k">return</span>
 </pre></div>
 
@@ -6691,7 +7071,7 @@ re-parses the original login request and applies cookies to the session if they 
             
   <div class="item" id="cloudgenix.API.throw_error">
     <div class="name def">
-    <p>def <span class="ident">throw_error</span>(</p><p>message, resp=None, cr=True)</p>
+    <p>def <span class="ident">throw_error</span>(</p><p>message, resp=None, cr=True, exception=&lt;class &#39;cloudgenix.CloudGenixAPIError&#39;&gt;)</p>
     </div>
     
 
@@ -6703,19 +7083,21 @@ re-parses the original login request and applies cookies to the session if they 
 <li><strong>message:</strong> Message text</li>
 <li><strong>resp:</strong> Optional - CloudGenix SDK Response object</li>
 <li><strong>cr:</strong> Optional - Use (or not) Carriage Returns.</li>
+<li><strong>exception:</strong> Optional - Custom Exception to throw, otherwise uses <code>CloudGenixAPIError</code></li>
 </ul>
 <p><strong>Returns:</strong> No Return, throws exception.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.throw_error', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.throw_error" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-recoverable error, write message to STDERR and raise exception</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **message:** Message text</span>
 <span class="sd">      - **resp:** Optional - CloudGenix SDK Response object</span>
 <span class="sd">      - **cr:** Optional - Use (or not) Carriage Returns.</span>
+<span class="sd">      - **exception:** Optional - Custom Exception to throw, otherwise uses `CloudGenixAPIError`</span>
 <span class="sd">    **Returns:** No Return, throws exception.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;ERROR: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -6727,7 +7109,7 @@ re-parses the original login request and applies cookies to the session if they 
         <span class="k">if</span> <span class="n">cr</span><span class="p">:</span>
             <span class="n">output2</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="n">CloudGenixAPIError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -6831,12 +7213,16 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">):</span>
         <span class="c1"># is the region already in the controller string?</span>
         <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="n">part</span><span class="p">:</span>
-            <span class="c1"># yes, controller already has apropriate region</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+            <span class="c1"># yes, controller already has appropriate region</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;REGION </span><span class="si">%s</span><span class="s2"> ALREADY IN BASE CONTROLLER AT INDEX = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
             <span class="c1"># update region if it is not already set.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">!=</span> <span class="n">region</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span> <span class="o">=</span> <span class="n">region</span>
                 <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER_REGION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_region</span><span class="p">)</span>
+            <span class="c1"># Update controller if not already matching</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="n">controller_base</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller_base</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;UPDATED_CONTROLLER = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
             <span class="k">return</span>
     <span class="n">controller_part_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">controller_full_part_list</span><span class="p">)</span>
     <span class="c1"># handle short domain case</span>
@@ -7034,7 +7420,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
 
     
   
-    <div class="desc"><p>Generic WebSocket worker function, automatically uses authentication from <code>API()</code> session.</p>
+    <div class="desc"><p>Generic WebSocket worker function, automatically uses authentication from <code>cloudgenix.API()</code> session.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><strong>url:</strong> URL for the REST call</li>
@@ -7050,7 +7436,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <div id="source-cloudgenix.API.websocket_call" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generic WebSocket worker function, automatically uses authentication from `API()` session.</span>
+<span class="sd">    Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **url:** URL for the REST call</span>
 <span class="sd">      - Any other `websocket.client.Connect` argument or keyword argument (see NOTE: below)</span>
@@ -7116,7 +7502,9 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
 <span class="sd">    **Returns:** Mutates `API()` object, no return.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+        <span class="c1"># check for header first. Return silently if it does not exist.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
         <span class="k">return</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;WebSocket Operations are only supported in Python 3.6.1+&quot;</span><span class="p">)</span>
@@ -7369,7 +7757,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   
     <div class="desc"><p>CloudGenix Python SDK - WebSocket Functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017, 2017, 2019 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2020 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>

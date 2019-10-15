@@ -4,7 +4,7 @@ CloudGenix Python SDK - WebSocket Functions
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2017, 2019 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -39,7 +39,7 @@ __license__ = """
 
 # Set logging to function name
 api_logger = logging.getLogger(__name__)
-"""logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
+"""`logging.getlogger` object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 
 class WebSockets(object):
