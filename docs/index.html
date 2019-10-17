@@ -4152,15 +4152,27 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                         <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                             <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># no errors, ensure list and empty.</span>
+                <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># not a list.. put whatever it is into a list.</span>
+                <span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">errors</span><span class="p">]</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
 
         <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="c1"># return comma separated string of errors</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># no errors</span>
+            <span class="k">return</span> <span class="bp">None</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -4186,7 +4198,8 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="c1"># fast fail if data isn&#39;t correct format.</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span>
+                             <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
             <span class="k">return</span> <span class="bp">None</span>
 
         <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
@@ -4206,15 +4219,27 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                         <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                             <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">warnings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># no warnings, ensure list and empty.</span>
+                <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># not a list.. put whatever it is into a list.</span>
+                <span class="n">warnings</span> <span class="o">=</span> <span class="p">[</span><span class="n">warnings</span><span class="p">]</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">warnings</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
 
         <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="c1"># return comma separated string of warnings</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># no warnings</span>
+            <span class="k">return</span> <span class="bp">None</span>
 </pre></div>
 
   </div>
@@ -5687,15 +5712,27 @@ and Response Body.</p></div>
                         <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                             <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># no errors, ensure list and empty.</span>
+                <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># not a list.. put whatever it is into a list.</span>
+                <span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">errors</span><span class="p">]</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
 
         <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="c1"># return comma separated string of errors</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># no errors</span>
+            <span class="k">return</span> <span class="bp">None</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -5721,7 +5758,8 @@ and Response Body.</p></div>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="c1"># fast fail if data isn&#39;t correct format.</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span>
+                             <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
             <span class="k">return</span> <span class="bp">None</span>
 
         <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
@@ -5741,15 +5779,27 @@ and Response Body.</p></div>
                         <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                             <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">warnings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># no warnings, ensure list and empty.</span>
+                <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># not a list.. put whatever it is into a list.</span>
+                <span class="n">warnings</span> <span class="o">=</span> <span class="p">[</span><span class="n">warnings</span><span class="p">]</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">warnings</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
 
         <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="c1"># return comma separated string of warnings</span>
             <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># no warnings</span>
+            <span class="k">return</span> <span class="bp">None</span>
 </pre></div>
 
   </div>
@@ -6302,7 +6352,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;HEAD&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;TRACE&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;OPTIONS&#39;, &#39;HEAD&#39;, &#39;PUT&#39;, &#39;TRACE&#39;, &#39;GET&#39;, &#39;DELETE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
@@ -6609,14 +6659,25 @@ Notification to STDERR.</p>
                     <span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                         <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># no errors, ensure list and empty.</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># not a list.. put whatever it is into a list.</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">errors</span><span class="p">]</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_ERRORS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
     <span class="c1"># is parsed_messages empty and errors exist? dump errors as txt</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># return comma separated string of errors</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># no errors</span>
+        <span class="k">return</span> <span class="bp">None</span>
 </pre></div>
 
   </div>
@@ -6662,7 +6723,8 @@ Notification to STDERR.</p>
         <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="c1"># fast fail if data isn&#39;t correct format.</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;PULL_WARNING: not able to find a valid dict object in resp_object: {0}&#39;</span>
+                         <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_object</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="n">parsed_messages</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
@@ -6680,14 +6742,25 @@ Notification to STDERR.</p>
                     <span class="n">message</span> <span class="o">=</span> <span class="n">warning</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
                         <span class="n">parsed_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">warnings</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># no warnings, ensure list and empty.</span>
+            <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># not a list.. put whatever it is into a list.</span>
+            <span class="n">warnings</span> <span class="o">=</span> <span class="p">[</span><span class="n">warnings</span><span class="p">]</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">warnings</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;PARSED_WARNINGS: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">parsed_messages</span><span class="p">)</span>
     <span class="c1"># is parsed_messages empty and warnings exist? dump warnings as txt</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_messages</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">warnings</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># return comma separated string of warnings</span>
         <span class="k">return</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0}, and {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed_messages</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">parsed_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># no warnings</span>
+        <span class="k">return</span> <span class="bp">None</span>
 </pre></div>
 
   </div>

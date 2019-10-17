@@ -2697,7 +2697,8 @@ table {
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+              <span class="n">prompt</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
@@ -2713,10 +2714,34 @@ table {
 <span class="sd">          - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True</span>
 <span class="sd">          - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.</span>
 <span class="sd">                        If None, will prompt with menu. Default: None</span>
+<span class="sd">          - **prompt**: Optional. text. If one of `default`, `minimal`, or `detailed`, will do as below.</span>
+<span class="sd">            - `default` displays &quot;controller login: &quot; and &quot;controller password: &quot;</span>
+<span class="sd">            - `minimal` displays &quot;login: &quot; and &quot;Password: &quot;</span>
+<span class="sd">            - `detailed` displays &quot;&lt;controller hostname&gt; login: &quot; and &quot;&lt;controller hostname&gt; password: &quot;</span>
+<span class="sd">            - Any other value will display &quot;&lt;entered value&gt; login: &quot; and &lt;entered value&gt; password: &quot;</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;login function:&#39;</span><span class="p">)</span>
+
+        <span class="c1"># set prompt for email/password.</span>
+
+        <span class="k">if</span> <span class="n">prompt</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+
+        <span class="k">if</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller login: &quot;</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller password: &quot;</span>
+        <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;minimal&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;login: &quot;</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;Password: &quot;</span>
+        <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;detailed&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># custom prompt</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
 
         <span class="c1"># if email not given in function, or if first login fails, prompt.</span>
 
@@ -2725,14 +2750,14 @@ table {
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">:</span>
                 <span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;login: &quot;</span><span class="p">)</span>
+                <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">login_prompt</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="c1"># if pass not given on function, or if first login fails, prompt.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span><span class="p">:</span>
                 <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+                <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">password_prompt</span><span class="p">)</span>
 
         <span class="c1"># Try and login</span>
         <span class="c1"># For SAML 2.0 support, set the Referer URL prior to logging in.</span>
@@ -2836,6 +2861,14 @@ table {
                     <span class="c1"># clear password out of memory</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
+
                     <span class="c1"># remove referer header prior to continuing.</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                     <span class="k">return</span> <span class="bp">False</span>
@@ -2848,15 +2881,6 @@ table {
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">False</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-
-            <span class="c1"># remove referer header prior to continuing.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># log response when debug</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
@@ -2942,6 +2966,12 @@ table {
                 <span class="c1"># successful!</span>
                 <span class="c1"># clear password out of memory</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">True</span>
 
             <span class="k">else</span><span class="p">:</span>
@@ -2957,15 +2987,6 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">return</span> <span class="bp">False</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">client_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -3687,7 +3708,8 @@ table {
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+              <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+              <span class="n">prompt</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
@@ -3703,10 +3725,34 @@ table {
 <span class="sd">          - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True</span>
 <span class="sd">          - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.</span>
 <span class="sd">                        If None, will prompt with menu. Default: None</span>
+<span class="sd">          - **prompt**: Optional. text. If one of `default`, `minimal`, or `detailed`, will do as below.</span>
+<span class="sd">            - `default` displays &quot;controller login: &quot; and &quot;controller password: &quot;</span>
+<span class="sd">            - `minimal` displays &quot;login: &quot; and &quot;Password: &quot;</span>
+<span class="sd">            - `detailed` displays &quot;&lt;controller hostname&gt; login: &quot; and &quot;&lt;controller hostname&gt; password: &quot;</span>
+<span class="sd">            - Any other value will display &quot;&lt;entered value&gt; login: &quot; and &lt;entered value&gt; password: &quot;</span>
 
 <span class="sd">        **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;login function:&#39;</span><span class="p">)</span>
+
+        <span class="c1"># set prompt for email/password.</span>
+
+        <span class="k">if</span> <span class="n">prompt</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+
+        <span class="k">if</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller login: &quot;</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller password: &quot;</span>
+        <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;minimal&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;login: &quot;</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;Password: &quot;</span>
+        <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;detailed&quot;</span><span class="p">:</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># custom prompt</span>
+            <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+            <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
 
         <span class="c1"># if email not given in function, or if first login fails, prompt.</span>
 
@@ -3715,14 +3761,14 @@ table {
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">:</span>
                 <span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;login: &quot;</span><span class="p">)</span>
+                <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">login_prompt</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="c1"># if pass not given on function, or if first login fails, prompt.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span><span class="p">:</span>
                 <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+                <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">password_prompt</span><span class="p">)</span>
 
         <span class="c1"># Try and login</span>
         <span class="c1"># For SAML 2.0 support, set the Referer URL prior to logging in.</span>
@@ -3826,6 +3872,14 @@ table {
                     <span class="c1"># clear password out of memory</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+                    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
+
                     <span class="c1"># remove referer header prior to continuing.</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                     <span class="k">return</span> <span class="bp">False</span>
@@ -3838,15 +3892,6 @@ table {
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">False</span>
 
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-
-            <span class="c1"># remove referer header prior to continuing.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># log response when debug</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
@@ -3932,6 +3977,12 @@ table {
                 <span class="c1"># successful!</span>
                 <span class="c1"># clear password out of memory</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">True</span>
 
             <span class="k">else</span><span class="p">:</span>
@@ -3947,15 +3998,6 @@ table {
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">return</span> <span class="bp">False</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">client_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -5069,7 +5111,7 @@ choose.</p>
             
   <div class="item" id="cloudgenix.interactive.Interactive.login">
     <div class="name def">
-    <p>def <span class="ident">login</span>(</p><p>self, email=None, password=None, saml_auto_browser=True, saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None)</p>
+    <p>def <span class="ident">login</span>(</p><p>self, email=None, password=None, saml_auto_browser=True, saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None, prompt=None)</p>
     </div>
     
 
@@ -5088,13 +5130,21 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <li><strong>client_login</strong>: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True</li>
 <li><strong>client</strong>: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
                 If None, will prompt with menu. Default: None</li>
+<li><strong>prompt</strong>: Optional. text. If one of <code>default</code>, <code>minimal</code>, or <code>detailed</code>, will do as below.<ul>
+<li><code>default</code> displays "controller login: " and "controller password: "</li>
+<li><code>minimal</code> displays "login: " and "Password: "</li>
+<li><code>detailed</code> displays "<controller hostname> login: " and "<controller hostname> password: "</li>
+<li>Any other value will display "<entered value> login: " and <entered value> password: "</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns:</strong> Bool. In addition the function will mutate the <code>cloudgenix.API</code> constructor items as needed.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.login', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.login" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-          <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+          <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+          <span class="n">prompt</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">    Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
@@ -5108,22 +5158,43 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <span class="sd">      - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True</span>
 <span class="sd">      - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.</span>
 <span class="sd">                    If None, will prompt with menu. Default: None</span>
+<span class="sd">      - **prompt**: Optional. text. If one of `default`, `minimal`, or `detailed`, will do as below.</span>
+<span class="sd">        - `default` displays &quot;controller login: &quot; and &quot;controller password: &quot;</span>
+<span class="sd">        - `minimal` displays &quot;login: &quot; and &quot;Password: &quot;</span>
+<span class="sd">        - `detailed` displays &quot;&lt;controller hostname&gt; login: &quot; and &quot;&lt;controller hostname&gt; password: &quot;</span>
+<span class="sd">        - Any other value will display &quot;&lt;entered value&gt; login: &quot; and &lt;entered value&gt; password: &quot;</span>
 <span class="sd">    **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;login function:&#39;</span><span class="p">)</span>
+    <span class="c1"># set prompt for email/password.</span>
+    <span class="k">if</span> <span class="n">prompt</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+    <span class="k">if</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+        <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller login: &quot;</span>
+        <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;controller password: &quot;</span>
+    <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;minimal&quot;</span><span class="p">:</span>
+        <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;login: &quot;</span>
+        <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;Password: &quot;</span>
+    <span class="k">elif</span> <span class="n">prompt</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;detailed&quot;</span><span class="p">:</span>
+        <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+        <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># custom prompt</span>
+        <span class="n">login_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} login: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="n">password_prompt</span> <span class="o">=</span> <span class="s2">&quot;{0} password: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
     <span class="c1"># if email not given in function, or if first login fails, prompt.</span>
     <span class="k">if</span> <span class="n">email</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="c1"># If user is not set, pull from cache. If not in cache, prompt.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">:</span>
             <span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;login: &quot;</span><span class="p">)</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">login_prompt</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="c1"># if pass not given on function, or if first login fails, prompt.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span><span class="p">:</span>
             <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">password_prompt</span><span class="p">)</span>
     <span class="c1"># Try and login</span>
     <span class="c1"># For SAML 2.0 support, set the Referer URL prior to logging in.</span>
     <span class="c1"># add referer header to the session.</span>
@@ -5218,6 +5289,12 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
                 <span class="c1"># clear password out of memory</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
                 <span class="c1"># remove referer header prior to continuing.</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">False</span>
@@ -5228,14 +5305,6 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">False</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-        <span class="c1"># remove referer header prior to continuing.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;Referer&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># log response when debug</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;LOGIN_FAIL_RESPONSE = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
@@ -5809,6 +5878,12 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
             <span class="c1"># successful!</span>
             <span class="c1"># clear password out of memory</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tenant detail retrieval failed.&quot;</span><span class="p">)</span>
@@ -5822,13 +5897,6 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;EMAIL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;USER ROLES = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TENANT_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_name</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;TOKEN_SESSION = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">token_session</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">True</span>
 </pre></div>
 
   </div>

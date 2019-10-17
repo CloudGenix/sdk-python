@@ -1458,15 +1458,27 @@ class API(object):
                         message = error.get('message')
                         if code and message:
                             parsed_messages.append("{0} ({1})".format(message, code))
+            elif errors is None:
+                # no errors, ensure list and empty.
+                errors = []
+            else:
+                # not a list.. put whatever it is into a list.
+                errors = [errors]
+
+        api_logger.debug("ERRORS: %s", errors)
+        api_logger.debug("PARSED_ERRORS: %s", parsed_messages)
 
         # is parsed_messages empty and errors exist? dump errors as txt
         if not parsed_messages and len(errors) > 1:
             return text_type(errors)
         elif len(parsed_messages) == 1:
             return text_type(parsed_messages[0])
-        else:
+        elif len(parsed_messages) > 1:
             # return comma separated string of errors
             return text_type("{0}, and {1}".format(", ".join(parsed_messages[:-1]),  parsed_messages[-1]))
+        else:
+            # no errors
+            return None
 
     @staticmethod
     def pull_warning(resp_object, raw=False):
@@ -1492,7 +1504,8 @@ class API(object):
 
         if not isinstance(data, dict):
             # fast fail if data isn't correct format.
-            api_logger.debug('PULL_WARNING: not able to find a valid dict object in resp_object: {0}'.format(resp_object))
+            api_logger.debug('PULL_WARNING: not able to find a valid dict object in resp_object: {0}'
+                             ''.format(resp_object))
             return None
 
         parsed_messages = []
@@ -1512,13 +1525,26 @@ class API(object):
                         message = warning.get('message')
                         if code and message:
                             parsed_messages.append("{0} ({1})".format(message, code))
+            elif warnings is None:
+                # no warnings, ensure list and empty.
+                warnings = []
+            else:
+                # not a list.. put whatever it is into a list.
+                warnings = [warnings]
+
+        api_logger.debug("WARNINGS: %s", warnings)
+        api_logger.debug("PARSED_WARNINGS: %s", parsed_messages)
 
         # is parsed_messages empty and warnings exist? dump warnings as txt
         if not parsed_messages and len(warnings) > 1:
             return text_type(warnings)
         elif len(parsed_messages) == 1:
             return text_type(parsed_messages[0])
-        else:
+        elif len(parsed_messages) > 1:
             # return comma separated string of warnings
             return text_type("{0}, and {1}".format(", ".join(parsed_messages[:-1]),  parsed_messages[-1]))
+        else:
+            # no warnings
+            return None
+
 

@@ -84,7 +84,8 @@ class Interactive(object):
     _parent_class = None
 
     def login(self, email=None, password=None, saml_auto_browser=True,
-              saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None):
+              saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None,
+              prompt=None):
         """
         Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.
         Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.
@@ -100,10 +101,34 @@ class Interactive(object):
           - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True
           - **client**: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
                         If None, will prompt with menu. Default: None
+          - **prompt**: Optional. text. If one of `default`, `minimal`, or `detailed`, will do as below.
+            - `default` displays "controller login: " and "controller password: "
+            - `minimal` displays "login: " and "Password: "
+            - `detailed` displays "<controller hostname> login: " and "<controller hostname> password: "
+            - Any other value will display "<entered value> login: " and <entered value> password: "
 
         **Returns:** Bool. In addition the function will mutate the `cloudgenix.API` constructor items as needed.
         """
         api_logger.info('login function:')
+
+        # set prompt for email/password.
+
+        if prompt is None or not isinstance(prompt, text_type):
+            prompt = "default"
+
+        if prompt.lower() == "default":
+            login_prompt = "controller login: "
+            password_prompt = "controller password: "
+        elif prompt.lower() == "minimal":
+            login_prompt = "login: "
+            password_prompt = "Password: "
+        elif prompt.lower() == "detailed":
+            login_prompt = "{0} login: ".format(self._parent_class.controller)
+            password_prompt = "{0} password: ".format(self._parent_class.controller)
+        else:
+            # custom prompt
+            login_prompt = "{0} login: ".format(prompt)
+            password_prompt = "{0} password: ".format(prompt)
 
         # if email not given in function, or if first login fails, prompt.
 
@@ -112,14 +137,14 @@ class Interactive(object):
             if self._parent_class.email:
                 email = self._parent_class.email
             else:
-                email = compat_input("login: ")
+                email = compat_input(login_prompt)
 
         if password is None:
             # if pass not given on function, or if first login fails, prompt.
             if self._parent_class._password:
                 password = self._parent_class._password
             else:
-                password = getpass.getpass()
+                password = getpass.getpass(password_prompt)
 
         # Try and login
         # For SAML 2.0 support, set the Referer URL prior to logging in.
@@ -223,6 +248,14 @@ class Interactive(object):
                     # clear password out of memory
                     self._parent_class.email = None
                     self._parent_class._password = None
+
+                    api_logger.info("EMAIL = %s", self._parent_class.email)
+                    api_logger.info("USER_ID = %s", self._parent_class._user_id)
+                    api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
+                    api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
+                    api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
+                    api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
+
                     # remove referer header prior to continuing.
                     self._parent_class.remove_header('Referer')
                     return False
@@ -235,15 +268,6 @@ class Interactive(object):
                 self._parent_class.remove_header('Referer')
                 return False
 
-            api_logger.info("EMAIL = %s", self._parent_class.email)
-            api_logger.info("USER_ID = %s", self._parent_class._user_id)
-            api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
-            api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
-            api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
-            api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
-
-            # remove referer header prior to continuing.
-            self._parent_class.remove_header('Referer')
         else:
             # log response when debug
             api_logger.debug("LOGIN_FAIL_RESPONSE = %s", json.dumps(response.cgx_content, indent=4))
@@ -329,6 +353,12 @@ class Interactive(object):
                 # successful!
                 # clear password out of memory
                 self._parent_class._password = None
+                api_logger.info("EMAIL = %s", self._parent_class.email)
+                api_logger.info("USER_ID = %s", self._parent_class._user_id)
+                api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
+                api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
+                api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
+                api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
                 return True
 
             else:
@@ -344,15 +374,6 @@ class Interactive(object):
             self._parent_class.email = None
             self._parent_class._password = None
             return False
-
-        api_logger.info("EMAIL = %s", self._parent_class.email)
-        api_logger.info("USER_ID = %s", self._parent_class._user_id)
-        api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
-        api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
-        api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
-        api_logger.info("TOKEN_SESSION = %s", self._parent_class.token_session)
-
-        return True
 
     def client_login(self, client=None):
         """
