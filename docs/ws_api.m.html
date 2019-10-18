@@ -2651,7 +2651,7 @@ table {
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open a Toolkit Session WebSocket</span>
 
@@ -2662,8 +2662,9 @@ table {
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">          - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
 <span class="sd">          - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** websockets.client.Connect object.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2679,9 +2680,9 @@ table {
                               <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open the default Tenant WebSocket for use in multiple functions.</span>
 
@@ -2689,8 +2690,9 @@ table {
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** websockets.client.Connect object.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2747,7 +2749,7 @@ table {
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open a Toolkit Session WebSocket</span>
 
@@ -2758,8 +2760,9 @@ table {
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">          - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
 <span class="sd">          - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** websockets.client.Connect object.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2775,9 +2778,9 @@ table {
                               <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open the default Tenant WebSocket for use in multiple functions.</span>
 
@@ -2785,8 +2788,9 @@ table {
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** websockets.client.Connect object.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2819,7 +2823,7 @@ table {
             
   <div class="item" id="cloudgenix.ws_api.WebSockets.default">
     <div class="name def">
-    <p>def <span class="ident">default</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">default</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;, **kwargs)</p>
     </div>
     
 
@@ -2830,18 +2834,20 @@ table {
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>&ast;&ast;kwargs</strong>: Optional: Additional Keyword Arguments to pass to <code>websockets.client.Connect()</code></li>
 </ul>
-<p><strong>Returns:</strong> websockets.client.Connect object.</p></div>
+<p><strong>Returns:</strong> <code>websockets.client.Connect</code> object.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api.WebSockets.default', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.ws_api.WebSockets.default" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Open the default Tenant WebSocket for use in multiple functions.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** websockets.client.Connect object.</span>
+<span class="sd">      - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+<span class="sd">    **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
@@ -2865,7 +2871,7 @@ table {
             
   <div class="item" id="cloudgenix.ws_api.WebSockets.toolkit_session">
     <div class="name def">
-    <p>def <span class="ident">toolkit_session</span>(</p><p>self, element_id, tenant_id=None, api_version=&#39;v2.0&#39;, cols=207, rows=53)</p>
+    <p>def <span class="ident">toolkit_session</span>(</p><p>self, element_id, tenant_id=None, api_version=&#39;v2.0&#39;, cols=207, rows=53, **kwargs)</p>
     </div>
     
 
@@ -2879,12 +2885,13 @@ table {
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 <li><strong>cols</strong>: Optional: Integer, Number of columns for terminal (default 207)</li>
 <li><strong>rows</strong>: Optional: Integer, Number of rows for terminal (default 53)</li>
+<li><strong>&ast;&ast;kwargs</strong>: Optional: Additional Keyword Arguments to pass to <code>websockets.client.Connect()</code></li>
 </ul>
-<p><strong>Returns:</strong> websockets.client.Connect object.</p></div>
+<p><strong>Returns:</strong> <code>websockets.client.Connect</code> object.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api.WebSockets.toolkit_session', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.ws_api.WebSockets.toolkit_session" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Open a Toolkit Session WebSocket</span>
 <span class="sd">      **Parameters:**:</span>
@@ -2893,7 +2900,8 @@ table {
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">      - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
 <span class="sd">      - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
-<span class="sd">    **Returns:** websockets.client.Connect object.</span>
+<span class="sd">      - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+<span class="sd">    **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
@@ -2906,7 +2914,7 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ws/toolkitsessions?cols={}&amp;rows={}&quot;</span> \
                           <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
   </div>

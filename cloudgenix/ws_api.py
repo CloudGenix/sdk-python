@@ -52,7 +52,7 @@ class WebSockets(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def toolkit_session(self, element_id, tenant_id=None, api_version="v2.0", cols=207, rows=53):
+    def toolkit_session(self, element_id, tenant_id=None, api_version="v2.0", cols=207, rows=53, **kwargs):
         """
         Open a Toolkit Session WebSocket
 
@@ -63,8 +63,9 @@ class WebSockets(object):
           - **api_version**: API version to use (default v2.0)
           - **cols**: Optional: Integer, Number of columns for terminal (default 207)
           - **rows**: Optional: Integer, Number of rows for terminal (default 53)
+          - **&ast;&ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`
 
-        **Returns:** websockets.client.Connect object.
+        **Returns:** `websockets.client.Connect` object.
         """
 
         if tenant_id is None and self._parent_class.tenant_id:
@@ -80,9 +81,9 @@ class WebSockets(object):
                               "".format(api_version, tenant_id, element_id, cols, rows)
 
         api_logger.debug("URL = %s", url)
-        return self._parent_class.websocket_call(url)
+        return self._parent_class.websocket_call(url, **kwargs)
 
-    def default(self, tenant_id=None, api_version="v2.0"):
+    def default(self, tenant_id=None, api_version="v2.0", **kwargs):
         """
         Open the default Tenant WebSocket for use in multiple functions.
 
@@ -90,8 +91,9 @@ class WebSockets(object):
 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
+          - **&ast;&ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`
 
-        **Returns:** websockets.client.Connect object.
+        **Returns:** `websockets.client.Connect` object.
         """
 
         if tenant_id is None and self._parent_class.tenant_id:
