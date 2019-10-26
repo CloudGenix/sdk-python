@@ -2594,8 +2594,8 @@ table {
     <li class="mono"><a href="#cloudgenix.API.notify_for_new_version">notify_for_new_version</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_auth_token">parse_auth_token</a></li>
     <li class="mono"><a href="#cloudgenix.API.parse_region">parse_region</a></li>
-    <li class="mono"><a href="#cloudgenix.API.pull_error">pull_error</a></li>
-    <li class="mono"><a href="#cloudgenix.API.pull_warning">pull_warning</a></li>
+    <li class="mono"><a href="#cloudgenix.API.pull_content_error">pull_content_error</a></li>
+    <li class="mono"><a href="#cloudgenix.API.pull_content_warning">pull_content_warning</a></li>
     <li class="mono"><a href="#cloudgenix.API.remove_header">remove_header</a></li>
     <li class="mono"><a href="#cloudgenix.API.reparse_login_cookie_after_region_update">reparse_login_cookie_after_region_update</a></li>
     <li class="mono"><a href="#cloudgenix.API.rest_call">rest_call</a></li>
@@ -2752,6 +2752,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span>
 <span class="kn">from</span> <span class="nn">requests.packages</span> <span class="kn">import</span> <span class="n">urllib3</span>
+<span class="kn">from</span> <span class="nn">requests.cookies</span> <span class="kn">import</span> <span class="n">cookielib</span>
 
 <span class="kn">from</span> <span class="nn">.get_api</span> <span class="kn">import</span> <span class="n">Get</span>
 <span class="kn">from</span> <span class="nn">.post_api</span> <span class="kn">import</span> <span class="n">Post</span>
@@ -2835,7 +2836,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="c1"># Version of SDK</span>
 <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.2.1b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
-<span class="n">___version___</span> <span class="o">=</span> <span class="n">version</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span>
 
 <span class="c1"># PyPI URL for checking for updates.</span>
 <span class="n">update_info_url</span> <span class="o">=</span> <span class="s2">&quot;https://pypi.org/pypi/cloudgenix/json&quot;</span>
@@ -3490,45 +3491,95 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="k">return</span> <span class="n">return_list</span>
 
-    <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
 
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **set_format:** Optional. If set and text_type, use input for formatter. Otherwise, default formatter.</span>
+<span class="sd">          - **set_format:** Optional. If set and `logging.Handler` type, use input for handler. Otherwise, default</span>
+<span class="sd">          `logging.StreamHandler()`</span>
+
 <span class="sd">        **Returns:** No item returned.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set the logging formatter and stream handle</span>
+        <span class="k">if</span> <span class="n">set_format</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># default formatter</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_format</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="c1"># not a valid format string. Set to default.</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># valid logging string.</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">set_format</span><span class="p">)</span>
+
+        <span class="c1"># set the logging handler if supported handler is not passed.</span>
+        <span class="k">if</span> <span class="n">set_handler</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Default handler</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_handler</span><span class="p">,</span> <span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">,</span>
+                                          <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">)):</span>
+            <span class="c1"># not a valid handler. Set to default handler.</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># passed valid handler</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">set_handler</span>
+
+        <span class="c1"># set handler to use format.</span>
+        <span class="n">api_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">api_formatter</span><span class="p">)</span>
+
+        <span class="c1"># Get the loggers from other modules in prep for setting new handlers.</span>
+        <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+        <span class="n">cookie_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;http.cookiejar&quot;</span><span class="p">)</span>
+
+        <span class="c1"># remove existing handlers</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># ok, lets set the new handlers.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">debuglevel</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">=</span> <span class="n">debuglevel</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
+
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Remove all handlers</span>
-            <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
-            <span class="c1"># set logging level to default</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="c1"># set to warning</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
 
         <span class="k">return</span>
 
@@ -4109,9 +4160,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">lookup_dict</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parse API response object, return text for printing on error in response.</span>
+<span class="sd">        Parse API response object, return error detail text for printing on error in response content.</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -4120,7 +4171,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="sd">        **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_error function:&#39;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
@@ -4175,7 +4226,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="k">return</span> <span class="bp">None</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return text for printing on warning in response.</span>
 
@@ -4186,7 +4237,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="sd">        **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_warning function:&#39;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
@@ -5050,45 +5101,95 @@ and Response Body.</p></div>
 
         <span class="k">return</span> <span class="n">return_list</span>
 
-    <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
 
+<span class="sd">        **Parameters:**</span>
+
+<span class="sd">          - **set_format:** Optional. If set and text_type, use input for formatter. Otherwise, default formatter.</span>
+<span class="sd">          - **set_format:** Optional. If set and `logging.Handler` type, use input for handler. Otherwise, default</span>
+<span class="sd">          `logging.StreamHandler()`</span>
+
 <span class="sd">        **Returns:** No item returned.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set the logging formatter and stream handle</span>
+        <span class="k">if</span> <span class="n">set_format</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># default formatter</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_format</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="c1"># not a valid format string. Set to default.</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># valid logging string.</span>
+            <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">set_format</span><span class="p">)</span>
+
+        <span class="c1"># set the logging handler if supported handler is not passed.</span>
+        <span class="k">if</span> <span class="n">set_handler</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Default handler</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_handler</span><span class="p">,</span> <span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">,</span>
+                                          <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">)):</span>
+            <span class="c1"># not a valid handler. Set to default handler.</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># passed valid handler</span>
+            <span class="n">api_handler</span> <span class="o">=</span> <span class="n">set_handler</span>
+
+        <span class="c1"># set handler to use format.</span>
+        <span class="n">api_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">api_formatter</span><span class="p">)</span>
+
+        <span class="c1"># Get the loggers from other modules in prep for setting new handlers.</span>
+        <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+        <span class="n">cookie_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;http.cookiejar&quot;</span><span class="p">)</span>
+
+        <span class="c1"># remove existing handlers</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># ok, lets set the new handlers.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">debuglevel</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">=</span> <span class="n">debuglevel</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                                <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
                 <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
+
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Remove all handlers</span>
-            <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
-            <span class="c1"># set logging level to default</span>
-            <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="c1"># set to warning</span>
+            <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+            <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
             <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+                <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
 
         <span class="k">return</span>
 
@@ -5669,9 +5770,9 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">lookup_dict</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Parse API response object, return text for printing on error in response.</span>
+<span class="sd">        Parse API response object, return error detail text for printing on error in response content.</span>
 
 <span class="sd">        **Parameters:**</span>
 
@@ -5680,7 +5781,7 @@ and Response Body.</p></div>
 
 <span class="sd">        **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_error function:&#39;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
@@ -5735,7 +5836,7 @@ and Response Body.</p></div>
             <span class="k">return</span> <span class="bp">None</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return text for printing on warning in response.</span>
 
@@ -5746,7 +5847,7 @@ and Response Body.</p></div>
 
 <span class="sd">        **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_warning function:&#39;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
@@ -6352,7 +6453,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;HEAD&#39;, &#39;OPTIONS&#39;, &#39;DELETE&#39;, &#39;TRACE&#39;, &#39;PUT&#39;, &#39;GET&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;HEAD&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;TRACE&#39;, &#39;PUT&#39;, &#39;OPTIONS&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
@@ -6604,15 +6705,15 @@ Notification to STDERR.</p>
   </div>
   
             
-  <div class="item" id="cloudgenix.API.pull_error">
+  <div class="item" id="cloudgenix.API.pull_content_error">
     <div class="name def">
-    <p>def <span class="ident">pull_error</span>(</p><p>resp_object, raw=False)</p>
+    <p>def <span class="ident">pull_content_error</span>(</p><p>resp_object, raw=False)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Parse API response object, return text for printing on error in response.</p>
+    <div class="desc"><p>Parse API response object, return error detail text for printing on error in response content.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><strong>resp_object:</strong> CloudGenix Extended <code>requests.Response</code> object.</li>
@@ -6620,18 +6721,18 @@ Notification to STDERR.</p>
 </ul>
 <p><strong>Returns:</strong> text_type error message, or list of dicts (if raw=True). None if no errors.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_error', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.API.pull_error" class="source">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_content_error', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.pull_content_error" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">pull_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Parse API response object, return text for printing on error in response.</span>
+<span class="sd">    Parse API response object, return error detail text for printing on error in response content.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
 <span class="sd">      - **raw:** Optional. If True, return list of dicts (raw error messages.) Default False.</span>
 <span class="sd">    **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_error function:&#39;</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_error function:&#39;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
@@ -6686,9 +6787,9 @@ Notification to STDERR.</p>
   </div>
   
             
-  <div class="item" id="cloudgenix.API.pull_warning">
+  <div class="item" id="cloudgenix.API.pull_content_warning">
     <div class="name def">
-    <p>def <span class="ident">pull_warning</span>(</p><p>resp_object, raw=False)</p>
+    <p>def <span class="ident">pull_content_warning</span>(</p><p>resp_object, raw=False)</p>
     </div>
     
 
@@ -6702,10 +6803,10 @@ Notification to STDERR.</p>
 </ul>
 <p><strong>Returns:</strong> text_type warning message, or list of dicts (if raw=True). None if no warnings.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_warning', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.API.pull_warning" class="source">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.pull_content_warning', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.API.pull_content_warning" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">pull_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse API response object, return text for printing on warning in response.</span>
 <span class="sd">    **Parameters:**</span>
@@ -6713,7 +6814,7 @@ Notification to STDERR.</p>
 <span class="sd">      - **raw:** Optional. If True, return list of dicts (raw warning messages.) Default False.</span>
 <span class="sd">    **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;pull_warning function:&#39;</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pull_content_warning function:&#39;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># attempt to grab the cgx_content. should always be a Dict if it exists.</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span>
@@ -7006,54 +7107,100 @@ re-parses the original login request and applies cookies to the session if they 
             
   <div class="item" id="cloudgenix.API.set_debug">
     <div class="name def">
-    <p>def <span class="ident">set_debug</span>(</p><p>self, debuglevel)</p>
+    <p>def <span class="ident">set_debug</span>(</p><p>self, debuglevel, set_format=None, set_handler=None)</p>
     </div>
     
 
     
   
     <div class="desc"><p>Change the debug level of the API</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>set_format:</strong> Optional. If set and text_type, use input for formatter. Otherwise, default formatter.</li>
+<li><strong>set_format:</strong> Optional. If set and <code>logging.Handler</code> type, use input for handler. Otherwise, default
+  <code>logging.StreamHandler()</code></li>
+</ul>
 <p><strong>Returns:</strong> No item returned.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.set_debug', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.set_debug" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Change the debug level of the API</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **set_format:** Optional. If set and text_type, use input for formatter. Otherwise, default formatter.</span>
+<span class="sd">      - **set_format:** Optional. If set and `logging.Handler` type, use input for handler. Otherwise, default</span>
+<span class="sd">      `logging.StreamHandler()`</span>
 <span class="sd">    **Returns:** No item returned.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># set the logging formatter and stream handle</span>
+    <span class="k">if</span> <span class="n">set_format</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># default formatter</span>
+        <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_format</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+        <span class="c1"># not a valid format string. Set to default.</span>
+        <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># valid logging string.</span>
+        <span class="n">api_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">set_format</span><span class="p">)</span>
+    <span class="c1"># set the logging handler if supported handler is not passed.</span>
+    <span class="k">if</span> <span class="n">set_handler</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Default handler</span>
+        <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">set_handler</span><span class="p">,</span> <span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">,</span>
+                                      <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">)):</span>
+        <span class="c1"># not a valid handler. Set to default handler.</span>
+        <span class="n">api_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># passed valid handler</span>
+        <span class="n">api_handler</span> <span class="o">=</span> <span class="n">set_handler</span>
+    <span class="c1"># set handler to use format.</span>
+    <span class="n">api_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">api_formatter</span><span class="p">)</span>
+    <span class="c1"># Get the loggers from other modules in prep for setting new handlers.</span>
+    <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
+    <span class="n">cookie_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;http.cookiejar&quot;</span><span class="p">)</span>
+    <span class="c1"># remove existing handlers</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cookie_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+        <span class="n">ws_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># ok, lets set the new handlers.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">debuglevel</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">=</span> <span class="n">debuglevel</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-                            <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                            <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_debuglevel</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                            <span class="n">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">.</span><span class="si">%(funcName)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">api_handler</span><span class="p">)</span>
             <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-        <span class="n">urllib3_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;requests.packages.urllib3&quot;</span><span class="p">)</span>
-        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Remove all handlers</span>
-        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
-        <span class="c1"># set logging level to default</span>
-        <span class="n">requests</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="c1"># set to warning</span>
+        <span class="n">cookie_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+        <span class="n">cookielib</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">urllib3_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
         <span class="n">api_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">PYTHON36_FEATURES</span><span class="p">:</span>
+            <span class="n">ws_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
     <span class="k">return</span>
 </pre></div>
 

@@ -58,6 +58,7 @@ import sys
 import requests
 from requests.adapters import HTTPAdapter
 from requests.packages import urllib3
+from requests.cookies import cookielib
 
 from .get_api import Get
 from .post_api import Post
@@ -141,7 +142,7 @@ if PYTHON36_FEATURES:
 # Version of SDK
 version = "5.2.1b1"
 """SDK Version string"""
-___version___ = version
+__version__ = version
 
 # PyPI URL for checking for updates.
 update_info_url = "https://pypi.org/pypi/cloudgenix/json"
@@ -796,45 +797,95 @@ class API(object):
 
         return return_list
 
-    def set_debug(self, debuglevel):
+    def set_debug(self, debuglevel, set_format=None, set_handler=None):
         """
         Change the debug level of the API
 
+        **Parameters:**
+
+          - **set_format:** Optional. If set and text_type, use input for formatter. Otherwise, default formatter.
+          - **set_format:** Optional. If set and `logging.Handler` type, use input for handler. Otherwise, default
+          `logging.StreamHandler()`
+
         **Returns:** No item returned.
         """
+        # set the logging formatter and stream handle
+        if set_format is None:
+            # default formatter
+            api_formatter = logging.Formatter("%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
+        elif not isinstance(set_format, text_type):
+            # not a valid format string. Set to default.
+            api_formatter = logging.Formatter("%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
+        else:
+            # valid logging string.
+            api_formatter = logging.Formatter(set_format)
+
+        # set the logging handler if supported handler is not passed.
+        if set_handler is None:
+            # Default handler
+            api_handler = logging.StreamHandler()
+        elif not isinstance(set_handler, (logging.FileHandler, logging.Handler, logging.NullHandler,
+                                          logging.StreamHandler)):
+            # not a valid handler. Set to default handler.
+            api_handler = logging.StreamHandler()
+        else:
+            # passed valid handler
+            api_handler = set_handler
+
+        # set handler to use format.
+        api_handler.setFormatter(api_formatter)
+
+        # Get the loggers from other modules in prep for setting new handlers.
+        urllib3_logger = logging.getLogger("requests.packages.urllib3")
+        cookie_logger = logging.getLogger("http.cookiejar")
+
+        # remove existing handlers
+        api_logger.handlers = []
+        urllib3_logger.handlers = []
+        cookie_logger.handlers = []
+        if PYTHON36_FEATURES:
+            ws_logger.handlers = []
+
+        # ok, lets set the new handlers.
         if isinstance(debuglevel, int):
             self._debuglevel = debuglevel
 
         if self._debuglevel == 1:
-            logging.basicConfig(level=logging.INFO,
-                                format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
+            api_logger.addHandler(api_handler)
             api_logger.setLevel(logging.INFO)
             if PYTHON36_FEATURES:
+                ws_logger.addHandler(api_handler)
                 ws_logger.setLevel(logging.INFO)
+
         elif self._debuglevel == 2:
-            logging.basicConfig(level=logging.DEBUG,
-                                format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
-            requests.cookies.cookielib.debug = True
+            cookie_logger.addHandler(api_handler)
+            cookie_logger.setLevel(logging.DEBUG)
+            cookielib.debug = True
+            api_logger.addHandler(api_handler)
             api_logger.setLevel(logging.DEBUG)
             if PYTHON36_FEATURES:
+                ws_logger.addHandler(api_handler)
                 ws_logger.setLevel(logging.DEBUG)
+
         elif self._debuglevel >= 3:
-            logging.basicConfig(level=logging.DEBUG,
-                                format="%(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")
-            requests.cookies.cookielib.debug = True
+            cookie_logger.addHandler(api_handler)
+            cookie_logger.setLevel(logging.DEBUG)
+            cookielib.debug = True
+            urllib3_logger.addHandler(api_handler)
+            api_logger.addHandler(api_handler)
             api_logger.setLevel(logging.DEBUG)
             if PYTHON36_FEATURES:
+                ws_logger.addHandler(api_handler)
                 ws_logger.setLevel(logging.DEBUG)
-            urllib3_logger = logging.getLogger("requests.packages.urllib3")
-            urllib3_logger.setLevel(logging.DEBUG)
-            urllib3_logger.propagate = True
+
         else:
-            # Remove all handlers
-            for handler in logging.root.handlers[:]:
-                logging.root.removeHandler(handler)
-            # set logging level to default
-            requests.cookies.cookielib.debug = False
+            # set to warning
+            cookie_logger.setLevel(logging.WARNING)
+            cookielib.debug = False
+            urllib3_logger.setLevel(logging.WARNING)
             api_logger.setLevel(logging.WARNING)
+            if PYTHON36_FEATURES:
+                ws_logger.setLevel(logging.WARNING)
 
         return
 
@@ -1415,9 +1466,9 @@ class API(object):
         return lookup_dict
 
     @staticmethod
-    def pull_error(resp_object, raw=False):
+    def pull_content_error(resp_object, raw=False):
         """
-        Parse API response object, return text for printing on error in response.
+        Parse API response object, return error detail text for printing on error in response content.
 
         **Parameters:**
 
@@ -1426,7 +1477,7 @@ class API(object):
 
         **Returns:** text_type error message, or list of dicts (if raw=True). None if no errors.
         """
-        api_logger.info('pull_error function:')
+        api_logger.debug('pull_content_error function:')
 
         try:
             # attempt to grab the cgx_content. should always be a Dict if it exists.
@@ -1481,7 +1532,7 @@ class API(object):
             return None
 
     @staticmethod
-    def pull_warning(resp_object, raw=False):
+    def pull_content_warning(resp_object, raw=False):
         """
         Parse API response object, return text for printing on warning in response.
 
@@ -1492,7 +1543,7 @@ class API(object):
 
         **Returns:** text_type warning message, or list of dicts (if raw=True). None if no warnings.
         """
-        api_logger.info('pull_warning function:')
+        api_logger.debug('pull_content_warning function:')
 
         try:
             # attempt to grab the cgx_content. should always be a Dict if it exists.

@@ -272,7 +272,7 @@ class Interactive(object):
             # log response when debug
             api_logger.debug("LOGIN_FAIL_RESPONSE = %s", json.dumps(response.cgx_content, indent=4))
             # print login error
-            error_text = self._parent_class.pull_error(response)
+            error_text = self._parent_class.pull_content_error(response)
             if error_text:
                 print("Login failed: {0}".format(error_text))
             else:
