@@ -509,7 +509,7 @@ class Get(object):
 
     def clients_base_roles(self, client_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Clients_Base_Roles API Function
+        Get a list of client base roles
 
           **Parameters:**:
 
@@ -537,7 +537,7 @@ class Get(object):
 
     def clients_roles(self, client_id, role_id=None, tenant_id=None, api_version="v2.1"):
         """
-        GET Clients_Roles API Function
+        Get a list of client custom roles
 
           **Parameters:**:
 
@@ -742,6 +742,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def element_waninterfaces_state(self, site_id, element_id, waninterface_id, tenant_id=None, api_version="v2.1"):
+        """
+        GET Element_Waninterfaces_State API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **waninterface_id**: WAN Interface ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/waninterfaces/{}/state".format(api_version,
+                                                                                                      tenant_id,
+                                                                                                      site_id,
+                                                                                                      element_id,
+                                                                                                      waninterface_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.2"):
         """
         Get specific element's ElementAccess Config
@@ -867,7 +899,7 @@ class Get(object):
 
     def elementsecurityzones(self, site_id, element_id, securityzone_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Elementsecurityzones API Function
+        Get element security zones
 
           **Parameters:**:
 
@@ -1749,7 +1781,7 @@ class Get(object):
 
     def natglobalprefixes(self, natglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natglobalprefixes API Function
+        Get all Global NAT prefixes.
 
           **Parameters:**:
 
@@ -1781,7 +1813,7 @@ class Get(object):
 
     def natlocalprefixes(self, natlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natlocalprefixes API Function
+        Get NAT local prefixes.
 
           **Parameters:**:
 
@@ -1813,7 +1845,7 @@ class Get(object):
 
     def natpolicypools(self, natpolicypool_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natpolicypools API Function
+        Get NAT Policy Pools.
 
           **Parameters:**:
 
@@ -1845,7 +1877,7 @@ class Get(object):
 
     def natpolicyrules(self, natpolicyset_id, natpolicyrule_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natpolicyrules API Function
+        Get policy rules of policy set
 
           **Parameters:**:
 
@@ -1880,7 +1912,7 @@ class Get(object):
 
     def natpolicysets(self, natpolicyset_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natpolicysets API Function
+        Get all NAT policy sets of tenant.
 
           **Parameters:**:
 
@@ -1912,7 +1944,7 @@ class Get(object):
 
     def natpolicysets_status(self, natpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Natpolicysets_Status API Function
+        Get a specific NAT policy set status of tenant.
 
           **Parameters:**:
 
@@ -1940,7 +1972,7 @@ class Get(object):
 
     def natpolicysetstacks(self, natpolicysetstack_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natpolicysetstacks API Function
+        Get all NAT policy Set stacks of tenant.
 
           **Parameters:**:
 
@@ -1972,7 +2004,7 @@ class Get(object):
 
     def natzones(self, natzone_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Natzones API Function
+        Get Nat Policy Zones.
 
           **Parameters:**:
 
@@ -3381,7 +3413,7 @@ class Get(object):
 
     def site_natlocalprefixes(self, site_id, natlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Site_Natlocalprefixes API Function
+        Get site NAT prefixes
 
           **Parameters:**:
 
@@ -3720,7 +3752,7 @@ class Get(object):
 
     def software_state(self, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Software_State API Function
+        Get the software upgrade configuration of an element.
 
           **Parameters:**:
 
@@ -3776,7 +3808,7 @@ class Get(object):
 
     def spokeclusters(self, site_id, spokecluster_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Spokeclusters API Function
+        Get all spokeclusters
 
           **Parameters:**:
 
@@ -3811,7 +3843,7 @@ class Get(object):
 
     def spokeclusters_status(self, site_id, spokecluster_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Spokeclusters_Status API Function
+        Get Spoke Cluster Status.
 
           **Parameters:**:
 
@@ -3945,7 +3977,7 @@ class Get(object):
 
     def templates_ntp(self, ntp_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Templates_Ntp API Function
+        Get all existing NTP Template of tenant.
 
           **Parameters:**:
 
@@ -4319,13 +4351,12 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def toolkitsessions(self, element_id, tenant_id=None, api_version="v2.0"):
+    def toolkitsessions(self, tenant_id=None, api_version="v2.0"):
         """
         GET Toolkitsessions API Function
 
           **Parameters:**:
 
-          - **element_id**: Element (Device) ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -4340,9 +4371,8 @@ class Get(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/toolkitsessions/active".format(api_version,
-                                                                                             tenant_id,
-                                                                                             element_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/toolkitsessions".format(api_version,
+                                                                          tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4926,6 +4956,9 @@ class Get(object):
     state_vpnlinks = vpnlinks_state
     """ Backwards-compatibility alias of `state_vpnlinks` to `vpnlinks_state`"""
 
+    state_waninterfaces_e = element_waninterfaces_state
+    """ Backwards-compatibility alias of `state_waninterfaces_e` to `element_waninterfaces_state`"""
+
     status_bgppeers = bgppeers_status
     """ Backwards-compatibility alias of `status_bgppeers` to `bgppeers_status`"""
 
@@ -4986,3 +5019,5 @@ class Get(object):
     tokens_vfflicenses = vfflicense_tokens
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
 
+    toolkitsessions_t = toolkitsessions
+    """ Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`"""

@@ -395,7 +395,7 @@ class Put(object):
 
     def elementsecurityzones(self, site_id, element_id, securityzone_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Elementsecurityzones API Function
+        Update an existing element security zone
 
           **Parameters:**:
 
@@ -788,7 +788,7 @@ class Put(object):
 
     def natglobalprefixes(self, natglobalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natglobalprefixes API Function
+        Update an existing NAT prefix.
 
           **Parameters:**:
 
@@ -817,7 +817,7 @@ class Put(object):
 
     def natlocalprefixes(self, natlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natlocalprefixes API Function
+        Update a  NAT local prefix.
 
           **Parameters:**:
 
@@ -846,7 +846,7 @@ class Put(object):
 
     def natpolicypools(self, natpolicypool_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natpolicypools API Function
+        Update a  NAT Policy Pool.
 
           **Parameters:**:
 
@@ -875,7 +875,7 @@ class Put(object):
 
     def natpolicyrules(self, natpolicyset_id, natpolicyrule_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natpolicyrules API Function
+        Update policy rule of tenant.
 
           **Parameters:**:
 
@@ -906,7 +906,7 @@ class Put(object):
 
     def natpolicysets(self, natpolicyset_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natpolicysets API Function
+        Update NAT policy set.
 
           **Parameters:**:
 
@@ -935,7 +935,7 @@ class Put(object):
 
     def natpolicysetstacks(self, natpolicysetstack_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natpolicysetstacks API Function
+        Update NAT Policy Set Stack.
 
           **Parameters:**:
 
@@ -964,7 +964,7 @@ class Put(object):
 
     def natzones(self, natzone_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Natzones API Function
+        Update a Nat Policy Zone.
 
           **Parameters:**:
 
@@ -1866,7 +1866,7 @@ class Put(object):
 
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Site_Natlocalprefixes API Function
+        Update an existing Site NAT Local prefix Association
 
           **Parameters:**:
 
@@ -2145,7 +2145,7 @@ class Put(object):
 
     def software_state(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Software_State API Function
+        Upgrade an element.
 
           **Parameters:**:
 
@@ -2174,7 +2174,7 @@ class Put(object):
 
     def spokeclusters(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Spokeclusters API Function
+        Update Spoke Cluster
 
           **Parameters:**:
 
@@ -2300,7 +2300,7 @@ class Put(object):
 
     def templates_ntp(self, ntp_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Templates_Ntp API Function
+        Update an existing NTP Template
 
           **Parameters:**:
 

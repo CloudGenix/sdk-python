@@ -317,7 +317,7 @@ class Post(object):
 
     def clients_login(self, client_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Clients_Login API Function
+        Login api for esp client
 
           **Parameters:**:
 
@@ -493,7 +493,7 @@ class Post(object):
 
     def elements_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Elements_Bulk_Config_State_Query API Function
+        Get element config/state info for queried elements from NB
 
           **Parameters:**:
 
@@ -547,7 +547,7 @@ class Post(object):
 
     def elementsecurityzones(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Elementsecurityzones API Function
+        Create an association between element and security zone.
 
           **Parameters:**:
 
@@ -578,7 +578,7 @@ class Post(object):
 
     def elementsecurityzones_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Elementsecurityzones_Query API Function
+        Query element security zones.
 
           **Parameters:**:
 
@@ -740,7 +740,7 @@ class Post(object):
 
     def globalprefixfilters_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Globalprefixfilters_Query API Function
+        Query DB for the list of params.
 
           **Parameters:**:
 
@@ -858,7 +858,7 @@ class Post(object):
 
     def interfaces_query(self, data, tenant_id=None, api_version="v4.7"):
         """
-        POST Interfaces_Query API Function
+        Query Element interfaces.
 
           **Parameters:**:
 
@@ -1024,7 +1024,7 @@ class Post(object):
 
     def localprefixfilters_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Localprefixfilters_Query API Function
+        Query DB for the list of params.
 
           **Parameters:**:
 
@@ -1313,7 +1313,7 @@ class Post(object):
 
     def natglobalprefixes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natglobalprefixes API Function
+        Create a new NAT global prefix.
 
           **Parameters:**:
 
@@ -1340,7 +1340,7 @@ class Post(object):
 
     def natglobalprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natglobalprefixes_Query API Function
+        Query Global Prefixes.
 
           **Parameters:**:
 
@@ -1367,7 +1367,7 @@ class Post(object):
 
     def natlocalprefixes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natlocalprefixes API Function
+        Create a new NAT local prefix.
 
           **Parameters:**:
 
@@ -1394,7 +1394,7 @@ class Post(object):
 
     def natlocalprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natlocalprefixes_Query API Function
+        Query site local prefixes.
 
           **Parameters:**:
 
@@ -1421,7 +1421,7 @@ class Post(object):
 
     def natpolicypools(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicypools API Function
+        Create a new NATPolicy Pool.
 
           **Parameters:**:
 
@@ -1448,7 +1448,7 @@ class Post(object):
 
     def natpolicypools_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicypools_Query API Function
+        Query NAT policy pools.
 
           **Parameters:**:
 
@@ -1475,7 +1475,7 @@ class Post(object):
 
     def natpolicyrules(self, natpolicyset_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicyrules API Function
+        Create a new NAT Policy Rule 
 
           **Parameters:**:
 
@@ -1504,7 +1504,7 @@ class Post(object):
 
     def natpolicyrules_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicyrules_Query API Function
+        Query NAT policy rules.
 
           **Parameters:**:
 
@@ -1531,7 +1531,7 @@ class Post(object):
 
     def natpolicysets(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicysets API Function
+        Create a new NAT Policy Set
 
           **Parameters:**:
 
@@ -1558,7 +1558,7 @@ class Post(object):
 
     def natpolicysets_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicysets_Query API Function
+        Query policy sets.
 
           **Parameters:**:
 
@@ -1585,7 +1585,7 @@ class Post(object):
 
     def natpolicysetstacks(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicysetstacks API Function
+        Create a new NATPolicySet Stack
 
           **Parameters:**:
 
@@ -1612,7 +1612,7 @@ class Post(object):
 
     def natpolicysetstacks_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natpolicysetstacks_Query API Function
+        Query policyset stacks.
 
           **Parameters:**:
 
@@ -1639,7 +1639,7 @@ class Post(object):
 
     def natzones(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natzones API Function
+        Create a Nat Policy Zone.
 
           **Parameters:**:
 
@@ -1666,7 +1666,7 @@ class Post(object):
 
     def natzones_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Natzones_Query API Function
+        Query NAT policy zones.
 
           **Parameters:**:
 
@@ -1992,7 +1992,7 @@ class Post(object):
 
     def networks_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Networks_Bulk_Config_State_Query API Function
+        Get all config/state info for given network from NB
 
           **Parameters:**:
 
@@ -2048,7 +2048,7 @@ class Post(object):
 
     def password_change(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Password_Change API Function
+        Allows one to change password
 
           **Parameters:**:
 
@@ -2214,7 +2214,7 @@ class Post(object):
 
     def policysets_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Policysets_Bulk_Config_State_Query API Function
+        Get all config/state info across all policysets from NB
 
           **Parameters:**:
 
@@ -3398,7 +3398,7 @@ class Post(object):
 
     def site_natlocalprefixes(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Site_Natlocalprefixes API Function
+        Create an association between site and NAT Prefix.
 
           **Parameters:**:
 
@@ -3539,7 +3539,7 @@ class Post(object):
 
     def sites_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Sites_Bulk_Config_State_Query API Function
+        Get site config/state info for queried site from NB
 
           **Parameters:**:
 
@@ -3713,7 +3713,7 @@ class Post(object):
 
     def software_current_status_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Software_Current_Status_Query API Function
+        Get the current image status of all the element.
 
           **Parameters:**:
 
@@ -3740,7 +3740,7 @@ class Post(object):
 
     def software_status_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Software_Status_Query API Function
+        Query the software upgrade status of all tenant elements.
 
           **Parameters:**:
 
@@ -3794,7 +3794,7 @@ class Post(object):
 
     def spokeclusters(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spokeclusters API Function
+        Create Spoke Cluster
 
           **Parameters:**:
 
@@ -3823,7 +3823,7 @@ class Post(object):
 
     def spokeclusters_ops(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spokeclusters_Ops API Function
+        Handle operations on spokecluster.
 
           **Parameters:**:
 
@@ -3854,7 +3854,7 @@ class Post(object):
 
     def spokeclusters_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spokeclusters_Query API Function
+        Query Spoke Clusters.
 
           **Parameters:**:
 
@@ -3945,7 +3945,7 @@ class Post(object):
 
     def templates_ntp(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Templates_Ntp API Function
+        Create a new NTP Template
 
           **Parameters:**:
 
@@ -4186,6 +4186,33 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicylocalprefixes".format(api_version,
                                                                                       tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def toolkitsessions_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Toolkitsessions_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/toolkitsessions/query".format(api_version,
+                                                                                tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4843,6 +4870,9 @@ class Post(object):
 
     query_tokens_vfflicenses = vff_token_query
     """ Backwards-compatibility alias of `query_tokens_vfflicenses` to `vff_token_query`"""
+
+    query_toolkitsessions = toolkitsessions_query
+    """ Backwards-compatibility alias of `query_toolkitsessions` to `toolkitsessions_query`"""
 
     query_upgrade_status = upgrade_status_query
     """ Backwards-compatibility alias of `query_upgrade_status` to `upgrade_status_query`"""

@@ -294,6 +294,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def element_toolkitsessions(self, element_id, toolkitsession_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Element_Toolkitsessions API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **toolkitsession_id**: Toolkit Session ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/toolkitsessions/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         element_id,
+                                                                                         toolkitsession_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def elementpassageconfigs(self, element_id, elementpassageconfig_id, tenant_id=None, api_version="v2.0"):
         """
         DELETE Elementpassageconfigs API Function
@@ -326,7 +356,7 @@ class Delete(object):
 
     def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Elementsecurityzones API Function
+        Delete an existing security zone
 
           **Parameters:**:
 
@@ -652,7 +682,7 @@ class Delete(object):
 
     def natglobalprefixes(self, natglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natglobalprefixes API Function
+        Delete a NAT Global Prefix.
 
           **Parameters:**:
 
@@ -680,7 +710,7 @@ class Delete(object):
 
     def natlocalprefixes(self, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natlocalprefixes API Function
+        Delete a NAT local prefix.
 
           **Parameters:**:
 
@@ -708,7 +738,7 @@ class Delete(object):
 
     def natpolicypools(self, natpolicypool_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natpolicypools API Function
+        Delete a NAT Policy Pool.
 
           **Parameters:**:
 
@@ -736,7 +766,7 @@ class Delete(object):
 
     def natpolicyrules(self, natpolicyset_id, natpolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natpolicyrules API Function
+        Delete NAT policy rule of tenant.
 
           **Parameters:**:
 
@@ -766,7 +796,7 @@ class Delete(object):
 
     def natpolicysets(self, natpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natpolicysets API Function
+        Delete NAT policy set.
 
           **Parameters:**:
 
@@ -794,7 +824,7 @@ class Delete(object):
 
     def natpolicysetstacks(self, natpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natpolicysetstacks API Function
+        Delete NAT Policy Set Stack.
 
           **Parameters:**:
 
@@ -822,7 +852,7 @@ class Delete(object):
 
     def natzones(self, natzone_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Natzones API Function
+        Delete a Nat Policy Zone.
 
           **Parameters:**:
 
@@ -1638,7 +1668,7 @@ class Delete(object):
 
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Site_Natlocalprefixes API Function
+        Delete an existing Site NAT prefix
 
           **Parameters:**:
 
@@ -1850,7 +1880,7 @@ class Delete(object):
 
     def spokeclusters(self, site_id, spokecluster_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Spokeclusters API Function
+        Delete spoke cluster.
 
           **Parameters:**:
 
@@ -1944,7 +1974,7 @@ class Delete(object):
 
     def templates_ntp(self, ntp_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Templates_Ntp API Function
+        Delete an existing NTP Template
 
           **Parameters:**:
 
@@ -2134,36 +2164,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/tenantpassageconfigs/{}".format(api_version,
                                                                                   tenant_id,
                                                                                   tenantpassageconfig_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def toolkitsessions(self, element_id, toolkitsession_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Toolkitsessions API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **toolkitsession_id**: Toolkit Session ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/toolkitsessions/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         element_id,
-                                                                                         toolkitsession_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -2369,4 +2369,7 @@ class Delete(object):
 
     sessions_t = operator_sessions
     """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
+
+    toolkitsessions_e = element_toolkitsessions
+    """ Backwards-compatibility alias of `toolkitsessions_e` to `element_toolkitsessions`"""
 
