@@ -347,10 +347,13 @@ class API(object):
     """String representing address, optional - should be pulled from get.profile() data."""
 
     email = None
-    """Email (userrname) for session"""
+    """Email (username) for session"""
+
+    operator_id = None
+    """Operator ID of current session."""
 
     _user_id = None
-    """user_id for passed user info"""
+    """Deprecated (replaced by `operator_id`.) Left for backwards compatibility."""
 
     _password = None
     """user password - only used when argv passed, and cleared quickly"""

@@ -3042,10 +3042,13 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
 
     <span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="sd">&quot;&quot;&quot;Email (userrname) for session&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
+
+    <span class="n">operator_id</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
 
     <span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="sd">&quot;&quot;&quot;user_id for passed user info&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
 
     <span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
@@ -4684,10 +4687,13 @@ and Response Body.</p></div>
     <span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
 
     <span class="n">email</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="sd">&quot;&quot;&quot;Email (userrname) for session&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
+
+    <span class="n">operator_id</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
 
     <span class="n">_user_id</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="sd">&quot;&quot;&quot;user_id for passed user info&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
 
     <span class="n">_password</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
@@ -6063,7 +6069,7 @@ and Response Body.</p></div>
 
             
   
-    <div class="desc"><p>Email (userrname) for session</p></div>
+    <div class="desc"><p>Email (username) for session</p></div>
   <div class="source_cont">
 </div>
 
@@ -6086,6 +6092,17 @@ and Response Body.</p></div>
             
   
     <div class="desc"><p>Is the current tenant an ESP/MSP?</p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.API.operator_id">
+            <p class="name">var <span class="ident">operator_id</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Operator ID of current session.</p></div>
   <div class="source_cont">
 </div>
 
@@ -6519,7 +6536,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;GET&#39;, &#39;HEAD&#39;, &#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;TRACE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;TRACE&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;HEAD&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 

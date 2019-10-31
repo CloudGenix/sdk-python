@@ -250,7 +250,7 @@ class Interactive(object):
                     self._parent_class._password = None
 
                     api_logger.info("EMAIL = %s", self._parent_class.email)
-                    api_logger.info("USER_ID = %s", self._parent_class._user_id)
+                    api_logger.info("USER_ID = %s", self._parent_class.operator_id)
                     api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
                     api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
                     api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
@@ -354,7 +354,7 @@ class Interactive(object):
                 # clear password out of memory
                 self._parent_class._password = None
                 api_logger.info("EMAIL = %s", self._parent_class.email)
-                api_logger.info("USER_ID = %s", self._parent_class._user_id)
+                api_logger.info("USER_ID = %s", self._parent_class.operator_id)
                 api_logger.info("USER ROLES = %s", json.dumps(self._parent_class.roles))
                 api_logger.info("TENANT_ID = %s", self._parent_class.tenant_id)
                 api_logger.info("TENANT_NAME = %s", self._parent_class.tenant_name)
@@ -613,7 +613,9 @@ class Interactive(object):
             # if successful, save tenant id and email info to cli state.
             self._parent_class.tenant_id = profile.cgx_content.get('tenant_id')
             self._parent_class.email = profile.cgx_content.get('email')
-            self._parent_class._user_id = profile.cgx_content.get('id')
+            self._parent_class.operator_id = profile.cgx_content.get('id')
+            # for backwards compatible _user_id after promoting operator_id to public.
+            self._parent_class._user_id = self._parent_class.operator_id
             self._parent_class.roles = profile.cgx_content.get('roles', [])
             self._parent_class.token_session = profile.cgx_content.get('token_session')
 
@@ -638,7 +640,7 @@ class Interactive(object):
         if self._parent_class.is_esp:
             # Make API requests
             clients = self._parent_class.get.tenant_clients()
-            clients_perms = self._parent_class.get.esp_operator_permissions(self._parent_class._user_id)
+            clients_perms = self._parent_class.get.esp_operator_permissions(self._parent_class.operator_id)
 
             client_status = clients.cgx_status
             clients_dict = clients.cgx_content
@@ -883,7 +885,9 @@ class Interactive(object):
                 self._parent_class.client_id = None
                 self._parent_class.address_string = None
                 self._parent_class.email = None
-                self._parent_class._user_id = None
+                self._parent_class.operator_id = None
+                # for backwards compatible _user_id after promoting operator_id to public.
+                self._parent_class._user_id = self._parent_class.operator_id
                 self._parent_class._password = None
                 self._parent_class.roles = None
                 self._parent_class.token_session = None
@@ -903,7 +907,9 @@ class Interactive(object):
             self._parent_class.client_id = None
             self._parent_class.address_string = None
             self._parent_class.email = None
-            self._parent_class._user_id = None
+            self._parent_class.operator_id = None
+            # for backwards compatible _user_id after promoting operator_id to public.
+            self._parent_class._user_id = self._parent_class.operator_id
             self._parent_class._password = None
             self._parent_class.roles = None
             self._parent_class.token_session = None
