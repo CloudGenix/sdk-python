@@ -1115,6 +1115,27 @@ class API(object):
             # create cookie header from the cookies in Requests
             headers["Cookie"] = "; ".join(["{0}={1}".format(key, value) for key, value in cookies.items()])
 
+            # check for host header
+            host_header = headers.get("Host")
+            force_host_arg = None
+            if host_header is not None:
+
+                # Ok, we got a host header. Unlike Requests, websockets wants the "Host Header" in the URI. You pass
+                # a separate IP to connect to as 'host' argument to `websockets.client.Connect`.
+                # So, to keep our "requests"-like behavior, we need to replace the value in the URI with the host
+                # header, and remove the host header - then send the original value to `Connect` as host kwarg.
+
+                # split controller at "//" (https://controller.host.com) to get host.
+                controller_host = self.controller.split("//")[1]
+
+                force_host_arg = controller_host
+                # we don't support user/password in URI, so replacing first instance 'should' be OK (famous last words)
+                new_url = url.replace(force_host_arg, host_header, 1)
+                api_logger.debug("Host replacement. Original URL: {0}, New URL: {1}".format(url, new_url))
+                url = new_url
+                # delete the host header
+                del headers["Host"]
+
             # convert the headers dictionary to a list of tuples.
             header_tuple_list = [(key, value) for key, value in headers.items()]
 
@@ -1126,6 +1147,11 @@ class API(object):
                 "ssl": self._ca_ssl_context,
                 "extra_headers": header_tuple_list
             }
+            # check for force host arg
+            if force_host_arg is not None:
+                api_logger.debug("Forcing connection to host {0}".format(force_host_arg))
+                ws_kwargs["host"] = force_host_arg
+
             # Override automatic with any manually passed kwargs
             ws_kwargs.update(kwargs)
 
