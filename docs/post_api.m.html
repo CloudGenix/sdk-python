@@ -2719,6 +2719,7 @@ table {
     <li class="mono"><a href="#cloudgenix.post_api.Post.tenant_networkpolicylocalprefixes">tenant_networkpolicylocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.tenant_permissions">tenant_permissions</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.tenant_prioritypolicylocalprefixes">tenant_prioritypolicylocalprefixes</a></li>
+    <li class="mono"><a href="#cloudgenix.post_api.Post.toolkitsessions_query">toolkitsessions_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.topology">topology</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.upgrade_status_query">upgrade_status_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.users">users</a></li>
@@ -3078,7 +3079,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Clients_Login API Function</span>
+<span class="sd">        Login api for esp client</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3254,7 +3255,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elements_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elements_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get element config/state info for queried elements from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3308,7 +3309,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elementsecurityzones API Function</span>
+<span class="sd">        Create an association between element and security zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3339,7 +3340,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elementsecurityzones_Query API Function</span>
+<span class="sd">        Query element security zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3501,7 +3502,7 @@ table {
 
     <span class="k">def</span> <span class="nf">globalprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Globalprefixfilters_Query API Function</span>
+<span class="sd">        Query DB for the list of params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3619,7 +3620,7 @@ table {
 
     <span class="k">def</span> <span class="nf">interfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Interfaces_Query API Function</span>
+<span class="sd">        Query Element interfaces.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3785,7 +3786,7 @@ table {
 
     <span class="k">def</span> <span class="nf">localprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Localprefixfilters_Query API Function</span>
+<span class="sd">        Query DB for the list of params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4074,7 +4075,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natglobalprefixes API Function</span>
+<span class="sd">        Create a new NAT global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4101,7 +4102,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natglobalprefixes_Query API Function</span>
+<span class="sd">        Query Global Prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4128,7 +4129,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natlocalprefixes API Function</span>
+<span class="sd">        Create a new NAT local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4155,7 +4156,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natlocalprefixes_Query API Function</span>
+<span class="sd">        Query site local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4182,7 +4183,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicypools API Function</span>
+<span class="sd">        Create a new NATPolicy Pool.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4209,7 +4210,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicypools_Query API Function</span>
+<span class="sd">        Query NAT policy pools.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4236,7 +4237,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicyrules API Function</span>
+<span class="sd">        Create a new NAT Policy Rule </span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4265,7 +4266,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicyrules_Query API Function</span>
+<span class="sd">        Query NAT policy rules.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4292,7 +4293,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysets API Function</span>
+<span class="sd">        Create a new NAT Policy Set</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4319,7 +4320,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysets_Query API Function</span>
+<span class="sd">        Query policy sets.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4346,7 +4347,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysetstacks API Function</span>
+<span class="sd">        Create a new NATPolicySet Stack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4373,7 +4374,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysetstacks_Query API Function</span>
+<span class="sd">        Query policyset stacks.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4400,7 +4401,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natzones API Function</span>
+<span class="sd">        Create a Nat Policy Zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4427,7 +4428,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natzones_Query API Function</span>
+<span class="sd">        Query NAT policy zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4753,7 +4754,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networks_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Networks_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get all config/state info for given network from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4809,7 +4810,7 @@ table {
 
     <span class="k">def</span> <span class="nf">password_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Password_Change API Function</span>
+<span class="sd">        Allows one to change password</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4975,7 +4976,7 @@ table {
 
     <span class="k">def</span> <span class="nf">policysets_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Policysets_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get all config/state info across all policysets from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6159,7 +6160,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Site_Natlocalprefixes API Function</span>
+<span class="sd">        Create an association between site and NAT Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6300,7 +6301,7 @@ table {
 
     <span class="k">def</span> <span class="nf">sites_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Sites_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get site config/state info for queried site from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6474,7 +6475,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_current_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Software_Current_Status_Query API Function</span>
+<span class="sd">        Get the current image status of all the element.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6501,7 +6502,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Software_Status_Query API Function</span>
+<span class="sd">        Query the software upgrade status of all tenant elements.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6555,7 +6556,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters API Function</span>
+<span class="sd">        Create Spoke Cluster</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6584,7 +6585,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters_Ops API Function</span>
+<span class="sd">        Handle operations on spokecluster.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6615,7 +6616,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters_Query API Function</span>
+<span class="sd">        Query Spoke Clusters.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6706,7 +6707,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Templates_Ntp API Function</span>
+<span class="sd">        Create a new NTP Template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6947,6 +6948,33 @@ table {
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/prioritypolicylocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                       <span class="n">tenant_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toolkitsessions_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Toolkitsessions_Query API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -7604,6 +7632,9 @@ table {
 
     <span class="n">query_tokens_vfflicenses</span> <span class="o">=</span> <span class="n">vff_token_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_tokens_vfflicenses` to `vff_token_query`&quot;&quot;&quot;</span>
+
+    <span class="n">query_toolkitsessions</span> <span class="o">=</span> <span class="n">toolkitsessions_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_toolkitsessions` to `toolkitsessions_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_upgrade_status</span> <span class="o">=</span> <span class="n">upgrade_status_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_upgrade_status` to `upgrade_status_query`&quot;&quot;&quot;</span>
@@ -7933,7 +7964,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Clients_Login API Function</span>
+<span class="sd">        Login api for esp client</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8109,7 +8140,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elements_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elements_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get element config/state info for queried elements from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8163,7 +8194,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elementsecurityzones API Function</span>
+<span class="sd">        Create an association between element and security zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8194,7 +8225,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Elementsecurityzones_Query API Function</span>
+<span class="sd">        Query element security zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8356,7 +8387,7 @@ table {
 
     <span class="k">def</span> <span class="nf">globalprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Globalprefixfilters_Query API Function</span>
+<span class="sd">        Query DB for the list of params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8474,7 +8505,7 @@ table {
 
     <span class="k">def</span> <span class="nf">interfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Interfaces_Query API Function</span>
+<span class="sd">        Query Element interfaces.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8640,7 +8671,7 @@ table {
 
     <span class="k">def</span> <span class="nf">localprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Localprefixfilters_Query API Function</span>
+<span class="sd">        Query DB for the list of params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8929,7 +8960,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natglobalprefixes API Function</span>
+<span class="sd">        Create a new NAT global prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8956,7 +8987,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natglobalprefixes_Query API Function</span>
+<span class="sd">        Query Global Prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8983,7 +9014,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natlocalprefixes API Function</span>
+<span class="sd">        Create a new NAT local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9010,7 +9041,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natlocalprefixes_Query API Function</span>
+<span class="sd">        Query site local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9037,7 +9068,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicypools API Function</span>
+<span class="sd">        Create a new NATPolicy Pool.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9064,7 +9095,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicypools_Query API Function</span>
+<span class="sd">        Query NAT policy pools.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9091,7 +9122,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicyrules API Function</span>
+<span class="sd">        Create a new NAT Policy Rule </span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9120,7 +9151,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicyrules_Query API Function</span>
+<span class="sd">        Query NAT policy rules.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9147,7 +9178,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysets API Function</span>
+<span class="sd">        Create a new NAT Policy Set</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9174,7 +9205,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysets_Query API Function</span>
+<span class="sd">        Query policy sets.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9201,7 +9232,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysetstacks API Function</span>
+<span class="sd">        Create a new NATPolicySet Stack</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9228,7 +9259,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natpolicysetstacks_Query API Function</span>
+<span class="sd">        Query policyset stacks.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9255,7 +9286,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natzones API Function</span>
+<span class="sd">        Create a Nat Policy Zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9282,7 +9313,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Natzones_Query API Function</span>
+<span class="sd">        Query NAT policy zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9608,7 +9639,7 @@ table {
 
     <span class="k">def</span> <span class="nf">networks_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Networks_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get all config/state info for given network from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9664,7 +9695,7 @@ table {
 
     <span class="k">def</span> <span class="nf">password_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Password_Change API Function</span>
+<span class="sd">        Allows one to change password</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9830,7 +9861,7 @@ table {
 
     <span class="k">def</span> <span class="nf">policysets_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Policysets_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get all config/state info across all policysets from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11014,7 +11045,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Site_Natlocalprefixes API Function</span>
+<span class="sd">        Create an association between site and NAT Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11155,7 +11186,7 @@ table {
 
     <span class="k">def</span> <span class="nf">sites_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Sites_Bulk_Config_State_Query API Function</span>
+<span class="sd">        Get site config/state info for queried site from NB</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11329,7 +11360,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_current_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Software_Current_Status_Query API Function</span>
+<span class="sd">        Get the current image status of all the element.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11356,7 +11387,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Software_Status_Query API Function</span>
+<span class="sd">        Query the software upgrade status of all tenant elements.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11410,7 +11441,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters API Function</span>
+<span class="sd">        Create Spoke Cluster</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11439,7 +11470,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters_Ops API Function</span>
+<span class="sd">        Handle operations on spokecluster.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11470,7 +11501,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Spokeclusters_Query API Function</span>
+<span class="sd">        Query Spoke Clusters.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11561,7 +11592,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Templates_Ntp API Function</span>
+<span class="sd">        Create a new NTP Template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11802,6 +11833,33 @@ table {
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/prioritypolicylocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                       <span class="n">tenant_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toolkitsessions_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Toolkitsessions_Query API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -12459,6 +12517,9 @@ table {
 
     <span class="n">query_tokens_vfflicenses</span> <span class="o">=</span> <span class="n">vff_token_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_tokens_vfflicenses` to `vff_token_query`&quot;&quot;&quot;</span>
+
+    <span class="n">query_toolkitsessions</span> <span class="o">=</span> <span class="n">toolkitsessions_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_toolkitsessions` to `toolkitsessions_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_upgrade_status</span> <span class="o">=</span> <span class="n">upgrade_status_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_upgrade_status` to `upgrade_status_query`&quot;&quot;&quot;</span>
@@ -13475,6 +13536,17 @@ table {
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.post_api.Post.query_toolkitsessions">
+            <p class="name">var <span class="ident">query_toolkitsessions</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>query_toolkitsessions</code> to <code>toolkitsessions_query</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.post_api.Post.query_upgrade_status">
             <p class="name">var <span class="ident">query_upgrade_status</span></p>
             
@@ -14026,7 +14098,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Clients_Login API Function</p>
+    <div class="desc"><p>Login api for esp client</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>client_id</strong>: ESP/MSP Client ID (typically their tenant_id)</li>
@@ -14040,7 +14112,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.clients_login" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">clients_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Clients_Login API Function</span>
+<span class="sd">    Login api for esp client</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -14329,7 +14401,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Elements_Bulk_Config_State_Query API Function</p>
+    <div class="desc"><p>Get element config/state info for queried elements from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -14342,7 +14414,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.elements_bulk_config_state_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elements_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Elements_Bulk_Config_State_Query API Function</span>
+<span class="sd">    Get element config/state info for queried elements from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14423,7 +14495,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Elementsecurityzones API Function</p>
+    <div class="desc"><p>Create an association between element and security zone.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -14438,7 +14510,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.elementsecurityzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Elementsecurityzones API Function</span>
+<span class="sd">    Create an association between element and security zone.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -14476,7 +14548,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Elementsecurityzones_Query API Function</p>
+    <div class="desc"><p>Query element security zones.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -14489,7 +14561,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.elementsecurityzones_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementsecurityzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Elementsecurityzones_Query API Function</span>
+<span class="sd">    Query element security zones.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14758,7 +14830,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Globalprefixfilters_Query API Function</p>
+    <div class="desc"><p>Query DB for the list of params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -14771,7 +14843,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.globalprefixfilters_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">globalprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Globalprefixfilters_Query API Function</span>
+<span class="sd">    Query DB for the list of params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14961,7 +15033,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Interfaces_Query API Function</p>
+    <div class="desc"><p>Query Element interfaces.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -14974,7 +15046,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.interfaces_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Interfaces_Query API Function</span>
+<span class="sd">    Query Element interfaces.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15249,7 +15321,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Localprefixfilters_Query API Function</p>
+    <div class="desc"><p>Query DB for the list of params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15262,7 +15334,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.localprefixfilters_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">localprefixfilters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Localprefixfilters_Query API Function</span>
+<span class="sd">    Query DB for the list of params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15757,7 +15829,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natglobalprefixes API Function</p>
+    <div class="desc"><p>Create a new NAT global prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15770,7 +15842,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natglobalprefixes API Function</span>
+<span class="sd">    Create a new NAT global prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15804,7 +15876,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natglobalprefixes_Query API Function</p>
+    <div class="desc"><p>Query Global Prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15817,7 +15889,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natglobalprefixes_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natglobalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natglobalprefixes_Query API Function</span>
+<span class="sd">    Query Global Prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15851,7 +15923,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natlocalprefixes API Function</p>
+    <div class="desc"><p>Create a new NAT local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15864,7 +15936,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natlocalprefixes API Function</span>
+<span class="sd">    Create a new NAT local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15898,7 +15970,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natlocalprefixes_Query API Function</p>
+    <div class="desc"><p>Query site local prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15911,7 +15983,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natlocalprefixes_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natlocalprefixes_Query API Function</span>
+<span class="sd">    Query site local prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15945,7 +16017,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicypools API Function</p>
+    <div class="desc"><p>Create a new NATPolicy Pool.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -15958,7 +16030,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicypools" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicypools API Function</span>
+<span class="sd">    Create a new NATPolicy Pool.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15992,7 +16064,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicypools_Query API Function</p>
+    <div class="desc"><p>Query NAT policy pools.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16005,7 +16077,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicypools_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicypools_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicypools_Query API Function</span>
+<span class="sd">    Query NAT policy pools.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16039,7 +16111,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicyrules API Function</p>
+    <div class="desc"><p>Create a new NAT Policy Rule </p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: NAT Policy Set ID</li>
@@ -16053,7 +16125,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicyrules API Function</span>
+<span class="sd">    Create a new NAT Policy Rule </span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: NAT Policy Set ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -16089,7 +16161,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicyrules_Query API Function</p>
+    <div class="desc"><p>Query NAT policy rules.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16102,7 +16174,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicyrules_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicyrules_Query API Function</span>
+<span class="sd">    Query NAT policy rules.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16136,7 +16208,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicysets API Function</p>
+    <div class="desc"><p>Create a new NAT Policy Set</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16149,7 +16221,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicysets API Function</span>
+<span class="sd">    Create a new NAT Policy Set</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16183,7 +16255,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicysets_Query API Function</p>
+    <div class="desc"><p>Query policy sets.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16196,7 +16268,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicysets_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicysets_Query API Function</span>
+<span class="sd">    Query policy sets.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16230,7 +16302,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicysetstacks API Function</p>
+    <div class="desc"><p>Create a new NATPolicySet Stack</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16243,7 +16315,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicysetstacks API Function</span>
+<span class="sd">    Create a new NATPolicySet Stack</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16277,7 +16349,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natpolicysetstacks_Query API Function</p>
+    <div class="desc"><p>Query policyset stacks.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16290,7 +16362,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natpolicysetstacks_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysetstacks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natpolicysetstacks_Query API Function</span>
+<span class="sd">    Query policyset stacks.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16324,7 +16396,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natzones API Function</p>
+    <div class="desc"><p>Create a Nat Policy Zone.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16337,7 +16409,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natzones API Function</span>
+<span class="sd">    Create a Nat Policy Zone.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16371,7 +16443,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Natzones_Query API Function</p>
+    <div class="desc"><p>Query NAT policy zones.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16384,7 +16456,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.natzones_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natzones_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Natzones_Query API Function</span>
+<span class="sd">    Query NAT policy zones.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16938,7 +17010,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Networks_Bulk_Config_State_Query API Function</p>
+    <div class="desc"><p>Get all config/state info for given network from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16951,7 +17023,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.networks_bulk_config_state_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">networks_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Networks_Bulk_Config_State_Query API Function</span>
+<span class="sd">    Get all config/state info for given network from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17035,7 +17107,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Password_Change API Function</p>
+    <div class="desc"><p>Allows one to change password</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -17048,7 +17120,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.password_change" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">password_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Password_Change API Function</span>
+<span class="sd">    Allows one to change password</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17323,7 +17395,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Policysets_Bulk_Config_State_Query API Function</p>
+    <div class="desc"><p>Get all config/state info across all policysets from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -17336,7 +17408,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.policysets_bulk_config_state_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">policysets_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Policysets_Bulk_Config_State_Query API Function</span>
+<span class="sd">    Get all config/state info across all policysets from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19372,7 +19444,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Site_Natlocalprefixes API Function</p>
+    <div class="desc"><p>Create an association between site and NAT Prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -19386,7 +19458,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.site_natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Site_Natlocalprefixes API Function</span>
+<span class="sd">    Create an association between site and NAT Prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -19616,7 +19688,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Sites_Bulk_Config_State_Query API Function</p>
+    <div class="desc"><p>Get site config/state info for queried site from NB</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -19629,7 +19701,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.sites_bulk_config_state_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">sites_bulk_config_state_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Sites_Bulk_Config_State_Query API Function</span>
+<span class="sd">    Get site config/state info for queried site from NB</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19916,7 +19988,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Software_Current_Status_Query API Function</p>
+    <div class="desc"><p>Get the current image status of all the element.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -19929,7 +20001,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.software_current_status_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">software_current_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Software_Current_Status_Query API Function</span>
+<span class="sd">    Get the current image status of all the element.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19963,7 +20035,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Software_Status_Query API Function</p>
+    <div class="desc"><p>Query the software upgrade status of all tenant elements.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -19976,7 +20048,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.software_status_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">software_status_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Software_Status_Query API Function</span>
+<span class="sd">    Query the software upgrade status of all tenant elements.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -20057,7 +20129,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Spokeclusters API Function</p>
+    <div class="desc"><p>Create Spoke Cluster</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -20071,7 +20143,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.spokeclusters" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Spokeclusters API Function</span>
+<span class="sd">    Create Spoke Cluster</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -20107,7 +20179,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Spokeclusters_Ops API Function</p>
+    <div class="desc"><p>Handle operations on spokecluster.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -20122,7 +20194,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.spokeclusters_ops" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Spokeclusters_Ops API Function</span>
+<span class="sd">    Handle operations on spokecluster.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **spokecluster_id**: Spoke Cluster ID</span>
@@ -20160,7 +20232,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Spokeclusters_Query API Function</p>
+    <div class="desc"><p>Query Spoke Clusters.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -20174,7 +20246,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.spokeclusters_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Spokeclusters_Query API Function</span>
+<span class="sd">    Query Spoke Clusters.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -20316,7 +20388,7 @@ table {
 
     
   
-    <div class="desc"><p>POST Templates_Ntp API Function</p>
+    <div class="desc"><p>Create a new NTP Template</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -20329,7 +20401,7 @@ table {
   <div id="source-cloudgenix.post_api.Post.templates_ntp" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Templates_Ntp API Function</span>
+<span class="sd">    Create a new NTP Template</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -20727,6 +20799,53 @@ table {
     <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/prioritypolicylocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                   <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.post_api.Post.toolkitsessions_query">
+    <div class="name def">
+    <p>def <span class="ident">toolkitsessions_query</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>POST Toolkitsessions_Query API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.post_api.Post.toolkitsessions_query', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.post_api.Post.toolkitsessions_query" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkitsessions_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    POST Toolkitsessions_Query API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                            <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </pre></div>

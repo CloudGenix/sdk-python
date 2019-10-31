@@ -2592,6 +2592,7 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_extensions">element_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_images">element_images</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_passages">element_passages</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.element_waninterfaces_state">element_waninterfaces_state</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementaccessconfigs">elementaccessconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementaccessstates">elementaccessstates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementpassageconfigs">elementpassageconfigs</a></li>
@@ -3260,7 +3261,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_base_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Base_Roles API Function</span>
+<span class="sd">        Get a list of client base roles</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3288,7 +3289,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">role_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Roles API Function</span>
+<span class="sd">        Get a list of client custom roles</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3493,6 +3494,38 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_waninterfaces_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Element_Waninterfaces_State API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **waninterface_id**: WAN Interface ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sites/{}/elements/{}/waninterfaces/{}/state&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                      <span class="n">site_id</span><span class="p">,</span>
+                                                                                                      <span class="n">element_id</span><span class="p">,</span>
+                                                                                                      <span class="n">waninterface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get specific element&#39;s ElementAccess Config</span>
@@ -3618,7 +3651,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Elementsecurityzones API Function</span>
+<span class="sd">        Get element security zones</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4500,7 +4533,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natglobalprefixes API Function</span>
+<span class="sd">        Get all Global NAT prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4532,7 +4565,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natlocalprefixes API Function</span>
+<span class="sd">        Get NAT local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4564,7 +4597,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicypools API Function</span>
+<span class="sd">        Get NAT Policy Pools.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4596,7 +4629,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicyrules API Function</span>
+<span class="sd">        Get policy rules of policy set</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4631,7 +4664,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysets API Function</span>
+<span class="sd">        Get all NAT policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4663,7 +4696,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysets_Status API Function</span>
+<span class="sd">        Get a specific NAT policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4691,7 +4724,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysetstacks API Function</span>
+<span class="sd">        Get all NAT policy Set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4723,7 +4756,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natzones API Function</span>
+<span class="sd">        Get Nat Policy Zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6132,7 +6165,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Natlocalprefixes API Function</span>
+<span class="sd">        Get site NAT prefixes</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6471,7 +6504,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Software_State API Function</span>
+<span class="sd">        Get the software upgrade configuration of an element.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6527,7 +6560,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Spokeclusters API Function</span>
+<span class="sd">        Get all spokeclusters</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6562,7 +6595,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Spokeclusters_Status API Function</span>
+<span class="sd">        Get Spoke Cluster Status.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6696,7 +6729,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Templates_Ntp API Function</span>
+<span class="sd">        Get all existing NTP Template of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7070,13 +7103,12 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Toolkitsessions API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7091,9 +7123,8 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/active&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                             <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                             <span class="n">element_id</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -7677,6 +7708,9 @@ table {
     <span class="n">state_vpnlinks</span> <span class="o">=</span> <span class="n">vpnlinks_state</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `state_vpnlinks` to `vpnlinks_state`&quot;&quot;&quot;</span>
 
+    <span class="n">state_waninterfaces_e</span> <span class="o">=</span> <span class="n">element_waninterfaces_state</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `state_waninterfaces_e` to `element_waninterfaces_state`&quot;&quot;&quot;</span>
+
     <span class="n">status_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_bgppeers` to `bgppeers_status`&quot;&quot;&quot;</span>
 
@@ -7736,6 +7770,9 @@ table {
 
     <span class="n">tokens_vfflicenses</span> <span class="o">=</span> <span class="n">vfflicense_tokens</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`&quot;&quot;&quot;</span>
+
+    <span class="n">toolkitsessions_t</span> <span class="o">=</span> <span class="n">toolkitsessions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -8233,7 +8270,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_base_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Base_Roles API Function</span>
+<span class="sd">        Get a list of client base roles</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8261,7 +8298,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">role_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Roles API Function</span>
+<span class="sd">        Get a list of client custom roles</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8466,6 +8503,38 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_waninterfaces_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Element_Waninterfaces_State API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **waninterface_id**: WAN Interface ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sites/{}/elements/{}/waninterfaces/{}/state&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                      <span class="n">site_id</span><span class="p">,</span>
+                                                                                                      <span class="n">element_id</span><span class="p">,</span>
+                                                                                                      <span class="n">waninterface_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get specific element&#39;s ElementAccess Config</span>
@@ -8591,7 +8660,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Elementsecurityzones API Function</span>
+<span class="sd">        Get element security zones</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9473,7 +9542,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natglobalprefixes API Function</span>
+<span class="sd">        Get all Global NAT prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9505,7 +9574,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natlocalprefixes API Function</span>
+<span class="sd">        Get NAT local prefixes.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9537,7 +9606,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicypools API Function</span>
+<span class="sd">        Get NAT Policy Pools.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9569,7 +9638,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicyrules API Function</span>
+<span class="sd">        Get policy rules of policy set</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9604,7 +9673,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysets API Function</span>
+<span class="sd">        Get all NAT policy sets of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9636,7 +9705,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysets_Status API Function</span>
+<span class="sd">        Get a specific NAT policy set status of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9664,7 +9733,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natpolicysetstacks API Function</span>
+<span class="sd">        Get all NAT policy Set stacks of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9696,7 +9765,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Natzones API Function</span>
+<span class="sd">        Get Nat Policy Zones.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11105,7 +11174,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Site_Natlocalprefixes API Function</span>
+<span class="sd">        Get site NAT prefixes</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11444,7 +11513,7 @@ table {
 
     <span class="k">def</span> <span class="nf">software_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Software_State API Function</span>
+<span class="sd">        Get the software upgrade configuration of an element.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11500,7 +11569,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Spokeclusters API Function</span>
+<span class="sd">        Get all spokeclusters</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11535,7 +11604,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Spokeclusters_Status API Function</span>
+<span class="sd">        Get Spoke Cluster Status.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11669,7 +11738,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Templates_Ntp API Function</span>
+<span class="sd">        Get all existing NTP Template of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -12043,13 +12112,12 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Toolkitsessions API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -12064,9 +12132,8 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/active&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                             <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                             <span class="n">element_id</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -12650,6 +12717,9 @@ table {
     <span class="n">state_vpnlinks</span> <span class="o">=</span> <span class="n">vpnlinks_state</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `state_vpnlinks` to `vpnlinks_state`&quot;&quot;&quot;</span>
 
+    <span class="n">state_waninterfaces_e</span> <span class="o">=</span> <span class="n">element_waninterfaces_state</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `state_waninterfaces_e` to `element_waninterfaces_state`&quot;&quot;&quot;</span>
+
     <span class="n">status_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_bgppeers` to `bgppeers_status`&quot;&quot;&quot;</span>
 
@@ -12709,6 +12779,9 @@ table {
 
     <span class="n">tokens_vfflicenses</span> <span class="o">=</span> <span class="n">vfflicense_tokens</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`&quot;&quot;&quot;</span>
+
+    <span class="n">toolkitsessions_t</span> <span class="o">=</span> <span class="n">toolkitsessions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -13140,6 +13213,17 @@ table {
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.get_api.Get.state_waninterfaces_e">
+            <p class="name">var <span class="ident">state_waninterfaces_e</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>state_waninterfaces_e</code> to <code>element_waninterfaces_state</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.get_api.Get.status_bgppeers">
             <p class="name">var <span class="ident">status_bgppeers</span></p>
             
@@ -13356,6 +13440,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>tokens_vfflicenses</code> to <code>vfflicense_tokens</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.toolkitsessions_t">
+            <p class="name">var <span class="ident">toolkitsessions_t</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>toolkitsessions_t</code> to <code>toolkitsessions</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -14117,7 +14212,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Clients_Base_Roles API Function</p>
+    <div class="desc"><p>Get a list of client base roles</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>client_id</strong>: ESP/MSP Client ID (typically their tenant_id)</li>
@@ -14130,7 +14225,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.clients_base_roles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">clients_base_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Clients_Base_Roles API Function</span>
+<span class="sd">    Get a list of client base roles</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14165,7 +14260,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Clients_Roles API Function</p>
+    <div class="desc"><p>Get a list of client custom roles</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>client_id</strong>: ESP/MSP Client ID (typically their tenant_id)</li>
@@ -14179,7 +14274,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.clients_roles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">clients_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">role_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Clients_Roles API Function</span>
+<span class="sd">    Get a list of client custom roles</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
 <span class="sd">      - **role_id**: (optional) Role ID</span>
@@ -14491,6 +14586,60 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.element_waninterfaces_state">
+    <div class="name def">
+    <p>def <span class="ident">element_waninterfaces_state</span>(</p><p>self, site_id, element_id, waninterface_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Element_Waninterfaces_State API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>site_id</strong>: Site ID</li>
+<li><strong>element_id</strong>: Element (Device) ID</li>
+<li><strong>waninterface_id</strong>: WAN Interface ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.element_waninterfaces_state', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.element_waninterfaces_state" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_waninterfaces_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">waninterface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Element_Waninterfaces_State API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **site_id**: Site ID</span>
+<span class="sd">      - **element_id**: Element (Device) ID</span>
+<span class="sd">      - **waninterface_id**: WAN Interface ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sites/{}/elements/{}/waninterfaces/{}/state&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                  <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                  <span class="n">site_id</span><span class="p">,</span>
+                                                                                                  <span class="n">element_id</span><span class="p">,</span>
+                                                                                                  <span class="n">waninterface_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.elementaccessconfigs">
     <div class="name def">
     <p>def <span class="ident">elementaccessconfigs</span>(</p><p>self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
@@ -14703,7 +14852,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Elementsecurityzones API Function</p>
+    <div class="desc"><p>Get element security zones</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -14718,7 +14867,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.elementsecurityzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Elementsecurityzones API Function</span>
+<span class="sd">    Get element security zones</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -16174,7 +16323,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natglobalprefixes API Function</p>
+    <div class="desc"><p>Get all Global NAT prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natglobalprefix_id</strong>: (optional) NAT Global Prefix ID</li>
@@ -16187,7 +16336,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natglobalprefixes API Function</span>
+<span class="sd">    Get all Global NAT prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natglobalprefix_id**: (optional) NAT Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16226,7 +16375,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natlocalprefixes API Function</p>
+    <div class="desc"><p>Get NAT local prefixes.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natlocalprefix_id</strong>: (optional) NAT Local Prefix ID</li>
@@ -16239,7 +16388,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natlocalprefixes API Function</span>
+<span class="sd">    Get NAT local prefixes.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natlocalprefix_id**: (optional) NAT Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16278,7 +16427,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natpolicypools API Function</p>
+    <div class="desc"><p>Get NAT Policy Pools.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicypool_id</strong>: (optional) NAT Policy Pool ID</li>
@@ -16291,7 +16440,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natpolicypools" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natpolicypools API Function</span>
+<span class="sd">    Get NAT Policy Pools.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicypool_id**: (optional) NAT Policy Pool ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16330,7 +16479,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natpolicyrules API Function</p>
+    <div class="desc"><p>Get policy rules of policy set</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: NAT Policy Set ID</li>
@@ -16344,7 +16493,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natpolicyrules API Function</span>
+<span class="sd">    Get policy rules of policy set</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: NAT Policy Set ID</span>
 <span class="sd">      - **natpolicyrule_id**: (optional) NAT Policy Rule ID</span>
@@ -16386,7 +16535,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natpolicysets API Function</p>
+    <div class="desc"><p>Get all NAT policy sets of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: (optional) NAT Policy Set ID</li>
@@ -16399,7 +16548,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natpolicysets API Function</span>
+<span class="sd">    Get all NAT policy sets of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: (optional) NAT Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16438,7 +16587,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natpolicysets_Status API Function</p>
+    <div class="desc"><p>Get a specific NAT policy set status of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: NAT Policy Set ID</li>
@@ -16451,7 +16600,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natpolicysets_status" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysets_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natpolicysets_Status API Function</span>
+<span class="sd">    Get a specific NAT policy set status of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: NAT Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16486,7 +16635,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natpolicysetstacks API Function</p>
+    <div class="desc"><p>Get all NAT policy Set stacks of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicysetstack_id</strong>: (optional) NAT Policy Set Stack ID</li>
@@ -16499,7 +16648,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natpolicysetstacks API Function</span>
+<span class="sd">    Get all NAT policy Set stacks of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicysetstack_id**: (optional) NAT Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16538,7 +16687,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Natzones API Function</p>
+    <div class="desc"><p>Get Nat Policy Zones.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natzone_id</strong>: (optional) NAT Zone ID</li>
@@ -16551,7 +16700,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.natzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Natzones API Function</span>
+<span class="sd">    Get Nat Policy Zones.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natzone_id**: (optional) NAT Zone ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18859,7 +19008,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Site_Natlocalprefixes API Function</p>
+    <div class="desc"><p>Get site NAT prefixes</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -18873,7 +19022,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.site_natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Site_Natlocalprefixes API Function</span>
+<span class="sd">    Get site NAT prefixes</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **natlocalprefix_id**: (optional) NAT Local Prefix ID</span>
@@ -19407,7 +19556,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Software_State API Function</p>
+    <div class="desc"><p>Get the software upgrade configuration of an element.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
@@ -19420,7 +19569,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.software_state" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">software_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Software_State API Function</span>
+<span class="sd">    Get the software upgrade configuration of an element.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19503,7 +19652,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Spokeclusters API Function</p>
+    <div class="desc"><p>Get all spokeclusters</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -19517,7 +19666,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.spokeclusters" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Spokeclusters API Function</span>
+<span class="sd">    Get all spokeclusters</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **spokecluster_id**: (optional) Spoke Cluster ID</span>
@@ -19559,7 +19708,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Spokeclusters_Status API Function</p>
+    <div class="desc"><p>Get Spoke Cluster Status.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -19573,7 +19722,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.spokeclusters_status" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Spokeclusters_Status API Function</span>
+<span class="sd">    Get Spoke Cluster Status.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **spokecluster_id**: Spoke Cluster ID</span>
@@ -19778,7 +19927,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Templates_Ntp API Function</p>
+    <div class="desc"><p>Get all existing NTP Template of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>ntp_id</strong>: (optional) NTP Configuration ID</li>
@@ -19791,7 +19940,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.templates_ntp" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Templates_Ntp API Function</span>
+<span class="sd">    Get all existing NTP Template of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **ntp_id**: (optional) NTP Configuration ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -20402,7 +20551,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.toolkitsessions">
     <div class="name def">
-    <p>def <span class="ident">toolkitsessions</span>(</p><p>self, element_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">toolkitsessions</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
     </div>
     
 
@@ -20411,7 +20560,6 @@ table {
     <div class="desc"><p>GET Toolkitsessions API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -20419,11 +20567,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.toolkitsessions', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.toolkitsessions" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Toolkitsessions API Function</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -20435,9 +20582,8 @@ table {
         <span class="c1"># No value for tenant_id.</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
     <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/active&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                         <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                         <span class="n">element_id</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/toolkitsessions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                      <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>

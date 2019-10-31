@@ -2577,6 +2577,7 @@ table {
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.dhcpservers">dhcpservers</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.element_extensions">element_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.element_passages">element_passages</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.element_toolkitsessions">element_toolkitsessions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.elementpassageconfigs">elementpassageconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.elementsecurityzones">elementsecurityzones</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.elementusers">elementusers</a></li>
@@ -2640,7 +2641,6 @@ table {
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_permissions">tenant_permissions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_prioritypolicylocalprefixes">tenant_prioritypolicylocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenantpassageconfigs">tenantpassageconfigs</a></li>
-    <li class="mono"><a href="#cloudgenix.delete_api.Delete.toolkitsessions">toolkitsessions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.users">users</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.waninterfaces">waninterfaces</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.wannetworks">wannetworks</a></li>
@@ -2968,6 +2968,36 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Element_Toolkitsessions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **toolkitsession_id**: Toolkit Session ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                         <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                         <span class="n">element_id</span><span class="p">,</span>
+                                                                                         <span class="n">toolkitsession_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">elementpassageconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementpassageconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Elementpassageconfigs API Function</span>
@@ -3000,7 +3030,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementsecurityzones API Function</span>
+<span class="sd">        Delete an existing security zone</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3326,7 +3356,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natglobalprefixes API Function</span>
+<span class="sd">        Delete a NAT Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3354,7 +3384,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natlocalprefixes API Function</span>
+<span class="sd">        Delete a NAT local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3382,7 +3412,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicypools API Function</span>
+<span class="sd">        Delete a NAT Policy Pool.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3410,7 +3440,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicyrules API Function</span>
+<span class="sd">        Delete NAT policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3440,7 +3470,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicysets API Function</span>
+<span class="sd">        Delete NAT policy set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3468,7 +3498,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicysetstacks API Function</span>
+<span class="sd">        Delete NAT Policy Set Stack.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3496,7 +3526,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natzones API Function</span>
+<span class="sd">        Delete a Nat Policy Zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4312,7 +4342,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Natlocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site NAT prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4524,7 +4554,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Spokeclusters API Function</span>
+<span class="sd">        Delete spoke cluster.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4618,7 +4648,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Templates_Ntp API Function</span>
+<span class="sd">        Delete an existing NTP Template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4808,36 +4838,6 @@ table {
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/tenantpassageconfigs/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
                                                                                   <span class="n">tenantpassageconfig_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Toolkitsessions API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **toolkitsession_id**: Toolkit Session ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                         <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                         <span class="n">element_id</span><span class="p">,</span>
-                                                                                         <span class="n">toolkitsession_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -5043,6 +5043,9 @@ table {
 
     <span class="n">sessions_t</span> <span class="o">=</span> <span class="n">operator_sessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `sessions_t` to `operator_sessions`&quot;&quot;&quot;</span>
+
+    <span class="n">toolkitsessions_e</span> <span class="o">=</span> <span class="n">element_toolkitsessions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_e` to `element_toolkitsessions`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -5325,6 +5328,36 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Element_Toolkitsessions API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **toolkitsession_id**: Toolkit Session ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                         <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                         <span class="n">element_id</span><span class="p">,</span>
+                                                                                         <span class="n">toolkitsession_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">elementpassageconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementpassageconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Elementpassageconfigs API Function</span>
@@ -5357,7 +5390,7 @@ table {
 
     <span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementsecurityzones API Function</span>
+<span class="sd">        Delete an existing security zone</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5683,7 +5716,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natglobalprefixes API Function</span>
+<span class="sd">        Delete a NAT Global Prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5711,7 +5744,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natlocalprefixes API Function</span>
+<span class="sd">        Delete a NAT local prefix.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5739,7 +5772,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicypools API Function</span>
+<span class="sd">        Delete a NAT Policy Pool.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5767,7 +5800,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicyrules API Function</span>
+<span class="sd">        Delete NAT policy rule of tenant.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5797,7 +5830,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicysets API Function</span>
+<span class="sd">        Delete NAT policy set.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5825,7 +5858,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natpolicysetstacks API Function</span>
+<span class="sd">        Delete NAT Policy Set Stack.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5853,7 +5886,7 @@ table {
 
     <span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Natzones API Function</span>
+<span class="sd">        Delete a Nat Policy Zone.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6669,7 +6702,7 @@ table {
 
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Site_Natlocalprefixes API Function</span>
+<span class="sd">        Delete an existing Site NAT prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6881,7 +6914,7 @@ table {
 
     <span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Spokeclusters API Function</span>
+<span class="sd">        Delete spoke cluster.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6975,7 +7008,7 @@ table {
 
     <span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Templates_Ntp API Function</span>
+<span class="sd">        Delete an existing NTP Template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7165,36 +7198,6 @@ table {
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/tenantpassageconfigs/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
                                                                                   <span class="n">tenantpassageconfig_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Toolkitsessions API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **toolkitsession_id**: Toolkit Session ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                         <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                         <span class="n">element_id</span><span class="p">,</span>
-                                                                                         <span class="n">toolkitsession_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -7400,6 +7403,9 @@ table {
 
     <span class="n">sessions_t</span> <span class="o">=</span> <span class="n">operator_sessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `sessions_t` to `operator_sessions`&quot;&quot;&quot;</span>
+
+    <span class="n">toolkitsessions_e</span> <span class="o">=</span> <span class="n">element_toolkitsessions</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_e` to `element_toolkitsessions`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -7618,6 +7624,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>sessions_t</code> to <code>operator_sessions</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.delete_api.Delete.toolkitsessions_e">
+            <p class="name">var <span class="ident">toolkitsessions_e</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>toolkitsessions_e</code> to <code>element_toolkitsessions</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -8035,6 +8052,57 @@ table {
   </div>
   
             
+  <div class="item" id="cloudgenix.delete_api.Delete.element_toolkitsessions">
+    <div class="name def">
+    <p>def <span class="ident">element_toolkitsessions</span>(</p><p>self, element_id, toolkitsession_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>DELETE Element_Toolkitsessions API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>element_id</strong>: Element (Device) ID</li>
+<li><strong>toolkitsession_id</strong>: Toolkit Session ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.element_toolkitsessions', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.element_toolkitsessions" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DELETE Element_Toolkitsessions API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **element_id**: Element (Device) ID</span>
+<span class="sd">      - **toolkitsession_id**: Toolkit Session ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                     <span class="n">element_id</span><span class="p">,</span>
+                                                                                     <span class="n">toolkitsession_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.delete_api.Delete.elementpassageconfigs">
     <div class="name def">
     <p>def <span class="ident">elementpassageconfigs</span>(</p><p>self, element_id, elementpassageconfig_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -8094,7 +8162,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Elementsecurityzones API Function</p>
+    <div class="desc"><p>Delete an existing security zone</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -8109,7 +8177,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.elementsecurityzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementsecurityzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">securityzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementsecurityzones API Function</span>
+<span class="sd">    Delete an existing security zone</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -8649,7 +8717,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natglobalprefixes API Function</p>
+    <div class="desc"><p>Delete a NAT Global Prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natglobalprefix_id</strong>: NAT Global Prefix ID</li>
@@ -8662,7 +8730,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natglobalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natglobalprefixes API Function</span>
+<span class="sd">    Delete a NAT Global Prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natglobalprefix_id**: NAT Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8697,7 +8765,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natlocalprefixes API Function</p>
+    <div class="desc"><p>Delete a NAT local prefix.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natlocalprefix_id</strong>: NAT Local Prefix ID</li>
@@ -8710,7 +8778,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natlocalprefixes API Function</span>
+<span class="sd">    Delete a NAT local prefix.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natlocalprefix_id**: NAT Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8745,7 +8813,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natpolicypools API Function</p>
+    <div class="desc"><p>Delete a NAT Policy Pool.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicypool_id</strong>: NAT Policy Pool ID</li>
@@ -8758,7 +8826,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natpolicypools" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicypools</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicypool_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natpolicypools API Function</span>
+<span class="sd">    Delete a NAT Policy Pool.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicypool_id**: NAT Policy Pool ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8793,7 +8861,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natpolicyrules API Function</p>
+    <div class="desc"><p>Delete NAT policy rule of tenant.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: NAT Policy Set ID</li>
@@ -8807,7 +8875,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">natpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natpolicyrules API Function</span>
+<span class="sd">    Delete NAT policy rule of tenant.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: NAT Policy Set ID</span>
 <span class="sd">      - **natpolicyrule_id**: NAT Policy Rule ID</span>
@@ -8844,7 +8912,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natpolicysets API Function</p>
+    <div class="desc"><p>Delete NAT policy set.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicyset_id</strong>: NAT Policy Set ID</li>
@@ -8857,7 +8925,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natpolicysets API Function</span>
+<span class="sd">    Delete NAT policy set.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicyset_id**: NAT Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8892,7 +8960,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natpolicysetstacks API Function</p>
+    <div class="desc"><p>Delete NAT Policy Set Stack.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natpolicysetstack_id</strong>: NAT Policy Set Stack ID</li>
@@ -8905,7 +8973,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natpolicysetstacks API Function</span>
+<span class="sd">    Delete NAT Policy Set Stack.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natpolicysetstack_id**: NAT Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -8940,7 +9008,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Natzones API Function</p>
+    <div class="desc"><p>Delete a Nat Policy Zone.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>natzone_id</strong>: NAT Zone ID</li>
@@ -8953,7 +9021,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.natzones" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">natzones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">natzone_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Natzones API Function</span>
+<span class="sd">    Delete a Nat Policy Zone.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **natzone_id**: NAT Zone ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -10332,7 +10400,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Site_Natlocalprefixes API Function</p>
+    <div class="desc"><p>Delete an existing Site NAT prefix</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -10346,7 +10414,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.site_natlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">natlocalprefix_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Site_Natlocalprefixes API Function</span>
+<span class="sd">    Delete an existing Site NAT prefix</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **natlocalprefix_id**: NAT Local Prefix ID</span>
@@ -10692,7 +10760,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Spokeclusters API Function</p>
+    <div class="desc"><p>Delete spoke cluster.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -10706,7 +10774,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.spokeclusters" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">spokeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">spokecluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Spokeclusters API Function</span>
+<span class="sd">    Delete spoke cluster.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **spokecluster_id**: Spoke Cluster ID</span>
@@ -10851,7 +10919,7 @@ table {
 
     
   
-    <div class="desc"><p>DELETE Templates_Ntp API Function</p>
+    <div class="desc"><p>Delete an existing NTP Template</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>ntp_id</strong>: NTP Configuration ID</li>
@@ -10864,7 +10932,7 @@ table {
   <div id="source-cloudgenix.delete_api.Delete.templates_ntp" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">templates_ntp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Templates_Ntp API Function</span>
+<span class="sd">    Delete an existing NTP Template</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **ntp_id**: NTP Configuration ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -11169,57 +11237,6 @@ table {
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/tenantpassageconfigs/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                               <span class="n">tenant_id</span><span class="p">,</span>
                                                                               <span class="n">tenantpassageconfig_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.delete_api.Delete.toolkitsessions">
-    <div class="name def">
-    <p>def <span class="ident">toolkitsessions</span>(</p><p>self, element_id, toolkitsession_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>DELETE Toolkitsessions API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>toolkitsession_id</strong>: Toolkit Session ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.toolkitsessions', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.delete_api.Delete.toolkitsessions" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkitsessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">toolkitsession_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Toolkitsessions API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **toolkitsession_id**: Toolkit Session ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/toolkitsessions/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                     <span class="n">element_id</span><span class="p">,</span>
-                                                                                     <span class="n">toolkitsession_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>

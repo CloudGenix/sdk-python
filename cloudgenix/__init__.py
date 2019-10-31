@@ -20,6 +20,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Python >= 2.7 or >=3.6
 * Python modules:
     * Requests + Security Extras >=2.18.4 - <http://docs.python-requests.org/en/master/>
+    * Websockets (if Python >= 3.6) >= 8.0.2 - <https://websockets.readthedocs.io/en/stable/index.html>
 
 #### Code Example
 Super-simplified example code (rewrite of example.py in ~4 lines of code):
