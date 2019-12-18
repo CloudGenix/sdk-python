@@ -2662,7 +2662,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <li>Python &gt;= 2.7 or &gt;=3.6</li>
 <li>Python modules:<ul>
 <li>Requests + Security Extras &gt;=2.18.4 - <a href="http://docs.python-requests.org/en/master/">http://docs.python-requests.org/en/master/</a></li>
-<li>Websockets (if Python &gt;= 3.6) &gt;= 8.0.2 - <a href="https://websockets.readthedocs.io/en/stable/index.html">https://websockets.readthedocs.io/en/stable/index.html</a></li>
+<li>Websockets (if Python &gt;= 3.6) &gt;= 8.1- <a href="https://websockets.readthedocs.io/en/stable/index.html">https://websockets.readthedocs.io/en/stable/index.html</a></li>
 </ul>
 </li>
 </ul>
@@ -2715,7 +2715,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">* Python &gt;= 2.7 or &gt;=3.6</span>
 <span class="sd">* Python modules:</span>
 <span class="sd">    * Requests + Security Extras &gt;=2.18.4 - &lt;http://docs.python-requests.org/en/master/&gt;</span>
-<span class="sd">    * Websockets (if Python &gt;= 3.6) &gt;= 8.0.2 - &lt;https://websockets.readthedocs.io/en/stable/index.html&gt;</span>
+<span class="sd">    * Websockets (if Python &gt;= 3.6) &gt;= 8.1- &lt;https://websockets.readthedocs.io/en/stable/index.html&gt;</span>
 
 <span class="sd">#### Code Example</span>
 <span class="sd">Super-simplified example code (rewrite of example.py in ~4 lines of code):</span>
@@ -6536,7 +6536,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;TRACE&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;HEAD&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;PUT&#39;, &#39;OPTIONS&#39;, &#39;TRACE&#39;, &#39;HEAD&#39;, &#39;GET&#39;, &#39;DELETE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
