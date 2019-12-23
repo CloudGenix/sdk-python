@@ -3767,7 +3767,7 @@ class Post(object):
 
     def softwarehistory_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Softwarehistory_Query API Function
+        Queries db for all software download done by a tenant.
 
           **Parameters:**:
 

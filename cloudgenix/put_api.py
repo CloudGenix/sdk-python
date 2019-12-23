@@ -635,7 +635,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def idps(self, idp_id, data, tenant_id=None, api_version="v2.0"):
+    def idps(self, idp_id, data, tenant_id=None, api_version="v3.0"):
         """
         Update sso
 
@@ -644,7 +644,7 @@ class Put(object):
           - **idp_id**: SAML IDentity provider configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
