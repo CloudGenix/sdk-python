@@ -1609,7 +1609,7 @@ class Get(object):
 
     def machines_software_status(self, machine_id, software_id, status_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Machines_Software_Status API Function
+        GET Software_Status_Machines API Function
 
           **Parameters:**:
 
@@ -3937,7 +3937,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def syslogservers(self, site_id, element_id, syslogserver_id=None, tenant_id=None, api_version="v2.0"):
+    def syslogservers(self, site_id, element_id, syslogserver_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get Syslog Servers on an element
 
@@ -3947,7 +3947,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **syslogserver_id**: (optional) SYSLOG server ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

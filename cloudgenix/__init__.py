@@ -19,7 +19,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Active CloudGenix Account
 * Python >= 2.7 or >=3.6
 * Python modules:
-    * Requests + Security Extras >=2.18.4 - <http://docs.python-requests.org/en/master/>
+    * Requests + Security Extras >= 2.22.0- <http://docs.python-requests.org/en/master/>
     * Websockets (if Python >= 3.6) >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
 
 #### Code Example
@@ -955,7 +955,7 @@ class API(object):
 
         return return_object
 
-    def rest_call(self, url, method, data=None, sensitive=False, timeout=None, content_json=True,
+    def rest_call(self, url, method, data=None, sensitive=False, timeout=None, content_json=True, raw_msgs=False,
                   retry=None, max_retry=None, retry_sleep=None):
         """
         Generic REST call worker function
@@ -968,6 +968,7 @@ class API(object):
           - **sensitive:** Flag if content request/response should be hidden from logging functions
           - **timeout:** Requests Timeout
           - **content_json:** Bool on whether the Content-Type header should be set to application/json
+          - **raw_msgs:** True/False, if True, do not convert API sideband messages (warnings, errors) to text.
           - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
           - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
           - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.
@@ -977,6 +978,9 @@ class API(object):
           - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.
           - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
           will be converted to a Dict response.
+          - **cgx_errors**: Text error messages if any are present. None if none. List if raw_msgs is True.
+          - **cgx_warnings**: Text warning messages if any are present. None if none. List if raw_msgs is True.
+
         """
         # pull retry related items from Constructor if not specified.
         if timeout is None:
@@ -1051,6 +1055,15 @@ class API(object):
                 # CGX extend requests.Response for return
                 response.cgx_status = False
                 response.cgx_content = self._catch_nonjson_streamresponse(response.text)
+
+                # CGX extend requests.Response for any errors/warnings.
+                response.cgx_warnings = self.pull_content_warning(response, raw=raw_msgs)
+                response.cgx_errors = self.pull_content_error(response, raw=raw_msgs)
+
+                # We are in a failed request. If no error text in response, give the response code and detail.
+                if response.cgx_errors is None:
+                    response.cgx_errors = text_type("{0} ({1})".format(response.reason, response.status_code))
+
                 return response
 
             else:
@@ -1070,6 +1083,10 @@ class API(object):
                 # CGX extend requests.Response for return
                 response.cgx_status = True
                 response.cgx_content = self._catch_nonjson_streamresponse(response.text)
+
+                # CGX extend requests.Response for any errors/warnings.
+                response.cgx_warnings = self.pull_content_warning(response, raw=raw_msgs)
+                response.cgx_errors = self.pull_content_error(response, raw=raw_msgs)
                 return response
 
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError, urllib3.exceptions.MaxRetryError)\
@@ -1090,6 +1107,10 @@ class API(object):
                     }
                 ]
             }
+
+            # CGX extend requests.Response for any errors/warnings.
+            response.cgx_warnings = self.pull_content_warning(response, raw=raw_msgs)
+            response.cgx_errors = self.pull_content_error(response, raw=raw_msgs)
             return response
 
     def websocket_call(self, url, *args, **kwargs):

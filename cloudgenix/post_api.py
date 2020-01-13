@@ -3912,7 +3912,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def syslogservers(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
+    def syslogservers(self, site_id, element_id, data, tenant_id=None, api_version="v2.1"):
         """
         Create Syslog Server
 
@@ -3922,7 +3922,7 @@ class Post(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

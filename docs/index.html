@@ -2661,7 +2661,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <li>Active CloudGenix Account</li>
 <li>Python &gt;= 2.7 or &gt;=3.6</li>
 <li>Python modules:<ul>
-<li>Requests + Security Extras &gt;=2.18.4 - <a href="http://docs.python-requests.org/en/master/">http://docs.python-requests.org/en/master/</a></li>
+<li>Requests + Security Extras &gt;= 2.22.0- <a href="http://docs.python-requests.org/en/master/">http://docs.python-requests.org/en/master/</a></li>
 <li>Websockets (if Python &gt;= 3.6) &gt;= 8.1- <a href="https://websockets.readthedocs.io/en/stable/index.html">https://websockets.readthedocs.io/en/stable/index.html</a></li>
 </ul>
 </li>
@@ -2714,7 +2714,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">* Active CloudGenix Account</span>
 <span class="sd">* Python &gt;= 2.7 or &gt;=3.6</span>
 <span class="sd">* Python modules:</span>
-<span class="sd">    * Requests + Security Extras &gt;=2.18.4 - &lt;http://docs.python-requests.org/en/master/&gt;</span>
+<span class="sd">    * Requests + Security Extras &gt;= 2.22.0- &lt;http://docs.python-requests.org/en/master/&gt;</span>
 <span class="sd">    * Websockets (if Python &gt;= 3.6) &gt;= 8.1- &lt;https://websockets.readthedocs.io/en/stable/index.html&gt;</span>
 
 <span class="sd">#### Code Example</span>
@@ -3650,7 +3650,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="k">return</span> <span class="n">return_object</span>
 
-    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                   <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
@@ -3663,6 +3663,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">          - **timeout:** Requests Timeout</span>
 <span class="sd">          - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
+<span class="sd">          - **raw_msgs:** True/False, if True, do not convert API sideband messages (warnings, errors) to text.</span>
 <span class="sd">          - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">          - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">          - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
@@ -3672,6 +3673,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
+<span class="sd">          - **cgx_errors**: Text error messages if any are present. None if none. List if raw_msgs is True.</span>
+<span class="sd">          - **cgx_warnings**: Text warning messages if any are present. None if none. List if raw_msgs is True.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># pull retry related items from Constructor if not specified.</span>
         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -3746,6 +3750,15 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="c1"># CGX extend requests.Response for return</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+                <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+
+                <span class="c1"># We are in a failed request. If no error text in response, give the response code and detail.</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+
                 <span class="k">return</span> <span class="n">response</span>
 
             <span class="k">else</span><span class="p">:</span>
@@ -3765,6 +3778,10 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="c1"># CGX extend requests.Response for return</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+                <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">response</span>
 
         <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
@@ -3785,6 +3802,10 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                     <span class="p">}</span>
                 <span class="p">]</span>
             <span class="p">}</span>
+
+            <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -5295,7 +5316,7 @@ and Response Body.</p></div>
 
         <span class="k">return</span> <span class="n">return_object</span>
 
-    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                   <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
@@ -5308,6 +5329,7 @@ and Response Body.</p></div>
 <span class="sd">          - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">          - **timeout:** Requests Timeout</span>
 <span class="sd">          - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
+<span class="sd">          - **raw_msgs:** True/False, if True, do not convert API sideband messages (warnings, errors) to text.</span>
 <span class="sd">          - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">          - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">          - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
@@ -5317,6 +5339,9 @@ and Response Body.</p></div>
 <span class="sd">          - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">          - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">          will be converted to a Dict response.</span>
+<span class="sd">          - **cgx_errors**: Text error messages if any are present. None if none. List if raw_msgs is True.</span>
+<span class="sd">          - **cgx_warnings**: Text warning messages if any are present. None if none. List if raw_msgs is True.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># pull retry related items from Constructor if not specified.</span>
         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -5391,6 +5416,15 @@ and Response Body.</p></div>
                 <span class="c1"># CGX extend requests.Response for return</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+                <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+
+                <span class="c1"># We are in a failed request. If no error text in response, give the response code and detail.</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+
                 <span class="k">return</span> <span class="n">response</span>
 
             <span class="k">else</span><span class="p">:</span>
@@ -5410,6 +5444,10 @@ and Response Body.</p></div>
                 <span class="c1"># CGX extend requests.Response for return</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+                <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">response</span>
 
         <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
@@ -5430,6 +5468,10 @@ and Response Body.</p></div>
                     <span class="p">}</span>
                 <span class="p">]</span>
             <span class="p">}</span>
+
+            <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -6536,7 +6578,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;GET&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;DELETE&#39;, &#39;HEAD&#39;, &#39;TRACE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;OPTIONS&#39;, &#39;GET&#39;, &#39;PUT&#39;, &#39;HEAD&#39;, &#39;TRACE&#39;, &#39;DELETE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
@@ -7038,7 +7080,7 @@ re-parses the original login request and applies cookies to the session if they 
             
   <div class="item" id="cloudgenix.API.rest_call">
     <div class="name def">
-    <p>def <span class="ident">rest_call</span>(</p><p>self, url, method, data=None, sensitive=False, timeout=None, content_json=True, retry=None, max_retry=None, retry_sleep=None)</p>
+    <p>def <span class="ident">rest_call</span>(</p><p>self, url, method, data=None, sensitive=False, timeout=None, content_json=True, raw_msgs=False, retry=None, max_retry=None, retry_sleep=None)</p>
     </div>
     
 
@@ -7053,6 +7095,7 @@ re-parses the original login request and applies cookies to the session if they 
 <li><strong>sensitive:</strong> Flag if content request/response should be hidden from logging functions</li>
 <li><strong>timeout:</strong> Requests Timeout</li>
 <li><strong>content_json:</strong> Bool on whether the Content-Type header should be set to application/json</li>
+<li><strong>raw_msgs:</strong> True/False, if True, do not convert API sideband messages (warnings, errors) to text.</li>
 <li><strong>retry:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
 <li><strong>max_retry:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
 <li><strong>retry_sleep:</strong> DEPRECATED - please use <a href="#cloudgenix.API.modify_rest_retry"><code>modify_rest_retry</code></a> instead.</li>
@@ -7062,11 +7105,13 @@ re-parses the original login request and applies cookies to the session if they 
 <li><strong>cgx_status</strong>: Bool, True if a successful CloudGenix response, False if error.</li>
 <li><strong>cgx_content</strong>: Content of the response, guaranteed to be in Dict format. Empty/invalid responses
   will be converted to a Dict response.</li>
+<li><strong>cgx_errors</strong>: Text error messages if any are present. None if none. List if raw_msgs is True.</li>
+<li><strong>cgx_warnings</strong>: Text warning messages if any are present. None if none. List if raw_msgs is True.</li>
 </ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.rest_call', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.rest_call" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
               <span class="n">retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic REST call worker function</span>
@@ -7077,6 +7122,7 @@ re-parses the original login request and applies cookies to the session if they 
 <span class="sd">      - **sensitive:** Flag if content request/response should be hidden from logging functions</span>
 <span class="sd">      - **timeout:** Requests Timeout</span>
 <span class="sd">      - **content_json:** Bool on whether the Content-Type header should be set to application/json</span>
+<span class="sd">      - **raw_msgs:** True/False, if True, do not convert API sideband messages (warnings, errors) to text.</span>
 <span class="sd">      - **retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">      - **max_retry:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
 <span class="sd">      - **retry_sleep:** DEPRECATED - please use `cloudgenix.API.modify_rest_retry` instead.</span>
@@ -7084,6 +7130,8 @@ re-parses the original login request and applies cookies to the session if they 
 <span class="sd">      - **cgx_status**: Bool, True if a successful CloudGenix response, False if error.</span>
 <span class="sd">      - **cgx_content**: Content of the response, guaranteed to be in Dict format. Empty/invalid responses</span>
 <span class="sd">      will be converted to a Dict response.</span>
+<span class="sd">      - **cgx_errors**: Text error messages if any are present. None if none. List if raw_msgs is True.</span>
+<span class="sd">      - **cgx_warnings**: Text warning messages if any are present. None if none. List if raw_msgs is True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pull retry related items from Constructor if not specified.</span>
     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -7147,6 +7195,12 @@ re-parses the original login request and applies cookies to the session if they 
             <span class="c1"># CGX extend requests.Response for return</span>
             <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">False</span>
             <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+            <span class="c1"># We are in a failed request. If no error text in response, give the response code and detail.</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="s2">&quot;{0} ({1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">response</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Simple JSON debug</span>
@@ -7163,6 +7217,9 @@ re-parses the original login request and applies cookies to the session if they 
             <span class="c1"># CGX extend requests.Response for return</span>
             <span class="n">response</span><span class="o">.</span><span class="n">cgx_status</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="n">response</span><span class="o">.</span><span class="n">cgx_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">response</span>
     <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MaxRetryError</span><span class="p">)</span>\
             <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -7179,6 +7236,9 @@ re-parses the original login request and applies cookies to the session if they 
                 <span class="p">}</span>
             <span class="p">]</span>
         <span class="p">}</span>
+        <span class="c1"># CGX extend requests.Response for any errors/warnings.</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">cgx_warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_warning</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">cgx_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pull_content_error</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="n">raw_msgs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span>
 </pre></div>
 
