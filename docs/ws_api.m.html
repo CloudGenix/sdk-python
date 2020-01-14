@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000"/>
   <link rel="shortcut icon" href="favicon.ico">
-    <title>cloudgenix.patch_api documentation</title>
-    <meta name="description" content="CloudGenix Python SDK - PATCH
+    <title>cloudgenix.ws_api documentation</title>
+    <meta name="description" content="CloudGenix Python SDK - WebSocket Functions
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2020 CloudGenix, Inc
-..." />
+**Copyright:** (c) 2017-2020 Cl..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -2557,7 +2556,7 @@ table {
     <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
       
   <ul>
-    <li class="mono"><a href="#cloudgenix.patch_api.api_logger">api_logger</a></li>
+    <li class="mono"><a href="#cloudgenix.ws_api.api_logger">api_logger</a></li>
   </ul>
 
     </li>
@@ -2566,12 +2565,12 @@ table {
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
-        <span class="class_name"><a href="#cloudgenix.patch_api.Patch">Patch</a></span>
+        <span class="class_name"><a href="#cloudgenix.ws_api.WebSockets">WebSockets</a></span>
         
           
   <ul>
-    <li class="mono"><a href="#cloudgenix.patch_api.Patch.tenant_operators">tenant_operators</a></li>
-    <li class="mono"><a href="#cloudgenix.patch_api.Patch.tenants">tenants</a></li>
+    <li class="mono"><a href="#cloudgenix.ws_api.WebSockets.default">default</a></li>
+    <li class="mono"><a href="#cloudgenix.ws_api.WebSockets.toolkit_session">toolkit_session</a></li>
   </ul>
 
         </li>
@@ -2590,17 +2589,17 @@ table {
 
 
   <header id="section-intro">
-  <h1 class="title"><span class="name">cloudgenix.patch_api</span> module</h1>
-  <p>CloudGenix Python SDK - PATCH</p>
+  <h1 class="title"><span class="name">cloudgenix.ws_api</span> module</h1>
+  <p>CloudGenix Python SDK - WebSocket Functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017-2020 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.patch_api" class="source">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.ws_api" class="source">
     <div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">CloudGenix Python SDK - PATCH</span>
+<span class="sd">CloudGenix Python SDK - WebSocket Functions</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2612,7 +2611,7 @@ table {
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2020 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2020, 2019 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
@@ -2639,59 +2638,33 @@ table {
 
 <span class="c1"># Set logging to function name</span>
 <span class="n">api_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="sd">&quot;&quot;&quot;logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;`logging.getlogger` object to enable debug printing via `cloudgenix.API.set_debug`&quot;&quot;&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">Patch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">WebSockets</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    CloudGenix API - PATCH requests</span>
+<span class="sd">    CloudGenix Python SDK - WebSocket Functions</span>
 
-<span class="sd">    Object to handle making Patch requests via shared Requests Session.</span>
+<span class="sd">    Object to handle WebSocket operations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch a tenant operator</span>
+<span class="sd">        Open a Toolkit Session WebSocket</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                       <span class="n">tenant_id</span><span class="p">,</span>
-                                                                       <span class="n">operator_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
+<span class="sd">          - **element_id**: Element ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
+<span class="sd">          - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2700,19 +2673,42 @@ table {
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># No value for tenant_id.</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+        <span class="c1"># set controller, converting protocol to wss</span>
+        <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                          <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ws/toolkitsessions?cols={}&amp;rows={}&quot;</span> \
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
-    <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open the default Tenant WebSocket for use in multiple functions.</span>
 
-    <span class="n">operators_t</span> <span class="o">=</span> <span class="n">tenant_operators</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `operators_t` to `tenant_operators`&quot;&quot;&quot;</span>
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="c1"># set controller, converting protocol to wss</span>
+        <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws&quot;</span> \
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -2721,11 +2717,11 @@ table {
 
   <section id="section-items">
     <h3 class="section-title" id="header-variables">Module variables</h3>
-      <div class="item" id="cloudgenix.patch_api.api_logger">
+      <div class="item" id="cloudgenix.ws_api.api_logger">
       <p class="name">var <span class="ident">api_logger</span></p>
       
   
-    <div class="desc"><p>logging.getlogger object to enable debug printing via <code>cloudgenix.API.set_debug</code></p></div>
+    <div class="desc"><p><code>logging.getlogger</code> object to enable debug printing via <code>cloudgenix.API.set_debug</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -2734,65 +2730,39 @@ table {
 
     <h3 class="section-title" id="header-classes">Classes</h3>
       
-      <div class="item" id="cloudgenix.patch_api.Patch">
-      <p class="name">class <span class="ident">Patch</span></p>
+      <div class="item" id="cloudgenix.ws_api.WebSockets">
+      <p class="name">class <span class="ident">WebSockets</span></p>
       
   
-    <div class="desc"><p>CloudGenix API - PATCH requests</p>
-<p>Object to handle making Patch requests via shared Requests Session.</p></div>
+    <div class="desc"><p>CloudGenix Python SDK - WebSocket Functions</p>
+<p>Object to handle WebSocket operations.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.patch_api.Patch" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Patch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api.WebSockets', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.ws_api.WebSockets" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">WebSockets</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    CloudGenix API - PATCH requests</span>
+<span class="sd">    CloudGenix Python SDK - WebSocket Functions</span>
 
-<span class="sd">    Object to handle making Patch requests via shared Requests Session.</span>
+<span class="sd">    Object to handle WebSocket operations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch a tenant operator</span>
+<span class="sd">        Open a Toolkit Session WebSocket</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                       <span class="n">tenant_id</span><span class="p">,</span>
-                                                                       <span class="n">operator_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
+<span class="sd">          - **element_id**: Element ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
+<span class="sd">          - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
 
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -2801,19 +2771,42 @@ table {
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># No value for tenant_id.</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+        <span class="c1"># set controller, converting protocol to wss</span>
+        <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                          <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ws/toolkitsessions?cols={}&amp;rows={}&quot;</span> \
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="c1"># Public Digest compatibility maps below, mapping what is available via</span>
-    <span class="c1"># /v2.0/permissions API versus what is used in this SDK.</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open the default Tenant WebSocket for use in multiple functions.</span>
 
-    <span class="n">operators_t</span> <span class="o">=</span> <span class="n">tenant_operators</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `operators_t` to `tenant_operators`&quot;&quot;&quot;</span>
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+
+<span class="sd">        **Returns:** `websockets.client.Connect` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="c1"># set controller, converting protocol to wss</span>
+        <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws&quot;</span> \
+                              <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -2823,52 +2816,38 @@ table {
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#cloudgenix.patch_api.Patch">Patch</a></li>
+          <li><a href="#cloudgenix.ws_api.WebSockets">WebSockets</a></li>
           <li>builtins.object</li>
           </ul>
-          <h3>Class variables</h3>
-            <div class="item" id="cloudgenix.patch_api.Patch.operators_t">
-            <p class="name">var <span class="ident">operators_t</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Backwards-compatibility alias of <code>operators_t</code> to <code>tenant_operators</code></p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
           <h3>Static methods</h3>
             
-  <div class="item" id="cloudgenix.patch_api.Patch.tenant_operators">
+  <div class="item" id="cloudgenix.ws_api.WebSockets.default">
     <div class="name def">
-    <p>def <span class="ident">tenant_operators</span>(</p><p>self, operator_id, data, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">default</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;, **kwargs)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch a tenant operator</p>
+    <div class="desc"><p>Open the default Tenant WebSocket for use in multiple functions.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>&ast;&ast;kwargs</strong>: Optional: Additional Keyword Arguments to pass to <code>websockets.client.Connect()</code></li>
 </ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+<p><strong>Returns:</strong> <code>websockets.client.Connect</code> object.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenant_operators', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.patch_api.Patch.tenant_operators" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api.WebSockets.default', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.ws_api.WebSockets.default" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch a tenant operator</span>
+<span class="sd">    Open the default Tenant WebSocket for use in multiple functions.</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+<span class="sd">    **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
@@ -2876,12 +2855,12 @@ table {
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># No value for tenant_id.</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                   <span class="n">tenant_id</span><span class="p">,</span>
-                                                                   <span class="n">operator_id</span><span class="p">)</span>
+    <span class="c1"># set controller, converting protocol to wss</span>
+    <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/ws&quot;</span> \
+                          <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -2890,33 +2869,39 @@ table {
   </div>
   
             
-  <div class="item" id="cloudgenix.patch_api.Patch.tenants">
+  <div class="item" id="cloudgenix.ws_api.WebSockets.toolkit_session">
     <div class="name def">
-    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">toolkit_session</span>(</p><p>self, element_id, tenant_id=None, api_version=&#39;v2.0&#39;, cols=207, rows=53, **kwargs)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch tenant</p>
+    <div class="desc"><p>Open a Toolkit Session WebSocket</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
+<li><strong>element_id</strong>: Element ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>cols</strong>: Optional: Integer, Number of columns for terminal (default 207)</li>
+<li><strong>rows</strong>: Optional: Integer, Number of rows for terminal (default 53)</li>
+<li><strong>&ast;&ast;kwargs</strong>: Optional: Additional Keyword Arguments to pass to <code>websockets.client.Connect()</code></li>
 </ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+<p><strong>Returns:</strong> <code>websockets.client.Connect</code> object.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.patch_api.Patch.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.ws_api.WebSockets.toolkit_session', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.ws_api.WebSockets.toolkit_session" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">toolkit_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">207</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch tenant</span>
+<span class="sd">    Open a Toolkit Session WebSocket</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
+<span class="sd">      - **element_id**: Element ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">      - **cols**: Optional: Integer, Number of columns for terminal (default 207)</span>
+<span class="sd">      - **rows**: Optional: Integer, Number of rows for terminal (default 53)</span>
+<span class="sd">      - **&amp;ast;&amp;ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`</span>
+<span class="sd">    **Returns:** `websockets.client.Connect` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
@@ -2924,11 +2909,12 @@ table {
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># No value for tenant_id.</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                      <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="c1"># set controller, converting protocol to wss</span>
+    <span class="n">wss_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="s1">&#39;wss://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wss_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/elements/{}/ws/toolkitsessions?cols={}&amp;rows={}&quot;</span> \
+                          <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">websocket_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
   </div>

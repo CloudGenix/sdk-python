@@ -4,17 +4,17 @@ CGNX API -> list sites, example proof of concept.
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2018 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 """
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017, 2018 CloudGenix, Inc
+    Copyright (c) 2017-2020 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +36,15 @@ __license__ = """
 """
 # standard modules
 import argparse
-import json
 import logging
 
 # CloudGenix Python SDK
 import cloudgenix
+
+# alias JSON pretty printer (jd), and JSON Detailed pretty printer (jd_detailed) from cloudgenix SDK.
+jd = cloudgenix.jd
+jd_detailed = cloudgenix.jd_detailed
+
 
 # Global Vars
 SDK_VERSION = cloudgenix.version
@@ -98,22 +102,22 @@ else:
 ############################################################################
 
 
-cgx_session = cloudgenix.API(controller=args["controller"], ssl_verify=args["verify"])
+sdk = cloudgenix.API(controller=args["controller"], ssl_verify=args["verify"])
 
 # set debug
-cgx_session.set_debug(args["debug"])
+sdk.set_debug(args["debug"])
 
 
 ############################################################################
 # Draw Interactive login banner, run interactive login including args above.
 ############################################################################
 
-print("{0} v{1} ({2})\n".format(SCRIPT_NAME, SDK_VERSION, cgx_session.controller))
+print("{0} v{1} ({2})\n".format(SCRIPT_NAME, SDK_VERSION, sdk.controller))
 
 # interactive or cmd-line specified initial login
 
-while cgx_session.tenant_name is None:
-    cgx_session.interactive.login(args["email"], args["pass"])
+while sdk.tenant_name is None:
+    sdk.interactive.login(args["email"], args["pass"])
 
 
 ############################################################################
@@ -121,17 +125,23 @@ while cgx_session.tenant_name is None:
 ############################################################################
 
 # Get list of sites.
-response = cgx_session.get.sites()
+response = sdk.get.sites()
 
 # status is a boolean based on success/failure. If success, print raw dictionary
 if response.cgx_status:
-    raw_sites_dict = response.cgx_content
-    # Print as formatted JSON
-    print(json.dumps(raw_sites_dict, indent=4))
+    # Can Print as formatted JSON using json module using commented code below.
+    # raw_sites_dict = response.cgx_content
+    # print(json.dumps(raw_sites_dict, indent=4))
+    # But CloudGenix has a built-in pretty printer, can just use that on native response as a shortcut.
+    # Output is the same as code above.
+    jd(response)
 
 # else, let user know something didn't work.
 else:
-    print("ERROR: ", json.dumps(response.cgx_content, indent=4))
+    print("ERROR: ")
+    # the jd_detailed builtin pretty-printer will dump all request/response info, and also attempt to hide sensitive
+    # cookies/headers (AUTH_TOKEN, X-Auth-Token, etc.) to be safe for log messages/etc.
+    jd_detailed(response)
 
 # end of script, run logout to clear session.
-print(cgx_session.get.logout().cgx_content)
+print(sdk.get.logout().cgx_content)

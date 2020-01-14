@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-CloudGenix Python SDK - PATCH
+CloudGenix Python SDK - WebSocket Functions
 
 **Author:** CloudGenix
 
@@ -12,7 +12,7 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020, 2019 CloudGenix, Inc"
 __license__ = """
     MIT License
 
@@ -39,59 +39,33 @@ __license__ = """
 
 # Set logging to function name
 api_logger = logging.getLogger(__name__)
-"""logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
+"""`logging.getlogger` object to enable debug printing via `cloudgenix.API.set_debug`"""
 
 
-class Patch(object):
+class WebSockets(object):
     """
-    CloudGenix API - PATCH requests
+    CloudGenix Python SDK - WebSocket Functions
 
-    Object to handle making Patch requests via shared Requests Session.
+    Object to handle WebSocket operations.
     """
 
     # placeholder for parent class namespace
     _parent_class = None
 
-    def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.1"):
+    def toolkit_session(self, element_id, tenant_id=None, api_version="v2.0", cols=207, rows=53, **kwargs):
         """
-        Patch a tenant operator
+        Open a Toolkit Session WebSocket
 
           **Parameters:**:
 
-          - **operator_id**: Operator ID
-          - **data**: Dictionary containing data to PATCH as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}".format(api_version,
-                                                                       tenant_id,
-                                                                       operator_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "patch", data=data)
-
-    def tenants(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Patch tenant
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to PATCH as JSON
+          - **element_id**: Element ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
+          - **cols**: Optional: Integer, Number of columns for terminal (default 207)
+          - **rows**: Optional: Integer, Number of rows for terminal (default 53)
+          - **&ast;&ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`
 
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        **Returns:** `websockets.client.Connect` object.
         """
 
         if tenant_id is None and self._parent_class.tenant_id:
@@ -100,17 +74,39 @@ class Patch(object):
         elif not tenant_id:
             # No value for tenant_id.
             raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
+        # set controller, converting protocol to wss
+        wss_ctlr = self._parent_class.controller.replace('https://', 'wss://', 1)
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}".format(api_version,
-                                                          tenant_id)
+        url = str(wss_ctlr) + "/{}/api/tenants/{}/elements/{}/ws/toolkitsessions?cols={}&rows={}" \
+                              "".format(api_version, tenant_id, element_id, cols, rows)
 
         api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "patch", data=data)
+        return self._parent_class.websocket_call(url, **kwargs)
 
-    # Public Digest compatibility maps below, mapping what is available via
-    # /v2.0/permissions API versus what is used in this SDK.
+    def default(self, tenant_id=None, api_version="v2.0", **kwargs):
+        """
+        Open the default Tenant WebSocket for use in multiple functions.
 
-    operators_t = tenant_operators
-    """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""
+          **Parameters:**:
 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+          - **&ast;&ast;kwargs**: Optional: Additional Keyword Arguments to pass to `websockets.client.Connect()`
+
+        **Returns:** `websockets.client.Connect` object.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        # set controller, converting protocol to wss
+        wss_ctlr = self._parent_class.controller.replace('https://', 'wss://', 1)
+
+        url = str(wss_ctlr) + "/{}/api/tenants/{}/ws" \
+                              "".format(api_version, tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.websocket_call(url)

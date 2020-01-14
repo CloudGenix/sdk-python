@@ -4,17 +4,17 @@ CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017, 2018 CloudGenix, Inc
+**Copyright:** (c) 2017-2020 CloudGenix, Inc
 
 **License:** MIT
 """
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017, 2018 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017, 2018 CloudGenix, Inc
+    Copyright (c) 2017-2020 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
