@@ -1,10 +1,10 @@
+[![CloudGenix Logo](https://raw.githubusercontent.com/CloudGenix/sdk-python/master/docs/CloudGenix_Logo.png)](https://www.cloudgenix.com)
+
 [![image](https://img.shields.io/pypi/v/cloudgenix.svg)](https://pypi.org/project/cloudgenix/)
 [![image](https://img.shields.io/pypi/pyversions/cloudgenix.svg)](https://pypi.org/project/cloudgenix/)
 [![Downloads](https://pepy.tech/badge/cloudgenix)](https://pepy.tech/project/cloudgenix)
 [![License: MIT](https://img.shields.io/pypi/l/cloudgenix.svg?color=brightgreen)](https://pypi.org/project/cloudgenix/)
 [![GitHub issues open](https://img.shields.io/github/issues/CloudGenix/sdk-python.svg)](https://github.com/CloudGenix/sdk-python/issues)
-
-[![CloudGenix Logo](https://raw.githubusercontent.com/CloudGenix/sdk-python/master/docs/CloudGenix_Logo.png)](https://www.cloudgenix.com)
 # CloudGenix Python SDK v5.2.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
