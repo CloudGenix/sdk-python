@@ -535,6 +535,41 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def clients_machines(self, client_id, machine_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Clients_Machines API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **machine_id**: (optional) Machine ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not machine_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines".format(api_version,
+                                                                                  tenant_id,
+                                                                                  client_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines/{}".format(api_version,
+                                                                                     tenant_id,
+                                                                                     client_id,
+                                                                                     machine_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def clients_roles(self, client_id, role_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get a list of client custom roles
@@ -1398,7 +1433,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces_status(self, site_id, element_id, interface_id, tenant_id=None, api_version="v3.0"):
+    def interfaces_status(self, site_id, element_id, interface_id, tenant_id=None, api_version="v3.1"):
         """
         GET Interfaces_Status API Function
 
@@ -1408,7 +1443,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3572,7 +3607,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sites(self, site_id=None, tenant_id=None, api_version="v4.4"):
+    def sites(self, site_id=None, tenant_id=None, api_version="v4.5"):
         """
         Get Sites of a tenant
 
@@ -3580,7 +3615,7 @@ class Get(object):
 
           - **site_id**: (optional) Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4863,6 +4898,9 @@ class Get(object):
 
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
+
+    machines_c = clients_machines
+    """ Backwards-compatibility alias of `machines_c` to `clients_machines`"""
 
     metrics_monitor = monitor_metrics
     """ Backwards-compatibility alias of `metrics_monitor` to `monitor_metrics`"""

@@ -371,6 +371,62 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def clients_machines_query(self, client_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Clients_Machines_Query API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines/query".format(api_version,
+                                                                                    tenant_id,
+                                                                                    client_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def clients_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Clients_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/query".format(api_version,
+                                                                        tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def dhcpservers(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
         Create a new dhcp server configuration for a subnet
@@ -2569,6 +2625,37 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def reallocate_clients(self, client_id, machine_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Reallocate_Clients API Function
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **machine_id**: Machine ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines/{}/reallocate".format(api_version,
+                                                                                            tenant_id,
+                                                                                            client_id,
+                                                                                            machine_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def reports_query(self, data, tenant_id=None, api_version="v2.0"):
         """
         POST Reports_Query API Function
@@ -3483,7 +3570,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sites(self, data, tenant_id=None, api_version="v4.4"):
+    def sites(self, data, tenant_id=None, api_version="v4.5"):
         """
         Create a new site
 
@@ -3491,7 +3578,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3564,7 +3651,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sites_query(self, data, tenant_id=None, api_version="v4.4"):
+    def sites_query(self, data, tenant_id=None, api_version="v4.5"):
         """
         Queries db for limit number of sites that match query params.
 
@@ -3572,7 +3659,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4706,6 +4793,9 @@ class Post(object):
     query_bulk_config_state_s = sites_bulk_config_state_query
     """ Backwards-compatibility alias of `query_bulk_config_state_s` to `sites_bulk_config_state_query`"""
 
+    query_clients = clients_query
+    """ Backwards-compatibility alias of `query_clients` to `clients_query`"""
+
     query_current_status_software = software_current_status_query
     """ Backwards-compatibility alias of `query_current_status_software` to `software_current_status_query`"""
 
@@ -4750,6 +4840,9 @@ class Post(object):
 
     query_machine_upgrade = machine_upgrade_query
     """ Backwards-compatibility alias of `query_machine_upgrade` to `machine_upgrade_query`"""
+
+    query_machines_c = clients_machines_query
+    """ Backwards-compatibility alias of `query_machines_c` to `clients_machines_query`"""
 
     query_natglobalprefixes = natglobalprefixes_query
     """ Backwards-compatibility alias of `query_natglobalprefixes` to `natglobalprefixes_query`"""

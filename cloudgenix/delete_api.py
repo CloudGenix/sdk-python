@@ -1756,7 +1756,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.4"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.5"):
         """
         Delete a site
 
@@ -1764,7 +1764,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.4)
+          - **api_version**: API version to use (default v4.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.2.1b1
+**Version:** v5.2.3b1
 
 **Author:** CloudGenix
 
@@ -141,7 +141,7 @@ if PYTHON36_FEATURES:
 
 
 # Version of SDK
-version = "5.2.1b1"
+version = "5.2.3b1"
 """SDK Version string"""
 __version__ = version
 
@@ -1431,7 +1431,7 @@ class API(object):
             sys.stderr.write(output2)
         return
 
-    def extract_items(self, resp_object, error_label=None, pass_code_list=None):
+    def extract_items(self, resp_object, error_label=None, pass_code_list=None, items_key='items'):
         """
         Extract list of items from a CloudGenix API Response object.
 
@@ -1440,6 +1440,7 @@ class API(object):
           - **resp_object:** CloudGenix Extended `requests.Response` object.
           - **error_label:** Optional - text to describe operation on error.
           - **pass_code_list:** Optional - list of HTTP response codes to silently pass with empty list response.
+          - **items_key:** Optional - Text for items key to extract (default 'items')
 
         **Returns:** list of 'items' objects.
         """
@@ -1447,7 +1448,7 @@ class API(object):
         if pass_code_list is None:
             pass_code_list = [404, 400]
 
-        items = resp_object.cgx_content.get('items')
+        items = resp_object.cgx_content.get(items_key)
 
         if resp_object.cgx_status and items is not None:
             return items
@@ -1458,10 +1459,10 @@ class API(object):
 
         else:
             if error_label is not None:
-                self.throw_error("Unable to extract items from {0}.".format(error_label), resp_object)
+                self.throw_error("Unable to extract '{0}' from {1}.".format(items_key, error_label), resp_object)
                 return [{}]
             else:
-                self.throw_error("Unable to extract items from response.".format(error_label), resp_object)
+                self.throw_error("Unable to extract '{0}' from response.".format(items_key), resp_object)
                 return [{}]
 
     def build_lookup_dict(self, list_content, key_val='name', value_val='id', force_nag=False, nag_cache=None):
