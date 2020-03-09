@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.2.1b1
+**Version:** v5.2.3b1
 
 **Author:** CloudGenix
 ..." />
@@ -2648,7 +2648,7 @@ table {
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python2 and Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v5.2.1b1</p>
+<p><strong>Version:</strong> v5.2.3b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017-2020 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
@@ -2696,7 +2696,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python2 and Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v5.2.1b1</span>
+<span class="sd">**Version:** v5.2.3b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2836,7 +2836,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.2.1b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;5.2.3b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span>
 
@@ -4126,7 +4126,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract list of items from a CloudGenix API Response object.</span>
 
@@ -4135,6 +4135,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
 <span class="sd">          - **error_label:** Optional - text to describe operation on error.</span>
 <span class="sd">          - **pass_code_list:** Optional - list of HTTP response codes to silently pass with empty list response.</span>
+<span class="sd">          - **items_key:** Optional - Text for items key to extract (default &#39;items&#39;)</span>
 
 <span class="sd">        **Returns:** list of &#39;items&#39; objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4142,7 +4143,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">if</span> <span class="n">pass_code_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">pass_code_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">404</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
 
-        <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">items_key</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">items</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">items</span>
@@ -4153,10 +4154,10 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">error_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from {0}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from {1}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">,</span> <span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">[{}]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">[{}]</span>
 
     <span class="k">def</span> <span class="nf">build_lookup_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_content</span><span class="p">,</span> <span class="n">key_val</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value_val</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">force_nag</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">nag_cache</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -5792,7 +5793,7 @@ and Response Body.</p></div>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract list of items from a CloudGenix API Response object.</span>
 
@@ -5801,6 +5802,7 @@ and Response Body.</p></div>
 <span class="sd">          - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
 <span class="sd">          - **error_label:** Optional - text to describe operation on error.</span>
 <span class="sd">          - **pass_code_list:** Optional - list of HTTP response codes to silently pass with empty list response.</span>
+<span class="sd">          - **items_key:** Optional - Text for items key to extract (default &#39;items&#39;)</span>
 
 <span class="sd">        **Returns:** list of &#39;items&#39; objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5808,7 +5810,7 @@ and Response Body.</p></div>
         <span class="k">if</span> <span class="n">pass_code_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">pass_code_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">404</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
 
-        <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">items_key</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">items</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">items</span>
@@ -5819,10 +5821,10 @@ and Response Body.</p></div>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">error_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from {0}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from {1}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">,</span> <span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">[{}]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">[{}]</span>
 
     <span class="k">def</span> <span class="nf">build_lookup_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_content</span><span class="p">,</span> <span class="n">key_val</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value_val</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">force_nag</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">nag_cache</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -6527,7 +6529,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.extract_items">
     <div class="name def">
-    <p>def <span class="ident">extract_items</span>(</p><p>self, resp_object, error_label=None, pass_code_list=None)</p>
+    <p>def <span class="ident">extract_items</span>(</p><p>self, resp_object, error_label=None, pass_code_list=None, items_key=&#39;items&#39;)</p>
     </div>
     
 
@@ -6539,23 +6541,25 @@ and Response Body.</p></div>
 <li><strong>resp_object:</strong> CloudGenix Extended <code>requests.Response</code> object.</li>
 <li><strong>error_label:</strong> Optional - text to describe operation on error.</li>
 <li><strong>pass_code_list:</strong> Optional - list of HTTP response codes to silently pass with empty list response.</li>
+<li><strong>items_key:</strong> Optional - Text for items key to extract (default 'items')</li>
 </ul>
 <p><strong>Returns:</strong> list of 'items' objects.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.extract_items', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.extract_items" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract list of items from a CloudGenix API Response object.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
 <span class="sd">      - **error_label:** Optional - text to describe operation on error.</span>
 <span class="sd">      - **pass_code_list:** Optional - list of HTTP response codes to silently pass with empty list response.</span>
+<span class="sd">      - **items_key:** Optional - Text for items key to extract (default &#39;items&#39;)</span>
 <span class="sd">    **Returns:** list of &#39;items&#39; objects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">pass_code_list</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">pass_code_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">404</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">items_key</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">resp_object</span><span class="o">.</span><span class="n">cgx_status</span> <span class="ow">and</span> <span class="n">items</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">items</span>
     <span class="c1"># handle 404 and other error codes for certain APIs where objects may not exist</span>
@@ -6563,10 +6567,10 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="p">[{}]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">error_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from {0}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from {1}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">,</span> <span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">[{}]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract items from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_label</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">throw_error</span><span class="p">(</span><span class="s2">&quot;Unable to extract &#39;{0}&#39; from response.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">items_key</span><span class="p">),</span> <span class="n">resp_object</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">[{}]</span>
 </pre></div>
 
@@ -6578,7 +6582,7 @@ and Response Body.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;TRACE&#39;, &#39;PUT&#39;, &#39;OPTIONS&#39;, &#39;GET&#39;, &#39;DELETE&#39;, &#39;HEAD&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, method_whitelist=frozenset({&#39;TRACE&#39;, &#39;OPTIONS&#39;, &#39;HEAD&#39;, &#39;PUT&#39;, &#39;DELETE&#39;, &#39;GET&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, adapter_url=&#39;https://&#39;)</p>
     </div>
     
 
