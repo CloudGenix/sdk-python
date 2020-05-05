@@ -537,7 +537,7 @@ class Get(object):
 
     def clients_machines(self, client_id, machine_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Clients_Machines API Function
+        Get all machines of tenant
 
           **Parameters:**:
 
@@ -1395,7 +1395,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.7"):
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.8"):
         """
         Get element interface ids
 
@@ -1405,7 +1405,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: (optional) Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.7)
+          - **api_version**: API version to use (default v4.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3119,6 +3119,120 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}".format(api_version,
                                                                            tenant_id,
                                                                            sdwanapp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sdwanapps_appstatus(self, sdwanapp_id, appstatus_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Sdwanapps_Appstatus API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **appstatus_id**: SDWAN App Status ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/appstatus/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    sdwanapp_id,
+                                                                                    appstatus_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sdwanapps_appstatus_connectivity(self, sdwanapp_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Sdwanapps_Appstatus_Connectivity API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/appstatus/connectivity".format(api_version,
+                                                                                              tenant_id,
+                                                                                              sdwanapp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sdwanapps_appstatus_icon(self, sdwanapp_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Sdwanapps_Appstatus_Icon API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/appstatus/icon".format(api_version,
+                                                                                      tenant_id,
+                                                                                      sdwanapp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def sdwanapps_appstatus_metadata(self, sdwanapp_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Sdwanapps_Appstatus_Metadata API Function
+
+          **Parameters:**:
+
+          - **sdwanapp_id**: SDWAN Application ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sdwanapps/{}/appstatus/metadata".format(api_version,
+                                                                                          tenant_id,
+                                                                                          sdwanapp_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4866,6 +4980,9 @@ class Get(object):
     api_versions_t = tenant_api_versions
     """ Backwards-compatibility alias of `api_versions_t` to `tenant_api_versions`"""
 
+    appstatus_sdwanapps = sdwanapps_appstatus
+    """ Backwards-compatibility alias of `appstatus_sdwanapps` to `sdwanapps_appstatus`"""
+
     base_roles_clients = clients_base_roles
     """ Backwards-compatibility alias of `base_roles_clients` to `clients_base_roles`"""
 
@@ -4877,6 +4994,9 @@ class Get(object):
 
     configs_sdwanapps = sdwanapps_configs
     """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
+
+    connectivity_appstatus_sdwanapps = sdwanapps_appstatus_connectivity
+    """ Backwards-compatibility alias of `connectivity_appstatus_sdwanapps` to `sdwanapps_appstatus_connectivity`"""
 
     discoveredprefixes_bgppeers = bgppeers_discoveredprefixes
     """ Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`"""
@@ -4899,8 +5019,14 @@ class Get(object):
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
+    icon_appstatus_sdwanapps = sdwanapps_appstatus_icon
+    """ Backwards-compatibility alias of `icon_appstatus_sdwanapps` to `sdwanapps_appstatus_icon`"""
+
     machines_c = clients_machines
     """ Backwards-compatibility alias of `machines_c` to `clients_machines`"""
+
+    metadata_appstatus_sdwanapps = sdwanapps_appstatus_metadata
+    """ Backwards-compatibility alias of `metadata_appstatus_sdwanapps` to `sdwanapps_appstatus_metadata`"""
 
     metrics_monitor = monitor_metrics
     """ Backwards-compatibility alias of `metrics_monitor` to `monitor_metrics`"""

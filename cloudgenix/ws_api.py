@@ -109,4 +109,4 @@ class WebSockets(object):
                               "".format(api_version, tenant_id)
 
         api_logger.debug("URL = %s", url)
-        return self._parent_class.websocket_call(url)
+        return self._parent_class.websocket_call(url, **kwargs)
