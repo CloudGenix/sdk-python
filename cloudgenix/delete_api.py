@@ -562,7 +562,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.7"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.8"):
         """
         Delete an element interface
 
@@ -572,7 +572,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.7)
+          - **api_version**: API version to use (default v4.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

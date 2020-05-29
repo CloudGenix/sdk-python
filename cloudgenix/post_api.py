@@ -402,7 +402,7 @@ class Post(object):
 
     def clients_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Clients_Query API Function
+        Get esp tenant clients details for tenant id
 
           **Parameters:**:
 
@@ -423,6 +423,37 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/query".format(api_version,
                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def clients_reallocate(self, client_id, machine_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Update Tenant machine
+
+          **Parameters:**:
+
+          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
+          - **machine_id**: Machine ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines/{}/reallocate".format(api_version,
+                                                                                            tenant_id,
+                                                                                            client_id,
+                                                                                            machine_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -881,7 +912,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def interfaces(self, site_id, element_id, data, tenant_id=None, api_version="v4.7"):
+    def interfaces(self, site_id, element_id, data, tenant_id=None, api_version="v4.8"):
         """
         Create an element logical interface
 
@@ -891,7 +922,7 @@ class Post(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.7)
+          - **api_version**: API version to use (default v4.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -912,7 +943,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def interfaces_query(self, data, tenant_id=None, api_version="v4.7"):
+    def interfaces_query(self, data, tenant_id=None, api_version="v4.8"):
         """
         Query Element interfaces.
 
@@ -920,7 +951,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.7)
+          - **api_version**: API version to use (default v4.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2621,37 +2652,6 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysetstacks/query".format(api_version,
                                                                                         tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def reallocate_clients(self, client_id, machine_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        POST Reallocate_Clients API Function
-
-          **Parameters:**:
-
-          - **client_id**: ESP/MSP Client ID (typically their tenant_id)
-          - **machine_id**: Machine ID
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/clients/{}/machines/{}/reallocate".format(api_version,
-                                                                                            tenant_id,
-                                                                                            client_id,
-                                                                                            machine_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4981,6 +4981,9 @@ class Post(object):
 
     query_wannetworks = wannetworks_query
     """ Backwards-compatibility alias of `query_wannetworks` to `wannetworks_query`"""
+
+    reallocate_clients = clients_reallocate
+    """ Backwards-compatibility alias of `reallocate_clients` to `clients_reallocate`"""
 
     sys_metrics_monitor = monitor_sys_metrics
     """ Backwards-compatibility alias of `sys_metrics_monitor` to `monitor_sys_metrics`"""

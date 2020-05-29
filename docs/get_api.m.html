@@ -2669,6 +2669,10 @@ table {
     <li class="mono"><a href="#cloudgenix.get_api.Get.routing_prefixlists">routing_prefixlists</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.routing_routemaps">routing_routemaps</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps">sdwanapps</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_appstatus">sdwanapps_appstatus</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_appstatus_connectivity">sdwanapps_appstatus_connectivity</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_appstatus_icon">sdwanapps_appstatus_icon</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_appstatus_metadata">sdwanapps_appstatus_metadata</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_configs">sdwanapps_configs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.sdwanapps_status">sdwanapps_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.securitypolicyrules">securitypolicyrules</a></li>
@@ -3289,7 +3293,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Machines API Function</span>
+<span class="sd">        Get all machines of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4147,7 +4151,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.8&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -4157,7 +4161,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.7)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.8)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5871,6 +5875,120 @@ table {
             <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                            <span class="n">tenant_id</span><span class="p">,</span>
                                                                            <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">appstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **appstatus_id**: SDWAN App Status ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">sdwanapp_id</span><span class="p">,</span>
+                                                                                    <span class="n">appstatus_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_connectivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Connectivity API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/connectivity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                              <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Icon API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/icon&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                      <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Metadata API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/metadata&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                          <span class="n">sdwanapp_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -7618,6 +7736,9 @@ table {
     <span class="n">api_versions_t</span> <span class="o">=</span> <span class="n">tenant_api_versions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `api_versions_t` to `tenant_api_versions`&quot;&quot;&quot;</span>
 
+    <span class="n">appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `appstatus_sdwanapps` to `sdwanapps_appstatus`&quot;&quot;&quot;</span>
+
     <span class="n">base_roles_clients</span> <span class="o">=</span> <span class="n">clients_base_roles</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `base_roles_clients` to `clients_base_roles`&quot;&quot;&quot;</span>
 
@@ -7629,6 +7750,9 @@ table {
 
     <span class="n">configs_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_configs</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`&quot;&quot;&quot;</span>
+
+    <span class="n">connectivity_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_connectivity</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `connectivity_appstatus_sdwanapps` to `sdwanapps_appstatus_connectivity`&quot;&quot;&quot;</span>
 
     <span class="n">discoveredprefixes_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_discoveredprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
@@ -7651,8 +7775,14 @@ table {
     <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
+    <span class="n">icon_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_icon</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `icon_appstatus_sdwanapps` to `sdwanapps_appstatus_icon`&quot;&quot;&quot;</span>
+
     <span class="n">machines_c</span> <span class="o">=</span> <span class="n">clients_machines</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `machines_c` to `clients_machines`&quot;&quot;&quot;</span>
+
+    <span class="n">metadata_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_metadata</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `metadata_appstatus_sdwanapps` to `sdwanapps_appstatus_metadata`&quot;&quot;&quot;</span>
 
     <span class="n">metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `metrics_monitor` to `monitor_metrics`&quot;&quot;&quot;</span>
@@ -8310,7 +8440,7 @@ table {
 
     <span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Clients_Machines API Function</span>
+<span class="sd">        Get all machines of tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9168,7 +9298,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.8&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get element interface ids</span>
 
@@ -9178,7 +9308,7 @@ table {
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: (optional) Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.7)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.8)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10892,6 +11022,120 @@ table {
             <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                            <span class="n">tenant_id</span><span class="p">,</span>
                                                                            <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">appstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **appstatus_id**: SDWAN App Status ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">sdwanapp_id</span><span class="p">,</span>
+                                                                                    <span class="n">appstatus_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_connectivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Connectivity API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/connectivity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                              <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Icon API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/icon&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                      <span class="n">sdwanapp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sdwanapps_appstatus_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Sdwanapps_Appstatus_Metadata API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/metadata&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                          <span class="n">sdwanapp_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -12639,6 +12883,9 @@ table {
     <span class="n">api_versions_t</span> <span class="o">=</span> <span class="n">tenant_api_versions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `api_versions_t` to `tenant_api_versions`&quot;&quot;&quot;</span>
 
+    <span class="n">appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `appstatus_sdwanapps` to `sdwanapps_appstatus`&quot;&quot;&quot;</span>
+
     <span class="n">base_roles_clients</span> <span class="o">=</span> <span class="n">clients_base_roles</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `base_roles_clients` to `clients_base_roles`&quot;&quot;&quot;</span>
 
@@ -12650,6 +12897,9 @@ table {
 
     <span class="n">configs_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_configs</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`&quot;&quot;&quot;</span>
+
+    <span class="n">connectivity_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_connectivity</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `connectivity_appstatus_sdwanapps` to `sdwanapps_appstatus_connectivity`&quot;&quot;&quot;</span>
 
     <span class="n">discoveredprefixes_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_discoveredprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
@@ -12672,8 +12922,14 @@ table {
     <span class="n">extensions_ws</span> <span class="o">=</span> <span class="n">ws_extensions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `extensions_ws` to `ws_extensions`&quot;&quot;&quot;</span>
 
+    <span class="n">icon_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_icon</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `icon_appstatus_sdwanapps` to `sdwanapps_appstatus_icon`&quot;&quot;&quot;</span>
+
     <span class="n">machines_c</span> <span class="o">=</span> <span class="n">clients_machines</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `machines_c` to `clients_machines`&quot;&quot;&quot;</span>
+
+    <span class="n">metadata_appstatus_sdwanapps</span> <span class="o">=</span> <span class="n">sdwanapps_appstatus_metadata</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `metadata_appstatus_sdwanapps` to `sdwanapps_appstatus_metadata`&quot;&quot;&quot;</span>
 
     <span class="n">metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `metrics_monitor` to `monitor_metrics`&quot;&quot;&quot;</span>
@@ -12874,6 +13130,17 @@ table {
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.get_api.Get.appstatus_sdwanapps">
+            <p class="name">var <span class="ident">appstatus_sdwanapps</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>appstatus_sdwanapps</code> to <code>sdwanapps_appstatus</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.get_api.Get.base_roles_clients">
             <p class="name">var <span class="ident">base_roles_clients</span></p>
             
@@ -12914,6 +13181,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>configs_sdwanapps</code> to <code>sdwanapps_configs</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.connectivity_appstatus_sdwanapps">
+            <p class="name">var <span class="ident">connectivity_appstatus_sdwanapps</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>connectivity_appstatus_sdwanapps</code> to <code>sdwanapps_appstatus_connectivity</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -12995,6 +13273,17 @@ table {
 </div>
 
             </div>
+            <div class="item" id="cloudgenix.get_api.Get.icon_appstatus_sdwanapps">
+            <p class="name">var <span class="ident">icon_appstatus_sdwanapps</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>icon_appstatus_sdwanapps</code> to <code>sdwanapps_appstatus_icon</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
             <div class="item" id="cloudgenix.get_api.Get.machines_c">
             <p class="name">var <span class="ident">machines_c</span></p>
             
@@ -13002,6 +13291,17 @@ table {
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>machines_c</code> to <code>clients_machines</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.metadata_appstatus_sdwanapps">
+            <p class="name">var <span class="ident">metadata_appstatus_sdwanapps</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>metadata_appstatus_sdwanapps</code> to <code>sdwanapps_appstatus_metadata</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -14295,7 +14595,7 @@ table {
 
     
   
-    <div class="desc"><p>GET Clients_Machines API Function</p>
+    <div class="desc"><p>Get all machines of tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>client_id</strong>: ESP/MSP Client ID (typically their tenant_id)</li>
@@ -14309,7 +14609,7 @@ table {
   <div id="source-cloudgenix.get_api.Get.clients_machines" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Clients_Machines API Function</span>
+<span class="sd">    Get all machines of tenant</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
 <span class="sd">      - **machine_id**: (optional) Machine ID</span>
@@ -15707,7 +16007,7 @@ table {
             
   <div class="item" id="cloudgenix.get_api.Get.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.7&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id=None, tenant_id=None, api_version=&#39;v4.8&#39;)</p>
     </div>
     
 
@@ -15720,13 +16020,13 @@ table {
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: (optional) Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.7)</li>
+<li><strong>api_version</strong>: API version to use (default v4.8)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.7&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.8&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get element interface ids</span>
 <span class="sd">      **Parameters:**:</span>
@@ -15734,7 +16034,7 @@ table {
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: (optional) Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.7)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.8)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -18554,6 +18854,201 @@ table {
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                        <span class="n">tenant_id</span><span class="p">,</span>
                                                                        <span class="n">sdwanapp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.sdwanapps_appstatus">
+    <div class="name def">
+    <p>def <span class="ident">sdwanapps_appstatus</span>(</p><p>self, sdwanapp_id, appstatus_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Sdwanapps_Appstatus API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>sdwanapp_id</strong>: SDWAN Application ID</li>
+<li><strong>appstatus_id</strong>: SDWAN App Status ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.sdwanapps_appstatus', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.sdwanapps_appstatus" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">sdwanapps_appstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">appstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Sdwanapps_Appstatus API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">      - **appstatus_id**: SDWAN App Status ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                <span class="n">sdwanapp_id</span><span class="p">,</span>
+                                                                                <span class="n">appstatus_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.sdwanapps_appstatus_connectivity">
+    <div class="name def">
+    <p>def <span class="ident">sdwanapps_appstatus_connectivity</span>(</p><p>self, sdwanapp_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Sdwanapps_Appstatus_Connectivity API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>sdwanapp_id</strong>: SDWAN Application ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.sdwanapps_appstatus_connectivity', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.sdwanapps_appstatus_connectivity" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">sdwanapps_appstatus_connectivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Sdwanapps_Appstatus_Connectivity API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/connectivity&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                          <span class="n">sdwanapp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.sdwanapps_appstatus_icon">
+    <div class="name def">
+    <p>def <span class="ident">sdwanapps_appstatus_icon</span>(</p><p>self, sdwanapp_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Sdwanapps_Appstatus_Icon API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>sdwanapp_id</strong>: SDWAN Application ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.sdwanapps_appstatus_icon', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.sdwanapps_appstatus_icon" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">sdwanapps_appstatus_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Sdwanapps_Appstatus_Icon API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/icon&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                  <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                  <span class="n">sdwanapp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.get_api.Get.sdwanapps_appstatus_metadata">
+    <div class="name def">
+    <p>def <span class="ident">sdwanapps_appstatus_metadata</span>(</p><p>self, sdwanapp_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Sdwanapps_Appstatus_Metadata API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>sdwanapp_id</strong>: SDWAN Application ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.sdwanapps_appstatus_metadata', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.sdwanapps_appstatus_metadata" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">sdwanapps_appstatus_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdwanapp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Sdwanapps_Appstatus_Metadata API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **sdwanapp_id**: SDWAN Application ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/sdwanapps/{}/appstatus/metadata&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                      <span class="n">sdwanapp_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>
