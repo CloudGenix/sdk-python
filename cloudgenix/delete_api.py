@@ -82,7 +82,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.2"):
+    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.3"):
         """
         Delete a application definition
 
@@ -90,7 +90,7 @@ class Delete(object):
 
           - **appdef_id**: Application Definition ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -110,7 +110,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.1"):
+    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.2"):
         """
         Delete application definition overrides for system appdef
 
@@ -119,7 +119,7 @@ class Delete(object):
           - **appdef_id**: Application Definition ID
           - **override_id**: AppDef Override ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -170,7 +170,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.1"):
+    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.2"):
         """
         Delete BGP Peer config
 
@@ -180,7 +180,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **bgppeer_id**: BGP Peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -228,6 +228,94 @@ class Delete(object):
                                                                                   tenant_id,
                                                                                   site_id,
                                                                                   dhcpserver_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def dnsserviceprofiles(self, dnsserviceprofile_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Dnsserviceprofiles API Function
+
+          **Parameters:**:
+
+          - **dnsserviceprofile_id**: DNS Service Profile ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/dnsserviceprofiles/{}".format(api_version,
+                                                                                tenant_id,
+                                                                                dnsserviceprofile_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def dnsserviceroles(self, dnsservicerole_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Dnsserviceroles API Function
+
+          **Parameters:**:
+
+          - **dnsservicerole_id**: DNS Service Role ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/dnsserviceroles/{}".format(api_version,
+                                                                             tenant_id,
+                                                                             dnsservicerole_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def dnsservices(self, site_id, element_id, dnsservice_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Dnsservices API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **dnsservice_id**: DNS Service ID 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/dnsservices/{}".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id,
+                                                                                              dnsservice_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -562,7 +650,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.8"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.9"):
         """
         Delete an element interface
 
@@ -572,7 +660,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.8)
+          - **api_version**: API version to use (default v4.9)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1308,7 +1396,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id, tenant_id=None, api_version="v2.0"):
+    def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id, tenant_id=None, api_version="v2.1"):
         """
         Delete Access List
 
@@ -1318,7 +1406,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2000,7 +2088,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.1"):
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.2"):
         """
         DELETE Tenant_Anynetlinks API Function
 
@@ -2008,7 +2096,7 @@ class Delete(object):
 
           - **anynetlink_id**: Anynet (Secure Fabric) Link ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.1)
+          - **api_version**: API version to use (default v3.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2196,7 +2284,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.4"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.5"):
         """
         Delete existing WAN interface
 
@@ -2205,7 +2293,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
