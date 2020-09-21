@@ -2650,9 +2650,9 @@ table {
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
-    <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Patch a tenant operator</span>
 
@@ -2666,7 +2666,7 @@ table {
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># Pull tenant_id from parent namespace cache.</span>
             <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
@@ -2674,14 +2674,14 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                        <span class="n">tenant_id</span><span class="p">,</span>
                                                                        <span class="n">operator_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Patch tenant</span>
 
@@ -2694,7 +2694,7 @@ table {
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># Pull tenant_id from parent namespace cache.</span>
             <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
@@ -2702,7 +2702,7 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                           <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
@@ -2751,9 +2751,9 @@ table {
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># placeholder for parent class namespace</span>
-    <span class="n">_parent_class</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Patch a tenant operator</span>
 
@@ -2767,7 +2767,7 @@ table {
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># Pull tenant_id from parent namespace cache.</span>
             <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
@@ -2775,14 +2775,14 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                        <span class="n">tenant_id</span><span class="p">,</span>
                                                                        <span class="n">operator_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Patch tenant</span>
 
@@ -2795,7 +2795,7 @@ table {
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
             <span class="c1"># Pull tenant_id from parent namespace cache.</span>
             <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
@@ -2803,7 +2803,7 @@ table {
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
         <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                           <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
@@ -2860,7 +2860,7 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenant_operators', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenant_operators" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Patch a tenant operator</span>
 <span class="sd">      **Parameters:**:</span>
@@ -2870,14 +2870,14 @@ table {
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
         <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># No value for tenant_id.</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
     <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}/operators/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                    <span class="n">tenant_id</span><span class="p">,</span>
                                                                    <span class="n">operator_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
@@ -2909,7 +2909,7 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Patch tenant</span>
 <span class="sd">      **Parameters:**:</span>
@@ -2918,14 +2918,14 @@ table {
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># Pull tenant_id from parent namespace cache.</span>
         <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
         <span class="c1"># No value for tenant_id.</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
     <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/{}/api/tenants/{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                       <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
