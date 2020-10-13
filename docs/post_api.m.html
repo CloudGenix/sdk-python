@@ -2592,7 +2592,7 @@ table {
     <li class="mono"><a href="#cloudgenix.post_api.Post.dnsserviceroles">dnsserviceroles</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.dnsserviceroles_query">dnsserviceroles_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.dnsservices">dnsservices</a></li>
-    <li class="mono"><a href="#cloudgenix.post_api.Post.dnsservicess_query">dnsservicess_query</a></li>
+    <li class="mono"><a href="#cloudgenix.post_api.Post.dnsservices_query">dnsservices_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.element_correlationevents_query">element_correlationevents_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.element_extensions">element_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.element_extensions_query">element_extensions_query</a></li>
@@ -3432,7 +3432,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">dnsservicess_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dnsservices_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Queries db for limit number of DnsService config that match query params.</span>
 
@@ -7979,8 +7979,8 @@ table {
     <span class="n">query_dnsserviceroles</span> <span class="o">=</span> <span class="n">dnsserviceroles_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsserviceroles` to `dnsserviceroles_query`&quot;&quot;&quot;</span>
 
-    <span class="n">query_dnsservices</span> <span class="o">=</span> <span class="n">dnsservicess_query</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsservices` to `dnsservicess_query`&quot;&quot;&quot;</span>
+    <span class="n">query_dnsservices</span> <span class="o">=</span> <span class="n">dnsservices_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsservices` to `dnsservices_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_e</span> <span class="o">=</span> <span class="n">elements_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_e` to `elements_query`&quot;&quot;&quot;</span>
@@ -8820,7 +8820,7 @@ table {
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">dnsservicess_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dnsservices_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Queries db for limit number of DnsService config that match query params.</span>
 
@@ -13367,8 +13367,8 @@ table {
     <span class="n">query_dnsserviceroles</span> <span class="o">=</span> <span class="n">dnsserviceroles_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsserviceroles` to `dnsserviceroles_query`&quot;&quot;&quot;</span>
 
-    <span class="n">query_dnsservices</span> <span class="o">=</span> <span class="n">dnsservicess_query</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsservices` to `dnsservicess_query`&quot;&quot;&quot;</span>
+    <span class="n">query_dnsservices</span> <span class="o">=</span> <span class="n">dnsservices_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_dnsservices` to `dnsservices_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_e</span> <span class="o">=</span> <span class="n">elements_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_e` to `elements_query`&quot;&quot;&quot;</span>
@@ -14059,7 +14059,7 @@ table {
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>query_dnsservices</code> to <code>dnsservicess_query</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>query_dnsservices</code> to <code>dnsservices_query</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -15830,9 +15830,9 @@ table {
   </div>
   
             
-  <div class="item" id="cloudgenix.post_api.Post.dnsservicess_query">
+  <div class="item" id="cloudgenix.post_api.Post.dnsservices_query">
     <div class="name def">
-    <p>def <span class="ident">dnsservicess_query</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">dnsservices_query</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
     </div>
     
 
@@ -15847,9 +15847,9 @@ table {
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.post_api.Post.dnsservicess_query', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.post_api.Post.dnsservicess_query" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">dnsservicess_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.post_api.Post.dnsservices_query', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.post_api.Post.dnsservices_query" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">dnsservices_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Queries db for limit number of DnsService config that match query params.</span>
 <span class="sd">      **Parameters:**:</span>

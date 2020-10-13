@@ -653,7 +653,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def dnsservicess_query(self, data, tenant_id=None, api_version="v2.0"):
+    def dnsservices_query(self, data, tenant_id=None, api_version="v2.0"):
         """
         Queries db for limit number of DnsService config that match query params.
 
@@ -5200,8 +5200,8 @@ class Post(object):
     query_dnsserviceroles = dnsserviceroles_query
     """ Backwards-compatibility alias of `query_dnsserviceroles` to `dnsserviceroles_query`"""
 
-    query_dnsservices = dnsservicess_query
-    """ Backwards-compatibility alias of `query_dnsservices` to `dnsservicess_query`"""
+    query_dnsservices = dnsservices_query
+    """ Backwards-compatibility alias of `query_dnsservices` to `dnsservices_query`"""
 
     query_e = elements_query
     """ Backwards-compatibility alias of `query_e` to `elements_query`"""
