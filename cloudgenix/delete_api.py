@@ -234,7 +234,7 @@ class Delete(object):
 
     def dnsserviceprofiles(self, dnsserviceprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Dnsserviceprofiles API Function
+        Delete an existing DnsService Profile
 
           **Parameters:**:
 
@@ -262,7 +262,7 @@ class Delete(object):
 
     def dnsserviceroles(self, dnsservicerole_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Dnsserviceroles API Function
+        Delete a DnsService role
 
           **Parameters:**:
 
@@ -290,7 +290,7 @@ class Delete(object):
 
     def dnsservices(self, site_id, element_id, dnsservice_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Dnsservices API Function
+        Delete an existing DnsService config
 
           **Parameters:**:
 
@@ -622,7 +622,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def idps(self, idp_id, tenant_id=None, api_version="v3.0"):
+    def idps(self, idp_id, tenant_id=None, api_version="v3.1"):
         """
         Delete idp
 
@@ -630,7 +630,7 @@ class Delete(object):
 
           - **idp_id**: SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1492,7 +1492,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.0"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.1"):
         """
         Delete Route Map
 
@@ -1502,7 +1502,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **routing_routemap_id**: Routing Route Map ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2284,7 +2284,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.5"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.6"):
         """
         Delete existing WAN interface
 
@@ -2293,7 +2293,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.5)
+          - **api_version**: API version to use (default v2.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
