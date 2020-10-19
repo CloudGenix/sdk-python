@@ -174,7 +174,7 @@ class Put(object):
 
     def application_probe(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Application_Probe API Function
+        Update application probe configuration.
 
           **Parameters:**:
 
@@ -302,7 +302,7 @@ class Put(object):
 
     def dnsserviceprofiles(self, dnsserviceprofile_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Dnsserviceprofiles API Function
+        Update an existing DnsService Profile
 
           **Parameters:**:
 
@@ -331,7 +331,7 @@ class Put(object):
 
     def dnsserviceroles(self, dnsservicerole_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Dnsserviceroles API Function
+        Update a DnsService role
 
           **Parameters:**:
 
@@ -360,7 +360,7 @@ class Put(object):
 
     def dnsservices(self, site_id, element_id, dnsservice_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Dnsservices API Function
+        Update an existing DnsService config
 
           **Parameters:**:
 
@@ -757,7 +757,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def idps(self, idp_id, data, tenant_id=None, api_version="v3.0"):
+    def idps(self, idp_id, data, tenant_id=None, api_version="v3.1"):
         """
         Update sso
 
@@ -766,7 +766,7 @@ class Put(object):
           - **idp_id**: SAML IDentity provider configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1686,7 +1686,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id, data, tenant_id=None, api_version="v2.0"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id, data, tenant_id=None, api_version="v2.1"):
         """
         Updates Route Map
 
@@ -1697,7 +1697,7 @@ class Put(object):
           - **routing_routemap_id**: Routing Route Map ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2710,7 +2710,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.2"):
+    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.3"):
         """
         Update specific WAN interface label.
 
@@ -2719,7 +2719,7 @@ class Put(object):
           - **waninterfacelabel_id**: WAN Interface Label ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2739,7 +2739,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.5"):
+    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.6"):
         """
         Update the site WAN interface
 
@@ -2749,7 +2749,7 @@ class Put(object):
           - **waninterface_id**: WAN Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.5)
+          - **api_version**: API version to use (default v2.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

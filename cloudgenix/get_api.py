@@ -216,7 +216,7 @@ class Get(object):
 
     def application_probe(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Application_Probe API Function
+        Get application probe configuration of element.
 
           **Parameters:**:
 
@@ -359,6 +359,34 @@ class Get(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/base_roles".format(api_version,
                                                                      tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def bfdpeers(self, site_id, tenant_id=None, api_version="v3.0"):
+        """
+        GET Bfdpeers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v3.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/bfdpeers".format(api_version,
+                                                                            tenant_id,
+                                                                            site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -700,7 +728,7 @@ class Get(object):
 
     def dnsserviceprofiles(self, dnsserviceprofile_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Dnsserviceprofiles API Function
+        Read all DnsService Profiles
 
           **Parameters:**:
 
@@ -732,7 +760,7 @@ class Get(object):
 
     def dnsserviceroles(self, dnsservicerole_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Dnsserviceroles API Function
+        Read all DnsService role
 
           **Parameters:**:
 
@@ -764,13 +792,13 @@ class Get(object):
 
     def dnsservices(self, site_id, element_id, dnsservice_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Dnsservices API Function
+        Read all DnsService config
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **dnsservice_id**: (optional) DNS Service ID
+          - **dnsservice_id**: (optional) DNS Service ID 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1553,7 +1581,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def idps(self, idp_id=None, tenant_id=None, api_version="v3.0"):
+    def idps(self, idp_id=None, tenant_id=None, api_version="v3.1"):
         """
         Get all idps
 
@@ -1561,7 +1589,7 @@ class Get(object):
 
           - **idp_id**: (optional) SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3275,7 +3303,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.0"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.1"):
         """
         Get all Route Map for Element
 
@@ -3285,7 +3313,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **routing_routemap_id**: (optional) Routing Route Map ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3313,7 +3341,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sdwanapps(self, sdwanapp_id=None, tenant_id=None, api_version="v2.1"):
+    def sdwanapps(self, sdwanapp_id=None, tenant_id=None, api_version="v2.2"):
         """
         GET Sdwanapps API Function
 
@@ -3321,7 +3349,7 @@ class Get(object):
 
           - **sdwanapp_id**: (optional) SDWAN Application ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4959,7 +4987,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def waninterfacelabels(self, waninterfacelabel_id=None, tenant_id=None, api_version="v2.2"):
+    def waninterfacelabels(self, waninterfacelabel_id=None, tenant_id=None, api_version="v2.3"):
         """
         Get WAN interface labels for a tenant.
 
@@ -4967,7 +4995,7 @@ class Get(object):
 
           - **waninterfacelabel_id**: (optional) WAN Interface Label ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4991,7 +5019,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def waninterfaces(self, site_id, waninterface_id=None, tenant_id=None, api_version="v2.5"):
+    def waninterfaces(self, site_id, waninterface_id=None, tenant_id=None, api_version="v2.6"):
         """
         Get WAN interfaces
 
@@ -5000,7 +5028,7 @@ class Get(object):
           - **site_id**: Site ID
           - **waninterface_id**: (optional) WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.5)
+          - **api_version**: API version to use (default v2.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

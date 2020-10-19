@@ -2570,17 +2570,17 @@ table {
         
           
   <ul>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.check_sso_login">check_sso_login</a></li>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_choice">client_choice</a></li>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_login">client_login</a></li>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_logout">client_logout</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.jd">jd</a></li>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.login">login</a></li>
-    <li class="mono"><a href="#cloudgenix.interactive.Interactive.logout">logout</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.quick_confirm">quick_confirm</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.quick_int_input">quick_int_input</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.quick_menu">quick_menu</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.quick_str_input">quick_str_input</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.check_sso_login">check_sso_login</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_choice">client_choice</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_login">client_login</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.client_logout">client_logout</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.login">login</a></li>
+    <li class="mono"><a href="#cloudgenix.interactive.Interactive.logout">logout</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.session_allowed_clients">session_allowed_clients</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.tenant_update_vars">tenant_update_vars</a></li>
     <li class="mono"><a href="#cloudgenix.interactive.Interactive.update_profile_vars">update_profile_vars</a></li>
@@ -4691,7 +4691,7 @@ table {
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
           <li><a href="#cloudgenix.interactive.Interactive">Interactive</a></li>
-          <li>builtins.object</li>
+          <li>__builtin__.object</li>
           </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.interactive.Interactive.interactive_client_choice">
@@ -4728,6 +4728,276 @@ table {
 
             </div>
           <h3>Static methods</h3>
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.jd">
+    <div class="name def">
+    <p>def <span class="ident">jd</span>(</p><p>api_response)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</p>
+<p>Example: <code>jd(cgx_sess.get.sites())</code></p>
+<p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.jd', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.jd" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
+<span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
+<span class="sd">    **Returns:** No Return, directly prints all output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.quick_confirm">
+    <div class="name def">
+    <p>def <span class="ident">quick_confirm</span>(</p><p>prompt, default_value)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Function to display a quick confirmation for user input</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>prompt:</strong> Text to display before confirm</li>
+<li><strong>default_value:</strong> Default value for no entry</li>
+</ul>
+<p><strong>Returns:</strong> 'y', 'n', or Default value.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_confirm', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.quick_confirm" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">quick_confirm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to display a quick confirmation for user input</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **prompt:** Text to display before confirm</span>
+<span class="sd">      - **default_value:** Default value for no entry</span>
+<span class="sd">    **Returns:** &#39;y&#39;, &#39;n&#39;, or Default value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">default_value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">default_value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">input_val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">input_val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: enter &#39;Y&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: enter &#39;Y&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.quick_int_input">
+    <div class="name def">
+    <p>def <span class="ident">quick_int_input</span>(</p><p>prompt, default_value, min_val=1, max_val=30)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Function to display a quick question for integer user input</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>prompt:</strong> Text / question to display</li>
+<li><strong>default_value:</strong> Default value for no entry</li>
+<li><strong>min_val:</strong> Lowest allowed integer</li>
+<li><strong>max_val:</strong> Highest allowed integer</li>
+</ul>
+<p><strong>Returns:</strong> integer or default_value.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_int_input', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.quick_int_input" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">quick_int_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to display a quick question for integer user input</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **prompt:** Text / question to display</span>
+<span class="sd">      - **default_value:** Default value for no entry</span>
+<span class="sd">      - **min_val:** Lowest allowed integer</span>
+<span class="sd">      - **max_val:** Highest allowed integer</span>
+<span class="sd">    **Returns:** integer or default_value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">num_val</span> <span class="o">=</span> <span class="n">default_value</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">num_val</span> <span class="o">=</span> <span class="n">default_value</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">num_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">num_val</span> <span class="o">&lt;=</span> <span class="n">max_val</span><span class="p">:</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be between {0} and {1}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">))</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be a number.&quot;</span><span class="p">)</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">num_val</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.quick_menu">
+    <div class="name def">
+    <p>def <span class="ident">quick_menu</span>(</p><p>banner, list_line_format, choice_list)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Function to display a quick menu for user input</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>banner:</strong> Text to display before menu</li>
+<li><strong>list_line_format:</strong> Print'ing string with format spots for index + tuple values</li>
+<li><strong>choice_list:</strong> List of tuple values that you want returned if selected (and printed)</li>
+</ul>
+<p><strong>Returns:</strong> Boolean Status, Tuple that was selected.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_menu', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.quick_menu" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">quick_menu</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span> <span class="n">list_line_format</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to display a quick menu for user input</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **banner:** Text to display before menu</span>
+<span class="sd">      - **list_line_format:** Print&#39;ing string with format spots for index + tuple values</span>
+<span class="sd">      - **choice_list:** List of tuple values that you want returned if selected (and printed)</span>
+<span class="sd">    **Returns:** Boolean Status, Tuple that was selected.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;quick_menu function:&#39;</span><span class="p">)</span>
+    <span class="c1"># Setup menu</span>
+    <span class="n">invalid</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">menu_int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="c1"># loop until valid</span>
+    <span class="k">while</span> <span class="n">invalid</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">banner</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item_index</span><span class="p">,</span> <span class="n">item_value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">choice_list</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">list_line_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">item_value</span><span class="p">))</span>
+        <span class="n">menu_choice</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Choose a Number or (Q)uit: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]:</span>
+            <span class="c1"># exit</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Canceling Menu..&quot;</span><span class="p">)</span>
+            <span class="c1"># best effort logout</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
+        <span class="c1"># verify number entered</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">menu_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span>
+            <span class="n">sanity</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># not a number</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: &quot;</span><span class="p">,</span> <span class="n">menu_choice</span><span class="p">)</span>
+            <span class="n">sanity</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="c1"># validate number chosen</span>
+        <span class="k">if</span> <span class="n">sanity</span> <span class="ow">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">menu_int</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">):</span>
+            <span class="n">invalid</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
+    <span class="c1"># return the choice_list tuple that matches the entry.</span>
+    <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.interactive.Interactive.quick_str_input">
+    <div class="name def">
+    <p>def <span class="ident">quick_str_input</span>(</p><p>prompt, default_value)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Function to display a quick question for text input.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>prompt:</strong> Text / question to display</li>
+<li><strong>default_value:</strong> Default value for no entry</li>
+</ul>
+<p><strong>Returns:</strong> text_type() or default_value.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_str_input', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.interactive.Interactive.quick_str_input" class="source">
+    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">quick_str_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to display a quick question for text input.</span>
+<span class="sd">    **Parameters:**</span>
+<span class="sd">      - **prompt:** Text / question to display</span>
+<span class="sd">      - **default_value:** Default value for no entry</span>
+<span class="sd">    **Returns:** text_type() or default_value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">str_val</span> <span class="o">=</span> <span class="n">default_value</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">str_val</span> <span class="o">=</span> <span class="n">default_value</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">str_val</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be text.&quot;</span><span class="p">)</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">str_val</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Methods</h3>
             
   <div class="item" id="cloudgenix.interactive.Interactive.check_sso_login">
     <div class="name def">
@@ -5081,46 +5351,6 @@ choose.</p>
   </div>
   
             
-  <div class="item" id="cloudgenix.interactive.Interactive.jd">
-    <div class="name def">
-    <p>def <span class="ident">jd</span>(</p><p>api_response)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</p>
-<p>Example: <code>jd(cgx_sess.get.sites())</code></p>
-<p><strong>Returns:</strong> No Return, directly prints all output.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.jd', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.interactive.Interactive.jd" class="source">
-    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
-<span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
-<span class="sd">    **Returns:** No Return, directly prints all output.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># attempt to print the cgx_content. should always be a Dict if it exists.</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">cgx_content</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-        <span class="c1"># cgx_content did not exist, or was not JSON serializable. Try pretty printing the base obj.</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-            <span class="c1"># Same issue, just raw print the passed data. Let any exceptions happen here.</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
-    <span class="k">return</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
   <div class="item" id="cloudgenix.interactive.Interactive.login">
     <div class="name def">
     <p>def <span class="ident">login</span>(</p><p>self, email=None, password=None, saml_auto_browser=True, saml_wait_loops=20, saml_wait_delay=5, client_login=True, client=None, prompt=None)</p>
@@ -5409,235 +5639,6 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
         <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">remove_header</span><span class="p">(</span><span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.interactive.Interactive.quick_confirm">
-    <div class="name def">
-    <p>def <span class="ident">quick_confirm</span>(</p><p>prompt, default_value)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Function to display a quick confirmation for user input</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><strong>prompt:</strong> Text to display before confirm</li>
-<li><strong>default_value:</strong> Default value for no entry</li>
-</ul>
-<p><strong>Returns:</strong> 'y', 'n', or Default value.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_confirm', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.interactive.Interactive.quick_confirm" class="source">
-    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">quick_confirm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to display a quick confirmation for user input</span>
-<span class="sd">    **Parameters:**</span>
-<span class="sd">      - **prompt:** Text to display before confirm</span>
-<span class="sd">      - **default_value:** Default value for no entry</span>
-<span class="sd">    **Returns:** &#39;y&#39;, &#39;n&#39;, or Default value.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">default_value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
-        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">default_value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">input_val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]:</span>
-                    <span class="n">value</span> <span class="o">=</span> <span class="n">input_val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: enter &#39;Y&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
-                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: enter &#39;Y&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
-                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="n">value</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.interactive.Interactive.quick_int_input">
-    <div class="name def">
-    <p>def <span class="ident">quick_int_input</span>(</p><p>prompt, default_value, min_val=1, max_val=30)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Function to display a quick question for integer user input</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><strong>prompt:</strong> Text / question to display</li>
-<li><strong>default_value:</strong> Default value for no entry</li>
-<li><strong>min_val:</strong> Lowest allowed integer</li>
-<li><strong>max_val:</strong> Highest allowed integer</li>
-</ul>
-<p><strong>Returns:</strong> integer or default_value.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_int_input', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.interactive.Interactive.quick_int_input" class="source">
-    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">quick_int_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to display a quick question for integer user input</span>
-<span class="sd">    **Parameters:**</span>
-<span class="sd">      - **prompt:** Text / question to display</span>
-<span class="sd">      - **default_value:** Default value for no entry</span>
-<span class="sd">      - **min_val:** Lowest allowed integer</span>
-<span class="sd">      - **max_val:** Highest allowed integer</span>
-<span class="sd">    **Returns:** integer or default_value.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">num_val</span> <span class="o">=</span> <span class="n">default_value</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
-        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">num_val</span> <span class="o">=</span> <span class="n">default_value</span>
-            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">num_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">num_val</span> <span class="o">&lt;=</span> <span class="n">max_val</span><span class="p">:</span>
-                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be between {0} and {1}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">))</span>
-                    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be a number.&quot;</span><span class="p">)</span>
-                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="n">num_val</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.interactive.Interactive.quick_menu">
-    <div class="name def">
-    <p>def <span class="ident">quick_menu</span>(</p><p>banner, list_line_format, choice_list)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Function to display a quick menu for user input</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><strong>banner:</strong> Text to display before menu</li>
-<li><strong>list_line_format:</strong> Print'ing string with format spots for index + tuple values</li>
-<li><strong>choice_list:</strong> List of tuple values that you want returned if selected (and printed)</li>
-</ul>
-<p><strong>Returns:</strong> Boolean Status, Tuple that was selected.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_menu', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.interactive.Interactive.quick_menu" class="source">
-    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">quick_menu</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span> <span class="n">list_line_format</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to display a quick menu for user input</span>
-<span class="sd">    **Parameters:**</span>
-<span class="sd">      - **banner:** Text to display before menu</span>
-<span class="sd">      - **list_line_format:** Print&#39;ing string with format spots for index + tuple values</span>
-<span class="sd">      - **choice_list:** List of tuple values that you want returned if selected (and printed)</span>
-<span class="sd">    **Returns:** Boolean Status, Tuple that was selected.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;quick_menu function:&#39;</span><span class="p">)</span>
-    <span class="c1"># Setup menu</span>
-    <span class="n">invalid</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">menu_int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="c1"># loop until valid</span>
-    <span class="k">while</span> <span class="n">invalid</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">banner</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">item_index</span><span class="p">,</span> <span class="n">item_value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">choice_list</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">list_line_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">item_value</span><span class="p">))</span>
-        <span class="n">menu_choice</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Choose a Number or (Q)uit: &quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]:</span>
-            <span class="c1"># exit</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Canceling Menu..&quot;</span><span class="p">)</span>
-            <span class="c1"># best effort logout</span>
-            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">None</span>
-        <span class="c1"># verify number entered</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">menu_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">menu_choice</span><span class="p">)</span>
-            <span class="n">sanity</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="c1"># not a number</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: &quot;</span><span class="p">,</span> <span class="n">menu_choice</span><span class="p">)</span>
-            <span class="n">sanity</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="c1"># validate number chosen</span>
-        <span class="k">if</span> <span class="n">sanity</span> <span class="ow">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">menu_int</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">):</span>
-            <span class="n">invalid</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Invalid input, needs to be between 1 and {0}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice_list</span><span class="p">)))</span>
-    <span class="c1"># return the choice_list tuple that matches the entry.</span>
-    <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.interactive.Interactive.quick_str_input">
-    <div class="name def">
-    <p>def <span class="ident">quick_str_input</span>(</p><p>prompt, default_value)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Function to display a quick question for text input.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><strong>prompt:</strong> Text / question to display</li>
-<li><strong>default_value:</strong> Default value for no entry</li>
-</ul>
-<p><strong>Returns:</strong> text_type() or default_value.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.quick_str_input', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.interactive.Interactive.quick_str_input" class="source">
-    <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">quick_str_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to display a quick question for text input.</span>
-<span class="sd">    **Parameters:**</span>
-<span class="sd">      - **prompt:** Text / question to display</span>
-<span class="sd">      - **default_value:** Default value for no entry</span>
-<span class="sd">    **Returns:** text_type() or default_value.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">str_val</span> <span class="o">=</span> <span class="n">default_value</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
-        <span class="n">input_val</span> <span class="o">=</span> <span class="n">compat_input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;[{0}]: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">input_val</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">str_val</span> <span class="o">=</span> <span class="n">default_value</span>
-            <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">str_val</span> <span class="o">=</span> <span class="n">text_type</span><span class="p">(</span><span class="n">input_val</span><span class="p">)</span>
-                <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ERROR: must be text.&quot;</span><span class="p">)</span>
-                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="n">str_val</span>
 </pre></div>
 
   </div>

@@ -57,7 +57,41 @@ CG_CA_BUNDLE = b"-----BEGIN CERTIFICATE-----\n" \
                b"8rGOmaFvE7FBcf6IKshPECBV1/MUReXgRPTqh5Uykw7+U0b6LJ3/iyK5S9kJRaTe\n" \
                b"pLiaWN0bfVKfjllDiIGknibVb63dDcY3fe0Dkhvld1927jyNxF1WW6LZZm6zNTfl\n" \
                b"MrY=\n" \
+               b"-----END CERTIFICATE-----\n"\
+               b"-----BEGIN CERTIFICATE-----\n"\
+               b"MIIFiTCCA3GgAwIBAgIQZN+1WMr1hpVLEjM/La0d9jANBgkqhkiG9w0BAQsFADBX\n"\
+               b"MQswCQYDVQQGEwJVUzEfMB0GA1UEChMWUGFsbyBBbHRvIE5ldHdvcmtzIEluYzEn\n"\
+               b"MCUGA1UEAxMeUGFsbyBBbHRvIE5ldHdvcmtzIEluYyBSb290IENBMB4XDTE1MTAw\n"\
+               b"NzIxNDQ1NFoXDTM1MTAwNzIxNTE0MlowVzELMAkGA1UEBhMCVVMxHzAdBgNVBAoT\n"\
+               b"FlBhbG8gQWx0byBOZXR3b3JrcyBJbmMxJzAlBgNVBAMTHlBhbG8gQWx0byBOZXR3\n"\
+               b"b3JrcyBJbmMgUm9vdCBDQTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB\n"\
+               b"ALxxMafelzkheljFgA22w1Ng0bMTS+mjjZCx4eUwKpneTWAY1FMOC56da0F+uYoL\n"\
+               b"2NUKqQ8pg/hT0ua+4q5y4MZ9NnR/LMrhfNDJ9vAOOJ6n0zZtIdBipKj5TfhdAOOX\n"\
+               b"FJj6Qgm9+nDAKC2tDdlEEme/rMVpgGkWO7oS03EdfSmQw5ytfQsRVBdEWuMOxoNH\n"\
+               b"D0x2TtDbnBYB5HfMIgwPZeQgr7XyVKBZvkDU0hQ33XnNcLqpc/9ZdKDD5mPrgDQV\n"\
+               b"vTai4EDqEAbs72ZEr3+LwvL1jVEVW+4gcB4aWpEaHhnFR1Hmgao8dDCCScDMWod0\n"\
+               b"4qiBFIbBETikHihJTXZkuaikTtPBvlIauZ0d0aZroN54HtTD2FWvKRFbcBXlV727\n"\
+               b"diG3fL1twRZ6mAiPXiKOikCubX19B4ZuZ3rp9WP38IyFkW/x3rTOFk2kthy75Zw2\n"\
+               b"JVS/6ebv0XwtMyNQKFJE5K2hlt588zs1rZT5+k+TAIgyNGied6mRtzS1yO5qc8bi\n"\
+               b"lMn0JvMGLCV42KnpB17AfvVnWR520jDBulgPwYOKL+tiOKMiaRRU441AKN08FY3Q\n"\
+               b"qRTmr04REpLTBjo7vyktimT0D/R6Fjutb8cDhck/kXyZ2IXNZ7tTrfK1C+TWj25d\n"\
+               b"kjbMemrDBjfq0yyTCcAaUE8spDR4PCWSy0bPGgRooDnLAgMBAAGjUTBPMAsGA1Ud\n"\
+               b"DwQEAwIBhjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRtHWMHo92KvO9jzgay\n"\
+               b"YMpp3LLGWjAQBgkrBgEEAYI3FQEEAwIBADANBgkqhkiG9w0BAQsFAAOCAgEAjUMB\n"\
+               b"3KN2QIsIolDI9PcQstVWg6EvLyzLRaY67Z5JmjnKCnZhjuu0NcYhdgqDuRE/zgG4\n"\
+               b"47bu3+eoRHdqqy4eTvS3DFHmQoCItKkxv6V7K6CjCJTFjcgA8QcWeGPSyFOwiBhZ\n"\
+               b"IhKzZnzdDZrrKzzRoj6vkMkiVxWNx3nUbGicqjOvC/ks1XTlen6yHk3EMK/tf9rq\n"\
+               b"rPMkEPdwNY95ylEGOT89h2EnjDVbKMMhZNyeVqzlLFdTzFGaUQE0SqHYr9Yr90sB\n"\
+               b"9+uSs22qzbwrUAtu2tWykXJR3Fz1LLUMz2MoUM7rH2Jv/fqulwSAPClC3AtASGrC\n"\
+               b"Y7L6Xl6ZzhWPqFC7mjxSH76egZcWphDfcNCppglfnNyM0xh/fKKifvLVhAkYBNSh\n"\
+               b"yOv6BuJLyzUo3tNjqMpWPpOVEXQa4I4tD8JQD1CDYS2YrGrDWSkiEf+t2aLE5QkW\n"\
+               b"mjNy6nOfoS0BEr1Zi+imlqgtKEfdl631osAATo4VzNLR5kF8Q4wvltUUYnQkzUm0\n"\
+               b"+8wvFpjg842crHtwpdyy4ERlll2bGXEVhj06DxyUAhzIKdDQUdiUhkRgZdceAsvc\n"\
+               b"m4nctCDD+BOuq/Iv9h3rcnjvirHJ/2HSm48t50fmK5jKXrH/z2DsSxhWSsEjxqJR\n"\
+               b"KNsRVnN03VKtOjHgTFvoDZPZ0nzIlwEJREuOV1w=\n"\
                b"-----END CERTIFICATE-----\n"
+
+
 
 """
 The license for the content in CA Root certificates may differ from the license the code file they are contained in.
