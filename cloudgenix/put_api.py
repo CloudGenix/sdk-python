@@ -4,7 +4,7 @@ CloudGenix Python SDK - PUT
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2020 CloudGenix, Inc
+**Copyright:** (c) 2017-2021 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2020 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2021 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2020 CloudGenix, Inc
+    Copyright (c) 2017-2021 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -174,7 +174,7 @@ class Put(object):
 
     def application_probe(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update application probe configuration.
+        Update application probe configuration
 
           **Parameters:**:
 
@@ -271,7 +271,7 @@ class Put(object):
 
     def dhcpservers(self, site_id, dhcpserver_id, data, tenant_id=None, api_version="v2.1"):
         """
-        PUT Dhcpservers API Function
+        Update an existing dhcp server configuration for a subnet
 
           **Parameters:**:
 
@@ -302,7 +302,7 @@ class Put(object):
 
     def dnsserviceprofiles(self, dnsserviceprofile_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update an existing DnsService Profile
+        Update a DNS service profile
 
           **Parameters:**:
 
@@ -331,7 +331,7 @@ class Put(object):
 
     def dnsserviceroles(self, dnsservicerole_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update a DnsService role
+        Update a DNS service role
 
           **Parameters:**:
 
@@ -360,7 +360,7 @@ class Put(object):
 
     def dnsservices(self, site_id, element_id, dnsservice_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update an existing DnsService config
+        Update a DNS service config
 
           **Parameters:**:
 
@@ -393,7 +393,7 @@ class Put(object):
 
     def element_admin_state(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Element_Admin_State API Function
+        Update admin state Northbound
 
           **Parameters:**:
 
@@ -486,7 +486,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def elements(self, element_id, data, tenant_id=None, api_version="v2.3"):
+    def elements(self, element_id, data, tenant_id=None, api_version="v2.4"):
         """
         Used for associations and element updates
 
@@ -495,7 +495,7 @@ class Put(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -635,7 +635,67 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def events(self, event_id, data, tenant_id=None, api_version="v2.1"):
+    def eventcorrelationpolicyrules(self, eventcorrelationpolicyset_id, eventcorrelationpolicyrule_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Eventcorrelationpolicyrules API Function
+
+          **Parameters:**:
+
+          - **eventcorrelationpolicyset_id**: Event Correlation Policy Set ID
+          - **eventcorrelationpolicyrule_id**: Event Correlation Policy Rule ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/eventcorrelationpolicysets/{}/eventcorrelationpolicyrules/{}".format(api_version,
+                                                                                                                       tenant_id,
+                                                                                                                       eventcorrelationpolicyset_id,
+                                                                                                                       eventcorrelationpolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def eventcorrelationpolicysets(self, eventcorrelationpolicyset_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Eventcorrelationpolicysets API Function
+
+          **Parameters:**:
+
+          - **eventcorrelationpolicyset_id**: Event Correlation Policy Set ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/eventcorrelationpolicysets/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        eventcorrelationpolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def events(self, event_id, data, tenant_id=None, api_version="v2.2"):
         """
         PUT Events API Function
 
@@ -644,7 +704,7 @@ class Put(object):
           - **event_id**: Event ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -660,6 +720,35 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/events/{}".format(api_version,
                                                                     tenant_id,
                                                                     event_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def externalcaconfigs(self, externalcaconfig_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Externalcaconfigs API Function
+
+          **Parameters:**:
+
+          - **externalcaconfig_id**: External CA Config ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/externalcaconfigs/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               externalcaconfig_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -695,7 +784,7 @@ class Put(object):
 
     def hubclustermembers(self, site_id, hubcluster_id, hubclustermember_id, data, tenant_id=None, api_version="v3.0"):
         """
-        PUT Hubclustermembers API Function
+        Update specific hub cluster member.
 
           **Parameters:**:
 
@@ -757,7 +846,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def idps(self, idp_id, data, tenant_id=None, api_version="v3.1"):
+    def idps(self, idp_id, data, tenant_id=None, api_version="v3.2"):
         """
         Update sso
 
@@ -766,7 +855,7 @@ class Put(object):
           - **idp_id**: SAML IDentity provider configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.1)
+          - **api_version**: API version to use (default v3.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -786,7 +875,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.9"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.10"):
         """
         Provision an element interface
 
@@ -797,7 +886,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.9)
+          - **api_version**: API version to use (default v4.10)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -815,6 +904,184 @@ class Put(object):
                                                                                              site_id,
                                                                                              element_id,
                                                                                              interface_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfix(self, site_id, element_id, ipfix_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfix API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **ipfix_id**: IPFix ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/ipfix/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        site_id,
+                                                                                        element_id,
+                                                                                        ipfix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfixcollectorcontexts(self, ipfixcollectorcontext_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfixcollectorcontexts API Function
+
+          **Parameters:**:
+
+          - **ipfixcollectorcontext_id**: IPFix Collector Context ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixcollectorcontexts/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    ipfixcollectorcontext_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfixfiltercontexts(self, ipfixfiltercontext_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfixfiltercontexts API Function
+
+          **Parameters:**:
+
+          - **ipfixfiltercontext_id**: IPFix Filter Context ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixfiltercontexts/{}".format(api_version,
+                                                                                 tenant_id,
+                                                                                 ipfixfiltercontext_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfixglobalprefixes(self, ipfixglobalprefix_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfixglobalprefixes API Function
+
+          **Parameters:**:
+
+          - **ipfixglobalprefix_id**: IPFix Global Prefix ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixglobalprefixes/{}".format(api_version,
+                                                                                 tenant_id,
+                                                                                 ipfixglobalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfixprofiles(self, ipfixprofile_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfixprofiles API Function
+
+          **Parameters:**:
+
+          - **ipfixprofile_id**: IPFix Profile ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixprofiles/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           ipfixprofile_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ipfixtemplates(self, ipfixtemplate_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ipfixtemplates API Function
+
+          **Parameters:**:
+
+          - **ipfixtemplate_id**: IPFix Template ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixtemplates/{}".format(api_version,
+                                                                            tenant_id,
+                                                                            ipfixtemplate_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -850,7 +1117,7 @@ class Put(object):
 
     def lannetworks(self, site_id, lannetwork_id, data, tenant_id=None, api_version="v3.1"):
         """
-        Update existing LAN
+        Update an existing LAN
 
           **Parameters:**:
 
@@ -1986,6 +2253,37 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Site_Ipfixlocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         ipfixlocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update an existing Site NAT Local prefix Association
@@ -2081,7 +2379,7 @@ class Put(object):
 
     def siteciphers(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update Site Cipher
+        Update site cipher
 
           **Parameters:**:
 
@@ -2236,7 +2534,7 @@ class Put(object):
 
     def software(self, machine_id, software_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Software API Function
+        Update Machine Software
 
           **Parameters:**:
 
@@ -2267,7 +2565,7 @@ class Put(object):
 
     def software_state(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Upgrade an element.
+        Upgrade an element
 
           **Parameters:**:
 
@@ -2327,7 +2625,7 @@ class Put(object):
 
     def state(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT State API Function
+        Update element state
 
           **Parameters:**:
 
@@ -2354,9 +2652,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def staticroutes(self, site_id, element_id, staticroute_id, data, tenant_id=None, api_version="v2.0"):
+    def staticroutes(self, site_id, element_id, staticroute_id, data, tenant_id=None, api_version="v2.1"):
         """
-        PUT Staticroutes API Function
+        Update static route
 
           **Parameters:**:
 
@@ -2365,7 +2663,7 @@ class Put(object):
           - **staticroute_id**: Static Route ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2474,6 +2772,35 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/anynetlinks/{}".format(api_version,
                                                                          tenant_id,
                                                                          anynetlink_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def tenant_ipfixlocalprefixes(self, ipfixlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Tenant_Ipfixlocalprefixes API Function
+
+          **Parameters:**:
+
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ipfixlocalprefixes/{}".format(api_version,
+                                                                                tenant_id,
+                                                                                ipfixlocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -2652,7 +2979,7 @@ class Put(object):
 
     def vfflicense_tokens(self, vfflicense_id, token_id, data, tenant_id=None, api_version="v2.0"):
         """
-        Update Token and mark is_revoked as true/false
+        Update Tenant Vff License Token
 
           **Parameters:**:
 
@@ -2683,7 +3010,7 @@ class Put(object):
 
     def vpnlinks_state(self, vpnlink_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Vpnlinks_State API Function
+        Change the VPNLink admin state
 
           **Parameters:**:
 
@@ -2712,7 +3039,7 @@ class Put(object):
 
     def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.3"):
         """
-        Update specific WAN interface label.
+        Update specific WAN interface label
 
           **Parameters:**:
 
@@ -2741,7 +3068,7 @@ class Put(object):
 
     def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.6"):
         """
-        Update the site WAN interface
+        Update the Site WAN interface
 
           **Parameters:**:
 
@@ -2880,6 +3207,12 @@ class Put(object):
 
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
+
+    ipfixlocalprefixes_s = site_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
+
+    ipfixlocalprefixes_t = tenant_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_t` to `tenant_ipfixlocalprefixes`"""
 
     natlocalprefixes_s = site_natlocalprefixes
     """ Backwards-compatibility alias of `natlocalprefixes_s` to `site_natlocalprefixes`"""
