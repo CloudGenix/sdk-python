@@ -2723,7 +2723,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <li class="mono"><a href="#cloudgenix.get_api.Get.spokeclusters_status">spokeclusters_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.state">state</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.staticroutes">staticroutes</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.status_staticroutes">status_staticroutes</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.staticroutes_status">staticroutes_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.syslogservers">syslogservers</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.templates_ntp">templates_ntp</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.tenant_anynetlinks">tenant_anynetlinks</a></li>
@@ -7465,9 +7465,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">status_staticroutes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">staticroutes_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Status_Staticroutes API Function</span>
+<span class="sd">        GET staticroutes_status API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -13323,9 +13323,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">status_staticroutes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">staticroutes_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Status_Staticroutes API Function</span>
+<span class="sd">        GET staticroutes_status API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -22953,15 +22953,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   </div>
   
             
-  <div class="item" id="cloudgenix.get_api.Get.status_staticroutes">
+  <div class="item" id="cloudgenix.get_api.Get.staticroutes_status">
     <div class="name def">
-    <p>def <span class="ident">status_staticroutes</span>(</p><p>self, site_id, element_id, staticroute_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">staticroutes_status</span>(</p><p>self, site_id, element_id, staticroute_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>GET Status_Staticroutes API Function</p>
+    <div class="desc"><p>GET staticroutes_status API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -22972,11 +22972,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.status_staticroutes', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.status_staticroutes" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">status_staticroutes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.staticroutes_status', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.staticroutes_status" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">staticroutes_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">staticroute_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Status_Staticroutes API Function</span>
+<span class="sd">    GET staticroutes_status API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>

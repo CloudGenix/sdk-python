@@ -4682,9 +4682,9 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def status_staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.1"):
+    def staticroutes_status(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.1"):
         """
-        GET Status_Staticroutes API Function
+        GET staticroutes_status API Function
 
           **Parameters:**:
 
