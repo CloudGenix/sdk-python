@@ -2253,37 +2253,6 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Site_Ipfixlocalprefixes API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         ipfixlocalprefix_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update an existing Site NAT Local prefix Association
@@ -2431,6 +2400,37 @@ class Put(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}".format(api_version,
                                                                    tenant_id,
                                                                    site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def sites_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Sites_Ipfixlocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         ipfixlocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -3208,8 +3208,8 @@ class Put(object):
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
-    ipfixlocalprefixes_s = site_ipfixlocalprefixes
-    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
+    ipfixlocalprefixes_s = sites_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `sites_ipfixlocalprefixes`"""
 
     ipfixlocalprefixes_t = tenant_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_t` to `tenant_ipfixlocalprefixes`"""
