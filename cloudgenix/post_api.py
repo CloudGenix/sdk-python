@@ -4444,9 +4444,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sites_ipfixlocalprefixes(self, site_id, data, tenant_id=None, api_version="v2.0"):
+    def site_ipfixlocalprefixes(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Sites_Ipfixlocalprefixes API Function
+        POST Site_ipfixlocalprefixes API Function
 
           **Parameters:**:
 
@@ -5678,8 +5678,8 @@ class Post(object):
     forgot_password_login_t = tenant_forgot_password_login
     """ Backwards-compatibility alias of `forgot_password_login_t` to `tenant_forgot_password_login`"""
 
-    ipfixlocalprefixes_s = sites_ipfixlocalprefixes
-    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `sites_ipfixlocalprefixes`"""
+    ipfixlocalprefixes_s = site_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
 
     ipfixlocalprefixes_t = tenant_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_t` to `tenant_ipfixlocalprefixes`"""

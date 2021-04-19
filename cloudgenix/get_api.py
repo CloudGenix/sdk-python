@@ -4286,9 +4286,9 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sites_correlationevents(self, site_id, tenant_id=None, api_version="v2.0"):
+    def site_correlationevents(self, site_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Sites_Correlationevents API Function
+        GET Site_correlationevents API Function
 
           **Parameters:**:
 
@@ -4314,9 +4314,9 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def sites_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Sites_Ipfixlocalprefixes API Function
+        GET Site_ipfixlocalprefixes API Function
 
           **Parameters:**:
 
@@ -5697,8 +5697,8 @@ class Get(object):
     correlationevents_interfaces = interfaces_correlationevents
     """ Backwards-compatibility alias of `correlationevents_interfaces` to `interfaces_correlationevents`"""
 
-    correlationevents_s = sites_correlationevents
-    """ Backwards-compatibility alias of `correlationevents_s` to `sites_correlationevents`"""
+    correlationevents_s = site_correlationevents
+    """ Backwards-compatibility alias of `correlationevents_s` to `site_correlationevents`"""
 
     correlationevents_waninterfaces = wantinterfaces_correlationevents
     """ Backwards-compatibility alias of `correlationevents_waninterfaces` to `wantinterfaces_correlationevents`"""
@@ -5727,8 +5727,8 @@ class Get(object):
     icon_appstatus_sdwanapps = sdwanapps_appstatus_icon
     """ Backwards-compatibility alias of `icon_appstatus_sdwanapps` to `sdwanapps_appstatus_icon`"""
 
-    ipfixlocalprefixes_s = sites_ipfixlocalprefixes
-    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `sites_ipfixlocalprefixes`"""
+    ipfixlocalprefixes_s = site_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
 
     ipfixlocalprefixes_t = tenant_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_t` to `tenant_ipfixlocalprefixes`"""

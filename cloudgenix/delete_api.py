@@ -2130,9 +2130,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
+    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Sites_Ipfixlocalprefixes API Function
+        DELETE Site_ipfixlocalprefixes API Function
 
           **Parameters:**:
 
@@ -2735,8 +2735,8 @@ class Delete(object):
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
-    ipfixlocalprefixes_s = sites_ipfixlocalprefixes
-    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `sites_ipfixlocalprefixes`"""
+    ipfixlocalprefixes_s = site_ipfixlocalprefixes
+    """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
 
     ipfixlocalprefixes_t = tenant_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_t` to `tenant_ipfixlocalprefixes`"""
