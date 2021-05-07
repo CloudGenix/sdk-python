@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v5.5.1b2
+**Version:** v5.5.1b3
 
 **Author:** CloudGenix
 
@@ -141,7 +141,7 @@ if PYTHON36_FEATURES:
 
 
 # Version of SDK
-version = "5.5.1b2"
+version = "5.5.1b3"
 """SDK Version string"""
 __version__ = version
 

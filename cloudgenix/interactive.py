@@ -584,12 +584,13 @@ class Interactive(object):
             # grab tenant address for location.
             address_lookup = tenant_dict.get('address', None)
             if address_lookup:
-                tenant_address = address_lookup.get('street', "") + ", "
-                tenant_address += (str(address_lookup.get('street2', "")) + ", ")
-                tenant_address += (str(address_lookup.get('city', "")) + ", ")
-                tenant_address += (str(address_lookup.get('state', "")) + ", ")
-                tenant_address += (str(address_lookup.get('post_code', "")) + ", ")
-                tenant_address += (str(address_lookup.get('country', "")) + ", ")
+                for key in address_lookup.keys():
+                    if address_lookup[key] is None:
+                        address_lookup[key] = ""
+
+                tenant_address = "{}, {}, {}, {}, {}, {}".format(address_lookup["street"], address_lookup["street2"],
+                                                  address_lookup["city"], address_lookup["state"],
+                                                  address_lookup["post_code"], address_lookup["country"])
             else:
                 tenant_address = "Unknown"
             self._parent_class.address = tenant_address
