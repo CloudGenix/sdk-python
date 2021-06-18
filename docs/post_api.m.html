@@ -2608,6 +2608,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <li class="mono"><a href="#cloudgenix.post_api.Post.elementsecurityzones">elementsecurityzones</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.elementsecurityzones_query">elementsecurityzones_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.elementusers">elementusers</a></li>
+    <li class="mono"><a href="#cloudgenix.post_api.Post.entitlements">entitlements</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.eventcorrelationpolicyrules">eventcorrelationpolicyrules</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.eventcorrelationpolicyrules_query">eventcorrelationpolicyrules_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.eventcorrelationpolicysets">eventcorrelationpolicysets</a></li>
@@ -2888,7 +2889,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">anynetlinks_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Anynetlinks API Function</span>
+<span class="sd">        POST Anynetlinks_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3149,7 +3150,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">certificate_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Certificate_Operations API Function</span>
+<span class="sd">        Start CIC renewal process for an element device</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3516,7 +3517,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">element_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_E API Function</span>
+<span class="sd">        POST Element_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3771,9 +3772,40 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Entitlements API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **operator_id**: Operator ID</span>
+<span class="sd">          - **session_id**: User Session ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">/sessions/</span><span class="si">{}</span><span class="s2">/actionservice/appportal/api/v1/entitlements&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                                               <span class="n">operator_id</span><span class="p">,</span>
+                                                                                                                               <span class="n">session_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">eventcorrelationpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eventcorrelationpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicyrules API Function</span>
+<span class="sd">        Create event correlation policyrule configuration</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3802,7 +3834,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">eventcorrelationpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicyrules_Query API Function</span>
+<span class="sd">        Queries db for limit number of event correlation policyrules that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3856,7 +3888,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">eventcorrelationpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicysets_Query API Function</span>
+<span class="sd">        Queries db for limit number of event correlation policysets that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4082,7 +4114,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">interfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Interfaces API Function</span>
+<span class="sd">        POST Interfaces_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4136,7 +4168,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfix API Function</span>
+<span class="sd">        Create a IPFix Config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4167,7 +4199,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfix_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfix_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix configs that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4194,7 +4226,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixcollectorcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixcollectorcontexts API Function</span>
+<span class="sd">        Create a IPFix Collector context</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4221,7 +4253,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixcollectorcontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixcollectorcontexts_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix collector context that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4248,7 +4280,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixfiltercontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixfiltercontexts API Function</span>
+<span class="sd">        Create a IPFix Filter context</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4275,7 +4307,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixfiltercontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixfiltercontexts_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix filter context that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4302,7 +4334,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixglobalprefixes API Function</span>
+<span class="sd">        Create a IPFix Global prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4356,7 +4388,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixlocalprefixes_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix site prefix association that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4383,7 +4415,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixprofiles API Function</span>
+<span class="sd">        Create a IPFix Profile</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4410,7 +4442,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixprofiles_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixprofiles_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix profiles that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4437,7 +4469,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixtemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixtemplates API Function</span>
+<span class="sd">        Create a IPFix template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4464,7 +4496,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixtemplates_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixtemplates_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix templates that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4919,7 +4951,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">monitor_sys_metrics_topn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Monitor_Sys_Metrics_Topn API Function</span>
+<span class="sd">        POST Topn_Sys_Metrics_Monitor API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6587,7 +6619,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">rquery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Rquery API Function</span>
+<span class="sd">        Query and get ESP machines across regions</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7025,7 +7057,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">site_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_S API Function</span>
+<span class="sd">        POST Site_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7104,6 +7136,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/extensions/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
                                                                                     <span class="n">site_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">site_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a IPFix site prefix association</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/ipfixlocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                      <span class="n">site_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -7245,35 +7306,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/bulk_config_state/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                         <span class="n">tenant_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">site_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Site_ipfixlocalprefixes API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/ipfixlocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                      <span class="n">site_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -7823,7 +7855,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">tenant_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Tenant_Ipfixlocalprefixes API Function</span>
+<span class="sd">        Create a IPFix local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7987,7 +8019,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">tenant_waninterfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Tenant_Waninterfaces_Query API Function</span>
+<span class="sd">        Query db for Site WAN interfaces that match query parameters</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8261,7 +8293,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">waninterfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Waninterfaces API Function</span>
+<span class="sd">        POST Waninterfaces_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8898,7 +8930,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">anynetlinks_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Anynetlinks API Function</span>
+<span class="sd">        POST Anynetlinks_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9159,7 +9191,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">certificate_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Certificate_Operations API Function</span>
+<span class="sd">        Start CIC renewal process for an element device</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9526,7 +9558,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">element_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_E API Function</span>
+<span class="sd">        POST Element_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9781,9 +9813,40 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Entitlements API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **operator_id**: Operator ID</span>
+<span class="sd">          - **session_id**: User Session ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">/sessions/</span><span class="si">{}</span><span class="s2">/actionservice/appportal/api/v1/entitlements&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                                               <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                                               <span class="n">operator_id</span><span class="p">,</span>
+                                                                                                                               <span class="n">session_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">eventcorrelationpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eventcorrelationpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicyrules API Function</span>
+<span class="sd">        Create event correlation policyrule configuration</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9812,7 +9875,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">eventcorrelationpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicyrules_Query API Function</span>
+<span class="sd">        Queries db for limit number of event correlation policyrules that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9866,7 +9929,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">eventcorrelationpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Eventcorrelationpolicysets_Query API Function</span>
+<span class="sd">        Queries db for limit number of event correlation policysets that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10092,7 +10155,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">interfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Interfaces API Function</span>
+<span class="sd">        POST Interfaces_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10146,7 +10209,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfix API Function</span>
+<span class="sd">        Create a IPFix Config</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10177,7 +10240,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfix_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfix_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix configs that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10204,7 +10267,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixcollectorcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixcollectorcontexts API Function</span>
+<span class="sd">        Create a IPFix Collector context</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10231,7 +10294,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixcollectorcontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixcollectorcontexts_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix collector context that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10258,7 +10321,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixfiltercontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixfiltercontexts API Function</span>
+<span class="sd">        Create a IPFix Filter context</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10285,7 +10348,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixfiltercontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixfiltercontexts_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix filter context that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10312,7 +10375,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixglobalprefixes API Function</span>
+<span class="sd">        Create a IPFix Global prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10366,7 +10429,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixlocalprefixes_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix site prefix association that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10393,7 +10456,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixprofiles API Function</span>
+<span class="sd">        Create a IPFix Profile</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10420,7 +10483,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixprofiles_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixprofiles_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix profiles that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10447,7 +10510,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixtemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixtemplates API Function</span>
+<span class="sd">        Create a IPFix template</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10474,7 +10537,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">ipfixtemplates_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Ipfixtemplates_Query API Function</span>
+<span class="sd">        Queries db for limit number of ipfix templates that match query params.</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10929,7 +10992,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">monitor_sys_metrics_topn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Monitor_Sys_Metrics_Topn API Function</span>
+<span class="sd">        POST Topn_Sys_Metrics_Monitor API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -12597,7 +12660,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">rquery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Rquery API Function</span>
+<span class="sd">        Query and get ESP machines across regions</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -13035,7 +13098,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">site_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_S API Function</span>
+<span class="sd">        POST Site_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -13114,6 +13177,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/extensions/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
                                                                                     <span class="n">site_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">site_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a IPFix site prefix association</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/ipfixlocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                      <span class="n">site_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -13255,35 +13347,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/bulk_config_state/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                         <span class="n">tenant_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">site_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Site_ipfixlocalprefixes API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/ipfixlocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                      <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                      <span class="n">site_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -13833,7 +13896,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">tenant_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Tenant_Ipfixlocalprefixes API Function</span>
+<span class="sd">        Create a IPFix local prefix</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -13997,7 +14060,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">tenant_waninterfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Tenant_Waninterfaces_Query API Function</span>
+<span class="sd">        Query db for Site WAN interfaces that match query parameters</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -14271,7 +14334,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">waninterfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        POST Query_Correlationevents_Waninterfaces API Function</span>
+<span class="sd">        POST Waninterfaces_Correlationevents_Query API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -16285,7 +16348,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Query_Correlationevents_Anynetlinks API Function</p>
+    <div class="desc"><p>POST Anynetlinks_Correlationevents_Query API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -16298,7 +16361,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.anynetlinks_correlationevents_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">anynetlinks_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Query_Correlationevents_Anynetlinks API Function</span>
+<span class="sd">    POST Anynetlinks_Correlationevents_Query API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -16735,7 +16798,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Certificate_Operations API Function</p>
+    <div class="desc"><p>Start CIC renewal process for an element device</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
@@ -16749,7 +16812,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.certificate_operations" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">certificate_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Certificate_Operations API Function</span>
+<span class="sd">    Start CIC renewal process for an element device</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -17370,7 +17433,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Query_Correlationevents_E API Function</p>
+    <div class="desc"><p>POST Element_Correlationevents_Query API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -17383,7 +17446,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.element_correlationevents_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Query_Correlationevents_E API Function</span>
+<span class="sd">    POST Element_Correlationevents_Query API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17806,6 +17869,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   </div>
   
             
+  <div class="item" id="cloudgenix.post_api.Post.entitlements">
+    <div class="name def">
+    <p>def <span class="ident">entitlements</span>(</p><p>self, operator_id, session_id, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>POST Entitlements API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>operator_id</strong>: Operator ID</li>
+<li><strong>session_id</strong>: User Session ID</li>
+<li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.post_api.Post.entitlements', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.post_api.Post.entitlements" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    POST Entitlements API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **operator_id**: Operator ID</span>
+<span class="sd">      - **session_id**: User Session ID</span>
+<span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/operators/</span><span class="si">{}</span><span class="s2">/sessions/</span><span class="si">{}</span><span class="s2">/actionservice/appportal/api/v1/entitlements&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                                           <span class="n">operator_id</span><span class="p">,</span>
+                                                                                                                           <span class="n">session_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.post_api.Post.eventcorrelationpolicyrules">
     <div class="name def">
     <p>def <span class="ident">eventcorrelationpolicyrules</span>(</p><p>self, eventcorrelationpolicyset_id, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -17814,7 +17930,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Eventcorrelationpolicyrules API Function</p>
+    <div class="desc"><p>Create event correlation policyrule configuration</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>eventcorrelationpolicyset_id</strong>: Event Correlation Policy Set ID</li>
@@ -17828,7 +17944,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.eventcorrelationpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">eventcorrelationpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eventcorrelationpolicyset_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Eventcorrelationpolicyrules API Function</span>
+<span class="sd">    Create event correlation policyrule configuration</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **eventcorrelationpolicyset_id**: Event Correlation Policy Set ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -17864,7 +17980,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Eventcorrelationpolicyrules_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of event correlation policyrules that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -17877,7 +17993,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.eventcorrelationpolicyrules_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">eventcorrelationpolicyrules_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Eventcorrelationpolicyrules_Query API Function</span>
+<span class="sd">    Queries db for limit number of event correlation policyrules that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17958,7 +18074,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Eventcorrelationpolicysets_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of event correlation policysets that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -17971,7 +18087,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.eventcorrelationpolicysets_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">eventcorrelationpolicysets_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Eventcorrelationpolicysets_Query API Function</span>
+<span class="sd">    Queries db for limit number of event correlation policysets that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18349,7 +18465,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Query_Correlationevents_Interfaces API Function</p>
+    <div class="desc"><p>POST Interfaces_Correlationevents_Query API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18362,7 +18478,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.interfaces_correlationevents_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Query_Correlationevents_Interfaces API Function</span>
+<span class="sd">    POST Interfaces_Correlationevents_Query API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18443,7 +18559,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfix API Function</p>
+    <div class="desc"><p>Create a IPFix Config</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -18458,7 +18574,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfix" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfix API Function</span>
+<span class="sd">    Create a IPFix Config</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -18496,7 +18612,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfix_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix configs that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18509,7 +18625,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfix_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfix_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfix_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix configs that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18543,7 +18659,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixcollectorcontexts API Function</p>
+    <div class="desc"><p>Create a IPFix Collector context</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18556,7 +18672,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixcollectorcontexts" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixcollectorcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixcollectorcontexts API Function</span>
+<span class="sd">    Create a IPFix Collector context</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18590,7 +18706,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixcollectorcontexts_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix collector context that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18603,7 +18719,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixcollectorcontexts_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixcollectorcontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixcollectorcontexts_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix collector context that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18637,7 +18753,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixfiltercontexts API Function</p>
+    <div class="desc"><p>Create a IPFix Filter context</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18650,7 +18766,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixfiltercontexts" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixfiltercontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixfiltercontexts API Function</span>
+<span class="sd">    Create a IPFix Filter context</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18684,7 +18800,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixfiltercontexts_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix filter context that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18697,7 +18813,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixfiltercontexts_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixfiltercontexts_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixfiltercontexts_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix filter context that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18731,7 +18847,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixglobalprefixes API Function</p>
+    <div class="desc"><p>Create a IPFix Global prefix</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18744,7 +18860,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixglobalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixglobalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixglobalprefixes API Function</span>
+<span class="sd">    Create a IPFix Global prefix</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18825,7 +18941,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixlocalprefixes_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix site prefix association that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18838,7 +18954,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixlocalprefixes_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixlocalprefixes_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixlocalprefixes_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix site prefix association that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18872,7 +18988,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixprofiles API Function</p>
+    <div class="desc"><p>Create a IPFix Profile</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18885,7 +19001,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixprofiles API Function</span>
+<span class="sd">    Create a IPFix Profile</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18919,7 +19035,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixprofiles_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix profiles that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18932,7 +19048,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixprofiles_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixprofiles_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixprofiles_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix profiles that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -18966,7 +19082,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixtemplates API Function</p>
+    <div class="desc"><p>Create a IPFix template</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -18979,7 +19095,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixtemplates" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixtemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixtemplates API Function</span>
+<span class="sd">    Create a IPFix template</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19013,7 +19129,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Ipfixtemplates_Query API Function</p>
+    <div class="desc"><p>Queries db for limit number of ipfix templates that match query params.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -19026,7 +19142,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.ipfixtemplates_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ipfixtemplates_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Ipfixtemplates_Query API Function</span>
+<span class="sd">    Queries db for limit number of ipfix templates that match query params.</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -19809,7 +19925,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Monitor_Sys_Metrics_Topn API Function</p>
+    <div class="desc"><p>POST Topn_Sys_Metrics_Monitor API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -19822,7 +19938,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.monitor_sys_metrics_topn" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_sys_metrics_topn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Monitor_Sys_Metrics_Topn API Function</span>
+<span class="sd">    POST Topn_Sys_Metrics_Monitor API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -22701,7 +22817,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Rquery API Function</p>
+    <div class="desc"><p>Query and get ESP machines across regions</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -22714,7 +22830,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.rquery" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rquery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Rquery API Function</span>
+<span class="sd">    Query and get ESP machines across regions</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -23462,7 +23578,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Query_Correlationevents_S API Function</p>
+    <div class="desc"><p>POST Site_Correlationevents_Query API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -23475,7 +23591,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.site_correlationevents_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Query_Correlationevents_S API Function</span>
+<span class="sd">    POST Site_Correlationevents_Query API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -23609,7 +23725,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Site_ipfixlocalprefixes API Function</p>
+    <div class="desc"><p>Create a IPFix site prefix association</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -23623,7 +23739,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.site_ipfixlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Site_ipfixlocalprefixes API Function</span>
+<span class="sd">    Create a IPFix site prefix association</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
@@ -24841,7 +24957,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Tenant_Ipfixlocalprefixes API Function</p>
+    <div class="desc"><p>Create a IPFix local prefix</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -24854,7 +24970,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.tenant_ipfixlocalprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_ipfixlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Tenant_Ipfixlocalprefixes API Function</span>
+<span class="sd">    Create a IPFix local prefix</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -25126,7 +25242,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Tenant_Waninterfaces_Query API Function</p>
+    <div class="desc"><p>Query db for Site WAN interfaces that match query parameters</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -25139,7 +25255,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.tenant_waninterfaces_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_waninterfaces_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Tenant_Waninterfaces_Query API Function</span>
+<span class="sd">    Query db for Site WAN interfaces that match query parameters</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -25602,7 +25718,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>POST Query_Correlationevents_Waninterfaces API Function</p>
+    <div class="desc"><p>POST Waninterfaces_Correlationevents_Query API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
@@ -25615,7 +25731,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.post_api.Post.waninterfaces_correlationevents_query" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">waninterfaces_correlationevents_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    POST Query_Correlationevents_Waninterfaces API Function</span>
+<span class="sd">    POST Waninterfaces_Correlationevents_Query API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>

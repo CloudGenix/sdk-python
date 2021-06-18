@@ -623,7 +623,7 @@ class Get(object):
 
     def certificates_revoked(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Certificates_Revoked API Function
+        GET Revoked_Certificates API Function
 
           **Parameters:**:
 
@@ -1440,7 +1440,7 @@ class Get(object):
 
     def eventcorrelationpolicyrules(self, eventcorrelationpolicyset_id, eventcorrelationpolicyrule_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Eventcorrelationpolicyrules API Function
+        Get all event correlation policyrules
 
           **Parameters:**:
 
@@ -1475,7 +1475,7 @@ class Get(object):
 
     def eventcorrelationpolicysets(self, eventcorrelationpolicyset_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Eventcorrelationpolicysets API Function
+        Get all event correlation policysets
 
           **Parameters:**:
 
@@ -1896,7 +1896,7 @@ class Get(object):
 
     def ipfix(self, site_id, element_id, ipfix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfix API Function
+        Get all IPFix config
 
           **Parameters:**:
 
@@ -1934,7 +1934,7 @@ class Get(object):
 
     def ipfixcollectorcontexts(self, ipfixcollectorcontext_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfixcollectorcontexts API Function
+        Get all IPFix collector context
 
           **Parameters:**:
 
@@ -1966,7 +1966,7 @@ class Get(object):
 
     def ipfixfiltercontexts(self, ipfixfiltercontext_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfixfiltercontexts API Function
+        Get all IPFix filter context
 
           **Parameters:**:
 
@@ -1998,7 +1998,7 @@ class Get(object):
 
     def ipfixglobalprefixes(self, ipfixglobalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfixglobalprefixes API Function
+        Get all IPFix global prefix
 
           **Parameters:**:
 
@@ -2030,7 +2030,7 @@ class Get(object):
 
     def ipfixprofiles(self, ipfixprofile_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfixprofiles API Function
+        Get all IPFix Profiles
 
           **Parameters:**:
 
@@ -2062,7 +2062,7 @@ class Get(object):
 
     def ipfixtemplates(self, ipfixtemplate_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Ipfixtemplates API Function
+        Get all IPFix templates
 
           **Parameters:**:
 
@@ -3370,13 +3370,13 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def profile(self, api_version="v2.0"):
+    def profile(self, api_version="v2.1"):
         """
         Get current user profile
 
           **Parameters:**:
 
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4058,6 +4058,34 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def site_correlationevents(self, site_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Sites_Correlationevents API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/correlationevents".format(api_version,
+                                                                                     tenant_id,
+                                                                                     site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def site_extensions(self, site_id, extension_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all site level extensions
@@ -4089,6 +4117,41 @@ class Get(object):
                                                                                      tenant_id,
                                                                                      site_id,
                                                                                      extension_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all IPFix site prefix association
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **ipfixlocalprefix_id**: (optional) IPFix Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not ipfixlocalprefix_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes".format(api_version,
+                                                                                          tenant_id,
+                                                                                          site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             site_id,
+                                                                                             ipfixlocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4282,69 +4345,6 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}".format(api_version,
                                                                        tenant_id,
                                                                        site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_correlationevents(self, site_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Site_correlationevents API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/correlationevents".format(api_version,
-                                                                                     tenant_id,
-                                                                                     site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
-        """
-        GET Site_ipfixlocalprefixes API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **ipfixlocalprefix_id**: (optional) IPFix Local Prefix ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        if not ipfixlocalprefix_id:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes".format(api_version,
-                                                                                          tenant_id,
-                                                                                          site_id)
-        else:
-            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
-                                                                                             tenant_id,
-                                                                                             site_id,
-                                                                                             ipfixlocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4684,7 +4684,7 @@ class Get(object):
 
     def staticroutes_status(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.1"):
         """
-        GET Staticroutes Status API Function
+        Get static route status
 
           **Parameters:**:
 
@@ -4924,7 +4924,7 @@ class Get(object):
 
     def tenant_ipfixlocalprefixes(self, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Tenant_Ipfixlocalprefixes API Function
+        Get all IPFix local prefix
 
           **Parameters:**:
 
@@ -5134,14 +5134,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenants(self, tenant_id=None, api_version="v2.0"):
+    def tenants(self, tenant_id=None, api_version="v2.1"):
         """
         Get tenant details for tenant id
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5855,6 +5855,9 @@ class Get(object):
 
     status_spokeclusters = spokeclusters_status
     """ Backwards-compatibility alias of `status_spokeclusters` to `spokeclusters_status`"""
+
+    status_staticroutes = staticroutes_status
+    """ Backwards-compatibility alias of `status_staticroutes` to `staticroutes_status`"""
 
     status_vfflicenses = vfflicense_status
     """ Backwards-compatibility alias of `status_vfflicenses` to `vfflicense_status`"""
