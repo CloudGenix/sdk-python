@@ -738,7 +738,7 @@ class Delete(object):
 
     def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.10"):
         """
-        Delete an element interface
+        Delete Interface
 
           **Parameters:**:
 

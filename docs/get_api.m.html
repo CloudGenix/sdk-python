@@ -2603,6 +2603,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <li class="mono"><a href="#cloudgenix.get_api.Get.dnsserviceroles">dnsserviceroles</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.dnsservices">dnsservices</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_bgppeers_status">element_bgppeers_status</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.element_correlationevents">element_correlationevents</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_extensions">element_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_images">element_images</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_passages">element_passages</a></li>
@@ -2611,7 +2612,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementaccessstates">elementaccessstates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementpassageconfigs">elementpassageconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elements">elements</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.elements_correlationevents">elements_correlationevents</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementsecurityzones">elementsecurityzones</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementusers">elementusers</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.elementusers_password">elementusers_password</a></li>
@@ -3460,7 +3460,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all machines of tenant</span>
+<span class="sd">        Get all machines allocated by ESP to a client tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3697,6 +3697,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Element_Correlationevents API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                 <span class="n">site_id</span><span class="p">,</span>
+                                                                                                 <span class="n">element_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">element_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all element level extensions</span>
@@ -3836,7 +3866,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all element ElementAccess Config</span>
+<span class="sd">        Get all Element Access Configs</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3927,7 +3957,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all elements of a tenant in a site</span>
+<span class="sd">        Get Elements of a tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3953,36 +3983,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                           <span class="n">tenant_id</span><span class="p">,</span>
                                                                           <span class="n">element_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">elements_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Elements_Correlationevents API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                                 <span class="n">site_id</span><span class="p">,</span>
-                                                                                                 <span class="n">element_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -4167,7 +4167,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">esp_operator_permissions_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get client permissions</span>
+<span class="sd">        Get esp operator permissions assigned under a client</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4577,7 +4577,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.10&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get element interfaces</span>
+<span class="sd">        Get all Interfaces</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8474,8 +8474,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="n">correlationevents_anynetlinks</span> <span class="o">=</span> <span class="n">anynetlinks_correlationevents</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_anynetlinks` to `anynetlinks_correlationevents`&quot;&quot;&quot;</span>
 
-    <span class="n">correlationevents_e</span> <span class="o">=</span> <span class="n">elements_correlationevents</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_e` to `elements_correlationevents`&quot;&quot;&quot;</span>
+    <span class="n">correlationevents_e</span> <span class="o">=</span> <span class="n">element_correlationevents</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_e` to `element_correlationevents`&quot;&quot;&quot;</span>
 
     <span class="n">correlationevents_interfaces</span> <span class="o">=</span> <span class="n">interfaces_correlationevents</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_interfaces` to `interfaces_correlationevents`&quot;&quot;&quot;</span>
@@ -8659,6 +8659,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="n">toolkitsessions_t</span> <span class="o">=</span> <span class="n">toolkitsessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`&quot;&quot;&quot;</span>
+
+    <span class="n">elements_correlationevents</span> <span class="o">=</span> <span class="n">element_correlationevents</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `elements_correlationevents` to `element_correlationevents`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -9324,7 +9327,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all machines of tenant</span>
+<span class="sd">        Get all machines allocated by ESP to a client tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9561,6 +9564,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">element_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GET Element_Correlationevents API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **element_id**: Element (Device) ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                 <span class="n">site_id</span><span class="p">,</span>
+                                                                                                 <span class="n">element_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">element_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">extension_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all element level extensions</span>
@@ -9700,7 +9733,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all element ElementAccess Config</span>
+<span class="sd">        Get all Element Access Configs</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9791,7 +9824,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all elements of a tenant in a site</span>
+<span class="sd">        Get Elements of a tenant</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9817,36 +9850,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                           <span class="n">tenant_id</span><span class="p">,</span>
                                                                           <span class="n">element_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">elements_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Elements_Correlationevents API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                                 <span class="n">site_id</span><span class="p">,</span>
-                                                                                                 <span class="n">element_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -10031,7 +10034,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">esp_operator_permissions_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get client permissions</span>
+<span class="sd">        Get esp operator permissions assigned under a client</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10441,7 +10444,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.10&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get element interfaces</span>
+<span class="sd">        Get all Interfaces</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -14338,8 +14341,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="n">correlationevents_anynetlinks</span> <span class="o">=</span> <span class="n">anynetlinks_correlationevents</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_anynetlinks` to `anynetlinks_correlationevents`&quot;&quot;&quot;</span>
 
-    <span class="n">correlationevents_e</span> <span class="o">=</span> <span class="n">elements_correlationevents</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_e` to `elements_correlationevents`&quot;&quot;&quot;</span>
+    <span class="n">correlationevents_e</span> <span class="o">=</span> <span class="n">element_correlationevents</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_e` to `element_correlationevents`&quot;&quot;&quot;</span>
 
     <span class="n">correlationevents_interfaces</span> <span class="o">=</span> <span class="n">interfaces_correlationevents</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_interfaces` to `interfaces_correlationevents`&quot;&quot;&quot;</span>
@@ -14523,6 +14526,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     <span class="n">toolkitsessions_t</span> <span class="o">=</span> <span class="n">toolkitsessions</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`&quot;&quot;&quot;</span>
+
+    <span class="n">elements_correlationevents</span> <span class="o">=</span> <span class="n">element_correlationevents</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `elements_correlationevents` to `element_correlationevents`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -14674,7 +14680,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>correlationevents_e</code> to <code>elements_correlationevents</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>correlationevents_e</code> to <code>element_correlationevents</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -14741,6 +14747,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>elementpassageconfigs_t</code> to <code>tenant_elementpassageconfigs</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.elements_correlationevents">
+            <p class="name">var <span class="ident">elements_correlationevents</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>elements_correlationevents</code> to <code>element_correlationevents</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -16395,7 +16412,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>Get all machines of tenant</p>
+    <div class="desc"><p>Get all machines allocated by ESP to a client tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>client_id</strong>: ESP/MSP Client ID (typically their tenant_id)</li>
@@ -16409,7 +16426,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.get_api.Get.clients_machines" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">clients_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">machine_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all machines of tenant</span>
+<span class="sd">    Get all machines allocated by ESP to a client tenant</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
 <span class="sd">      - **machine_id**: (optional) Machine ID</span>
@@ -16773,6 +16790,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.element_correlationevents">
+    <div class="name def">
+    <p>def <span class="ident">element_correlationevents</span>(</p><p>self, site_id, element_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Element_Correlationevents API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>site_id</strong>: Site ID</li>
+<li><strong>element_id</strong>: Element (Device) ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.element_correlationevents', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.element_correlationevents" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Element_Correlationevents API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **site_id**: Site ID</span>
+<span class="sd">      - **element_id**: Element (Device) ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                             <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                             <span class="n">site_id</span><span class="p">,</span>
+                                                                                             <span class="n">element_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.element_extensions">
     <div class="name def">
     <p>def <span class="ident">element_extensions</span>(</p><p>self, site_id, element_id, extension_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -17003,7 +17071,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>Get all element ElementAccess Config</p>
+    <div class="desc"><p>Get all Element Access Configs</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
@@ -17017,7 +17085,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.get_api.Get.elementaccessconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all element ElementAccess Config</span>
+<span class="sd">    Get all Element Access Configs</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **elementaccessconfig_id**: (optional) Element Access Config ID</span>
@@ -17155,7 +17223,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>Get all elements of a tenant in a site</p>
+    <div class="desc"><p>Get Elements of a tenant</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: (optional) Element (Device) ID</li>
@@ -17168,7 +17236,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.get_api.Get.elements" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all elements of a tenant in a site</span>
+<span class="sd">    Get Elements of a tenant</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: (optional) Element (Device) ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17189,57 +17257,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                       <span class="n">tenant_id</span><span class="p">,</span>
                                                                       <span class="n">element_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.get_api.Get.elements_correlationevents">
-    <div class="name def">
-    <p>def <span class="ident">elements_correlationevents</span>(</p><p>self, site_id, element_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>GET Elements_Correlationevents API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>site_id</strong>: Site ID</li>
-<li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.elements_correlationevents', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.elements_correlationevents" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elements_correlationevents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Elements_Correlationevents API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/correlationevents&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                             <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                             <span class="n">site_id</span><span class="p">,</span>
-                                                                                             <span class="n">element_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>
@@ -17556,7 +17573,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>Get client permissions</p>
+    <div class="desc"><p>Get esp operator permissions assigned under a client</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
@@ -17570,7 +17587,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.get_api.Get.esp_operator_permissions_client" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">esp_operator_permissions_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get client permissions</span>
+<span class="sd">    Get esp operator permissions assigned under a client</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
 <span class="sd">      - **client_id**: ESP/MSP Client ID (typically their tenant_id)</span>
@@ -18233,7 +18250,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
     
   
-    <div class="desc"><p>Get element interfaces</p>
+    <div class="desc"><p>Get all Interfaces</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -18248,7 +18265,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
   <div id="source-cloudgenix.get_api.Get.interfaces" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.10&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get element interfaces</span>
+<span class="sd">    Get all Interfaces</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>

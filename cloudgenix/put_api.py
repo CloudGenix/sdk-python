@@ -877,7 +877,7 @@ class Put(object):
 
     def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.10"):
         """
-        Provision an element interface
+        Update a Interface
 
           **Parameters:**:
 

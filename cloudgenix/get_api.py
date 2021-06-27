@@ -677,7 +677,7 @@ class Get(object):
 
     def clients_machines(self, client_id, machine_id=None, tenant_id=None, api_version="v2.1"):
         """
-        Get all machines of tenant
+        Get all machines allocated by ESP to a client tenant
 
           **Parameters:**:
 
@@ -914,6 +914,36 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def element_correlationevents(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Element_Correlationevents API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/correlationevents".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def element_extensions(self, site_id, element_id, extension_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all element level extensions
@@ -1053,7 +1083,7 @@ class Get(object):
 
     def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.2"):
         """
-        Get all element ElementAccess Config
+        Get all Element Access Configs
 
           **Parameters:**:
 
@@ -1144,7 +1174,7 @@ class Get(object):
 
     def elements(self, element_id=None, tenant_id=None, api_version="v2.4"):
         """
-        Get all elements of a tenant in a site
+        Get Elements of a tenant
 
           **Parameters:**:
 
@@ -1170,36 +1200,6 @@ class Get(object):
             url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}".format(api_version,
                                                                           tenant_id,
                                                                           element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def elements_correlationevents(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Elements_Correlationevents API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/correlationevents".format(api_version,
-                                                                                                 tenant_id,
-                                                                                                 site_id,
-                                                                                                 element_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -1384,7 +1384,7 @@ class Get(object):
 
     def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.1"):
         """
-        Get client permissions
+        Get esp operator permissions assigned under a client
 
           **Parameters:**:
 
@@ -1794,7 +1794,7 @@ class Get(object):
 
     def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.10"):
         """
-        Get element interfaces
+        Get all Interfaces
 
           **Parameters:**:
 
@@ -5691,8 +5691,8 @@ class Get(object):
     correlationevents_anynetlinks = anynetlinks_correlationevents
     """ Backwards-compatibility alias of `correlationevents_anynetlinks` to `anynetlinks_correlationevents`"""
 
-    correlationevents_e = elements_correlationevents
-    """ Backwards-compatibility alias of `correlationevents_e` to `elements_correlationevents`"""
+    correlationevents_e = element_correlationevents
+    """ Backwards-compatibility alias of `correlationevents_e` to `element_correlationevents`"""
 
     correlationevents_interfaces = interfaces_correlationevents
     """ Backwards-compatibility alias of `correlationevents_interfaces` to `interfaces_correlationevents`"""
@@ -5876,4 +5876,7 @@ class Get(object):
 
     toolkitsessions_t = toolkitsessions
     """ Backwards-compatibility alias of `toolkitsessions_t` to `toolkitsessions`"""
+
+    elements_correlationevents = element_correlationevents
+    """ Backwards-compatibility alias of `elements_correlationevents` to `element_correlationevents`"""
 
