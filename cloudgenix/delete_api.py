@@ -534,7 +534,7 @@ class Delete(object):
 
     def eventcorrelationpolicyrules(self, eventcorrelationpolicyset_id, eventcorrelationpolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Eventcorrelationpolicyrules API Function
+        Delete specific event correlation policy rule
 
           **Parameters:**:
 
@@ -564,7 +564,7 @@ class Delete(object):
 
     def eventcorrelationpolicysets(self, eventcorrelationpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Eventcorrelationpolicysets API Function
+        Delete specific event correlation policyset
 
           **Parameters:**:
 
@@ -738,7 +738,7 @@ class Delete(object):
 
     def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.10"):
         """
-        Delete an element interface
+        Delete Interface
 
           **Parameters:**:
 
@@ -770,7 +770,7 @@ class Delete(object):
 
     def ipfix(self, site_id, element_id, ipfix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfix API Function
+        Delete IPFix config
 
           **Parameters:**:
 
@@ -802,7 +802,7 @@ class Delete(object):
 
     def ipfixcollectorcontexts(self, ipfixcollectorcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfixcollectorcontexts API Function
+        Delete a IPFix collector context
 
           **Parameters:**:
 
@@ -830,7 +830,7 @@ class Delete(object):
 
     def ipfixfiltercontexts(self, ipfixfiltercontext_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfixfiltercontexts API Function
+        Delete a IPFix filter context
 
           **Parameters:**:
 
@@ -858,7 +858,7 @@ class Delete(object):
 
     def ipfixglobalprefixes(self, ipfixglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfixglobalprefixes API Function
+        Delete a IPFix global prefix
 
           **Parameters:**:
 
@@ -886,7 +886,7 @@ class Delete(object):
 
     def ipfixprofiles(self, ipfixprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfixprofiles API Function
+        Delete IPFix Profile
 
           **Parameters:**:
 
@@ -914,7 +914,7 @@ class Delete(object):
 
     def ipfixtemplates(self, ipfixtemplate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ipfixtemplates API Function
+        Delete a IPFix template
 
           **Parameters:**:
 
@@ -2012,6 +2012,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        Delete a IPFix site prefix association
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         ipfixlocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
         Delete an existing Site NAT prefix
@@ -2126,36 +2156,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}".format(api_version,
                                                                    tenant_id,
                                                                    site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Site_ipfixlocalprefixes API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes/{}".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         ipfixlocalprefix_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -2406,7 +2406,7 @@ class Delete(object):
 
     def tenant_ipfixlocalprefixes(self, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tenant_Ipfixlocalprefixes API Function
+        Delete a IPFix local prefix
 
           **Parameters:**:
 

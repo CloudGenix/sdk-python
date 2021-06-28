@@ -83,7 +83,7 @@ class Post(object):
 
     def anynetlinks_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Query_Correlationevents_Anynetlinks API Function
+        POST Anynetlinks_Correlationevents_Query API Function
 
           **Parameters:**:
 
@@ -344,7 +344,7 @@ class Post(object):
 
     def certificate_operations(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Certificate_Operations API Function
+        Start CIC renewal process for an element device
 
           **Parameters:**:
 
@@ -429,7 +429,7 @@ class Post(object):
 
     def clients_machines_query(self, client_id, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Clients_Machines_Query API Function
+        Query and get all machines allocated by ESP to a client tenant
 
           **Parameters:**:
 
@@ -709,9 +709,36 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def element_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Element_Bulk_Config_State_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/bulk_config_state/query".format(api_version,
+                                                                                           tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def element_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Correlationevents_E API Function
+        POST Element_Correlationevents_Query API Function
 
           **Parameters:**:
 
@@ -798,6 +825,33 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def element_query(self, data, tenant_id=None, api_version="v2.4"):
+        """
+        POST Element_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.4)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/query".format(api_version,
+                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def elementaccessconfigs(self, element_id, data, tenant_id=None, api_version="v2.2"):
         """
         POST Elementaccessconfigs API Function
@@ -823,60 +877,6 @@ class Post(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs".format(api_version,
                                                                                            tenant_id,
                                                                                            element_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def elements_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Get element config/state info for queried elements from NB
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/bulk_config_state/query".format(api_version,
-                                                                                           tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def elements_query(self, data, tenant_id=None, api_version="v2.4"):
-        """
-        Queries db for limit number of elements that match query params.
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/query".format(api_version,
-                                                                         tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -966,9 +966,40 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def entitlements(self, operator_id, session_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Entitlements API Function
+
+          **Parameters:**:
+
+          - **operator_id**: Operator ID
+          - **session_id**: User Session ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/operators/{}/sessions/{}/actionservice/appportal/api/v1/entitlements".format(api_version,
+                                                                                                                               tenant_id,
+                                                                                                                               operator_id,
+                                                                                                                               session_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def eventcorrelationpolicyrules(self, eventcorrelationpolicyset_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Eventcorrelationpolicyrules API Function
+        Create event correlation policyrule configuration
 
           **Parameters:**:
 
@@ -997,7 +1028,7 @@ class Post(object):
 
     def eventcorrelationpolicyrules_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Eventcorrelationpolicyrules_Query API Function
+        Queries db for limit number of event correlation policyrules that match query params.
 
           **Parameters:**:
 
@@ -1051,7 +1082,7 @@ class Post(object):
 
     def eventcorrelationpolicysets_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Eventcorrelationpolicysets_Query API Function
+        Queries db for limit number of event correlation policysets that match query params.
 
           **Parameters:**:
 
@@ -1246,7 +1277,7 @@ class Post(object):
 
     def interfaces(self, site_id, element_id, data, tenant_id=None, api_version="v4.10"):
         """
-        Create an element logical interface
+        Create a Interface
 
           **Parameters:**:
 
@@ -1277,7 +1308,7 @@ class Post(object):
 
     def interfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Correlationevents_Interfaces API Function
+        POST Interfaces_Correlationevents_Query API Function
 
           **Parameters:**:
 
@@ -1304,7 +1335,7 @@ class Post(object):
 
     def interfaces_query(self, data, tenant_id=None, api_version="v4.10"):
         """
-        Query element interfaces
+        Queries db for limit number of interfaces that match query params.
 
           **Parameters:**:
 
@@ -1331,7 +1362,7 @@ class Post(object):
 
     def ipfix(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfix API Function
+        Create a IPFix Config
 
           **Parameters:**:
 
@@ -1362,7 +1393,7 @@ class Post(object):
 
     def ipfix_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfix_Query API Function
+        Queries db for limit number of ipfix configs that match query params.
 
           **Parameters:**:
 
@@ -1389,7 +1420,7 @@ class Post(object):
 
     def ipfixcollectorcontexts(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixcollectorcontexts API Function
+        Create a IPFix Collector context
 
           **Parameters:**:
 
@@ -1416,7 +1447,7 @@ class Post(object):
 
     def ipfixcollectorcontexts_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixcollectorcontexts_Query API Function
+        Queries db for limit number of ipfix collector context that match query params.
 
           **Parameters:**:
 
@@ -1443,7 +1474,7 @@ class Post(object):
 
     def ipfixfiltercontexts(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixfiltercontexts API Function
+        Create a IPFix Filter context
 
           **Parameters:**:
 
@@ -1470,7 +1501,7 @@ class Post(object):
 
     def ipfixfiltercontexts_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixfiltercontexts_Query API Function
+        Queries db for limit number of ipfix filter context that match query params.
 
           **Parameters:**:
 
@@ -1497,7 +1528,7 @@ class Post(object):
 
     def ipfixglobalprefixes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixglobalprefixes API Function
+        Create a IPFix Global prefix
 
           **Parameters:**:
 
@@ -1551,7 +1582,7 @@ class Post(object):
 
     def ipfixlocalprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixlocalprefixes_Query API Function
+        Queries db for limit number of ipfix site prefix association that match query params.
 
           **Parameters:**:
 
@@ -1578,7 +1609,7 @@ class Post(object):
 
     def ipfixprofiles(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixprofiles API Function
+        Create a IPFix Profile
 
           **Parameters:**:
 
@@ -1605,7 +1636,7 @@ class Post(object):
 
     def ipfixprofiles_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixprofiles_Query API Function
+        Queries db for limit number of ipfix profiles that match query params.
 
           **Parameters:**:
 
@@ -1632,7 +1663,7 @@ class Post(object):
 
     def ipfixtemplates(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixtemplates API Function
+        Create a IPFix template
 
           **Parameters:**:
 
@@ -1659,7 +1690,7 @@ class Post(object):
 
     def ipfixtemplates_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ipfixtemplates_Query API Function
+        Queries db for limit number of ipfix templates that match query params.
 
           **Parameters:**:
 
@@ -2114,7 +2145,7 @@ class Post(object):
 
     def monitor_sys_metrics_topn(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Sys_Metrics_Topn API Function
+        POST Topn_Sys_Metrics_Monitor API Function
 
           **Parameters:**:
 
@@ -3782,7 +3813,7 @@ class Post(object):
 
     def rquery(self, data, tenant_id=None, api_version="v3.0"):
         """
-        POST Rquery API Function
+        Query and get ESP machines across regions
 
           **Parameters:**:
 
@@ -4218,9 +4249,36 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def site_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Site_Bulk_Config_State_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/bulk_config_state/query".format(api_version,
+                                                                                        tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def site_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Correlationevents_S API Function
+        POST Site_Correlationevents_Query API Function
 
           **Parameters:**:
 
@@ -4299,6 +4357,35 @@ class Post(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/extensions/query".format(api_version,
                                                                                     tenant_id,
                                                                                     site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def site_ipfixlocalprefixes(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Create a IPFix site prefix association
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4390,6 +4477,33 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def site_query(self, data, tenant_id=None, api_version="v4.5"):
+        """
+        POST Site_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v4.5)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/query".format(api_version,
+                                                                      tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def sites(self, data, tenant_id=None, api_version="v4.5"):
         """
         Create a new site
@@ -4413,89 +4527,6 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites".format(api_version,
                                                                 tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def sites_bulk_config_state_query(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Get site config/state info for queried site from NB
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/bulk_config_state/query".format(api_version,
-                                                                                        tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def site_ipfixlocalprefixes(self, site_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        POST Site_ipfixlocalprefixes API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ipfixlocalprefixes".format(api_version,
-                                                                                      tenant_id,
-                                                                                      site_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def sites_query(self, data, tenant_id=None, api_version="v4.5"):
-        """
-        Queries db for limit number of sites that match query params.
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.5)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/query".format(api_version,
-                                                                      tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -5018,7 +5049,7 @@ class Post(object):
 
     def tenant_ipfixlocalprefixes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Tenant_Ipfixlocalprefixes API Function
+        Create a IPFix local prefix
 
           **Parameters:**:
 
@@ -5182,7 +5213,7 @@ class Post(object):
 
     def tenant_waninterfaces_query(self, data, tenant_id=None, api_version="v2.6"):
         """
-        POST Tenant_Waninterfaces_Query API Function
+        Query db for Site WAN interfaces that match query parameters
 
           **Parameters:**:
 
@@ -5400,7 +5431,7 @@ class Post(object):
 
     def waninterfacelabels_query(self, data, tenant_id=None, api_version="v2.3"):
         """
-        Query db for WAN interface labels that match query parameters
+        Query db for site WAN interfaces that match query parameters
 
           **Parameters:**:
 
@@ -5427,7 +5458,7 @@ class Post(object):
 
     def waninterfaces(self, site_id, data, tenant_id=None, api_version="v2.6"):
         """
-        Create site WAN interface
+        Create a new Site WAN interface
 
           **Parameters:**:
 
@@ -5456,7 +5487,7 @@ class Post(object):
 
     def waninterfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Correlationevents_Waninterfaces API Function
+        POST Waninterfaces_Correlationevents_Query API Function
 
           **Parameters:**:
 
@@ -5750,8 +5781,8 @@ class Post(object):
     query_bgppeers_t = tenant_bgppeers_query
     """ Backwards-compatibility alias of `query_bgppeers_t` to `tenant_bgppeers_query`"""
 
-    query_bulk_config_state_e = elements_bulk_config_state_query
-    """ Backwards-compatibility alias of `query_bulk_config_state_e` to `elements_bulk_config_state_query`"""
+    query_bulk_config_state_e = element_bulk_config_state_query
+    """ Backwards-compatibility alias of `query_bulk_config_state_e` to `element_bulk_config_state_query`"""
 
     query_bulk_config_state_networks = networks_bulk_config_state_query
     """ Backwards-compatibility alias of `query_bulk_config_state_networks` to `networks_bulk_config_state_query`"""
@@ -5759,8 +5790,8 @@ class Post(object):
     query_bulk_config_state_policysets = policysets_bulk_config_state_query
     """ Backwards-compatibility alias of `query_bulk_config_state_policysets` to `policysets_bulk_config_state_query`"""
 
-    query_bulk_config_state_s = sites_bulk_config_state_query
-    """ Backwards-compatibility alias of `query_bulk_config_state_s` to `sites_bulk_config_state_query`"""
+    query_bulk_config_state_s = site_bulk_config_state_query
+    """ Backwards-compatibility alias of `query_bulk_config_state_s` to `site_bulk_config_state_query`"""
 
     query_clients = clients_query
     """ Backwards-compatibility alias of `query_clients` to `clients_query`"""
@@ -5792,8 +5823,8 @@ class Post(object):
     query_dnsservices = dnsservices_query
     """ Backwards-compatibility alias of `query_dnsservices` to `dnsservices_query`"""
 
-    query_e = elements_query
-    """ Backwards-compatibility alias of `query_e` to `elements_query`"""
+    query_e = element_query
+    """ Backwards-compatibility alias of `query_e` to `element_query`"""
 
     query_elementsecurityzones = elementsecurityzones_query
     """ Backwards-compatibility alias of `query_elementsecurityzones` to `elementsecurityzones_query`"""
@@ -5951,8 +5982,8 @@ class Post(object):
     query_routing_routemaps = routing_routemaps_query
     """ Backwards-compatibility alias of `query_routing_routemaps` to `routing_routemaps_query`"""
 
-    query_s = sites_query
-    """ Backwards-compatibility alias of `query_s` to `sites_query`"""
+    query_s = site_query
+    """ Backwards-compatibility alias of `query_s` to `site_query`"""
 
     query_securitypolicyrules = securitypolicyrules_query
     """ Backwards-compatibility alias of `query_securitypolicyrules` to `securitypolicyrules_query`"""
@@ -6022,4 +6053,16 @@ class Post(object):
 
     topn_sys_metrics_monitor = monitor_sys_metrics_topn
     """ Backwards-compatibility alias of `topn_sys_metrics_monitor` to `monitor_sys_metrics_topn`"""
+
+    elements_bulk_config_state_query = element_bulk_config_state_query
+    """ Backwards-compatibility alias of `elements_bulk_config_state_query` to `element_bulk_config_state_query`"""
+
+    elements_query = element_query
+    """ Backwards-compatibility alias of `elements_query` to `element_query`"""
+
+    sites_bulk_config_state_query = site_bulk_config_state_query
+    """ Backwards-compatibility alias of `sites_bulk_config_state_query` to `site_bulk_config_state_query`"""
+
+    sites_query = site_query
+    """ Backwards-compatibility alias of `sites_query` to `site_query`"""
 
