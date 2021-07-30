@@ -52,7 +52,7 @@ class Delete(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def access_elementusers(self, elementuser_id, access_id, tenant_id=None, api_version="v2.0"):
+    def access_elementusers(self, elementuser_id, access_id, tenant_id=None, api_version="v2.1"):
         """
         Delete element user Access
 
@@ -61,7 +61,7 @@ class Delete(object):
           - **elementuser_id**: Element User ID
           - **access_id**: Access ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -78,6 +78,34 @@ class Delete(object):
                                                                                     tenant_id,
                                                                                     elementuser_id,
                                                                                     access_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def apnprofiles(self, apnprofile_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Apnprofiles API Function
+
+          **Parameters:**:
+
+          - **apnprofile_id**: APN Profile ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/apnprofiles/{}".format(api_version,
+                                                                         tenant_id,
+                                                                         apnprofile_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -474,7 +502,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.0"):
+    def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.1"):
         """
         Delete element user
 
@@ -482,7 +510,7 @@ class Delete(object):
 
           - **elementuser_id**: Element User ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -736,7 +764,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.10"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.11"):
         """
         Delete Interface
 
@@ -746,7 +774,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.10)
+          - **api_version**: API version to use (default v4.11)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1022,6 +1050,38 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters/{}".format(api_version,
                                                                                 tenant_id,
                                                                                 localprefixfilter_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def multicastrps(self, site_id, element_id, multicastrp_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Multicastrps API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **multicastrp_id**: Multicast RP ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/multicastrps/{}".format(api_version,
+                                                                                               tenant_id,
+                                                                                               site_id,
+                                                                                               element_id,
+                                                                                               multicastrp_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1366,6 +1426,148 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def ngfwsecuritypolicyglobalprefixes(self, ngfwsecuritypolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ngfwsecuritypolicyglobalprefixes API Function
+
+          **Parameters:**:
+
+          - **ngfwsecuritypolicyglobalprefix_id**: NGFW Security Policy Global Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ngfwsecuritypolicyglobalprefixes/{}".format(api_version,
+                                                                                              tenant_id,
+                                                                                              ngfwsecuritypolicyglobalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def ngfwsecuritypolicylocalprefixes(self, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ngfwsecuritypolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **ngfwsecuritypolicylocalprefix_id**: NGFW Security Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ngfwsecuritypolicylocalprefixes/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             ngfwsecuritypolicylocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def ngfwsecuritypolicyrules(self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ngfwsecuritypolicyrules API Function
+
+          **Parameters:**:
+
+          - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID
+          - **ngfwsecuritypolicyrule_id**: NGFW Security Policy Rule ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ngfwsecuritypolicysets/{}/ngfwsecuritypolicyrules/{}".format(api_version,
+                                                                                                               tenant_id,
+                                                                                                               ngfwsecuritypolicyset_id,
+                                                                                                               ngfwsecuritypolicyrule_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def ngfwsecuritypolicysets(self, ngfwsecuritypolicyset_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ngfwsecuritypolicysets API Function
+
+          **Parameters:**:
+
+          - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ngfwsecuritypolicysets/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    ngfwsecuritypolicyset_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def ngfwsecuritypolicysetstacks(self, ngfwsecuritypolicysetstack_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Ngfwsecuritypolicysetstacks API Function
+
+          **Parameters:**:
+
+          - **ngfwsecuritypolicysetstack_id**: NGFW Security Policy Set Stack ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/ngfwsecuritypolicysetstacks/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         ngfwsecuritypolicysetstack_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def operator_sessions(self, operator_id, session_id, tenant_id=None, api_version="v2.0"):
         """
         Delete session for tenant_id, operator id, and session id
@@ -1622,6 +1824,36 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicysetstacks/{}".format(api_version,
                                                                                      tenant_id,
                                                                                      prioritypolicysetstack_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def prismaaccess_configs(self, site_id, prismaaccess_config_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Prismaaccess_Configs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **prismaaccess_config_id**: Prisma Access Config ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prismaaccess_configs/{}".format(api_version,
+                                                                                           tenant_id,
+                                                                                           site_id,
+                                                                                           prismaaccess_config_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -2102,6 +2334,36 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def site_ngfwsecuritypolicylocalprefixes(self, site_id, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Site_Ngfwsecuritypolicylocalprefixes API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **ngfwsecuritypolicylocalprefix_id**: NGFW Security Policy Local Prefix ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/ngfwsecuritypolicylocalprefixes/{}".format(api_version,
+                                                                                                      tenant_id,
+                                                                                                      site_id,
+                                                                                                      ngfwsecuritypolicylocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
         Delete an existing Site Priority Policy local prefix association
@@ -2132,7 +2394,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.5"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.6"):
         """
         Delete a site
 
@@ -2140,7 +2402,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.5)
+          - **api_version**: API version to use (default v4.6)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2316,9 +2578,37 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.1"):
+    def syslogserverprofiles(self, syslogserverprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        delete Syslog Server
+        DELETE Syslogserverprofiles API Function
+
+          **Parameters:**:
+
+          - **syslogserverprofile_id**: Syslog Server Profile ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/syslogserverprofiles/{}".format(api_version,
+                                                                                  tenant_id,
+                                                                                  syslogserverprofile_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.2"):
+        """
+        Delete Syslog Server
 
           **Parameters:**:
 
@@ -2326,7 +2616,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **syslogserver_id**: SYSLOG server ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2600,7 +2890,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.6"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.7"):
         """
         Delete existing WAN interface
 
@@ -2609,7 +2899,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v2.7)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2752,6 +3042,12 @@ class Delete(object):
 
     networkpolicylocalprefixes_t = tenant_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_t` to `tenant_networkpolicylocalprefixes`"""
+
+    ngfwsecuritypolicylocalprefixes_s = site_ngfwsecuritypolicylocalprefixes
+    """ Backwards-compatibility alias of `ngfwsecuritypolicylocalprefixes_s` to `site_ngfwsecuritypolicylocalprefixes`"""
+
+    ngfwsecuritypolicylocalprefixes_t = ngfwsecuritypolicylocalprefixes
+    """ Backwards-compatibility alias of `ngfwsecuritypolicylocalprefixes_t` to `ngfwsecuritypolicylocalprefixes`"""
 
     ntp_templates = templates_ntp
     """ Backwards-compatibility alias of `ntp_templates` to `templates_ntp`"""

@@ -63,6 +63,90 @@ class Patch(object):
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
+          **Payload Attributes:** 
+
+           - **addresses:**           
+               - **city:**  Type: string 
+               - **country:**  Type: string 
+               - **post_code:**  Type: string 
+               - **state:**  Type: string 
+               - **street:**  Type: string 
+               - **street2:**  Type: string 
+           - **custom_roles:**           
+               - **custom_permissions:**           
+                   - **allowed_after_ms:**  Type: integer 
+                   - **allowed_before_ms:**  Type: integer 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **disallow_permission:**  Type: boolean 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **region:**  Type: string 
+                   - **tenant_id:**  Type: string 
+                   - **value:**  Type: string 
+               - **description:**  Type: string 
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **disallow_permissions:**           
+                   - **value:**  Type: string 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **is_system_owned:**  Type: boolean 
+               - **name:**  Type: string 
+               - **permissions:**           
+                   - **value:**  Type: string 
+               - **region:**  Type: string 
+               - **roles:**           
+                   - **name:**  Type: string 
+               - **tenant_id:**  Type: string 
+           - **disable_idp_login:**  Type: boolean 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **email:**  Type: string 
+           - **email_validated:**  Type: boolean 
+           - **enable_session_ip_lock:**  Type: boolean 
+           - **first_name:**  Type: string 
+           - **from_esp:**  Type: boolean 
+           - **from_esp_name:**  Type: string 
+           - **from_esp_tenant_id:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **ipv4_list:**           
+               - **ipv4:**  Type: string 
+           - **is_locked:**  Type: boolean 
+           - **is_system_owned:**  Type: boolean 
+           - **last_login:**  Type: string 
+           - **last_name:**  Type: string 
+           - **linked_accounts:**           
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **failed_login_attempts:**  Type: integer 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **provider_key:**  Type: string 
+               - **provider_value:**  Type: string 
+               - **provider_value_updated_on:**  Type: integer 
+               - **region:**  Type: string 
+               - **tenant_id:**  Type: string 
+           - **name:**  Type: string 
+           - **phone_numbers:**           
+               - **country_code:**  Type: integer 
+               - **local_extension:**  Type: integer 
+               - **number:**  Type: integer 
+               - **types:**           
+           - **region:**  Type: string 
+           - **roles:**           
+               - **name:**  Type: string 
+           - **secondary_emails:**           
+               - **email:**  Type: string 
+           - **settings:**  Type: string 
+           - **tenant_id:**  Type: string 
+
+          **Required Attributes:** [u'disable_idp_login', u'disabled', u'email', u'email_validated', u'enable_session_ip_lock', u'from_esp', u'from_esp_tenant_id', u'inactive', u'is_locked', u'is_system_owned', u'last_login', u'linked_accounts', u'name', u'region', u'tenant_id']
+
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -81,7 +165,7 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.1"):
+    def tenants(self, data, tenant_id=None, api_version="v2.2"):
         """
         Patch tenant
 
@@ -89,7 +173,17 @@ class Patch(object):
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
+
+          **Payload Attributes:** 
+
+           - **canonical_name:**  Type: string 
+           - **clients:**  [Type: string] 
+           - **is_esp:**  Type: boolean 
+           - **name:**  Type: string 
+           - **tenant_id:**  Type: string 
+
+          **Required Attributes:** [u'canonical_name', u'clients', u'is_esp', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
