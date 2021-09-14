@@ -831,12 +831,9 @@ class Post(object):
            - **count:**  Type: integer 
            - **deleted_count:**  Type: integer 
            - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
            - **next_query:**  Type: object 
            - **tenant_id:**  Type: string 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1218,15 +1215,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1292,15 +1292,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1622,15 +1625,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1769,15 +1775,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2162,7 +2171,7 @@ class Post(object):
 
     def eventcorrelationpolicysets(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Eventcorrelationpolicysets API Function
+        Queries db for limit number of event correlation policysets that match query params.
 
           **Parameters:**:
 
@@ -2172,6 +2181,17 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **active_policyset:**  Type: boolean 
+           - **clone_from:**  Type: string 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **policyrule_order:**  [Type: string] 
+           - **severity_priority_mapping:**           
+               - **priority:**  Type: string 
+               - **severity:**  Type: string 
+           - **tags:**  [Type: string] 
+
+          **Required Attributes:** [u'active_policyset', u'clone_from', u'policyrule_order', u'severity_priority_mapping']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2376,7 +2396,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
+          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2637,7 +2657,7 @@ class Post(object):
            - **type:**  Type: string 
            - **used_for:**  Type: string 
 
-          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'description', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'mtu', u'multicast_config', u'name', u'nat_address', u'nat_pools', u'nat_port', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'secondary_ip_configs', u'service_link_config', u'site_wan_interface_ids', u'static_arp_configs', u'sub_interface', u'tags', u'type', u'used_for']
+          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'multicast_config', u'nat_pools', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'service_link_config', u'site_wan_interface_ids', u'sub_interface', u'type', u'used_for']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2700,15 +2720,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2773,7 +2796,7 @@ class Post(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'description', u'export_cache_timeout', u'filters', u'ipfixprofile_id', u'ipfixtemplate_id', u'name', u'sampler', u'tags']
+          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2806,15 +2829,41 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **collector_config:**           
+               - **host:**  Type: string 
+               - **host_port:**  Type: integer 
+               - **ipfixcollectorcontext_id:**  Type: string 
+               - **max_message_size:**  Type: integer 
+               - **protocol:**  Type: string 
+           - **description:**  Type: string 
+           - **element_id:**  Type: string 
+           - **export_cache_timeout:**  Type: integer 
+           - **filters:**           
+               - **app_def_ids:**  [Type: string] 
+               - **dst_ports:**           
+                   - **end:**  Type: string 
+                   - **start:**  Type: string 
+               - **dst_prefixes_id:**  Type: string 
+               - **ipfixfiltercontext_ids:**  [Type: string] 
+               - **priority_traffic_types:**  [Type: string] 
+               - **protocols:**  [Type: string] 
+               - **rtp_transport_type:**  Type: string 
+               - **src_ports:**           
+                   - **end:**  Type: string 
+                   - **start:**  Type: string 
+               - **src_prefixes_id:**  Type: string 
+               - **wan_path_direction:**  Type: string 
+           - **ipfixprofile_id:**  Type: string 
+           - **ipfixtemplate_id:**  Type: string 
+           - **name:**  Type: string 
+           - **sampler:**           
+               - **algorithm:**  Type: string 
+               - **time_interval:**  Type: integer 
+               - **time_spacing:**  Type: integer 
+           - **site_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'collector_config', u'element_id', u'export_cache_timeout', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler', u'site_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2848,7 +2897,7 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'description', u'name']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2879,15 +2928,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2921,7 +2965,7 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'description', u'name']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2952,15 +2996,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2996,7 +3035,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'ipv4_prefixes', u'name', u'tags']
+          **Required Attributes:** [u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3047,7 +3086,7 @@ class Post(object):
 
     def ipfixlocalprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        Queries db for limit number of ipfix site prefix association that match query params.
+        Queries db for limit number of ipfix site prefix association that match query
 
           **Parameters:**:
 
@@ -3057,15 +3096,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **ipv4_prefixes:**  [Type: string] 
+           - **prefix_id:**  Type: string 
+           - **site_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'site_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3127,7 +3163,7 @@ class Post(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'description', u'export_cache_timeout', u'filters', u'ipfixtemplate_id', u'name', u'sampler', u'tags']
+          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'ipfixtemplate_id', u'sampler']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3158,15 +3194,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **ipv4_prefixes:**  [Type: string] 
+           - **prefix_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3206,7 +3238,7 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **template_export_timeout:**  Type: integer 
 
-          **Required Attributes:** [u'description', u'flow_fields', u'generate_biflow', u'name', u'option_export_timeout', u'options', u'tags', u'template_export_timeout']
+          **Required Attributes:** [u'flow_fields', u'generate_biflow', u'option_export_timeout', u'options', u'template_export_timeout']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3237,15 +3269,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **ipv4_prefixes:**  [Type: string] 
+           - **prefix_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3501,28 +3529,45 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def lannetworks_query(self, site_id, data, tenant_id=None, api_version="v3.1"):
+    def lannetworks_query(self, data, tenant_id=None, api_version="v3.1"):
         """
         Query LAN networks that match query params
 
           **Parameters:**:
 
-          - **site_id**: Site ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.1)
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
-           - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
-           - **total_count:**  Type: integer 
+           - **description:**  Type: string 
+           - **ipv4_config:**           
+               - **default_routers:**  [Type: string] 
+               - **dhcp_relay:**           
+                   - **enabled:**  Type: boolean 
+                   - **option_82:**           
+                       - **circuit_id:**  Type: string 
+                       - **enabled:**  Type: boolean 
+                       - **reforwarding_policy:**  Type: string 
+                       - **remote_id:**  Type: string 
+                   - **server_ips:**  [Type: string] 
+                   - **source_interface:**  Type: string 
+               - **dhcp_server:**           
+                   - **domain_name:**  Type: string 
+                   - **domain_name_servers:**  [Type: string] 
+                   - **ip_address_pool:**           
+                       - **end:**  Type: string 
+                       - **start:**  Type: string 
+                   - **lease_expiry_time:**  Type: integer 
+                   - **lease_renew_time:**  Type: integer 
+               - **prefixes:**  [Type: string] 
+           - **name:**  Type: string 
+           - **network_context_id:**  Type: string 
+           - **scope:**  Type: string 
+           - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'ipv4_config', u'network_context_id', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3535,9 +3580,8 @@ class Post(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/lannetworks/query".format(api_version,
-                                                                                     tenant_id,
-                                                                                     site_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/lannetworks/query".format(api_version,
+                                                                            tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -3621,12 +3665,6 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **email:**  Type: string 
-           - **logout_others:**  Type: boolean 
-           - **password:**  Type: string 
-           - **requestId:**  Type: string 
-
-          **Required Attributes:** [u'email', u'logout_others', u'password', u'requestId']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3637,36 +3675,6 @@ class Post(object):
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data, sensitive=True)
-
-    def machine_query(self, data, tenant_id=None, api_version="v2.1"):
-        """
-        POST Machine_Query API Function
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/query".format(api_version,
-                                                                         tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
 
     def machine_upgrade_query(self, data, tenant_id=None, api_version="v2.0"):
         """
@@ -3680,15 +3688,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3703,6 +3714,55 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/machine_upgrade/query".format(api_version,
                                                                                 tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def machines_query(self, data, tenant_id=None, api_version="v2.1"):
+        """
+        Query and get machines of a tenant
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+          **Payload Attributes:** 
+
+           - **connected:**  Type: boolean 
+           - **console_conf_passphrase:**  Type: string 
+           - **em_element_id:**  Type: string 
+           - **esp_tenant_id:**  Type: string 
+           - **hw_id:**  Type: string 
+           - **image_version:**  Type: string 
+           - **inventory_op:**  Type: string 
+           - **machine_state:**  Type: string 
+           - **manufacture_id:**  Type: string 
+           - **model_name:**  Type: string 
+           - **ordering_info:**  Type: string 
+           - **pki_op:**           - **renew_state:**  Type: string 
+           - **ship_state:**  Type: string 
+           - **sl_no:**  Type: string 
+           - **suspend_state:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **token:**  Type: string 
+
+          **Required Attributes:** [u'connected', u'console_conf_passphrase', u'em_element_id', u'esp_tenant_id', u'hw_id', u'image_version', u'inventory_op', u'machine_state', u'manufacture_id', u'model_name', u'ordering_info', u'pki_op', u'renew_state', u'ship_state', u'sl_no', u'suspend_state', u'tenant_id', u'token']
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/query".format(api_version,
+                                                                         tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -3857,6 +3917,66 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def monitor_insights(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Insights API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insights".format(api_version,
+                                                                           tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_insightslist(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Insightslist API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insightslist".format(api_version,
+                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def monitor_lqm_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
         POST Lqm_Point_Metrics_Monitor API Function
@@ -3913,6 +4033,36 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/metrics".format(api_version,
                                                                           tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_network_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Network_Point_Metrics API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/network_point_metrics".format(api_version,
+                                                                                        tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4003,6 +4153,36 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/sys_metrics/topn".format(api_version,
                                                                                    tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_sys_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Sys_Point_Metrics API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/sys_point_metrics".format(api_version,
+                                                                                    tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4214,7 +4394,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
+          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4249,7 +4429,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'name', u'tags']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4280,12 +4460,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **ipv4_prefixes:**  [Type: string] 
-           - **prefix_id:**  Type: string 
-           - **site_id:**  Type: string 
-           - **tags:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'site_id']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4320,7 +4506,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'name', u'tags']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4957,7 +5143,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
+          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6152,6 +6338,36 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def prefixes_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Prefixes_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/prefixes/query".format(api_version,
+                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def prefixfilters(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
         Create an association between site and security prefix filter.
@@ -6202,11 +6418,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **filters:**           
-               - **type:**  Type: string 
-           - **prefix_filter_id:**  Type: string 
+           - **query_params:**           
+               - **zone_id:**  Type: string 
 
-          **Required Attributes:** [u'filters', u'prefix_filter_id']
+          **Required Attributes:** [u'query_params']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6279,7 +6494,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
+          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7220,15 +7435,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7791,15 +8009,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7874,6 +8095,7 @@ class Post(object):
                - **local_extension:**  Type: integer 
                - **number:**  Type: integer 
                - **types:**           
+                   - **value:**  Type: string 
            - **repeatPassword:**  Type: string 
            - **requestId:**  Type: string 
            - **roles:**           
@@ -8017,15 +8239,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8062,7 +8287,7 @@ class Post(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'tags']
+          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8264,7 +8489,7 @@ class Post(object):
            - **service_binding:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'address', u'admin_state', u'description', u'element_cluster_role', u'extended_tags', u'location', u'name', u'nat_policysetstack_id', u'network_policysetstack_id', u'policy_set_id', u'priority_policysetstack_id', u'security_policyset_id', u'service_binding', u'tags']
+          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'location', u'nat_policysetstack_id', u'network_policysetstack_id', u'policy_set_id', u'priority_policysetstack_id', u'security_policyset_id', u'service_binding']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8279,38 +8504,6 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/query".format(api_version,
                                                                       tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def site_sitesecurityzones_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        POST Site_Sitesecurityzones_Query API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones/query".format(api_version,
-                                                                                           tenant_id,
-                                                                                           site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -8408,6 +8601,44 @@ class Post(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones".format(api_version,
                                                                                      tenant_id,
                                                                                      site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def sitesecurityzones_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query security zone for NB API.
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **networks:**           
+               - **network_id:**  Type: string 
+               - **network_type:**  Type: string 
+           - **zone_id:**  Type: string 
+
+          **Required Attributes:** [u'networks', u'zone_id']
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones/query".format(api_version,
+                                                                                           tenant_id,
+                                                                                           site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -8618,15 +8849,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8740,7 +8974,7 @@ class Post(object):
            - **preempt:**  Type: boolean 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'advertisement_interval', u'description', u'name', u'preempt', u'tags']
+          **Required Attributes:** [u'preempt']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8787,7 +9021,7 @@ class Post(object):
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'destination_prefix', u'name', u'network_context_id', u'nexthop_reachability_probe', u'nexthops', u'scope', u'tags']
+          **Required Attributes:** [u'network_context_id', u'nexthop_reachability_probe', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8939,7 +9173,7 @@ class Post(object):
                - **version:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'default_template', u'description', u'name', u'ntp_servers', u'tags']
+          **Required Attributes:** [u'default_template', u'ntp_servers', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8990,7 +9224,7 @@ class Post(object):
 
     def tenant_bgppeers_query(self, data, tenant_id=None, api_version="v2.2"):
         """
-        POST Tenant_Bgppeers_Query API Function
+        Queries db for BGP peers that match query params.
 
           **Parameters:**:
 
@@ -9000,6 +9234,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **bgp_config:**           
+               - **adv_interval:**  Type: integer 
+               - **hold_time:**  Type: integer 
+               - **keepalive_time:**  Type: integer 
+               - **local_as_num:**  Type: string 
+               - **md5_secret:**  Type: string 
+               - **multi_hop_limit:**  Type: integer 
+               - **peer_auth_type:**  Type: string 
+               - **peer_retry_time:**  Type: integer 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **peer_ip:**  Type: string 
+           - **peer_type:**  Type: string 
+           - **remote_as_num:**  Type: string 
+           - **route_map_in_id:**  Type: string 
+           - **route_map_out_id:**  Type: string 
+           - **scope:**  Type: string 
+           - **shutdown:**  Type: boolean 
+           - **tags:**  [Type: string] 
+           - **update_source:**  Type: string 
+
+          **Required Attributes:** [u'bgp_config', u'peer_type', u'remote_as_num', u'route_map_in_id', u'route_map_out_id', u'scope', u'shutdown']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9139,7 +9395,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'name', u'tags']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9225,7 +9481,7 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'name', u'tags']
+          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9288,7 +9544,7 @@ class Post(object):
 
     def tenant_prefixfilters_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Tenant_Prefixfilters_Query API Function
+        Query security prefix filter for NB API.
 
           **Parameters:**:
 
@@ -9298,6 +9554,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **filters:**           
+               - **type:**  Type: string 
+           - **prefix_filter_id:**  Type: string 
+           - **site_id:**  Type: string 
+
+          **Required Attributes:** [u'filters', u'prefix_filter_id', u'site_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9347,36 +9609,6 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/prioritypolicylocalprefixes".format(api_version,
                                                                                       tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def tenant_sitesecurityzones_query(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        POST Tenant_Sitesecurityzones_Query API Function
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sitesecurityzones/query".format(api_version,
-                                                                                  tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -9509,15 +9741,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9538,7 +9773,7 @@ class Post(object):
 
     def users(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Users API Function
+        Create an user identity.
 
           **Parameters:**:
 
@@ -9548,6 +9783,19 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **first_name:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **last_name:**  Type: string 
+           - **middle_name:**  Type: string 
+           - **region:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **user_dn:**  Type: string 
+           - **user_fqn:**  Type: string 
+
+          **Required Attributes:** [u'disabled', u'first_name', u'inactive', u'last_name', u'middle_name', u'region', u'tenant_id', u'user_dn', u'user_fqn']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9660,15 +9908,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9831,15 +10082,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9877,7 +10131,7 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'description', u'name', u'provider_as_numbers', u'tags', u'type']
+          **Required Attributes:** [u'provider_as_numbers', u'type']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9908,15 +10162,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **count:**  Type: integer 
-           - **deleted_count:**  Type: integer 
-           - **deleted_ids:**  [Type: string] 
-           - **items:**  [Type: string] 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
            - **next_query:**  Type: object 
-           - **tenant_id:**  Type: string 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'count', u'deleted_count', u'deleted_ids', u'items', u'next_query', u'tenant_id', u'total_count']
+          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10066,6 +10323,12 @@ class Post(object):
     forgot_password_login_t = tenant_forgot_password_login
     """ Backwards-compatibility alias of `forgot_password_login_t` to `tenant_forgot_password_login`"""
 
+    insights_monitor = monitor_insights
+    """ Backwards-compatibility alias of `insights_monitor` to `monitor_insights`"""
+
+    insightslist_monitor = monitor_insightslist
+    """ Backwards-compatibility alias of `insightslist_monitor` to `monitor_insightsllist`"""
+
     ipfixlocalprefixes_s = site_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
 
@@ -10089,6 +10352,9 @@ class Post(object):
 
     natlocalprefixes_t = natlocalprefixes
     """ Backwards-compatibility alias of `natlocalprefixes_t` to `natlocalprefixes`"""
+
+    network_point_metrics_monitor = monitor_network_point_metrics
+    """ Backwards-compatibility alias of `network_point_metrics_monitor` to `monitor_network_point_metrics`"""
 
     networkpolicylocalprefixes_s = site_networkpolicylocalprefixes
     """ Backwards-compatibility alias of `networkpolicylocalprefixes_s` to `site_networkpolicylocalprefixes`"""
@@ -10255,11 +10521,14 @@ class Post(object):
     query_lannetworks = lannetworks_query
     """ Backwards-compatibility alias of `query_lannetworks` to `lannetworks_query`"""
 
+    query_lannetworks_t = lannetworks_query
+    """ Backwards-compatibility alias of `query_lannetworks_t` to `lannetworks_query`"""
+
     query_localprefixfilters = localprefixfilters_query
     """ Backwards-compatibility alias of `query_localprefixfilters` to `localprefixfilters_query`"""
 
-    query_m = machine_query
-    """ Backwards-compatibility alias of `query_m` to `machine_query`"""
+    query_m = machines_query
+    """ Backwards-compatibility alias of `query_m` to `machines_query`"""
 
     query_machine_upgrade = machine_upgrade_query
     """ Backwards-compatibility alias of `query_machine_upgrade` to `machine_upgrade_query`"""
@@ -10339,6 +10608,9 @@ class Post(object):
     query_policysets = policysets_query
     """ Backwards-compatibility alias of `query_policysets` to `policysets_query`"""
 
+    query_prefixes = prefixes_query
+    """ Backwards-compatibility alias of `query_prefixes` to `prefixes_query`"""
+
     query_prefixfilters = prefixfilters_query
     """ Backwards-compatibility alias of `query_prefixfilters` to `prefixfilters_query`"""
 
@@ -10402,17 +10674,20 @@ class Post(object):
     query_servicelabels = servicelabels_query
     """ Backwards-compatibility alias of `query_servicelabels` to `servicelabels_query`"""
 
-    query_sitesecurityzones_s = site_sitesecurityzones_query
-    """ Backwards-compatibility alias of `query_sitesecurityzones_s` to `site_sitesecurityzones_query`"""
+    query_sitesecurityzones = sitesecurityzones_query
+    """ Backwards-compatibility alias of `query_sitesecurityzones` to `sitesecurityzones_query`"""
 
-    query_sitesecurityzones_t = tenant_sitesecurityzones_query
-    """ Backwards-compatibility alias of `query_sitesecurityzones_t` to `tenant_sitesecurityzones_query`"""
+    query_sitesecurityzones_t = sitesecurityzones_query
+    """ Backwards-compatibility alias of `query_sitesecurityzones_t` to `sitesecurityzones_query`"""
 
     query_softwarehistory = softwarehistory_query
     """ Backwards-compatibility alias of `query_softwarehistory` to `softwarehistory_query`"""
 
     query_spokeclusters = spokeclusters_query
     """ Backwards-compatibility alias of `query_spokeclusters` to `spokeclusters_query`"""
+
+    query_spokeclusters_t = spokeclusters_query
+    """ Backwards-compatibility alias of `query_spokeclusters_t` to `spokeclusters_query`"""
 
     query_status = status_query
     """ Backwards-compatibility alias of `query_status` to `status_query`"""
@@ -10453,6 +10728,9 @@ class Post(object):
     sys_metrics_monitor = monitor_sys_metrics
     """ Backwards-compatibility alias of `sys_metrics_monitor` to `monitor_sys_metrics`"""
 
+    sys_point_metrics_monitor = monitor_sys_point_metrics
+    """ Backwards-compatibility alias of `sys_point_metrics_monitor` to `monitor_sys_point_metrics`"""
+
     tokens_vfflicenses = vfflicense_tokens
     """ Backwards-compatibility alias of `tokens_vfflicenses` to `vfflicense_tokens`"""
 
@@ -10470,9 +10748,6 @@ class Post(object):
 
     elements_query = element_query
     """ Backwards-compatibility alias of `elements_query` to `element_query`"""
-
-    machines_query = machine_query
-    """ Backwards-compatibility alias of `machines_query` to `machine_query`"""
 
     sites_bulk_config_state_query = site_bulk_config_state_query
     """ Backwards-compatibility alias of `sites_bulk_config_state_query` to `site_bulk_config_state_query`"""

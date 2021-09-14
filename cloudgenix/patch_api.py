@@ -137,6 +137,7 @@ class Patch(object):
                - **local_extension:**  Type: integer 
                - **number:**  Type: integer 
                - **types:**           
+                   - **value:**  Type: string 
            - **region:**  Type: string 
            - **roles:**           
                - **name:**  Type: string 
@@ -177,13 +178,180 @@ class Patch(object):
 
           **Payload Attributes:** 
 
+           - **address:**           
+               - **city:**  Type: string 
+               - **country:**  Type: string 
+               - **post_code:**  Type: string 
+               - **state:**  Type: string 
+               - **street:**  Type: string 
+               - **street2:**  Type: string 
            - **canonical_name:**  Type: string 
            - **clients:**  [Type: string] 
+           - **description:**  Type: string 
+           - **disabled:**  Type: string 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: string 
+           - **inactive_reason:**  Type: string 
+           - **ipv4_list:**           
+               - **ipv4:**  Type: string 
            - **is_esp:**  Type: boolean 
+           - **is_support:**  Type: boolean 
            - **name:**  Type: string 
+           - **operator:**           
+               - **addresses:**           
+                   - **city:**  Type: string 
+                   - **country:**  Type: string 
+                   - **post_code:**  Type: string 
+                   - **state:**  Type: string 
+                   - **street:**  Type: string 
+                   - **street2:**  Type: string 
+               - **custom_roles:**           
+                   - **custom_permissions:**           
+                       - **allowed_after_ms:**  Type: integer 
+                       - **allowed_before_ms:**  Type: integer 
+                       - **disabled:**  Type: boolean 
+                       - **disabled_reason:**  Type: string 
+                       - **disallow_permission:**  Type: boolean 
+                       - **id:**  Type: string 
+                       - **inactive:**  Type: boolean 
+                       - **inactive_reason:**  Type: string 
+                       - **region:**  Type: string 
+                       - **tenant_id:**  Type: string 
+                       - **value:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disallow_permissions:**           
+                       - **value:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **name:**  Type: string 
+                   - **permissions:**           
+                       - **value:**  Type: string 
+                   - **roles:**           
+                       - **name:**  Type: string 
+               - **disable_idp_login:**  Type: boolean 
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **email:**  Type: string 
+               - **email_validated:**  Type: boolean 
+               - **enable_session_ip_lock:**  Type: boolean 
+               - **first_name:**  Type: string 
+               - **from_esp:**  Type: boolean 
+               - **from_esp_name:**  Type: string 
+               - **from_esp_tenant_id:**  Type: string 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **ipv4_list:**           
+                   - **ipv4:**  Type: string 
+               - **is_locked:**  Type: boolean 
+               - **is_system_owned:**  Type: boolean 
+               - **last_login:**  Type: string 
+               - **last_name:**  Type: string 
+               - **linked_accounts:**           
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **failed_login_attempts:**  Type: integer 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **provider_key:**  Type: string 
+                   - **provider_value:**  Type: string 
+                   - **provider_value_updated_on:**  Type: integer 
+                   - **region:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **name:**  Type: string 
+               - **phone_numbers:**           
+                   - **country_code:**  Type: integer 
+                   - **local_extension:**  Type: integer 
+                   - **number:**  Type: integer 
+                   - **types:**           
+                       - **value:**  Type: string 
+               - **region:**  Type: string 
+               - **roles:**           
+                   - **name:**  Type: string 
+               - **secondary_emails:**           
+                   - **email:**  Type: string 
+               - **settings:**  Type: string 
+               - **tenant_id:**  Type: string 
+           - **pan_account_id:**  Type: string 
+           - **pan_tenant_id:**  Type: string 
+           - **password_policy:**           
+               - **enable_failed_login_attempts:**  Type: boolean 
+               - **enable_failed_login_time_delay:**  Type: boolean 
+               - **enable_maximum_password_length:**  Type: boolean 
+               - **enable_minimum_password_length:**  Type: boolean 
+               - **enable_password_aging:**  Type: boolean 
+               - **enable_password_identity_difference:**  Type: boolean 
+               - **enable_password_no_reuse_count:**  Type: boolean 
+               - **enable_session_ip_lock:**  Type: boolean 
+               - **enable_two_lower_case_letters:**  Type: boolean 
+               - **enable_two_numbers:**  Type: boolean 
+               - **enable_two_special_characters:**  Type: boolean 
+               - **enable_two_upper_case_letters:**  Type: boolean 
+               - **failed_login_attempts:**  Type: integer 
+               - **maximum_password_length:**  Type: integer 
+               - **minimum_password_length:**  Type: integer 
+               - **password_aging_days:**  Type: integer 
+               - **password_aging_notification:**  Type: integer 
+               - **password_no_reuse_count:**  Type: integer 
+               - **special_characters:**  Type: string 
+               - **special_characters_regex:**  Type: string 
+           - **phone_numbers:**           
+               - **country_code:**  Type: integer 
+               - **local_extension:**  Type: integer 
+               - **number:**  Type: integer 
+               - **types:**           
+                   - **value:**  Type: string 
+           - **prisma_access_tenant_id:**  Type: string 
+           - **provider_data:**           
+               - **certificate:**           
+                   - **certificate:**  Type: string 
+                   - **certificate_expiry_utc:**  Type: integer 
+                   - **certificate_type:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **issued_by:**           
+                       - **common_name:**  Type: string 
+                       - **country:**  Type: string 
+                       - **location:**  Type: string 
+                       - **organization:**  Type: string 
+                       - **organization_unit:**  Type: string 
+                       - **state:**  Type: string 
+                   - **issued_to:**           
+                       - **common_name:**  Type: string 
+                       - **country:**  Type: string 
+                       - **location:**  Type: string 
+                       - **organization:**  Type: string 
+                       - **organization_unit:**  Type: string 
+                       - **state:**  Type: string 
+                   - **region:**  Type: string 
+                   - **serial_number:**  Type: string 
+                   - **tenant_id:**  Type: string 
+                   - **version:**  Type: string 
+               - **password_hash:**  Type: string 
+               - **provider:**           
+                   - **canonical_name:**  Type: string 
+                   - **description:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **map_external_group:**  Type: object 
+                   - **name:**  Type: string 
+                   - **protocol:**           
+                   - **region:**  Type: string 
+                   - **template:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **salt:**  Type: string 
+               - **security:**  Type: string 
+           - **region:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'canonical_name', u'clients', u'is_esp', u'tenant_id']
+          **Required Attributes:** [u'address', u'canonical_name', u'clients', u'disabled', u'inactive', u'ipv4_list', u'is_esp', u'is_support', u'operator', u'password_policy', u'phone_numbers', u'provider_data', u'region', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

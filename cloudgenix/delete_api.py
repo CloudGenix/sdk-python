@@ -1774,7 +1774,7 @@ class Delete(object):
 
     def prioritypolicysets(self, prioritypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prioritypolicysets API Function
+        Delete Priority Policy Set.
 
           **Parameters:**:
 
@@ -1835,7 +1835,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prismaaccess_config_id**: Prisma Access Config ID
+          - **prismaaccess_config_id**: Prisma Acceess Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2584,7 +2584,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Syslog Server Profile ID
+          - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2864,7 +2864,7 @@ class Delete(object):
 
     def users(self, user_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Users API Function
+        Delete an user identity.
 
           **Parameters:**:
 

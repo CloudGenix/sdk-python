@@ -318,7 +318,7 @@ class Put(object):
            - **source_interface_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'enable_probe', u'id', u'name', u'source_interface_id', u'tags']
+          **Required Attributes:** [u'enable_probe', u'id', u'source_interface_id', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1136,6 +1136,40 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def element_cellular_modules_firmware(self, element_id, cellular_module_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Element_Cellular_Modules_Firmware API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **cellular_module_id**: Cellular Module ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/cellular_modules/{}/firmware".format(api_version,
+                                                                                                   tenant_id,
+                                                                                                   element_id,
+                                                                                                   cellular_module_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     def element_extensions(self, site_id, element_id, extension_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update element level extension configuration
@@ -1174,40 +1208,6 @@ class Put(object):
                                                                                              site_id,
                                                                                              element_id,
                                                                                              extension_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "put", data=data)
-
-    def element_firmware_cellular_modules(self, element_id, cellular_module_id, data, tenant_id=None, api_version="v2.0"):
-        """
-        PUT Element_Firmware_Cellular_Modules API Function
-
-          **Parameters:**:
-
-          - **element_id**: Element (Device) ID
-          - **cellular_module_id**: Cellular Module ID
-          - **data**: Dictionary containing data to PUT as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/cellular_modules/{}/firmware".format(api_version,
-                                                                                                   tenant_id,
-                                                                                                   element_id,
-                                                                                                   cellular_module_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -1807,14 +1807,16 @@ class Put(object):
            - **idp_metadata_b64:**  Type: string 
            - **inactive:**  Type: boolean 
            - **inactive_reason:**  Type: string 
+           - **is_hob:**  Type: boolean 
            - **role_map:**  Type: object 
            - **session_timeout_s:**  Type: integer 
+           - **sign_redirect_binding:**  Type: boolean 
            - **sp_metadata_b64:**  Type: string 
            - **sp_x509_b64:**  Type: string 
            - **sp_x509_serial_no:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'auto_provision_operators', u'auto_provision_roles', u'disabled', u'id', u'idp_domain_admin_email', u'idp_entity_id', u'idp_login_url', u'idp_logout_url', u'idp_metadata_b64', u'inactive', u'role_map', u'session_timeout_s', u'sp_metadata_b64', u'sp_x509_b64', u'sp_x509_serial_no', u'tenant_id']
+          **Required Attributes:** [u'auto_provision_operators', u'auto_provision_roles', u'disabled', u'id', u'idp_domain_admin_email', u'idp_entity_id', u'idp_login_url', u'idp_logout_url', u'idp_metadata_b64', u'inactive', u'is_hob', u'role_map', u'session_timeout_s', u'sign_redirect_binding', u'sp_metadata_b64', u'sp_x509_b64', u'sp_x509_serial_no', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1991,7 +1993,7 @@ class Put(object):
            - **type:**  Type: string 
            - **used_for:**  Type: string 
 
-          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'description', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'id', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'mtu', u'multicast_config', u'name', u'nat_address', u'nat_pools', u'nat_port', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'secondary_ip_configs', u'service_link_config', u'site_wan_interface_ids', u'static_arp_configs', u'sub_interface', u'tags', u'type', u'used_for']
+          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'id', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'multicast_config', u'nat_pools', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'service_link_config', u'site_wan_interface_ids', u'sub_interface', u'type', u'used_for']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2060,7 +2062,7 @@ class Put(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'description', u'export_cache_timeout', u'filters', u'id', u'ipfixprofile_id', u'ipfixtemplate_id', u'name', u'sampler', u'tags']
+          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'id', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2098,7 +2100,7 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'description', u'id', u'name']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2134,7 +2136,7 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'description', u'id', u'name']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2172,7 +2174,7 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'id', u'ipv4_prefixes', u'name', u'tags']
+          **Required Attributes:** [u'id', u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2236,7 +2238,7 @@ class Put(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'description', u'export_cache_timeout', u'filters', u'id', u'ipfixtemplate_id', u'name', u'sampler', u'tags']
+          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'id', u'ipfixtemplate_id', u'sampler']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2278,7 +2280,7 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **template_export_timeout:**  Type: integer 
 
-          **Required Attributes:** [u'description', u'flow_fields', u'generate_biflow', u'id', u'name', u'option_export_timeout', u'options', u'tags', u'template_export_timeout']
+          **Required Attributes:** [u'flow_fields', u'generate_biflow', u'id', u'option_export_timeout', u'options', u'template_export_timeout']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2486,9 +2488,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def machine_firmware_cellular_modules(self, machine_id, cellular_module_id, data, tenant_id=None, api_version="v2.0"):
+    def machine_cellular_modules_firmware(self, machine_id, cellular_module_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Machine_Firmware_Cellular_Modules API Function
+        PUT Machine_Cellular_Modules_Firmware API Function
 
           **Parameters:**:
 
@@ -2647,7 +2649,7 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'id', u'name', u'tags']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2684,7 +2686,7 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'id', u'name', u'tags']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3158,6 +3160,48 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **clone_from:**  Type: string 
+           - **defaultrule_policyset:**  Type: boolean 
+           - **description:**  Type: string 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **name:**  Type: string 
+           - **policy_req_version:**  Type: string 
+           - **policy_rules:**           
+               - **app_def_ids:**  [Type: string] 
+               - **description:**  Type: string 
+               - **destination_prefixes_id:**  Type: string 
+               - **enabled:**  Type: boolean 
+               - **id:**  Type: string 
+               - **name:**  Type: string 
+               - **network_context_id:**  Type: string 
+               - **order_number:**  Type: integer 
+               - **paths_allowed:**           
+                   - **active_paths:**           
+                       - **label:**  Type: string 
+                       - **path_type:**  Type: string 
+                   - **backup_paths:**           
+                       - **label:**  Type: string 
+                       - **path_type:**  Type: string 
+                   - **l3_failure_paths:**           
+                       - **label:**  Type: string 
+                       - **path_type:**  Type: string 
+               - **service_context:**           
+                   - **active_service_label_id:**  Type: string 
+                   - **active_service_label_type:**  Type: string 
+                   - **backup_service_label_id:**  Type: string 
+                   - **backup_service_label_type:**  Type: string 
+                   - **type:**  Type: string 
+               - **source_prefixes_id:**  Type: string 
+               - **tags:**  [Type: string] 
+           - **region:**  Type: string 
+           - **send_to_element:**  Type: boolean 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
+
+          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'disabled', u'id', u'inactive', u'policy_req_version', u'policy_rules', u'region', u'send_to_element', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3656,6 +3700,26 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **bandwidth_allocation_schemes:**           
+               - **bandwidth_range:**           
+                   - **high:**  Type: number 
+                   - **low:**  Type: number 
+               - **business_priorities:**           
+                   - **bandwidth_allocation:**  Type: number 
+                   - **bandwidth_split_per_type:**           
+                       - **bulk:**  Type: number 
+                       - **rt_audio:**  Type: number 
+                       - **rt_video:**  Type: number 
+                       - **transactional:**  Type: number 
+                   - **priority_num:**  Type: integer 
+           - **business_priority_names:**           
+               - **priority_name:**  Type: string 
+               - **priority_num:**  Type: integer 
+           - **default_policy:**  Type: boolean 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+
+          **Required Attributes:** [u'default_policy', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3906,7 +3970,7 @@ class Put(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prismaaccess_config_id**: Prisma Access Config ID
+          - **prismaaccess_config_id**: Prisma Acceess Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4524,7 +4588,7 @@ class Put(object):
 
     def site_admin_state(self, site_id, data, tenant_id=None, api_version="v3.0"):
         """
-        PUT Site_Admin_State API Function
+        Update an existing site
 
           **Parameters:**:
 
@@ -4535,6 +4599,26 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **address:**           
+               - **city:**  Type: string 
+               - **country:**  Type: string 
+               - **post_code:**  Type: string 
+               - **state:**  Type: string 
+               - **street:**  Type: string 
+               - **street2:**  Type: string 
+           - **admin_state:**  Type: string 
+           - **description:**  Type: string 
+           - **element_cluster_role:**  Type: string 
+           - **location:**           
+               - **description:**  Type: string 
+               - **latitude:**  Type: number 
+               - **longitude:**  Type: number 
+           - **name:**  Type: string 
+           - **policy_set_id:**  Type: string 
+           - **security_policyset_id:**  Type: string 
+           - **service_binding:**  Type: string 
+
+          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'id', u'location', u'policy_set_id', u'security_policyset_id', u'service_binding']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4612,7 +4696,7 @@ class Put(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id', u'tags']
+          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5216,7 +5300,7 @@ class Put(object):
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'destination_prefix', u'id', u'name', u'network_context_id', u'nexthop_reachability_probe', u'nexthops', u'scope', u'tags']
+          **Required Attributes:** [u'id', u'network_context_id', u'nexthop_reachability_probe', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5244,7 +5328,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Syslog Server Profile ID
+          - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5344,7 +5428,7 @@ class Put(object):
                - **version:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'default_template', u'description', u'id', u'name', u'ntp_servers', u'tags']
+          **Required Attributes:** [u'default_template', u'id', u'ntp_servers', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5413,7 +5497,7 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'id', u'name', u'tags']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5450,7 +5534,7 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'description', u'id', u'name', u'tags']
+          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5555,6 +5639,7 @@ class Put(object):
                - **local_extension:**  Type: integer 
                - **number:**  Type: integer 
                - **types:**           
+                   - **value:**  Type: string 
            - **region:**  Type: string 
            - **roles:**           
                - **name:**  Type: string 
@@ -5676,13 +5761,180 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **address:**           
+               - **city:**  Type: string 
+               - **country:**  Type: string 
+               - **post_code:**  Type: string 
+               - **state:**  Type: string 
+               - **street:**  Type: string 
+               - **street2:**  Type: string 
            - **canonical_name:**  Type: string 
            - **clients:**  [Type: string] 
+           - **description:**  Type: string 
+           - **disabled:**  Type: string 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: string 
+           - **inactive_reason:**  Type: string 
+           - **ipv4_list:**           
+               - **ipv4:**  Type: string 
            - **is_esp:**  Type: boolean 
+           - **is_support:**  Type: boolean 
            - **name:**  Type: string 
+           - **operator:**           
+               - **addresses:**           
+                   - **city:**  Type: string 
+                   - **country:**  Type: string 
+                   - **post_code:**  Type: string 
+                   - **state:**  Type: string 
+                   - **street:**  Type: string 
+                   - **street2:**  Type: string 
+               - **custom_roles:**           
+                   - **custom_permissions:**           
+                       - **allowed_after_ms:**  Type: integer 
+                       - **allowed_before_ms:**  Type: integer 
+                       - **disabled:**  Type: boolean 
+                       - **disabled_reason:**  Type: string 
+                       - **disallow_permission:**  Type: boolean 
+                       - **id:**  Type: string 
+                       - **inactive:**  Type: boolean 
+                       - **inactive_reason:**  Type: string 
+                       - **region:**  Type: string 
+                       - **tenant_id:**  Type: string 
+                       - **value:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disallow_permissions:**           
+                       - **value:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **name:**  Type: string 
+                   - **permissions:**           
+                       - **value:**  Type: string 
+                   - **roles:**           
+                       - **name:**  Type: string 
+               - **disable_idp_login:**  Type: boolean 
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **email:**  Type: string 
+               - **email_validated:**  Type: boolean 
+               - **enable_session_ip_lock:**  Type: boolean 
+               - **first_name:**  Type: string 
+               - **from_esp:**  Type: boolean 
+               - **from_esp_name:**  Type: string 
+               - **from_esp_tenant_id:**  Type: string 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **ipv4_list:**           
+                   - **ipv4:**  Type: string 
+               - **is_locked:**  Type: boolean 
+               - **is_system_owned:**  Type: boolean 
+               - **last_login:**  Type: string 
+               - **last_name:**  Type: string 
+               - **linked_accounts:**           
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **failed_login_attempts:**  Type: integer 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **provider_key:**  Type: string 
+                   - **provider_value:**  Type: string 
+                   - **provider_value_updated_on:**  Type: integer 
+                   - **region:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **name:**  Type: string 
+               - **phone_numbers:**           
+                   - **country_code:**  Type: integer 
+                   - **local_extension:**  Type: integer 
+                   - **number:**  Type: integer 
+                   - **types:**           
+                       - **value:**  Type: string 
+               - **region:**  Type: string 
+               - **roles:**           
+                   - **name:**  Type: string 
+               - **secondary_emails:**           
+                   - **email:**  Type: string 
+               - **settings:**  Type: string 
+               - **tenant_id:**  Type: string 
+           - **pan_account_id:**  Type: string 
+           - **pan_tenant_id:**  Type: string 
+           - **password_policy:**           
+               - **enable_failed_login_attempts:**  Type: boolean 
+               - **enable_failed_login_time_delay:**  Type: boolean 
+               - **enable_maximum_password_length:**  Type: boolean 
+               - **enable_minimum_password_length:**  Type: boolean 
+               - **enable_password_aging:**  Type: boolean 
+               - **enable_password_identity_difference:**  Type: boolean 
+               - **enable_password_no_reuse_count:**  Type: boolean 
+               - **enable_session_ip_lock:**  Type: boolean 
+               - **enable_two_lower_case_letters:**  Type: boolean 
+               - **enable_two_numbers:**  Type: boolean 
+               - **enable_two_special_characters:**  Type: boolean 
+               - **enable_two_upper_case_letters:**  Type: boolean 
+               - **failed_login_attempts:**  Type: integer 
+               - **maximum_password_length:**  Type: integer 
+               - **minimum_password_length:**  Type: integer 
+               - **password_aging_days:**  Type: integer 
+               - **password_aging_notification:**  Type: integer 
+               - **password_no_reuse_count:**  Type: integer 
+               - **special_characters:**  Type: string 
+               - **special_characters_regex:**  Type: string 
+           - **phone_numbers:**           
+               - **country_code:**  Type: integer 
+               - **local_extension:**  Type: integer 
+               - **number:**  Type: integer 
+               - **types:**           
+                   - **value:**  Type: string 
+           - **prisma_access_tenant_id:**  Type: string 
+           - **provider_data:**           
+               - **certificate:**           
+                   - **certificate:**  Type: string 
+                   - **certificate_expiry_utc:**  Type: integer 
+                   - **certificate_type:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **issued_by:**           
+                       - **common_name:**  Type: string 
+                       - **country:**  Type: string 
+                       - **location:**  Type: string 
+                       - **organization:**  Type: string 
+                       - **organization_unit:**  Type: string 
+                       - **state:**  Type: string 
+                   - **issued_to:**           
+                       - **common_name:**  Type: string 
+                       - **country:**  Type: string 
+                       - **location:**  Type: string 
+                       - **organization:**  Type: string 
+                       - **organization_unit:**  Type: string 
+                       - **state:**  Type: string 
+                   - **region:**  Type: string 
+                   - **serial_number:**  Type: string 
+                   - **tenant_id:**  Type: string 
+                   - **version:**  Type: string 
+               - **password_hash:**  Type: string 
+               - **provider:**           
+                   - **canonical_name:**  Type: string 
+                   - **description:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **map_external_group:**  Type: object 
+                   - **name:**  Type: string 
+                   - **protocol:**           
+                   - **region:**  Type: string 
+                   - **template:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **salt:**  Type: string 
+               - **security:**  Type: string 
+           - **region:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'canonical_name', u'clients', u'id', u'is_esp', u'tenant_id']
+          **Required Attributes:** [u'address', u'canonical_name', u'clients', u'disabled', u'id', u'inactive', u'ipv4_list', u'is_esp', u'is_support', u'operator', u'password_policy', u'phone_numbers', u'provider_data', u'region', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5703,7 +5955,7 @@ class Put(object):
 
     def users(self, user_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Users API Function
+        Put an user identity.
 
           **Parameters:**:
 
@@ -5714,6 +5966,19 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **first_name:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **last_name:**  Type: string 
+           - **middle_name:**  Type: string 
+           - **region:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **user_dn:**  Type: string 
+           - **user_fqn:**  Type: string 
+
+          **Required Attributes:** [u'disabled', u'first_name', u'id', u'inactive', u'last_name', u'middle_name', u'region', u'tenant_id', u'user_dn', u'user_fqn']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5937,7 +6202,7 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'description', u'id', u'name', u'provider_as_numbers', u'tags', u'type']
+          **Required Attributes:** [u'id', u'provider_as_numbers', u'type']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6053,11 +6318,11 @@ class Put(object):
     extensions_ws = ws_extensions
     """ Backwards-compatibility alias of `extensions_ws` to `ws_extensions`"""
 
-    firmware_cellular_modules_e = element_firmware_cellular_modules
-    """ Backwards-compatibility alias of `firmware_cellular_modules_e` to `element_firmware_cellular_modules`"""
+    firmware_cellular_modules_e = element_cellular_modules_firmware
+    """ Backwards-compatibility alias of `firmware_cellular_modules_e` to `element_cellular_modules_firmware`"""
 
-    firmware_cellular_modules_m = machine_firmware_cellular_modules
-    """ Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_firmware_cellular_modules`"""
+    firmware_cellular_modules_m = machine_cellular_modules_firmware
+    """ Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_cellular_modules_firmware`"""
 
     ipfixlocalprefixes_s = site_ipfixlocalprefixes
     """ Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`"""
