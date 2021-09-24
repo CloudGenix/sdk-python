@@ -2762,6 +2762,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_extensions">site_extensions</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_extensions_query">site_extensions_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_ipfixlocalprefixes">site_ipfixlocalprefixes</a></li>
+    <li class="mono"><a href="#cloudgenix.post_api.Post.site_lannetworks_query">site_lannetworks_query</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_natlocalprefixes">site_natlocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_networkpolicylocalprefixes">site_networkpolicylocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.post_api.Post.site_ngfwsecuritypolicylocalprefixes">site_ngfwsecuritypolicylocalprefixes</a></li>
@@ -11146,6 +11147,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">site_lannetworks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Site_Lannetworks_Query API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
+
+<span class="sd">          **Payload Attributes:** </span>
+
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/lannetworks/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                     <span class="n">site_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an association between site and NAT Prefix.</span>
@@ -13166,7 +13199,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insights_monitor` to `monitor_insights`&quot;&quot;&quot;</span>
 
     <span class="n">insightslist_monitor</span> <span class="o">=</span> <span class="n">monitor_insightslist</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insightslist_monitor` to `monitor_insightsllist`&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insightslist_monitor` to `monitor_insightslist`&quot;&quot;&quot;</span>
 
     <span class="n">ipfixlocalprefixes_s</span> <span class="o">=</span> <span class="n">site_ipfixlocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`&quot;&quot;&quot;</span>
@@ -13357,8 +13390,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">query_ipsecprofiles</span> <span class="o">=</span> <span class="n">ipsecprofiles_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_ipsecprofiles` to `ipsecprofiles_query`&quot;&quot;&quot;</span>
 
-    <span class="n">query_lannetworks</span> <span class="o">=</span> <span class="n">lannetworks_query</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks` to `lannetworks_query`&quot;&quot;&quot;</span>
+    <span class="n">query_lannetworks</span> <span class="o">=</span> <span class="n">site_lannetworks_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks` to `site_lannetworks_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_lannetworks_t</span> <span class="o">=</span> <span class="n">lannetworks_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks_t` to `lannetworks_query`&quot;&quot;&quot;</span>
@@ -21888,6 +21921,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">site_lannetworks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        POST Site_Lannetworks_Query API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
+
+<span class="sd">          **Payload Attributes:** </span>
+
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/lannetworks/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                     <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                     <span class="n">site_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">site_natlocalprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an association between site and NAT Prefix.</span>
@@ -23908,7 +23973,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insights_monitor` to `monitor_insights`&quot;&quot;&quot;</span>
 
     <span class="n">insightslist_monitor</span> <span class="o">=</span> <span class="n">monitor_insightslist</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insightslist_monitor` to `monitor_insightsllist`&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `insightslist_monitor` to `monitor_insightslist`&quot;&quot;&quot;</span>
 
     <span class="n">ipfixlocalprefixes_s</span> <span class="o">=</span> <span class="n">site_ipfixlocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `ipfixlocalprefixes_s` to `site_ipfixlocalprefixes`&quot;&quot;&quot;</span>
@@ -24099,8 +24164,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">query_ipsecprofiles</span> <span class="o">=</span> <span class="n">ipsecprofiles_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_ipsecprofiles` to `ipsecprofiles_query`&quot;&quot;&quot;</span>
 
-    <span class="n">query_lannetworks</span> <span class="o">=</span> <span class="n">lannetworks_query</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks` to `lannetworks_query`&quot;&quot;&quot;</span>
+    <span class="n">query_lannetworks</span> <span class="o">=</span> <span class="n">site_lannetworks_query</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks` to `site_lannetworks_query`&quot;&quot;&quot;</span>
 
     <span class="n">query_lannetworks_t</span> <span class="o">=</span> <span class="n">lannetworks_query</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `query_lannetworks_t` to `lannetworks_query`&quot;&quot;&quot;</span>
@@ -24508,7 +24573,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>insightslist_monitor</code> to <code>monitor_insightsllist</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>insightslist_monitor</code> to <code>monitor_insightslist</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -25212,7 +25277,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>query_lannetworks</code> to <code>lannetworks_query</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>query_lannetworks</code> to <code>site_lannetworks_query</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -41052,6 +41117,58 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/ipfixlocalprefixes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
                                                                                   <span class="n">site_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.post_api.Post.site_lannetworks_query">
+    <div class="name def">
+    <p>def <span class="ident">site_lannetworks_query</span>(</p><p>self, site_id, data, tenant_id=None, api_version=&#39;v3.1&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>POST Site_Lannetworks_Query API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>site_id</strong>: Site ID</li>
+<li><strong>data</strong>: Dictionary containing data to POST as JSON</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v3.1)</li>
+</ul>
+<p><strong>Payload Attributes:</strong> </p>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.post_api.Post.site_lannetworks_query', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.post_api.Post.site_lannetworks_query" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">site_lannetworks_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    POST Site_Lannetworks_Query API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **site_id**: Site ID</span>
+<span class="sd">      - **data**: Dictionary containing data to POST as JSON</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v3.1)</span>
+<span class="sd">      **Payload Attributes:** </span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/lannetworks/query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                 <span class="n">site_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
