@@ -2751,8 +2751,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **settings:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
 
-<span class="sd">          **Required Attributes:** [u&#39;disable_idp_login&#39;, u&#39;disabled&#39;, u&#39;email&#39;, u&#39;email_validated&#39;, u&#39;enable_session_ip_lock&#39;, u&#39;from_esp&#39;, u&#39;from_esp_tenant_id&#39;, u&#39;inactive&#39;, u&#39;is_locked&#39;, u&#39;is_system_owned&#39;, u&#39;last_login&#39;, u&#39;linked_accounts&#39;, u&#39;name&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
-
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2955,8 +2953,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **security:**  Type: string </span>
 <span class="sd">           - **region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
-
-<span class="sd">          **Required Attributes:** [u&#39;address&#39;, u&#39;canonical_name&#39;, u&#39;clients&#39;, u&#39;disabled&#39;, u&#39;inactive&#39;, u&#39;ipv4_list&#39;, u&#39;is_esp&#39;, u&#39;is_support&#39;, u&#39;operator&#39;, u&#39;password_policy&#39;, u&#39;phone_numbers&#39;, u&#39;provider_data&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3114,8 +3110,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **settings:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
 
-<span class="sd">          **Required Attributes:** [u&#39;disable_idp_login&#39;, u&#39;disabled&#39;, u&#39;email&#39;, u&#39;email_validated&#39;, u&#39;enable_session_ip_lock&#39;, u&#39;from_esp&#39;, u&#39;from_esp_tenant_id&#39;, u&#39;inactive&#39;, u&#39;is_locked&#39;, u&#39;is_system_owned&#39;, u&#39;last_login&#39;, u&#39;linked_accounts&#39;, u&#39;name&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
-
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3318,8 +3312,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **security:**  Type: string </span>
 <span class="sd">           - **region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
-
-<span class="sd">          **Required Attributes:** [u&#39;address&#39;, u&#39;canonical_name&#39;, u&#39;clients&#39;, u&#39;disabled&#39;, u&#39;inactive&#39;, u&#39;ipv4_list&#39;, u&#39;is_esp&#39;, u&#39;is_support&#39;, u&#39;operator&#39;, u&#39;password_policy&#39;, u&#39;phone_numbers&#39;, u&#39;provider_data&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3492,7 +3484,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>settings:</strong>  Type: string </li>
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
-<p><strong>Required Attributes:</strong> [u'disable_idp_login', u'disabled', u'email', u'email_validated', u'enable_session_ip_lock', u'from_esp', u'from_esp_tenant_id', u'inactive', u'is_locked', u'is_system_owned', u'last_login', u'linked_accounts', u'name', u'region', u'tenant_id']</p>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenant_operators', this);">Show source &equiv;</a></p>
@@ -3586,7 +3577,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **email:**  Type: string </span>
 <span class="sd">       - **settings:**  Type: string </span>
 <span class="sd">       - **tenant_id:**  Type: string </span>
-<span class="sd">      **Required Attributes:** [u&#39;disable_idp_login&#39;, u&#39;disabled&#39;, u&#39;email&#39;, u&#39;email_validated&#39;, u&#39;enable_session_ip_lock&#39;, u&#39;from_esp&#39;, u&#39;from_esp_tenant_id&#39;, u&#39;inactive&#39;, u&#39;is_locked&#39;, u&#39;is_system_owned&#39;, u&#39;last_login&#39;, u&#39;linked_accounts&#39;, u&#39;name&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -3845,7 +3835,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>region:</strong>  Type: string </li>
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
-<p><strong>Required Attributes:</strong> [u'address', u'canonical_name', u'clients', u'disabled', u'inactive', u'ipv4_list', u'is_esp', u'is_support', u'operator', u'password_policy', u'phone_numbers', u'provider_data', u'region', u'tenant_id']</p>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
@@ -4030,7 +4019,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **security:**  Type: string </span>
 <span class="sd">       - **region:**  Type: string </span>
 <span class="sd">       - **tenant_id:**  Type: string </span>
-<span class="sd">      **Required Attributes:** [u&#39;address&#39;, u&#39;canonical_name&#39;, u&#39;clients&#39;, u&#39;disabled&#39;, u&#39;inactive&#39;, u&#39;ipv4_list&#39;, u&#39;is_esp&#39;, u&#39;is_support&#39;, u&#39;operator&#39;, u&#39;password_policy&#39;, u&#39;phone_numbers&#39;, u&#39;provider_data&#39;, u&#39;region&#39;, u&#39;tenant_id&#39;]</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
