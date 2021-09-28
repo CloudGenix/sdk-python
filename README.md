@@ -43,7 +43,8 @@ MIT
 #### Version
 | Version | Build | Changes |
 | ------- | ----- | ------- |
-| **5.6.1** | **b1** | Support for Sept 2021 Controller release. |
+| **5.6.1** | **b2** | Minor bugfix. |
+|           | **b1** | Support for Sept 2021 Controller release. |
 | **5.5.3** | **b1** | Support for June 2021 Controller release. |
 | **5.5.1** | **b3** | Fix for issue #25. |
 |           | **b2** | Minor bugfixes. |
