@@ -71,8 +71,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **user_id:**  Type: string 
 
-          **Required Attributes:** [u'element_id', u'id', u'role', u'tenant_id', u'user_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -162,8 +160,6 @@ class Put(object):
            - **udp_rules:**  [Type: object] 
            - **use_parentapp_network_policy:**  Type: boolean 
 
-          **Required Attributes:** [u'aggregate_flows', u'app_type', u'app_unreachability_detection', u'category', u'conn_idle_timeout', u'id', u'ingress_traffic_pct', u'is_deprecated', u'network_scan_application', u'order_number', u'overrides_allowed', u'parent_id', u'path_affinity', u'system_app_overridden', u'transfer_type', u'use_parentapp_network_policy']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -241,8 +237,6 @@ class Put(object):
                    - **start:**  Type: string 
            - **use_parentapp_network_policy:**  Type: boolean 
 
-          **Required Attributes:** [u'aggregate_flows', u'app_unreachability_detection', u'conn_idle_timeout', u'id', u'ingress_traffic_pct', u'override_default_ip_rules', u'override_default_tcp_rules', u'override_default_udp_rules', u'override_domains', u'overrides_disable', u'session_timeout', u'use_parentapp_network_policy']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -277,8 +271,6 @@ class Put(object):
 
            - **app_version:**  Type: string 
            - **reqState:**  Type: string 
-
-          **Required Attributes:** [u'app_version', u'id', u'reqState']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -317,8 +309,6 @@ class Put(object):
            - **name:**  Type: string 
            - **source_interface_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'enable_probe', u'id', u'source_interface_id', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -370,8 +360,6 @@ class Put(object):
            - **prefixes_to_adv_to_wan:**  [Type: string] 
            - **router_id:**  Type: string 
            - **stalepath_time:**  Type: integer 
-
-          **Required Attributes:** [u'admin_distance', u'graceful_restart', u'hold_time', u'id', u'keepalive_time', u'maximum_paths', u'multi_hop_limit', u'peer_auth_type', u'prefix_adv_type', u'prefix_adv_type_to_lan', u'prefixes_to_adv_to_wan', u'stalepath_time']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -428,8 +416,6 @@ class Put(object):
            - **shutdown:**  Type: boolean 
            - **tags:**  [Type: string] 
            - **update_source:**  Type: string 
-
-          **Required Attributes:** [u'bgp_config', u'id', u'peer_type', u'remote_as_num', u'route_map_in_id', u'route_map_out_id', u'scope', u'shutdown']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -523,8 +509,6 @@ class Put(object):
                - **name:**  Type: string 
            - **subnet:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'broadcast_address', u'custom_options', u'default_lease_time', u'disabled', u'id', u'ip_ranges', u'max_lease_time', u'network_context_id', u'static_mappings', u'subnet']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -701,8 +685,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'authoritative_config', u'cache_config', u'disabled', u'dns_forward_config', u'dns_queries_metadata', u'dns_rebind_config', u'dns_response_overrides', u'dnssec_config', u'domains_to_addresses', u'enable_dns_loop_detection', u'enable_dnssec_proxy', u'enable_strict_domain_name', u'id', u'inactive', u'listen_port', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -737,8 +719,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1029,8 +1009,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **upperCaseName:**  Type: string 
 
-          **Required Attributes:** [u'cache_config', u'disabled', u'dns_queries_metadata', u'dnsservice_profile_id', u'dnsservicerole_bindings', u'domains_to_addresses', u'domains_to_interfaces', u'element_id', u'enabled', u'id', u'inactive', u'max_concurrent_dns_queries', u'region', u'site_id', u'tenant_id', u'upperCaseName']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1080,8 +1058,6 @@ class Put(object):
            - **site_id:**  Type: string 
            - **software_version:**  Type: string 
            - **state:**  Type: string 
-
-          **Required Attributes:** [u'admin_action', u'allowed_roles', u'cluster_insertion_mode', u'cluster_member_id', u'connected', u'deployment_op', u'hw_id', u'id', u'model_name', u'role', u'serial_number', u'site_id', u'software_version', u'state']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1190,8 +1166,6 @@ class Put(object):
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
-          **Required Attributes:** [u'conf', u'disabled', u'id', u'namespace']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1232,8 +1206,6 @@ class Put(object):
            - **retry_login_count:**  Type: integer 
            - **ssh_enabled:**  Type: boolean 
            - **ssh_outbound_enabled:**  Type: boolean 
-
-          **Required Attributes:** [u'account_disable_interval', u'id', u'inactive_interval', u'otpkey_version', u'retry_login_count', u'ssh_enabled', u'ssh_outbound_enabled']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1297,8 +1269,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **vpn_to_vpn_forwarding:**  Type: boolean 
 
-          **Required Attributes:** [u'cluster_insertion_mode', u'cluster_member_id', u'id', u'l3_direct_private_wan_forwarding', u'l3_lan_forwarding', u'nat_policysetstack_id', u'network_policysetstack_id', u'priority_policysetstack_id', u'site_id', u'spoke_ha_config', u'sw_obj', u'tenant_id', u'vpn_to_vpn_forwarding']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1340,8 +1310,6 @@ class Put(object):
            - **wanoverlay_ids:**  [Type: string] 
            - **zone_id:**  Type: string 
 
-          **Required Attributes:** [u'id', u'site_id', u'tenant_id', u'zone_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1380,8 +1348,6 @@ class Put(object):
            - **role:**  Type: string 
            - **tenant_id:**  Type: string 
            - **username:**  Type: string 
-
-          **Required Attributes:** [u'id', u'is_tenant_level', u'login_id', u'role', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1485,8 +1451,6 @@ class Put(object):
            - **settings:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'client_id', u'disabled', u'enable_session_ip_lock', u'id', u'inactive', u'operator_id', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1540,8 +1504,6 @@ class Put(object):
            - **suppress:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'enabled', u'end_time', u'escalation_rules', u'event_codes', u'id', u'priority', u'start_time', u'suppress']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1583,8 +1545,6 @@ class Put(object):
                - **priority:**  Type: string 
                - **severity:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'active_policyset', u'clone_from', u'id', u'policyrule_order', u'severity_priority_mapping']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1686,8 +1646,6 @@ class Put(object):
                - **type:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'filters', u'id', u'name']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1761,8 +1719,6 @@ class Put(object):
            - **name:**  Type: string 
            - **subscription_factor:**  Type: number 
 
-          **Required Attributes:** [u'admin_up', u'id', u'subscription_factor']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1815,8 +1771,6 @@ class Put(object):
            - **sp_x509_b64:**  Type: string 
            - **sp_x509_serial_no:**  Type: string 
            - **tenant_id:**  Type: string 
-
-          **Required Attributes:** [u'auto_provision_operators', u'auto_provision_roles', u'disabled', u'id', u'idp_domain_admin_email', u'idp_entity_id', u'idp_login_url', u'idp_logout_url', u'idp_metadata_b64', u'inactive', u'is_hob', u'role_map', u'session_timeout_s', u'sign_redirect_binding', u'sp_metadata_b64', u'sp_x509_b64', u'sp_x509_serial_no', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1993,8 +1947,6 @@ class Put(object):
            - **type:**  Type: string 
            - **used_for:**  Type: string 
 
-          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'id', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'multicast_config', u'nat_pools', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'service_link_config', u'site_wan_interface_ids', u'sub_interface', u'type', u'used_for']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2062,8 +2014,6 @@ class Put(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'id', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2100,8 +2050,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2135,8 +2083,6 @@ class Put(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2173,8 +2119,6 @@ class Put(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2238,8 +2182,6 @@ class Put(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'id', u'ipfixtemplate_id', u'sampler']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2279,8 +2221,6 @@ class Put(object):
            - **options:**  [Type: string] 
            - **tags:**  [Type: string] 
            - **template_export_timeout:**  Type: integer 
-
-          **Required Attributes:** [u'flow_fields', u'generate_biflow', u'id', u'option_export_timeout', u'options', u'template_export_timeout']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2371,8 +2311,6 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'authentication', u'dpd_delay', u'dpd_enable', u'dpd_timeout', u'esp_group', u'id', u'ike_group']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2431,8 +2369,6 @@ class Put(object):
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_config', u'network_context_id', u'scope']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2467,8 +2403,6 @@ class Put(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'id', u'name']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2612,8 +2546,6 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_prefixes']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2649,8 +2581,6 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2685,8 +2615,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2788,8 +2716,6 @@ class Put(object):
            - **source_zone_id:**  Type: string 
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
-
-          **Required Attributes:** [u'actions', u'destination_prefixes', u'destination_prefixes_id', u'destination_zone', u'destination_zone_id', u'disabled', u'enabled', u'id', u'inactive', u'natpolicypools', u'policyset_id', u'protocol', u'region', u'source_prefixes', u'source_prefixes_id', u'source_zone', u'source_zone_id', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2909,8 +2835,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **update_order:**  Type: boolean 
 
-          **Required Attributes:** [u'clone_from', u'disabled', u'id', u'inactive', u'policy_req_version', u'policy_rules', u'region', u'send_to_element', u'tenant_id', u'update_order']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2947,8 +2871,6 @@ class Put(object):
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_policysetstack', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2992,8 +2914,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'default_for_public_interfaces', u'disabled', u'id', u'inactive', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3027,8 +2947,6 @@ class Put(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'description', u'id', u'name']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3065,8 +2983,6 @@ class Put(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3125,8 +3041,6 @@ class Put(object):
                - **type:**  Type: string 
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'app_def_ids', u'description', u'destination_prefixes_id', u'enabled', u'id', u'name', u'network_context_id', u'order_number', u'paths_allowed', u'service_context', u'source_prefixes_id', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3200,8 +3114,6 @@ class Put(object):
            - **send_to_element:**  Type: boolean 
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
-
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'disabled', u'id', u'inactive', u'policy_req_version', u'policy_rules', u'region', u'send_to_element', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3314,8 +3226,6 @@ class Put(object):
            - **region:**  Type: string 
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
-
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset', u'defaultrule_policyset_id', u'disabled', u'id', u'inactive', u'legacy_policystack', u'policysets', u'region', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3521,8 +3431,6 @@ class Put(object):
            - **source_interface_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ntp_servers', u'tags']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3557,8 +3465,6 @@ class Put(object):
 
            - **otp_attempts:**  Type: integer 
            - **otp_validity_minutes:**  Type: integer 
-
-          **Required Attributes:** [u'id', u'otp_attempts', u'otp_validity_minutes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3596,8 +3502,6 @@ class Put(object):
            - **paths:**           
                - **label:**  Type: string 
                - **path_type:**  Type: string 
-
-          **Required Attributes:** [u'description', u'id', u'name', u'paths']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3666,8 +3570,6 @@ class Put(object):
                - **wp_type:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'app_def_name', u'default_rule', u'disabled', u'id', u'inactive', u'lan_network_ids', u'paths_allowed', u'policy_set_id', u'priority_num', u'region', u'site_paths_allowed', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3719,8 +3621,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'default_policy', u'id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3756,8 +3656,6 @@ class Put(object):
            - **filters:**           
                - **type:**  Type: string 
            - **prefix_filter_id:**  Type: string 
-
-          **Required Attributes:** [u'filters', u'id', u'prefix_filter_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3795,8 +3693,6 @@ class Put(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3842,8 +3738,6 @@ class Put(object):
            - **priority_number:**  Type: integer 
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'destination_prefixes_id', u'dscp', u'enabled', u'id', u'network_context_id', u'order_number', u'priority_number', u'source_prefixes_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3903,8 +3797,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **template:**  Type: boolean 
 
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'id', u'template']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3942,8 +3834,6 @@ class Put(object):
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset_id', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4072,8 +3962,6 @@ class Put(object):
                - **name:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'description', u'disabled', u'id', u'inactive', u'is_system_owned', u'name', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4115,8 +4003,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'as_path_regex_list', u'auto_generated', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4160,8 +4046,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'auto_generated', u'community_list', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4208,8 +4092,6 @@ class Put(object):
                - **permit:**  Type: boolean 
                - **prefix:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'auto_generated', u'id', u'prefix_filter_list']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4267,8 +4149,6 @@ class Put(object):
                    - **tag:**  Type: integer 
                    - **weight:**  Type: integer 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'auto_generated', u'id', u'route_map_entries']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4348,8 +4228,6 @@ class Put(object):
            - **source_filter_ids:**  [Type: string] 
            - **source_zone_ids:**  [Type: string] 
 
-          **Required Attributes:** [u'action', u'application_ids', u'destination_filter_ids', u'destination_zone_ids', u'disabled_flag', u'id', u'source_filter_ids', u'source_zone_ids']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4386,8 +4264,6 @@ class Put(object):
            - **name:**  Type: string 
            - **policyrule_order:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'policyrule_order']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4421,8 +4297,6 @@ class Put(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4462,8 +4336,6 @@ class Put(object):
                - **service_endpoint_ids:**  [Type: string] 
                - **service_label_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'is_default', u'service_bindings']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4528,8 +4400,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'address', u'admin_up', u'allow_enterprise_traffic', u'id', u'liveliness_probe', u'location', u'service_link_peers', u'site_id', u'type']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4565,8 +4435,6 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
-
-          **Required Attributes:** [u'id', u'type']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4618,8 +4486,6 @@ class Put(object):
            - **security_policyset_id:**  Type: string 
            - **service_binding:**  Type: string 
 
-          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'id', u'location', u'policy_set_id', u'security_policyset_id', u'service_binding']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4656,8 +4522,6 @@ class Put(object):
            - **disabled:**  Type: boolean 
            - **name:**  Type: string 
            - **namespace:**  Type: string 
-
-          **Required Attributes:** [u'conf', u'disabled', u'id', u'namespace']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4696,8 +4560,6 @@ class Put(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4735,8 +4597,6 @@ class Put(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4773,8 +4633,6 @@ class Put(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4847,8 +4705,6 @@ class Put(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'ipv4_prefixes', u'prefix_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4885,8 +4741,6 @@ class Put(object):
            - **site_id:**  Type: string 
            - **tenant_id:**  Type: string 
            - **vpn_ciphers:**  [Type: string] 
-
-          **Required Attributes:** [u'controller_connection_cipher', u'id', u'site_id', u'tenant_id', u'vpn_ciphers']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4947,8 +4801,6 @@ class Put(object):
            - **service_binding:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'id', u'location', u'nat_policysetstack_id', u'network_policysetstack_id', u'policy_set_id', u'priority_policysetstack_id', u'security_policyset_id', u'security_policysetstack_id', u'service_binding']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4985,8 +4837,6 @@ class Put(object):
                - **network_id:**  Type: string 
                - **network_type:**  Type: string 
            - **zone_id:**  Type: string 
-
-          **Required Attributes:** [u'id', u'networks', u'zone_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5036,8 +4886,6 @@ class Put(object):
                    - **engine_id:**  Type: string 
                    - **security_level:**  Type: string 
                    - **user_name:**  Type: string 
-
-          **Required Attributes:** [u'id', u'v2_config', u'v3_config']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5093,8 +4941,6 @@ class Put(object):
                    - **user_name:**  Type: string 
            - **version:**  Type: string 
 
-          **Required Attributes:** [u'enabled', u'id', u'server_ip', u'source_interface', u'v2_config', u'v3_config', u'version']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5133,8 +4979,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **upgrade_interval:**  Type: integer 
            - **upgrade_version:**  Type: string 
-
-          **Required Attributes:** [u'id', u'scheduled_upgrade', u'tenant_id', u'upgrade_version']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5175,8 +5019,6 @@ class Put(object):
            - **scheduled_upgrade:**  Type: string 
            - **upgrade_interval:**  Type: integer 
 
-          **Required Attributes:** [u'id', u'image_id', u'scheduled_download', u'scheduled_upgrade']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5215,8 +5057,6 @@ class Put(object):
            - **preempt:**  Type: boolean 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id', u'preempt']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5251,8 +5091,6 @@ class Put(object):
 
            - **image_id:**  Type: string 
            - **scheduled_upgrade:**  Type: string 
-
-          **Required Attributes:** [u'id', u'image_id', u'scheduled_upgrade']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5299,8 +5137,6 @@ class Put(object):
                - **self:**  Type: boolean 
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id', u'network_context_id', u'nexthop_reachability_probe', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5383,8 +5219,6 @@ class Put(object):
            - **syslog_profile_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'enable_flow_logging', u'enabled', u'id', u'protocol', u'remote_ca_certificate', u'server_fqdn', u'server_port', u'severity_level', u'source_interface', u'syslog_profile_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5427,8 +5261,6 @@ class Put(object):
                - **min_poll:**  Type: integer 
                - **version:**  Type: integer 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_template', u'id', u'ntp_servers', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5497,8 +5329,6 @@ class Put(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5533,8 +5363,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5648,8 +5476,6 @@ class Put(object):
            - **settings:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'disable_idp_login', u'disabled', u'email', u'email_validated', u'enable_session_ip_lock', u'from_esp', u'from_esp_tenant_id', u'id', u'inactive', u'is_locked', u'is_system_owned', u'last_login', u'linked_accounts', u'name', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5692,8 +5518,6 @@ class Put(object):
            - **tenant_id:**  Type: string 
            - **value:**  Type: string 
 
-          **Required Attributes:** [u'allowed_after_ms', u'allowed_before_ms', u'disabled', u'disallow_permission', u'id', u'inactive', u'region', u'tenant_id', u'value']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5728,8 +5552,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5934,8 +5756,6 @@ class Put(object):
            - **region:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'address', u'canonical_name', u'clients', u'disabled', u'id', u'inactive', u'ipv4_list', u'is_esp', u'is_support', u'operator', u'password_policy', u'phone_numbers', u'provider_data', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5978,8 +5798,6 @@ class Put(object):
            - **user_dn:**  Type: string 
            - **user_fqn:**  Type: string 
 
-          **Required Attributes:** [u'disabled', u'first_name', u'id', u'inactive', u'last_name', u'middle_name', u'region', u'tenant_id', u'user_dn', u'user_fqn']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6021,8 +5839,6 @@ class Put(object):
            - **valid_till_secs:**  Type: integer 
            - **vfflicense_id:**  Type: string 
 
-          **Required Attributes:** [u'id', u'ion_key', u'is_expired', u'is_multiuse', u'is_revoked', u'is_used', u'secret_key', u'valid_till_secs', u'vfflicense_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6057,8 +5873,6 @@ class Put(object):
 
            - **al_id:**  Type: string 
            - **enabled:**  Type: boolean 
-
-          **Required Attributes:** [u'al_id', u'enabled', u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6103,8 +5917,6 @@ class Put(object):
            - **vpnlink_configuration:**           
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
-
-          **Required Attributes:** [u'bwc_enabled', u'id', u'label', u'lqm_enabled', u'use_for_application_reachability_probes', u'use_for_controller_connections', u'use_lqm_for_non_hub_paths', u'vpnlink_configuration']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6162,8 +5974,6 @@ class Put(object):
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
 
-          **Required Attributes:** [u'bfd_mode', u'bw_config_mode', u'bwc_enabled', u'id', u'label_id', u'link_bw_down', u'link_bw_up', u'lqm_config', u'lqm_enabled', u'network_id', u'type', u'use_for_application_reachability_probes', u'use_for_controller_connections', u'use_lqm_for_non_hub_paths']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6202,8 +6012,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'id', u'provider_as_numbers', u'type']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6238,8 +6046,6 @@ class Put(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **vni:**  Type: integer 
-
-          **Required Attributes:** [u'id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

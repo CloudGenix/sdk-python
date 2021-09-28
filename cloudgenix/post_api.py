@@ -70,8 +70,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **user_id:**  Type: string 
 
-          **Required Attributes:** [u'element_id', u'role', u'tenant_id', u'user_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -217,8 +215,6 @@ class Post(object):
            - **udp_rules:**  [Type: object] 
            - **use_parentapp_network_policy:**  Type: boolean 
 
-          **Required Attributes:** [u'aggregate_flows', u'app_type', u'app_unreachability_detection', u'category', u'conn_idle_timeout', u'ingress_traffic_pct', u'is_deprecated', u'network_scan_application', u'order_number', u'overrides_allowed', u'parent_id', u'path_affinity', u'system_app_overridden', u'transfer_type', u'use_parentapp_network_policy']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -294,8 +290,6 @@ class Post(object):
                    - **start:**  Type: string 
            - **use_parentapp_network_policy:**  Type: boolean 
 
-          **Required Attributes:** [u'aggregate_flows', u'app_unreachability_detection', u'conn_idle_timeout', u'ingress_traffic_pct', u'override_default_ip_rules', u'override_default_tcp_rules', u'override_default_udp_rules', u'override_domains', u'overrides_disable', u'session_timeout', u'use_parentapp_network_policy']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -350,8 +344,6 @@ class Post(object):
            - **transfer_type:**  Type: string 
            - **udp_rules:**  [Type: object] 
            - **use_parentapp_network_policy:**  Type: boolean 
-
-          **Required Attributes:** [u'aggregate_flows', u'app_type', u'app_unreachability_detection', u'category', u'conn_idle_timeout', u'ingress_traffic_pct', u'is_deprecated', u'network_scan_application', u'order_number', u'overrides_allowed', u'parent_id', u'path_affinity', u'system_app_overridden', u'transfer_type', u'use_parentapp_network_policy']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -443,8 +435,6 @@ class Post(object):
            - **session_key_c:**  Type: string 
            - **x_auth_token:**  Type: string 
 
-          **Required Attributes:** [u'expires_utc_ms', u'is_system_owned', u'x_auth_token']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -498,8 +488,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **update_source:**  Type: string 
 
-          **Required Attributes:** [u'bgp_config', u'peer_type', u'remote_as_num', u'route_map_in_id', u'route_map_out_id', u'scope', u'shutdown']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -535,8 +523,6 @@ class Post(object):
           **Payload Attributes:** 
 
            - **value:**  Type: string 
-
-          **Required Attributes:** [u'value']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -592,8 +578,6 @@ class Post(object):
            - **shutdown:**  Type: boolean 
            - **tags:**  [Type: string] 
            - **update_source:**  Type: string 
-
-          **Required Attributes:** [u'bgp_config', u'peer_type', u'remote_as_num', u'route_map_in_id', u'route_map_out_id', u'scope', u'shutdown']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -690,8 +674,6 @@ class Post(object):
            - **action:**  Type: string 
            - **parameters:**  [Type: string] 
 
-          **Required Attributes:** [u'action', u'parameters']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -727,8 +709,6 @@ class Post(object):
            - **logout_others:**  Type: boolean 
            - **password:**  Type: string 
            - **requestId:**  Type: string 
-
-          **Required Attributes:** [u'email', u'logout_others', u'password', u'requestId']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -795,8 +775,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **version_exceptions_map:**  [Type: object] 
            - **x_auth_token:**  Type: string 
-
-          **Required Attributes:** [u'custom_roles', u'disallowed_permissions', u'operator_id', u'permissions', u'redirect_region', u'redirect_urlpath', u'redirect_x_auth_token', u'resource_role_map', u'resource_uri_map', u'resource_version_map', u'tenant_id', u'version_exceptions_map', u'x_auth_token']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -871,8 +849,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'canonical_name', u'clients', u'is_esp', u'name', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -921,8 +897,6 @@ class Post(object):
            - **suspend_state:**  Type: string 
            - **tenant_id:**  Type: string 
            - **token:**  Type: string 
-
-          **Required Attributes:** [u'connected', u'console_conf_passphrase', u'em_element_id', u'esp_tenant_id', u'hw_id', u'image_version', u'inventory_op', u'machine_state', u'manufacture_id', u'model_name', u'ordering_info', u'pki_op', u'renew_state', u'ship_state', u'sl_no', u'suspend_state', u'tenant_id', u'token']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1008,8 +982,6 @@ class Post(object):
                - **name:**  Type: string 
            - **subnet:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'broadcast_address', u'custom_options', u'default_lease_time', u'disabled', u'ip_ranges', u'max_lease_time', u'network_context_id', u'static_mappings', u'subnet']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1184,8 +1156,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'authoritative_config', u'cache_config', u'disabled', u'dns_forward_config', u'dns_queries_metadata', u'dns_rebind_config', u'dns_response_overrides', u'dnssec_config', u'domains_to_addresses', u'enable_dns_loop_detection', u'enable_dnssec_proxy', u'enable_strict_domain_name', u'inactive', u'listen_port', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1226,8 +1196,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1260,8 +1228,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1302,8 +1268,6 @@ class Post(object):
            - **retrieved_fields_mask:**  Type: boolean 
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1592,8 +1556,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **upperCaseName:**  Type: string 
 
-          **Required Attributes:** [u'cache_config', u'disabled', u'dns_queries_metadata', u'dnsservice_profile_id', u'dnsservicerole_bindings', u'domains_to_addresses', u'domains_to_interfaces', u'element_id', u'enabled', u'inactive', u'max_concurrent_dns_queries', u'region', u'site_id', u'tenant_id', u'upperCaseName']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1636,8 +1598,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1671,8 +1631,6 @@ class Post(object):
            - **items:**  [Type: object] 
            - **tenant_id:**  Type: string 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'count', u'items', u'tenant_id', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1740,8 +1698,6 @@ class Post(object):
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
-          **Required Attributes:** [u'conf', u'disabled', u'namespace']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1785,8 +1741,6 @@ class Post(object):
            - **retrieved_fields_mask:**  Type: boolean 
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1859,8 +1813,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **vpn_to_vpn_forwarding:**  Type: boolean 
 
-          **Required Attributes:** [u'admin_action', u'admin_renew_state', u'admin_suspend_state', u'allowed_roles', u'cluster_insertion_mode', u'cluster_member_id', u'connected', u'deployment_op', u'fips_mode', u'fips_mode_change_start_time', u'hw_id', u'l3_direct_private_wan_forwarding', u'l3_lan_forwarding', u'model_name', u'nat_policysetstack_id', u'network_policysetstack_id', u'priority_policysetstack_id', u'role', u'serial_number', u'site_id', u'software_version', u'spoke_ha_config', u'state', u'tenant_id', u'vpn_to_vpn_forwarding']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1932,8 +1884,6 @@ class Post(object):
            - **wanoverlay_ids:**  [Type: string] 
            - **zone_id:**  Type: string 
 
-          **Required Attributes:** [u'site_id', u'tenant_id', u'zone_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -1974,8 +1924,6 @@ class Post(object):
            - **wanoverlay_ids:**  [Type: string] 
            - **zone_id:**  Type: string 
 
-          **Required Attributes:** [u'element_id', u'site_id', u'tenant_id', u'zone_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2010,8 +1958,6 @@ class Post(object):
            - **role:**  Type: string 
            - **tenant_id:**  Type: string 
            - **username:**  Type: string 
-
-          **Required Attributes:** [u'is_tenant_level', u'login_id', u'role', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2097,8 +2043,6 @@ class Post(object):
            - **suppress:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'enabled', u'end_time', u'escalation_rules', u'event_codes', u'priority', u'start_time', u'suppress']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2150,8 +2094,6 @@ class Post(object):
            - **suppress:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'enabled', u'end_time', u'escalation_rules', u'event_codes', u'policyset_id', u'priority', u'start_time', u'suppress']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2191,8 +2133,6 @@ class Post(object):
                - **severity:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'active_policyset', u'clone_from', u'policyrule_order', u'severity_priority_mapping']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2231,8 +2171,6 @@ class Post(object):
                - **priority:**  Type: string 
                - **severity:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'active_policyset', u'clone_from', u'policyrule_order', u'severity_priority_mapping']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2360,8 +2298,6 @@ class Post(object):
                - **type:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'filters', u'name']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2395,8 +2331,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2442,8 +2376,6 @@ class Post(object):
                    - **subscription_factor:**  Type: number 
                - **type:**  Type: string 
 
-          **Required Attributes:** [u'headend1_site_ids', u'headend2_site_ids', u'hub_element_id', u'load_factors']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2480,8 +2412,6 @@ class Post(object):
            - **load_alarm_threshold:**  Type: integer 
            - **name:**  Type: string 
            - **subscription_factor:**  Type: number 
-
-          **Required Attributes:** [u'admin_up', u'subscription_factor']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2657,8 +2587,6 @@ class Post(object):
            - **type:**  Type: string 
            - **used_for:**  Type: string 
 
-          **Required Attributes:** [u'admin_up', u'attached_lan_networks', u'bound_interfaces', u'bypass_pair', u'cellular_config', u'devicemgmt_policysetstack_id', u'dhcp_relay', u'directed_broadcast', u'ethernet_port', u'ipfixcollectorcontext_id', u'ipfixfiltercontext_id', u'ipv4_config', u'mac_address', u'multicast_config', u'nat_pools', u'nat_zone_id', u'network_context_id', u'parent', u'pppoe_config', u'scope', u'service_link_config', u'site_wan_interface_ids', u'sub_interface', u'type', u'used_for']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2731,8 +2659,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2795,8 +2721,6 @@ class Post(object):
                - **time_interval:**  Type: integer 
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2863,8 +2787,6 @@ class Post(object):
            - **site_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'element_id', u'export_cache_timeout', u'ipfixprofile_id', u'ipfixtemplate_id', u'sampler', u'site_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2896,8 +2818,6 @@ class Post(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2931,8 +2851,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** []
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2965,8 +2883,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** []
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -2998,8 +2914,6 @@ class Post(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3034,8 +2948,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3101,8 +3013,6 @@ class Post(object):
            - **site_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'site_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3163,8 +3073,6 @@ class Post(object):
                - **time_spacing:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'collector_config', u'export_cache_timeout', u'ipfixtemplate_id', u'sampler']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3197,8 +3105,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3238,8 +3144,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **template_export_timeout:**  Type: integer 
 
-          **Required Attributes:** [u'flow_fields', u'generate_biflow', u'option_export_timeout', u'options', u'template_export_timeout']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3272,8 +3176,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3362,8 +3264,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'authentication', u'dpd_delay', u'dpd_enable', u'dpd_timeout', u'esp_group', u'ike_group']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3451,8 +3351,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'authentication', u'dpd_delay', u'dpd_enable', u'dpd_timeout', u'esp_group', u'ike_group']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3508,8 +3406,6 @@ class Post(object):
            - **network_context_id:**  Type: string 
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_config', u'network_context_id', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3567,8 +3463,6 @@ class Post(object):
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_config', u'network_context_id', u'scope']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3601,8 +3495,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'name']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3634,8 +3526,6 @@ class Post(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'name']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3699,8 +3589,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -3747,8 +3635,6 @@ class Post(object):
            - **suspend_state:**  Type: string 
            - **tenant_id:**  Type: string 
            - **token:**  Type: string 
-
-          **Required Attributes:** [u'connected', u'console_conf_passphrase', u'em_element_id', u'esp_tenant_id', u'hw_id', u'image_version', u'inventory_op', u'machine_state', u'manufacture_id', u'model_name', u'ordering_info', u'pki_op', u'renew_state', u'ship_state', u'sl_no', u'suspend_state', u'tenant_id', u'token']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4358,8 +4244,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4394,8 +4278,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4428,8 +4310,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4471,8 +4351,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4506,8 +4384,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** []
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4540,8 +4416,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4642,8 +4516,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'actions', u'destination_prefixes', u'destination_prefixes_id', u'destination_zone', u'destination_zone_id', u'disabled', u'enabled', u'inactive', u'natpolicypools', u'policyset_id', u'protocol', u'region', u'source_prefixes', u'source_prefixes_id', u'source_zone', u'source_zone_id', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4695,8 +4567,6 @@ class Post(object):
            - **source_prefixes_id:**  Type: string 
            - **source_zone_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'actions', u'destination_prefixes_id', u'destination_zone_id', u'enabled', u'policyset_id', u'protocol', u'source_prefixes_id', u'source_zone_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4813,8 +4683,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **update_order:**  Type: boolean 
 
-          **Required Attributes:** [u'clone_from', u'disabled', u'inactive', u'policy_req_version', u'policy_rules', u'region', u'send_to_element', u'tenant_id', u'update_order']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4851,8 +4719,6 @@ class Post(object):
            - **source_zone_policyrule_order:**  [Type: string] 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'clone_from']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4888,8 +4754,6 @@ class Post(object):
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'default_policysetstack']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -4924,8 +4788,6 @@ class Post(object):
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_policysetstack']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4967,8 +4829,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'default_for_public_interfaces', u'disabled', u'inactive', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5003,8 +4863,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'default_for_public_interfaces']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5037,8 +4895,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'description', u'name']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5070,8 +4926,6 @@ class Post(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5107,8 +4961,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5143,8 +4995,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5178,8 +5028,6 @@ class Post(object):
            - **prefix_id:**  Type: string 
            - **site_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'site_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5237,8 +5085,6 @@ class Post(object):
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'app_def_ids', u'description', u'destination_prefixes_id', u'enabled', u'name', u'network_context_id', u'order_number', u'paths_allowed', u'service_context', u'source_prefixes_id', u'tags']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5295,8 +5141,6 @@ class Post(object):
                - **type:**  Type: string 
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'destination_prefixes_id', u'enabled', u'network_context_id', u'order_number', u'paths_allowed', u'policyset_id', u'service_context', u'source_prefixes_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5368,8 +5212,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'disabled', u'inactive', u'policy_req_version', u'policy_rules', u'region', u'send_to_element', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5404,8 +5246,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5517,8 +5357,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset', u'defaultrule_policyset_id', u'disabled', u'inactive', u'legacy_policystack', u'policysets', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5554,8 +5392,6 @@ class Post(object):
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset_id', u'description', u'name', u'policyset_ids', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5921,8 +5757,6 @@ class Post(object):
 
            - **action:**  Type: string 
 
-          **Required Attributes:** [u'action']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5957,8 +5791,6 @@ class Post(object):
            - **challenge_phrase:**  Type: string 
            - **response_phrase:**  Type: string 
 
-          **Required Attributes:** [u'challenge_phrase', u'response_phrase']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -5992,8 +5824,6 @@ class Post(object):
            - **oldPassword:**  Type: string 
            - **password:**  Type: string 
            - **repeatPassword:**  Type: string 
-
-          **Required Attributes:** [u'oldPassword', u'password', u'repeatPassword']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6030,8 +5860,6 @@ class Post(object):
                - **label:**  Type: string 
                - **path_type:**  Type: string 
 
-          **Required Attributes:** [u'description', u'name', u'paths']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6066,8 +5894,6 @@ class Post(object):
            - **paths:**           
                - **label:**  Type: string 
                - **path_type:**  Type: string 
-
-          **Required Attributes:** [u'paths']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6134,8 +5960,6 @@ class Post(object):
                - **wp_type:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'app_def_name', u'default_rule', u'disabled', u'inactive', u'lan_network_ids', u'paths_allowed', u'policy_set_id', u'priority_num', u'region', u'site_paths_allowed', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6189,8 +6013,6 @@ class Post(object):
                - **backup_service_label_type:**  Type: string 
                - **type:**  Type: string 
 
-          **Required Attributes:** [u'paths_allowed', u'policy_set_id', u'priority_num']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6238,8 +6060,6 @@ class Post(object):
            - **default_policy:**  Type: boolean 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'default_policy']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6319,8 +6139,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** [u'bandwidth_allocation_schemes', u'business_priority_names', u'default_policy', u'description', u'name']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6385,8 +6203,6 @@ class Post(object):
                - **type:**  Type: string 
            - **prefix_filter_id:**  Type: string 
 
-          **Required Attributes:** [u'filters', u'prefix_filter_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6420,8 +6236,6 @@ class Post(object):
 
            - **query_params:**           
                - **zone_id:**  Type: string 
-
-          **Required Attributes:** [u'query_params']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6458,8 +6272,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6494,8 +6306,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'name', u'tags']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6529,8 +6339,6 @@ class Post(object):
            - **prefix_id:**  Type: string 
            - **site_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id', u'site_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6575,8 +6383,6 @@ class Post(object):
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'destination_prefixes_id', u'dscp', u'enabled', u'network_context_id', u'order_number', u'priority_number', u'source_prefixes_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6620,8 +6426,6 @@ class Post(object):
            - **priority_number:**  Type: integer 
            - **source_prefixes_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'destination_prefixes_id', u'dscp', u'enabled', u'network_context_id', u'order_number', u'policyset_id', u'priority_number', u'source_prefixes_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6678,8 +6482,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **template:**  Type: boolean 
 
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'template']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6735,8 +6537,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **template:**  Type: boolean 
 
-          **Required Attributes:** [u'clone_from', u'defaultrule_policyset', u'template']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6773,8 +6573,6 @@ class Post(object):
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -6810,8 +6608,6 @@ class Post(object):
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_policysetstack', u'defaultrule_policyset_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7024,8 +6820,6 @@ class Post(object):
                - **name:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'description', u'disabled', u'inactive', u'is_system_owned', u'name', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7065,8 +6859,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'as_path_regex_list', u'auto_generated']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7110,8 +6902,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'as_path_regex_list', u'auto_generated']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7153,8 +6943,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'auto_generated', u'community_list']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7195,8 +6983,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'auto_generated', u'community_list']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7242,8 +7028,6 @@ class Post(object):
                - **prefix:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'auto_generated', u'prefix_filter_list']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7287,8 +7071,6 @@ class Post(object):
                - **permit:**  Type: boolean 
                - **prefix:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'auto_generated', u'prefix_filter_list']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7345,8 +7127,6 @@ class Post(object):
                    - **weight:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'auto_generated', u'route_map_entries']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7402,8 +7182,6 @@ class Post(object):
                    - **weight:**  Type: integer 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'auto_generated', u'route_map_entries']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7445,8 +7223,6 @@ class Post(object):
            - **retrieved_fields_mask:**  Type: boolean 
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7514,8 +7290,6 @@ class Post(object):
            - **name:**  Type: string 
            - **policyrule_order:**  [Type: string] 
 
-          **Required Attributes:** [u'policyrule_order']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7556,8 +7330,6 @@ class Post(object):
            - **name:**  Type: string 
            - **source_filter_ids:**  [Type: string] 
            - **source_zone_ids:**  [Type: string] 
-
-          **Required Attributes:** [u'action', u'application_ids', u'destination_filter_ids', u'destination_zone_ids', u'disabled_flag', u'source_filter_ids', u'source_zone_ids']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7600,8 +7372,6 @@ class Post(object):
            - **source_filter_ids:**  [Type: string] 
            - **source_zone_ids:**  [Type: string] 
 
-          **Required Attributes:** [u'action', u'application_ids', u'destination_filter_ids', u'destination_zone_ids', u'disabled_flag', u'security_policyset_id', u'source_filter_ids', u'source_zone_ids']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7634,8 +7404,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **policyrule_order:**  [Type: string] 
-
-          **Required Attributes:** [u'policyrule_order']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7670,8 +7438,6 @@ class Post(object):
            - **name:**  Type: string 
            - **policyrule_order:**  [Type: string] 
 
-          **Required Attributes:** [u'policyrule_order']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7704,8 +7470,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
 
-          **Required Attributes:** []
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7737,8 +7501,6 @@ class Post(object):
 
            - **description:**  Type: string 
            - **name:**  Type: string 
-
-          **Required Attributes:** [u'description', u'name']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7777,8 +7539,6 @@ class Post(object):
                - **service_label_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'is_default', u'service_bindings']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7815,8 +7575,6 @@ class Post(object):
                - **service_endpoint_ids:**  [Type: string] 
                - **service_label_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'is_default', u'service_bindings']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7879,8 +7637,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'address', u'admin_up', u'allow_enterprise_traffic', u'liveliness_probe', u'location', u'service_link_peers', u'site_id', u'type']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7942,8 +7698,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
 
-          **Required Attributes:** [u'address', u'admin_up', u'allow_enterprise_traffic', u'liveliness_probe', u'location', u'service_link_peers', u'site_id', u'type']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -7977,8 +7731,6 @@ class Post(object):
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
-
-          **Required Attributes:** [u'type']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8019,8 +7771,6 @@ class Post(object):
            - **retrieved_fields_mask:**  Type: boolean 
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8103,8 +7853,6 @@ class Post(object):
            - **secondary_emails:**           
                - **email:**  Type: string 
 
-          **Required Attributes:** [u'addresses', u'custom_roles', u'email', u'enable_session_ip_lock', u'first_name', u'ipv4_list', u'last_name', u'logout_others', u'name', u'password', u'phone_numbers', u'repeatPassword', u'requestId', u'roles', u'secondary_emails']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8138,8 +7886,6 @@ class Post(object):
            - **items:**  [Type: object] 
            - **tenant_id:**  Type: string 
            - **total_count:**  Type: integer 
-
-          **Required Attributes:** [u'count', u'items', u'tenant_id', u'total_count']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8206,8 +7952,6 @@ class Post(object):
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
-          **Required Attributes:** [u'conf', u'disabled', u'namespace']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8250,8 +7994,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8286,8 +8028,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8356,8 +8096,6 @@ class Post(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8392,8 +8130,6 @@ class Post(object):
            - **ipv4_prefixes:**  [Type: string] 
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8462,8 +8198,6 @@ class Post(object):
            - **prefix_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'ipv4_prefixes', u'prefix_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8520,8 +8254,6 @@ class Post(object):
            - **security_policyset_id:**  Type: string 
            - **service_binding:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'location', u'nat_policysetstack_id', u'network_policysetstack_id', u'policy_set_id', u'priority_policysetstack_id', u'security_policyset_id', u'service_binding']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8580,8 +8312,6 @@ class Post(object):
            - **service_binding:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'address', u'admin_state', u'element_cluster_role', u'location', u'nat_policysetstack_id', u'network_policysetstack_id', u'policy_set_id', u'priority_policysetstack_id', u'security_policyset_id', u'security_policysetstack_id', u'service_binding']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8616,8 +8346,6 @@ class Post(object):
                - **network_id:**  Type: string 
                - **network_type:**  Type: string 
            - **zone_id:**  Type: string 
-
-          **Required Attributes:** [u'networks', u'zone_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8654,8 +8382,6 @@ class Post(object):
                - **network_id:**  Type: string 
                - **network_type:**  Type: string 
            - **zone_id:**  Type: string 
-
-          **Required Attributes:** [u'networks', u'zone_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8703,8 +8429,6 @@ class Post(object):
                    - **engine_id:**  Type: string 
                    - **security_level:**  Type: string 
                    - **user_name:**  Type: string 
-
-          **Required Attributes:** [u'v2_config', u'v3_config']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8758,8 +8482,6 @@ class Post(object):
                    - **user_name:**  Type: string 
            - **version:**  Type: string 
 
-          **Required Attributes:** [u'enabled', u'server_ip', u'source_interface', u'v2_config', u'v3_config', u'version']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8805,8 +8527,6 @@ class Post(object):
            - **upgrade_interval:**  Type: integer 
            - **upgrade_state:**  Type: string 
 
-          **Required Attributes:** [u'active_image_id', u'active_version', u'download_interval', u'download_percent', u'element_id', u'failure_info', u'previous_image_id', u'rollback_version', u'scheduled_download', u'scheduled_upgrade', u'upgrade_image_id', u'upgrade_interval', u'upgrade_state']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8850,8 +8570,6 @@ class Post(object):
            - **upgrade_interval:**  Type: integer 
            - **upgrade_state:**  Type: string 
 
-          **Required Attributes:** [u'active_image_id', u'active_version', u'download_interval', u'download_percent', u'element_id', u'failure_info', u'previous_image_id', u'rollback_version', u'scheduled_download', u'scheduled_upgrade', u'upgrade_image_id', u'upgrade_interval', u'upgrade_state']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8892,8 +8610,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8930,8 +8646,6 @@ class Post(object):
            - **preempt:**  Type: boolean 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'preempt']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -8965,8 +8679,6 @@ class Post(object):
           **Payload Attributes:** 
 
            - **action:**  Type: string 
-
-          **Required Attributes:** [u'action']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9005,8 +8717,6 @@ class Post(object):
            - **name:**  Type: string 
            - **preempt:**  Type: boolean 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'preempt']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9052,8 +8762,6 @@ class Post(object):
                - **self:**  Type: boolean 
            - **scope:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'network_context_id', u'nexthop_reachability_probe', u'scope']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9162,8 +8870,6 @@ class Post(object):
            - **syslog_profile_id:**  Type: string 
            - **tags:**  [Type: string] 
 
-          **Required Attributes:** [u'enable_flow_logging', u'enabled', u'protocol', u'remote_ca_certificate', u'server_fqdn', u'server_port', u'severity_level', u'source_interface', u'syslog_profile_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9204,8 +8910,6 @@ class Post(object):
                - **min_poll:**  Type: integer 
                - **version:**  Type: integer 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** [u'default_template', u'ntp_servers', u'tags']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9287,8 +8991,6 @@ class Post(object):
            - **tags:**  [Type: string] 
            - **update_source:**  Type: string 
 
-          **Required Attributes:** [u'bgp_config', u'peer_type', u'remote_as_num', u'route_map_in_id', u'route_map_out_id', u'scope', u'shutdown']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9321,8 +9023,6 @@ class Post(object):
 
            - **action:**  Type: string 
            - **parameters:**  [Type: string] 
-
-          **Required Attributes:** [u'action', u'parameters']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9359,8 +9059,6 @@ class Post(object):
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
-          **Required Attributes:** [u'conf', u'disabled', u'namespace']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9391,8 +9089,6 @@ class Post(object):
           **Payload Attributes:** 
 
            - **email:**  Type: string 
-
-          **Required Attributes:** [u'email']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9426,8 +9122,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9477,8 +9171,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **token:**  Type: string 
 
-          **Required Attributes:** [u'connected', u'console_conf_passphrase', u'em_element_id', u'esp_tenant_id', u'hw_id', u'image_version', u'inventory_op', u'machine_state', u'manufacture_id', u'model_name', u'ordering_info', u'pki_op', u'renew_state', u'ship_state', u'sl_no', u'suspend_state', u'tenant_id', u'token']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9512,8 +9204,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9555,8 +9245,6 @@ class Post(object):
            - **tenant_id:**  Type: string 
            - **value:**  Type: string 
 
-          **Required Attributes:** [u'allowed_after_ms', u'allowed_before_ms', u'disabled', u'disallow_permission', u'inactive', u'region', u'tenant_id', u'value']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9591,8 +9279,6 @@ class Post(object):
            - **prefix_filter_id:**  Type: string 
            - **site_id:**  Type: string 
 
-          **Required Attributes:** [u'filters', u'prefix_filter_id', u'site_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9625,8 +9311,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9681,8 +9365,6 @@ class Post(object):
            - **vpnlink_configuration:**           
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
-
-          **Required Attributes:** [u'bfd_mode', u'bw_config_mode', u'bwc_enabled', u'label_id', u'link_bw_down', u'link_bw_up', u'lqm_config', u'lqm_enabled', u'network_id', u'site_id', u'type', u'use_for_application_reachability_probes', u'use_for_controller_connections', u'use_lqm_for_non_hub_paths']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9784,8 +9466,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9827,8 +9507,6 @@ class Post(object):
            - **user_dn:**  Type: string 
            - **user_fqn:**  Type: string 
 
-          **Required Attributes:** [u'disabled', u'first_name', u'inactive', u'last_name', u'middle_name', u'region', u'tenant_id', u'user_dn', u'user_fqn']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9866,8 +9544,6 @@ class Post(object):
            - **secret_key:**  Type: string 
            - **valid_till_secs:**  Type: integer 
            - **vfflicense_id:**  Type: string 
-
-          **Required Attributes:** [u'ion_key', u'is_expired', u'is_multiuse', u'is_revoked', u'is_used', u'secret_key', u'valid_till_secs', u'vfflicense_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9907,8 +9583,6 @@ class Post(object):
            - **secret_key:**  Type: string 
            - **valid_till_secs:**  Type: integer 
            - **vfflicense_id:**  Type: string 
-
-          **Required Attributes:** [u'ion_key', u'is_expired', u'is_multiuse', u'is_revoked', u'is_used', u'secret_key', u'valid_till_secs', u'vfflicense_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9951,8 +9625,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -9994,8 +9666,6 @@ class Post(object):
            - **vpnlink_configuration:**           
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
-
-          **Required Attributes:** [u'bwc_enabled', u'label', u'lqm_enabled', u'use_for_application_reachability_probes', u'use_for_controller_connections', u'use_lqm_for_non_hub_paths', u'vpnlink_configuration']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10050,8 +9720,6 @@ class Post(object):
            - **vpnlink_configuration:**           
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
-
-          **Required Attributes:** [u'bfd_mode', u'bw_config_mode', u'bwc_enabled', u'label_id', u'link_bw_down', u'link_bw_up', u'lqm_config', u'lqm_enabled', u'network_id', u'type', u'use_for_application_reachability_probes', u'use_for_controller_connections', u'use_lqm_for_non_hub_paths']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10125,8 +9793,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -10162,8 +9828,6 @@ class Post(object):
            - **provider_as_numbers:**  [Type: integer] 
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
-
-          **Required Attributes:** [u'provider_as_numbers', u'type']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10205,8 +9869,6 @@ class Post(object):
            - **sort_params:**  Type: object 
            - **total_count:**  Type: integer 
 
-          **Required Attributes:** [u'dest_page', u'getDeleted', u'last_query_ts', u'limit', u'next_query', u'query_params', u'retrieved_fields', u'retrieved_fields_mask', u'sort_params', u'total_count']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -10239,8 +9901,6 @@ class Post(object):
            - **description:**  Type: string 
            - **name:**  Type: string 
            - **vni:**  Type: integer 
-
-          **Required Attributes:** []
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

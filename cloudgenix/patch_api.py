@@ -146,8 +146,6 @@ class Patch(object):
            - **settings:**  Type: string 
            - **tenant_id:**  Type: string 
 
-          **Required Attributes:** [u'disable_idp_login', u'disabled', u'email', u'email_validated', u'enable_session_ip_lock', u'from_esp', u'from_esp_tenant_id', u'inactive', u'is_locked', u'is_system_owned', u'last_login', u'linked_accounts', u'name', u'region', u'tenant_id']
-
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
 
@@ -350,8 +348,6 @@ class Patch(object):
                - **security:**  Type: string 
            - **region:**  Type: string 
            - **tenant_id:**  Type: string 
-
-          **Required Attributes:** [u'address', u'canonical_name', u'clients', u'disabled', u'inactive', u'ipv4_list', u'is_esp', u'is_support', u'operator', u'password_policy', u'phone_numbers', u'provider_data', u'region', u'tenant_id']
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

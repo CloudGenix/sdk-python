@@ -2152,6 +2152,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def interfaces_multicaststatus(self, site_id, element_id, interface_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Interfaces_Multicaststatus API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **interface_id**: Interface ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces/{}/multicaststatus".format(api_version,
+                                                                                                             tenant_id,
+                                                                                                             site_id,
+                                                                                                             element_id,
+                                                                                                             interface_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def interfaces_status(self, site_id, element_id, interface_id, tenant_id=None, api_version="v3.3"):
         """
         Get element interface state
@@ -3060,38 +3092,6 @@ class Get(object):
                                                                                                    site_id,
                                                                                                    element_id,
                                                                                                    multicastrp_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def multicaststatus_interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Multicaststatus_Interfaces API Function
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **element_id**: Element (Device) ID
-          - **interface_id**: Interface ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/interfaces/{}/multicaststatus".format(api_version,
-                                                                                                             tenant_id,
-                                                                                                             site_id,
-                                                                                                             element_id,
-                                                                                                             interface_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -6722,6 +6722,9 @@ class Get(object):
 
     metrics_monitor = monitor_metrics
     """ Backwards-compatibility alias of `metrics_monitor` to `monitor_metrics`"""
+
+    multicaststatus_interfaces = interfaces_multicaststatus
+    """ Backwards-compatibility alias of `multicaststatus_interfaces` to `interfaces_multicaststatus`"""
 
     natlocalprefixes_s = site_natlocalprefixes
     """ Backwards-compatibility alias of `natlocalprefixes_s` to `site_natlocalprefixes`"""

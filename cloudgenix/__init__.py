@@ -141,7 +141,7 @@ if PYTHON36_FEATURES:
 
 
 # Version of SDK
-version = "v5.6.1b1"
+version = "5.6.1b1"
 """SDK Version string"""
 __version__ = version
 
