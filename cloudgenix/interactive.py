@@ -4,7 +4,7 @@ CloudGenix Python Interactive SDK Helper functions
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2021 CloudGenix, Inc
+**Copyright:** (c) 2017-2022 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -17,11 +17,11 @@ import sys
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2021 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2021 CloudGenix, Inc
+    Copyright (c) 2017-2022 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -594,10 +594,36 @@ class Interactive(object):
             else:
                 tenant_address = "Unknown"
             self._parent_class.address = tenant_address
+
+            telemetry_region = tenant_dict.get('telemetry_region', None)
+            self._parent_class.cdl_url = self._parent_class.controller
+            if telemetry_region:
+                cdl_url = self.__extract_cdl_url(telemetry_region)
+                self._parent_class.cdl_url = cdl_url
+
             return True
         else:
             # update failed
             return False
+
+    def __extract_cdl_url(self, telemetry_region):
+        """
+        Internal method to form the cdl_region string.
+            telemetry_region: telemetry region from tenant response.
+        ***Returns*** : CDL region in string
+        """
+        _controller = self._parent_class.controller
+        api_target, sdwan_region, domain, top_domain = _controller.split('.')
+        cdl_region = telemetry_region
+
+        if '-' in telemetry_region and ('api-test' in _controller or 'api-auto' in _controller):
+            cdl_env, cdl_region = telemetry_region.split('-')
+            sdwan_api, sdwan_env = api_target.split('-')
+            api_target = '-'.join([sdwan_api, cdl_env, sdwan_env])
+
+        cdl_url = ".".join([api_target, cdl_region, sdwan_region, domain, top_domain])
+
+        return cdl_url
 
     def update_profile_vars(self):
         """
