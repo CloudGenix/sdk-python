@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2021 CloudGenix, Inc
+**Copyright:** (c) 2017-2022 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2021 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2021 CloudGenix, Inc
+    Copyright (c) 2017-2022 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -84,7 +84,7 @@ class Delete(object):
 
     def apnprofiles(self, apnprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Apnprofiles API Function
+        Delete an APN Profile
 
           **Parameters:**:
 
@@ -110,7 +110,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.3"):
+    def appdefs(self, appdef_id, tenant_id=None, api_version="v2.4"):
         """
         Delete a application definition
 
@@ -118,7 +118,7 @@ class Delete(object):
 
           - **appdef_id**: Application Definition ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -138,7 +138,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.2"):
+    def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.3"):
         """
         Delete application definition overrides for system appdef
 
@@ -147,7 +147,7 @@ class Delete(object):
           - **appdef_id**: Application Definition ID
           - **override_id**: AppDef Override ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -764,7 +764,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.11"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.12"):
         """
         Delete Interface
 
@@ -774,7 +774,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.11)
+          - **api_version**: API version to use (default v4.12)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1054,9 +1054,37 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def multicastpeergroups(self, multicastpeergroup_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Multicastpeergroups API Function
+
+          **Parameters:**:
+
+          - **multicastpeergroup_id**: Multicast Peer Group ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/multicastpeergroups/{}".format(api_version,
+                                                                                 tenant_id,
+                                                                                 multicastpeergroup_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def multicastrps(self, site_id, element_id, multicastrp_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Multicastrps API Function
+        Deletes Multicast RP config
 
           **Parameters:**:
 
@@ -1428,7 +1456,7 @@ class Delete(object):
 
     def ngfwsecuritypolicyglobalprefixes(self, ngfwsecuritypolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ngfwsecuritypolicyglobalprefixes API Function
+        Delete a Security Policy V2 Local Prefix by tenant ID and its ID
 
           **Parameters:**:
 
@@ -1456,7 +1484,7 @@ class Delete(object):
 
     def ngfwsecuritypolicylocalprefixes(self, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ngfwsecuritypolicylocalprefixes API Function
+        Delete a Security Policy V2 Local Prefix by tenant ID and its ID
 
           **Parameters:**:
 
@@ -1484,7 +1512,7 @@ class Delete(object):
 
     def ngfwsecuritypolicyrules(self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ngfwsecuritypolicyrules API Function
+        Delete an existing Security Policy V2 Rule under a policy set
 
           **Parameters:**:
 
@@ -1514,7 +1542,7 @@ class Delete(object):
 
     def ngfwsecuritypolicysets(self, ngfwsecuritypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ngfwsecuritypolicysets API Function
+        Delete an existing Security Policy V2 Set by tenant ID and its ID
 
           **Parameters:**:
 
@@ -1542,7 +1570,7 @@ class Delete(object):
 
     def ngfwsecuritypolicysetstacks(self, ngfwsecuritypolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ngfwsecuritypolicysetstacks API Function
+        Delete an existing Security Policy V2 Set Stack by tenant ID and its ID
 
           **Parameters:**:
 
@@ -1830,7 +1858,7 @@ class Delete(object):
 
     def prismaaccess_configs(self, site_id, prismaaccess_config_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prismaaccess_Configs API Function
+        Delete a Prisma Access Config with remote networks and security processing node
 
           **Parameters:**:
 
@@ -2158,7 +2186,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.2"):
+    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.3"):
         """
         Delete a Service Endpoint
 
@@ -2166,7 +2194,7 @@ class Delete(object):
 
           - **serviceendpoint_id**: Service Endpoint ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2186,7 +2214,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def servicelabels(self, servicelabel_id, tenant_id=None, api_version="v2.0"):
+    def servicelabels(self, servicelabel_id, tenant_id=None, api_version="v2.1"):
         """
         Delete a Service Label
 
@@ -2194,7 +2222,7 @@ class Delete(object):
 
           - **servicelabel_id**: Service Label ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2336,7 +2364,7 @@ class Delete(object):
 
     def site_ngfwsecuritypolicylocalprefixes(self, site_id, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Site_Ngfwsecuritypolicylocalprefixes API Function
+        Delete an existing security policy v2 local prefix site association
 
           **Parameters:**:
 
@@ -2394,7 +2422,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.6"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.7"):
         """
         Delete a site
 
@@ -2402,7 +2430,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.6)
+          - **api_version**: API version to use (default v4.7)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2452,7 +2480,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def snmpagents(self, site_id, element_id, snmpagent_id, tenant_id=None, api_version="v2.0"):
+    def snmpagents(self, site_id, element_id, snmpagent_id, tenant_id=None, api_version="v2.1"):
         """
         delete SNMP Agent
 
@@ -2462,7 +2490,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **snmpagent_id**: SNMP Agent ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2546,7 +2574,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.1"):
+    def staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.2"):
         """
         Delete static route
 
@@ -2556,7 +2584,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **staticroute_id**: Static Route ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2580,7 +2608,7 @@ class Delete(object):
 
     def syslogserverprofiles(self, syslogserverprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Syslogserverprofiles API Function
+        Delete Syslog Server Profile
 
           **Parameters:**:
 
@@ -2666,7 +2694,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.2"):
+    def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v3.4"):
         """
         DELETE Tenant_Anynetlinks API Function
 
@@ -2674,7 +2702,7 @@ class Delete(object):
 
           - **anynetlink_id**: Anynet (Secure Fabric) Link ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.2)
+          - **api_version**: API version to use (default v3.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
