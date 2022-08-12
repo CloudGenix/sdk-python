@@ -54,7 +54,7 @@ class Patch(object):
 
     def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.1"):
         """
-        Patch a tenant operator
+        Patch a tenant operator (v2.1)
 
           **Parameters:**:
 
@@ -166,7 +166,7 @@ class Patch(object):
 
     def tenants(self, data, tenant_id=None, api_version="v2.3"):
         """
-        Patch tenant
+        Patch tenant (v2.3)
 
           **Parameters:**:
 

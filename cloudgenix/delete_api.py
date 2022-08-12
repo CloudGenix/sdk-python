@@ -52,39 +52,9 @@ class Delete(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def access_elementusers(self, elementuser_id, access_id, tenant_id=None, api_version="v2.1"):
-        """
-        Delete element user Access
-
-          **Parameters:**:
-
-          - **elementuser_id**: Element User ID
-          - **access_id**: Access ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access/{}".format(api_version,
-                                                                                    tenant_id,
-                                                                                    elementuser_id,
-                                                                                    access_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
     def apnprofiles(self, apnprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an APN Profile
+        Delete an APN Profile (v2.0)
 
           **Parameters:**:
 
@@ -112,7 +82,7 @@ class Delete(object):
 
     def appdefs(self, appdef_id, tenant_id=None, api_version="v2.4"):
         """
-        Delete a application definition
+        Delete a application definition (v2.4)
 
           **Parameters:**:
 
@@ -140,7 +110,7 @@ class Delete(object):
 
     def appdefs_overrides(self, appdef_id, override_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete application definition overrides for system appdef
+        Delete application definition overrides for system appdef (v2.3)
 
           **Parameters:**:
 
@@ -170,7 +140,7 @@ class Delete(object):
 
     def authtokens(self, operator_id, authtoken_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete an auth token
+        Delete an auth token (v2.1)
 
           **Parameters:**:
 
@@ -200,7 +170,7 @@ class Delete(object):
 
     def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete BGP Peer config
+        Delete BGP Peer config (v2.2)
 
           **Parameters:**:
 
@@ -232,7 +202,7 @@ class Delete(object):
 
     def dhcpservers(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete DHCPServer for a Tenant on a site
+        Delete DHCPServer for a Tenant on a site (v2.1)
 
           **Parameters:**:
 
@@ -262,7 +232,7 @@ class Delete(object):
 
     def dnsserviceprofiles(self, dnsserviceprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a DNS service profile
+        Delete a DNS service profile (v2.0)
 
           **Parameters:**:
 
@@ -290,7 +260,7 @@ class Delete(object):
 
     def dnsserviceroles(self, dnsservicerole_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a DNS service role
+        Delete a DNS service role (v2.0)
 
           **Parameters:**:
 
@@ -318,7 +288,7 @@ class Delete(object):
 
     def dnsservices(self, site_id, element_id, dnsservice_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a DNS service config
+        Delete a DNS service config (v2.0)
 
           **Parameters:**:
 
@@ -350,7 +320,7 @@ class Delete(object):
 
     def element_extensions(self, site_id, element_id, extension_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a specific extension associated with an element
+        Delete a specific extension associated with an element (v2.0)
 
           **Parameters:**:
 
@@ -472,7 +442,7 @@ class Delete(object):
 
     def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security zone
+        Delete an existing security zone (v2.0)
 
           **Parameters:**:
 
@@ -504,7 +474,7 @@ class Delete(object):
 
     def elementusers(self, elementuser_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete element user
+        Delete element user (v2.1)
 
           **Parameters:**:
 
@@ -530,9 +500,39 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def elementusers_access(self, elementuser_id, access_id, tenant_id=None, api_version="v2.1"):
+        """
+        Delete element user Access (v2.1)
+
+          **Parameters:**:
+
+          - **elementuser_id**: Element User ID
+          - **access_id**: Access ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementusers/{}/access/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    elementuser_id,
+                                                                                    access_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def esp_operator_permissions_client(self, operator_id, client_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete esp operator permissions assigned under a client
+        Delete esp operator permissions assigned under a client (v2.1)
 
           **Parameters:**:
 
@@ -562,7 +562,7 @@ class Delete(object):
 
     def eventcorrelationpolicyrules(self, eventcorrelationpolicyset_id, eventcorrelationpolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete specific event correlation policy rule
+        Delete specific event correlation policy rule (v2.0)
 
           **Parameters:**:
 
@@ -592,7 +592,7 @@ class Delete(object):
 
     def eventcorrelationpolicysets(self, eventcorrelationpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete specific event correlation policyset
+        Delete specific event correlation policyset (v2.0)
 
           **Parameters:**:
 
@@ -648,7 +648,7 @@ class Delete(object):
 
     def globalprefixfilters(self, globalprefixfilter_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a global prefix filter.
+        Delete a global prefix filter. (v2.0)
 
           **Parameters:**:
 
@@ -676,7 +676,7 @@ class Delete(object):
 
     def hubclustermembers(self, site_id, hubcluster_id, hubclustermember_id, tenant_id=None, api_version="v3.0"):
         """
-        Deletes specific hub cluster member.
+        Deletes specific hub cluster member. (v3.0)
 
           **Parameters:**:
 
@@ -708,7 +708,7 @@ class Delete(object):
 
     def hubclusters(self, site_id, hubcluster_id, tenant_id=None, api_version="v3.0"):
         """
-        Delete hub cluster
+        Delete hub cluster (v3.0)
 
           **Parameters:**:
 
@@ -738,7 +738,7 @@ class Delete(object):
 
     def idps(self, idp_id, tenant_id=None, api_version="v3.2"):
         """
-        Delete idp
+        Delete idp (v3.2)
 
           **Parameters:**:
 
@@ -764,9 +764,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.12"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.13"):
         """
-        Delete Interface
+        Delete Interface (v4.13)
 
           **Parameters:**:
 
@@ -774,7 +774,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.12)
+          - **api_version**: API version to use (default v4.13)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -798,7 +798,7 @@ class Delete(object):
 
     def ipfix(self, site_id, element_id, ipfix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete IPFix config
+        Delete IPFix config (v2.0)
 
           **Parameters:**:
 
@@ -830,7 +830,7 @@ class Delete(object):
 
     def ipfixcollectorcontexts(self, ipfixcollectorcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix collector context
+        Delete a IPFix collector context (v2.0)
 
           **Parameters:**:
 
@@ -858,7 +858,7 @@ class Delete(object):
 
     def ipfixfiltercontexts(self, ipfixfiltercontext_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix filter context
+        Delete a IPFix filter context (v2.0)
 
           **Parameters:**:
 
@@ -886,7 +886,7 @@ class Delete(object):
 
     def ipfixglobalprefixes(self, ipfixglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix global prefix
+        Delete a IPFix global prefix (v2.0)
 
           **Parameters:**:
 
@@ -914,7 +914,7 @@ class Delete(object):
 
     def ipfixprofiles(self, ipfixprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete IPFix Profile
+        Delete IPFix Profile (v2.0)
 
           **Parameters:**:
 
@@ -942,7 +942,7 @@ class Delete(object):
 
     def ipfixtemplates(self, ipfixtemplate_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix template
+        Delete a IPFix template (v2.0)
 
           **Parameters:**:
 
@@ -970,7 +970,7 @@ class Delete(object):
 
     def ipsecprofiles(self, ipsecprofile_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a IPSEC Profile
+        Delete a IPSEC Profile (v2.1)
 
           **Parameters:**:
 
@@ -998,7 +998,7 @@ class Delete(object):
 
     def lannetworks(self, site_id, lannetwork_id, tenant_id=None, api_version="v3.1"):
         """
-        Delete an existing LAN
+        Delete an existing LAN (v3.1)
 
           **Parameters:**:
 
@@ -1028,7 +1028,7 @@ class Delete(object):
 
     def localprefixfilters(self, localprefixfilter_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a local prefix filter.
+        Delete a local prefix filter. (v2.0)
 
           **Parameters:**:
 
@@ -1050,6 +1050,38 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters/{}".format(api_version,
                                                                                 tenant_id,
                                                                                 localprefixfilter_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def mstp_instances(self, site_id, element_id, mstp_instance_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Mstp_Instances API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **mstp_instance_id**: MSTP Instance ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/mstp_instances/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 element_id,
+                                                                                                 mstp_instance_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1084,7 +1116,7 @@ class Delete(object):
 
     def multicastrps(self, site_id, element_id, multicastrp_id, tenant_id=None, api_version="v2.0"):
         """
-        Deletes Multicast RP config
+        Deletes Multicast RP config (v2.0)
 
           **Parameters:**:
 
@@ -1116,7 +1148,7 @@ class Delete(object):
 
     def natglobalprefixes(self, natglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a NAT Global Prefix.
+        Delete a NAT Global Prefix. (v2.0)
 
           **Parameters:**:
 
@@ -1144,7 +1176,7 @@ class Delete(object):
 
     def natlocalprefixes(self, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a NAT local prefix.
+        Delete a NAT local prefix. (v2.0)
 
           **Parameters:**:
 
@@ -1172,7 +1204,7 @@ class Delete(object):
 
     def natpolicypools(self, natpolicypool_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a NAT Policy Pool.
+        Delete a NAT Policy Pool. (v2.0)
 
           **Parameters:**:
 
@@ -1200,7 +1232,7 @@ class Delete(object):
 
     def natpolicyrules(self, natpolicyset_id, natpolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete NAT policy rule of tenant.
+        Delete NAT policy rule of tenant. (v2.0)
 
           **Parameters:**:
 
@@ -1230,7 +1262,7 @@ class Delete(object):
 
     def natpolicysets(self, natpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete NAT policy set.
+        Delete NAT policy set. (v2.0)
 
           **Parameters:**:
 
@@ -1258,7 +1290,7 @@ class Delete(object):
 
     def natpolicysetstacks(self, natpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete NAT Policy Set Stack.
+        Delete NAT Policy Set Stack. (v2.0)
 
           **Parameters:**:
 
@@ -1286,7 +1318,7 @@ class Delete(object):
 
     def natzones(self, natzone_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Nat Policy Zone.
+        Delete a Nat Policy Zone. (v2.0)
 
           **Parameters:**:
 
@@ -1314,7 +1346,7 @@ class Delete(object):
 
     def networkcontexts(self, networkcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete LAN segment
+        Delete LAN segment (v2.0)
 
           **Parameters:**:
 
@@ -1342,7 +1374,7 @@ class Delete(object):
 
     def networkpolicyglobalprefixes(self, networkpolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Network Policy Global Prefix.
+        Delete a Network Policy Global Prefix. (v2.0)
 
           **Parameters:**:
 
@@ -1370,7 +1402,7 @@ class Delete(object):
 
     def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete network policy rule of tenant.
+        Delete network policy rule of tenant. (v2.1)
 
           **Parameters:**:
 
@@ -1400,7 +1432,7 @@ class Delete(object):
 
     def networkpolicysets(self, networkpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Network Policy Set.
+        Delete Network Policy Set. (v2.0)
 
           **Parameters:**:
 
@@ -1428,7 +1460,7 @@ class Delete(object):
 
     def networkpolicysetstacks(self, networkpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a NetworkPolicySetStack
+        Delete a NetworkPolicySetStack (v2.0)
 
           **Parameters:**:
 
@@ -1456,7 +1488,7 @@ class Delete(object):
 
     def ngfwsecuritypolicyglobalprefixes(self, ngfwsecuritypolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Security Policy V2 Local Prefix by tenant ID and its ID
+        Delete a Security Policy V2 Local Prefix by tenant ID and its ID (v2.0)
 
           **Parameters:**:
 
@@ -1484,7 +1516,7 @@ class Delete(object):
 
     def ngfwsecuritypolicylocalprefixes(self, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Security Policy V2 Local Prefix by tenant ID and its ID
+        Delete a Security Policy V2 Local Prefix by tenant ID and its ID (v2.0)
 
           **Parameters:**:
 
@@ -1512,7 +1544,7 @@ class Delete(object):
 
     def ngfwsecuritypolicyrules(self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Security Policy V2 Rule under a policy set
+        Delete an existing Security Policy V2 Rule under a policy set (v2.0)
 
           **Parameters:**:
 
@@ -1542,7 +1574,7 @@ class Delete(object):
 
     def ngfwsecuritypolicysets(self, ngfwsecuritypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Security Policy V2 Set by tenant ID and its ID
+        Delete an existing Security Policy V2 Set by tenant ID and its ID (v2.0)
 
           **Parameters:**:
 
@@ -1570,7 +1602,7 @@ class Delete(object):
 
     def ngfwsecuritypolicysetstacks(self, ngfwsecuritypolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Security Policy V2 Set Stack by tenant ID and its ID
+        Delete an existing Security Policy V2 Set Stack by tenant ID and its ID (v2.0)
 
           **Parameters:**:
 
@@ -1598,7 +1630,7 @@ class Delete(object):
 
     def operator_sessions(self, operator_id, session_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete session for tenant_id, operator id, and session id
+        Delete session for tenant_id, operator id, and session id (v2.0)
 
           **Parameters:**:
 
@@ -1628,7 +1660,7 @@ class Delete(object):
 
     def pathgroups(self, pathgroup_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete A Path Group of a tenant.
+        Delete A Path Group of a tenant. (v2.1)
 
           **Parameters:**:
 
@@ -1656,7 +1688,7 @@ class Delete(object):
 
     def policyrules(self, policyset_id, policyrule_id, tenant_id=None, api_version="v3.1"):
         """
-        Delete policy rule of tenant.
+        Delete policy rule of tenant. (v3.1)
 
           **Parameters:**:
 
@@ -1686,7 +1718,7 @@ class Delete(object):
 
     def policysets(self, policyset_id, tenant_id=None, api_version="v3.0"):
         """
-        Delete policy set.
+        Delete policy set. (v3.0)
 
           **Parameters:**:
 
@@ -1714,7 +1746,7 @@ class Delete(object):
 
     def prefixfilters(self, site_id, prefixfilter_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security prefix filter
+        Delete an existing security prefix filter (v2.0)
 
           **Parameters:**:
 
@@ -1744,7 +1776,7 @@ class Delete(object):
 
     def prioritypolicyglobalprefixes(self, prioritypolicyglobalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Priority Policy Global Prefix.
+        Delete a Priority Policy Global Prefix. (v2.0)
 
           **Parameters:**:
 
@@ -1772,7 +1804,7 @@ class Delete(object):
 
     def prioritypolicyrules(self, prioritypolicyset_id, prioritypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete priority policy rule of tenant.
+        Delete priority policy rule of tenant. (v2.0)
 
           **Parameters:**:
 
@@ -1802,7 +1834,7 @@ class Delete(object):
 
     def prioritypolicysets(self, prioritypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Priority Policy Set.
+        Delete Priority Policy Set. (v2.0)
 
           **Parameters:**:
 
@@ -1830,7 +1862,7 @@ class Delete(object):
 
     def prioritypolicysetstacks(self, prioritypolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a PriorityPolicySetStack
+        Delete a PriorityPolicySetStack (v2.0)
 
           **Parameters:**:
 
@@ -1858,7 +1890,7 @@ class Delete(object):
 
     def prismaaccess_configs(self, site_id, prismaaccess_config_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Prisma Access Config with remote networks and security processing node
+        Delete a Prisma Access Config with remote networks and security processing node (v2.0)
 
           **Parameters:**:
 
@@ -1886,9 +1918,39 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def radii(self, element_id, radii_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Radii API Function
+
+          **Parameters:**:
+
+          - **element_id**: Element (Device) ID
+          - **radii_id**: Radii ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/radii/{}".format(api_version,
+                                                                               tenant_id,
+                                                                               element_id,
+                                                                               radii_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def roles(self, role_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a custom role
+        Delete a custom role (v2.1)
 
           **Parameters:**:
 
@@ -1916,7 +1978,7 @@ class Delete(object):
 
     def routing_aspathaccesslists(self, site_id, element_id, routing_aspathaccesslist_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete Access List
+        Delete Access List (v2.1)
 
           **Parameters:**:
 
@@ -1948,7 +2010,7 @@ class Delete(object):
 
     def routing_ipcommunitylists(self, site_id, element_id, routing_ipcommunitylist_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Community List
+        Delete Community List (v2.0)
 
           **Parameters:**:
 
@@ -1980,7 +2042,7 @@ class Delete(object):
 
     def routing_prefixlists(self, site_id, element_id, routing_prefixlist_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Prefix List
+        Delete Prefix List (v2.0)
 
           **Parameters:**:
 
@@ -2012,7 +2074,7 @@ class Delete(object):
 
     def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete Route Map
+        Delete Route Map (v2.1)
 
           **Parameters:**:
 
@@ -2074,7 +2136,7 @@ class Delete(object):
 
     def securitypolicyrules(self, securitypolicyset_id, securitypolicyrule_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a security policyrule.
+        Delete a security policyrule. (v2.0)
 
           **Parameters:**:
 
@@ -2104,7 +2166,7 @@ class Delete(object):
 
     def securitypolicysets(self, securitypolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a security policyset.
+        Delete a security policyset. (v2.0)
 
           **Parameters:**:
 
@@ -2132,7 +2194,7 @@ class Delete(object):
 
     def securityzones(self, securityzone_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security zone
+        Delete an existing security zone (v2.0)
 
           **Parameters:**:
 
@@ -2160,7 +2222,7 @@ class Delete(object):
 
     def servicebindingmaps(self, servicebindingmap_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a Service Binding Map
+        Delete a Service Binding Map (v2.1)
 
           **Parameters:**:
 
@@ -2188,7 +2250,7 @@ class Delete(object):
 
     def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete a Service Endpoint
+        Delete a Service Endpoint (v2.3)
 
           **Parameters:**:
 
@@ -2216,7 +2278,7 @@ class Delete(object):
 
     def servicelabels(self, servicelabel_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a Service Label
+        Delete a Service Label (v2.1)
 
           **Parameters:**:
 
@@ -2244,7 +2306,7 @@ class Delete(object):
 
     def site_extensions(self, site_id, extension_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a specific extension associated with a site
+        Delete a specific extension associated with a site (v2.0)
 
           **Parameters:**:
 
@@ -2274,7 +2336,7 @@ class Delete(object):
 
     def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix site prefix association
+        Delete a IPFix site prefix association (v2.0)
 
           **Parameters:**:
 
@@ -2304,7 +2366,7 @@ class Delete(object):
 
     def site_natlocalprefixes(self, site_id, natlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Site NAT prefix
+        Delete an existing Site NAT prefix (v2.0)
 
           **Parameters:**:
 
@@ -2334,7 +2396,7 @@ class Delete(object):
 
     def site_networkpolicylocalprefixes(self, site_id, networkpolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Site Network Policy local prefix association
+        Delete an existing Site Network Policy local prefix association (v2.0)
 
           **Parameters:**:
 
@@ -2364,7 +2426,7 @@ class Delete(object):
 
     def site_ngfwsecuritypolicylocalprefixes(self, site_id, ngfwsecuritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security policy v2 local prefix site association
+        Delete an existing security policy v2 local prefix site association (v2.0)
 
           **Parameters:**:
 
@@ -2394,7 +2456,7 @@ class Delete(object):
 
     def site_prioritypolicylocalprefixes(self, site_id, prioritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing Site Priority Policy local prefix association
+        Delete an existing Site Priority Policy local prefix association (v2.0)
 
           **Parameters:**:
 
@@ -2424,7 +2486,7 @@ class Delete(object):
 
     def sites(self, site_id, tenant_id=None, api_version="v4.7"):
         """
-        Delete a site
+        Delete a site (v4.7)
 
           **Parameters:**:
 
@@ -2452,7 +2514,7 @@ class Delete(object):
 
     def sitesecurityzones(self, site_id, sitesecurityzone_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing security zone
+        Delete an existing security zone (v2.0)
 
           **Parameters:**:
 
@@ -2482,7 +2544,7 @@ class Delete(object):
 
     def snmpagents(self, site_id, element_id, snmpagent_id, tenant_id=None, api_version="v2.1"):
         """
-        delete SNMP Agent
+        delete SNMP Agent (v2.1)
 
           **Parameters:**:
 
@@ -2514,7 +2576,7 @@ class Delete(object):
 
     def snmptraps(self, site_id, element_id, snmptrap_id, tenant_id=None, api_version="v2.0"):
         """
-        delete SNMP Trap
+        delete SNMP Trap (v2.0)
 
           **Parameters:**:
 
@@ -2546,7 +2608,7 @@ class Delete(object):
 
     def spokeclusters(self, site_id, spokecluster_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete spoke cluster.
+        Delete spoke cluster. (v2.0)
 
           **Parameters:**:
 
@@ -2576,7 +2638,7 @@ class Delete(object):
 
     def staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete static route
+        Delete static route (v2.2)
 
           **Parameters:**:
 
@@ -2608,7 +2670,7 @@ class Delete(object):
 
     def syslogserverprofiles(self, syslogserverprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Syslog Server Profile
+        Delete Syslog Server Profile (v2.0)
 
           **Parameters:**:
 
@@ -2636,7 +2698,7 @@ class Delete(object):
 
     def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete Syslog Server
+        Delete Syslog Server (v2.2)
 
           **Parameters:**:
 
@@ -2668,7 +2730,7 @@ class Delete(object):
 
     def templates_ntp(self, ntp_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an existing NTP Template
+        Delete an existing NTP Template (v2.0)
 
           **Parameters:**:
 
@@ -2724,7 +2786,7 @@ class Delete(object):
 
     def tenant_ipfixlocalprefixes(self, ipfixlocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a IPFix local prefix
+        Delete a IPFix local prefix (v2.0)
 
           **Parameters:**:
 
@@ -2752,7 +2814,7 @@ class Delete(object):
 
     def tenant_networkpolicylocalprefixes(self, networkpolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Network Policy local prefix.
+        Delete a Network Policy local prefix. (v2.0)
 
           **Parameters:**:
 
@@ -2780,7 +2842,7 @@ class Delete(object):
 
     def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a tenant operator
+        Delete a tenant operator (v2.1)
 
           **Parameters:**:
 
@@ -2808,7 +2870,7 @@ class Delete(object):
 
     def tenant_permissions(self, permission_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a tenant custom permission
+        Delete a tenant custom permission (v2.0)
 
           **Parameters:**:
 
@@ -2836,7 +2898,7 @@ class Delete(object):
 
     def tenant_prioritypolicylocalprefixes(self, prioritypolicylocalprefix_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a Priority Policy local prefix.
+        Delete a Priority Policy local prefix. (v2.0)
 
           **Parameters:**:
 
@@ -2892,7 +2954,7 @@ class Delete(object):
 
     def users(self, user_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete an user identity.
+        Delete an user identity. (v2.0)
 
           **Parameters:**:
 
@@ -2920,7 +2982,7 @@ class Delete(object):
 
     def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.7"):
         """
-        Delete existing WAN interface
+        Delete existing WAN interface (v2.7)
 
           **Parameters:**:
 
@@ -2950,7 +3012,7 @@ class Delete(object):
 
     def wannetworks(self, wannetwork_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete an existing WAN
+        Delete an existing WAN (v2.1)
 
           **Parameters:**:
 
@@ -2978,7 +3040,7 @@ class Delete(object):
 
     def wanoverlays(self, wanoverlay_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete app/wan context
+        Delete app/wan context (v2.0)
 
           **Parameters:**:
 
@@ -3034,6 +3096,9 @@ class Delete(object):
 
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
+
+    access_elementusers = elementusers_access
+    """ Backwards-compatibility alias of `access_elementusers` to `elementusers_access`"""
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
