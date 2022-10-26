@@ -706,16 +706,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def hubclusters(self, site_id, hubcluster_id, tenant_id=None, api_version="v3.0"):
+    def hubclusters(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
         """
-        Delete hub cluster (v3.0)
+        Delete hub cluster (v4.0)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **hubcluster_id**: Hub (DC) Cluster ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v4.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -736,15 +736,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def idps(self, idp_id, tenant_id=None, api_version="v3.2"):
+    def idps(self, idp_id, tenant_id=None, api_version="v3.3"):
         """
-        Delete idp (v3.2)
+        Delete idp (v3.3)
 
           **Parameters:**:
 
           - **idp_id**: SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.2)
+          - **api_version**: API version to use (default v3.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -764,9 +764,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.13"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.14"):
         """
-        Delete Interface (v4.13)
+        Delete Cellular Interface (v4.14)
 
           **Parameters:**:
 
@@ -774,7 +774,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.13)
+          - **api_version**: API version to use (default v4.14)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1086,7 +1086,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def multicastpeergroups(self, multicastpeergroup_id, tenant_id=None, api_version="v2.0"):
+    def multicastpeergroups(self, multicastpeergroup_id, tenant_id=None, api_version="v2.1"):
         """
         DELETE Multicastpeergroups API Function
 
@@ -1094,7 +1094,7 @@ class Delete(object):
 
           - **multicastpeergroup_id**: Multicast Peer Group ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1142,6 +1142,36 @@ class Delete(object):
                                                                                                site_id,
                                                                                                element_id,
                                                                                                multicastrp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Multicastsourcesiteconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiteconfigs/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 multicastsourcesiteconfig_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")

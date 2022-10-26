@@ -245,7 +245,15 @@ class Put(object):
           **Payload Attributes:** 
 
            - **app_version:**  Type: string 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **region:**  Type: string 
            - **reqState:**  Type: string 
+           - **sigfile_url:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **uApp_version:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -371,26 +379,22 @@ class Put(object):
 
           **Payload Attributes:** 
 
-           - **bgp_config:**           
-               - **adv_interval:**  Type: integer 
-               - **hold_time:**  Type: integer 
-               - **keepalive_time:**  Type: integer 
-               - **local_as_num:**  Type: string 
-               - **md5_secret:**  Type: string 
-               - **multi_hop_limit:**  Type: integer 
-               - **peer_auth_type:**  Type: string 
-               - **peer_retry_time:**  Type: integer 
-           - **description:**  Type: string 
-           - **name:**  Type: string 
-           - **peer_ip:**  Type: string 
-           - **peer_type:**  Type: string 
-           - **remote_as_num:**  Type: string 
-           - **route_map_in_id:**  Type: string 
-           - **route_map_out_id:**  Type: string 
-           - **scope:**  Type: string 
-           - **shutdown:**  Type: boolean 
-           - **tags:**  [Type: string] 
-           - **update_source:**  Type: string 
+           - **admin_distance:**  Type: integer 
+           - **adv_interval:**  Type: integer 
+           - **graceful_restart:**  Type: boolean 
+           - **hold_time:**  Type: integer 
+           - **keepalive_time:**  Type: integer 
+           - **local_as_num:**  Type: string 
+           - **maximum_paths:**  Type: integer 
+           - **md5_secret:**  Type: string 
+           - **multi_hop_limit:**  Type: integer 
+           - **peer_auth_type:**  Type: string 
+           - **peer_retry_time:**  Type: integer 
+           - **prefix_adv_type:**  Type: string 
+           - **prefix_adv_type_to_lan:**  Type: string 
+           - **prefixes_to_adv_to_wan:**  [Type: string] 
+           - **router_id:**  Type: string 
+           - **stalepath_time:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -752,301 +756,8 @@ class Put(object):
            - **dnsservicerole_bindings:**           
                - **dnsservicerole_id:**  Type: string 
                - **interfaces:**           
-                   - **admin_state_changed:**  Type: boolean 
-                   - **admin_up:**  Type: boolean 
-                   - **attached_lan_networks:**           
-                       - **lan_network_id:**  Type: string 
-                       - **vlan_id:**  Type: integer 
-                   - **authentication_config:**           
-                       - **mode:**  Type: string 
-                       - **reauthentication_timeout:**  Type: integer 
-                   - **bound_interfaces:**           
-                       - **interface_id:**  Type: string 
-                       - **type:**  Type: string 
-                   - **cellular_config:**           
-                       - **apn_config:**           
-                           - **apn:**  Type: string 
-                           - **authentication:**  Type: string 
-                           - **clear_password:**  Type: boolean 
-                           - **password:**  Type: string 
-                           - **password_encrypted:**  Type: string 
-                           - **user_name:**  Type: string 
-                       - **apn_etag:**  Type: integer 
-                       - **apnprofile_id:**  Type: string 
-                       - **auto_apn:**  Type: boolean 
-                       - **parent_module_id:**  Type: string 
-                       - **parent_sim_slot_number:**  Type: integer 
-                   - **config_state:**  Type: string 
-                   - **description:**  Type: string 
-                   - **devicemgmt_policysetstack_id:**  Type: string 
-                   - **dhcp_relay:**           
-                       - **enabled:**  Type: boolean 
-                       - **option_82:**           
-                           - **circuit_id:**  Type: string 
-                           - **enabled:**  Type: boolean 
-                           - **reforwarding_policy:**  Type: string 
-                           - **remote_id:**  Type: string 
-                       - **server_ips:**  [Type: string] 
-                       - **source_interface:**  Type: string 
-                   - **directed_broadcast:**  Type: boolean 
-                   - **disabled:**  Type: boolean 
-                   - **disabled_reason:**  Type: string 
-                   - **element_etag:**  Type: integer 
-                   - **element_id:**  Type: string 
-                   - **element_port_admin_up:**  Type: boolean 
-                   - **ethernet_port:**           
-                       - **full_duplex:**  Type: boolean 
-                       - **speed:**  Type: integer 
-                   - **id:**  Type: string 
-                   - **ifType:**  Type: string 
-                   - **inactive:**  Type: boolean 
-                   - **inactive_reason:**  Type: string 
-                   - **interface_profile_id:**  Type: string 
-                   - **ipfixcollectorcontext_id:**  Type: string 
-                   - **ipfixfiltercontext_id:**  Type: string 
-                   - **ipv4_config:**           
-                       - **dhcp_config:**           
-                           - **client_id:**  Type: string 
-                           - **hostname:**  Type: string 
-                       - **dns_v4_config:**           
-                           - **name_servers:**  [Type: string] 
-                           - **search:**  [Type: string] 
-                       - **pppoe_config:**           
-                           - **chap_passwd:**  Type: string 
-                           - **chap_user:**  Type: string 
-                           - **set_route:**  Type: boolean 
-                       - **routes:**           
-                           - **destination:**  Type: string 
-                           - **via:**  Type: string 
-                       - **static_config:**           
-                           - **address:**  Type: string 
-                       - **type:**  Type: string 
-                   - **ipv6_config:**           
-                       - **dhcp_config:**           
-                           - **client_id:**  Type: string 
-                           - **hostname:**  Type: string 
-                       - **dns_v6_config:**           
-                           - **name_servers:**  [Type: string] 
-                           - **search:**  [Type: string] 
-                       - **routes:**           
-                           - **destination:**  Type: string 
-                           - **via:**  Type: string 
-                       - **static_config:**           
-                           - **address:**  Type: string 
-                       - **type:**  Type: string 
-                   - **is2kFlag:**  Type: boolean 
-                   - **is_parent:**  Type: boolean 
-                   - **is_service_link_parent:**  Type: boolean 
-                   - **lan_state_propagation:**  Type: boolean 
-                   - **lldp_enabled:**  Type: boolean 
-                   - **mac_address:**  Type: string 
-                   - **mtu:**  Type: integer 
-                   - **multicast_config:**           
-                       - **dr_priority:**  Type: integer 
-                       - **igmp_static_joins:**           
-                           - **igmp_static_grp_ipv4:**  Type: string 
-                           - **igmp_static_src_ipv4:**  Type: string 
-                       - **igmp_version:**  Type: string 
-                       - **multicast_enabled:**  Type: boolean 
-                   - **name:**  Type: string 
-                   - **nat_address:**  Type: string 
-                   - **nat_address_v6:**  Type: string 
-                   - **nat_pools:**           
-                       - **ipv4_ranges:**           
-                           - **end:**  Type: string 
-                           - **start:**  Type: string 
-                       - **nat_pool_id:**  Type: string 
-                   - **nat_port:**  Type: integer 
-                   - **nat_port_v6:**  Type: integer 
-                   - **nat_zone_id:**  Type: string 
-                   - **network_context_id:**  Type: string 
-                   - **override_indicator:**  [Type: string] 
-                   - **parent:**  Type: string 
-                   - **poe_enabled:**  Type: boolean 
-                   - **power_usage_threshold:**  Type: integer 
-                   - **pppoe_config:**           
-                       - **host_uniq:**  Type: string 
-                       - **ip_address_type:**  Type: string 
-                       - **parent:**  Type: string 
-                       - **password:**  Type: string 
-                       - **reconnection_delay:**  Type: integer 
-                       - **service_name:**  Type: string 
-                       - **username:**  Type: string 
-                   - **propagation_state_changed:**  Type: boolean 
-                   - **region:**  Type: string 
-                   - **relay_changed:**  Type: boolean 
-                   - **retain_configuration:**  Type: boolean 
-                   - **sb_api_version:**  Type: string 
-                   - **scope:**  Type: string 
-                   - **secondary_ip_configs:**           
-                       - **ipv4_address:**  Type: string 
-                       - **scope:**  Type: string 
-                   - **service_link_config:**           
-                       - **gre_config:**           
-                           - **csum:**  Type: boolean 
-                           - **keepalive_enable:**  Type: boolean 
-                           - **keepalive_fail_count:**  Type: integer 
-                           - **keepalive_interval:**  Type: integer 
-                       - **ipsec_config:**           
-                           - **authentication:**           
-                               - **certificate:**  Type: string 
-                               - **ikev1_params:**           
-                                   - **xauth_id:**  Type: string 
-                                   - **xauth_secret:**  Type: string 
-                                   - **xauth_secret_encrypted:**  Type: string 
-                                   - **xauth_secret_hash:**  Type: string 
-                                   - **xauth_type:**  Type: string 
-                               - **local_ca_certificate:**  Type: string 
-                               - **local_id:**  Type: string 
-                               - **local_id_custom:**  Type: string 
-                               - **passphrase:**  Type: string 
-                               - **passphrase_encrypted:**  Type: string 
-                               - **private_key:**  Type: string 
-                               - **private_key_encrypted:**  Type: string 
-                               - **remote_ca_certificate:**  Type: string 
-                               - **remote_id:**  Type: string 
-                               - **secret:**  Type: string 
-                               - **secret_encrypted:**  Type: string 
-                               - **secret_hash:**  Type: string 
-                               - **type:**  Type: string 
-                               - **x509Objects:**           
-                                   - **certHolder:**  Type: object 
-                                   - **certificate:**  Type: string 
-                                   - **is_local_ca_cert_set:**  Type: boolean 
-                                   - **is_remote_ca_cert_set:**  Type: boolean 
-                                   - **keyPair:**  Type: object 
-                                   - **local_ca_certificate:**  Type: string 
-                                   - **local_ca_certs_set:**  [Type: object] 
-                                   - **passphrase:**  Type: string 
-                                   - **private_key:**  Type: string 
-                                   - **remote_ca_certificate:**  Type: string 
-                                   - **remote_ca_certs_set:**  [Type: object] 
-                           - **ipsec_profile_id:**  Type: string 
-                       - **last_parent:**  Type: string 
-                       - **parent:**  Type: string 
-                       - **peer:**           
-                           - **hostname:**  Type: string 
-                           - **ip_addresses:**  [Type: string] 
-                       - **security_service_endpoint_id:**  Type: string 
-                       - **service_endpoint_id:**  Type: string 
-                       - **type:**  Type: string 
-                   - **site_id:**  Type: string 
-                   - **site_wan_interface_ids:**  [Type: string] 
-                   - **state_id:**           
-                       - **cellular_state:**           
-                           - **active:**  Type: boolean 
-                           - **apn_info:**           
-                               - **apn:**  Type: string 
-                               - **authentication:**  Type: string 
-                       - **device:**  Type: string 
-                       - **disabled:**  Type: boolean 
-                       - **disabled_reason:**  Type: string 
-                       - **dns_v4_config:**           
-                           - **name_servers:**  [Type: string] 
-                           - **search:**  [Type: string] 
-                       - **dns_v6_config:**           
-                           - **name_servers:**  [Type: string] 
-                           - **search:**  [Type: string] 
-                       - **effective_vlans:**  [Type: integer] 
-                       - **element_id:**  Type: string 
-                       - **extended_state:**  Type: string 
-                       - **id:**  Type: string 
-                       - **ike_algo:**  Type: string 
-                       - **ike_last_rekeyed:**  Type: integer 
-                       - **ike_next_rekey:**  Type: integer 
-                       - **inactive:**  Type: boolean 
-                       - **inactive_reason:**  Type: string 
-                       - **index:**  Type: integer 
-                       - **ipsec_algo:**  Type: string 
-                       - **ipsec_last_rekeyed:**  Type: integer 
-                       - **ipsec_next_rekey:**  Type: integer 
-                       - **ipv4_addresses:**  [Type: string] 
-                       - **ipv4_addresses_changed:**  Type: boolean 
-                       - **ipv6_addresses:**  [Type: string] 
-                       - **ipv6_addresses_changed:**  Type: boolean 
-                       - **last_state_change:**  Type: integer 
-                       - **link_local_address:**  Type: string 
-                       - **lldp_enabled:**  Type: boolean 
-                       - **local_tunnel_v4_addr:**  Type: string 
-                       - **mac_address:**  Type: string 
-                       - **name:**  Type: string 
-                       - **negotiated_mtu:**  Type: integer 
-                       - **operational_state:**  Type: string 
-                       - **operational_state_changed:**  Type: boolean 
-                       - **poe_state:**           
-                           - **detection_status:**  Type: string 
-                           - **device_type:**  Type: string 
-                           - **operational_state:**  Type: string 
-                           - **poe_enabled:**  Type: boolean 
-                           - **power_classification:**  Type: string 
-                           - **power_consumed:**  Type: number 
-                           - **power_pairs_control_ability:**  Type: boolean 
-                           - **power_pairs_state:**  Type: string 
-                           - **power_priority:**  Type: string 
-                           - **power_usage_threshold:**  Type: integer 
-                       - **port:**           
-                           - **end:**  Type: string 
-                           - **start:**  Type: string 
-                       - **region:**  Type: string 
-                       - **remote_host_name:**  Type: string 
-                       - **remote_v4_addr:**  Type: string 
-                       - **routes:**           
-                           - **destination:**  Type: string 
-                           - **via:**  Type: string 
-                       - **routes_v6:**           
-                           - **destination:**  Type: string 
-                           - **via:**  Type: string 
-                       - **secondary_ipv4_addresses:**  [Type: string] 
-                       - **state:**  Type: boolean 
-                       - **stp_state:**           
-                           - **bpdu_guard_enabled:**  Type: boolean 
-                           - **forward_fast_enabled:**  Type: boolean 
-                           - **mstp_instance_id:**  Type: integer 
-                           - **port_cost:**  Type: integer 
-                           - **port_priority:**  Type: integer 
-                           - **port_state:**  Type: string 
-                           - **root_guard_enabled:**  Type: boolean 
-                           - **stp_enabled:**  Type: boolean 
-                       - **svi_state:**           
-                           - **stp_designated_cost:**  Type: integer 
-                           - **stp_designated_mac_address:**  Type: string 
-                           - **stp_designated_port:**  Type: integer 
-                           - **stp_designated_root_mac_address:**  Type: string 
-                       - **tenant_id:**  Type: string 
-                   - **static_arp_configs:**           
-                       - **ipv4_address:**  Type: string 
-                       - **mac_address:**  Type: string 
-                   - **sub_interface:**           
-                       - **vlan_id:**  Type: integer 
-                   - **switch_port_config:**           
-                       - **access_vlan_id:**  Type: integer 
-                       - **bpdu_guard_enabled:**  Type: boolean 
-                       - **forward_fast_enabled:**  Type: boolean 
-                       - **native_vlan_id:**  Type: integer 
-                       - **root_guard_enabled:**  Type: boolean 
-                       - **storm_control_config:**           
-                           - **broadcast_threshold:**  Type: integer 
-                           - **multicast_threshold:**  Type: integer 
-                           - **unicast_threshold:**  Type: integer 
-                       - **stp_port_cost:**  Type: integer 
-                       - **stp_port_enabled:**  Type: boolean 
-                       - **stp_port_priority:**  Type: integer 
-                       - **trunk_vlans:**  [Type: string] 
-                       - **vlan_mode:**  Type: string 
-                       - **voice_vlan_id:**  Type: integer 
-                   - **tags:**  [Type: string] 
-                   - **tenant_id:**  Type: string 
-                   - **tmpPortType:**  Type: string 
-                   - **type:**  Type: string 
-                   - **use_relay:**  Type: boolean 
-                   - **used_for:**  Type: string 
-                   - **vlan_config:**           
-                       - **element_vlan_unique_id:**  Type: string 
-                       - **mstp_instance:**  Type: integer 
-                       - **vlan_id:**  Type: integer 
-                       - **voice_enabled:**  Type: boolean 
-                   - **vlan_ids:**  [Type: integer] 
-                   - **wan_network_id:**  Type: string 
+                   - **interface_id:**  Type: string 
+                   - **interface_ip:**  Type: string 
            - **domains_to_addresses:**           
                - **domain_names:**  [Type: string] 
                - **ipv4_address:**  Type: string 
@@ -1232,6 +943,7 @@ class Put(object):
 
            - **conf:**  Type: object 
            - **disabled:**  Type: boolean 
+           - **entity_id:**  Type: string 
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
@@ -1327,25 +1039,26 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def elements(self, element_id, data, tenant_id=None, api_version="v2.6"):
+    def elements(self, element_id, data, tenant_id=None, api_version="v3.0"):
         """
-        Used for associations and element updates (v2.6)
+        Used for associations and element updates (v3.0)
 
           **Parameters:**:
 
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
           **Payload Attributes:** 
 
-           - **cluster_insertion_mode:**  Type: string 
-           - **cluster_member_id:**  Type: string 
+           - **cluster_id:**  Type: string 
            - **description:**  Type: string 
            - **device_profile_id:**  Type: string 
            - **l3_direct_private_wan_forwarding:**  Type: boolean 
            - **l3_lan_forwarding:**  Type: boolean 
+           - **led_config:**           
+               - **service_led_on:**  Type: boolean 
            - **main_power_usage_threshold:**  Type: integer 
            - **name:**  Type: string 
            - **nat_policysetstack_id:**  Type: string 
@@ -1366,7 +1079,6 @@ class Put(object):
                        - **wan_interface_id:**  Type: string 
            - **sw_obj:**           
                - **location:**  Type: string 
-               - **state_id:**  Type: string 
                - **version:**  Type: string 
            - **switch_config:**           
                - **default_vlan_id:**  Type: integer 
@@ -1457,6 +1169,7 @@ class Put(object):
 
            - **is_tenant_level:**  Type: boolean 
            - **login_id:**  Type: string 
+           - **password:**  Type: string 
            - **role:**  Type: string 
            - **tenant_id:**  Type: string 
            - **username:**  Type: string 
@@ -1825,6 +1538,18 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **headend1_site_ids:**  [Type: string] 
+           - **headend2_site_ids:**  [Type: string] 
+           - **hub_element_id:**  Type: string 
+           - **load_factors:**           
+               - **alarm_threshold:**  Type: integer 
+               - **allocated:**  Type: integer 
+               - **subscription_factor:**  Type: number 
+               - **threshold:**           
+                   - **critical_alarm:**  Type: integer 
+                   - **major_alarm:**  Type: integer 
+                   - **subscription_factor:**  Type: number 
+               - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1846,9 +1571,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def hubclusters(self, site_id, hubcluster_id, data, tenant_id=None, api_version="v3.0"):
+    def hubclusters(self, site_id, hubcluster_id, data, tenant_id=None, api_version="v4.0"):
         """
-        Update hub cluster (v3.0)
+        Update hub cluster (v4.0)
 
           **Parameters:**:
 
@@ -1856,14 +1581,20 @@ class Put(object):
           - **hubcluster_id**: Hub (DC) Cluster ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v4.0)
 
           **Payload Attributes:** 
 
-           - **admin_up:**  Type: boolean 
-           - **load_alarm_threshold:**  Type: integer 
+           - **default_cluster:**  Type: boolean 
+           - **description:**  Type: string 
+           - **elements:**           
+               - **hubClusterElementNumber:**  Type: string 
+               - **hub_element_id:**  Type: string 
+               - **locked:**  Type: boolean 
            - **name:**  Type: string 
-           - **subscription_factor:**  Type: number 
+           - **peer_sites:**  [Type: string] 
+           - **site_count_alarm_threshold:**  Type: integer 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1884,16 +1615,16 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def idps(self, idp_id, data, tenant_id=None, api_version="v3.2"):
+    def idps(self, idp_id, data, tenant_id=None, api_version="v3.3"):
         """
-        Update sso (v3.2)
+        Update sso (v3.3)
 
           **Parameters:**:
 
           - **idp_id**: SAML IDentity provider configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.2)
+          - **api_version**: API version to use (default v3.3)
 
           **Payload Attributes:** 
 
@@ -1910,6 +1641,7 @@ class Put(object):
            - **inactive:**  Type: boolean 
            - **inactive_reason:**  Type: string 
            - **is_hob:**  Type: boolean 
+           - **match_email_domain:**  Type: boolean 
            - **role_map:**  Type: object 
            - **session_timeout_s:**  Type: integer 
            - **sign_redirect_binding:**  Type: boolean 
@@ -1936,9 +1668,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.13"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.14"):
         """
-        Update a Interface (v4.13)
+        Update a Cellular Interface (v4.14)
 
           **Parameters:**:
 
@@ -1947,7 +1679,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.13)
+          - **api_version**: API version to use (default v4.14)
 
           **Payload Attributes:** 
 
@@ -1972,7 +1704,6 @@ class Put(object):
                    - **password:**  Type: string 
                    - **password_encrypted:**  Type: string 
                    - **user_name:**  Type: string 
-               - **apn_etag:**  Type: integer 
                - **apnprofile_id:**  Type: string 
                - **auto_apn:**  Type: boolean 
                - **parent_module_id:**  Type: string 
@@ -1991,6 +1722,23 @@ class Put(object):
            - **directed_broadcast:**  Type: boolean 
            - **ethernet_port:**           
                - **full_duplex:**  Type: boolean 
+               - **port_id:**           
+                   - **connector:**  Type: string 
+                   - **device:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **element_id:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **max_mtu:**  Type: integer 
+                   - **max_speed:**  Type: integer 
+                   - **name:**  Type: string 
+                   - **original_mac_address:**  Type: string 
+                   - **region:**  Type: string 
+                   - **site_id:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **port_name:**  Type: string 
                - **speed:**  Type: integer 
            - **interface_profile_id:**  Type: string 
            - **ipfixcollectorcontext_id:**  Type: string 
@@ -2545,13 +2293,28 @@ class Put(object):
                    - **server_ips:**  [Type: string] 
                    - **source_interface:**  Type: string 
                - **dhcp_server:**           
+                   - **broadcast_address:**  Type: string 
+                   - **custom_options:**           
+                       - **option_definition:**  Type: string 
+                       - **option_value:**  Type: string 
+                   - **default_lease_time:**  Type: integer 
+                   - **description:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **dns_servers:**  [Type: string] 
                    - **domain_name:**  Type: string 
-                   - **domain_name_servers:**  [Type: string] 
-                   - **ip_address_pool:**           
-                       - **end:**  Type: string 
-                       - **start:**  Type: string 
-                   - **lease_expiry_time:**  Type: integer 
-                   - **lease_renew_time:**  Type: integer 
+                   - **gateway:**  Type: string 
+                   - **id:**  Type: string 
+                   - **ip_ranges:**           
+                       - **end_ip:**  Type: string 
+                       - **start_ip:**  Type: string 
+                   - **max_lease_time:**  Type: integer 
+                   - **network_context_id:**  Type: string 
+                   - **static_mappings:**           
+                       - **ip_address:**  Type: string 
+                       - **mac:**  Type: string 
+                       - **name:**  Type: string 
+                   - **subnet:**  Type: string 
+                   - **tags:**  [Type: string] 
                - **prefixes:**  [Type: string] 
            - **name:**  Type: string 
            - **network_context_id:**  Type: string 
@@ -2730,7 +2493,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def multicastpeergroups(self, multicastpeergroup_id, data, tenant_id=None, api_version="v2.0"):
+    def multicastpeergroups(self, multicastpeergroup_id, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Multicastpeergroups API Function
 
@@ -2739,7 +2502,7 @@ class Put(object):
           - **multicastpeergroup_id**: Multicast Peer Group ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -2801,6 +2564,40 @@ class Put(object):
                                                                                                site_id,
                                                                                                element_id,
                                                                                                multicastrp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Multicastsourcesiteconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiteconfigs/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 multicastsourcesiteconfig_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -3849,14 +3646,7 @@ class Put(object):
           **Payload Attributes:** 
 
            - **app_def_id:**  Type: string 
-           - **app_def_name:**  Type: string 
-           - **default_rule:**  Type: boolean 
            - **description:**  Type: string 
-           - **disabled:**  Type: boolean 
-           - **disabled_reason:**  Type: string 
-           - **inactive:**  Type: boolean 
-           - **inactive_reason:**  Type: string 
-           - **lan_network_ids:**  [Type: string] 
            - **name:**  Type: string 
            - **network_context_id:**  Type: string 
            - **paths_allowed:**           
@@ -3869,19 +3659,13 @@ class Put(object):
                - **l3_failure_paths:**           
                    - **label:**  Type: string 
                    - **path_type:**  Type: string 
-           - **policy_set_id:**  Type: string 
            - **priority_num:**  Type: integer 
-           - **region:**  Type: string 
            - **service_context:**           
                - **active_service_label_id:**  Type: string 
                - **active_service_label_type:**  Type: string 
                - **backup_service_label_id:**  Type: string 
                - **backup_service_label_type:**  Type: string 
                - **type:**  Type: string 
-           - **site_paths_allowed:**           
-               - **wn_name:**  Type: string 
-               - **wp_type:**  Type: string 
-           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4253,12 +4037,7 @@ class Put(object):
 
           **Payload Attributes:** 
 
-           - **hardware_id:**  Type: string 
-           - **ion_token:**  Type: string 
-           - **is_used:**  Type: boolean 
-           - **secret_token:**  Type: string 
            - **token_validity_in_hour:**  Type: integer 
-           - **valid_till_secs:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4753,7 +4532,9 @@ class Put(object):
            - **name:**  Type: string 
            - **sase_properties:**           
                - **allocated_bandwidth_mbps:**  Type: integer 
+               - **allocated_sc_count:**  Type: integer 
                - **pa_compute_region_oid:**  Type: string 
+               - **total_sc_bandwidth_mbps:**  Type: integer 
            - **service_link_peers:**           
                - **hostnames:**  [Type: string] 
                - **ip_addresses:**  [Type: string] 
@@ -4883,6 +4664,7 @@ class Put(object):
 
            - **conf:**  Type: object 
            - **disabled:**  Type: boolean 
+           - **entity_id:**  Type: string 
            - **name:**  Type: string 
            - **namespace:**  Type: string 
 
@@ -5245,7 +5027,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **v2_config:**           
                - **community:**  Type: string 
-               - **enabled:**  Type: boolean 
            - **v3_config:**           
                - **user_access:**           
                    - **auth_phrase:**  Type: string 
@@ -5298,7 +5079,6 @@ class Put(object):
            - **tags:**  [Type: string] 
            - **v2_config:**           
                - **community:**  Type: string 
-               - **enabled:**  Type: boolean 
            - **v3_config:**           
                - **user_access:**           
                    - **auth_phrase:**  Type: string 
