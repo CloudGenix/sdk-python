@@ -9474,6 +9474,70 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def site_sitesecurityzones_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Site_Sitesecurityzones_Query API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/sitesecurityzones/query".format(api_version,
+                                                                                           tenant_id,
+                                                                                           site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def site_spokeclusters_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Site_Spokeclusters_Query API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/spokeclusters/query".format(api_version,
+                                                                                       tenant_id,
+                                                                                       site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def sites(self, data, tenant_id=None, api_version="v4.7"):
         """
         Create a site (v4.7)
@@ -11840,11 +11904,17 @@ class Post(object):
     query_servicelabels = servicelabels_query
     """ Backwards-compatibility alias of `query_servicelabels` to `servicelabels_query`"""
 
+    query_sitesecurityzones = site_sitesecurityzones_query
+    """ Backwards-compatibility alias of `query_sitesecurityzones` to `site_sitesecurityzones_query`"""
+
     query_sitesecurityzones_t = sitesecurityzones_query
     """ Backwards-compatibility alias of `query_sitesecurityzones_t` to `sitesecurityzones_query`"""
 
     query_softwarehistory = softwarehistory_query
     """ Backwards-compatibility alias of `query_softwarehistory` to `softwarehistory_query`"""
+
+    query_spokeclusters = site_spokeclusters_query
+    """ Backwards-compatibility alias of `query_spokeclusters` to `site_spokeclusters_query`"""
 
     query_spokeclusters_t = spokeclusters_query
     """ Backwards-compatibility alias of `query_spokeclusters_t` to `spokeclusters_query`"""
