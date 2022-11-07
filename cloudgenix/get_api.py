@@ -1943,7 +1943,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def hubcluster_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
+    def hubclusters_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
         """
         Get hub cluster status (v4.0)
 
@@ -7629,8 +7629,11 @@ class Get(object):
     status_hubclustermembers = hubclustermember_status
     """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
 
-    status_i = hubcluster_status
+    status_i = hubclusters_status
     """ Backwards-compatibility alias of `status_i` to `hubcluster_status`"""
+
+    hubcluster_status = hubclusters_status
+    """ Backwards-compatibility alias of `hubcluster_status` to `hubclusters_status`"""
 
     status_interface_authentication = interface_authentication_status
     """ Backwards-compatibility alias of `status_interface_authentication` to `interface_authentication_status`"""

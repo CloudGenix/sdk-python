@@ -2636,7 +2636,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.externalcaconfigs">externalcaconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.globalprefixfilters">globalprefixfilters</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.hardwarebypass">hardwarebypass</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.hubcluster_status">hubcluster_status</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.hubclusters_status">hubclusters_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.hubclustermember_status">hubclustermember_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.hubclustermembers">hubclustermembers</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.hubclusters">hubclusters</a></li>
@@ -4782,7 +4782,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">hubcluster_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hubclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get hub cluster status (v4.0)</span>
 
@@ -10468,8 +10468,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">status_hubclustermembers</span> <span class="o">=</span> <span class="n">hubclustermember_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`&quot;&quot;&quot;</span>
 
-    <span class="n">status_i</span> <span class="o">=</span> <span class="n">hubcluster_status</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_i` to `hubcluster_status`&quot;&quot;&quot;</span>
+    <span class="n">status_i</span> <span class="o">=</span> <span class="n">hubclusters_status</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_i` to `hubclusters_status`&quot;&quot;&quot;</span>
 
     <span class="n">status_interface_authentication</span> <span class="o">=</span> <span class="n">interface_authentication_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_interface_authentication` to `interface_authentication_status`&quot;&quot;&quot;</span>
@@ -12473,7 +12473,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">hubcluster_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hubclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get hub cluster status (v4.0)</span>
 
@@ -18159,8 +18159,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">status_hubclustermembers</span> <span class="o">=</span> <span class="n">hubclustermember_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`&quot;&quot;&quot;</span>
 
-    <span class="n">status_i</span> <span class="o">=</span> <span class="n">hubcluster_status</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_i` to `hubcluster_status`&quot;&quot;&quot;</span>
+    <span class="n">status_i</span> <span class="o">=</span> <span class="n">hubclusters_status</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_i` to `hubclusters_status`&quot;&quot;&quot;</span>
 
     <span class="n">status_interface_authentication</span> <span class="o">=</span> <span class="n">interface_authentication_status</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `status_interface_authentication` to `interface_authentication_status`&quot;&quot;&quot;</span>
@@ -19165,7 +19165,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>status_i</code> to <code>hubcluster_status</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>status_i</code> to <code>hubclusters_status</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -22550,9 +22550,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
-  <div class="item" id="cloudgenix.get_api.Get.hubcluster_status">
+  <div class="item" id="cloudgenix.get_api.Get.hubclusters_status">
     <div class="name def">
-    <p>def <span class="ident">hubcluster_status</span>(</p><p>self, site_id, hubcluster_id, tenant_id=None, api_version=&#39;v4.0&#39;)</p>
+    <p>def <span class="ident">hubclusters_status</span>(</p><p>self, site_id, hubcluster_id, tenant_id=None, api_version=&#39;v4.0&#39;)</p>
     </div>
     
 
@@ -22568,9 +22568,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.hubcluster_status', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.hubcluster_status" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hubcluster_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.hubclusters_status', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.hubclusters_status" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hubclusters_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get hub cluster status (v4.0)</span>
 <span class="sd">      **Parameters:**:</span>

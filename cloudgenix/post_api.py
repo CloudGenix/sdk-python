@@ -2394,7 +2394,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def hubcluster_operations(self, site_id, hubcluster_id, data, tenant_id=None, api_version="v4.0"):
+    def hubclusters_operations(self, site_id, hubcluster_id, data, tenant_id=None, api_version="v4.0"):
         """
         POST Hubcluster_Operations API Function
 
