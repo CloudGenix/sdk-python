@@ -2396,7 +2396,7 @@ class Post(object):
 
     def hubclusters_operations(self, site_id, hubcluster_id, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Hubcluster_Operations API Function
+        POST Hubclusters_Operations API Function
 
           **Parameters:**:
 
@@ -11577,8 +11577,8 @@ class Post(object):
     operations_e = tenant_element_operations
     """ Backwards-compatibility alias of `operations_e` to `tenant_element_operations`"""
 
-    operations_h = hubcluster_operations
-    """ Backwards-compatibility alias of `operations_h` to `hubcluster_operations`"""
+    operations_h = hubclusters_operations
+    """ Backwards-compatibility alias of `operations_h` to `hubclusters_operations`"""
 
     operations_t = tenant_machine_operations
     """ Backwards-compatibility alias of `operations_t` to `tenant_machine_operations`"""
