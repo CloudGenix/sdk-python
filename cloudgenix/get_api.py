@@ -742,16 +742,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def clients_machines(self, client_id, machine_id=None, tenant_id=None, api_version="v2.2"):
+    def clients_machines(self, client_id, machine_id=None, tenant_id=None, api_version="v2.3"):
         """
-        Get all machines allocated by ESP to a client tenant (v2.2)
+        Get all machines allocated by ESP to a client tenant (v2.3)
 
           **Parameters:**:
 
           - **client_id**: ESP/MSP Client ID (typically their tenant_id)
           - **machine_id**: (optional) Machine ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1455,15 +1455,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elements(self, element_id=None, tenant_id=None, api_version="v2.6"):
+    def elements(self, element_id=None, tenant_id=None, api_version="v3.0"):
         """
-        Get Elements of a tenant (v2.6)
+        Get Elements of a tenant (v3.0)
 
           **Parameters:**:
 
           - **element_id**: (optional) Element (Device) ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1943,16 +1943,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def hubcluster_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v3.0"):
+    def hubclusters_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
         """
-        Get specific hub cluster state (v3.0)
+        Get hub cluster status (v4.0)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **hubcluster_id**: Hub (DC) Cluster ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v4.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2043,16 +2043,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def hubclusters(self, site_id, hubcluster_id=None, tenant_id=None, api_version="v3.0"):
+    def hubclusters(self, site_id, hubcluster_id=None, tenant_id=None, api_version="v4.0"):
         """
-        Get all hub clusters (v3.0)
+        Get all hub clusters (v4.0)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **hubcluster_id**: (optional) Hub (DC) Cluster ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v4.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2078,15 +2078,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def idps(self, idp_id=None, tenant_id=None, api_version="v3.2"):
+    def idps(self, idp_id=None, tenant_id=None, api_version="v3.3"):
         """
-        Get all idps (v3.2)
+        Get all idps (v3.3)
 
           **Parameters:**:
 
           - **idp_id**: (optional) SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.2)
+          - **api_version**: API version to use (default v3.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2179,9 +2179,9 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.13"):
+    def interfaces(self, site_id, element_id, interface_id=None, tenant_id=None, api_version="v4.14"):
         """
-        Get all Interfaces (v4.13)
+        Get all Cellular Interfaces (v4.14)
 
           **Parameters:**:
 
@@ -2189,7 +2189,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: (optional) Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.13)
+          - **api_version**: API version to use (default v4.14)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2855,15 +2855,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def machines(self, machine_id=None, tenant_id=None, api_version="v2.2"):
+    def machines(self, machine_id=None, tenant_id=None, api_version="v2.3"):
         """
-        Get all machines of a tenant (v2.2)
+        Get all machines of a tenant (v2.3)
 
           **Parameters:**:
 
           - **machine_id**: (optional) Machine ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3001,6 +3001,110 @@ class Get(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aggregates".format(api_version,
                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def monitor_aiops_aggregates(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Monitor_Aiops_Aggregates API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/aggregates".format(api_version,
+                                                                                   tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def monitor_aiops_forecast(self, tenant_id=None, api_version="v2.1"):
+        """
+        GET Monitor_Aiops_Forecast API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/forecast".format(api_version,
+                                                                                 tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def monitor_aiops_health(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Monitor_Aiops_Health API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/health".format(api_version,
+                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def monitor_aiops_object_stats(self, tenant_id=None, api_version="v2.1"):
+        """
+        GET Monitor_Aiops_Object_Stats API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/object_stats".format(api_version,
+                                                                                     tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -3311,7 +3415,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def multicastpeergroups(self, multicastpeergroup_id=None, tenant_id=None, api_version="v2.0"):
+    def multicastpeergroups(self, multicastpeergroup_id=None, tenant_id=None, api_version="v2.1"):
         """
         GET Multicastpeergroups API Function
 
@@ -3319,7 +3423,7 @@ class Get(object):
 
           - **multicastpeergroup_id**: (optional) Multicast Peer Group ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3437,6 +3541,76 @@ class Get(object):
                                                                                                    site_id,
                                                                                                    element_id,
                                                                                                    multicastrp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def multicastsourcesiderps(self, site_id, multicastsourcesiderp_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Multicastsourcesiderps API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **multicastsourcesiderp_id**: (optional) Multicast Source Side RP ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not multicastsourcesiderp_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiderps".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiderps/{}".format(api_version,
+                                                                                                 tenant_id,
+                                                                                                 site_id,
+                                                                                                 multicastsourcesiderp_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Multicastsourcesiteconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **multicastsourcesiteconfig_id**: (optional) Multicast Source Site Config ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not multicastsourcesiteconfig_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiteconfigs".format(api_version,
+                                                                                                  tenant_id,
+                                                                                                  site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/multicastsourcesiteconfigs/{}".format(api_version,
+                                                                                                     tenant_id,
+                                                                                                     site_id,
+                                                                                                     multicastsourcesiteconfig_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -5498,6 +5672,34 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def site_hubserviceendpoints(self, site_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Hubserviceendpoints API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubserviceendpoints".format(api_version,
+                                                                                       tenant_id,
+                                                                                       site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def site_ipfixlocalprefixes(self, site_id, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all IPFix site prefix association (v2.0)
@@ -5669,6 +5871,34 @@ class Get(object):
                                                                                                       tenant_id,
                                                                                                       site_id,
                                                                                                       prioritypolicylocalprefix_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def site_serviceconnections(self, site_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Site_Serviceconnections API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/serviceconnections".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -6338,6 +6568,32 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def tenant_hubserviceendpoints(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Hubserviceendpoints API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/hubserviceendpoints".format(api_version,
+                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def tenant_ipfixlocalprefixes(self, ipfixlocalprefix_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all IPFix local prefix (v2.0)
@@ -6524,6 +6780,32 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def tenant_serviceconnections(self, tenant_id=None, api_version="v2.0"):
+        """
+        GET Tenant_Serviceconnections API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/serviceconnections".format(api_version,
+                                                                             tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def tenantpassageconfigs(self, tenant_id=None, api_version="v2.0"):
         """
         GET Tenantpassageconfigs API Function
@@ -6634,15 +6916,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def vfflicense_status(self, vfflicense_id, tenant_id=None, api_version="v2.0"):
+    def vfflicense_status(self, vfflicense_id, tenant_id=None, api_version="v2.1"):
         """
-        Get status for Vff License (v2.0)
+        Get status for Vff License (v2.1)
 
           **Parameters:**:
 
           - **vfflicense_id**: Virtual Form Factor License ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6697,15 +6979,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def vfflicenses(self, vfflicense_id=None, tenant_id=None, api_version="v2.0"):
+    def vfflicenses(self, vfflicense_id=None, tenant_id=None, api_version="v2.1"):
         """
-        Get all Vff Licenses for Tenant (v2.0)
+        Get all Vff Licenses for Tenant (v2.1)
 
           **Parameters:**:
 
           - **vfflicense_id**: (optional) Virtual Form Factor License ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7110,6 +7392,9 @@ class Get(object):
     advertisedprefixes_bgppeers = bgppeers_advertisedprefixes
     """ Backwards-compatibility alias of `advertisedprefixes_bgppeers` to `bgppeers_advertisedprefixes`"""
 
+    aggregates_aiops_monitor = monitor_aiops_aggregates
+    """ Backwards-compatibility alias of `aggregates_aiops_monitor` to `monitor_aiops_aggregates`"""
+
     aggregates_monitor = monitor_aggregates
     """ Backwards-compatibility alias of `aggregates_monitor` to `monitor_aggregates`"""
 
@@ -7191,6 +7476,18 @@ class Get(object):
     firmware_cellular_modules_m = machine_cellular_modules_firmware
     """ Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_cellular_modules_firmware`"""
 
+    forecast_aiops_monitor = monitor_aiops_forecast
+    """ Backwards-compatibility alias of `forecast_aiops_monitor` to `monitor_aiops_forecast`"""
+
+    health_aiops_monitor = monitor_aiops_health
+    """ Backwards-compatibility alias of `health_aiops_monitor` to `monitor_aiops_health`"""
+
+    hubserviceendpoints_s = site_hubserviceendpoints
+    """ Backwards-compatibility alias of `hubserviceendpoints_s` to `site_hubserviceendpoints`"""
+
+    hubserviceendpoints_t = tenant_hubserviceendpoints
+    """ Backwards-compatibility alias of `hubserviceendpoints_t` to `tenant_hubserviceendpoints`"""
+
     icon_appstatus_sdwanapps = sdwanapps_appstatus_icon
     """ Backwards-compatibility alias of `icon_appstatus_sdwanapps` to `sdwanapps_appstatus_icon`"""
 
@@ -7235,6 +7532,9 @@ class Get(object):
 
     ntp_templates = templates_ntp
     """ Backwards-compatibility alias of `ntp_templates` to `templates_ntp`"""
+
+    object_stats_aiops_monitor = monitor_aiops_object_stats
+    """ Backwards-compatibility alias of `object_stats_aiops_monitor` to `monitor_aiops_object_stats`"""
 
     object_stats_monitor = monitor_object_stats
     """ Backwards-compatibility alias of `object_stats_monitor` to `monitor_object_stats`"""
@@ -7281,6 +7581,12 @@ class Get(object):
     roles_clients = clients_roles
     """ Backwards-compatibility alias of `roles_clients` to `clients_roles`"""
 
+    serviceconnections_s = site_serviceconnections
+    """ Backwards-compatibility alias of `serviceconnections_s` to `site_serviceconnections`"""
+
+    serviceconnections_t = tenant_serviceconnections
+    """ Backwards-compatibility alias of `serviceconnections_t` to `tenant_serviceconnections`"""
+
     sessions_t = operator_sessions
     """ Backwards-compatibility alias of `sessions_t` to `operator_sessions`"""
 
@@ -7323,8 +7629,11 @@ class Get(object):
     status_hubclustermembers = hubclustermember_status
     """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
 
-    status_i = hubcluster_status
+    status_i = hubclusters_status
     """ Backwards-compatibility alias of `status_i` to `hubcluster_status`"""
+
+    hubcluster_status = hubclusters_status
+    """ Backwards-compatibility alias of `hubcluster_status` to `hubclusters_status`"""
 
     status_interface_authentication = interface_authentication_status
     """ Backwards-compatibility alias of `status_interface_authentication` to `interface_authentication_status`"""

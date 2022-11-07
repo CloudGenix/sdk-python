@@ -2611,6 +2611,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.mstp_instances">mstp_instances</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.multicastpeergroups">multicastpeergroups</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.multicastrps">multicastrps</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.multicastsourcesiteconfigs">multicastsourcesiteconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.natglobalprefixes">natglobalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.natlocalprefixes">natlocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.natpolicypools">natpolicypools</a></li>
@@ -3412,16 +3413,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete hub cluster (v3.0)</span>
+<span class="sd">        Delete hub cluster (v4.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **hubcluster_id**: Hub (DC) Cluster ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3442,15 +3443,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete idp (v3.2)</span>
+<span class="sd">        Delete idp (v3.3)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **idp_id**: SAML IDentity provider configuration ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3470,9 +3471,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.13&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.14&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Interface (v4.13)</span>
+<span class="sd">        Delete Cellular Interface (v4.14)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3480,7 +3481,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.13)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.14)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3792,7 +3793,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Multicastpeergroups API Function</span>
 
@@ -3800,7 +3801,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **multicastpeergroup_id**: Multicast Peer Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3848,6 +3849,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                                                                                                <span class="n">site_id</span><span class="p">,</span>
                                                                                                <span class="n">element_id</span><span class="p">,</span>
                                                                                                <span class="n">multicastrp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Multicastsourcesiteconfigs API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/multicastsourcesiteconfigs/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                 <span class="n">site_id</span><span class="p">,</span>
+                                                                                                 <span class="n">multicastsourcesiteconfig_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -6571,16 +6602,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete hub cluster (v3.0)</span>
+<span class="sd">        Delete hub cluster (v4.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **hubcluster_id**: Hub (DC) Cluster ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6601,15 +6632,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.3&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete idp (v3.2)</span>
+<span class="sd">        Delete idp (v3.3)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **idp_id**: SAML IDentity provider configuration ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.2)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.3)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6629,9 +6660,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.13&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.14&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Interface (v4.13)</span>
+<span class="sd">        Delete Cellular Interface (v4.14)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6639,7 +6670,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **interface_id**: Interface ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v4.13)</span>
+<span class="sd">          - **api_version**: API version to use (default v4.14)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6951,7 +6982,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        DELETE Multicastpeergroups API Function</span>
 
@@ -6959,7 +6990,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **multicastpeergroup_id**: Multicast Peer Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -7007,6 +7038,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                                                                                                <span class="n">site_id</span><span class="p">,</span>
                                                                                                <span class="n">element_id</span><span class="p">,</span>
                                                                                                <span class="n">multicastrp_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DELETE Multicastsourcesiteconfigs API Function</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/multicastsourcesiteconfigs/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                                 <span class="n">site_id</span><span class="p">,</span>
+                                                                                                 <span class="n">multicastsourcesiteconfig_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -10441,32 +10502,32 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.hubclusters">
     <div class="name def">
-    <p>def <span class="ident">hubclusters</span>(</p><p>self, site_id, hubcluster_id, tenant_id=None, api_version=&#39;v3.0&#39;)</p>
+    <p>def <span class="ident">hubclusters</span>(</p><p>self, site_id, hubcluster_id, tenant_id=None, api_version=&#39;v4.0&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete hub cluster (v3.0)</p>
+    <div class="desc"><p>Delete hub cluster (v4.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>hubcluster_id</strong>: Hub (DC) Cluster ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v3.0)</li>
+<li><strong>api_version</strong>: API version to use (default v4.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.hubclusters', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.hubclusters" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hubclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">hubcluster_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete hub cluster (v3.0)</span>
+<span class="sd">    Delete hub cluster (v4.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **hubcluster_id**: Hub (DC) Cluster ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -10492,30 +10553,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.idps">
     <div class="name def">
-    <p>def <span class="ident">idps</span>(</p><p>self, idp_id, tenant_id=None, api_version=&#39;v3.2&#39;)</p>
+    <p>def <span class="ident">idps</span>(</p><p>self, idp_id, tenant_id=None, api_version=&#39;v3.3&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete idp (v3.2)</p>
+    <div class="desc"><p>Delete idp (v3.3)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>idp_id</strong>: SAML IDentity provider configuration ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v3.2)</li>
+<li><strong>api_version</strong>: API version to use (default v3.3)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.idps', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.idps" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">idps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idp_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.3&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete idp (v3.2)</span>
+<span class="sd">    Delete idp (v3.3)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **idp_id**: SAML IDentity provider configuration ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v3.2)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -10540,34 +10601,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.interfaces">
     <div class="name def">
-    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.13&#39;)</p>
+    <p>def <span class="ident">interfaces</span>(</p><p>self, site_id, element_id, interface_id, tenant_id=None, api_version=&#39;v4.14&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete Interface (v4.13)</p>
+    <div class="desc"><p>Delete Cellular Interface (v4.14)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>interface_id</strong>: Interface ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v4.13)</li>
+<li><strong>api_version</strong>: API version to use (default v4.14)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.interfaces', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.interfaces" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.13&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v4.14&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete Interface (v4.13)</span>
+<span class="sd">    Delete Cellular Interface (v4.14)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **interface_id**: Interface ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v4.13)</span>
+<span class="sd">      - **api_version**: API version to use (default v4.14)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -11089,7 +11150,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.multicastpeergroups">
     <div class="name def">
-    <p>def <span class="ident">multicastpeergroups</span>(</p><p>self, multicastpeergroup_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">multicastpeergroups</span>(</p><p>self, multicastpeergroup_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
@@ -11100,19 +11161,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>multicastpeergroup_id</strong>: Multicast Peer Group ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.multicastpeergroups', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.multicastpeergroups" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    DELETE Multicastpeergroups API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **multicastpeergroup_id**: Multicast Peer Group ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -11179,6 +11240,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                                                                                            <span class="n">site_id</span><span class="p">,</span>
                                                                                            <span class="n">element_id</span><span class="p">,</span>
                                                                                            <span class="n">multicastrp_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.delete_api.Delete.multicastsourcesiteconfigs">
+    <div class="name def">
+    <p>def <span class="ident">multicastsourcesiteconfigs</span>(</p><p>self, site_id, multicastsourcesiteconfig_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>DELETE Multicastsourcesiteconfigs API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>site_id</strong>: Site ID</li>
+<li><strong>multicastsourcesiteconfig_id</strong>: Multicast Source Site Config ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.multicastsourcesiteconfigs', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.multicastsourcesiteconfigs" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DELETE Multicastsourcesiteconfigs API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **site_id**: Site ID</span>
+<span class="sd">      - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/multicastsourcesiteconfigs/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                             <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                             <span class="n">site_id</span><span class="p">,</span>
+                                                                                             <span class="n">multicastsourcesiteconfig_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>
