@@ -1,11 +1,11 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.1.1b1
+**Version:** v6.1.2b1
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 
@@ -107,11 +107,11 @@ Loaded from `cloudgenix.ca_bundle.CG_CA_BUNDLE`
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
     
-    Copyright (c) 2017-2022 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -141,7 +141,7 @@ if PYTHON36_FEATURES:
 
 
 # Version of SDK
-version = "6.1.1b1"
+version = "6.1.2b1"
 """SDK Version string"""
 __version__ = version
 

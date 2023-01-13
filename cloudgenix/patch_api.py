@@ -4,7 +4,7 @@ CloudGenix Python SDK - PATCH
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2022 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -52,16 +52,16 @@ class Patch(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.1"):
+    def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.2"):
         """
-        Patch a tenant operator (v2.1)
+        Patch a tenant operator (v2.2)
 
           **Parameters:**:
 
           - **operator_id**: Operator ID
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
@@ -105,6 +105,7 @@ class Patch(object):
            - **disabled:**  Type: boolean 
            - **disabled_reason:**  Type: string 
            - **email:**  Type: string 
+           - **email_iam:**  Type: string 
            - **email_validated:**  Type: boolean 
            - **enable_session_ip_lock:**  Type: boolean 
            - **first_name:**  Type: string 
@@ -131,7 +132,7 @@ class Patch(object):
                - **provider_value_updated_on:**  Type: integer 
                - **region:**  Type: string 
                - **tenant_id:**  Type: string 
-           - **name:**  Type: string 
+           - **migration_state:**           
            - **phone_numbers:**           
                - **country_code:**  Type: integer 
                - **local_extension:**  Type: integer 
@@ -164,15 +165,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.3"):
+    def tenants(self, data, tenant_id=None, api_version="v2.4"):
         """
-        Patch tenant (v2.3)
+        Patch tenant (v2.4)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
           **Payload Attributes:** 
 
@@ -231,6 +232,7 @@ class Patch(object):
                - **disabled:**  Type: boolean 
                - **disabled_reason:**  Type: string 
                - **email:**  Type: string 
+               - **email_iam:**  Type: string 
                - **email_validated:**  Type: boolean 
                - **enable_session_ip_lock:**  Type: boolean 
                - **first_name:**  Type: string 
@@ -258,6 +260,7 @@ class Patch(object):
                    - **provider_value_updated_on:**  Type: integer 
                    - **region:**  Type: string 
                    - **tenant_id:**  Type: string 
+               - **migration_state:**           
                - **name:**  Type: string 
                - **phone_numbers:**           
                    - **country_code:**  Type: integer 
@@ -349,8 +352,10 @@ class Patch(object):
                - **salt:**  Type: string 
                - **security:**  Type: string 
            - **region:**  Type: string 
+           - **sase_at:**  Type: string 
            - **telemetry_region:**  Type: string 
            - **tenant_id:**  Type: string 
+           - **tsg_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

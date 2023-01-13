@@ -10,7 +10,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 ..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -2598,7 +2598,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.patch_api</span> module</h1>
   <p>CloudGenix Python SDK - PATCH</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2022 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2023 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api', this);">Show source &equiv;</a></p>
@@ -2609,7 +2609,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2022 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2023 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2617,11 +2617,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2022 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2023 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2022 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2023 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2657,16 +2657,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch a tenant operator (v2.1)</span>
+<span class="sd">        Patch a tenant operator (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -2710,6 +2710,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -2736,7 +2737,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
-<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>
 <span class="sd">               - **local_extension:**  Type: integer </span>
@@ -2769,15 +2770,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.3)</span>
+<span class="sd">        Patch tenant (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -2836,6 +2837,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **disabled:**  Type: boolean </span>
 <span class="sd">               - **disabled_reason:**  Type: string </span>
 <span class="sd">               - **email:**  Type: string </span>
+<span class="sd">               - **email_iam:**  Type: string </span>
 <span class="sd">               - **email_validated:**  Type: boolean </span>
 <span class="sd">               - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">               - **first_name:**  Type: string </span>
@@ -2863,6 +2865,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">                   - **region:**  Type: string </span>
 <span class="sd">                   - **tenant_id:**  Type: string </span>
+<span class="sd">               - **migration_state:**           </span>
 <span class="sd">               - **name:**  Type: string </span>
 <span class="sd">               - **phone_numbers:**           </span>
 <span class="sd">                   - **country_code:**  Type: integer </span>
@@ -2954,8 +2957,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **salt:**  Type: string </span>
 <span class="sd">               - **security:**  Type: string </span>
 <span class="sd">           - **region:**  Type: string </span>
+<span class="sd">           - **sase_at:**  Type: string </span>
 <span class="sd">           - **telemetry_region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **tsg_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3019,16 +3024,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch a tenant operator (v2.1)</span>
+<span class="sd">        Patch a tenant operator (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -3072,6 +3077,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -3098,7 +3104,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
-<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>
 <span class="sd">               - **local_extension:**  Type: integer </span>
@@ -3131,15 +3137,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.3)</span>
+<span class="sd">        Patch tenant (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -3198,6 +3204,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **disabled:**  Type: boolean </span>
 <span class="sd">               - **disabled_reason:**  Type: string </span>
 <span class="sd">               - **email:**  Type: string </span>
+<span class="sd">               - **email_iam:**  Type: string </span>
 <span class="sd">               - **email_validated:**  Type: boolean </span>
 <span class="sd">               - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">               - **first_name:**  Type: string </span>
@@ -3225,6 +3232,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">                   - **region:**  Type: string </span>
 <span class="sd">                   - **tenant_id:**  Type: string </span>
+<span class="sd">               - **migration_state:**           </span>
 <span class="sd">               - **name:**  Type: string </span>
 <span class="sd">               - **phone_numbers:**           </span>
 <span class="sd">                   - **country_code:**  Type: integer </span>
@@ -3316,8 +3324,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **salt:**  Type: string </span>
 <span class="sd">               - **security:**  Type: string </span>
 <span class="sd">           - **region:**  Type: string </span>
+<span class="sd">           - **sase_at:**  Type: string </span>
 <span class="sd">           - **telemetry_region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **tsg_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3369,19 +3379,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.patch_api.Patch.tenant_operators">
     <div class="name def">
-    <p>def <span class="ident">tenant_operators</span>(</p><p>self, operator_id, data, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">tenant_operators</span>(</p><p>self, operator_id, data, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch a tenant operator (v2.1)</p>
+    <div class="desc"><p>Patch a tenant operator (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
 <li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -3437,6 +3447,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>disabled:</strong>  Type: boolean </li>
 <li><strong>disabled_reason:</strong>  Type: string </li>
 <li><strong>email:</strong>  Type: string </li>
+<li><strong>email_iam:</strong>  Type: string </li>
 <li><strong>email_validated:</strong>  Type: boolean </li>
 <li><strong>enable_session_ip_lock:</strong>  Type: boolean </li>
 <li><strong>first_name:</strong>  Type: string </li>
@@ -3467,7 +3478,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
 </li>
-<li><strong>name:</strong>  Type: string </li>
+<li><strong>migration_state:</strong>           </li>
 <li><strong>phone_numbers:</strong>           <ul>
 <li><strong>country_code:</strong>  Type: integer </li>
 <li><strong>local_extension:</strong>  Type: integer </li>
@@ -3494,14 +3505,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenant_operators', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenant_operators" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch a tenant operator (v2.1)</span>
+<span class="sd">    Patch a tenant operator (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **addresses:**           </span>
 <span class="sd">           - **city:**  Type: string </span>
@@ -3543,6 +3554,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">       - **disabled:**  Type: boolean </span>
 <span class="sd">       - **disabled_reason:**  Type: string </span>
 <span class="sd">       - **email:**  Type: string </span>
+<span class="sd">       - **email_iam:**  Type: string </span>
 <span class="sd">       - **email_validated:**  Type: boolean </span>
 <span class="sd">       - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">       - **first_name:**  Type: string </span>
@@ -3569,7 +3581,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">           - **region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
-<span class="sd">       - **name:**  Type: string </span>
+<span class="sd">       - **migration_state:**           </span>
 <span class="sd">       - **phone_numbers:**           </span>
 <span class="sd">           - **country_code:**  Type: integer </span>
 <span class="sd">           - **local_extension:**  Type: integer </span>
@@ -3607,18 +3619,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.patch_api.Patch.tenants">
     <div class="name def">
-    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.4&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch tenant (v2.3)</p>
+    <div class="desc"><p>Patch tenant (v2.4)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.4)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -3693,6 +3705,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>disabled:</strong>  Type: boolean </li>
 <li><strong>disabled_reason:</strong>  Type: string </li>
 <li><strong>email:</strong>  Type: string </li>
+<li><strong>email_iam:</strong>  Type: string </li>
 <li><strong>email_validated:</strong>  Type: boolean </li>
 <li><strong>enable_session_ip_lock:</strong>  Type: boolean </li>
 <li><strong>first_name:</strong>  Type: string </li>
@@ -3724,6 +3737,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
 </li>
+<li><strong>migration_state:</strong>           </li>
 <li><strong>name:</strong>  Type: string </li>
 <li><strong>phone_numbers:</strong>           <ul>
 <li><strong>country_code:</strong>  Type: integer </li>
@@ -3841,20 +3855,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 </li>
 <li><strong>region:</strong>  Type: string </li>
+<li><strong>sase_at:</strong>  Type: string </li>
 <li><strong>telemetry_region:</strong>  Type: string </li>
 <li><strong>tenant_id:</strong>  Type: string </li>
+<li><strong>tsg_id:</strong>  Type: string </li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch tenant (v2.3)</span>
+<span class="sd">    Patch tenant (v2.4)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.4)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **address:**           </span>
 <span class="sd">           - **city:**  Type: string </span>
@@ -3911,6 +3927,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -3938,6 +3955,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **name:**  Type: string </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>
@@ -4029,8 +4047,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **salt:**  Type: string </span>
 <span class="sd">           - **security:**  Type: string </span>
 <span class="sd">       - **region:**  Type: string </span>
+<span class="sd">       - **sase_at:**  Type: string </span>
 <span class="sd">       - **telemetry_region:**  Type: string </span>
 <span class="sd">       - **tenant_id:**  Type: string </span>
+<span class="sd">       - **tsg_id:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
