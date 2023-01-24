@@ -10,7 +10,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 *..." />
 
@@ -2721,7 +2721,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.put_api</span> module</h1>
   <p>CloudGenix Python SDK - PUT</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2022 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2023 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api', this);">Show source &equiv;</a></p>
@@ -2732,7 +2732,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2022 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2023 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2740,11 +2740,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2022 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2023 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2022 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2023 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -3708,6 +3708,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **image_id:**  Type: string </span>
+<span class="sd">           - **scheduled_upgrade:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3934,6 +3936,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **element_id:**  Type: string </span>
+<span class="sd">           - **role:**  Type: string </span>
+<span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **user_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5139,7 +5145,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">mstp_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">mstp_instance_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Mstp_Instances API Function</span>
+<span class="sd">        Update a MSTP Instance (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5152,6 +5158,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **instance_number:**  Type: integer </span>
+<span class="sd">           - **instance_priority:**  Type: integer </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5223,7 +5234,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Multicastpeergroups API Function</span>
+<span class="sd">        Update multicast peer group (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5234,6 +5245,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **is_source_site_receiver:**  Type: boolean </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **peer_sites:**           </span>
+<span class="sd">               - **peer_site_id:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5298,7 +5315,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Multicastsourcesiteconfigs API Function</span>
+<span class="sd">        Update multicast source site config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5310,6 +5327,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **site_configs:**           </span>
+<span class="sd">               - **group_ipv4_prefix:**  Type: string </span>
+<span class="sd">               - **source_ipv4_address:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6719,7 +6739,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">radii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">radii_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Radii API Function</span>
+<span class="sd">        Used for element radius configuration updates (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6731,6 +6751,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **override_indicator:**  [Type: string] </span>
+<span class="sd">           - **radius_configuration:**           </span>
+<span class="sd">               - **accounting_port:**  Type: integer </span>
+<span class="sd">               - **authentication_port:**  Type: integer </span>
+<span class="sd">               - **ip_version:**  Type: integer </span>
+<span class="sd">               - **priority:**  Type: integer </span>
+<span class="sd">               - **retain_shared_secret:**  Type: boolean </span>
+<span class="sd">               - **server_ip_address:**  Type: string </span>
+<span class="sd">               - **shared_secret:**  Type: string </span>
+<span class="sd">               - **shared_secret_encrypted:**  Type: string </span>
+<span class="sd">           - **radius_profile_id:**  Type: string </span>
+<span class="sd">           - **source_interface_id:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8236,16 +8271,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update a tenant operator (v2.1)</span>
+<span class="sd">        Update a tenant operator (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -8289,6 +8324,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -8315,7 +8351,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
-<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>
 <span class="sd">               - **local_extension:**  Type: integer </span>
@@ -8425,15 +8461,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update tenant (v2.3)</span>
+<span class="sd">        Update tenant (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -8492,6 +8528,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **disabled:**  Type: boolean </span>
 <span class="sd">               - **disabled_reason:**  Type: string </span>
 <span class="sd">               - **email:**  Type: string </span>
+<span class="sd">               - **email_iam:**  Type: string </span>
 <span class="sd">               - **email_validated:**  Type: boolean </span>
 <span class="sd">               - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">               - **first_name:**  Type: string </span>
@@ -8519,6 +8556,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">                   - **region:**  Type: string </span>
 <span class="sd">                   - **tenant_id:**  Type: string </span>
+<span class="sd">               - **migration_state:**           </span>
 <span class="sd">               - **name:**  Type: string </span>
 <span class="sd">               - **phone_numbers:**           </span>
 <span class="sd">                   - **country_code:**  Type: integer </span>
@@ -10017,6 +10055,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **image_id:**  Type: string </span>
+<span class="sd">           - **scheduled_upgrade:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10243,6 +10283,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **element_id:**  Type: string </span>
+<span class="sd">           - **role:**  Type: string </span>
+<span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **user_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -11448,7 +11492,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">mstp_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">mstp_instance_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Mstp_Instances API Function</span>
+<span class="sd">        Update a MSTP Instance (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11461,6 +11505,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **instance_number:**  Type: integer </span>
+<span class="sd">           - **instance_priority:**  Type: integer </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -11532,7 +11581,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Multicastpeergroups API Function</span>
+<span class="sd">        Update multicast peer group (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11543,6 +11592,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **is_source_site_receiver:**  Type: boolean </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **peer_sites:**           </span>
+<span class="sd">               - **peer_site_id:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -11607,7 +11662,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Multicastsourcesiteconfigs API Function</span>
+<span class="sd">        Update multicast source site config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11619,6 +11674,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **site_configs:**           </span>
+<span class="sd">               - **group_ipv4_prefix:**  Type: string </span>
+<span class="sd">               - **source_ipv4_address:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -13028,7 +13086,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">radii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">radii_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PUT Radii API Function</span>
+<span class="sd">        Used for element radius configuration updates (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -13040,6 +13098,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **description:**  Type: string </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **override_indicator:**  [Type: string] </span>
+<span class="sd">           - **radius_configuration:**           </span>
+<span class="sd">               - **accounting_port:**  Type: integer </span>
+<span class="sd">               - **authentication_port:**  Type: integer </span>
+<span class="sd">               - **ip_version:**  Type: integer </span>
+<span class="sd">               - **priority:**  Type: integer </span>
+<span class="sd">               - **retain_shared_secret:**  Type: boolean </span>
+<span class="sd">               - **server_ip_address:**  Type: string </span>
+<span class="sd">               - **shared_secret:**  Type: string </span>
+<span class="sd">               - **shared_secret_encrypted:**  Type: string </span>
+<span class="sd">           - **radius_profile_id:**  Type: string </span>
+<span class="sd">           - **source_interface_id:**  Type: string </span>
+<span class="sd">           - **tags:**  [Type: string] </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -14545,16 +14618,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update a tenant operator (v2.1)</span>
+<span class="sd">        Update a tenant operator (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -14598,6 +14671,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -14624,7 +14698,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
-<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>
 <span class="sd">               - **local_extension:**  Type: integer </span>
@@ -14734,15 +14808,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update tenant (v2.3)</span>
+<span class="sd">        Update tenant (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -14801,6 +14875,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **disabled:**  Type: boolean </span>
 <span class="sd">               - **disabled_reason:**  Type: string </span>
 <span class="sd">               - **email:**  Type: string </span>
+<span class="sd">               - **email_iam:**  Type: string </span>
 <span class="sd">               - **email_validated:**  Type: boolean </span>
 <span class="sd">               - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">               - **first_name:**  Type: string </span>
@@ -14828,6 +14903,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">                   - **region:**  Type: string </span>
 <span class="sd">                   - **tenant_id:**  Type: string </span>
+<span class="sd">               - **migration_state:**           </span>
 <span class="sd">               - **name:**  Type: string </span>
 <span class="sd">               - **phone_numbers:**           </span>
 <span class="sd">                   - **country_code:**  Type: integer </span>
@@ -17481,6 +17557,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>image_id:</strong>  Type: string </li>
+<li><strong>scheduled_upgrade:</strong>  Type: string </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.element_state', this);">Show source &equiv;</a></p>
@@ -17494,6 +17574,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **image_id:**  Type: string </span>
+<span class="sd">       - **scheduled_upgrade:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -17891,6 +17973,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>element_id:</strong>  Type: string </li>
+<li><strong>role:</strong>  Type: string </li>
+<li><strong>tenant_id:</strong>  Type: string </li>
+<li><strong>user_id:</strong>  Type: string </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.elementusers_access', this);">Show source &equiv;</a></p>
@@ -17905,6 +17993,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **element_id:**  Type: string </span>
+<span class="sd">       - **role:**  Type: string </span>
+<span class="sd">       - **tenant_id:**  Type: string </span>
+<span class="sd">       - **user_id:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -20228,7 +20320,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>PUT Mstp_Instances API Function</p>
+    <div class="desc"><p>Update a MSTP Instance (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -20239,13 +20331,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>description:</strong>  Type: string </li>
+<li><strong>instance_number:</strong>  Type: integer </li>
+<li><strong>instance_priority:</strong>  Type: integer </li>
+<li><strong>name:</strong>  Type: string </li>
+<li><strong>tags:</strong>  [Type: string] </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.mstp_instances', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.mstp_instances" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">mstp_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">mstp_instance_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Mstp_Instances API Function</span>
+<span class="sd">    Update a MSTP Instance (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -20254,6 +20353,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **description:**  Type: string </span>
+<span class="sd">       - **instance_number:**  Type: integer </span>
+<span class="sd">       - **instance_priority:**  Type: integer </span>
+<span class="sd">       - **name:**  Type: string </span>
+<span class="sd">       - **tags:**  [Type: string] </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -20374,7 +20478,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>PUT Multicastpeergroups API Function</p>
+    <div class="desc"><p>Update multicast peer group (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>multicastpeergroup_id</strong>: Multicast Peer Group ID</li>
@@ -20383,19 +20487,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>description:</strong>  Type: string </li>
+<li><strong>is_source_site_receiver:</strong>  Type: boolean </li>
+<li><strong>name:</strong>  Type: string </li>
+<li><strong>peer_sites:</strong>           <ul>
+<li><strong>peer_site_id:</strong>  Type: string </li>
+</ul>
+</li>
+<li><strong>tags:</strong>  [Type: string] </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.multicastpeergroups', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.multicastpeergroups" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">multicastpeergroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multicastpeergroup_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Multicastpeergroups API Function</span>
+<span class="sd">    Update multicast peer group (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **multicastpeergroup_id**: Multicast Peer Group ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **description:**  Type: string </span>
+<span class="sd">       - **is_source_site_receiver:**  Type: boolean </span>
+<span class="sd">       - **name:**  Type: string </span>
+<span class="sd">       - **peer_sites:**           </span>
+<span class="sd">           - **peer_site_id:**  Type: string </span>
+<span class="sd">       - **tags:**  [Type: string] </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -20502,7 +20622,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>PUT Multicastsourcesiteconfigs API Function</p>
+    <div class="desc"><p>Update multicast source site config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -20512,13 +20632,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>site_configs:</strong>           <ul>
+<li><strong>group_ipv4_prefix:</strong>  Type: string </li>
+<li><strong>source_ipv4_address:</strong>  Type: string </li>
+</ul>
+</li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.multicastsourcesiteconfigs', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.multicastsourcesiteconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">multicastsourcesiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">multicastsourcesiteconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Multicastsourcesiteconfigs API Function</span>
+<span class="sd">    Update multicast source site config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **multicastsourcesiteconfig_id**: Multicast Source Site Config ID</span>
@@ -20526,6 +20653,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **site_configs:**           </span>
+<span class="sd">           - **group_ipv4_prefix:**  Type: string </span>
+<span class="sd">           - **source_ipv4_address:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -23165,7 +23295,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>PUT Radii API Function</p>
+    <div class="desc"><p>Used for element radius configuration updates (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
@@ -23175,13 +23305,32 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>description:</strong>  Type: string </li>
+<li><strong>name:</strong>  Type: string </li>
+<li><strong>override_indicator:</strong>  [Type: string] </li>
+<li><strong>radius_configuration:</strong>           <ul>
+<li><strong>accounting_port:</strong>  Type: integer </li>
+<li><strong>authentication_port:</strong>  Type: integer </li>
+<li><strong>ip_version:</strong>  Type: integer </li>
+<li><strong>priority:</strong>  Type: integer </li>
+<li><strong>retain_shared_secret:</strong>  Type: boolean </li>
+<li><strong>server_ip_address:</strong>  Type: string </li>
+<li><strong>shared_secret:</strong>  Type: string </li>
+<li><strong>shared_secret_encrypted:</strong>  Type: string </li>
+</ul>
+</li>
+<li><strong>radius_profile_id:</strong>  Type: string </li>
+<li><strong>source_interface_id:</strong>  Type: string </li>
+<li><strong>tags:</strong>  [Type: string] </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.radii', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.radii" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">radii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">radii_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PUT Radii API Function</span>
+<span class="sd">    Used for element radius configuration updates (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **radii_id**: Radii ID</span>
@@ -23189,6 +23338,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **description:**  Type: string </span>
+<span class="sd">       - **name:**  Type: string </span>
+<span class="sd">       - **override_indicator:**  [Type: string] </span>
+<span class="sd">       - **radius_configuration:**           </span>
+<span class="sd">           - **accounting_port:**  Type: integer </span>
+<span class="sd">           - **authentication_port:**  Type: integer </span>
+<span class="sd">           - **ip_version:**  Type: integer </span>
+<span class="sd">           - **priority:**  Type: integer </span>
+<span class="sd">           - **retain_shared_secret:**  Type: boolean </span>
+<span class="sd">           - **server_ip_address:**  Type: string </span>
+<span class="sd">           - **shared_secret:**  Type: string </span>
+<span class="sd">           - **shared_secret_encrypted:**  Type: string </span>
+<span class="sd">       - **radius_profile_id:**  Type: string </span>
+<span class="sd">       - **source_interface_id:**  Type: string </span>
+<span class="sd">       - **tags:**  [Type: string] </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -25868,19 +26032,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.put_api.Put.tenant_operators">
     <div class="name def">
-    <p>def <span class="ident">tenant_operators</span>(</p><p>self, operator_id, data, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">tenant_operators</span>(</p><p>self, operator_id, data, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Update a tenant operator (v2.1)</p>
+    <div class="desc"><p>Update a tenant operator (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
 <li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -25936,6 +26100,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>disabled:</strong>  Type: boolean </li>
 <li><strong>disabled_reason:</strong>  Type: string </li>
 <li><strong>email:</strong>  Type: string </li>
+<li><strong>email_iam:</strong>  Type: string </li>
 <li><strong>email_validated:</strong>  Type: boolean </li>
 <li><strong>enable_session_ip_lock:</strong>  Type: boolean </li>
 <li><strong>first_name:</strong>  Type: string </li>
@@ -25966,7 +26131,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
 </li>
-<li><strong>name:</strong>  Type: string </li>
+<li><strong>migration_state:</strong>           </li>
 <li><strong>phone_numbers:</strong>           <ul>
 <li><strong>country_code:</strong>  Type: integer </li>
 <li><strong>local_extension:</strong>  Type: integer </li>
@@ -25993,14 +26158,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.tenant_operators', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.tenant_operators" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Update a tenant operator (v2.1)</span>
+<span class="sd">    Update a tenant operator (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **addresses:**           </span>
 <span class="sd">           - **city:**  Type: string </span>
@@ -26042,6 +26207,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">       - **disabled:**  Type: boolean </span>
 <span class="sd">       - **disabled_reason:**  Type: string </span>
 <span class="sd">       - **email:**  Type: string </span>
+<span class="sd">       - **email_iam:**  Type: string </span>
 <span class="sd">       - **email_validated:**  Type: boolean </span>
 <span class="sd">       - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">       - **first_name:**  Type: string </span>
@@ -26068,7 +26234,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">           - **region:**  Type: string </span>
 <span class="sd">           - **tenant_id:**  Type: string </span>
-<span class="sd">       - **name:**  Type: string </span>
+<span class="sd">       - **migration_state:**           </span>
 <span class="sd">       - **phone_numbers:**           </span>
 <span class="sd">           - **country_code:**  Type: integer </span>
 <span class="sd">           - **local_extension:**  Type: integer </span>
@@ -26240,18 +26406,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.put_api.Put.tenants">
     <div class="name def">
-    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.4&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Update tenant (v2.3)</p>
+    <div class="desc"><p>Update tenant (v2.4)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.4)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -26326,6 +26492,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>disabled:</strong>  Type: boolean </li>
 <li><strong>disabled_reason:</strong>  Type: string </li>
 <li><strong>email:</strong>  Type: string </li>
+<li><strong>email_iam:</strong>  Type: string </li>
 <li><strong>email_validated:</strong>  Type: boolean </li>
 <li><strong>enable_session_ip_lock:</strong>  Type: boolean </li>
 <li><strong>first_name:</strong>  Type: string </li>
@@ -26357,6 +26524,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>tenant_id:</strong>  Type: string </li>
 </ul>
 </li>
+<li><strong>migration_state:</strong>           </li>
 <li><strong>name:</strong>  Type: string </li>
 <li><strong>phone_numbers:</strong>           <ul>
 <li><strong>country_code:</strong>  Type: integer </li>
@@ -26481,13 +26649,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.tenants', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Update tenant (v2.3)</span>
+<span class="sd">    Update tenant (v2.4)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.4)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **address:**           </span>
 <span class="sd">           - **city:**  Type: string </span>
@@ -26544,6 +26712,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **disabled:**  Type: boolean </span>
 <span class="sd">           - **disabled_reason:**  Type: string </span>
 <span class="sd">           - **email:**  Type: string </span>
+<span class="sd">           - **email_iam:**  Type: string </span>
 <span class="sd">           - **email_validated:**  Type: boolean </span>
 <span class="sd">           - **enable_session_ip_lock:**  Type: boolean </span>
 <span class="sd">           - **first_name:**  Type: string </span>
@@ -26571,6 +26740,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **provider_value_updated_on:**  Type: integer </span>
 <span class="sd">               - **region:**  Type: string </span>
 <span class="sd">               - **tenant_id:**  Type: string </span>
+<span class="sd">           - **migration_state:**           </span>
 <span class="sd">           - **name:**  Type: string </span>
 <span class="sd">           - **phone_numbers:**           </span>
 <span class="sd">               - **country_code:**  Type: integer </span>

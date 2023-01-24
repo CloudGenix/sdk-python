@@ -4,7 +4,7 @@ CloudGenix Python SDK - PUT
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2022 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -980,6 +980,8 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **image_id:**  Type: string 
+           - **scheduled_upgrade:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1206,6 +1208,10 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **element_id:**  Type: string 
+           - **role:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **user_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2411,7 +2417,7 @@ class Put(object):
 
     def mstp_instances(self, site_id, element_id, mstp_instance_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Mstp_Instances API Function
+        Update a MSTP Instance (v2.0)
 
           **Parameters:**:
 
@@ -2424,6 +2430,11 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **instance_number:**  Type: integer 
+           - **instance_priority:**  Type: integer 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2495,7 +2506,7 @@ class Put(object):
 
     def multicastpeergroups(self, multicastpeergroup_id, data, tenant_id=None, api_version="v2.1"):
         """
-        PUT Multicastpeergroups API Function
+        Update multicast peer group (v2.1)
 
           **Parameters:**:
 
@@ -2506,6 +2517,12 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **is_source_site_receiver:**  Type: boolean 
+           - **name:**  Type: string 
+           - **peer_sites:**           
+               - **peer_site_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2570,7 +2587,7 @@ class Put(object):
 
     def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Multicastsourcesiteconfigs API Function
+        Update multicast source site config (v2.0)
 
           **Parameters:**:
 
@@ -2582,6 +2599,9 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **site_configs:**           
+               - **group_ipv4_prefix:**  Type: string 
+               - **source_ipv4_address:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3991,7 +4011,7 @@ class Put(object):
 
     def radii(self, element_id, radii_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Radii API Function
+        Used for element radius configuration updates (v2.0)
 
           **Parameters:**:
 
@@ -4003,6 +4023,21 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **override_indicator:**  [Type: string] 
+           - **radius_configuration:**           
+               - **accounting_port:**  Type: integer 
+               - **authentication_port:**  Type: integer 
+               - **ip_version:**  Type: integer 
+               - **priority:**  Type: integer 
+               - **retain_shared_secret:**  Type: boolean 
+               - **server_ip_address:**  Type: string 
+               - **shared_secret:**  Type: string 
+               - **shared_secret_encrypted:**  Type: string 
+           - **radius_profile_id:**  Type: string 
+           - **source_interface_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5508,16 +5543,16 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.1"):
+    def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.2"):
         """
-        Update a tenant operator (v2.1)
+        Update a tenant operator (v2.2)
 
           **Parameters:**:
 
           - **operator_id**: Operator ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
@@ -5561,6 +5596,7 @@ class Put(object):
            - **disabled:**  Type: boolean 
            - **disabled_reason:**  Type: string 
            - **email:**  Type: string 
+           - **email_iam:**  Type: string 
            - **email_validated:**  Type: boolean 
            - **enable_session_ip_lock:**  Type: boolean 
            - **first_name:**  Type: string 
@@ -5587,7 +5623,7 @@ class Put(object):
                - **provider_value_updated_on:**  Type: integer 
                - **region:**  Type: string 
                - **tenant_id:**  Type: string 
-           - **name:**  Type: string 
+           - **migration_state:**           
            - **phone_numbers:**           
                - **country_code:**  Type: integer 
                - **local_extension:**  Type: integer 
@@ -5697,15 +5733,15 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.3"):
+    def tenants(self, data, tenant_id=None, api_version="v2.4"):
         """
-        Update tenant (v2.3)
+        Update tenant (v2.4)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
           **Payload Attributes:** 
 
@@ -5764,6 +5800,7 @@ class Put(object):
                - **disabled:**  Type: boolean 
                - **disabled_reason:**  Type: string 
                - **email:**  Type: string 
+               - **email_iam:**  Type: string 
                - **email_validated:**  Type: boolean 
                - **enable_session_ip_lock:**  Type: boolean 
                - **first_name:**  Type: string 
@@ -5791,6 +5828,7 @@ class Put(object):
                    - **provider_value_updated_on:**  Type: integer 
                    - **region:**  Type: string 
                    - **tenant_id:**  Type: string 
+               - **migration_state:**           
                - **name:**  Type: string 
                - **phone_numbers:**           
                    - **country_code:**  Type: integer 

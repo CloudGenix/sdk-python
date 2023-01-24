@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2022 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -1056,7 +1056,7 @@ class Delete(object):
 
     def mstp_instances(self, site_id, element_id, mstp_instance_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Mstp_Instances API Function
+        Delete MSTP instance for an element (v2.0)
 
           **Parameters:**:
 
@@ -1088,7 +1088,7 @@ class Delete(object):
 
     def multicastpeergroups(self, multicastpeergroup_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Multicastpeergroups API Function
+        Delete multicast peer group (v2.1)
 
           **Parameters:**:
 
@@ -1148,7 +1148,7 @@ class Delete(object):
 
     def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Multicastsourcesiteconfigs API Function
+        Delete multicast source site config (v2.0)
 
           **Parameters:**:
 
@@ -1950,7 +1950,7 @@ class Delete(object):
 
     def radii(self, element_id, radii_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Radii API Function
+        Delete radius configuration in an element (v2.0)
 
           **Parameters:**:
 
@@ -2870,15 +2870,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.1"):
+    def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete a tenant operator (v2.1)
+        Delete a tenant operator (v2.2)
 
           **Parameters:**:
 
           - **operator_id**: Operator ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

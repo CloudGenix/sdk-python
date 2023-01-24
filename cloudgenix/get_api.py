@@ -4,7 +4,7 @@ CloudGenix Python SDK - GET
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2022 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2022 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2022 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -1943,36 +1943,6 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def hubclusters_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
-        """
-        Get hub cluster status (v4.0)
-
-          **Parameters:**:
-
-          - **site_id**: Site ID
-          - **hubcluster_id**: Hub (DC) Cluster ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/status".format(api_version,
-                                                                                         tenant_id,
-                                                                                         site_id,
-                                                                                         hubcluster_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
     def hubclustermember_status(self, site_id, hubcluster_id, hubclustermember_id, tenant_id=None, api_version="v3.0"):
         """
         Get specific hub cluster member state. (v3.0)
@@ -2078,6 +2048,36 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def hubclusters_status(self, site_id, hubcluster_id, tenant_id=None, api_version="v4.0"):
+        """
+        Get hub cluster status (v4.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **hubcluster_id**: Hub (DC) Cluster ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v4.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/hubclusters/{}/status".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         hubcluster_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def idps(self, idp_id=None, tenant_id=None, api_version="v3.3"):
         """
         Get all idps (v3.3)
@@ -2112,7 +2112,7 @@ class Get(object):
 
     def interface_authentication_status(self, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Interface_Authentication_Status API Function
+        Get all interface authentication status for an element (v2.0)
 
           **Parameters:**:
 
@@ -2140,7 +2140,7 @@ class Get(object):
 
     def interface_multicastigmpmemberships(self, site_id, element_id, interface_id, multicastigmpmembership_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Interface_Multicastigmpmemberships API Function
+        Get all Multicast IGMP group membership info (v2.0)
 
           **Parameters:**:
 
@@ -2580,7 +2580,7 @@ class Get(object):
 
     def lldp_neighbors_status(self, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Lldp_Neighbors_Status API Function
+        Get all lldp neighbors status for an element (v2.0)
 
           **Parameters:**:
 
@@ -2704,7 +2704,7 @@ class Get(object):
 
     def mac_addresses_status(self, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Mac_Addresses_Status API Function
+        Get mac addresses status for a tenant (v2.0)
 
           **Parameters:**:
 
@@ -3005,14 +3005,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def monitor_aiops_aggregates(self, tenant_id=None, api_version="v2.0"):
+    def monitor_aiops_aggregates(self, tenant_id=None, api_version="v2.1"):
         """
         GET Monitor_Aiops_Aggregates API Function
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3271,7 +3271,7 @@ class Get(object):
 
     def mstp_instances(self, site_id, element_id, mstp_instance_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Mstp_Instances API Function
+        Get all MSTP Instances (v2.0)
 
           **Parameters:**:
 
@@ -3309,7 +3309,7 @@ class Get(object):
 
     def mstp_instances_status(self, site_id, element_id, mstp_instance_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Mstp_Instances_Status API Function
+        Get MSTP Instance status for a specific id (v2.0)
 
           **Parameters:**:
 
@@ -3341,7 +3341,7 @@ class Get(object):
 
     def multicastdynamicrps(self, site_id, element_id, multicastdynamicrp_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Multicastdynamicrps API Function
+        Get all Multicast dynamic RPs (v2.0)
 
           **Parameters:**:
 
@@ -3417,7 +3417,7 @@ class Get(object):
 
     def multicastpeergroups(self, multicastpeergroup_id=None, tenant_id=None, api_version="v2.1"):
         """
-        GET Multicastpeergroups API Function
+        Get multicast peer groups (v2.1)
 
           **Parameters:**:
 
@@ -3547,7 +3547,7 @@ class Get(object):
 
     def multicastsourcesiderps(self, site_id, multicastsourcesiderp_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Multicastsourcesiderps API Function
+        Get multicast source side RPs (v2.0)
 
           **Parameters:**:
 
@@ -3582,7 +3582,7 @@ class Get(object):
 
     def multicastsourcesiteconfigs(self, site_id, multicastsourcesiteconfig_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Multicastsourcesiteconfigs API Function
+        Get multicast source site configs (v2.0)
 
           **Parameters:**:
 
@@ -3617,7 +3617,7 @@ class Get(object):
 
     def multicastwanstatus(self, site_id, element_id, multicastwanstatus_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Multicastwanstatus API Function
+        Get all Multicast WAN status (v2.0)
 
           **Parameters:**:
 
@@ -4571,7 +4571,7 @@ class Get(object):
 
     def port_vlan_members(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Port_Vlan_Members API Function
+        Get switch port to VLAN port mapping information for an element (v2.0)
 
           **Parameters:**:
 
@@ -4848,7 +4848,7 @@ class Get(object):
 
     def radii(self, element_id, radii_id=None, tenant_id=None, api_version="v2.0"):
         """
-        GET Radii API Function
+        Get all radius configuration of an element in a tenant (v2.0)
 
           **Parameters:**:
 
@@ -4883,7 +4883,7 @@ class Get(object):
 
     def radii_status(self, element_id, radii_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Radii_Status API Function
+        Get specific radius configuration status for a radius config corresponding to a tenant and element (v2.0)
 
           **Parameters:**:
 
@@ -5674,7 +5674,7 @@ class Get(object):
 
     def site_hubserviceendpoints(self, site_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Site_Hubserviceendpoints API Function
+        Get HubServiceEndpoint for a Site of a given tenant by tenant ID and site ID (v2.0)
 
           **Parameters:**:
 
@@ -6570,7 +6570,7 @@ class Get(object):
 
     def tenant_hubserviceendpoints(self, tenant_id=None, api_version="v2.0"):
         """
-        GET Tenant_Hubserviceendpoints API Function
+        Get HubServiceEndpoints of a tenant (v2.0)
 
           **Parameters:**:
 
@@ -6658,15 +6658,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenant_operators(self, operator_id=None, tenant_id=None, api_version="v2.1"):
+    def tenant_operators(self, operator_id=None, tenant_id=None, api_version="v2.2"):
         """
-        Get a list of tenant operators (v2.1)
+        Get a list of tenant operators (v2.2)
 
           **Parameters:**:
 
           - **operator_id**: (optional) Operator ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6832,14 +6832,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenants(self, tenant_id=None, api_version="v2.3"):
+    def tenants(self, tenant_id=None, api_version="v2.4"):
         """
-        Get tenant details for tenant id (v2.3)
+        Get tenant details for tenant id (v2.4)
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7013,7 +7013,7 @@ class Get(object):
 
     def vlan_port_members(self, site_id, element_id, tenant_id=None, api_version="v2.0"):
         """
-        GET Vlan_Port_Members API Function
+        Get VLAN to switch port mapping information for an element (v2.0)
 
           **Parameters:**:
 
@@ -7630,10 +7630,7 @@ class Get(object):
     """ Backwards-compatibility alias of `status_hubclustermembers` to `hubclustermember_status`"""
 
     status_i = hubclusters_status
-    """ Backwards-compatibility alias of `status_i` to `hubcluster_status`"""
-
-    hubcluster_status = hubclusters_status
-    """ Backwards-compatibility alias of `hubcluster_status` to `hubclusters_status`"""
+    """ Backwards-compatibility alias of `status_i` to `hubclusters_status`"""
 
     status_interface_authentication = interface_authentication_status
     """ Backwards-compatibility alias of `status_interface_authentication` to `interface_authentication_status`"""
@@ -7706,4 +7703,7 @@ class Get(object):
 
     elements_correlationevents = element_correlationevents
     """ Backwards-compatibility alias of `elements_correlationevents` to `element_correlationevents`"""
+
+    hubcluster_status = hubclusters_status
+    """ Backwards-compatibility alias of `hubcluster_status` to `hubclusters_status`"""
 
