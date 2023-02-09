@@ -59,7 +59,6 @@ import requests.adapters
 import urllib3
 from http import cookiejar as cookielib
 
-from requests import Response
 from requests.adapters import HTTPAdapter
 import websockets
 from .ws_api import WebSockets
@@ -1102,8 +1101,8 @@ class API(object):
                                  method.upper(), url, headers, cookie, data)
 
             # Actual request
-            response: Response = self._session.request(method, url, data=data, stream=True, timeout=timeout,
-                                                       headers=headers, allow_redirects=False)
+            response = self._session.request(method, url, data=data, stream=True, timeout=timeout,
+                                             headers=headers, allow_redirects=False)
 
             # Request complete - lets parse.
             # if it's a non-CGX-good response, return with cgx_status = False
