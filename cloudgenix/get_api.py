@@ -1135,7 +1135,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def domainstatus_directoryservices(self, directoryservice_id, domainstatus_id, tenant_id=None, api_version="v2.0"):
+    def directoryservices_domainstatus(self, directoryservice_id, domainstatus_id, tenant_id=None, api_version="v2.0"):
         """
         GET Domainstatus_Directoryservices API Function
 
@@ -7720,6 +7720,9 @@ class Get(object):
     """ Backwards-compatibility alias of `correlationevents_waninterfaces` to `wantinterfaces_correlationevents`"""
 
     discoveredprefixes_bgppeers = bgppeers_discoveredprefixes
+    """ Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`"""
+
+    domainstatus_directoryservices = directoryservices_domainstatus
     """ Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`"""
 
     elementpassageconfigs_e = elementpassageconfigs

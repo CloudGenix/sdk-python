@@ -2604,13 +2604,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.deviceidconfigs">deviceidconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.dhcpservers">dhcpservers</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.directoryservices">directoryservices</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.directoryservices_domainstatus">directoryservices_domainstatus</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.directoryservices_status">directoryservices_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.directoryusergroups">directoryusergroups</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.directoryusers">directoryusers</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.dnsserviceprofiles">dnsserviceprofiles</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.dnsserviceroles">dnsserviceroles</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.dnsservices">dnsservices</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.domainstatus_directoryservices">domainstatus_directoryservices</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_bgppeers_status">element_bgppeers_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_cellular_modules">element_cellular_modules</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.element_cellular_modules_firmware">element_cellular_modules_firmware</a></li>
@@ -3983,7 +3983,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">domainstatus_directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">directoryservices_domainstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Domainstatus_Directoryservices API Function</span>
 
@@ -10568,6 +10568,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `correlationevents_waninterfaces` to `wantinterfaces_correlationevents`&quot;&quot;&quot;</span>
 
     <span class="n">discoveredprefixes_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_discoveredprefixes</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
+
+    <span class="n">domainstatus_directoryservices</span> <span class="o">=</span> <span class="n">directoryservices_domainstatus</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
 
     <span class="n">elementpassageconfigs_e</span> <span class="o">=</span> <span class="n">elementpassageconfigs</span>
@@ -11953,7 +11956,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">domainstatus_directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">directoryservices_domainstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Domainstatus_Directoryservices API Function</span>
 
@@ -18540,6 +18543,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">discoveredprefixes_bgppeers</span> <span class="o">=</span> <span class="n">bgppeers_discoveredprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
 
+    <span class="n">domainstatus_directoryservices</span> <span class="o">=</span> <span class="n">directoryservices_domainstatus</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`&quot;&quot;&quot;</span>
+
     <span class="n">elementpassageconfigs_e</span> <span class="o">=</span> <span class="n">elementpassageconfigs</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `elementpassageconfigs_e` to `elementpassageconfigs`&quot;&quot;&quot;</span>
 
@@ -19068,6 +19074,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
             <div class="item" id="cloudgenix.get_api.Get.discoveredprefixes_bgppeers">
             <p class="name">var <span class="ident">discoveredprefixes_bgppeers</span></p>
+            
+
+            
+  
+    <div class="desc"><p>Backwards-compatibility alias of <code>discoveredprefixes_bgppeers</code> to <code>bgppeers_discoveredprefixes</code></p></div>
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item" id="cloudgenix.get_api.Get.domainstatus_directoryservices">
+            <p class="name">var <span class="ident">domainstatus_directoryservices</span></p>
             
 
             
@@ -21504,6 +21521,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.directoryservices_domainstatus">
+    <div class="name def">
+    <p>def <span class="ident">directoryservices_domainstatus</span>(</p><p>self, directoryservice_id, domainstatus_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>GET Domainstatus_Directoryservices API Function</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>directoryservice_id</strong>: Directory Service ID</li>
+<li><strong>domainstatus_id</strong>: Domain Status ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.directoryservices_domainstatus', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.directoryservices_domainstatus" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">directoryservices_domainstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET Domainstatus_Directoryservices API Function</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **directoryservice_id**: Directory Service ID</span>
+<span class="sd">      - **domainstatus_id**: Domain Status ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/directoryservices/</span><span class="si">{}</span><span class="s2">/domainstatus/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                           <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                           <span class="n">directoryservice_id</span><span class="p">,</span>
+                                                                                           <span class="n">domainstatus_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.directoryservices_status">
     <div class="name def">
     <p>def <span class="ident">directoryservices_status</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -21807,57 +21875,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                                                                                               <span class="n">site_id</span><span class="p">,</span>
                                                                                               <span class="n">element_id</span><span class="p">,</span>
                                                                                               <span class="n">dnsservice_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.get_api.Get.domainstatus_directoryservices">
-    <div class="name def">
-    <p>def <span class="ident">domainstatus_directoryservices</span>(</p><p>self, directoryservice_id, domainstatus_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>GET Domainstatus_Directoryservices API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>directoryservice_id</strong>: Directory Service ID</li>
-<li><strong>domainstatus_id</strong>: Domain Status ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.domainstatus_directoryservices', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.domainstatus_directoryservices" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">domainstatus_directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">domainstatus_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Domainstatus_Directoryservices API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **directoryservice_id**: Directory Service ID</span>
-<span class="sd">      - **domainstatus_id**: Domain Status ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/directoryservices/</span><span class="si">{}</span><span class="s2">/domainstatus/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                           <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                           <span class="n">directoryservice_id</span><span class="p">,</span>
-                                                                                           <span class="n">domainstatus_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>
