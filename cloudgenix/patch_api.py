@@ -165,15 +165,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.4"):
+    def tenants(self, data, tenant_id=None, api_version="v2.5"):
         """
-        Patch tenant (v2.4)
+        Patch tenant (v2.5)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
           **Payload Attributes:** 
 
@@ -356,6 +356,10 @@ class Patch(object):
            - **telemetry_region:**  Type: string 
            - **tenant_id:**  Type: string 
            - **tsg_id:**  Type: string 
+           - **tsg_instances:**           
+               - **app_id:**  Type: string 
+               - **region:**  Type: string 
+               - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
