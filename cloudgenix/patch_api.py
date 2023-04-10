@@ -195,6 +195,7 @@ class Patch(object):
            - **ipv4_list:**           
                - **ipv4:**  Type: string 
            - **is_esp:**  Type: boolean 
+           - **is_pa_iot_security_license:**  Type: boolean 
            - **is_support:**  Type: boolean 
            - **name:**  Type: string 
            - **operator:**           
