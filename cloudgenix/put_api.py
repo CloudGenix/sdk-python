@@ -1886,6 +1886,8 @@ class Put(object):
                - **ipsec_config:**           
                    - **authentication:**           
                        - **certificate:**  Type: string 
+                       - **certificate_profile_id:**  Type: string 
+                       - **comment:**  Type: string 
                        - **ikev1_params:**           
                            - **xauth_id:**  Type: string 
                            - **xauth_secret:**  Type: string 
@@ -1895,8 +1897,11 @@ class Put(object):
                        - **local_ca_certificate:**  Type: string 
                        - **local_id:**  Type: string 
                        - **local_id_custom:**  Type: string 
+                       - **pa_master_key_id:**  Type: string 
                        - **passphrase:**  Type: string 
                        - **passphrase_encrypted:**  Type: string 
+                       - **peer_id_check:**  Type: string 
+                       - **permit_peer_id_mismatch:**  Type: boolean 
                        - **private_key:**  Type: string 
                        - **private_key_encrypted:**  Type: string 
                        - **remote_ca_certificate:**  Type: string 
@@ -1904,6 +1909,7 @@ class Put(object):
                        - **secret:**  Type: string 
                        - **secret_encrypted:**  Type: string 
                        - **secret_hash:**  Type: string 
+                       - **strict_validation_peer_extended_key_use:**  Type: boolean 
                        - **type:**  Type: string 
                        - **x509Objects:**           
                            - **certHolder:**  Type: object 
@@ -2264,6 +2270,8 @@ class Put(object):
 
            - **authentication:**           
                - **certificate:**  Type: string 
+               - **certificate_profile_id:**  Type: string 
+               - **comment:**  Type: string 
                - **ikev1_params:**           
                    - **xauth_id:**  Type: string 
                    - **xauth_secret:**  Type: string 
@@ -2273,8 +2281,11 @@ class Put(object):
                - **local_ca_certificate:**  Type: string 
                - **local_id:**  Type: string 
                - **local_id_custom:**  Type: string 
+               - **pa_master_key_id:**  Type: string 
                - **passphrase:**  Type: string 
                - **passphrase_encrypted:**  Type: string 
+               - **peer_id_check:**  Type: string 
+               - **permit_peer_id_mismatch:**  Type: boolean 
                - **private_key:**  Type: string 
                - **private_key_encrypted:**  Type: string 
                - **remote_ca_certificate:**  Type: string 
@@ -2282,6 +2293,7 @@ class Put(object):
                - **secret:**  Type: string 
                - **secret_encrypted:**  Type: string 
                - **secret_hash:**  Type: string 
+               - **strict_validation_peer_extended_key_use:**  Type: boolean 
                - **type:**  Type: string 
                - **x509Objects:**           
                    - **certHolder:**  Type: object 
@@ -2301,16 +2313,26 @@ class Put(object):
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
                - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
                - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
                - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 

@@ -4617,6 +4617,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **ipsec_config:**           </span>
 <span class="sd">                   - **authentication:**           </span>
 <span class="sd">                       - **certificate:**  Type: string </span>
+<span class="sd">                       - **certificate_profile_id:**  Type: string </span>
+<span class="sd">                       - **comment:**  Type: string </span>
 <span class="sd">                       - **ikev1_params:**           </span>
 <span class="sd">                           - **xauth_id:**  Type: string </span>
 <span class="sd">                           - **xauth_secret:**  Type: string </span>
@@ -4626,8 +4628,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                       - **local_ca_certificate:**  Type: string </span>
 <span class="sd">                       - **local_id:**  Type: string </span>
 <span class="sd">                       - **local_id_custom:**  Type: string </span>
+<span class="sd">                       - **pa_master_key_id:**  Type: string </span>
 <span class="sd">                       - **passphrase:**  Type: string </span>
 <span class="sd">                       - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">                       - **peer_id_check:**  Type: string </span>
+<span class="sd">                       - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">                       - **private_key:**  Type: string </span>
 <span class="sd">                       - **private_key_encrypted:**  Type: string </span>
 <span class="sd">                       - **remote_ca_certificate:**  Type: string </span>
@@ -4635,6 +4640,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                       - **secret:**  Type: string </span>
 <span class="sd">                       - **secret_encrypted:**  Type: string </span>
 <span class="sd">                       - **secret_hash:**  Type: string </span>
+<span class="sd">                       - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">                       - **type:**  Type: string </span>
 <span class="sd">                       - **x509Objects:**           </span>
 <span class="sd">                           - **certHolder:**  Type: object </span>
@@ -4995,6 +5001,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">           - **authentication:**           </span>
 <span class="sd">               - **certificate:**  Type: string </span>
+<span class="sd">               - **certificate_profile_id:**  Type: string </span>
+<span class="sd">               - **comment:**  Type: string </span>
 <span class="sd">               - **ikev1_params:**           </span>
 <span class="sd">                   - **xauth_id:**  Type: string </span>
 <span class="sd">                   - **xauth_secret:**  Type: string </span>
@@ -5004,8 +5012,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **local_ca_certificate:**  Type: string </span>
 <span class="sd">               - **local_id:**  Type: string </span>
 <span class="sd">               - **local_id_custom:**  Type: string </span>
+<span class="sd">               - **pa_master_key_id:**  Type: string </span>
 <span class="sd">               - **passphrase:**  Type: string </span>
 <span class="sd">               - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">               - **peer_id_check:**  Type: string </span>
+<span class="sd">               - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">               - **private_key:**  Type: string </span>
 <span class="sd">               - **private_key_encrypted:**  Type: string </span>
 <span class="sd">               - **remote_ca_certificate:**  Type: string </span>
@@ -5013,6 +5024,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **secret:**  Type: string </span>
 <span class="sd">               - **secret_encrypted:**  Type: string </span>
 <span class="sd">               - **secret_hash:**  Type: string </span>
+<span class="sd">               - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">               - **type:**  Type: string </span>
 <span class="sd">               - **x509Objects:**           </span>
 <span class="sd">                   - **certHolder:**  Type: object </span>
@@ -5032,16 +5044,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **dpd_timeout:**  Type: integer </span>
 <span class="sd">           - **esp_group:**           </span>
 <span class="sd">               - **force_encapsulation:**  Type: boolean </span>
+<span class="sd">               - **lifesize:**           </span>
+<span class="sd">                   - **units:**  Type: string </span>
+<span class="sd">                   - **value:**  Type: integer </span>
 <span class="sd">               - **lifetime:**  Type: integer </span>
+<span class="sd">               - **lifetime_units:**  Type: string </span>
 <span class="sd">               - **mode:**  Type: string </span>
 <span class="sd">               - **proposals:**           </span>
 <span class="sd">                   - **dh_groups:**  Type: string </span>
 <span class="sd">                   - **encryption:**  Type: string </span>
 <span class="sd">                   - **hash:**  Type: string </span>
+<span class="sd">               - **responder_sase_proposals:**           </span>
+<span class="sd">                   - **dh_group:**  [Type: string] </span>
+<span class="sd">                   - **encryption:**  [Type: string] </span>
+<span class="sd">                   - **hash:**  [Type: string] </span>
 <span class="sd">           - **ike_group:**           </span>
 <span class="sd">               - **aggressive:**  Type: boolean </span>
+<span class="sd">               - **authentication_multiple:**  Type: integer </span>
 <span class="sd">               - **key_exchange:**  Type: string </span>
 <span class="sd">               - **lifetime:**  Type: integer </span>
+<span class="sd">               - **lifetime_units:**  Type: string </span>
 <span class="sd">               - **port:**  Type: integer </span>
 <span class="sd">               - **proposals:**           </span>
 <span class="sd">                   - **dh_groups:**  Type: string </span>
@@ -11091,6 +11113,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **ipsec_config:**           </span>
 <span class="sd">                   - **authentication:**           </span>
 <span class="sd">                       - **certificate:**  Type: string </span>
+<span class="sd">                       - **certificate_profile_id:**  Type: string </span>
+<span class="sd">                       - **comment:**  Type: string </span>
 <span class="sd">                       - **ikev1_params:**           </span>
 <span class="sd">                           - **xauth_id:**  Type: string </span>
 <span class="sd">                           - **xauth_secret:**  Type: string </span>
@@ -11100,8 +11124,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                       - **local_ca_certificate:**  Type: string </span>
 <span class="sd">                       - **local_id:**  Type: string </span>
 <span class="sd">                       - **local_id_custom:**  Type: string </span>
+<span class="sd">                       - **pa_master_key_id:**  Type: string </span>
 <span class="sd">                       - **passphrase:**  Type: string </span>
 <span class="sd">                       - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">                       - **peer_id_check:**  Type: string </span>
+<span class="sd">                       - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">                       - **private_key:**  Type: string </span>
 <span class="sd">                       - **private_key_encrypted:**  Type: string </span>
 <span class="sd">                       - **remote_ca_certificate:**  Type: string </span>
@@ -11109,6 +11136,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                       - **secret:**  Type: string </span>
 <span class="sd">                       - **secret_encrypted:**  Type: string </span>
 <span class="sd">                       - **secret_hash:**  Type: string </span>
+<span class="sd">                       - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">                       - **type:**  Type: string </span>
 <span class="sd">                       - **x509Objects:**           </span>
 <span class="sd">                           - **certHolder:**  Type: object </span>
@@ -11469,6 +11497,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">           - **authentication:**           </span>
 <span class="sd">               - **certificate:**  Type: string </span>
+<span class="sd">               - **certificate_profile_id:**  Type: string </span>
+<span class="sd">               - **comment:**  Type: string </span>
 <span class="sd">               - **ikev1_params:**           </span>
 <span class="sd">                   - **xauth_id:**  Type: string </span>
 <span class="sd">                   - **xauth_secret:**  Type: string </span>
@@ -11478,8 +11508,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **local_ca_certificate:**  Type: string </span>
 <span class="sd">               - **local_id:**  Type: string </span>
 <span class="sd">               - **local_id_custom:**  Type: string </span>
+<span class="sd">               - **pa_master_key_id:**  Type: string </span>
 <span class="sd">               - **passphrase:**  Type: string </span>
 <span class="sd">               - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">               - **peer_id_check:**  Type: string </span>
+<span class="sd">               - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">               - **private_key:**  Type: string </span>
 <span class="sd">               - **private_key_encrypted:**  Type: string </span>
 <span class="sd">               - **remote_ca_certificate:**  Type: string </span>
@@ -11487,6 +11520,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **secret:**  Type: string </span>
 <span class="sd">               - **secret_encrypted:**  Type: string </span>
 <span class="sd">               - **secret_hash:**  Type: string </span>
+<span class="sd">               - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">               - **type:**  Type: string </span>
 <span class="sd">               - **x509Objects:**           </span>
 <span class="sd">                   - **certHolder:**  Type: object </span>
@@ -11506,16 +11540,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **dpd_timeout:**  Type: integer </span>
 <span class="sd">           - **esp_group:**           </span>
 <span class="sd">               - **force_encapsulation:**  Type: boolean </span>
+<span class="sd">               - **lifesize:**           </span>
+<span class="sd">                   - **units:**  Type: string </span>
+<span class="sd">                   - **value:**  Type: integer </span>
 <span class="sd">               - **lifetime:**  Type: integer </span>
+<span class="sd">               - **lifetime_units:**  Type: string </span>
 <span class="sd">               - **mode:**  Type: string </span>
 <span class="sd">               - **proposals:**           </span>
 <span class="sd">                   - **dh_groups:**  Type: string </span>
 <span class="sd">                   - **encryption:**  Type: string </span>
 <span class="sd">                   - **hash:**  Type: string </span>
+<span class="sd">               - **responder_sase_proposals:**           </span>
+<span class="sd">                   - **dh_group:**  [Type: string] </span>
+<span class="sd">                   - **encryption:**  [Type: string] </span>
+<span class="sd">                   - **hash:**  [Type: string] </span>
 <span class="sd">           - **ike_group:**           </span>
 <span class="sd">               - **aggressive:**  Type: boolean </span>
+<span class="sd">               - **authentication_multiple:**  Type: integer </span>
 <span class="sd">               - **key_exchange:**  Type: string </span>
 <span class="sd">               - **lifetime:**  Type: integer </span>
+<span class="sd">               - **lifetime_units:**  Type: string </span>
 <span class="sd">               - **port:**  Type: integer </span>
 <span class="sd">               - **proposals:**           </span>
 <span class="sd">                   - **dh_groups:**  Type: string </span>
@@ -19388,6 +19432,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>ipsec_config:</strong>           <ul>
 <li><strong>authentication:</strong>           <ul>
 <li><strong>certificate:</strong>  Type: string </li>
+<li><strong>certificate_profile_id:</strong>  Type: string </li>
+<li><strong>comment:</strong>  Type: string </li>
 <li><strong>ikev1_params:</strong>           <ul>
 <li><strong>xauth_id:</strong>  Type: string </li>
 <li><strong>xauth_secret:</strong>  Type: string </li>
@@ -19399,8 +19445,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>local_ca_certificate:</strong>  Type: string </li>
 <li><strong>local_id:</strong>  Type: string </li>
 <li><strong>local_id_custom:</strong>  Type: string </li>
+<li><strong>pa_master_key_id:</strong>  Type: string </li>
 <li><strong>passphrase:</strong>  Type: string </li>
 <li><strong>passphrase_encrypted:</strong>  Type: string </li>
+<li><strong>peer_id_check:</strong>  Type: string </li>
+<li><strong>permit_peer_id_mismatch:</strong>  Type: boolean </li>
 <li><strong>private_key:</strong>  Type: string </li>
 <li><strong>private_key_encrypted:</strong>  Type: string </li>
 <li><strong>remote_ca_certificate:</strong>  Type: string </li>
@@ -19408,6 +19457,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>secret:</strong>  Type: string </li>
 <li><strong>secret_encrypted:</strong>  Type: string </li>
 <li><strong>secret_hash:</strong>  Type: string </li>
+<li><strong>strict_validation_peer_extended_key_use:</strong>  Type: boolean </li>
 <li><strong>type:</strong>  Type: string </li>
 <li><strong>x509Objects:</strong>           <ul>
 <li><strong>certHolder:</strong>  Type: object </li>
@@ -19629,6 +19679,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **ipsec_config:**           </span>
 <span class="sd">               - **authentication:**           </span>
 <span class="sd">                   - **certificate:**  Type: string </span>
+<span class="sd">                   - **certificate_profile_id:**  Type: string </span>
+<span class="sd">                   - **comment:**  Type: string </span>
 <span class="sd">                   - **ikev1_params:**           </span>
 <span class="sd">                       - **xauth_id:**  Type: string </span>
 <span class="sd">                       - **xauth_secret:**  Type: string </span>
@@ -19638,8 +19690,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **local_ca_certificate:**  Type: string </span>
 <span class="sd">                   - **local_id:**  Type: string </span>
 <span class="sd">                   - **local_id_custom:**  Type: string </span>
+<span class="sd">                   - **pa_master_key_id:**  Type: string </span>
 <span class="sd">                   - **passphrase:**  Type: string </span>
 <span class="sd">                   - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">                   - **peer_id_check:**  Type: string </span>
+<span class="sd">                   - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">                   - **private_key:**  Type: string </span>
 <span class="sd">                   - **private_key_encrypted:**  Type: string </span>
 <span class="sd">                   - **remote_ca_certificate:**  Type: string </span>
@@ -19647,6 +19702,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">                   - **secret:**  Type: string </span>
 <span class="sd">                   - **secret_encrypted:**  Type: string </span>
 <span class="sd">                   - **secret_hash:**  Type: string </span>
+<span class="sd">                   - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">                   - **type:**  Type: string </span>
 <span class="sd">                   - **x509Objects:**           </span>
 <span class="sd">                       - **certHolder:**  Type: object </span>
@@ -20246,6 +20302,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>authentication:</strong>           <ul>
 <li><strong>certificate:</strong>  Type: string </li>
+<li><strong>certificate_profile_id:</strong>  Type: string </li>
+<li><strong>comment:</strong>  Type: string </li>
 <li><strong>ikev1_params:</strong>           <ul>
 <li><strong>xauth_id:</strong>  Type: string </li>
 <li><strong>xauth_secret:</strong>  Type: string </li>
@@ -20257,8 +20315,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>local_ca_certificate:</strong>  Type: string </li>
 <li><strong>local_id:</strong>  Type: string </li>
 <li><strong>local_id_custom:</strong>  Type: string </li>
+<li><strong>pa_master_key_id:</strong>  Type: string </li>
 <li><strong>passphrase:</strong>  Type: string </li>
 <li><strong>passphrase_encrypted:</strong>  Type: string </li>
+<li><strong>peer_id_check:</strong>  Type: string </li>
+<li><strong>permit_peer_id_mismatch:</strong>  Type: boolean </li>
 <li><strong>private_key:</strong>  Type: string </li>
 <li><strong>private_key_encrypted:</strong>  Type: string </li>
 <li><strong>remote_ca_certificate:</strong>  Type: string </li>
@@ -20266,6 +20327,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>secret:</strong>  Type: string </li>
 <li><strong>secret_encrypted:</strong>  Type: string </li>
 <li><strong>secret_hash:</strong>  Type: string </li>
+<li><strong>strict_validation_peer_extended_key_use:</strong>  Type: boolean </li>
 <li><strong>type:</strong>  Type: string </li>
 <li><strong>x509Objects:</strong>           <ul>
 <li><strong>certHolder:</strong>  Type: object </li>
@@ -20289,7 +20351,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>dpd_timeout:</strong>  Type: integer </li>
 <li><strong>esp_group:</strong>           <ul>
 <li><strong>force_encapsulation:</strong>  Type: boolean </li>
+<li><strong>lifesize:</strong>           <ul>
+<li><strong>units:</strong>  Type: string </li>
+<li><strong>value:</strong>  Type: integer </li>
+</ul>
+</li>
 <li><strong>lifetime:</strong>  Type: integer </li>
+<li><strong>lifetime_units:</strong>  Type: string </li>
 <li><strong>mode:</strong>  Type: string </li>
 <li><strong>proposals:</strong>           <ul>
 <li><strong>dh_groups:</strong>  Type: string </li>
@@ -20297,12 +20365,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>hash:</strong>  Type: string </li>
 </ul>
 </li>
+<li><strong>responder_sase_proposals:</strong>           <ul>
+<li><strong>dh_group:</strong>  [Type: string] </li>
+<li><strong>encryption:</strong>  [Type: string] </li>
+<li><strong>hash:</strong>  [Type: string] </li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>ike_group:</strong>           <ul>
 <li><strong>aggressive:</strong>  Type: boolean </li>
+<li><strong>authentication_multiple:</strong>  Type: integer </li>
 <li><strong>key_exchange:</strong>  Type: string </li>
 <li><strong>lifetime:</strong>  Type: integer </li>
+<li><strong>lifetime_units:</strong>  Type: string </li>
 <li><strong>port:</strong>  Type: integer </li>
 <li><strong>proposals:</strong>           <ul>
 <li><strong>dh_groups:</strong>  Type: string </li>
@@ -20331,6 +20407,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **authentication:**           </span>
 <span class="sd">           - **certificate:**  Type: string </span>
+<span class="sd">           - **certificate_profile_id:**  Type: string </span>
+<span class="sd">           - **comment:**  Type: string </span>
 <span class="sd">           - **ikev1_params:**           </span>
 <span class="sd">               - **xauth_id:**  Type: string </span>
 <span class="sd">               - **xauth_secret:**  Type: string </span>
@@ -20340,8 +20418,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **local_ca_certificate:**  Type: string </span>
 <span class="sd">           - **local_id:**  Type: string </span>
 <span class="sd">           - **local_id_custom:**  Type: string </span>
+<span class="sd">           - **pa_master_key_id:**  Type: string </span>
 <span class="sd">           - **passphrase:**  Type: string </span>
 <span class="sd">           - **passphrase_encrypted:**  Type: string </span>
+<span class="sd">           - **peer_id_check:**  Type: string </span>
+<span class="sd">           - **permit_peer_id_mismatch:**  Type: boolean </span>
 <span class="sd">           - **private_key:**  Type: string </span>
 <span class="sd">           - **private_key_encrypted:**  Type: string </span>
 <span class="sd">           - **remote_ca_certificate:**  Type: string </span>
@@ -20349,6 +20430,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **secret:**  Type: string </span>
 <span class="sd">           - **secret_encrypted:**  Type: string </span>
 <span class="sd">           - **secret_hash:**  Type: string </span>
+<span class="sd">           - **strict_validation_peer_extended_key_use:**  Type: boolean </span>
 <span class="sd">           - **type:**  Type: string </span>
 <span class="sd">           - **x509Objects:**           </span>
 <span class="sd">               - **certHolder:**  Type: object </span>
@@ -20368,16 +20450,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">       - **dpd_timeout:**  Type: integer </span>
 <span class="sd">       - **esp_group:**           </span>
 <span class="sd">           - **force_encapsulation:**  Type: boolean </span>
+<span class="sd">           - **lifesize:**           </span>
+<span class="sd">               - **units:**  Type: string </span>
+<span class="sd">               - **value:**  Type: integer </span>
 <span class="sd">           - **lifetime:**  Type: integer </span>
+<span class="sd">           - **lifetime_units:**  Type: string </span>
 <span class="sd">           - **mode:**  Type: string </span>
 <span class="sd">           - **proposals:**           </span>
 <span class="sd">               - **dh_groups:**  Type: string </span>
 <span class="sd">               - **encryption:**  Type: string </span>
 <span class="sd">               - **hash:**  Type: string </span>
+<span class="sd">           - **responder_sase_proposals:**           </span>
+<span class="sd">               - **dh_group:**  [Type: string] </span>
+<span class="sd">               - **encryption:**  [Type: string] </span>
+<span class="sd">               - **hash:**  [Type: string] </span>
 <span class="sd">       - **ike_group:**           </span>
 <span class="sd">           - **aggressive:**  Type: boolean </span>
+<span class="sd">           - **authentication_multiple:**  Type: integer </span>
 <span class="sd">           - **key_exchange:**  Type: string </span>
 <span class="sd">           - **lifetime:**  Type: integer </span>
+<span class="sd">           - **lifetime_units:**  Type: string </span>
 <span class="sd">           - **port:**  Type: integer </span>
 <span class="sd">           - **proposals:**           </span>
 <span class="sd">               - **dh_groups:**  Type: string </span>
