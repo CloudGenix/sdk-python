@@ -4777,7 +4777,7 @@ class Post(object):
         elif not tenant_id:
             # No value for tenant_id.
             raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.cdl_url
+        cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insights".format(api_version,
                                                                            tenant_id)
@@ -4807,7 +4807,7 @@ class Post(object):
         elif not tenant_id:
             # No value for tenant_id.
             raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.cdl_url
+        cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insightslist".format(api_version,
                                                                                tenant_id)
