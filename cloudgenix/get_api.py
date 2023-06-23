@@ -943,6 +943,36 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def directoryservices_domainstatus(self, directoryservice_id, domainstatus_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Directoryservices_Domainstatus API Function
+
+          **Parameters:**:
+
+          - **directoryservice_id**: Directory Service ID
+          - **domainstatus_id**: Domain Status ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/directoryservices/{}/domainstatus/{}".format(api_version,
+                                                                                               tenant_id,
+                                                                                               directoryservice_id,
+                                                                                               domainstatus_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def directoryservices_status(self, tenant_id=None, api_version="v2.0"):
         """
         GET Directoryservices_Status API Function
@@ -1131,36 +1161,6 @@ class Get(object):
                                                                                                   site_id,
                                                                                                   element_id,
                                                                                                   dnsservice_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def directoryservices_domainstatus(self, directoryservice_id, domainstatus_id, tenant_id=None, api_version="v2.0"):
-        """
-        GET Domainstatus_Directoryservices API Function
-
-          **Parameters:**:
-
-          - **directoryservice_id**: Directory Service ID
-          - **domainstatus_id**: Domain Status ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/directoryservices/{}/domainstatus/{}".format(api_version,
-                                                                                               tenant_id,
-                                                                                               directoryservice_id,
-                                                                                               domainstatus_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -7723,7 +7723,7 @@ class Get(object):
     """ Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`"""
 
     domainstatus_directoryservices = directoryservices_domainstatus
-    """ Backwards-compatibility alias of `discoveredprefixes_bgppeers` to `bgppeers_discoveredprefixes`"""
+    """ Backwards-compatibility alias of `domainstatus_directoryservices` to `directoryservices_domainstatus`"""
 
     elementpassageconfigs_e = elementpassageconfigs
     """ Backwards-compatibility alias of `elementpassageconfigs_e` to `elementpassageconfigs`"""

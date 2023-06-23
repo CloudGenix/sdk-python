@@ -1272,6 +1272,66 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def directoryservices_deltasync(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Directoryservices_Deltasync API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/directoryservices/deltasync".format(api_version,
+                                                                                      tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def directoryservices_sync(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Directoryservices_Sync API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/directoryservices/sync".format(api_version,
+                                                                                 tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def directoryusergroups_query(self, data, tenant_id=None, api_version="v2.0"):
         """
         POST Directoryusergroups_Query API Function
@@ -2866,6 +2926,8 @@ class Post(object):
                - **ipsec_config:**           
                    - **authentication:**           
                        - **certificate:**  Type: string 
+                       - **certificate_profile_id:**  Type: string 
+                       - **comment:**  Type: string 
                        - **ikev1_params:**           
                            - **xauth_id:**  Type: string 
                            - **xauth_secret:**  Type: string 
@@ -2875,8 +2937,11 @@ class Post(object):
                        - **local_ca_certificate:**  Type: string 
                        - **local_id:**  Type: string 
                        - **local_id_custom:**  Type: string 
+                       - **pa_master_key_id:**  Type: string 
                        - **passphrase:**  Type: string 
                        - **passphrase_encrypted:**  Type: string 
+                       - **peer_id_check:**  Type: string 
+                       - **permit_peer_id_mismatch:**  Type: boolean 
                        - **private_key:**  Type: string 
                        - **private_key_encrypted:**  Type: string 
                        - **remote_ca_certificate:**  Type: string 
@@ -2884,6 +2949,7 @@ class Post(object):
                        - **secret:**  Type: string 
                        - **secret_encrypted:**  Type: string 
                        - **secret_hash:**  Type: string 
+                       - **strict_validation_peer_extended_key_use:**  Type: boolean 
                        - **type:**  Type: string 
                        - **x509Objects:**           
                            - **certHolder:**  Type: object 
@@ -3592,6 +3658,8 @@ class Post(object):
 
            - **authentication:**           
                - **certificate:**  Type: string 
+               - **certificate_profile_id:**  Type: string 
+               - **comment:**  Type: string 
                - **ikev1_params:**           
                    - **xauth_id:**  Type: string 
                    - **xauth_secret:**  Type: string 
@@ -3601,8 +3669,11 @@ class Post(object):
                - **local_ca_certificate:**  Type: string 
                - **local_id:**  Type: string 
                - **local_id_custom:**  Type: string 
+               - **pa_master_key_id:**  Type: string 
                - **passphrase:**  Type: string 
                - **passphrase_encrypted:**  Type: string 
+               - **peer_id_check:**  Type: string 
+               - **permit_peer_id_mismatch:**  Type: boolean 
                - **private_key:**  Type: string 
                - **private_key_encrypted:**  Type: string 
                - **remote_ca_certificate:**  Type: string 
@@ -3610,6 +3681,7 @@ class Post(object):
                - **secret:**  Type: string 
                - **secret_encrypted:**  Type: string 
                - **secret_hash:**  Type: string 
+               - **strict_validation_peer_extended_key_use:**  Type: boolean 
                - **type:**  Type: string 
                - **x509Objects:**           
                    - **certHolder:**  Type: object 
@@ -3629,16 +3701,26 @@ class Post(object):
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
                - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
                - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
                - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
@@ -3679,6 +3761,8 @@ class Post(object):
 
            - **authentication:**           
                - **certificate:**  Type: string 
+               - **certificate_profile_id:**  Type: string 
+               - **comment:**  Type: string 
                - **ikev1_params:**           
                    - **xauth_id:**  Type: string 
                    - **xauth_secret:**  Type: string 
@@ -3688,8 +3772,11 @@ class Post(object):
                - **local_ca_certificate:**  Type: string 
                - **local_id:**  Type: string 
                - **local_id_custom:**  Type: string 
+               - **pa_master_key_id:**  Type: string 
                - **passphrase:**  Type: string 
                - **passphrase_encrypted:**  Type: string 
+               - **peer_id_check:**  Type: string 
+               - **permit_peer_id_mismatch:**  Type: boolean 
                - **private_key:**  Type: string 
                - **private_key_encrypted:**  Type: string 
                - **remote_ca_certificate:**  Type: string 
@@ -3697,6 +3784,7 @@ class Post(object):
                - **secret:**  Type: string 
                - **secret_encrypted:**  Type: string 
                - **secret_hash:**  Type: string 
+               - **strict_validation_peer_extended_key_use:**  Type: boolean 
                - **type:**  Type: string 
                - **x509Objects:**           
                    - **certHolder:**  Type: object 
@@ -3716,16 +3804,26 @@ class Post(object):
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
                - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
                - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
                - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
                - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
@@ -4679,7 +4777,7 @@ class Post(object):
         elif not tenant_id:
             # No value for tenant_id.
             raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.cdl_url
+        cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insights".format(api_version,
                                                                            tenant_id)
@@ -4709,7 +4807,7 @@ class Post(object):
         elif not tenant_id:
             # No value for tenant_id.
             raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.cdl_url
+        cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/insightslist".format(api_version,
                                                                                tenant_id)
@@ -12047,6 +12145,9 @@ class Post(object):
     configs_sdwanapps = sdwanapps_configs
     """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
 
+    deltasync_directoryservices = directoryservices_deltasync
+    """ Backwards-compatibility alias of `deltasync_directoryservices` to `directoryservices_deltasync`"""
+
     extensions_i = element_extensions
     """ Backwards-compatibility alias of `extensions_i` to `element_extensions`"""
 
@@ -12544,6 +12645,9 @@ class Post(object):
 
     summary_events = events_summary
     """ Backwards-compatibility alias of `summary_events` to `events_summary`"""
+
+    sync_directoryservices = directoryservices_sync
+    """ Backwards-compatibility alias of `sync_directoryservices` to `directoryservices_sync`"""
 
     sys_metrics_monitor = monitor_sys_metrics
     """ Backwards-compatibility alias of `sys_metrics_monitor` to `monitor_sys_metrics`"""

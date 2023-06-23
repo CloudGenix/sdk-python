@@ -4,7 +4,7 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='cloudgenix',
-      version='6.2.1b1',
+      version='6.2.2b1',
       description='Python2 and Python3 SDK for the CloudGenix AppFabric',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -14,7 +14,8 @@ setup(name='cloudgenix',
       license='MIT',
       install_requires=[
             'requests[security] >= 2.22.0',
-            'websockets >= 8.1; python_version >= "3.6"'
+            'websockets >= 8.1; python_version >= "3.6"',
+            'urllib3 <= 1.26.16'
       ],
       packages=['cloudgenix'],
       classifiers=[
