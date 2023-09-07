@@ -168,9 +168,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.2"):
+    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete BGP Peer config (v2.2)
+        Delete BGP Peer config (v2.3)
 
           **Parameters:**:
 
@@ -178,7 +178,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **bgppeer_id**: BGP Peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -200,16 +200,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def dhcpservers(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.2"):
+    def dhcpservers(self, site_id, dhcpserver_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete DHCPServer for a Tenant on a site (v2.2)
+        Delete DHCPServer for a Tenant on a site (v2.3)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **dhcpserver_id**: DHCP Server ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -792,9 +792,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.15"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.16"):
         """
-        Delete Cellular Interface (v4.15)
+        Delete Interface (v4.16)
 
           **Parameters:**:
 
@@ -802,7 +802,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.15)
+          - **api_version**: API version to use (default v4.16)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1024,16 +1024,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def lannetworks(self, site_id, lannetwork_id, tenant_id=None, api_version="v3.2"):
+    def lannetworks(self, site_id, lannetwork_id, tenant_id=None, api_version="v3.3"):
         """
-        Delete an existing LAN (v3.2)
+        Delete an existing LAN (v3.3)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **lannetwork_id**: LAN Network ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.2)
+          - **api_version**: API version to use (default v3.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1976,6 +1976,62 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def prismasase_connections(self, site_id, prismasase_connection_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Prismasase_Connections API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **prismasase_connection_id**: Prisma SASE Connection ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/prismasase_connections/{}".format(api_version,
+                                                                                             tenant_id,
+                                                                                             site_id,
+                                                                                             prismasase_connection_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def prismasase_connections_configs(self, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Prismasase_Connections_Configs API Function
+
+          **Parameters:**:
+
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/prismasase_connections/configs".format(api_version,
+                                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def radii(self, element_id, radii_id, tenant_id=None, api_version="v2.0"):
         """
         Delete radius configuration in an element (v2.0)
@@ -2542,15 +2598,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.7"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.8"):
         """
-        Delete a site (v4.7)
+        Delete a site (v4.8)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.7)
+          - **api_version**: API version to use (default v4.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2694,9 +2750,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.2"):
+    def staticroutes(self, site_id, element_id, staticroute_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete static route (v2.2)
+        Delete static route (v2.3)
 
           **Parameters:**:
 
@@ -2704,7 +2760,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **staticroute_id**: Static Route ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3066,6 +3122,62 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def vrfcontextprofiles(self, vrfcontextprofile_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Vrfcontextprofiles API Function
+
+          **Parameters:**:
+
+          - **vrfcontextprofile_id**: VRF Context Profile ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/vrfcontextprofiles/{}".format(api_version,
+                                                                                tenant_id,
+                                                                                vrfcontextprofile_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def vrfcontexts(self, vrfcontext_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Vrfcontexts API Function
+
+          **Parameters:**:
+
+          - **vrfcontext_id**: VRF Context UD
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/vrfcontexts/{}".format(api_version,
+                                                                         tenant_id,
+                                                                         vrfcontext_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.7"):
         """
         Delete existing WAN interface (v2.7)
@@ -3188,6 +3300,9 @@ class Delete(object):
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
+
+    configs_prismasase_connections = prismasase_connections_configs
+    """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""
 
     configs_sdwanapps = sdwanapps_configs
     """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
