@@ -1,7 +1,7 @@
 """
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.1.2b2
+**Version:** v6.3.1b1
 
 **Author:** CloudGenix
 
@@ -19,9 +19,9 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Active CloudGenix Account
 * Python >= 2.7 or >=3.7
 * Python modules:
-    * Requests + Security Extras >= 2.22.0- <https://docs.python-requests.org/en/master/>
-    * Websockets >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
-
+    * Requests + Security Extras >= 2.22.0- <http://docs.python-requests.org/en/master/>
+    * Websockets (if Python >= 3.6) >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
+    * urllib3 == 1.26.18 - <https://urllib3.readthedocs.io/en/stable/>
 #### Code Example
 Super-simplified example code (rewrite of example.py in ~4 lines of code):
 
@@ -155,7 +155,7 @@ ws_logger = logging.getLogger('websockets')
 """websocket logger is handled slightly differently, so we will have a seperate handle."""
 
 # Version of SDK
-version = "6.1.2b2"
+version = "6.3.1b1"
 """SDK Version string"""
 __version__ = version
 
@@ -515,22 +515,25 @@ class API(object):
                          self.verify,
                          self._session)
 
-        # Websocket features
-
-        # Update Headers for WebSocket requests
-        websocketlib_name = websockets.__name__
-        websocketlib_version = websockets.version.version
-        if not websocketlib_name:
-            websocketlib_name = 'websockets'
-        if not websocketlib_version:
-            websocketlib_version = 'UNKNOWN'
-        ws_user_agent = 'python-{0}/{1} (CGX SDK v{2})'.format(websocketlib_name,
-                                                               websocketlib_version,
-                                                               self.version)
-        self._websocket_headers = {
-            'Accept': 'application/json',
-            'User-Agent': text_type(ws_user_agent)
-        }
+        if update_check and (not PYTHON36_FEATURES or sys.version_info < (3, 7,)):
+            print("WARNING: cloudgenix SDK will soon end support for python versions 2.x, 3.6 and below. "
+                  "Please update your python environment to 3.7 or above by the end of September 2023.")
+        # Websocket/Python 3.6_ features
+        if PYTHON36_FEATURES:
+            # Update Headers for WebSocket requests
+            websocketlib_name = websockets.__name__
+            websocketlib_version = websockets.version.version
+            if not websocketlib_name:
+                websocketlib_name = 'websockets'
+            if not websocketlib_version:
+                websocketlib_version = 'UNKNOWN'
+            ws_user_agent = 'python-{0}/{1} (CGX SDK v{2})'.format(websocketlib_name,
+                                                                   websocketlib_version,
+                                                                   self.version)
+            self._websocket_headers = {
+                'Accept': 'application/json',
+                'User-Agent': text_type(ws_user_agent)
+            }
 
         # Bind API method classes to this object
         subclasses = self._subclass_container()

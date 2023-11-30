@@ -5,7 +5,7 @@
 [![Downloads](https://pepy.tech/badge/cloudgenix)](https://pepy.tech/project/cloudgenix)
 [![License: MIT](https://img.shields.io/pypi/l/cloudgenix.svg?color=brightgreen)](https://pypi.org/project/cloudgenix/)
 [![GitHub issues open](https://img.shields.io/github/issues/CloudGenix/sdk-python.svg)](https://github.com/CloudGenix/sdk-python/issues)
-# CloudGenix Python SDK v6.1.2b1
+# CloudGenix Python SDK v6.3.1b1
 Python2 and Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -18,7 +18,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Python modules:
     * Requests + Security Extras >= 2.22.0 - <http://docs.python-requests.org/en/master/>
     * Websockets >= 8.1 - <https://websockets.readthedocs.io/en/stable/index.html>
-    * urllib3 >= 1.26.12 - <https://urllib3.readthedocs.io/en/stable/>
+    * urllib3 >= 1.26.18 - <https://urllib3.readthedocs.io/en/stable/>
 
 #### Code Example
 Comes with `example.py` that shows usage to get a JSON list of sites.
@@ -42,9 +42,12 @@ jd(sdk.get.sites())
 MIT
 
 #### Version
-| Version | Build | Changes                                                                                                   |
-| ------- | ----- |-----------------------------------------------------------------------------------------------------------|
-| **6.1.2** | **b1** | Deprecation of Python 2.x and 3.6 to enable SSL re-work for cleaner support and TLSv1.3 improvements.     |
+| Version   | Build | Changes                                                                                                   |
+|-----------| ----- |-----------------------------------------------------------------------------------------------------------|
+| **6.3.1** | **b1** | Support for November 2023 Controller release.                                                             |
+| **6.2.3** | **b1** | Support for August 2023 Controller release.                                                               |
+| **6.2.2** | **b1** | Support for June 2023 Controller release.                                                                 |
+| **6.2.1** | **b1** | Support for April 2023 Controller release.                                                                |
 | **6.1.2** | **b1** | Support for January 2023 Controller release.                                                              |
 | **6.1.1** | **b1** | Support for November 2022 Controller release.                                                             |
 | **6.0.2** | **b1** | Support for August 2022 Controller release.                                                               |
