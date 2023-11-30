@@ -13,7 +13,7 @@ setup(name='cloudgenix',
       author_email='developers@cloudgenix.com',
       license='MIT',
       install_requires=[
-            'requests[security] >= 2.22.0',
+            'requests[security] >= 2.28.2',
             'websockets >= 8.1; python_version >= "3.6"',
             'urllib3 == 1.26.18'
       ],
@@ -22,8 +22,11 @@ setup(name='cloudgenix',
             "Development Status :: 5 - Production/Stable",
             "Intended Audience :: Developers",
             "License :: OSI Approved :: MIT License",
-            "Programming Language :: Python :: 2.7",
-            "Programming Language :: Python :: 3.6",
             "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
       ]
       )
