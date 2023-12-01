@@ -15,7 +15,7 @@ setup(name='cloudgenix',
       install_requires=[
             'requests[security] >= 2.28.2',
             'websockets >= 8.1; python_version >= "3.6"',
-            'urllib3 >= 1.26.12'
+            'urllib3 >= 1.26.18'
       ],
       packages=['cloudgenix'],
       classifiers=[
