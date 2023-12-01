@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/pypi/l/cloudgenix.svg?color=brightgreen)](https://pypi.org/project/cloudgenix/)
 [![GitHub issues open](https://img.shields.io/github/issues/CloudGenix/sdk-python.svg)](https://github.com/CloudGenix/sdk-python/issues)
 # CloudGenix Python SDK v6.3.1b1
-Python2 and Python3 SDK for the CloudGenix AppFabric
+Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
 Intended to be a small, lightweight SDK wrapper around the CloudGenix API for easy use. 
@@ -18,7 +18,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Python modules:
     * Requests + Security Extras >= 2.22.0 - <http://docs.python-requests.org/en/master/>
     * Websockets >= 8.1 - <https://websockets.readthedocs.io/en/stable/index.html>
-    * urllib3 >= 1.26.18 - <https://urllib3.readthedocs.io/en/stable/>
+    * urllib3 >= 1.26.12 - <https://urllib3.readthedocs.io/en/stable/>
 
 #### Code Example
 Comes with `example.py` that shows usage to get a JSON list of sites.

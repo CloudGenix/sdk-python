@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(name='cloudgenix',
       version='6.3.1b1',
-      description='Python2 and Python3 SDK for the CloudGenix AppFabric',
+      description='Python3 SDK for the CloudGenix AppFabric',
       long_description=long_description,
       long_description_content_type='text/markdown',
       url='https://github.com/CloudGenix/sdk-python',
@@ -15,7 +15,7 @@ setup(name='cloudgenix',
       install_requires=[
             'requests[security] >= 2.28.2',
             'websockets >= 8.1; python_version >= "3.6"',
-            'urllib3 == 1.26.18'
+            'urllib3 >= 1.26.12'
       ],
       packages=['cloudgenix'],
       classifiers=[
