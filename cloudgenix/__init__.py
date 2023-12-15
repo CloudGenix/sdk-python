@@ -515,25 +515,20 @@ class API(object):
                          self.verify,
                          self._session)
 
-        if update_check and (not PYTHON36_FEATURES or sys.version_info < (3, 7,)):
-            print("WARNING: cloudgenix SDK will soon end support for python versions 2.x, 3.6 and below. "
-                  "Please update your python environment to 3.7 or above by the end of September 2023.")
-        # Websocket/Python 3.6_ features
-        if PYTHON36_FEATURES:
-            # Update Headers for WebSocket requests
-            websocketlib_name = websockets.__name__
-            websocketlib_version = websockets.version.version
-            if not websocketlib_name:
-                websocketlib_name = 'websockets'
-            if not websocketlib_version:
-                websocketlib_version = 'UNKNOWN'
-            ws_user_agent = 'python-{0}/{1} (CGX SDK v{2})'.format(websocketlib_name,
-                                                                   websocketlib_version,
-                                                                   self.version)
-            self._websocket_headers = {
-                'Accept': 'application/json',
-                'User-Agent': text_type(ws_user_agent)
-            }
+        # Update Headers for WebSocket requests
+        websocketlib_name = websockets.__name__
+        websocketlib_version = websockets.version.version
+        if not websocketlib_name:
+            websocketlib_name = 'websockets'
+        if not websocketlib_version:
+            websocketlib_version = 'UNKNOWN'
+        ws_user_agent = 'python-{0}/{1} (CGX SDK v{2})'.format(websocketlib_name,
+                                                               websocketlib_version,
+                                                               self.version)
+        self._websocket_headers = {
+            'Accept': 'application/json',
+            'User-Agent': text_type(ws_user_agent)
+        }
 
         # Bind API method classes to this object
         subclasses = self._subclass_container()
