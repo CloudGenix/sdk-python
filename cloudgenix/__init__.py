@@ -21,7 +21,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Python modules:
     * Requests + Security Extras >= 2.22.0- <http://docs.python-requests.org/en/master/>
     * Websockets (if Python >= 3.6) >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
-    * urllib3 >= 1.26.18 - <https://urllib3.readthedocs.io/en/stable/>
+    * urllib3 >= 2.0.0 - <https://urllib3.readthedocs.io/en/stable/>
 #### Code Example
 Super-simplified example code (rewrite of example.py in ~4 lines of code):
 
@@ -667,7 +667,7 @@ class API(object):
         return
 
     def modify_rest_retry(self, total=8, connect=None, read=None, redirect=None, status=None, other=0,
-                          method_whitelist=urllib3.util.retry.Retry.DEFAULT_ALLOWED_METHODS, status_forcelist=None,
+                          allowed_methods=urllib3.util.retry.Retry.DEFAULT_ALLOWED_METHODS, status_forcelist=None,
                           backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True,
                           respect_retry_after_header=True, update_adapter=True):
         """
@@ -718,7 +718,7 @@ class API(object):
                                          redirect=redirect,
                                          status=status,
                                          other=other,
-                                         method_whitelist=method_whitelist,
+                                         allowed_methods=allowed_methods,
                                          status_forcelist=status_forcelist,
                                          backoff_factor=backoff_factor,
                                          raise_on_redirect=raise_on_redirect,
