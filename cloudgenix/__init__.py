@@ -20,7 +20,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 * Python >= 2.7 or >=3.7
 * Python modules:
     * Requests - <http://docs.python-requests.org/en/master/>
-    * Websockets (if Python >= 3.6) >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
+    * Websockets (if Python > 3.6) >= 8.1- <https://websockets.readthedocs.io/en/stable/index.html>
     * urllib3 >= 2.0.0 - <https://urllib3.readthedocs.io/en/stable/>
 #### Code Example
 Super-simplified example code (rewrite of example.py in ~4 lines of code):

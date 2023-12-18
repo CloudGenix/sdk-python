@@ -13,9 +13,9 @@ setup(name='cloudgenix',
       author_email='developers@cloudgenix.com',
       license='MIT',
       install_requires=[
-            'requests[security] >= 2.28.2',
-            'websockets >= 8.1; python_version >= "3.6"',
-            'urllib3 >= 1.26.18'
+            'requests',
+            'websockets >= 8.1; python_version > "3.6"',
+            'urllib3 >= 2.0.0'
       ],
       packages=['cloudgenix'],
       classifiers=[
