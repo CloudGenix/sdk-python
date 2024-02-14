@@ -928,6 +928,41 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def demsiteconfigs(self, site_id, demsiteconfig_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        GET Demsiteconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **demsiteconfig_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not demsiteconfig_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/demsiteconfigs".format(api_version,
+                                                                                      tenant_id,
+                                                                                      site_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/demsiteconfigs/{}".format(api_version,
+                                                                                         tenant_id,
+                                                                                         site_id,
+                                                                                         demsiteconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def demstatus(self, site_id, demstatus_id=None, tenant_id=None, api_version="v2.0"):
         """
         Get all ADEM status for a site (v2.0)
@@ -1961,6 +1996,36 @@ class Get(object):
                                                                                         tenant_id,
                                                                                         site_id,
                                                                                         elementshell_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
+    def elementshells_copy_element_configurations_status(self, site_id, elementshell_id, tenant_id=None, api_version="v2.0"):
+        """
+        GET Elementshells_Copy_Element_Configurations_Status API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **elementshell_id**: Element Shell ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elementshells/{}/copy_element_configurations/status".format(api_version,
+                                                                                                                       tenant_id,
+                                                                                                                       site_id,
+                                                                                                                       elementshell_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -3723,7 +3788,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def monitor_metrics(self, metric_id, tenant_id=None, api_version="v2.4"):
+    def monitor_metrics(self, metric_id, tenant_id=None, api_version="v2.5"):
         """
         GET Monitor_Metrics API Function
 
@@ -3731,7 +3796,7 @@ class Get(object):
 
           - **metric_id**: Metric ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6325,15 +6390,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def serviceendpoints(self, serviceendpoint_id=None, tenant_id=None, api_version="v2.3"):
+    def serviceendpoints(self, serviceendpoint_id=None, tenant_id=None, api_version="v2.4"):
         """
-        Get ServiceEndpointList (v2.3)
+        Get ServiceEndpointList (v2.4)
 
           **Parameters:**:
 
           - **serviceendpoint_id**: (optional) Service Endpoint ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7642,14 +7707,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def tenants(self, tenant_id=None, api_version="v2.7"):
+    def tenants(self, tenant_id=None, api_version="v2.8"):
         """
-        Get tenant details for tenant id (v2.7)
+        Get tenant details for tenant id (v2.8)
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.7)
+          - **api_version**: API version to use (default v2.8)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8364,6 +8429,9 @@ class Get(object):
     deployments_sitetemplates_bulkconfigurations = bulkconfigurations_sitetemplates_deployments
     """ Backwards-compatibility alias of `deployments_sitetemplates_bulkconfigurations` to `bulkconfigurations_sitetemplates_deployments`"""
 
+    deviceidconfigs = deviceidconfigs
+    """ Backwards-compatibility alias of `deviceidconfigs` to `deviceidconfigs`"""
+
     deviceidconfigs_i = element_deviceidconfigs
     """ Backwards-compatibility alias of `deviceidconfigs_i` to `element_deviceidconfigs`"""
 
@@ -8555,6 +8623,9 @@ class Get(object):
 
     status_cellular_modules_m = machine_cellular_modules_status
     """ Backwards-compatibility alias of `status_cellular_modules_m` to `machine_cellular_modules_status`"""
+
+    status_copy_element_configurations_elementshells = elementshells_copy_element_configurations_status
+    """ Backwards-compatibility alias of `status_copy_element_configurations_elementshells` to `elementshells_copy_element_configurations_status`"""
 
     status_deployments_sitetemplates_bulkconfigurations = bulkconfigurations_sitetemplates_deployments_status
     """ Backwards-compatibility alias of `status_deployments_sitetemplates_bulkconfigurations` to `bulkconfigurations_sitetemplates_deployments_status`"""
