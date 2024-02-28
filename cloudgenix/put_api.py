@@ -6962,9 +6962,6 @@ class Put(object):
     configs_sdwanapps = sdwanapps_configs
     """ Backwards-compatibility alias of `configs_sdwanapps` to `sdwanapps_configs`"""
 
-    deviceidconfigs = deviceidconfigs
-    """ Backwards-compatibility alias of `deviceidconfigs` to `deviceidconfigs`"""
-
     deviceidconfigs_i = element_deviceidconfigs
     """ Backwards-compatibility alias of `deviceidconfigs_i` to `element_deviceidconfigs`"""
 

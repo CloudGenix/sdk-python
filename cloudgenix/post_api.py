@@ -13273,9 +13273,6 @@ class Post(object):
     deployments_sitetemplates_bulkconfigurations = bulkconfigurations_sitetemplates_deployments
     """ Backwards-compatibility alias of `deployments_sitetemplates_bulkconfigurations` to `bulkconfigurations_sitetemplates_deployments`"""
 
-    deviceidconfigs = deviceidconfigs
-    """ Backwards-compatibility alias of `deviceidconfigs` to `deviceidconfigs`"""
-
     deviceidconfigs_i = element_deviceidconfigs
     """ Backwards-compatibility alias of `deviceidconfigs_i` to `element_deviceidconfigs`"""
 
