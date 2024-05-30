@@ -4,7 +4,7 @@ CloudGenix Python SDK - PUT
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2023 CloudGenix, Inc
+**Copyright:** (c) 2017-2024 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2024 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2023 CloudGenix, Inc
+    Copyright (c) 2017-2024 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -92,16 +92,16 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def appdefs(self, appdef_id, data, tenant_id=None, api_version="v2.5"):
+    def appdefs(self, appdef_id, data, tenant_id=None, api_version="v2.6"):
         """
-        Update an application definition (v2.5)
+        Update an application definition (v2.6)
 
           **Parameters:**:
 
           - **appdef_id**: Application Definition ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.5)
+          - **api_version**: API version to use (default v2.6)
 
           **Payload Attributes:** 
 
@@ -231,24 +231,30 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def appdefs_version(self, appdefs_version_id, data, tenant_id=None, api_version="v2.0"):
+    def appdefs_version(self, appdefs_version_id, data, tenant_id=None, api_version="v2.1"):
         """
-        Change standard apps version (v2.0)
+        Change standard apps version (v2.1)
 
           **Parameters:**:
 
           - **appdefs_version_id**: Application Definition Version ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
            - **app_version:**  Type: string 
+           - **blob_name:**  Type: string 
            - **disabled:**  Type: boolean 
            - **disabled_reason:**  Type: string 
            - **inactive:**  Type: boolean 
            - **inactive_reason:**  Type: string 
+           - **is_ml7_app_version:**  Type: boolean 
+           - **l4_custom_app_version:**  Type: integer 
+           - **l7_custom_app_version:**  Type: integer 
+           - **ml7_sigfile_url:**  Type: string 
+           - **ml7_versions:**  [Type: string] 
            - **region:**  Type: string 
            - **reqState:**  Type: string 
            - **sigfile_url:**  Type: string 
@@ -312,9 +318,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def bgpconfigs(self, site_id, element_id, bgpconfig_id, data, tenant_id=None, api_version="v2.3"):
+    def bgpconfigs(self, site_id, element_id, bgpconfig_id, data, tenant_id=None, api_version="v2.4"):
         """
-        Updates BGP config (v2.3)
+        Updates BGP config (v2.4)
 
           **Parameters:**:
 
@@ -323,7 +329,7 @@ class Put(object):
           - **bgpconfig_id**: BGP Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
           **Payload Attributes:** 
 
@@ -337,6 +343,9 @@ class Put(object):
            - **maximum_paths:**  Type: integer 
            - **md5_secret:**  Type: string 
            - **multi_hop_limit:**  Type: integer 
+           - **ospf_redistribution:**           
+               - **route_map_id:**  Type: string 
+               - **vrf_context_id:**  Type: string 
            - **peer_auth_type:**  Type: string 
            - **peer_retry_time:**  Type: integer 
            - **prefix_adv_type:**  Type: string 
@@ -365,9 +374,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def bgppeers(self, site_id, element_id, bgppeer_id, data, tenant_id=None, api_version="v2.4"):
+    def bgppeers(self, site_id, element_id, bgppeer_id, data, tenant_id=None, api_version="v2.5"):
         """
-        Update BGP Peer config (v2.4)
+        Update BGP Peer config (v2.5)
 
           **Parameters:**:
 
@@ -376,10 +385,11 @@ class Put(object):
           - **bgppeer_id**: BGP Peer ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
           **Payload Attributes:** 
 
+           - **advertise_default_route:**  Type: boolean 
            - **allow_v4_prefixes:**  Type: boolean 
            - **allow_v6_prefixes:**  Type: boolean 
            - **bgp_config:**           
@@ -1435,7 +1445,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def elementshells_interfaces(self, site_id, elementshell_id, interface_id, data, tenant_id=None, api_version="v2.0"):
+    def elementshells_interfaces(self, site_id, elementshell_id, interface_id, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Elementshells_Interfaces API Function
 
@@ -1446,7 +1456,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -1990,9 +2000,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.17"):
+    def interfaces(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v4.18"):
         """
-        Update an Interface (v4.17)
+        Update an Interface (v4.18)
 
           **Parameters:**:
 
@@ -2001,7 +2011,7 @@ class Put(object):
           - **interface_id**: Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.17)
+          - **api_version**: API version to use (default v4.18)
 
           **Payload Attributes:** 
 
@@ -2180,6 +2190,9 @@ class Put(object):
                    - **ipsec_profile_id:**  Type: string 
                - **last_parent:**  Type: string 
                - **parent:**  Type: string 
+               - **passive_mode:**           
+                   - **enable:**  Type: boolean 
+                   - **peer_ip_dynamic:**  Type: boolean 
                - **peer:**           
                    - **hostname:**  Type: string 
                    - **ip_addresses:**  [Type: string] 
@@ -2211,7 +2224,6 @@ class Put(object):
            - **type:**  Type: string 
            - **used_for:**  Type: string 
            - **vlan_config:**           
-               - **element_vlan_unique_id:**  Type: string 
                - **mstp_instance:**  Type: integer 
                - **vlan_id:**  Type: integer 
                - **voice_enabled:**  Type: boolean 
@@ -3648,6 +3660,7 @@ class Put(object):
            - **legacy_policystack:**  Type: boolean 
            - **name:**  Type: string 
            - **policyset_ids:**  [Type: string] 
+           - **policyset_ids_update:**  Type: boolean 
            - **policysets:**           
                - **clone_from:**  Type: string 
                - **description:**  Type: string 
@@ -3940,6 +3953,78 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
+    def ospfconfigs(self, site_id, element_id, ospfconfig_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ospfconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **ospfconfig_id**: OSPF Config ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/ospfconfigs/{}".format(api_version,
+                                                                                              tenant_id,
+                                                                                              site_id,
+                                                                                              element_id,
+                                                                                              ospfconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def ospfglobalconfigs(self, site_id, element_id, ospfglobalconfig_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Ospfglobalconfigs API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **ospfglobalconfig_id**: OSPF Global Config ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/ospfglobalconfigs/{}".format(api_version,
+                                                                                                    tenant_id,
+                                                                                                    site_id,
+                                                                                                    element_id,
+                                                                                                    ospfglobalconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
     def otpaccessconfigs(self, otpaccessconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update an OTP Access for all elements under an Tenant. (v2.0)
@@ -4043,7 +4128,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, data, tenant_id=None, api_version="v2.0"):
+    def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Perfmgmtpolicysets_Perfmgmtpolicyrules API Function
 
@@ -4053,7 +4138,7 @@ class Put(object):
           - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -4109,7 +4194,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def perfmgmtthresholdprofiles(self, perfmgmtthresholdprofile_id, data, tenant_id=None, api_version="v2.0"):
+    def perfmgmtthresholdprofiles(self, perfmgmtthresholdprofile_id, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Perfmgmtthresholdprofiles API Function
 
@@ -4118,7 +4203,7 @@ class Put(object):
           - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -4506,7 +4591,7 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def prismasase_connections(self, site_id, prismasase_connection_id, data, tenant_id=None, api_version="v2.0"):
+    def prismasase_connections(self, site_id, prismasase_connection_id, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Prismasase_Connections API Function
 
@@ -4516,7 +4601,7 @@ class Put(object):
           - **prismasase_connection_id**: Prisma SASE Connection ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -4540,12 +4625,43 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def prismasase_connections_configs(self, data, tenant_id=None, api_version="v2.0"):
+    def prismasase_connections_configs(self, data, tenant_id=None, api_version="v2.1"):
         """
         PUT Prismasase_Connections_Configs API Function
 
           **Parameters:**:
 
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/prismasase_connections/configs".format(api_version,
+                                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def probeconfigs(self, probeconfig_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Probeconfigs API Function
+
+          **Parameters:**:
+
+          - **probeconfig_id**: Probe Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4564,8 +4680,41 @@ class Put(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/prismasase_connections/configs".format(api_version,
-                                                                                         tenant_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/probeconfigs/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          probeconfig_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def probeprofiles(self, probeprofile_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        PUT Probeprofiles API Function
+
+          **Parameters:**:
+
+          - **probeprofile_id**: Probe Profile ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/probeprofiles/{}".format(api_version,
+                                                                           tenant_id,
+                                                                           probeprofile_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -4847,9 +4996,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id, data, tenant_id=None, api_version="v2.2"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id, data, tenant_id=None, api_version="v2.3"):
         """
-        Updates Route Map (v2.2)
+        Updates Route Map (v2.3)
 
           **Parameters:**:
 
@@ -4858,7 +5007,7 @@ class Put(object):
           - **routing_routemap_id**: Routing Route Map ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
           **Payload Attributes:** 
 
@@ -4872,17 +5021,23 @@ class Put(object):
                    - **community_list_id:**  Type: string 
                    - **ip_next_hop_id:**  Type: string 
                    - **ip_prefix_list_id:**  Type: string 
+                   - **metric:**  Type: integer 
                    - **tag:**  Type: integer 
                - **order:**  Type: integer 
                - **permit:**  Type: boolean 
                - **set:**           
+                   - **additive_community:**  Type: boolean 
                    - **as_path_prepend:**  Type: string 
                    - **community:**  Type: string 
                    - **ip_next_hop:**  Type: string 
+                   - **ip_v6_next_hop:**  Type: string 
                    - **local_preference:**  Type: integer 
+                   - **metric:**  Type: integer 
                    - **tag:**  Type: integer 
+                   - **type:**  Type: string 
                    - **weight:**  Type: integer 
            - **tags:**  [Type: string] 
+           - **used_for:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5509,16 +5664,16 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def sites(self, site_id, data, tenant_id=None, api_version="v4.9"):
+    def sites(self, site_id, data, tenant_id=None, api_version="v4.10"):
         """
-        Update an existing site (v4.9)
+        Update an existing site (v4.10)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.9)
+          - **api_version**: API version to use (default v4.10)
 
           **Payload Attributes:** 
 
@@ -5530,6 +5685,7 @@ class Put(object):
                - **street:**  Type: string 
                - **street2:**  Type: string 
            - **admin_state:**  Type: string 
+           - **branch_gateway:**  Type: boolean 
            - **description:**  Type: string 
            - **element_cluster_role:**  Type: string 
            - **extended_tags:**           
@@ -5546,6 +5702,7 @@ class Put(object):
            - **network_policysetstack_id:**  Type: string 
            - **perfmgmt_policysetstack_id:**  Type: string 
            - **policy_set_id:**  Type: string 
+           - **prefer_lan_default_over_wan_default_route:**  Type: boolean 
            - **priority_policysetstack_id:**  Type: string 
            - **security_policyset_id:**  Type: string 
            - **security_policysetstack_id:**  Type: string 
@@ -6302,15 +6459,15 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.8"):
+    def tenants(self, data, tenant_id=None, api_version="v2.9"):
         """
-        Update tenant (v2.8)
+        Update tenant (v2.9)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.8)
+          - **api_version**: API version to use (default v2.9)
 
           **Payload Attributes:** 
 
@@ -6322,6 +6479,8 @@ class Put(object):
                - **state:**  Type: string 
                - **street:**  Type: string 
                - **street2:**  Type: string 
+           - **adem_enabled:**  Type: boolean 
+           - **app_acceleration_enabled:**  Type: boolean 
            - **canonical_name:**  Type: string 
            - **clients:**  [Type: string] 
            - **csp_tenant_id:**  Type: string 
@@ -6707,7 +6866,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **vrfcontext_id**: VRF Context UD
+          - **vrfcontext_id**: VRF Context ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -6733,24 +6892,28 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.4"):
+    def waninterfacelabels(self, waninterfacelabel_id, data, tenant_id=None, api_version="v2.5"):
         """
-        Update specific WAN interface label (v2.4)
+        Update specific WAN interface label (v2.5)
 
           **Parameters:**:
 
           - **waninterfacelabel_id**: WAN Interface Label ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
           **Payload Attributes:** 
 
            - **bwc_enabled:**  Type: boolean 
            - **description:**  Type: string 
+           - **l3_reachability:**           
+               - **probe_config_ids:**  [Type: string] 
+               - **use_element_default:**  Type: boolean 
            - **label:**  Type: string 
            - **lqm_enabled:**  Type: boolean 
            - **name:**  Type: string 
+           - **probe_profile_id:**  Type: string 
            - **tags:**  [Type: string] 
            - **use_for_application_reachability_probes:**  Type: boolean 
            - **use_for_controller_connections:**  Type: boolean 
@@ -6777,9 +6940,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.7"):
+    def waninterfaces(self, site_id, waninterface_id, data, tenant_id=None, api_version="v2.8"):
         """
-        Update the Site WAN interface (v2.7)
+        Update the Site WAN interface (v2.8)
 
           **Parameters:**:
 
@@ -6787,7 +6950,7 @@ class Put(object):
           - **waninterface_id**: WAN Interface ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.7)
+          - **api_version**: API version to use (default v2.8)
 
           **Payload Attributes:** 
 
@@ -6796,6 +6959,9 @@ class Put(object):
            - **bwc_enabled:**  Type: boolean 
            - **cost:**  Type: integer 
            - **description:**  Type: string 
+           - **l3_reachability:**           
+               - **probe_config_ids:**  [Type: string] 
+               - **use_element_default:**  Type: boolean 
            - **label_id:**  Type: string 
            - **link_bw_down:**  Type: number 
            - **link_bw_up:**  Type: number 
@@ -6806,6 +6972,7 @@ class Put(object):
            - **lqm_enabled:**  Type: boolean 
            - **name:**  Type: string 
            - **network_id:**  Type: string 
+           - **probe_profile_id:**  Type: string 
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
            - **use_for_application_reachability_probes:**  Type: boolean 

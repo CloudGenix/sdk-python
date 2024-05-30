@@ -8,7 +8,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2023 CloudGenix, Inc
+**Copyright:** (c) 2017-2024 CloudGenix, Inc
 ..." />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -1088,7 +1088,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.patch_api</span> module</h1>
   <p>CloudGenix Python SDK - PATCH</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2023 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api', this);">Show source &equiv;</a></p>
@@ -1099,7 +1099,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2023 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2024 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -1107,11 +1107,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2023 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2024 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2023 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2024 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -1260,15 +1260,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.8&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.9&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.8)</span>
+<span class="sd">        Patch tenant (v2.9)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.8)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.9)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -1280,6 +1280,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **state:**  Type: string </span>
 <span class="sd">               - **street:**  Type: string </span>
 <span class="sd">               - **street2:**  Type: string </span>
+<span class="sd">           - **adem_enabled:**  Type: boolean </span>
+<span class="sd">           - **app_acceleration_enabled:**  Type: boolean </span>
 <span class="sd">           - **canonical_name:**  Type: string </span>
 <span class="sd">           - **clients:**  [Type: string] </span>
 <span class="sd">           - **csp_tenant_id:**  Type: string </span>
@@ -1634,15 +1636,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.8&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.9&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.8)</span>
+<span class="sd">        Patch tenant (v2.9)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.8)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.9)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -1654,6 +1656,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">               - **state:**  Type: string </span>
 <span class="sd">               - **street:**  Type: string </span>
 <span class="sd">               - **street2:**  Type: string </span>
+<span class="sd">           - **adem_enabled:**  Type: boolean </span>
+<span class="sd">           - **app_acceleration_enabled:**  Type: boolean </span>
 <span class="sd">           - **canonical_name:**  Type: string </span>
 <span class="sd">           - **clients:**  [Type: string] </span>
 <span class="sd">           - **csp_tenant_id:**  Type: string </span>
@@ -2123,18 +2127,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item">
     <div class="name def" id="cloudgenix.patch_api.Patch.tenants">
-    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.8&#39;)</p>
+    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.9&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch tenant (v2.8)</p>
+    <div class="desc"><p>Patch tenant (v2.9)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.8)</li>
+<li><strong>api_version</strong>: API version to use (default v2.9)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -2148,6 +2152,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>street2:</strong>  Type: string </li>
 </ul>
 </li>
+<li><strong>adem_enabled:</strong>  Type: boolean </li>
+<li><strong>app_acceleration_enabled:</strong>  Type: boolean </li>
 <li><strong>canonical_name:</strong>  Type: string </li>
 <li><strong>clients:</strong>  [Type: string] </li>
 <li><strong>csp_tenant_id:</strong>  Type: string </li>
@@ -2377,13 +2383,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.8&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.9&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch tenant (v2.8)</span>
+<span class="sd">    Patch tenant (v2.9)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.8)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.9)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **:**  Type: string </span>
 <span class="sd">       - **address:**           </span>
@@ -2393,6 +2399,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **state:**  Type: string </span>
 <span class="sd">           - **street:**  Type: string </span>
 <span class="sd">           - **street2:**  Type: string </span>
+<span class="sd">       - **adem_enabled:**  Type: boolean </span>
+<span class="sd">       - **app_acceleration_enabled:**  Type: boolean </span>
 <span class="sd">       - **canonical_name:**  Type: string </span>
 <span class="sd">       - **clients:**  [Type: string] </span>
 <span class="sd">       - **csp_tenant_id:**  Type: string </span>

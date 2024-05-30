@@ -4,7 +4,7 @@ CloudGenix Python SDK - PATCH
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2023 CloudGenix, Inc
+**Copyright:** (c) 2017-2024 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2024 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2023 CloudGenix, Inc
+    Copyright (c) 2017-2024 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -165,15 +165,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.8"):
+    def tenants(self, data, tenant_id=None, api_version="v2.9"):
         """
-        Patch tenant (v2.8)
+        Patch tenant (v2.9)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.8)
+          - **api_version**: API version to use (default v2.9)
 
           **Payload Attributes:** 
 
@@ -185,6 +185,8 @@ class Patch(object):
                - **state:**  Type: string 
                - **street:**  Type: string 
                - **street2:**  Type: string 
+           - **adem_enabled:**  Type: boolean 
+           - **app_acceleration_enabled:**  Type: boolean 
            - **canonical_name:**  Type: string 
            - **clients:**  [Type: string] 
            - **csp_tenant_id:**  Type: string 
