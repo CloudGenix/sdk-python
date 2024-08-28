@@ -523,7 +523,7 @@ class Put(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: 
+          - **demsiteconfig_id**: DEM Site Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4270,7 +4270,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: 
+          - **ospfconfig_id**: OSPF Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4331,7 +4331,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfglobalconfig_id**: 
+          - **ospfglobalconfig_id**: OSPF Global Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5200,7 +5200,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: 
+          - **probeconfig_id**: Probe Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5247,7 +5247,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: 
+          - **probeprofile_id**: Probe Profile ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)

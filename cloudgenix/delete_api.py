@@ -265,7 +265,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: 
+          - **demsiteconfig_id**: DEM Site Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1966,7 +1966,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: 
+          - **ospfconfig_id**: OSPF Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2426,7 +2426,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: 
+          - **probeconfig_id**: NO DESCRIPTION
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2454,7 +2454,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: 
+          - **probeprofile_id**: Probe Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 

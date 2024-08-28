@@ -16,7 +16,7 @@ __copyright__ = "Copyright (c) 2017-2024 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2024 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -963,7 +963,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: (optional) 
+          - **demsiteconfig_id**: (optional) DEM Site Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3898,13 +3898,13 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def monitor_metrics_probes(self, probe_id, tenant_id=None, api_version="v2.0"):
+    def monitor_metrics_probe(self, probe_id, tenant_id=None, api_version="v2.0"):
         """
         GET Probes_Metrics_Monitor API Function
 
           **Parameters:**:
 
-          - **probe_id**: 
+          - **probe_id**: Probe ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5141,7 +5141,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: (optional) 
+          - **ospfconfig_id**: (optional) OSPF Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5179,7 +5179,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: 
+          - **ospfconfig_id**: OSPF Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5211,7 +5211,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: 
+          - **ospfconfig_id**: OSPF Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5243,7 +5243,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfglobalconfig_id**: (optional) 
+          - **ospfglobalconfig_id**: (optional) OSPF Global Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5985,7 +5985,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: (optional) 
+          - **probeconfig_id**: (optional) Probe Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -6017,7 +6017,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: (optional) 
+          - **probeprofile_id**: (optional) Probe Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8910,8 +8910,8 @@ class Get(object):
     prioritypolicylocalprefixes_t = tenant_prioritypolicylocalprefixes
     """ Backwards-compatibility alias of `prioritypolicylocalprefixes_t` to `tenant_prioritypolicylocalprefixes`"""
 
-    probes_metrics_monitor = monitor_metrics_probes
-    """ Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probes`"""
+    probes_metrics_monitor = monitor_metrics_probe
+    """ Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probe`"""
 
     qos_metrics_application_monitor = monitor_application_qos_metrics
     """ Backwards-compatibility alias of `qos_metrics_application_monitor` to `monitor_application_qos_metrics`"""
