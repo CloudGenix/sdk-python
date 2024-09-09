@@ -165,15 +165,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.9"):
+    def tenants(self, data, tenant_id=None, api_version="v2.10"):
         """
-        Patch tenant (v2.9)
+        Patch tenant (v2.10)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.9)
+          - **api_version**: API version to use (default v2.10)
 
           **Payload Attributes:** 
 
@@ -200,6 +200,7 @@ class Patch(object):
            - **is_esp:**  Type: boolean 
            - **is_oneapp_ready:**  Type: boolean 
            - **is_pa_iot_security_license:**  Type: boolean 
+           - **is_sase_edge:**  Type: boolean 
            - **is_support:**  Type: boolean 
            - **name:**  Type: string 
            - **operator:**           

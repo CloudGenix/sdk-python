@@ -202,7 +202,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates(self, sitetemplate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates API Function
+        delete site profile (v2.0)
 
           **Parameters:**:
 
@@ -230,7 +230,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates_deployments(self, sitetemplate_id, deployment_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function
+        Delete a deployment (v2.0)
 
           **Parameters:**:
 
@@ -260,12 +260,12 @@ class Delete(object):
 
     def demsiteconfigs(self, site_id, demsiteconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Demsiteconfigs API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: 
+          - **demsiteconfig_id**: DEM Site Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -290,7 +290,7 @@ class Delete(object):
 
     def deviceidconfigs_snmpdiscoverystartnodes(self, site_id, deviceidconfig_id, snmpdiscoverystartnode_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -322,7 +322,7 @@ class Delete(object):
 
     def deviceidprofiles(self, deviceidprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidprofiles API Function
+        Delete device Id profile configuration (v2.0)
 
           **Parameters:**:
 
@@ -380,7 +380,7 @@ class Delete(object):
 
     def directoryservices(self, directoryservice_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Directoryservices API Function
+        Delete Directory Service (v2.0)
 
           **Parameters:**:
 
@@ -496,7 +496,7 @@ class Delete(object):
 
     def element_deviceidconfigs(self, site_id, element_id, deviceidconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Element_Deviceidconfigs API Function
+        Delete device id element level (source interface) config (v2.0)
 
           **Parameters:**:
 
@@ -682,7 +682,7 @@ class Delete(object):
 
     def elementshells(self, site_id, elementshell_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Elementshells API Function
+        Delete an element shell (v2.0)
 
           **Parameters:**:
 
@@ -712,7 +712,7 @@ class Delete(object):
 
     def elementshells_interfaces(self, site_id, elementshell_id, interface_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Elementshells_Interfaces API Function
+        Delete an element shell interface (v2.1)
 
           **Parameters:**:
 
@@ -1034,9 +1034,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.18"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.19"):
         """
-        Delete a Interface (v4.18)
+        Delete a Interface (v4.19)
 
           **Parameters:**:
 
@@ -1044,7 +1044,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.18)
+          - **api_version**: API version to use (default v4.19)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1700,16 +1700,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.2"):
+    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete network policy rule of tenant. (v2.2)
+        Delete network policy rule of tenant. (v2.3)
 
           **Parameters:**:
 
           - **networkpolicyset_id**: Network Policy Set ID
           - **networkpolicyrule_id**: Network Policy Rule ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1960,7 +1960,7 @@ class Delete(object):
 
     def ospfconfigs(self, site_id, element_id, ospfconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ospfconfigs API Function
+        Deletes OSPF config (v2.0)
 
           **Parameters:**:
 
@@ -2020,7 +2020,7 @@ class Delete(object):
 
     def perfmgmtpolicysets(self, perfmgmtpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysets API Function
+        Delete a PERFMGMT Policy Set (v2.0)
 
           **Parameters:**:
 
@@ -2048,7 +2048,7 @@ class Delete(object):
 
     def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function
+        Delete PERFMGMT policy rule of tenant V2.1. (v2.1)
 
           **Parameters:**:
 
@@ -2078,7 +2078,7 @@ class Delete(object):
 
     def perfmgmtpolicysetstacks(self, perfmgmtpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysetstacks API Function
+        Delete a PERFMGMT Policy Set Stack (v2.0)
 
           **Parameters:**:
 
@@ -2106,7 +2106,7 @@ class Delete(object):
 
     def perfmgmtthresholdprofiles(self, perfmgmtthresholdprofile_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Perfmgmtthresholdprofiles API Function
+        Delete a Threshold Profile (v2.1)
 
           **Parameters:**:
 
@@ -2394,14 +2394,14 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def prismasase_connections_configs(self, tenant_id=None, api_version="v2.1"):
+    def prismasase_connections_configs(self, tenant_id=None, api_version="v3.0"):
         """
         DELETE Prismasase_Connections_Configs API Function
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2422,7 +2422,7 @@ class Delete(object):
 
     def probeconfigs(self, probeconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeconfigs API Function
+        Delete a Probe Config (v2.0)
 
           **Parameters:**:
 
@@ -2450,7 +2450,7 @@ class Delete(object):
 
     def probeprofiles(self, probeprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeprofiles API Function
+        Delete a PROBE Profile (v2.0)
 
           **Parameters:**:
 
@@ -2806,15 +2806,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v2.4"):
+    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v3.0"):
         """
-        Delete a Service Endpoint (v2.4)
+        Delete a Service Endpoint (v3.0)
 
           **Parameters:**:
 
           - **serviceendpoint_id**: Service Endpoint ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3042,15 +3042,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.10"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.11"):
         """
-        Delete a site (v4.10)
+        Delete a site (v4.11)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.10)
+          - **api_version**: API version to use (default v4.11)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3512,7 +3512,7 @@ class Delete(object):
 
     def useridagents(self, useridagent_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Useridagents API Function
+        Delete User ID Agent (v2.0)
 
           **Parameters:**:
 
@@ -3568,7 +3568,7 @@ class Delete(object):
 
     def vrfcontextprofiles(self, vrfcontextprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontextprofiles API Function
+        Delete VRF Context Profile (v2.0)
 
           **Parameters:**:
 
@@ -3596,7 +3596,7 @@ class Delete(object):
 
     def vrfcontexts(self, vrfcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontexts API Function
+        Delete VRF segment (v2.0)
 
           **Parameters:**:
 
@@ -3622,16 +3622,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.8"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.9"):
         """
-        Delete existing WAN interface (v2.8)
+        Delete existing WAN interface (v2.9)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.8)
+          - **api_version**: API version to use (default v2.9)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
