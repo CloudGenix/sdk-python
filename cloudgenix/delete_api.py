@@ -2426,7 +2426,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: NO DESCRIPTION
+          - **probeconfig_id**: Probe Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 

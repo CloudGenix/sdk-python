@@ -2700,7 +2700,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_bulk_metrics">monitor_bulk_metrics</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_cellular_metrics">monitor_cellular_metrics</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_metrics">monitor_metrics</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_metrics_probe">monitor_metrics_probe</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_metrics_probes">monitor_metrics_probes</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_object_stats">monitor_object_stats</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_qos_metrics">monitor_qos_metrics</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_sys_metrics">monitor_sys_metrics</a></li>
@@ -6489,7 +6489,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">monitor_agg_bw_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Agg_Bw_Stats_Monitor API Function</span>
+<span class="sd">        GET Monitor_Agg_Bw_Stats API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6779,9 +6779,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">monitor_metrics_probe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">monitor_metrics_probes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Probes_Metrics_Monitor API Function</span>
+<span class="sd">        GET Monitor_Metrics_Probes API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8054,7 +8054,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs_ospfdiscoveredneighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Ospfdiscoveredneighbors_Ospfconfigs API Function</span>
+<span class="sd">        GET Ospfconfigs_Ospfdiscoveredneighbors API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8086,7 +8086,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs_ospfreachableprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Ospfreachableprefixes_Ospfconfigs API Function</span>
+<span class="sd">        GET Ospfconfigs_Ospfreachableprefixes API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11791,8 +11791,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">prioritypolicylocalprefixes_t</span> <span class="o">=</span> <span class="n">tenant_prioritypolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `prioritypolicylocalprefixes_t` to `tenant_prioritypolicylocalprefixes`&quot;&quot;&quot;</span>
 
-    <span class="n">probes_metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics_probe</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probe`&quot;&quot;&quot;</span>
+    <span class="n">probes_metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics_probes</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probes`&quot;&quot;&quot;</span>
 
     <span class="n">qos_metrics_application_monitor</span> <span class="o">=</span> <span class="n">monitor_application_qos_metrics</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `qos_metrics_application_monitor` to `monitor_application_qos_metrics`&quot;&quot;&quot;</span>
@@ -15557,7 +15557,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">monitor_agg_bw_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Agg_Bw_Stats_Monitor API Function</span>
+<span class="sd">        GET Monitor_Agg_Bw_Stats API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -15847,9 +15847,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">monitor_metrics_probe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">monitor_metrics_probes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Probes_Metrics_Monitor API Function</span>
+<span class="sd">        GET Monitor_Metrics_Probes API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -17122,7 +17122,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs_ospfdiscoveredneighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Ospfdiscoveredneighbors_Ospfconfigs API Function</span>
+<span class="sd">        GET Ospfconfigs_Ospfdiscoveredneighbors API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -17154,7 +17154,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs_ospfreachableprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Ospfreachableprefixes_Ospfconfigs API Function</span>
+<span class="sd">        GET Ospfconfigs_Ospfreachableprefixes API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -20859,8 +20859,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">prioritypolicylocalprefixes_t</span> <span class="o">=</span> <span class="n">tenant_prioritypolicylocalprefixes</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `prioritypolicylocalprefixes_t` to `tenant_prioritypolicylocalprefixes`&quot;&quot;&quot;</span>
 
-    <span class="n">probes_metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics_probe</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probe`&quot;&quot;&quot;</span>
+    <span class="n">probes_metrics_monitor</span> <span class="o">=</span> <span class="n">monitor_metrics_probes</span>
+    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `probes_metrics_monitor` to `monitor_metrics_probes`&quot;&quot;&quot;</span>
 
     <span class="n">qos_metrics_application_monitor</span> <span class="o">=</span> <span class="n">monitor_application_qos_metrics</span>
     <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `qos_metrics_application_monitor` to `monitor_application_qos_metrics`&quot;&quot;&quot;</span>
@@ -21862,7 +21862,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>probes_metrics_monitor</code> to <code>monitor_metrics_probe</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>probes_metrics_monitor</code> to <code>monitor_metrics_probes</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -28351,7 +28351,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>GET Agg_Bw_Stats_Monitor API Function</p>
+    <div class="desc"><p>GET Monitor_Agg_Bw_Stats API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
@@ -28363,7 +28363,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.get_api.Get.monitor_agg_bw_stats" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_agg_bw_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Agg_Bw_Stats_Monitor API Function</span>
+<span class="sd">    GET Monitor_Agg_Bw_Stats API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
@@ -28847,15 +28847,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
-  <div class="item" id="cloudgenix.get_api.Get.monitor_metrics_probe">
+  <div class="item" id="cloudgenix.get_api.Get.monitor_metrics_probes">
     <div class="name def">
-    <p>def <span class="ident">monitor_metrics_probe</span>(</p><p>self, probe_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    <p>def <span class="ident">monitor_metrics_probes</span>(</p><p>self, probe_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>GET Probes_Metrics_Monitor API Function</p>
+    <div class="desc"><p>GET Monitor_Metrics_Probes API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>probe_id</strong>: Probe ID</li>
@@ -28864,11 +28864,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.monitor_metrics_probe', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.monitor_metrics_probe" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_metrics_probe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.monitor_metrics_probes', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.monitor_metrics_probes" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_metrics_probes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probe_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Probes_Metrics_Monitor API Function</span>
+<span class="sd">    GET Monitor_Metrics_Probes API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **probe_id**: Probe ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -30945,7 +30945,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>GET Ospfdiscoveredneighbors_Ospfconfigs API Function</p>
+    <div class="desc"><p>GET Ospfconfigs_Ospfdiscoveredneighbors API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -30960,7 +30960,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.get_api.Get.ospfconfigs_ospfdiscoveredneighbors" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ospfconfigs_ospfdiscoveredneighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Ospfdiscoveredneighbors_Ospfconfigs API Function</span>
+<span class="sd">    GET Ospfconfigs_Ospfdiscoveredneighbors API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -30999,7 +30999,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>GET Ospfreachableprefixes_Ospfconfigs API Function</p>
+    <div class="desc"><p>GET Ospfconfigs_Ospfreachableprefixes API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -31014,7 +31014,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.get_api.Get.ospfconfigs_ospfreachableprefixes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ospfconfigs_ospfreachableprefixes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Ospfreachableprefixes_Ospfconfigs API Function</span>
+<span class="sd">    GET Ospfconfigs_Ospfreachableprefixes API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
