@@ -15727,8 +15727,8 @@ class Post(object):
     ops_interfaces = interface_operations
     """ Backwards-compatibility alias of `ops_interfaces` to `interface_operations`"""
 
-    ops_spokeclusters = spokeclusters_ops
-    """ Backwards-compatibility alias of `ops_spokeclusters` to `spokeclusters_ops`"""
+    ops_spokeclusters = spokeclusters_operations
+    """ Backwards-compatibility alias of `ops_spokeclusters` to `spokeclusters_operations`"""
 
     ops_vfflicenses = vfflicenses_operations
     """ Backwards-compatibility alias of `ops_vfflicenses` to `vfflicenses_operations`"""
