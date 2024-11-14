@@ -5269,6 +5269,46 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **enabled_wan_interface_ids:**  [Type: string]
+           - **ipsec_tunnel_configs:**
+               - **anti_replay:**  Type: boolean
+               - **copy_tos:**  Type: boolean
+               - **enable_gre_encapsulation:**  Type: boolean
+               - **ike_key_exchange:**  Type: string
+               - **prismaaccess_ike_crypto_profile_id:**  Type: string
+               - **prismaaccess_ipsec_profile_id:**  Type: string
+               - **tunnel_monitoring:**  Type: boolean
+           - **is_active:**  Type: boolean
+           - **is_enabled:**  Type: boolean
+           - **prismaaccess_edge_location:**  [Type: string]
+           - **prismaaccess_qos_cir_mbps:**  Type: integer
+           - **prismaaccess_qos_profile_id:**  Type: string
+           - **remote_network_groups:**
+               - **ipsec_tunnels:**
+                   - **authentication:**
+                       - **branch_ike_identification:**  Type: string
+                       - **prismaaccess_ike_identification:**  Type: string
+                       - **psk:**  Type: string
+                   - **name:**  Type: string
+                   - **routing:**
+                       - **branch_as_number:**  Type: string
+                       - **branch_ip_address:**  Type: string
+                       - **prismaaccess_ip_address:**  Type: string
+                   - **routing_configs:**
+                       - **advertise_default_route:**  Type: boolean
+                       - **bgp_secret:**  Type: string
+                       - **export_routes:**  Type: boolean
+                       - **summarize_mobile_routes_before_advertise:**  Type: boolean
+                   - **wan_interface_id:**  Type: string
+               - **name:**  Type: string
+               - **spn_name:**  [Type: string]
+           - **routing_configs:**
+               - **advertise_default_route:**  Type: boolean
+               - **bgp_secret:**  Type: string
+               - **export_routes:**  Type: boolean
+               - **summarize_mobile_routes_before_advertise:**  Type: boolean
+           - **site_id:**  Type: string
+           - **tenant_id:**  Type: string
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5301,6 +5341,9 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **prisma_sdwan_bgp_as_number:**  Type: integer
+           - **security_zone_id:**  Type: string
+           - **tunnel_cidr:**  Type: string
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

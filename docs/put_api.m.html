@@ -8026,6 +8026,46 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string] </span>
+<span class="sd">           - **ipsec_tunnel_configs:**           </span>
+<span class="sd">               - **anti_replay:**  Type: boolean </span>
+<span class="sd">               - **copy_tos:**  Type: boolean </span>
+<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean </span>
+<span class="sd">               - **ike_key_exchange:**  Type: string </span>
+<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
+<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string </span>
+<span class="sd">               - **tunnel_monitoring:**  Type: boolean </span>
+<span class="sd">           - **is_active:**  Type: boolean </span>
+<span class="sd">           - **is_enabled:**  Type: boolean </span>
+<span class="sd">           - **prismaaccess_edge_location:**  [Type: string] </span>
+<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
+<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string </span>
+<span class="sd">           - **remote_network_groups:**           </span>
+<span class="sd">               - **ipsec_tunnels:**           </span>
+<span class="sd">                   - **authentication:**           </span>
+<span class="sd">                       - **branch_ike_identification:**  Type: string </span>
+<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string </span>
+<span class="sd">                       - **psk:**  Type: string </span>
+<span class="sd">                   - **name:**  Type: string </span>
+<span class="sd">                   - **routing:**           </span>
+<span class="sd">                       - **branch_as_number:**  Type: string </span>
+<span class="sd">                       - **branch_ip_address:**  Type: string </span>
+<span class="sd">                       - **prismaaccess_ip_address:**  Type: string </span>
+<span class="sd">                   - **routing_configs:**           </span>
+<span class="sd">                       - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">                       - **bgp_secret:**  Type: string </span>
+<span class="sd">                       - **export_routes:**  Type: boolean </span>
+<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">                   - **wan_interface_id:**  Type: string </span>
+<span class="sd">               - **name:**  Type: string </span>
+<span class="sd">               - **spn_name:**  [Type: string] </span>
+<span class="sd">           - **routing_configs:**           </span>
+<span class="sd">               - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">               - **bgp_secret:**  Type: string </span>
+<span class="sd">               - **export_routes:**  Type: boolean </span>
+<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">           - **site_id:**  Type: string </span>
+<span class="sd">           - **tenant_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8058,6 +8098,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **prisma_sdwan_bgp_as_number:**  Type: integer </span>
+<span class="sd">           - **security_zone_id:**  Type: string </span>
+<span class="sd">           - **tunnel_cidr:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -16122,6 +16165,46 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string] </span>
+<span class="sd">           - **ipsec_tunnel_configs:**           </span>
+<span class="sd">               - **anti_replay:**  Type: boolean </span>
+<span class="sd">               - **copy_tos:**  Type: boolean </span>
+<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean </span>
+<span class="sd">               - **ike_key_exchange:**  Type: string </span>
+<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
+<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string </span>
+<span class="sd">               - **tunnel_monitoring:**  Type: boolean </span>
+<span class="sd">           - **is_active:**  Type: boolean </span>
+<span class="sd">           - **is_enabled:**  Type: boolean </span>
+<span class="sd">           - **prismaaccess_edge_location:**  [Type: string] </span>
+<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
+<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string </span>
+<span class="sd">           - **remote_network_groups:**           </span>
+<span class="sd">               - **ipsec_tunnels:**           </span>
+<span class="sd">                   - **authentication:**           </span>
+<span class="sd">                       - **branch_ike_identification:**  Type: string </span>
+<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string </span>
+<span class="sd">                       - **psk:**  Type: string </span>
+<span class="sd">                   - **name:**  Type: string </span>
+<span class="sd">                   - **routing:**           </span>
+<span class="sd">                       - **branch_as_number:**  Type: string </span>
+<span class="sd">                       - **branch_ip_address:**  Type: string </span>
+<span class="sd">                       - **prismaaccess_ip_address:**  Type: string </span>
+<span class="sd">                   - **routing_configs:**           </span>
+<span class="sd">                       - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">                       - **bgp_secret:**  Type: string </span>
+<span class="sd">                       - **export_routes:**  Type: boolean </span>
+<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">                   - **wan_interface_id:**  Type: string </span>
+<span class="sd">               - **name:**  Type: string </span>
+<span class="sd">               - **spn_name:**  [Type: string] </span>
+<span class="sd">           - **routing_configs:**           </span>
+<span class="sd">               - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">               - **bgp_secret:**  Type: string </span>
+<span class="sd">               - **export_routes:**  Type: boolean </span>
+<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">           - **site_id:**  Type: string </span>
+<span class="sd">           - **tenant_id:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -16154,6 +16237,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **prisma_sdwan_bgp_as_number:**  Type: integer </span>
+<span class="sd">           - **security_zone_id:**  Type: string </span>
+<span class="sd">           - **tunnel_cidr:**  Type: string </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -29438,6 +29524,62 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>enabled_wan_interface_ids:</strong>  [Type: string] </li>
+<li><strong>ipsec_tunnel_configs:</strong>           <ul>
+<li><strong>anti_replay:</strong>  Type: boolean </li>
+<li><strong>copy_tos:</strong>  Type: boolean </li>
+<li><strong>enable_gre_encapsulation:</strong>  Type: boolean </li>
+<li><strong>ike_key_exchange:</strong>  Type: string </li>
+<li><strong>prismaaccess_ike_crypto_profile_id:</strong>  Type: string </li>
+<li><strong>prismaaccess_ipsec_profile_id:</strong>  Type: string </li>
+<li><strong>tunnel_monitoring:</strong>  Type: boolean </li>
+</ul>
+</li>
+<li><strong>is_active:</strong>  Type: boolean </li>
+<li><strong>is_enabled:</strong>  Type: boolean </li>
+<li><strong>prismaaccess_edge_location:</strong>  [Type: string] </li>
+<li><strong>prismaaccess_qos_cir_mbps:</strong>  Type: integer </li>
+<li><strong>prismaaccess_qos_profile_id:</strong>  Type: string </li>
+<li><strong>remote_network_groups:</strong>           <ul>
+<li><strong>ipsec_tunnels:</strong>           <ul>
+<li><strong>authentication:</strong>           <ul>
+<li><strong>branch_ike_identification:</strong>  Type: string </li>
+<li><strong>prismaaccess_ike_identification:</strong>  Type: string </li>
+<li><strong>psk:</strong>  Type: string </li>
+</ul>
+</li>
+<li><strong>name:</strong>  Type: string </li>
+<li><strong>routing:</strong>           <ul>
+<li><strong>branch_as_number:</strong>  Type: string </li>
+<li><strong>branch_ip_address:</strong>  Type: string </li>
+<li><strong>prismaaccess_ip_address:</strong>  Type: string </li>
+</ul>
+</li>
+<li><strong>routing_configs:</strong>           <ul>
+<li><strong>advertise_default_route:</strong>  Type: boolean </li>
+<li><strong>bgp_secret:</strong>  Type: string </li>
+<li><strong>export_routes:</strong>  Type: boolean </li>
+<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean </li>
+</ul>
+</li>
+<li><strong>wan_interface_id:</strong>  Type: string </li>
+</ul>
+</li>
+<li><strong>name:</strong>  Type: string </li>
+<li><strong>spn_name:</strong>  [Type: string] </li>
+</ul>
+</li>
+<li><strong>routing_configs:</strong>           <ul>
+<li><strong>advertise_default_route:</strong>  Type: boolean </li>
+<li><strong>bgp_secret:</strong>  Type: string </li>
+<li><strong>export_routes:</strong>  Type: boolean </li>
+<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean </li>
+</ul>
+</li>
+<li><strong>site_id:</strong>  Type: string </li>
+<li><strong>tenant_id:</strong>  Type: string </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.prismasase_connections', this);">Show source &equiv;</a></p>
@@ -29452,6 +29594,46 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **enabled_wan_interface_ids:**  [Type: string] </span>
+<span class="sd">       - **ipsec_tunnel_configs:**           </span>
+<span class="sd">           - **anti_replay:**  Type: boolean </span>
+<span class="sd">           - **copy_tos:**  Type: boolean </span>
+<span class="sd">           - **enable_gre_encapsulation:**  Type: boolean </span>
+<span class="sd">           - **ike_key_exchange:**  Type: string </span>
+<span class="sd">           - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
+<span class="sd">           - **prismaaccess_ipsec_profile_id:**  Type: string </span>
+<span class="sd">           - **tunnel_monitoring:**  Type: boolean </span>
+<span class="sd">       - **is_active:**  Type: boolean </span>
+<span class="sd">       - **is_enabled:**  Type: boolean </span>
+<span class="sd">       - **prismaaccess_edge_location:**  [Type: string] </span>
+<span class="sd">       - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
+<span class="sd">       - **prismaaccess_qos_profile_id:**  Type: string </span>
+<span class="sd">       - **remote_network_groups:**           </span>
+<span class="sd">           - **ipsec_tunnels:**           </span>
+<span class="sd">               - **authentication:**           </span>
+<span class="sd">                   - **branch_ike_identification:**  Type: string </span>
+<span class="sd">                   - **prismaaccess_ike_identification:**  Type: string </span>
+<span class="sd">                   - **psk:**  Type: string </span>
+<span class="sd">               - **name:**  Type: string </span>
+<span class="sd">               - **routing:**           </span>
+<span class="sd">                   - **branch_as_number:**  Type: string </span>
+<span class="sd">                   - **branch_ip_address:**  Type: string </span>
+<span class="sd">                   - **prismaaccess_ip_address:**  Type: string </span>
+<span class="sd">               - **routing_configs:**           </span>
+<span class="sd">                   - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">                   - **bgp_secret:**  Type: string </span>
+<span class="sd">                   - **export_routes:**  Type: boolean </span>
+<span class="sd">                   - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">               - **wan_interface_id:**  Type: string </span>
+<span class="sd">           - **name:**  Type: string </span>
+<span class="sd">           - **spn_name:**  [Type: string] </span>
+<span class="sd">       - **routing_configs:**           </span>
+<span class="sd">           - **advertise_default_route:**  Type: boolean </span>
+<span class="sd">           - **bgp_secret:**  Type: string </span>
+<span class="sd">           - **export_routes:**  Type: boolean </span>
+<span class="sd">           - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
+<span class="sd">       - **site_id:**  Type: string </span>
+<span class="sd">       - **tenant_id:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -29491,6 +29673,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>api_version</strong>: API version to use (default v3.1)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
+<ul>
+<li><strong>prisma_sdwan_bgp_as_number:</strong>  Type: integer </li>
+<li><strong>security_zone_id:</strong>  Type: string </li>
+<li><strong>tunnel_cidr:</strong>  Type: string </li>
+</ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.prismasase_connections_configs', this);">Show source &equiv;</a></p>
@@ -29503,6 +29690,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v3.1)</span>
 <span class="sd">      **Payload Attributes:** </span>
+<span class="sd">       - **prisma_sdwan_bgp_as_number:**  Type: integer </span>
+<span class="sd">       - **security_zone_id:**  Type: string </span>
+<span class="sd">       - **tunnel_cidr:**  Type: string </span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
