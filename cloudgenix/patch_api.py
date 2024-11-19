@@ -165,15 +165,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.10"):
+    def tenants(self, data, tenant_id=None, api_version="v2.11"):
         """
-        Patch tenant (v2.10)
+        Patch tenant (v2.11)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.10)
+          - **api_version**: API version to use (default v2.11)
 
           **Payload Attributes:** 
 
@@ -191,6 +191,7 @@ class Patch(object):
            - **clients:**  [Type: string] 
            - **csp_tenant_id:**  Type: string 
            - **description:**  Type: string 
+           - **device_id_enabled:**  Type: boolean 
            - **disabled:**  Type: string 
            - **disabled_reason:**  Type: string 
            - **inactive:**  Type: string 

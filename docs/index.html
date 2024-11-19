@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.4.2b1
+**Version:** v6.5.1b1
 
 **Author:** CloudGenix
 
@@ -2676,7 +2676,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v6.4.2b1</p>
+<p><strong>Version:</strong> v6.5.1b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
 <p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
@@ -2725,7 +2725,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v6.4.2b1</span>
+<span class="sd">**Version:** v6.5.1b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
@@ -2879,7 +2879,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;websocket logger is handled slightly differently, so we will have a seperate handle.&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.4.2b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.5.1b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span>
 
@@ -6696,7 +6696,7 @@ filename in event of local file.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;OPTIONS&#39;, &#39;DELETE&#39;, &#39;GET&#39;, &#39;TRACE&#39;, &#39;PUT&#39;, &#39;HEAD&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;HEAD&#39;, &#39;TRACE&#39;, &#39;OPTIONS&#39;, &#39;DELETE&#39;, &#39;GET&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
     </div>
     
 
@@ -8396,15 +8396,15 @@ for use when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">()</span>
     <span class="c1"># Fallback to None if there&#39;s no status_code, for whatever reason.</span>
-    <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="c1"># Make headers case-insensitive.</span>
-    <span class="n">response</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="p">{}))</span>
     <span class="c1"># Set encoding.</span>
     <span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">get_encoding_from_headers</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
     <span class="n">response</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">resp</span>
     <span class="n">response</span><span class="o">.</span><span class="n">reason</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">reason</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span>
     <span class="c1"># Add new cookies from the server.</span>
@@ -8452,7 +8452,7 @@ code, and is only exposed for use when subclassing the
 <span class="sd">        to a CA bundle to use</span>
 <span class="sd">    :param cert: The SSL certificate to verify.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verify</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verify</span><span class="p">:</span>
         <span class="n">cert_loc</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># Allow self-specified cert location.</span>
         <span class="k">if</span> <span class="n">verify</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
@@ -8460,17 +8460,15 @@ code, and is only exposed for use when subclassing the
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cert_loc</span><span class="p">:</span>
             <span class="n">cert_loc</span> <span class="o">=</span> <span class="n">extract_zipped_paths</span><span class="p">(</span><span class="n">DEFAULT_CA_BUNDLE_PATH</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cert_loc</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Could not find a suitable TLS CA certificate bundle, &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;invalid path: </span><span class="si">{</span><span class="n">cert_loc</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s2">&quot;CERT_REQUIRED&quot;</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find a suitable TLS CA certificate bundle, &quot;</span>
+                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s1">&#39;CERT_REQUIRED&#39;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">):</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">ca_certs</span> <span class="o">=</span> <span class="n">cert_loc</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">ca_cert_dir</span> <span class="o">=</span> <span class="n">cert_loc</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s2">&quot;CERT_NONE&quot;</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s1">&#39;CERT_NONE&#39;</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">ca_certs</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">ca_cert_dir</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">cert</span><span class="p">:</span>
@@ -8481,14 +8479,11 @@ code, and is only exposed for use when subclassing the
             <span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span> <span class="o">=</span> <span class="n">cert</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">key_file</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Could not find the TLS certificate file, &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;invalid path: </span><span class="si">{</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find the TLS certificate file, &quot;</span>
+                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">key_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Could not find the TLS key file, invalid path: </span><span class="si">{</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find the TLS key file, &quot;</span>
+                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="p">))</span>
 </pre></div>
 
   </div>
@@ -8554,13 +8549,11 @@ called from user code, and is only exposed for use when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
-        <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">)</span>
+        <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s1">&#39;http&#39;</span><span class="p">)</span>
         <span class="n">proxy_url</span> <span class="o">=</span> <span class="n">parse_url</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">proxy_url</span><span class="o">.</span><span class="n">host</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidProxyURL</span><span class="p">(</span>
-                <span class="s2">&quot;Please check proxy URL. It is malformed &quot;</span>
-                <span class="s2">&quot;and could be missing the host.&quot;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="n">InvalidProxyURL</span><span class="p">(</span><span class="s2">&quot;Please check proxy URL. It is malformed&quot;</span>
+                                  <span class="s2">&quot; and could be missing the host.&quot;</span><span class="p">)</span>
         <span class="n">proxy_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy_manager_for</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
         <span class="n">conn</span> <span class="o">=</span> <span class="n">proxy_manager</span><span class="o">.</span><span class="n">connection_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -8641,7 +8634,8 @@ when subclassing the
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">get_auth_from_url</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">username</span><span class="p">:</span>
-        <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Proxy-Authorization&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_basic_auth_str</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Proxy-Authorization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_basic_auth_str</span><span class="p">(</span><span class="n">username</span><span class="p">,</span>
+                                                         <span class="n">password</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">headers</span>
 </pre></div>
 
@@ -8714,11 +8708,11 @@ when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
     <span class="n">scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span>
-    <span class="n">is_proxied_http_request</span> <span class="o">=</span> <span class="n">proxy</span> <span class="ow">and</span> <span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;https&quot;</span>
+    <span class="n">is_proxied_http_request</span> <span class="o">=</span> <span class="p">(</span><span class="n">proxy</span> <span class="ow">and</span> <span class="n">scheme</span> <span class="o">!=</span> <span class="s1">&#39;https&#39;</span><span class="p">)</span>
     <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
         <span class="n">proxy_scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="n">proxy_scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;socks&quot;</span><span class="p">)</span>
+        <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="n">proxy_scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;socks&#39;</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path_url</span>
     <span class="k">if</span> <span class="n">is_proxied_http_request</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">using_socks_proxy</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">urldefragauth</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
@@ -8755,9 +8749,7 @@ when subclassing the
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.send', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.send" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">send</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span>
-<span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sends PreparedRequest object. Returns Response object.</span>
 <span class="sd">    :param request: The :class:`PreparedRequest &lt;PreparedRequest&gt;` being sent.</span>
 <span class="sd">    :param stream: (optional) Whether to stream the request content.</span>
@@ -8778,43 +8770,74 @@ when subclassing the
         <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cert_verify</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span>
-        <span class="n">request</span><span class="p">,</span>
-        <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
-        <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span>
-        <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">,</span>
-        <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">chunked</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;Content-Length&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
+    <span class="n">chunked</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s1">&#39;Content-Length&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timeout</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">connect</span><span class="p">,</span> <span class="n">read</span> <span class="o">=</span> <span class="n">timeout</span>
             <span class="n">timeout</span> <span class="o">=</span> <span class="n">TimeoutSauce</span><span class="p">(</span><span class="n">connect</span><span class="o">=</span><span class="n">connect</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="n">read</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Invalid timeout </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2">. Pass a (connect, read) timeout tuple, &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;or a single float to set both timeouts to the same value.&quot;</span>
-            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># this may raise a string formatting error.</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Invalid timeout </span><span class="si">{}</span><span class="s2">. Pass a (connect, read) &quot;</span>
+                   <span class="s2">&quot;timeout tuple, or a single float to set &quot;</span>
+                   <span class="s2">&quot;both timeouts to the same value&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timeout</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timeout</span><span class="p">,</span> <span class="n">TimeoutSauce</span><span class="p">):</span>
         <span class="k">pass</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">TimeoutSauce</span><span class="p">(</span><span class="n">connect</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-            <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-            <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
-            <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-            <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
-            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
-            <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
-        <span class="p">)</span>
-    <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+            <span class="p">)</span>
+        <span class="c1"># Send the request.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s1">&#39;proxy_pool&#39;</span><span class="p">):</span>
+                <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">proxy_pool</span>
+            <span class="n">low_conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">_get_conn</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_POOL_TIMEOUT</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">low_conn</span><span class="o">.</span><span class="n">putrequest</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                                    <span class="n">url</span><span class="p">,</span>
+                                    <span class="n">skip_accept_encoding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">low_conn</span><span class="o">.</span><span class="n">putheader</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">low_conn</span><span class="o">.</span><span class="n">endheaders</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">))[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;0</span><span class="se">\r\n\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="c1"># Receive the response from the server</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># For Python 2.7, use buffering of HTTP responses</span>
+                    <span class="n">r</span> <span class="o">=</span> <span class="n">low_conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="n">buffering</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="c1"># For compatibility with Python 3.3+</span>
+                    <span class="n">r</span> <span class="o">=</span> <span class="n">low_conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="n">HTTPResponse</span><span class="o">.</span><span class="n">from_httplib</span><span class="p">(</span>
+                    <span class="n">r</span><span class="p">,</span>
+                    <span class="n">pool</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+                    <span class="n">connection</span><span class="o">=</span><span class="n">low_conn</span><span class="p">,</span>
+                    <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="c1"># If we hit any problems here, clean up the connection.</span>
+                <span class="c1"># Then, reraise so that we can handle the actual exception.</span>
+                <span class="n">low_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">raise</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">MaxRetryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">ConnectTimeoutError</span><span class="p">):</span>
@@ -8839,8 +8862,6 @@ when subclassing the
             <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ReadTimeoutError</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">ReadTimeout</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">_InvalidHeader</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">InvalidHeader</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
