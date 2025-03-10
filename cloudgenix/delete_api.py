@@ -202,7 +202,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates(self, sitetemplate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates API Function
+        delete site profile (v2.0)
 
           **Parameters:**:
 
@@ -230,7 +230,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates_deployments(self, sitetemplate_id, deployment_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function
+        Delete a deployment (v2.0)
 
           **Parameters:**:
 
@@ -260,7 +260,7 @@ class Delete(object):
 
     def demsiteconfigs(self, site_id, demsiteconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Demsiteconfigs API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -290,7 +290,7 @@ class Delete(object):
 
     def deviceidconfigs_snmpdiscoverystartnodes(self, site_id, deviceidconfig_id, snmpdiscoverystartnode_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -322,7 +322,7 @@ class Delete(object):
 
     def deviceidprofiles(self, deviceidprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidprofiles API Function
+        Delete device Id profile configuration (v2.0)
 
           **Parameters:**:
 
@@ -380,7 +380,7 @@ class Delete(object):
 
     def directoryservices(self, directoryservice_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Directoryservices API Function
+        Delete Directory Service (v2.0)
 
           **Parameters:**:
 
@@ -496,7 +496,7 @@ class Delete(object):
 
     def element_deviceidconfigs(self, site_id, element_id, deviceidconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Element_Deviceidconfigs API Function
+        Delete device id element level (source interface) config (v2.0)
 
           **Parameters:**:
 
@@ -682,7 +682,7 @@ class Delete(object):
 
     def elementshells(self, site_id, elementshell_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Elementshells API Function
+        Delete an element shell (v2.1)
 
           **Parameters:**:
 
@@ -712,7 +712,7 @@ class Delete(object):
 
     def elementshells_interfaces(self, site_id, elementshell_id, interface_id, tenant_id=None, api_version="v2.4"):
         """
-        DELETE Elementshells_Interfaces API Function
+        Delete an element shell interface (v2.4)
 
           **Parameters:**:
 
@@ -1960,7 +1960,7 @@ class Delete(object):
 
     def ospfconfigs(self, site_id, element_id, ospfconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ospfconfigs API Function
+        Deletes OSPF config (v2.0)
 
           **Parameters:**:
 
@@ -2080,7 +2080,7 @@ class Delete(object):
 
     def perfmgmtpolicysets(self, perfmgmtpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysets API Function
+        Delete a PERFMGMT Policy Set (v2.0)
 
           **Parameters:**:
 
@@ -2108,7 +2108,7 @@ class Delete(object):
 
     def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, tenant_id=None, api_version="v2.2"):
         """
-        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function
+        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)
 
           **Parameters:**:
 
@@ -2138,7 +2138,7 @@ class Delete(object):
 
     def perfmgmtpolicysetstacks(self, perfmgmtpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysetstacks API Function
+        Delete a PERFMGMT Policy Set Stack (v2.0)
 
           **Parameters:**:
 
@@ -2166,7 +2166,7 @@ class Delete(object):
 
     def perfmgmtthresholdprofiles(self, perfmgmtthresholdprofile_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Perfmgmtthresholdprofiles API Function
+        Delete a Threshold Profile (v2.1)
 
           **Parameters:**:
 
@@ -2486,7 +2486,7 @@ class Delete(object):
 
     def prismasase_connections_configs(self, tenant_id=None, api_version="v3.1"):
         """
-        DELETE Prismasase_Connections_Configs API Function
+        Delete existing SASE connection config (v3.1)
 
           **Parameters:**:
 
@@ -2512,7 +2512,7 @@ class Delete(object):
 
     def probeconfigs(self, probeconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeconfigs API Function
+        Delete a Probe Config (v2.0)
 
           **Parameters:**:
 
@@ -2540,7 +2540,7 @@ class Delete(object):
 
     def probeprofiles(self, probeprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeprofiles API Function
+        Delete a PROBE Profile (v2.0)
 
           **Parameters:**:
 
@@ -3378,7 +3378,7 @@ class Delete(object):
 
     def tacacs_plus_profiles(self, tacacs_plus_profile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tacacs_Plus_Profiles API Function
+        Delete TACACS+ Profile (v2.0)
 
           **Parameters:**:
 
@@ -3406,7 +3406,7 @@ class Delete(object):
 
     def tacacs_plus_servers(self, site_id, element_id, tacacs_plus_server_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tacacs_Plus_Servers API Function
+        Delete TACACS+ Server (v2.0)
 
           **Parameters:**:
 
@@ -3550,7 +3550,7 @@ class Delete(object):
 
     def tenant_operators(self, operator_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete a tenant operator (v2.1)
+        Delete a tenant operator (v2.2)
 
           **Parameters:**:
 
@@ -3662,7 +3662,7 @@ class Delete(object):
 
     def tenants_certificates(self, certificate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tenants_Certificates API Function
+        Delete a certificate of tenant v2.0 (v2.0)
 
           **Parameters:**:
 
@@ -3690,7 +3690,7 @@ class Delete(object):
 
     def useridagents(self, useridagent_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Useridagents API Function
+        Delete User ID Agent (v2.0)
 
           **Parameters:**:
 
@@ -3746,7 +3746,7 @@ class Delete(object):
 
     def vrfcontextprofiles(self, vrfcontextprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontextprofiles API Function
+        Delete VRF Context Profile (v2.0)
 
           **Parameters:**:
 
@@ -3774,7 +3774,7 @@ class Delete(object):
 
     def vrfcontexts(self, vrfcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontexts API Function
+        Delete VRF segment (v2.0)
 
           **Parameters:**:
 
