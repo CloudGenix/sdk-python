@@ -5461,18 +5461,36 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **lifetime:**  Type: integer 
-               - **proposals:**           
+               - **force_encapsulation:**  Type: boolean
+               - **lifesize:**
+                   - **units:**  Type: string
+                   - **value:**  Type: integer
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **mode:**  Type: string
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-           - **ike_group:**           
-               - **lifetime:**  Type: integer 
-               - **proposals:**           
+                   - **prf:**  Type: string
+               - **responder_sase_proposals:**
+                   - **dh_group:**  [Type: string]
+                   - **encryption:**  [Type: string]
+                   - **hash:**  [Type: string]
+           - **ike_group:**
+               - **aggressive:**  Type: boolean
+               - **authentication_multiple:**  Type: integer
+               - **key_exchange:**  Type: string
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **port:**  Type: integer
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-           - **name:**  Type: string 
+                   - **prf:**  Type: string
+               - **reauth:**  Type: boolean
+           - **name:**  Type: string
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
 
@@ -5552,18 +5570,36 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **lifetime:**  Type: integer 
-               - **proposals:**           
+               - **force_encapsulation:**  Type: boolean
+               - **lifesize:**
+                   - **units:**  Type: string
+                   - **value:**  Type: integer
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **mode:**  Type: string
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-           - **ike_group:**           
-               - **lifetime:**  Type: integer 
-               - **proposals:**           
+                   - **prf:**  Type: string
+               - **responder_sase_proposals:**
+                   - **dh_group:**  [Type: string]
+                   - **encryption:**  [Type: string]
+                   - **hash:**  [Type: string]
+           - **ike_group:**
+               - **aggressive:**  Type: boolean
+               - **authentication_multiple:**  Type: integer
+               - **key_exchange:**  Type: string
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **port:**  Type: integer
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-           - **name:**  Type: string 
+                   - **prf:**  Type: string
+               - **reauth:**  Type: boolean
+           - **name:**  Type: string
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
 
@@ -11385,6 +11421,20 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**
+               - **field:**  Type: string
+               - **operator:**  Type: string
+           - **dest_page:**  Type: integer
+           - **getDeleted:**  Type: boolean
+           - **group_by:**  [Type: string]
+           - **last_query_ts:**  Type: integer
+           - **limit:**  Type: integer
+           - **next_query:**  Type: object
+           - **query_params:**  Type: object
+           - **retrieved_fields:**  [Type: string]
+           - **retrieved_fields_mask:**  Type: boolean
+           - **sort_params:**  Type: object
+           - **total_count:**  Type: integer
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -13836,7 +13886,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def spokeclusters_ops(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
+    def spokeclusters_operations(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
         """
         Handle operations on spokecluster. (v2.0)
 
@@ -16013,8 +16063,8 @@ class Post(object):
     ops_interfaces = interface_operations
     """ Backwards-compatibility alias of `ops_interfaces` to `interface_operations`"""
 
-    ops_spokeclusters = spokeclusters_ops
-    """ Backwards-compatibility alias of `ops_spokeclusters` to `spokeclusters_ops`"""
+    ops_spokeclusters = spokeclusters_operations
+    """ Backwards-compatibility alias of `ops_spokeclusters` to `spokeclusters_operations`"""
 
     ops_vfflicenses = vfflicenses_operations
     """ Backwards-compatibility alias of `ops_vfflicenses` to `vfflicenses_operations`"""

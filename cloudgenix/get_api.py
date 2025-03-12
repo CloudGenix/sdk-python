@@ -5478,7 +5478,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def pathprefixes_peersites(self, site_id, peersite_id, tenant_id=None, api_version="v2.0"):
+    def peersite_pathprefixes(self, site_id, peersite_id, tenant_id=None, api_version="v2.0"):
         """
         GET Pathprefixes_Peersites API Function
 
@@ -9220,6 +9220,9 @@ class Get(object):
 
     password_elementusers = elementusers_password
     """ Backwards-compatibility alias of `password_elementusers` to `elementusers_password`"""
+
+    pathprefixes_peersites = peersite_pathprefixes
+    """ Backwards-compatibility alias of `pathprefixes_peersites` to `peersite_pathprefixes`"""
 
     perfmgmtpolicyrules_perfmgmtpolicysets = perfmgmtpolicysets_perfmgmtpolicyrules
     """ Backwards-compatibility alias of `perfmgmtpolicyrules_perfmgmtpolicysets` to `perfmgmtpolicysets_perfmgmtpolicyrules`"""
