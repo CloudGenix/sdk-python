@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.5.1b1
+**Version:** v6.5.2b1
 
 **Author:** CloudGenix
 
@@ -2358,6 +2358,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .cs { color: #808072 } /* Comment.Special */
 .codehilite .gd { color: #A9B7C6 } /* Generic.Deleted */
 .codehilite .ge { color: #808072; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #808072 } /* Generic.EmphStrong */
 .codehilite .gr { color: #808072 } /* Generic.Error */
 .codehilite .gh { color: #88BE05; font-weight: bold } /* Generic.Heading */
 .codehilite .gi { color: #88BE05 } /* Generic.Inserted */
@@ -2390,6 +2391,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nt { color: #F1C829 } /* Name.Tag */
 .codehilite .nv { color: #A9B7C6 } /* Name.Variable */
 .codehilite .ow { color: #A9B7C6 } /* Operator.Word */
+.codehilite .pm { color: #A9B7C6 } /* Punctuation.Marker */
 .codehilite .w { color: #A9B7C6 } /* Text.Whitespace */
 .codehilite .mb { color: #6897BB } /* Literal.Number.Bin */
 .codehilite .mf { color: #6897BB } /* Literal.Number.Float */
@@ -2676,9 +2678,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v6.5.1b1</p>
+<p><strong>Version:</strong> v6.5.2b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
 <p><strong>Location:</strong> <a href="https://github.com/CloudGenix/sdk-python">https://github.com/CloudGenix/sdk-python</a></p>
 <h4>Synopsis</h4>
@@ -2725,11 +2727,11 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v6.5.1b1</span>
+<span class="sd">**Version:** v6.5.2b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2024 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 
@@ -2846,11 +2848,11 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2024 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 <span class="s2">    </span>
-<span class="s2">    Copyright (c) 2017-2024 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
 <span class="s2">    </span>
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2879,7 +2881,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;websocket logger is handled slightly differently, so we will have a seperate handle.&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.5.1b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.5.2b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span>
 
@@ -2904,7 +2906,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.</span>
 
 <span class="sd">    Example: `jd(sdk.get.sites())`</span>
@@ -2920,7 +2922,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">def</span> <span class="nf">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string</span>
 <span class="sd">    instead of directly printing content.</span>
 
@@ -2944,7 +2946,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">def</span> <span class="nf">jd_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
 <span class="sd">    objects for troubleshooting.</span>
 
@@ -2962,7 +2964,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">def</span> <span class="nf">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
 <span class="sd">    objects for troubleshooting. This function returns a string instead of directly printing content.</span>
 
@@ -3030,21 +3032,21 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">class</span> <span class="nc">CloudGenixAPIError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Custom exception for errors when not exiting.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 
 <span class="k">class</span> <span class="nc">TlsHttpAdapter</span><span class="p">(</span><span class="n">HTTPAdapter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A patched Requests HTTP Transport adapter that allows specification of a specific SSL Context.</span>
 
 <span class="sd">    This allows for fine-grained SSL Cipher, Options and CA specification.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ssl_context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Create a default SSL context for requests, if one was not specified. This likely won&#39;t be usable by the SDK,</span>
 <span class="sd">             but is a desirable alternative to nothing.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -3065,7 +3067,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 
 <span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for interacting with the CloudGenix API.</span>
 
 <span class="sd">    Subclass objects are linked to various operations.</span>
@@ -3080,107 +3082,107 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <span class="c1"># Authentication is now stored as cookies, as part of the requests.Session() object.</span>
     <span class="c1"># Authentication can also be stored as an &#39;X-Auth-Token:&#39; header, but cookies take precedence.</span>
     <span class="n">controller</span> <span class="o">=</span> <span class="s1">&#39;https://api.elcapitan.cloudgenix.com&#39;</span>
-    <span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
 
     <span class="n">controller_orig</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Original Controller URL as entered - before Region re-parse&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Original Controller URL as entered - before Region re-parse&quot;&quot;&quot;</span>
 
     <span class="n">controller_region</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Controller Region, if present.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Controller Region, if present.&quot;&quot;&quot;</span>
 
     <span class="n">ignore_region</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;Ignore regions returned by controller, and use explicit controller only.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ignore regions returned by controller, and use explicit controller only.&quot;&quot;&quot;</span>
 
     <span class="n">_debuglevel</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="sd">&quot;&quot;&quot;debug level - set via set_debug()&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;debug level - set via set_debug()&quot;&quot;&quot;</span>
 
     <span class="n">tenant_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Numeric ID of tenant (account) - should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Numeric ID of tenant (account) - should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
     <span class="n">tenant_name</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
     <span class="n">token_session</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
 
     <span class="n">is_esp</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
 
     <span class="n">client_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;If ESP/MSP, is client currently logged in&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If ESP/MSP, is client currently logged in&quot;&quot;&quot;</span>
 
     <span class="n">address_string</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
 
     <span class="n">email</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
 
     <span class="n">operator_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
 
     <span class="n">_user_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
 
     <span class="n">_password</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
 
     <span class="n">roles</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Roles list&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Roles list&quot;&quot;&quot;</span>
 
     <span class="n">verify</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
 
     <span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
     <span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Filename to use for CA verification. Moved to modern python `ssl`, updated to only passing</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Filename to use for CA verification. Moved to modern python `ssl`, updated to only passing</span>
 <span class="sd">    filename in event of local file.&quot;&quot;&quot;</span>
 
     <span class="n">_ca_verify_file_handle</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
 
     <span class="n">_ca_ssl_context</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`ssl` library context for controller connections&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`ssl` library context for controller connections&quot;&quot;&quot;</span>
 
     <span class="n">_rest_connection_adapter</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`requests.adapters.HTTPAdapter` object for use by requests to request content.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`requests.adapters.HTTPAdapter` object for use by requests to request content.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_retry</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_max_retry</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_sleep</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">_rest_call_retry_object</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`urllib3.util.retry.Retry` object for use by SDK to do retries&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`urllib3.util.retry.Retry` object for use by SDK to do retries&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">240</span>
-    <span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="sd">&quot;&quot;&quot;API response cache (Future)&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API response cache (Future)&quot;&quot;&quot;</span>
 
     <span class="n">_parent_namespace</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for namespace for wrapper classes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for namespace for wrapper classes.&quot;&quot;&quot;</span>
 
     <span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for requests.Session() object&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for requests.Session() object&quot;&quot;&quot;</span>
 
     <span class="n">_websocket_headers</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for WebSocket Headers&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for WebSocket Headers&quot;&quot;&quot;</span>
 
     <span class="n">update_check</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="sd">&quot;&quot;&quot;Notify users of available update to SDK&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Notify users of available update to SDK&quot;&quot;&quot;</span>
 
     <span class="n">update_info_url</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="o">=</span><span class="n">controller</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span> <span class="n">update_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create the API constructor object</span>
 
 <span class="sd">          - **controller:** Initial Controller URL String</span>
@@ -3189,10 +3191,10 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># set version and update url from outer scope.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-        <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
-        <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
@@ -3257,30 +3259,30 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="c1"># Bind API method classes to this object</span>
         <span class="n">subclasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subclass_container</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;get&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">post</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;post&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">put</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;put&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;patch&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">delete</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;delete&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;interactive&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ws</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
 
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">notify_for_new_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check for a new version of the SDK on API constructor instantiation. If new version found, print</span>
 <span class="sd">        Notification to STDERR.</span>
 
@@ -3340,7 +3342,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="k">def</span> <span class="nf">ssl_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="p">,</span> <span class="n">ciphers</span><span class="o">=</span><span class="n">DEFAULT_SSL_CIPHERS</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">DEFAULT_SSL_OPTIONS</span><span class="p">,</span>
                    <span class="n">tls_min</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">TLSv1_2</span><span class="p">,</span> <span class="n">tls_max</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">MAXIMUM_SUPPORTED</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify ssl verification settings</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3394,7 +3396,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                           <span class="n">allowed_methods</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_ALLOWED_METHODS</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                           <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify retry parameters for the SDKs rest call object.</span>
 
 <span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
@@ -3457,7 +3459,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">update_session_adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Mount/remount the HTTPS session adapter after changes that affect it.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3497,7 +3499,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current rest retry settings in the `requests.Session()` object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3511,7 +3513,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">max_retries</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">expose_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call to expose the Requests Session object</span>
 
 <span class="sd">        **Returns:** `requests.Session` object</span>
@@ -3519,7 +3521,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
 
     <span class="k">def</span> <span class="nf">add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently add/overwrite headers to session.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3532,7 +3534,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently remove a single header from session</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3547,7 +3549,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current headers in the `requests.Session()` object</span>
 
 <span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
@@ -3555,7 +3557,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">websocket_add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently add/overwrite headers to the `API()` WebSocket object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3569,7 +3571,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">websocket_remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently remove a single header from the `API()` WebSocket object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3585,7 +3587,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">websocket_view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current headers in the `API()` WebSocket object</span>
 
 <span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
@@ -3593,7 +3595,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current cookies in the `requests.Session()` object</span>
 
 <span class="sd">        **Returns:** List of Dicts, one cookie per Dict.</span>
@@ -3605,7 +3607,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">return_list</span>
 
     <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3698,7 +3700,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">_subclass_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call subclasses via function to allow passing parent namespace to subclasses.</span>
 
 <span class="sd">        **Returns:** dict with subclass references.</span>
@@ -3754,7 +3756,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                   <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3910,7 +3912,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
             <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3978,7 +3980,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">ws_args</span><span class="p">,</span> <span class="o">**</span><span class="n">ws_kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">parse_auth_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Break auth_token up into its constituent values.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4005,7 +4007,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">auth_dict</span>
 
     <span class="k">def</span> <span class="nf">update_region_to_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the controller string with dynamic region info.</span>
 <span class="sd">        Controller string should end up as `&lt;name[-env]&gt;.&lt;region&gt;.cloudgenix.com`</span>
 
@@ -4075,7 +4077,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">parse_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return region from a successful login response.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4090,7 +4092,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span> <span class="n">auth_region</span>
 
     <span class="k">def</span> <span class="nf">reparse_login_cookie_after_region_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sometimes, login cookie gets sent with region info instead of api.cloudgenix.com. This function</span>
 <span class="sd">        re-parses the original login request and applies cookies to the session if they now match the new region.</span>
 
@@ -4117,7 +4119,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">rawresponse</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validate a streamed response is JSON. Return a Python dictionary either way.</span>
 
 
@@ -4148,7 +4150,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">url_decode</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        URL Decode function using REGEX</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4161,7 +4163,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Non-recoverable error, write message to STDERR and raise exception</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4186,7 +4188,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Recoverable Warning.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4209,7 +4211,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract list of items from a CloudGenix API Response object.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4243,7 +4245,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
                 <span class="k">return</span> <span class="p">[{}]</span>
 
     <span class="k">def</span> <span class="nf">build_lookup_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_content</span><span class="p">,</span> <span class="n">key_val</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value_val</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">force_nag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nag_cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build key/value lookup dictionary from a list of dictionaries with specified key/value entries.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4302,7 +4304,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return error detail text for printing on error in response content.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4368,7 +4370,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return text for printing on warning in response.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4537,7 +4539,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jd', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.jd" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of a CloudGenix Response body.</span>
 
 <span class="sd">    Example: `jd(sdk.get.sites())`</span>
@@ -4579,7 +4581,7 @@ objects for troubleshooting.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jd_detailed', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.jd_detailed" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jd_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD (JSON Dump) Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
 <span class="sd">    objects for troubleshooting.</span>
 
@@ -4621,7 +4623,7 @@ instead of directly printing content.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jdout', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.jdout" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jdout</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD Output function. Does quick pretty printing of a CloudGenix Response body. This function returns a string</span>
 <span class="sd">    instead of directly printing content.</span>
 
@@ -4671,7 +4673,7 @@ and Response Body.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.jdout_detailed', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.jdout_detailed" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">jdout_detailed</span><span class="p">(</span><span class="n">api_response</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD Output Detailed function. Meant for quick DETAILED pretty-printing of CloudGenix Request and Response</span>
 <span class="sd">    objects for troubleshooting. This function returns a string instead of directly printing content.</span>
 
@@ -4763,7 +4765,7 @@ and Response Body.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API" class="source">
     <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for interacting with the CloudGenix API.</span>
 
 <span class="sd">    Subclass objects are linked to various operations.</span>
@@ -4778,107 +4780,107 @@ and Response Body.</p></div>
     <span class="c1"># Authentication is now stored as cookies, as part of the requests.Session() object.</span>
     <span class="c1"># Authentication can also be stored as an &#39;X-Auth-Token:&#39; header, but cookies take precedence.</span>
     <span class="n">controller</span> <span class="o">=</span> <span class="s1">&#39;https://api.elcapitan.cloudgenix.com&#39;</span>
-    <span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Current active controller URL&quot;&quot;&quot;</span>
 
     <span class="n">controller_orig</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Original Controller URL as entered - before Region re-parse&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Original Controller URL as entered - before Region re-parse&quot;&quot;&quot;</span>
 
     <span class="n">controller_region</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Controller Region, if present.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Controller Region, if present.&quot;&quot;&quot;</span>
 
     <span class="n">ignore_region</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;Ignore regions returned by controller, and use explicit controller only.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ignore regions returned by controller, and use explicit controller only.&quot;&quot;&quot;</span>
 
     <span class="n">_debuglevel</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="sd">&quot;&quot;&quot;debug level - set via set_debug()&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;debug level - set via set_debug()&quot;&quot;&quot;</span>
 
     <span class="n">tenant_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Numeric ID of tenant (account) - should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Numeric ID of tenant (account) - should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
     <span class="n">tenant_name</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of tenant (account), should be set after initial login from `cloudgenix.get_api.Get.profile` data&quot;&quot;&quot;</span>
 
     <span class="n">token_session</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Is this login from a static AUTH_TOKEN (True), or a standard login (False)&quot;&quot;&quot;</span>
 
     <span class="n">is_esp</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Is the current tenant an ESP/MSP?&quot;&quot;&quot;</span>
 
     <span class="n">client_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;If ESP/MSP, is client currently logged in&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If ESP/MSP, is client currently logged in&quot;&quot;&quot;</span>
 
     <span class="n">address_string</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;String representing address, optional - should be pulled from get.profile() data.&quot;&quot;&quot;</span>
 
     <span class="n">email</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Email (username) for session&quot;&quot;&quot;</span>
 
     <span class="n">operator_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator ID of current session.&quot;&quot;&quot;</span>
 
     <span class="n">_user_id</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deprecated (replaced by `operator_id`.) Left for backwards compatibility.&quot;&quot;&quot;</span>
 
     <span class="n">_password</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;user password - only used when argv passed, and cleared quickly&quot;&quot;&quot;</span>
 
     <span class="n">roles</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Roles list&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Roles list&quot;&quot;&quot;</span>
 
     <span class="n">verify</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify SSL certificate.&quot;&quot;&quot;</span>
 
     <span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
     <span class="n">ca_verify_filename</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Filename to use for CA verification. Moved to modern python `ssl`, updated to only passing</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Filename to use for CA verification. Moved to modern python `ssl`, updated to only passing</span>
 <span class="sd">    filename in event of local file.&quot;&quot;&quot;</span>
 
     <span class="n">_ca_verify_file_handle</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;File handle for CA verification&quot;&quot;&quot;</span>
 
     <span class="n">_ca_ssl_context</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`ssl` library context for controller connections&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`ssl` library context for controller connections&quot;&quot;&quot;</span>
 
     <span class="n">_rest_connection_adapter</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`requests.adapters.HTTPAdapter` object for use by requests to request content.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`requests.adapters.HTTPAdapter` object for use by requests to request content.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_retry</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_max_retry</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_sleep</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Please use `cloudgenix.API.modify_rest_retry`.&quot;&quot;&quot;</span>
 
     <span class="n">_rest_call_retry_object</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;`urllib3.util.retry.Retry` object for use by SDK to do retries&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`urllib3.util.retry.Retry` object for use by SDK to do retries&quot;&quot;&quot;</span>
 
     <span class="n">rest_call_timeout</span> <span class="o">=</span> <span class="mi">240</span>
-    <span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Maximum time to wait for any data from REST server.&quot;&quot;&quot;</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="sd">&quot;&quot;&quot;API response cache (Future)&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API response cache (Future)&quot;&quot;&quot;</span>
 
     <span class="n">_parent_namespace</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for namespace for wrapper classes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for namespace for wrapper classes.&quot;&quot;&quot;</span>
 
     <span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for requests.Session() object&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for requests.Session() object&quot;&quot;&quot;</span>
 
     <span class="n">_websocket_headers</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;holder for WebSocket Headers&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;holder for WebSocket Headers&quot;&quot;&quot;</span>
 
     <span class="n">update_check</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="sd">&quot;&quot;&quot;Notify users of available update to SDK&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Notify users of available update to SDK&quot;&quot;&quot;</span>
 
     <span class="n">update_info_url</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="o">=</span><span class="n">controller</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span> <span class="n">update_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create the API constructor object</span>
 
 <span class="sd">          - **controller:** Initial Controller URL String</span>
@@ -4887,10 +4889,10 @@ and Response Body.</p></div>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># set version and update url from outer scope.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-        <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
-        <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
 
         <span class="c1"># try:</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
@@ -4955,30 +4957,30 @@ and Response Body.</p></div>
         <span class="c1"># Bind API method classes to this object</span>
         <span class="n">subclasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subclass_container</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;get&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">post</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;post&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">put</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;put&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;patch&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">delete</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;delete&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;interactive&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ws</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]()</span>
-        <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
 
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">notify_for_new_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check for a new version of the SDK on API constructor instantiation. If new version found, print</span>
 <span class="sd">        Notification to STDERR.</span>
 
@@ -5038,7 +5040,7 @@ and Response Body.</p></div>
 
     <span class="k">def</span> <span class="nf">ssl_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="p">,</span> <span class="n">ciphers</span><span class="o">=</span><span class="n">DEFAULT_SSL_CIPHERS</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">DEFAULT_SSL_OPTIONS</span><span class="p">,</span>
                    <span class="n">tls_min</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">TLSv1_2</span><span class="p">,</span> <span class="n">tls_max</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">MAXIMUM_SUPPORTED</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify ssl verification settings</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5092,7 +5094,7 @@ and Response Body.</p></div>
                           <span class="n">allowed_methods</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_ALLOWED_METHODS</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                           <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify retry parameters for the SDKs rest call object.</span>
 
 <span class="sd">        Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
@@ -5155,7 +5157,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">update_session_adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Mount/remount the HTTPS session adapter after changes that affect it.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5195,7 +5197,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current rest retry settings in the `requests.Session()` object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5209,7 +5211,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get_adapter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">max_retries</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">expose_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call to expose the Requests Session object</span>
 
 <span class="sd">        **Returns:** `requests.Session` object</span>
@@ -5217,7 +5219,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
 
     <span class="k">def</span> <span class="nf">add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently add/overwrite headers to session.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5230,7 +5232,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently remove a single header from session</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5245,7 +5247,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current headers in the `requests.Session()` object</span>
 
 <span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
@@ -5253,7 +5255,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">websocket_add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently add/overwrite headers to the `API()` WebSocket object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5267,7 +5269,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">websocket_remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Permanently remove a single header from the `API()` WebSocket object</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5283,7 +5285,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">websocket_view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current headers in the `API()` WebSocket object</span>
 
 <span class="sd">        **Returns:** Dict, Key header, value is header value.</span>
@@ -5291,7 +5293,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_websocket_headers</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        View current cookies in the `requests.Session()` object</span>
 
 <span class="sd">        **Returns:** List of Dicts, one cookie per Dict.</span>
@@ -5303,7 +5305,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">return_list</span>
 
     <span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the debug level of the API</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5396,7 +5398,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">_subclass_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call subclasses via function to allow passing parent namespace to subclasses.</span>
 
 <span class="sd">        **Returns:** dict with subclass references.</span>
@@ -5452,7 +5454,7 @@ and Response Body.</p></div>
 
     <span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                   <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic REST call worker function</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5608,7 +5610,7 @@ and Response Body.</p></div>
             <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5676,7 +5678,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">ws_args</span><span class="p">,</span> <span class="o">**</span><span class="n">ws_kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">parse_auth_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Break auth_token up into its constituent values.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5703,7 +5705,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">auth_dict</span>
 
     <span class="k">def</span> <span class="nf">update_region_to_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the controller string with dynamic region info.</span>
 <span class="sd">        Controller string should end up as `&lt;name[-env]&gt;.&lt;region&gt;.cloudgenix.com`</span>
 
@@ -5773,7 +5775,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">parse_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return region from a successful login response.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5788,7 +5790,7 @@ and Response Body.</p></div>
         <span class="k">return</span> <span class="n">auth_region</span>
 
     <span class="k">def</span> <span class="nf">reparse_login_cookie_after_region_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sometimes, login cookie gets sent with region info instead of api.cloudgenix.com. This function</span>
 <span class="sd">        re-parses the original login request and applies cookies to the session if they now match the new region.</span>
 
@@ -5815,7 +5817,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_catch_nonjson_streamresponse</span><span class="p">(</span><span class="n">rawresponse</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validate a streamed response is JSON. Return a Python dictionary either way.</span>
 
 
@@ -5846,7 +5848,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">url_decode</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        URL Decode function using REGEX</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5859,7 +5861,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Non-recoverable error, write message to STDERR and raise exception</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5884,7 +5886,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">throw_warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Recoverable Warning.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5907,7 +5909,7 @@ and Response Body.</p></div>
         <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract list of items from a CloudGenix API Response object.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -5941,7 +5943,7 @@ and Response Body.</p></div>
                 <span class="k">return</span> <span class="p">[{}]</span>
 
     <span class="k">def</span> <span class="nf">build_lookup_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_content</span><span class="p">,</span> <span class="n">key_val</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value_val</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">force_nag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nag_cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build key/value lookup dictionary from a list of dictionaries with specified key/value entries.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -6000,7 +6002,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return error detail text for printing on error in response content.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -6066,7 +6068,7 @@ and Response Body.</p></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse API response object, return text for printing on warning in response.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -6417,7 +6419,7 @@ filename in event of local file.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.__init__', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.__init__" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="o">=</span><span class="n">controller</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span> <span class="n">update_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create the API constructor object</span>
 <span class="sd">      - **controller:** Initial Controller URL String</span>
 <span class="sd">      - **ssl_verify:** Should SSL be verified for this system. Can be `file` or BOOL. See `cloudgenix.API.ssl_verify` for more details.</span>
@@ -6425,9 +6427,9 @@ filename in event of local file.</p></div>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># set version and update url from outer scope.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-    <span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Version string for use once Constructor created.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">update_info_url</span> <span class="o">=</span> <span class="n">update_info_url</span>
-    <span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update Info URL for use once Constructor Created.&quot;&quot;&quot;</span>
     <span class="c1"># try:</span>
     <span class="k">if</span> <span class="n">controller</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="p">(</span><span class="n">binary_type</span><span class="p">,</span> <span class="n">text_type</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -6480,19 +6482,19 @@ filename in event of local file.</p></div>
     <span class="c1"># Bind API method classes to this object</span>
     <span class="n">subclasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subclass_container</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;get&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.get_api.Get`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">post</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;post&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.post_api.Post`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">put</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;put&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.put_api.Put`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">patch</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;patch&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.patch_api.Patch`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">delete</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;delete&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.delete_api.Delete`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;interactive&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.interactive.Interactive`&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ws</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]()</span>
-    <span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API object link to `cloudgenix.ws.WebSockets`&quot;&quot;&quot;</span>
     <span class="k">return</span>
 </pre></div>
 
@@ -6520,7 +6522,7 @@ filename in event of local file.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.add_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.add_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Permanently add/overwrite headers to session.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **headers:** dict with header/value</span>
@@ -6558,7 +6560,7 @@ filename in event of local file.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.build_lookup_dict', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.build_lookup_dict" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build_lookup_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_content</span><span class="p">,</span> <span class="n">key_val</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value_val</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">force_nag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nag_cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build key/value lookup dictionary from a list of dictionaries with specified key/value entries.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **list_content:** List of dicts to derive lookup structs from</span>
@@ -6628,7 +6630,7 @@ filename in event of local file.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.expose_session', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.expose_session" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">expose_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Call to expose the Requests Session object</span>
 <span class="sd">    **Returns:** `requests.Session` object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -6662,7 +6664,7 @@ filename in event of local file.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.extract_items', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.extract_items" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">extract_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp_object</span><span class="p">,</span> <span class="n">error_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pass_code_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_key</span><span class="o">=</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract list of items from a CloudGenix API Response object.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
@@ -6696,7 +6698,7 @@ filename in event of local file.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;HEAD&#39;, &#39;TRACE&#39;, &#39;OPTIONS&#39;, &#39;DELETE&#39;, &#39;GET&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;GET&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;HEAD&#39;, &#39;TRACE&#39;, &#39;DELETE&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
     </div>
     
 
@@ -6743,7 +6745,7 @@ the underlying <code>requests.Session</code> object.</p>
                       <span class="n">allowed_methods</span><span class="o">=</span><span class="n">urllib3</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">retry</span><span class="o">.</span><span class="n">Retry</span><span class="o">.</span><span class="n">DEFAULT_ALLOWED_METHODS</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                       <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">0.705883</span><span class="p">,</span> <span class="n">raise_on_redirect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raise_on_status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                       <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Modify retry parameters for the SDKs rest call object.</span>
 <span class="sd">    Parameters are directly from and passed directly to `urllib3.util.retry.Retry`, and get applied directly to</span>
 <span class="sd">    the underlying `requests.Session` object.</span>
@@ -6820,7 +6822,7 @@ Notification to STDERR.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.notify_for_new_version', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.notify_for_new_version" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">notify_for_new_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check for a new version of the SDK on API constructor instantiation. If new version found, print</span>
 <span class="sd">    Notification to STDERR.</span>
 <span class="sd">    On failure of this check, fail silently.</span>
@@ -6892,7 +6894,7 @@ Notification to STDERR.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.parse_auth_token', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.parse_auth_token" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse_auth_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Break auth_token up into its constituent values.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **auth_token:** Auth_token string</span>
@@ -6938,7 +6940,7 @@ Notification to STDERR.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.parse_region', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.parse_region" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return region from a successful login response.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **login_response:** requests.Response from a successful login.</span>
@@ -6976,7 +6978,7 @@ Notification to STDERR.</p>
   <div id="source-cloudgenix.API.pull_content_error" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">pull_content_error</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse API response object, return error detail text for printing on error in response content.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
@@ -7058,7 +7060,7 @@ Notification to STDERR.</p>
   <div id="source-cloudgenix.API.pull_content_warning" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">pull_content_warning</span><span class="p">(</span><span class="n">resp_object</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse API response object, return text for printing on warning in response.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **resp_object:** CloudGenix Extended `requests.Response` object.</span>
@@ -7139,7 +7141,7 @@ Notification to STDERR.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.remove_header', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.remove_header" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Permanently remove a single header from session</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **header:** str of single header to remove</span>
@@ -7176,7 +7178,7 @@ re-parses the original login request and applies cookies to the session if they 
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.reparse_login_cookie_after_region_update', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.reparse_login_cookie_after_region_update" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">reparse_login_cookie_after_region_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sometimes, login cookie gets sent with region info instead of api.cloudgenix.com. This function</span>
 <span class="sd">    re-parses the original login request and applies cookies to the session if they now match the new region.</span>
 <span class="sd">    **Parameters:**</span>
@@ -7239,7 +7241,7 @@ re-parses the original login request and applies cookies to the session if they 
   <div id="source-cloudgenix.API.rest_call" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rest_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">content_json</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raw_msgs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
               <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_sleep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic REST call worker function</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **url:** URL for the REST call</span>
@@ -7394,7 +7396,7 @@ re-parses the original login request and applies cookies to the session if they 
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.set_debug', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.set_debug" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">set_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debuglevel</span><span class="p">,</span> <span class="n">set_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Change the debug level of the API</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **set_format:** Optional. If set and text_type, use input for formatter. Otherwise, default formatter.</span>
@@ -7509,7 +7511,7 @@ re-parses the original login request and applies cookies to the session if they 
   <div id="source-cloudgenix.API.ssl_verify" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ssl_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="p">,</span> <span class="n">ciphers</span><span class="o">=</span><span class="n">DEFAULT_SSL_CIPHERS</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">DEFAULT_SSL_OPTIONS</span><span class="p">,</span>
                <span class="n">tls_min</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">TLSv1_2</span><span class="p">,</span> <span class="n">tls_max</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">MAXIMUM_SUPPORTED</span><span class="p">,</span> <span class="n">update_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Modify ssl verification settings</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **ssl_verify:**</span>
@@ -7582,7 +7584,7 @@ re-parses the original login request and applies cookies to the session if they 
   <div id="source-cloudgenix.API.throw_error" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">throw_error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="n">CloudGenixAPIError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-recoverable error, write message to STDERR and raise exception</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **message:** Message text</span>
@@ -7630,7 +7632,7 @@ re-parses the original login request and applies cookies to the session if they 
   <div id="source-cloudgenix.API.throw_warning" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">throw_warning</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">resp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recoverable Warning.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **message:** Message text</span>
@@ -7675,7 +7677,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.update_region_to_controller', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.update_region_to_controller" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">update_region_to_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Update the controller string with dynamic region info.</span>
 <span class="sd">    Controller string should end up as `&lt;name[-env]&gt;.&lt;region&gt;.cloudgenix.com`</span>
 <span class="sd">    **Parameters:**</span>
@@ -7760,7 +7762,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.update_session_adapter', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.update_session_adapter" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">update_session_adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adapter_url</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Mount/remount the HTTPS session adapter after changes that affect it.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **adapter:** `requests.adapters.HTTPAdapter`, or will use/create default adapter.</span>
@@ -7817,7 +7819,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <div id="source-cloudgenix.API.url_decode" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">url_decode</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    URL Decode function using REGEX</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **url:** URLENCODED text string</span>
@@ -7846,7 +7848,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_cookies', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.view_cookies" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    View current cookies in the `requests.Session()` object</span>
 <span class="sd">    **Returns:** List of Dicts, one cookie per Dict.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -7876,7 +7878,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.view_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    View current headers in the `requests.Session()` object</span>
 <span class="sd">    **Returns:** Dict, Key header, value is header value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -7907,7 +7909,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.view_rest_retry', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.view_rest_retry" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view_rest_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    View current rest retry settings in the `requests.Session()` object</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **url:** URL to use to determine retry methods for. Defaults to &#39;https://&#39;</span>
@@ -7942,7 +7944,7 @@ Controller string should end up as <code>&lt;name[-env]&gt;.&lt;region&gt;.cloud
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.websocket_add_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.websocket_add_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">websocket_add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Permanently add/overwrite headers to the `API()` WebSocket object</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **headers:** dict with header/value</span>
@@ -7981,7 +7983,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.websocket_call', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.websocket_call" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">websocket_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic WebSocket worker function, automatically uses authentication from `cloudgenix.API()` session.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **url:** URL for the REST call</span>
@@ -8058,7 +8060,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.websocket_remove_header', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.websocket_remove_header" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">websocket_remove_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Permanently remove a single header from the `API()` WebSocket object</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **header:** str of single header to remove</span>
@@ -8090,7 +8092,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.API.websocket_view_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.API.websocket_view_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">websocket_view_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    View current headers in the `API()` WebSocket object</span>
 <span class="sd">    **Returns:** Dict, Key header, value is header value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -8214,7 +8216,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.CloudGenixAPIError', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.CloudGenixAPIError" class="source">
     <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CloudGenixAPIError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Custom exception for errors when not exiting.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
@@ -8256,14 +8258,14 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter" class="source">
     <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">TlsHttpAdapter</span><span class="p">(</span><span class="n">HTTPAdapter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A patched Requests HTTP Transport adapter that allows specification of a specific SSL Context.</span>
 
 <span class="sd">    This allows for fine-grained SSL Cipher, Options and CA specification.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ssl_context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Create a default SSL context for requests, if one was not specified. This likely won&#39;t be usable by the SDK,</span>
 <span class="sd">             but is a desirable alternative to nothing.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -8311,7 +8313,7 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
   <div id="source-cloudgenix.TlsHttpAdapter.__init__" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssl_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">ssl_context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a default SSL context for requests, if one was not specified. This likely won&#39;t be usable by the SDK,</span>
 <span class="sd">         but is a desirable alternative to nothing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8349,7 +8351,7 @@ when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.add_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.add_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">add_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Add any headers needed by the connection. As of v2.0 this does</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add any headers needed by the connection. As of v2.0 this does</span>
 <span class="sd">    nothing by default, but is left for overriding by users that subclass</span>
 <span class="sd">    the :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`.</span>
 <span class="sd">    This should not be called from user code, and is only exposed for use</span>
@@ -8386,7 +8388,7 @@ for use when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.build_response', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.build_response" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Builds a :class:`Response &lt;requests.Response&gt;` object from a urllib3</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds a :class:`Response &lt;requests.Response&gt;` object from a urllib3</span>
 <span class="sd">    response. This should not be called from user code, and is only exposed</span>
 <span class="sd">    for use when subclassing the</span>
 <span class="sd">    :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`</span>
@@ -8396,15 +8398,15 @@ for use when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">()</span>
     <span class="c1"># Fallback to None if there&#39;s no status_code, for whatever reason.</span>
-    <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="c1"># Make headers case-insensitive.</span>
-    <span class="n">response</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="p">{}))</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="p">{}))</span>
     <span class="c1"># Set encoding.</span>
     <span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">get_encoding_from_headers</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
     <span class="n">response</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">resp</span>
     <span class="n">response</span><span class="o">.</span><span class="n">reason</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">reason</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">response</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span>
     <span class="c1"># Add new cookies from the server.</span>
@@ -8442,7 +8444,7 @@ code, and is only exposed for use when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.cert_verify', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.cert_verify" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">cert_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Verify a SSL certificate. This method should not be called from user</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify a SSL certificate. This method should not be called from user</span>
 <span class="sd">    code, and is only exposed for use when subclassing the</span>
 <span class="sd">    :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`.</span>
 <span class="sd">    :param conn: The urllib3 connection object associated with the cert.</span>
@@ -8452,7 +8454,7 @@ code, and is only exposed for use when subclassing the
 <span class="sd">        to a CA bundle to use</span>
 <span class="sd">    :param cert: The SSL certificate to verify.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verify</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">verify</span><span class="p">:</span>
         <span class="n">cert_loc</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># Allow self-specified cert location.</span>
         <span class="k">if</span> <span class="n">verify</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
@@ -8460,15 +8462,17 @@ code, and is only exposed for use when subclassing the
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cert_loc</span><span class="p">:</span>
             <span class="n">cert_loc</span> <span class="o">=</span> <span class="n">extract_zipped_paths</span><span class="p">(</span><span class="n">DEFAULT_CA_BUNDLE_PATH</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cert_loc</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find a suitable TLS CA certificate bundle, &quot;</span>
-                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">))</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s1">&#39;CERT_REQUIRED&#39;</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not find a suitable TLS CA certificate bundle, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;invalid path: </span><span class="si">{</span><span class="n">cert_loc</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s2">&quot;CERT_REQUIRED&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cert_loc</span><span class="p">):</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">ca_certs</span> <span class="o">=</span> <span class="n">cert_loc</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">ca_cert_dir</span> <span class="o">=</span> <span class="n">cert_loc</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s1">&#39;CERT_NONE&#39;</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">cert_reqs</span> <span class="o">=</span> <span class="s2">&quot;CERT_NONE&quot;</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">ca_certs</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">ca_cert_dir</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">cert</span><span class="p">:</span>
@@ -8479,11 +8483,14 @@ code, and is only exposed for use when subclassing the
             <span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span> <span class="o">=</span> <span class="n">cert</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">key_file</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find the TLS certificate file, &quot;</span>
-                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not find the TLS certificate file, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;invalid path: </span><span class="si">{</span><span class="n">conn</span><span class="o">.</span><span class="n">cert_file</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">key_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Could not find the TLS key file, &quot;</span>
-                          <span class="s2">&quot;invalid path: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not find the TLS key file, invalid path: </span><span class="si">{</span><span class="n">conn</span><span class="o">.</span><span class="n">key_file</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
 </pre></div>
 
   </div>
@@ -8507,7 +8514,7 @@ which closes any pooled connections.</p></div>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.close', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.close" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Disposes of any internal state.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Disposes of any internal state.</span>
 <span class="sd">    Currently, this closes the PoolManager and any active ProxyManager,</span>
 <span class="sd">    which closes any pooled connections.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -8540,7 +8547,7 @@ called from user code, and is only exposed for use when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.get_connection', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.get_connection" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a urllib3 connection for the given URL. This should not be</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a urllib3 connection for the given URL. This should not be</span>
 <span class="sd">    called from user code, and is only exposed for use when subclassing the</span>
 <span class="sd">    :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`.</span>
 <span class="sd">    :param url: The URL to connect to.</span>
@@ -8549,11 +8556,13 @@ called from user code, and is only exposed for use when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
-        <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s1">&#39;http&#39;</span><span class="p">)</span>
+        <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">)</span>
         <span class="n">proxy_url</span> <span class="o">=</span> <span class="n">parse_url</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">proxy_url</span><span class="o">.</span><span class="n">host</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidProxyURL</span><span class="p">(</span><span class="s2">&quot;Please check proxy URL. It is malformed&quot;</span>
-                                  <span class="s2">&quot; and could be missing the host.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">InvalidProxyURL</span><span class="p">(</span>
+                <span class="s2">&quot;Please check proxy URL. It is malformed &quot;</span>
+                <span class="s2">&quot;and could be missing the host.&quot;</span>
+            <span class="p">)</span>
         <span class="n">proxy_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy_manager_for</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
         <span class="n">conn</span> <span class="o">=</span> <span class="n">proxy_manager</span><span class="o">.</span><span class="n">connection_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -8621,7 +8630,7 @@ when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.proxy_headers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.proxy_headers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">proxy_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proxy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a dictionary of the headers to add to any request sent</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a dictionary of the headers to add to any request sent</span>
 <span class="sd">    through a proxy. This works with urllib3 magic to ensure that they are</span>
 <span class="sd">    correctly sent to the proxy, rather than in a tunnelled request if</span>
 <span class="sd">    CONNECT is being used.</span>
@@ -8634,8 +8643,7 @@ when subclassing the
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">get_auth_from_url</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">username</span><span class="p">:</span>
-        <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Proxy-Authorization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_basic_auth_str</span><span class="p">(</span><span class="n">username</span><span class="p">,</span>
-                                                         <span class="n">password</span><span class="p">)</span>
+        <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Proxy-Authorization&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_basic_auth_str</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">headers</span>
 </pre></div>
 
@@ -8696,7 +8704,7 @@ when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.request_url', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.request_url" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">proxies</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Obtain the url to use when making the final request.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Obtain the url to use when making the final request.</span>
 <span class="sd">    If the message is being sent through a HTTP proxy, the full URL has to</span>
 <span class="sd">    be used. Otherwise, we should only use the path portion of the URL.</span>
 <span class="sd">    This should not be called from user code, and is only exposed for use</span>
@@ -8708,11 +8716,11 @@ when subclassing the
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
     <span class="n">scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span>
-    <span class="n">is_proxied_http_request</span> <span class="o">=</span> <span class="p">(</span><span class="n">proxy</span> <span class="ow">and</span> <span class="n">scheme</span> <span class="o">!=</span> <span class="s1">&#39;https&#39;</span><span class="p">)</span>
+    <span class="n">is_proxied_http_request</span> <span class="o">=</span> <span class="n">proxy</span> <span class="ow">and</span> <span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;https&quot;</span>
     <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
         <span class="n">proxy_scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="n">proxy_scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;socks&#39;</span><span class="p">)</span>
+        <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="n">proxy_scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;socks&quot;</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path_url</span>
     <span class="k">if</span> <span class="n">is_proxied_http_request</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">using_socks_proxy</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">urldefragauth</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
@@ -8749,8 +8757,10 @@ when subclassing the
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.send', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.send" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sends PreparedRequest object. Returns Response object.</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">send</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sends PreparedRequest object. Returns Response object.</span>
 <span class="sd">    :param request: The :class:`PreparedRequest &lt;PreparedRequest&gt;` being sent.</span>
 <span class="sd">    :param stream: (optional) Whether to stream the request content.</span>
 <span class="sd">    :param timeout: (optional) How long to wait for the server to send</span>
@@ -8770,74 +8780,43 @@ when subclassing the
         <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cert_verify</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
-    <span class="n">chunked</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s1">&#39;Content-Length&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_headers</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">,</span>
+        <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+        <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">,</span>
+        <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">chunked</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;Content-Length&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timeout</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">connect</span><span class="p">,</span> <span class="n">read</span> <span class="o">=</span> <span class="n">timeout</span>
             <span class="n">timeout</span> <span class="o">=</span> <span class="n">TimeoutSauce</span><span class="p">(</span><span class="n">connect</span><span class="o">=</span><span class="n">connect</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="n">read</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="c1"># this may raise a string formatting error.</span>
-            <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Invalid timeout </span><span class="si">{}</span><span class="s2">. Pass a (connect, read) &quot;</span>
-                   <span class="s2">&quot;timeout tuple, or a single float to set &quot;</span>
-                   <span class="s2">&quot;both timeouts to the same value&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timeout</span><span class="p">))</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid timeout </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2">. Pass a (connect, read) timeout tuple, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;or a single float to set both timeouts to the same value.&quot;</span>
+            <span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timeout</span><span class="p">,</span> <span class="n">TimeoutSauce</span><span class="p">):</span>
         <span class="k">pass</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">TimeoutSauce</span><span class="p">(</span><span class="n">connect</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
-            <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-                <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-                <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-                <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
-                <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-                <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
-                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
-            <span class="p">)</span>
-        <span class="c1"># Send the request.</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s1">&#39;proxy_pool&#39;</span><span class="p">):</span>
-                <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">proxy_pool</span>
-            <span class="n">low_conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">_get_conn</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_POOL_TIMEOUT</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">low_conn</span><span class="o">.</span><span class="n">putrequest</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-                                    <span class="n">url</span><span class="p">,</span>
-                                    <span class="n">skip_accept_encoding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">low_conn</span><span class="o">.</span><span class="n">putheader</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-                <span class="n">low_conn</span><span class="o">.</span><span class="n">endheaders</span><span class="p">()</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
-                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">))[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-                    <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                <span class="n">low_conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;0</span><span class="se">\r\n\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                <span class="c1"># Receive the response from the server</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="c1"># For Python 2.7, use buffering of HTTP responses</span>
-                    <span class="n">r</span> <span class="o">=</span> <span class="n">low_conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="n">buffering</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                    <span class="c1"># For compatibility with Python 3.3+</span>
-                    <span class="n">r</span> <span class="o">=</span> <span class="n">low_conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
-                <span class="n">resp</span> <span class="o">=</span> <span class="n">HTTPResponse</span><span class="o">.</span><span class="n">from_httplib</span><span class="p">(</span>
-                    <span class="n">r</span><span class="p">,</span>
-                    <span class="n">pool</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
-                    <span class="n">connection</span><span class="o">=</span><span class="n">low_conn</span><span class="p">,</span>
-                    <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                    <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span>
-                <span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="c1"># If we hit any problems here, clean up the connection.</span>
-                <span class="c1"># Then, reraise so that we can handle the actual exception.</span>
-                <span class="n">low_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-                <span class="k">raise</span>
-    <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+            <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">MaxRetryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">ConnectTimeoutError</span><span class="p">):</span>
@@ -8862,6 +8841,8 @@ when subclassing the
             <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ReadTimeoutError</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">ReadTimeout</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">_InvalidHeader</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidHeader</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
@@ -8882,7 +8863,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8892,7 +8873,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - DELETE</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8902,7 +8883,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - GET</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8912,7 +8893,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python Interactive SDK Helper functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8922,7 +8903,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - PATCH</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8932,7 +8913,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - POST</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8942,7 +8923,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - PUT</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8952,7 +8933,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - WebSocket Functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>

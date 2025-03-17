@@ -4,7 +4,7 @@ CloudGenix Python SDK - POST
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2024 CloudGenix, Inc
+**Copyright:** (c) 2017-2025 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2024 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2024 CloudGenix, Inc
+    Copyright (c) 2017-2025 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -70,6 +70,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -244,6 +245,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -266,6 +268,36 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/apnprofiles/query".format(api_version,
                                                                             tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def appacceleration_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Appacceleration_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/appacceleration/query".format(api_version,
+                                                                                      tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -303,6 +335,7 @@ class Post(object):
            - **parent_id:**  Type: string 
            - **path_affinity:**  Type: string 
            - **session_timeout:**  Type: integer 
+           - **supported_base_software_version:**  Type: string 
            - **supported_engines:**  Type: string 
            - **system_app_overridden:**  Type: boolean 
            - **tags:**  [Type: string] 
@@ -423,6 +456,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -665,6 +699,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -842,6 +877,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -886,6 +922,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -963,6 +1000,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -989,6 +1027,36 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def cellular_module_revoked_images(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Cellular_Module_Revoked_Images API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/cellular_module_revoked_images".format(api_version,
+                                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def cellular_modules_query(self, data, tenant_id=None, api_version="v2.0"):
         """
         Queries db for limit number of cellular modules that match query params. (v2.0)
@@ -1007,6 +1075,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -1029,6 +1098,36 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/cellular_modules/query".format(api_version,
                                                                                  tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def cellular_modules_status_query(self, data, tenant_id=None, api_version="v2.1"):
+        """
+        POST Cellular_Modules_Status_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.1)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/cellular_modules/status/query".format(api_version,
+                                                                                        tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -1187,6 +1286,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -1520,6 +1620,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -1640,6 +1741,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -1982,6 +2084,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2026,6 +2129,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2237,6 +2341,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2314,6 +2419,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2430,6 +2536,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2628,6 +2735,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2674,6 +2782,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2750,6 +2859,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -2835,6 +2945,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -3252,9 +3363,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def elementshells_interfaces(self, site_id, elementshell_id, data, tenant_id=None, api_version="v2.3"):
+    def elementshells_interfaces(self, site_id, elementshell_id, data, tenant_id=None, api_version="v2.4"):
         """
-        Create a Interface (v2.3)
+        Create a Interface (v2.4)
 
           **Parameters:**:
 
@@ -3262,7 +3373,7 @@ class Post(object):
           - **elementshell_id**: Element Shell ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
           **Payload Attributes:** 
 
@@ -3324,6 +3435,7 @@ class Post(object):
                    - **tenant_id:**  Type: string 
                - **port_name:**  Type: string 
                - **speed:**  Type: integer 
+           - **fec_mode:**  Type: string 
            - **interface_profile_id:**  Type: string 
            - **ipfixcollectorcontext_id:**  Type: string 
            - **ipfixfiltercontext_id:**  Type: string 
@@ -3359,6 +3471,8 @@ class Post(object):
                    - **enable_prefix_distribution:**  Type: boolean 
                - **type:**  Type: string 
            - **lldp_enabled:**  Type: boolean 
+           - **loopback_config:**           
+               - **binding_interface_id:**  Type: string 
            - **mac_address:**  Type: string 
            - **mtu:**  Type: integer 
            - **multicast_config:**           
@@ -3523,6 +3637,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -3755,6 +3870,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -3799,6 +3915,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -3843,6 +3960,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4045,6 +4163,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4214,6 +4333,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4276,9 +4396,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def interfaces(self, site_id, element_id, data, tenant_id=None, api_version="v4.20"):
+    def interfaces(self, site_id, element_id, data, tenant_id=None, api_version="v4.21"):
         """
-        Create a Interface (v4.20)
+        Create a Interface (v4.21)
 
           **Parameters:**:
 
@@ -4286,7 +4406,7 @@ class Post(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.20)
+          - **api_version**: API version to use (default v4.21)
 
           **Payload Attributes:** 
 
@@ -4348,6 +4468,7 @@ class Post(object):
                    - **tenant_id:**  Type: string 
                - **port_name:**  Type: string 
                - **speed:**  Type: integer 
+           - **fec_mode:**  Type: string 
            - **interface_profile_id:**  Type: string 
            - **ipfixcollectorcontext_id:**  Type: string 
            - **ipfixfiltercontext_id:**  Type: string 
@@ -4383,6 +4504,8 @@ class Post(object):
                    - **enable_prefix_distribution:**  Type: boolean 
                - **type:**  Type: string 
            - **lldp_enabled:**  Type: boolean 
+           - **loopback_config:**           
+               - **binding_interface_id:**  Type: string 
            - **mac_address:**  Type: string 
            - **mtu:**  Type: integer 
            - **multicast_config:**           
@@ -4559,15 +4682,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def interfaces_query(self, data, tenant_id=None, api_version="v4.20"):
+    def interfaces_query(self, data, tenant_id=None, api_version="v4.21"):
         """
-        Queries db for limit number of interfaces that match query params. (v4.20)
+        Queries db for limit number of interfaces that match query params. (v4.21)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.20)
+          - **api_version**: API version to use (default v4.21)
 
           **Payload Attributes:** 
 
@@ -4577,6 +4700,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4807,6 +4931,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4883,6 +5008,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -4959,6 +5085,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5067,6 +5194,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5171,6 +5299,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5332,36 +5461,36 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **force_encapsulation:**  Type: boolean 
-               - **lifesize:**           
-                   - **units:**  Type: string 
-                   - **value:**  Type: integer 
-               - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **mode:**  Type: string 
-               - **proposals:**           
+               - **force_encapsulation:**  Type: boolean
+               - **lifesize:**
+                   - **units:**  Type: string
+                   - **value:**  Type: integer
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **mode:**  Type: string
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **responder_sase_proposals:**           
-                   - **dh_group:**  [Type: string] 
-                   - **encryption:**  [Type: string] 
-                   - **hash:**  [Type: string] 
-           - **ike_group:**           
-               - **aggressive:**  Type: boolean 
-               - **authentication_multiple:**  Type: integer 
-               - **key_exchange:**  Type: string 
-               - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **port:**  Type: integer 
-               - **proposals:**           
+                   - **prf:**  Type: string
+               - **responder_sase_proposals:**
+                   - **dh_group:**  [Type: string]
+                   - **encryption:**  [Type: string]
+                   - **hash:**  [Type: string]
+           - **ike_group:**
+               - **aggressive:**  Type: boolean
+               - **authentication_multiple:**  Type: integer
+               - **key_exchange:**  Type: string
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **port:**  Type: integer
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **reauth:**  Type: boolean 
-           - **name:**  Type: string 
+                   - **prf:**  Type: string
+               - **reauth:**  Type: boolean
+           - **name:**  Type: string
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
 
@@ -5441,36 +5570,36 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **force_encapsulation:**  Type: boolean 
-               - **lifesize:**           
-                   - **units:**  Type: string 
-                   - **value:**  Type: integer 
-               - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **mode:**  Type: string 
-               - **proposals:**           
+               - **force_encapsulation:**  Type: boolean
+               - **lifesize:**
+                   - **units:**  Type: string
+                   - **value:**  Type: integer
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **mode:**  Type: string
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **responder_sase_proposals:**           
-                   - **dh_group:**  [Type: string] 
-                   - **encryption:**  [Type: string] 
-                   - **hash:**  [Type: string] 
-           - **ike_group:**           
-               - **aggressive:**  Type: boolean 
-               - **authentication_multiple:**  Type: integer 
-               - **key_exchange:**  Type: string 
-               - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **port:**  Type: integer 
-               - **proposals:**           
+                   - **prf:**  Type: string
+               - **responder_sase_proposals:**
+                   - **dh_group:**  [Type: string]
+                   - **encryption:**  [Type: string]
+                   - **hash:**  [Type: string]
+           - **ike_group:**
+               - **aggressive:**  Type: boolean
+               - **authentication_multiple:**  Type: integer
+               - **key_exchange:**  Type: string
+               - **lifetime:**  Type: integer
+               - **lifetime_units:**  Type: string
+               - **port:**  Type: integer
+               - **proposals:**
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **reauth:**  Type: boolean 
-           - **name:**  Type: string 
+                   - **prf:**  Type: string
+               - **reauth:**  Type: boolean
+           - **name:**  Type: string
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
 
@@ -5585,6 +5714,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5661,6 +5791,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5727,6 +5858,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5803,6 +5935,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -5945,6 +6078,36 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/agg_bw_stats".format(api_version,
                                                                                tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_aggregatebandwidth_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Aggregatebandwidth_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aggregatebandwidth/query".format(api_version,
+                                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -6365,6 +6528,66 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/application/users".format(api_version,
                                                                                     tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_applicationstats_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Applicationstats_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/applicationstats/query".format(api_version,
+                                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def monitor_applicationsummary_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Applicationsummary_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/applicationsummary/query".format(api_version,
+                                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -6939,6 +7162,36 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def monitor_topn_traffic_vol_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        POST Monitor_Topn_Traffic_Vol_Query API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.cdl_url
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/topn_traffic_vol/query".format(api_version,
+                                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def mstp_instances(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
         Create a MSTP Instance (v2.0)
@@ -6996,6 +7249,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7040,6 +7294,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7084,6 +7339,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7164,6 +7420,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7249,6 +7506,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7294,6 +7552,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7374,6 +7633,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7418,6 +7678,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7496,6 +7757,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -7775,6 +8037,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -8007,6 +8270,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -8235,6 +8499,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -8279,6 +8544,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -8669,6 +8935,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -8861,6 +9128,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -9050,6 +9318,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -9129,6 +9398,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -9424,6 +9694,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -9592,6 +9863,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10146,6 +10418,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10285,6 +10558,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10495,6 +10769,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10539,6 +10814,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10632,6 +10908,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10731,6 +11008,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10811,6 +11089,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -10917,7 +11196,7 @@ class Post(object):
 
     def prismasase_connections(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Prismasase_Connections API Function
+        Create a new SASE connection (v2.1)
 
           **Parameters:**:
 
@@ -10928,46 +11207,46 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **enabled_wan_interface_ids:**  [Type: string]
-           - **ipsec_tunnel_configs:**
-               - **anti_replay:**  Type: boolean
-               - **copy_tos:**  Type: boolean
-               - **enable_gre_encapsulation:**  Type: boolean
-               - **ike_key_exchange:**  Type: string
-               - **prismaaccess_ike_crypto_profile_id:**  Type: string
-               - **prismaaccess_ipsec_profile_id:**  Type: string
-               - **tunnel_monitoring:**  Type: boolean
-           - **is_active:**  Type: boolean
-           - **is_enabled:**  Type: boolean
-           - **prismaaccess_edge_location:**  [Type: string]
-           - **prismaaccess_qos_cir_mbps:**  Type: integer
-           - **prismaaccess_qos_profile_id:**  Type: string
-           - **remote_network_groups:**
-               - **ipsec_tunnels:**
-                   - **authentication:**
-                       - **branch_ike_identification:**  Type: string
-                       - **prismaaccess_ike_identification:**  Type: string
-                       - **psk:**  Type: string
-                   - **name:**  Type: string
-                   - **routing:**
-                       - **branch_as_number:**  Type: string
-                       - **branch_ip_address:**  Type: string
-                       - **prismaaccess_ip_address:**  Type: string
-                   - **routing_configs:**
-                       - **advertise_default_route:**  Type: boolean
-                       - **bgp_secret:**  Type: string
-                       - **export_routes:**  Type: boolean
-                       - **summarize_mobile_routes_before_advertise:**  Type: boolean
-                   - **wan_interface_id:**  Type: string
-               - **name:**  Type: string
-               - **spn_name:**  [Type: string]
-           - **routing_configs:**
-               - **advertise_default_route:**  Type: boolean
-               - **bgp_secret:**  Type: string
-               - **export_routes:**  Type: boolean
-               - **summarize_mobile_routes_before_advertise:**  Type: boolean
-           - **site_id:**  Type: string
-           - **tenant_id:**  Type: string
+           - **enabled_wan_interface_ids:**  [Type: string] 
+           - **ipsec_tunnel_configs:**           
+               - **anti_replay:**  Type: boolean 
+               - **copy_tos:**  Type: boolean 
+               - **enable_gre_encapsulation:**  Type: boolean 
+               - **ike_key_exchange:**  Type: string 
+               - **prismaaccess_ike_crypto_profile_id:**  Type: string 
+               - **prismaaccess_ipsec_profile_id:**  Type: string 
+               - **tunnel_monitoring:**  Type: boolean 
+           - **is_active:**  Type: boolean 
+           - **is_enabled:**  Type: boolean 
+           - **prismaaccess_edge_location:**  [Type: string] 
+           - **prismaaccess_qos_cir_mbps:**  Type: integer 
+           - **prismaaccess_qos_profile_id:**  Type: string 
+           - **remote_network_groups:**           
+               - **ipsec_tunnels:**           
+                   - **authentication:**           
+                       - **branch_ike_identification:**  Type: string 
+                       - **prismaaccess_ike_identification:**  Type: string 
+                       - **psk:**  Type: string 
+                   - **name:**  Type: string 
+                   - **routing:**           
+                       - **branch_as_number:**  Type: string 
+                       - **branch_ip_address:**  Type: string 
+                       - **prismaaccess_ip_address:**  Type: string 
+                   - **routing_configs:**           
+                       - **advertise_default_route:**  Type: boolean 
+                       - **bgp_secret:**  Type: string 
+                       - **export_routes:**  Type: boolean 
+                       - **summarize_mobile_routes_before_advertise:**  Type: boolean 
+                   - **wan_interface_id:**  Type: string 
+               - **name:**  Type: string 
+               - **spn_name:**  [Type: string] 
+           - **routing_configs:**           
+               - **advertise_default_route:**  Type: boolean 
+               - **bgp_secret:**  Type: string 
+               - **export_routes:**  Type: boolean 
+               - **summarize_mobile_routes_before_advertise:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10989,7 +11268,7 @@ class Post(object):
 
     def prismasase_connections_configs(self, data, tenant_id=None, api_version="v3.1"):
         """
-        POST Prismasase_Connections_Configs API Function
+        Create a new SASE connection config (v3.1)
 
           **Parameters:**:
 
@@ -10999,25 +11278,29 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **deployment_mode:**  Type: string
-           - **ipsec_profile:**
-               - **dpd_delay:**  Type: integer
-               - **dpd_enable:**  Type: boolean
-               - **esp_group:**
-                   - **lifetime:**  Type: integer
-                   - **proposals:**
-                       - **dh_groups:**  Type: string
-                       - **encryption:**  Type: string
-                       - **hash:**  Type: string
-               - **ike_group:**
-                   - **lifetime:**  Type: integer
-                   - **proposals:**
-                       - **dh_groups:**  Type: string
-                       - **encryption:**  Type: string
-                       - **hash:**  Type: string
-           - **prisma_sdwan_bgp_as_number:**  Type: string
-           - **security_zone_id:**  Type: string
-           - **tunnel_cidr:**  Type: string
+           - **deployment_mode:**  Type: string 
+           - **extended_tunnel_cidrs:**           
+               - **extended_tunnel_cidr:**  Type: string 
+               - **priority:**  Type: integer 
+           - **ipsec_profile:**           
+               - **dpd_delay:**  Type: integer 
+               - **dpd_enable:**  Type: boolean 
+               - **esp_group:**           
+                   - **lifetime:**  Type: integer 
+                   - **proposals:**           
+                       - **dh_groups:**  Type: string 
+                       - **encryption:**  Type: string 
+                       - **hash:**  Type: string 
+               - **ike_group:**           
+                   - **lifetime:**  Type: integer 
+                   - **proposals:**           
+                       - **dh_groups:**  Type: string 
+                       - **encryption:**  Type: string 
+                       - **hash:**  Type: string 
+           - **panorama_sub_tenant_name:**  Type: string 
+           - **prisma_sdwan_bgp_as_number:**  Type: string 
+           - **security_zone_id:**  Type: string 
+           - **tunnel_cidr:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11038,7 +11321,7 @@ class Post(object):
 
     def prismasase_connections_status_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Prismasase_Connections_Status_Query API Function
+        Get a list of SASE connection statuses (v2.0)
 
           **Parameters:**:
 
@@ -11048,6 +11331,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11478,6 +11776,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -11568,6 +11867,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -11661,6 +11961,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -11770,6 +12071,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -11816,6 +12118,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -11968,6 +12271,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12046,6 +12350,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12190,6 +12495,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12216,15 +12522,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def serviceendpoints(self, data, tenant_id=None, api_version="v3.0"):
+    def serviceendpoints(self, data, tenant_id=None, api_version="v3.1"):
         """
-        Create a new Service Endpoint (v3.0)
+        Create a new Service Endpoint (v3.1)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
           **Payload Attributes:** 
 
@@ -12250,6 +12556,7 @@ class Post(object):
                    - **failure_count:**  Type: integer 
                    - **interval:**  Type: integer 
                    - **ip_addresses:**  [Type: string] 
+               - **use_tunnel_for_url_dns_resolution:**  Type: boolean 
            - **location:**           
                - **description:**  Type: string 
                - **latitude:**  Type: number 
@@ -12281,15 +12588,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def serviceendpoints_query(self, data, tenant_id=None, api_version="v3.0"):
+    def serviceendpoints_query(self, data, tenant_id=None, api_version="v3.1"):
         """
-        Queries db for limit number of service bindings that match query params. (v3.0)
+        Queries db for limit number of service bindings that match query params. (v3.1)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
           **Payload Attributes:** 
 
@@ -12399,6 +12706,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12669,6 +12977,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12750,6 +13059,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -12970,6 +13280,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13049,6 +13360,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13279,6 +13591,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13374,6 +13687,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13418,6 +13732,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13462,6 +13777,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13506,6 +13822,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13622,6 +13939,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -13744,6 +14062,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14068,6 +14387,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14366,6 +14686,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14425,15 +14746,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def tenant_waninterfaces_query(self, data, tenant_id=None, api_version="v2.9"):
+    def tenant_waninterfaces_query(self, data, tenant_id=None, api_version="v2.10"):
         """
-        Query db for Site WAN interfaces that match query parameters (v2.9)
+        Query db for Site WAN interfaces that match query parameters (v2.10)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.9)
+          - **api_version**: API version to use (default v2.10)
 
           **Payload Attributes:** 
 
@@ -14443,6 +14764,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14577,6 +14899,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14669,6 +14992,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14754,6 +15078,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14872,6 +15197,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14916,6 +15242,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -14993,6 +15320,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -15078,6 +15406,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -15155,6 +15484,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -15181,15 +15511,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def waninterfacelabels_query(self, data, tenant_id=None, api_version="v2.5"):
+    def waninterfacelabels_query(self, data, tenant_id=None, api_version="v2.6"):
         """
-        Query db for site WAN interfaces that match query parameters (v2.5)
+        Query db for site WAN interfaces that match query parameters (v2.6)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.5)
+          - **api_version**: API version to use (default v2.6)
 
           **Payload Attributes:** 
 
@@ -15208,8 +15538,11 @@ class Post(object):
            - **lqm_enabled:**  Type: boolean 
            - **name:**  Type: string 
            - **network_id:**  Type: string 
+           - **site_id:**  Type: string 
            - **tags:**  [Type: string] 
            - **type:**  Type: string 
+           - **use_for_application_reachability_probes:**  Type: boolean 
+           - **use_for_controller_connections:**  Type: boolean 
            - **vpnlink_configuration:**           
                - **keep_alive_failure_count:**  Type: integer 
                - **keep_alive_interval:**  Type: integer 
@@ -15231,19 +15564,20 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def waninterfaces(self, site_id, data, tenant_id=None, api_version="v2.9"):
+    def waninterfaces(self, site_id, data, tenant_id=None, api_version="v2.10"):
         """
-        Create a new Site WAN interface (v2.9)
+        Create a new Site WAN interface (v2.10)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.9)
+          - **api_version**: API version to use (default v2.10)
 
           **Payload Attributes:** 
 
+           - **app_acceleration_enabled:**  Type: boolean 
            - **bfd_mode:**  Type: string 
            - **bw_config_mode:**  Type: string 
            - **bwc_enabled:**  Type: boolean 
@@ -15339,6 +15673,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -15419,6 +15754,7 @@ class Post(object):
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
            - **last_query_ts:**  Type: integer 
            - **limit:**  Type: integer 
            - **next_query:**  Type: object 
@@ -15769,14 +16105,26 @@ class Post(object):
     query_activeuserips = activeuserips_query
     """ Backwards-compatibility alias of `query_activeuserips` to `activeuserips_query`"""
 
+    query_aggregatebandwidth_monitor = monitor_aggregatebandwidth_query
+    """ Backwards-compatibility alias of `query_aggregatebandwidth_monitor` to `monitor_aggregatebandwidth_query`"""
+
     query_anynetlinks = anynetlinks_query
     """ Backwards-compatibility alias of `query_anynetlinks` to `anynetlinks_query`"""
 
     query_apnprofiles = apnprofiles_query
     """ Backwards-compatibility alias of `query_apnprofiles` to `apnprofiles_query`"""
 
+    query_appacceleration = appacceleration_query
+    """ Backwards-compatibility alias of `query_appacceleration` to `appacceleration_query`"""
+
     query_appdefs = appdefs_query
     """ Backwards-compatibility alias of `query_appdefs` to `appdefs_query`"""
+
+    query_applicationstats_monitor = monitor_applicationstats_query
+    """ Backwards-compatibility alias of `query_applicationstats_monitor` to `monitor_applicationstats_query`"""
+
+    query_applicationsummary_monitor = monitor_applicationsummary_query
+    """ Backwards-compatibility alias of `query_applicationsummary_monitor` to `monitor_applicationsummary_query`"""
 
     query_auditlog = auditlog_query
     """ Backwards-compatibility alias of `query_auditlog` to `auditlog_query`"""
@@ -16156,6 +16504,9 @@ class Post(object):
     query_status_cellular_module_firmware = cellular_module_firmware_status_query
     """ Backwards-compatibility alias of `query_status_cellular_module_firmware` to `cellular_module_firmware_status_query`"""
 
+    query_status_cellular_modules = cellular_modules_status_query
+    """ Backwards-compatibility alias of `query_status_cellular_modules` to `cellular_modules_status_query`"""
+
     query_status_interfaces = interfaces_status_query
     """ Backwards-compatibility alias of `query_status_interfaces` to `interfaces_status_query`"""
 
@@ -16173,6 +16524,9 @@ class Post(object):
 
     query_toolkitsessions = toolkitsessions_query
     """ Backwards-compatibility alias of `query_toolkitsessions` to `toolkitsessions_query`"""
+
+    query_topn_traffic_vol_monitor = monitor_topn_traffic_vol_query
+    """ Backwards-compatibility alias of `query_topn_traffic_vol_monitor` to `monitor_topn_traffic_vol_query`"""
 
     query_upgrade_status = upgrade_status_query
     """ Backwards-compatibility alias of `query_upgrade_status` to `upgrade_status_query`"""

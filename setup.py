@@ -4,7 +4,7 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='cloudgenix',
-      version='6.5.1b1',
+      version='6.5.2b1',
       description='Python3 SDK for the CloudGenix AppFabric',
       long_description=long_description,
       long_description_content_type='text/markdown',

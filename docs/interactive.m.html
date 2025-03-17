@@ -2356,6 +2356,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .cs { color: #808072 } /* Comment.Special */
 .codehilite .gd { color: #A9B7C6 } /* Generic.Deleted */
 .codehilite .ge { color: #808072; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #808072 } /* Generic.EmphStrong */
 .codehilite .gr { color: #808072 } /* Generic.Error */
 .codehilite .gh { color: #88BE05; font-weight: bold } /* Generic.Heading */
 .codehilite .gi { color: #88BE05 } /* Generic.Inserted */
@@ -2388,6 +2389,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nt { color: #F1C829 } /* Name.Tag */
 .codehilite .nv { color: #A9B7C6 } /* Name.Variable */
 .codehilite .ow { color: #A9B7C6 } /* Operator.Word */
+.codehilite .pm { color: #A9B7C6 } /* Punctuation.Marker */
 .codehilite .w { color: #A9B7C6 } /* Text.Whitespace */
 .codehilite .mb { color: #6897BB } /* Literal.Number.Bin */
 .codehilite .mf { color: #6897BB } /* Literal.Number.Float */
@@ -2611,7 +2613,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.interactive</span> module</h1>
   <p>CloudGenix Python Interactive SDK Helper functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2024 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive', this);">Show source &equiv;</a></p>
@@ -2622,7 +2624,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2024 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2635,11 +2637,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2024 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2024 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2692,7 +2694,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
 <span class="k">class</span> <span class="nc">Interactive</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CloudGenix API - Interactive helper functions</span>
 
 <span class="sd">    Object to help with interactive complex functions instead of raw API accesses</span>
@@ -2704,7 +2706,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
               <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
 
@@ -2904,7 +2906,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -2994,7 +2996,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">client_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If logged into an ESP/MSP, now login to a client.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -3094,7 +3096,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">client_logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If logged into a client, go back to ESP/MSP.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -3181,7 +3183,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">tenant_update_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to update the `cloudgenix.API` object with tenant login info. Run after login or client login.</span>
 
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
@@ -3225,7 +3227,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">__extract_cdl_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">telemetry_region</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Internal method to form the cdl_region string.</span>
 <span class="sd">            telemetry_region: telemetry region from tenant response.</span>
 <span class="sd">        ***Returns*** : CDL region in string</span>
@@ -3244,7 +3246,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">cdl_url</span>
 
     <span class="k">def</span> <span class="nf">update_profile_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to update the `cloudgenix.API` object with profile info. Run after login or client login.</span>
 
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
@@ -3273,7 +3275,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">session_allowed_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the current ESP session allowed clients info.</span>
 
 <span class="sd">        **Returns:** Tuple of (Boolean Success status,</span>
@@ -3337,7 +3339,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="nf">client_choice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get info for ESP/MSP managed clients this session has access to. If passed a valid Client Canonical Name,</span>
 <span class="sd">        Client Name, or Client ID - return the info for that client. Otherwise, present a menu and let the user</span>
 <span class="sd">        choose.</span>
@@ -3417,7 +3419,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_menu</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span> <span class="n">list_line_format</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick menu for user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3468,7 +3470,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">check_sso_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Login to the CloudGenix API, and see if SAML SSO has occurred.</span>
 <span class="sd">        This function is used to check and see if SAML SSO has succeeded while waiting.</span>
 
@@ -3504,7 +3506,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -3566,7 +3568,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
 
 <span class="sd">        Example: `jd(cgx_sess.get.sites())`</span>
@@ -3587,7 +3589,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_confirm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick confirmation for user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3622,7 +3624,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_int_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick question for integer user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3659,7 +3661,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_str_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick question for text input.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -3689,13 +3691,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">str_val</span>
 
     <span class="n">interactive_client_choice</span> <span class="o">=</span> <span class="n">client_choice</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_client_choice` to `client_choice`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_client_choice` to `client_choice`&quot;&quot;&quot;</span>
 
     <span class="n">interactive_tenant_update_vars</span> <span class="o">=</span> <span class="n">tenant_update_vars</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_tenant_update_vars` to `tenant_update_vars`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_tenant_update_vars` to `tenant_update_vars`&quot;&quot;&quot;</span>
 
     <span class="n">interactive_update_profile_vars</span> <span class="o">=</span> <span class="n">update_profile_vars</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_update_profile_vars` to `update_profile_vars`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_update_profile_vars` to `update_profile_vars`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -3736,7 +3738,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive" class="source">
     <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Interactive</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CloudGenix API - Interactive helper functions</span>
 
 <span class="sd">    Object to help with interactive complex functions instead of raw API accesses</span>
@@ -3748,7 +3750,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
               <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">        Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
 
@@ -3948,7 +3950,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -4038,7 +4040,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">client_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If logged into an ESP/MSP, now login to a client.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -4138,7 +4140,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">client_logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If logged into a client, go back to ESP/MSP.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -4225,7 +4227,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">tenant_update_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to update the `cloudgenix.API` object with tenant login info. Run after login or client login.</span>
 
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
@@ -4269,7 +4271,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">__extract_cdl_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">telemetry_region</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Internal method to form the cdl_region string.</span>
 <span class="sd">            telemetry_region: telemetry region from tenant response.</span>
 <span class="sd">        ***Returns*** : CDL region in string</span>
@@ -4288,7 +4290,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">cdl_url</span>
 
     <span class="k">def</span> <span class="nf">update_profile_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to update the `cloudgenix.API` object with profile info. Run after login or client login.</span>
 
 <span class="sd">        **Returns:** Boolean on success/failure,</span>
@@ -4317,7 +4319,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">session_allowed_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the current ESP session allowed clients info.</span>
 
 <span class="sd">        **Returns:** Tuple of (Boolean Success status,</span>
@@ -4381,7 +4383,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="nf">client_choice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get info for ESP/MSP managed clients this session has access to. If passed a valid Client Canonical Name,</span>
 <span class="sd">        Client Name, or Client ID - return the info for that client. Otherwise, present a menu and let the user</span>
 <span class="sd">        choose.</span>
@@ -4461,7 +4463,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_menu</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span> <span class="n">list_line_format</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick menu for user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4512,7 +4514,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">menu_int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">check_sso_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Login to the CloudGenix API, and see if SAML SSO has occurred.</span>
 <span class="sd">        This function is used to check and see if SAML SSO has succeeded while waiting.</span>
 
@@ -4548,7 +4550,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
 
 <span class="sd">        **Parameters:**:</span>
@@ -4610,7 +4612,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
 
 <span class="sd">        Example: `jd(cgx_sess.get.sites())`</span>
@@ -4631,7 +4633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_confirm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick confirmation for user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4666,7 +4668,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_int_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick question for integer user input</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4703,7 +4705,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">quick_str_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to display a quick question for text input.</span>
 
 <span class="sd">        **Parameters:**</span>
@@ -4733,13 +4735,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="k">return</span> <span class="n">str_val</span>
 
     <span class="n">interactive_client_choice</span> <span class="o">=</span> <span class="n">client_choice</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_client_choice` to `client_choice`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_client_choice` to `client_choice`&quot;&quot;&quot;</span>
 
     <span class="n">interactive_tenant_update_vars</span> <span class="o">=</span> <span class="n">tenant_update_vars</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_tenant_update_vars` to `tenant_update_vars`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_tenant_update_vars` to `tenant_update_vars`&quot;&quot;&quot;</span>
 
     <span class="n">interactive_update_profile_vars</span> <span class="o">=</span> <span class="n">update_profile_vars</span>
-    <span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_update_profile_vars` to `update_profile_vars`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `interactive_update_profile_vars` to `update_profile_vars`&quot;&quot;&quot;</span>
 </pre></div>
 
   </div>
@@ -4808,7 +4810,7 @@ This function is used to check and see if SAML SSO has succeeded while waiting.<
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.check_sso_login', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.check_sso_login" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">check_sso_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_email</span><span class="p">,</span> <span class="n">request_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Login to the CloudGenix API, and see if SAML SSO has occurred.</span>
 <span class="sd">    This function is used to check and see if SAML SSO has succeeded while waiting.</span>
 <span class="sd">    **Parameters:**</span>
@@ -4861,7 +4863,7 @@ choose.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.client_choice', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.client_choice" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">client_choice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get info for ESP/MSP managed clients this session has access to. If passed a valid Client Canonical Name,</span>
 <span class="sd">    Client Name, or Client ID - return the info for that client. Otherwise, present a menu and let the user</span>
 <span class="sd">    choose.</span>
@@ -4952,7 +4954,7 @@ choose.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.client_login', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.client_login" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">client_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    If logged into an ESP/MSP, now login to a client.</span>
 <span class="sd">    **Parameters:**:</span>
 <span class="sd">      - **client**: Optional. ESP/MSP managed Client Canonical Name, Client Name, or Client ID</span>
@@ -5062,7 +5064,7 @@ choose.</p>
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.client_logout', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.client_logout" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">client_logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    If logged into a client, go back to ESP/MSP.</span>
 <span class="sd">    **Parameters:**:</span>
 <span class="sd">      - **client_login**: Optional. Boolean, If session is an ESP/MSP, attempt to auto-login to client. Default: True</span>
@@ -5156,7 +5158,7 @@ choose.</p>
   <div id="source-cloudgenix.interactive.Interactive.jd" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">jd</span><span class="p">(</span><span class="n">api_response</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    JD (JSON Dump) function. Meant for quick pretty-printing of CloudGenix Response objects.</span>
 <span class="sd">    Example: `jd(cgx_sess.get.sites())`</span>
 <span class="sd">    **Returns:** No Return, directly prints all output.</span>
@@ -5216,7 +5218,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml_auto_browser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
           <span class="n">saml_wait_loops</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">saml_wait_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
           <span class="n">prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive login using the `cloudgenix.API` object. This function is more robust and handles SAML and MSP accounts.</span>
 <span class="sd">    Expects interactive capability. if this is not available, use `cloudenix.API.post.login` directly.</span>
 <span class="sd">    **Parameters:**:</span>
@@ -5417,7 +5419,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.logout', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.logout" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interactive logout - ensures uid/tid cleared so `cloudgenix.API` object/ requests.Session can be re-used.</span>
 <span class="sd">    **Parameters:**:</span>
 <span class="sd">      - **force**: Bool, force logout API call, even when using a static AUTH_TOKEN.</span>
@@ -5496,7 +5498,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <div id="source-cloudgenix.interactive.Interactive.quick_confirm" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">quick_confirm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to display a quick confirmation for user input</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **prompt:** Text to display before confirm</span>
@@ -5552,7 +5554,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <div id="source-cloudgenix.interactive.Interactive.quick_int_input" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">quick_int_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to display a quick question for integer user input</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **prompt:** Text / question to display</span>
@@ -5609,7 +5611,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <div id="source-cloudgenix.interactive.Interactive.quick_menu" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">quick_menu</span><span class="p">(</span><span class="n">banner</span><span class="p">,</span> <span class="n">list_line_format</span><span class="p">,</span> <span class="n">choice_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to display a quick menu for user input</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **banner:** Text to display before menu</span>
@@ -5675,7 +5677,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <div id="source-cloudgenix.interactive.Interactive.quick_str_input" class="source">
     <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">quick_str_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">default_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to display a quick question for text input.</span>
 <span class="sd">    **Parameters:**</span>
 <span class="sd">      - **prompt:** Text / question to display</span>
@@ -5720,7 +5722,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.session_allowed_clients', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.session_allowed_clients" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">session_allowed_clients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the current ESP session allowed clients info.</span>
 <span class="sd">    **Returns:** Tuple of (Boolean Success status,</span>
 <span class="sd">                           Client Name to ID dict, Client Canonical Name to ID dict, Client ID to Region dict.)</span>
@@ -5798,7 +5800,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.tenant_update_vars', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.tenant_update_vars" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenant_update_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to update the `cloudgenix.API` object with tenant login info. Run after login or client login.</span>
 <span class="sd">    **Returns:** Boolean on success/failure,</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -5855,7 +5857,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.update_profile_vars', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.update_profile_vars" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">update_profile_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to update the `cloudgenix.API` object with profile info. Run after login or client login.</span>
 <span class="sd">    **Returns:** Boolean on success/failure,</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -5906,7 +5908,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.use_token', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.use_token" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">use_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_login</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to use static AUTH_TOKEN as auth for the constructor instead of full login process.</span>
 <span class="sd">    **Parameters:**:</span>
 <span class="sd">      - **token**: Static AUTH_TOKEN</span>

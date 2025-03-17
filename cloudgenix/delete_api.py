@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2024 CloudGenix, Inc
+**Copyright:** (c) 2017-2025 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2024 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2024 CloudGenix, Inc
+    Copyright (c) 2017-2025 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -265,7 +265,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: DEM site Config ID
+          - **demsiteconfig_id**: DEM Site Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -710,9 +710,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def elementshells_interfaces(self, site_id, elementshell_id, interface_id, tenant_id=None, api_version="v2.3"):
+    def elementshells_interfaces(self, site_id, elementshell_id, interface_id, tenant_id=None, api_version="v2.4"):
         """
-        Delete an element shell interface (v2.3)
+        Delete an element shell interface (v2.4)
 
           **Parameters:**:
 
@@ -720,7 +720,7 @@ class Delete(object):
           - **elementshell_id**: Element Shell ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1034,9 +1034,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.20"):
+    def interfaces(self, site_id, element_id, interface_id, tenant_id=None, api_version="v4.21"):
         """
-        Delete a Interface (v4.20)
+        Delete a Interface (v4.21)
 
           **Parameters:**:
 
@@ -1044,7 +1044,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **interface_id**: Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.20)
+          - **api_version**: API version to use (default v4.21)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2486,7 +2486,7 @@ class Delete(object):
 
     def prismasase_connections_configs(self, tenant_id=None, api_version="v3.1"):
         """
-        DELETE Prismasase_Connections_Configs API Function
+        Delete existing SASE connection config (v3.1)
 
           **Parameters:**:
 
@@ -2896,15 +2896,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v3.0"):
+    def serviceendpoints(self, serviceendpoint_id, tenant_id=None, api_version="v3.1"):
         """
-        Delete a Service Endpoint (v3.0)
+        Delete a Service Endpoint (v3.1)
 
           **Parameters:**:
 
           - **serviceendpoint_id**: Service Endpoint ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.0)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3800,16 +3800,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.9"):
+    def waninterfaces(self, site_id, waninterface_id, tenant_id=None, api_version="v2.10"):
         """
-        Delete existing WAN interface (v2.9)
+        Delete existing WAN interface (v2.10)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **waninterface_id**: WAN Interface ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.9)
+          - **api_version**: API version to use (default v2.10)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
