@@ -35,6 +35,7 @@ __license__ = """
     SOFTWARE.
 """
 
+# DigiCert TLS RSA SHA256 2020 CA1
 # DigiCert Global Root G2
 # Palo Alto Networks Inc Root CA
 # Go Daddy Root Certificate Authority - G2
