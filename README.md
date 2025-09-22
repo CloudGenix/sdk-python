@@ -44,6 +44,7 @@ MIT
 #### Version
 | Version   | Build | Changes                                                                                                   |
 |-----------| ----- |-----------------------------------------------------------------------------------------------------------|
+| **6.5.2** | **b2** | Support for February 2025 Controller release with Digicert CA.                                                             |
 | **6.5.2** | **b1** | Support for February 2025 Controller release.                                                             |
 | **6.5.1** | **b1** | Support for November 2024 Controller release.                                                             |
 | **6.4.2** | **b1** | Support for August 2024 Controller release.                                                               |
