@@ -52,6 +52,40 @@ class Patch(object):
     # placeholder for parent class namespace
     _parent_class = None
 
+    def bgppeers(self, site_id, element_id, data, tenant_id=None, api_version="v2.6"):
+        """
+        PATCH Bgppeers API Function
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **element_id**: Element (Device) ID
+          - **data**: Dictionary containing data to PATCH as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.6)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/elements/{}/bgppeers".format(api_version,
+                                                                                        tenant_id,
+                                                                                        site_id,
+                                                                                        element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "patch", data=data)
+
     def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.2"):
         """
         Patch a tenant operator (v2.2)
@@ -165,15 +199,15 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
-    def tenants(self, data, tenant_id=None, api_version="v2.11"):
+    def tenants(self, data, tenant_id=None, api_version="v2.12"):
         """
-        Patch tenant (v2.11)
+        Patch tenant (v2.12)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.11)
+          - **api_version**: API version to use (default v2.12)
 
           **Payload Attributes:** 
 
@@ -198,10 +232,12 @@ class Patch(object):
            - **inactive_reason:**  Type: string 
            - **ipv4_list:**           
                - **ipv4:**  Type: string 
+           - **is_branch_security_enabled:**  Type: boolean 
            - **is_esp:**  Type: boolean 
            - **is_oneapp_ready:**  Type: boolean 
            - **is_pa_iot_security_license:**  Type: boolean 
            - **is_sase_edge:**  Type: boolean 
+           - **is_sls_enabled:**  Type: boolean 
            - **is_support:**  Type: boolean 
            - **name:**  Type: string 
            - **operator:**           
