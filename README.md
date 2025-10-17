@@ -5,7 +5,7 @@
 [![Downloads](https://pepy.tech/badge/cloudgenix)](https://pepy.tech/project/cloudgenix)
 [![License: MIT](https://img.shields.io/pypi/l/cloudgenix.svg?color=brightgreen)](https://pypi.org/project/cloudgenix/)
 [![GitHub issues open](https://img.shields.io/github/issues/CloudGenix/sdk-python.svg)](https://github.com/CloudGenix/sdk-python/issues)
-# CloudGenix Python SDK v6.5.2b4
+# CloudGenix Python SDK v6.6.1b1
 Python3 SDK for the CloudGenix AppFabric
 
 #### Synopsis
@@ -44,7 +44,8 @@ MIT
 #### Version
 | Version   | Build  | Changes                                                                                                   |
 |-----------|--------|-----------------------------------------------------------------------------------------------------------|
-| **6.5.2** | **b4** | Support for February 2025 Controller release with Digicert CA.                                                             |
+| **6.6.1** | **b1** | Support for October 2025 Controller release.                                                              |
+| **6.5.2** | **b4** | Support for February 2025 Controller release with Digicert CA.                                            |
 | **6.5.2** | **b1** | Support for February 2025 Controller release.                                                             |
 | **6.5.1** | **b1** | Support for November 2024 Controller release.                                                             |
 | **6.4.2** | **b1** | Support for August 2024 Controller release.                                                               |
