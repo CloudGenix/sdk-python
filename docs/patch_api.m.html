@@ -10,7 +10,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc
+**Copyright:** (c) 2017-2026 CloudGenix, Inc
 ..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
@@ -2577,7 +2577,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
           
   <ul>
-    <li class="mono"><a href="#cloudgenix.patch_api.Patch.bgppeers">bgppeers</a></li>
     <li class="mono"><a href="#cloudgenix.patch_api.Patch.tenant_operators">tenant_operators</a></li>
     <li class="mono"><a href="#cloudgenix.patch_api.Patch.tenants">tenants</a></li>
   </ul>
@@ -2601,7 +2600,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.patch_api</span> module</h1>
   <p>CloudGenix Python SDK - PATCH</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api', this);">Show source &equiv;</a></p>
@@ -2612,7 +2611,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2620,11 +2619,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2026 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2659,40 +2658,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PATCH Bgppeers API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.6)</span>
-
-<span class="sd">          **Payload Attributes:** </span>
-
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/bgppeers&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                        <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                        <span class="n">site_id</span><span class="p">,</span>
-                                                                                        <span class="n">element_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2807,15 +2772,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.12&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.11&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.12)</span>
+<span class="sd">        Patch tenant (v2.11)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.12)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.11)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -2840,12 +2805,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **inactive_reason:**  Type: string </span>
 <span class="sd">           - **ipv4_list:**           </span>
 <span class="sd">               - **ipv4:**  Type: string </span>
-<span class="sd">           - **is_branch_security_enabled:**  Type: boolean </span>
 <span class="sd">           - **is_esp:**  Type: boolean </span>
 <span class="sd">           - **is_oneapp_ready:**  Type: boolean </span>
 <span class="sd">           - **is_pa_iot_security_license:**  Type: boolean </span>
 <span class="sd">           - **is_sase_edge:**  Type: boolean </span>
-<span class="sd">           - **is_sls_enabled:**  Type: boolean </span>
 <span class="sd">           - **is_support:**  Type: boolean </span>
 <span class="sd">           - **name:**  Type: string </span>
 <span class="sd">           - **operator:**           </span>
@@ -3046,7 +3009,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <p class="name">var <span class="ident">api_logger</span></p>
       
   
-    <div class="desc"><p>logging.getlogger object to enable debug printing via <code>cloudgenix.API.set_debug</code></p></div>
+    <div class="desc"><p>logging.getlogger object to enable debug printing via <a href="/index.html#cloudgenix.API.set_debug"><code>cloudgenix.API.set_debug</code></a></p></div>
   <div class="source_cont">
 </div>
 
@@ -3073,40 +3036,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="c1"># placeholder for parent class namespace</span>
     <span class="n">_parent_class</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PATCH Bgppeers API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.6)</span>
-
-<span class="sd">          **Payload Attributes:** </span>
-
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/bgppeers&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                        <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                        <span class="n">site_id</span><span class="p">,</span>
-                                                                                        <span class="n">element_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">tenant_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3221,15 +3150,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.12&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.11&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Patch tenant (v2.12)</span>
+<span class="sd">        Patch tenant (v2.11)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.12)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.11)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
@@ -3254,12 +3183,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">           - **inactive_reason:**  Type: string </span>
 <span class="sd">           - **ipv4_list:**           </span>
 <span class="sd">               - **ipv4:**  Type: string </span>
-<span class="sd">           - **is_branch_security_enabled:**  Type: boolean </span>
 <span class="sd">           - **is_esp:**  Type: boolean </span>
 <span class="sd">           - **is_oneapp_ready:**  Type: boolean </span>
 <span class="sd">           - **is_pa_iot_security_license:**  Type: boolean </span>
 <span class="sd">           - **is_sase_edge:**  Type: boolean </span>
-<span class="sd">           - **is_sls_enabled:**  Type: boolean </span>
 <span class="sd">           - **is_support:**  Type: boolean </span>
 <span class="sd">           - **name:**  Type: string </span>
 <span class="sd">           - **operator:**           </span>
@@ -3455,11 +3382,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
       <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#cloudgenix.patch_api.Patch">Patch</a></li>
-          <li>builtins.object</li>
-          </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.patch_api.Patch.operators_t">
             <p class="name">var <span class="ident">operators_t</span></p>
@@ -3473,61 +3395,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             </div>
           <h3>Static methods</h3>
-            
-  <div class="item" id="cloudgenix.patch_api.Patch.bgppeers">
-    <div class="name def">
-    <p>def <span class="ident">bgppeers</span>(</p><p>self, site_id, element_id, data, tenant_id=None, api_version=&#39;v2.6&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>PATCH Bgppeers API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>site_id</strong>: Site ID</li>
-<li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.6)</li>
-</ul>
-<p><strong>Payload Attributes:</strong> </p>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.bgppeers', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.patch_api.Patch.bgppeers" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bgppeers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.6&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    PATCH Bgppeers API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.6)</span>
-<span class="sd">      **Payload Attributes:** </span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/elements/</span><span class="si">{}</span><span class="s2">/bgppeers&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                    <span class="n">site_id</span><span class="p">,</span>
-                                                                                    <span class="n">element_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
             
   <div class="item" id="cloudgenix.patch_api.Patch.tenant_operators">
     <div class="name def">
@@ -3771,18 +3638,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.patch_api.Patch.tenants">
     <div class="name def">
-    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.12&#39;)</p>
+    <p>def <span class="ident">tenants</span>(</p><p>self, data, tenant_id=None, api_version=&#39;v2.11&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Patch tenant (v2.12)</p>
+    <div class="desc"><p>Patch tenant (v2.11)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>data</strong>: Dictionary containing data to PATCH as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.12)</li>
+<li><strong>api_version</strong>: API version to use (default v2.11)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
@@ -3811,12 +3678,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>ipv4:</strong>  Type: string </li>
 </ul>
 </li>
-<li><strong>is_branch_security_enabled:</strong>  Type: boolean </li>
 <li><strong>is_esp:</strong>  Type: boolean </li>
 <li><strong>is_oneapp_ready:</strong>  Type: boolean </li>
 <li><strong>is_pa_iot_security_license:</strong>  Type: boolean </li>
 <li><strong>is_sase_edge:</strong>  Type: boolean </li>
-<li><strong>is_sls_enabled:</strong>  Type: boolean </li>
 <li><strong>is_support:</strong>  Type: boolean </li>
 <li><strong>name:</strong>  Type: string </li>
 <li><strong>operator:</strong>           <ul>
@@ -4031,13 +3896,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.patch_api.Patch.tenants', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.patch_api.Patch.tenants" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.12&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.11&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Patch tenant (v2.12)</span>
+<span class="sd">    Patch tenant (v2.11)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **data**: Dictionary containing data to PATCH as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.12)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.11)</span>
 <span class="sd">      **Payload Attributes:** </span>
 <span class="sd">       - **:**  Type: string </span>
 <span class="sd">       - **address:**           </span>
@@ -4060,12 +3925,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">       - **inactive_reason:**  Type: string </span>
 <span class="sd">       - **ipv4_list:**           </span>
 <span class="sd">           - **ipv4:**  Type: string </span>
-<span class="sd">       - **is_branch_security_enabled:**  Type: boolean </span>
 <span class="sd">       - **is_esp:**  Type: boolean </span>
 <span class="sd">       - **is_oneapp_ready:**  Type: boolean </span>
 <span class="sd">       - **is_pa_iot_security_license:**  Type: boolean </span>
 <span class="sd">       - **is_sase_edge:**  Type: boolean </span>
-<span class="sd">       - **is_sls_enabled:**  Type: boolean </span>
 <span class="sd">       - **is_support:**  Type: boolean </span>
 <span class="sd">       - **name:**  Type: string </span>
 <span class="sd">       - **operator:**           </span>
@@ -4260,7 +4123,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <footer id="footer">
         <p>
           Documentation generated by
-          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.13</a>
         </p>
       </footer>
     </article>

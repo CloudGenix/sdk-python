@@ -10,7 +10,7 @@
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc..." />
+**Copyright:** (c) 2017-2026 CloudGenix, Inc..." />
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -2583,7 +2583,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.bgppeers">bgppeers</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates">bulkconfigurations_sitetemplates</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates_deployments">bulkconfigurations_sitetemplates_deployments</a></li>
-    <li class="mono"><a href="#cloudgenix.delete_api.Delete.certificates">certificates</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.demsiteconfigs">demsiteconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.deviceidconfigs_snmpdiscoverystartnodes">deviceidconfigs_snmpdiscoverystartnodes</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.deviceidprofiles">deviceidprofiles</a></li>
@@ -2672,7 +2671,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.sdwanapps_configs">sdwanapps_configs</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.securitypolicyrules">securitypolicyrules</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.securitypolicysets">securitypolicysets</a></li>
-    <li class="mono"><a href="#cloudgenix.delete_api.Delete.securityprofilegroups">securityprofilegroups</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.securityzones">securityzones</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.servicebindingmaps">servicebindingmaps</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.serviceendpoints">serviceendpoints</a></li>
@@ -2701,6 +2699,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_permissions">tenant_permissions</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenant_prioritypolicylocalprefixes">tenant_prioritypolicylocalprefixes</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenantpassageconfigs">tenantpassageconfigs</a></li>
+    <li class="mono"><a href="#cloudgenix.delete_api.Delete.tenants_certificates">tenants_certificates</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.useridagents">useridagents</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.users">users</a></li>
     <li class="mono"><a href="#cloudgenix.delete_api.Delete.vrfcontextprofiles">vrfcontextprofiles</a></li>
@@ -2730,7 +2729,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.delete_api</span> module</h1>
   <p>CloudGenix Python SDK - DELETE</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api', this);">Show source &equiv;</a></p>
@@ -2741,7 +2740,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2749,11 +2748,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2026 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2939,7 +2938,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">        delete site profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2967,7 +2966,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">        Delete a deployment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2995,37 +2994,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entitie_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Certificates API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **entitie_id**: Entitie ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/entities/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                   <span class="n">entitie_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Demsiteconfigs API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3055,7 +3026,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3087,7 +3058,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidprofiles API Function</span>
+<span class="sd">        Delete device Id profile configuration (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3143,15 +3114,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Directoryservices API Function</span>
+<span class="sd">        Delete Directory Service (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **directoryservice_id**: Directory Service ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3261,7 +3232,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">        Delete device id element level (source interface) config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3447,7 +3418,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells API Function</span>
+<span class="sd">        Delete an element shell (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3477,7 +3448,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">        Delete an element shell interface (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4607,16 +4578,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete an existing Security Policy V2 Rule under a policy set (v2.3)</span>
+<span class="sd">        Delete an existing Security Policy V2 Rule under a policy set (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID</span>
 <span class="sd">          - **ngfwsecuritypolicyrule_id**: NGFW Security Policy Rule ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4725,7 +4696,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Ospfconfigs API Function</span>
+<span class="sd">        Deletes OSPF config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4845,7 +4816,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4873,7 +4844,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4903,7 +4874,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4931,7 +4902,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">        Delete a Threshold Profile (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5251,7 +5222,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">        Delete existing SASE connection config (v3.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5277,7 +5248,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeconfigs API Function</span>
+<span class="sd">        Delete a Probe Config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5305,7 +5276,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeprofiles API Function</span>
+<span class="sd">        Delete a PROBE Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5601,34 +5572,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securitypolicysets/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
                                                                                 <span class="n">securitypolicyset_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Securityprofilegroups API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **securityprofilegroup_id**: Security Profile Group ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securityprofilegroups/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                   <span class="n">securityprofilegroup_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -6109,15 +6052,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Syslog Server Profile (v2.1)</span>
+<span class="sd">        Delete Syslog Server Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6137,9 +6080,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Syslog Server (v2.3)</span>
+<span class="sd">        Delete Syslog Server (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6147,7 +6090,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6171,11 +6114,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">        Delete TACACS+ Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
+<span class="sd">          - **tacacs_plus_profile_id**: Tacacs Plus Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6199,13 +6142,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">        Delete TACACS+ Server (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
+<span class="sd">          - **tacacs_plus_server_id**: Tacacs Plus Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6453,9 +6396,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">tenants_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a certificate of tenant v2.0 (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **certificate_id**: Certificate ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">certificate_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Useridagents API Function</span>
+<span class="sd">        Delete User ID Agent (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6511,7 +6482,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">        Delete VRF Context Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6539,7 +6510,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontexts API Function</span>
+<span class="sd">        Delete VRF segment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6688,8 +6659,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">anynetlinks_t</span> <span class="o">=</span> <span class="n">tenant_anynetlinks</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`&quot;&quot;&quot;</span>
 
-    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">certificates</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `certificates`&quot;&quot;&quot;</span>
+    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">tenants_certificates</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `tenants_certificates`&quot;&quot;&quot;</span>
 
     <span class="n">configs_prismasase_connections</span> <span class="o">=</span> <span class="n">prismasase_connections_configs</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`&quot;&quot;&quot;</span>
@@ -6792,7 +6763,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <p class="name">var <span class="ident">api_logger</span></p>
       
   
-    <div class="desc"><p>logging.getlogger object to enable debug printing via <code>cloudgenix.API.set_debug</code></p></div>
+    <div class="desc"><p>logging.getlogger object to enable debug printing via <a href="/index.html#cloudgenix.API.set_debug"><code>cloudgenix.API.set_debug</code></a></p></div>
   <div class="source_cont">
 </div>
 
@@ -6970,7 +6941,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">        delete site profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6998,7 +6969,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">        Delete a deployment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7026,37 +6997,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entitie_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Certificates API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **entitie_id**: Entitie ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/entities/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                   <span class="n">entitie_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Demsiteconfigs API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7086,7 +7029,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7118,7 +7061,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidprofiles API Function</span>
+<span class="sd">        Delete device Id profile configuration (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7174,15 +7117,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Directoryservices API Function</span>
+<span class="sd">        Delete Directory Service (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **directoryservice_id**: Directory Service ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -7292,7 +7235,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">        Delete device id element level (source interface) config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7478,7 +7421,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells API Function</span>
+<span class="sd">        Delete an element shell (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7508,7 +7451,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">        Delete an element shell interface (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8638,16 +8581,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete an existing Security Policy V2 Rule under a policy set (v2.3)</span>
+<span class="sd">        Delete an existing Security Policy V2 Rule under a policy set (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID</span>
 <span class="sd">          - **ngfwsecuritypolicyrule_id**: NGFW Security Policy Rule ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8756,7 +8699,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Ospfconfigs API Function</span>
+<span class="sd">        Deletes OSPF config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8876,7 +8819,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8904,7 +8847,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8934,7 +8877,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8962,7 +8905,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">        Delete a Threshold Profile (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9282,7 +9225,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">        Delete existing SASE connection config (v3.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9308,7 +9251,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeconfigs API Function</span>
+<span class="sd">        Delete a Probe Config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9336,7 +9279,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeprofiles API Function</span>
+<span class="sd">        Delete a PROBE Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9632,34 +9575,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securitypolicysets/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                 <span class="n">tenant_id</span><span class="p">,</span>
                                                                                 <span class="n">securitypolicyset_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Securityprofilegroups API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **securityprofilegroup_id**: Security Profile Group ID</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securityprofilegroups/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                   <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                   <span class="n">securityprofilegroup_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
@@ -10140,15 +10055,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Syslog Server Profile (v2.1)</span>
+<span class="sd">        Delete Syslog Server Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10168,9 +10083,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Delete Syslog Server (v2.3)</span>
+<span class="sd">        Delete Syslog Server (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10178,7 +10093,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10202,11 +10117,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">        Delete TACACS+ Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
+<span class="sd">          - **tacacs_plus_profile_id**: Tacacs Plus Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10230,13 +10145,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">        Delete TACACS+ Server (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
+<span class="sd">          - **tacacs_plus_server_id**: Tacacs Plus Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10484,9 +10399,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">tenants_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a certificate of tenant v2.0 (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **certificate_id**: Certificate ID</span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">certificate_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Useridagents API Function</span>
+<span class="sd">        Delete User ID Agent (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10542,7 +10485,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">        Delete VRF Context Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10570,7 +10513,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontexts API Function</span>
+<span class="sd">        Delete VRF segment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10719,8 +10662,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">anynetlinks_t</span> <span class="o">=</span> <span class="n">tenant_anynetlinks</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`&quot;&quot;&quot;</span>
 
-    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">certificates</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `certificates`&quot;&quot;&quot;</span>
+    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">tenants_certificates</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `tenants_certificates`&quot;&quot;&quot;</span>
 
     <span class="n">configs_prismasase_connections</span> <span class="o">=</span> <span class="n">prismasase_connections_configs</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`&quot;&quot;&quot;</span>
@@ -10818,11 +10761,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
       <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#cloudgenix.delete_api.Delete">Delete</a></li>
-          <li>builtins.object</li>
-          </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.delete_api.Delete.access_elementusers">
             <p class="name">var <span class="ident">access_elementusers</span></p>
@@ -10852,7 +10790,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             
   
-    <div class="desc"><p>Backwards-compatibility alias of <code>certificates_tenants</code> to <code>certificates</code></p></div>
+    <div class="desc"><p>Backwards-compatibility alias of <code>certificates_tenants</code> to <code>tenants_certificates</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -11449,7 +11387,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Bulkconfigurations_Sitetemplates API Function</p>
+    <div class="desc"><p>delete site profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>sitetemplate_id</strong>: Site Template ID</li>
@@ -11462,7 +11400,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">    delete site profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **sitetemplate_id**: Site Template ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -11497,7 +11435,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</p>
+    <div class="desc"><p>Delete a deployment (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>sitetemplate_id</strong>: Site Template ID</li>
@@ -11511,7 +11449,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates_deployments" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">    Delete a deployment (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **sitetemplate_id**: Site Template ID</span>
 <span class="sd">      - **deployment_id**: Deployment ID</span>
@@ -11540,54 +11478,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
-  <div class="item" id="cloudgenix.delete_api.Delete.certificates">
-    <div class="name def">
-    <p>def <span class="ident">certificates</span>(</p><p>self, entitie_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>DELETE Certificates API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>entitie_id</strong>: Entitie ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.certificates', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.delete_api.Delete.certificates" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entitie_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Certificates API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **entitie_id**: Entitie ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/entities/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                               <span class="n">tenant_id</span><span class="p">,</span>
-                                                                               <span class="n">entitie_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
   <div class="item" id="cloudgenix.delete_api.Delete.demsiteconfigs">
     <div class="name def">
     <p>def <span class="ident">demsiteconfigs</span>(</p><p>self, site_id, demsiteconfig_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -11596,7 +11486,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Demsiteconfigs API Function</p>
+    <div class="desc"><p>Delete Start Network Node config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -11610,7 +11500,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.demsiteconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Demsiteconfigs API Function</span>
+<span class="sd">    Delete Start Network Node config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **demsiteconfig_id**: DEM Site Config ID</span>
@@ -11647,7 +11537,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</p>
+    <div class="desc"><p>Delete Start Network Node config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -11662,7 +11552,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.deviceidconfigs_snmpdiscoverystartnodes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">    Delete Start Network Node config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **deviceidconfig_id**: Device Id Config ID</span>
@@ -11701,7 +11591,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Deviceidprofiles API Function</p>
+    <div class="desc"><p>Delete device Id profile configuration (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>deviceidprofile_id</strong>: Device Id Profile ID</li>
@@ -11714,7 +11604,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.deviceidprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Deviceidprofiles API Function</span>
+<span class="sd">    Delete device Id profile configuration (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **deviceidprofile_id**: Device Id Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -11794,30 +11684,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.directoryservices">
     <div class="name def">
-    <p>def <span class="ident">directoryservices</span>(</p><p>self, directoryservice_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">directoryservices</span>(</p><p>self, directoryservice_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>DELETE Directoryservices API Function</p>
+    <div class="desc"><p>Delete Directory Service (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>directoryservice_id</strong>: Directory Service ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.directoryservices', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.directoryservices" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Directoryservices API Function</span>
+<span class="sd">    Delete Directory Service (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **directoryservice_id**: Directory Service ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -11998,7 +11888,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Element_Deviceidconfigs API Function</p>
+    <div class="desc"><p>Delete device id element level (source interface) config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12013,7 +11903,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.element_deviceidconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">    Delete device id element level (source interface) config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -12313,7 +12203,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Elementshells API Function</p>
+    <div class="desc"><p>Delete an element shell (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12327,7 +12217,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.elementshells" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementshells API Function</span>
+<span class="sd">    Delete an element shell (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **elementshell_id**: Element Shell ID</span>
@@ -12364,7 +12254,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Elementshells_Interfaces API Function</p>
+    <div class="desc"><p>Delete an element shell interface (v2.4)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12379,7 +12269,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.elementshells_interfaces" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">    Delete an element shell interface (v2.4)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **elementshell_id**: Element Shell ID</span>
@@ -14290,32 +14180,32 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.ngfwsecuritypolicyrules">
     <div class="name def">
-    <p>def <span class="ident">ngfwsecuritypolicyrules</span>(</p><p>self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">ngfwsecuritypolicyrules</span>(</p><p>self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete an existing Security Policy V2 Rule under a policy set (v2.3)</p>
+    <div class="desc"><p>Delete an existing Security Policy V2 Rule under a policy set (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>ngfwsecuritypolicyset_id</strong>: NGFW Security Policy Set ID</li>
 <li><strong>ngfwsecuritypolicyrule_id</strong>: NGFW Security Policy Rule ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.ngfwsecuritypolicyrules', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.ngfwsecuritypolicyrules" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ngfwsecuritypolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyset_id</span><span class="p">,</span> <span class="n">ngfwsecuritypolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete an existing Security Policy V2 Rule under a policy set (v2.3)</span>
+<span class="sd">    Delete an existing Security Policy V2 Rule under a policy set (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID</span>
 <span class="sd">      - **ngfwsecuritypolicyrule_id**: NGFW Security Policy Rule ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -14494,7 +14384,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Ospfconfigs API Function</p>
+    <div class="desc"><p>Deletes OSPF config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -14509,7 +14399,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.ospfconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Ospfconfigs API Function</span>
+<span class="sd">    Deletes OSPF config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -14698,7 +14588,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysets API Function</p>
+    <div class="desc"><p>Delete a PERFMGMT Policy Set (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtpolicyset_id</strong>: Performance Management Policy Set ID</li>
@@ -14711,7 +14601,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">    Delete a PERFMGMT Policy Set (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14746,7 +14636,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</p>
+    <div class="desc"><p>Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtpolicyset_id</strong>: Performance Management Policy Set ID</li>
@@ -14760,7 +14650,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysets_perfmgmtpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">    Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
 <span class="sd">      - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID</span>
@@ -14797,7 +14687,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysetstacks API Function</p>
+    <div class="desc"><p>Delete a PERFMGMT Policy Set Stack (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtpolicysetstack_id</strong>: Performance Management Policy Set Stack ID</li>
@@ -14810,7 +14700,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">    Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14845,7 +14735,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtthresholdprofiles API Function</p>
+    <div class="desc"><p>Delete a Threshold Profile (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtthresholdprofile_id</strong>: Performance Management Policy Threshold Profile ID</li>
@@ -14858,7 +14748,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtthresholdprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">    Delete a Threshold Profile (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15391,7 +15281,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Prismasase_Connections_Configs API Function</p>
+    <div class="desc"><p>Delete existing SASE connection config (v3.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
@@ -15403,7 +15293,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.prismasase_connections_configs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">    Delete existing SASE connection config (v3.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v3.1)</span>
@@ -15436,7 +15326,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Probeconfigs API Function</p>
+    <div class="desc"><p>Delete a Probe Config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>probeconfig_id</strong>: Probe Config ID</li>
@@ -15449,7 +15339,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.probeconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Probeconfigs API Function</span>
+<span class="sd">    Delete a Probe Config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **probeconfig_id**: Probe Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15484,7 +15374,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Probeprofiles API Function</p>
+    <div class="desc"><p>Delete a PROBE Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>probeprofile_id</strong>: Probe Profile ID</li>
@@ -15497,7 +15387,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.probeprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Probeprofiles API Function</span>
+<span class="sd">    Delete a PROBE Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **probeprofile_id**: Probe Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -15979,54 +15869,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securitypolicysets/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                             <span class="n">tenant_id</span><span class="p">,</span>
                                                                             <span class="n">securitypolicyset_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.delete_api.Delete.securityprofilegroups">
-    <div class="name def">
-    <p>def <span class="ident">securityprofilegroups</span>(</p><p>self, securityprofilegroup_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>DELETE Securityprofilegroups API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>securityprofilegroup_id</strong>: Security Profile Group ID</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.securityprofilegroups', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.delete_api.Delete.securityprofilegroups" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Securityprofilegroups API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **securityprofilegroup_id**: Security Profile Group ID</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/securityprofilegroups/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                               <span class="n">tenant_id</span><span class="p">,</span>
-                                                                               <span class="n">securityprofilegroup_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
 </pre></div>
@@ -16849,30 +16691,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.syslogserverprofiles">
     <div class="name def">
-    <p>def <span class="ident">syslogserverprofiles</span>(</p><p>self, syslogserverprofile_id, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">syslogserverprofiles</span>(</p><p>self, syslogserverprofile_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete Syslog Server Profile (v2.1)</p>
+    <div class="desc"><p>Delete Syslog Server Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>syslogserverprofile_id</strong>: Sys Log Server Profile ID </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.syslogserverprofiles', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.syslogserverprofiles" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogserverprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">syslogserverprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete Syslog Server Profile (v2.1)</span>
+<span class="sd">    Delete Syslog Server Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -16897,34 +16739,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.delete_api.Delete.syslogservers">
     <div class="name def">
-    <p>def <span class="ident">syslogservers</span>(</p><p>self, site_id, element_id, syslogserver_id, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">syslogservers</span>(</p><p>self, site_id, element_id, syslogserver_id, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Delete Syslog Server (v2.3)</p>
+    <div class="desc"><p>Delete Syslog Server (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>syslogserver_id</strong>: SYSLOG server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.syslogservers', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.delete_api.Delete.syslogservers" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">syslogservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">syslogserver_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Delete Syslog Server (v2.3)</span>
+<span class="sd">    Delete Syslog Server (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **syslogserver_id**: SYSLOG server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -16957,10 +16799,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Tacacs_Plus_Profiles API Function</p>
+    <div class="desc"><p>Delete TACACS+ Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>tacacs_plus_profile_id</strong>: TACACS Plus Profile ID</li>
+<li><strong>tacacs_plus_profile_id</strong>: Tacacs Plus Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -16970,9 +16812,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.tacacs_plus_profiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">    Delete TACACS+ Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
+<span class="sd">      - **tacacs_plus_profile_id**: Tacacs Plus Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17005,12 +16847,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Tacacs_Plus_Servers API Function</p>
+    <div class="desc"><p>Delete TACACS+ Server (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>tacacs_plus_server_id</strong>: TACACS Plus Server ID</li>
+<li><strong>tacacs_plus_server_id</strong>: Tacacs Plus Server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -17020,11 +16862,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.tacacs_plus_servers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">    Delete TACACS+ Server (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
+<span class="sd">      - **tacacs_plus_server_id**: Tacacs Plus Server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17435,6 +17277,54 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
+  <div class="item" id="cloudgenix.delete_api.Delete.tenants_certificates">
+    <div class="name def">
+    <p>def <span class="ident">tenants_certificates</span>(</p><p>self, certificate_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Delete a certificate of tenant v2.0 (v2.0)</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>certificate_id</strong>: Certificate ID</li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.delete_api.Delete.tenants_certificates', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.delete_api.Delete.tenants_certificates" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tenants_certificates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete a certificate of tenant v2.0 (v2.0)</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **certificate_id**: Certificate ID</span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                      <span class="n">tenant_id</span><span class="p">,</span>
+                                                                      <span class="n">certificate_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.delete_api.Delete.useridagents">
     <div class="name def">
     <p>def <span class="ident">useridagents</span>(</p><p>self, useridagent_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -17443,7 +17333,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Useridagents API Function</p>
+    <div class="desc"><p>Delete User ID Agent (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>useridagent_id</strong>: User Id Agent ID</li>
@@ -17456,7 +17346,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.useridagents" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Useridagents API Function</span>
+<span class="sd">    Delete User ID Agent (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **useridagent_id**: User Id Agent ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17539,7 +17429,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Vrfcontextprofiles API Function</p>
+    <div class="desc"><p>Delete VRF Context Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>vrfcontextprofile_id</strong>: VRF Context Profile ID</li>
@@ -17552,7 +17442,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.vrfcontextprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">    Delete VRF Context Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **vrfcontextprofile_id**: VRF Context Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17587,7 +17477,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Vrfcontexts API Function</p>
+    <div class="desc"><p>Delete VRF segment (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>vrfcontext_id</strong>: VRF Context ID</li>
@@ -17600,7 +17490,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.vrfcontexts" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Vrfcontexts API Function</span>
+<span class="sd">    Delete VRF segment (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **vrfcontext_id**: VRF Context ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17830,7 +17720,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <footer id="footer">
         <p>
           Documentation generated by
-          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.13</a>
         </p>
       </footer>
     </article>

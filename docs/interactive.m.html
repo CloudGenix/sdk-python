@@ -2613,7 +2613,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <h1 class="title"><span class="name">cloudgenix.interactive</span> module</h1>
   <p>CloudGenix Python Interactive SDK Helper functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive', this);">Show source &equiv;</a></p>
@@ -2624,7 +2624,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -2637,11 +2637,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2026 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 
-<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -3719,7 +3719,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <p class="name">var <span class="ident">api_logger</span></p>
       
   
-    <div class="desc"><p><code>logging.getlogger</code> object to enable debug printing via <code>cloudgenix.API.set_debug</code></p></div>
+    <div class="desc"><p><code>logging.getlogger</code> object to enable debug printing via <a href="/index.html#cloudgenix.API.set_debug"><code>cloudgenix.API.set_debug</code></a></p></div>
   <div class="source_cont">
 </div>
 
@@ -4749,11 +4749,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
       <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#cloudgenix.interactive.Interactive">Interactive</a></li>
-          <li>builtins.object</li>
-          </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.interactive.Interactive.interactive_client_choice">
             <p class="name">var <span class="ident">interactive_client_choice</span></p>
@@ -5190,7 +5185,7 @@ choose.</p>
 
     
   
-    <div class="desc"><p>Interactive login using the <code>cloudgenix.API</code> object. This function is more robust and handles SAML and MSP accounts.
+    <div class="desc"><p>Interactive login using the <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a> object. This function is more robust and handles SAML and MSP accounts.
 Expects interactive capability. if this is not available, use <code>cloudenix.API.post.login</code> directly.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
@@ -5211,7 +5206,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 </ul>
 </li>
 </ul>
-<p><strong>Returns:</strong> Bool. In addition the function will mutate the <code>cloudgenix.API</code> constructor items as needed.</p></div>
+<p><strong>Returns:</strong> Bool. In addition the function will mutate the <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a> constructor items as needed.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.login', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.interactive.Interactive.login" class="source">
@@ -5409,7 +5404,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 
     
   
-    <div class="desc"><p>Interactive logout - ensures uid/tid cleared so <code>cloudgenix.API</code> object/ requests.Session can be re-used.</p>
+    <div class="desc"><p>Interactive logout - ensures uid/tid cleared so <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a> object/ requests.Session can be re-used.</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>force</strong>: Bool, force logout API call, even when using a static AUTH_TOKEN.</li>
@@ -5794,7 +5789,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 
     
   
-    <div class="desc"><p>Function to update the <code>cloudgenix.API</code> object with tenant login info. Run after login or client login.</p>
+    <div class="desc"><p>Function to update the <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a> object with tenant login info. Run after login or client login.</p>
 <p><strong>Returns:</strong> Boolean on success/failure,</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.tenant_update_vars', this);">Show source &equiv;</a></p>
@@ -5851,7 +5846,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 
     
   
-    <div class="desc"><p>Function to update the <code>cloudgenix.API</code> object with profile info. Run after login or client login.</p>
+    <div class="desc"><p>Function to update the <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a> object with profile info. Run after login or client login.</p>
 <p><strong>Returns:</strong> Boolean on success/failure,</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.update_profile_vars', this);">Show source &equiv;</a></p>
@@ -5902,7 +5897,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
 <li><strong>client</strong>: Optional. String or None. Client Canonical Name, Client Name, or Client ID to log in to.
                 If None, will prompt with menu. Default: None</li>
 </ul>
-<p><strong>Returns:</strong> Bool on success or failure. In addition the function will mutate the <code>cloudgenix.API</code>
+<p><strong>Returns:</strong> Bool on success or failure. In addition the function will mutate the <a href="/index.html#cloudgenix.API"><code>cloudgenix.API</code></a>
              constructor items as needed.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.interactive.Interactive.use_token', this);">Show source &equiv;</a></p>
@@ -5997,7 +5992,7 @@ Expects interactive capability. if this is not available, use <code>cloudenix.AP
       <footer id="footer">
         <p>
           Documentation generated by
-          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.13</a>
         </p>
       </footer>
     </article>

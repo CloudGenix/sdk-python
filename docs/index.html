@@ -8,7 +8,7 @@
     <title>cloudgenix documentation</title>
     <meta name="description" content="Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.6.1b1
+**Version:** v6.6.2b1
 
 **Author:** CloudGenix
 
@@ -2637,10 +2637,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <ul>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.__init__">__init__</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.add_headers">add_headers</a></li>
+    <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.build_connection_pool_key_attributes">build_connection_pool_key_attributes</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.build_response">build_response</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.cert_verify">cert_verify</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.close">close</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.get_connection">get_connection</a></li>
+    <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.get_connection_with_tls_context">get_connection_with_tls_context</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.init_poolmanager">init_poolmanager</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.proxy_headers">proxy_headers</a></li>
     <li class="mono"><a href="#cloudgenix.TlsHttpAdapter.proxy_manager_for">proxy_manager_for</a></li>
@@ -2678,9 +2680,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <header id="section-intro">
   <h1 class="title"><span class="name">cloudgenix</span> module</h1>
   <p>Python3 SDK for the CloudGenix AppFabric</p>
-<p><strong>Version:</strong> v6.6.1b1</p>
+<p><strong>Version:</strong> v6.6.2b1</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p>
 <p><strong>Location:</strong> <a href="https://github.com/CloudGenix/sdk-python">https://github.com/CloudGenix/sdk-python</a></p>
 <h4>Synopsis</h4>
@@ -2727,11 +2729,11 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
     <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Python3 SDK for the CloudGenix AppFabric</span>
 
-<span class="sd">**Version:** v6.6.1b1</span>
+<span class="sd">**Version:** v6.6.2b1</span>
 
 <span class="sd">**Author:** CloudGenix</span>
 
-<span class="sd">**Copyright:** (c) 2017-2025 CloudGenix, Inc</span>
+<span class="sd">**Copyright:** (c) 2017-2026 CloudGenix, Inc</span>
 
 <span class="sd">**License:** MIT</span>
 
@@ -2848,11 +2850,11 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;CloudGenix Developer Support &lt;developers@cloudgenix.com&gt;&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;developers@cloudgenix.com&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2025 CloudGenix, Inc&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2017-2026 CloudGenix, Inc&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    MIT License</span>
 <span class="s2">    </span>
-<span class="s2">    Copyright (c) 2017-2025 CloudGenix, Inc</span>
+<span class="s2">    Copyright (c) 2017-2026 CloudGenix, Inc</span>
 <span class="s2">    </span>
 <span class="s2">    Permission is hereby granted, free of charge, to any person obtaining a copy</span>
 <span class="s2">    of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
@@ -2881,7 +2883,7 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 <span class="sd">&quot;&quot;&quot;websocket logger is handled slightly differently, so we will have a seperate handle.&quot;&quot;&quot;</span>
 
 <span class="c1"># Version of SDK</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.6.1b1&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;6.6.2b1&quot;</span>
 <span class="sd">&quot;&quot;&quot;SDK Version string&quot;&quot;&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span>
 
@@ -6139,11 +6141,6 @@ and Response Body.</p></div>
 
 
       <div class="class">
-          <h3>Ancestors (in MRO)</h3>
-          <ul class="class_list">
-          <li><a href="#cloudgenix.API">API</a></li>
-          <li>builtins.object</li>
-          </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.API.address_string">
             <p class="name">var <span class="ident">address_string</span></p>
@@ -6698,7 +6695,7 @@ filename in event of local file.</p></div>
             
   <div class="item" id="cloudgenix.API.modify_rest_retry">
     <div class="name def">
-    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;TRACE&#39;, &#39;OPTIONS&#39;, &#39;PUT&#39;, &#39;HEAD&#39;, &#39;DELETE&#39;, &#39;GET&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
+    <p>def <span class="ident">modify_rest_retry</span>(</p><p>self, total=8, connect=None, read=None, redirect=None, status=None, other=0, allowed_methods=frozenset({&#39;DELETE&#39;, &#39;OPTIONS&#39;, &#39;HEAD&#39;, &#39;TRACE&#39;, &#39;GET&#39;, &#39;PUT&#39;}), status_forcelist=None, backoff_factor=0.705883, raise_on_redirect=True, raise_on_status=True, respect_retry_after_header=True, update_adapter=True)</p>
     </div>
     
 
@@ -8229,10 +8226,8 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#cloudgenix.CloudGenixAPIError">CloudGenixAPIError</a></li>
           <li>builtins.Exception</li>
           <li>builtins.BaseException</li>
-          <li>builtins.object</li>
           </ul>
           <h3>Class variables</h3>
             <div class="item" id="cloudgenix.CloudGenixAPIError.args">
@@ -8292,10 +8287,8 @@ auto-generated cookies/headers and SSL contexts used for authentication.</strong
       <div class="class">
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
-          <li><a href="#cloudgenix.TlsHttpAdapter">TlsHttpAdapter</a></li>
           <li>requests.adapters.HTTPAdapter</li>
           <li>requests.adapters.BaseAdapter</li>
-          <li>builtins.object</li>
           </ul>
           <h3>Static methods</h3>
             
@@ -8361,6 +8354,112 @@ when subclassing the
 <span class="sd">    :param kwargs: The keyword arguments from the call to send().</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.TlsHttpAdapter.build_connection_pool_key_attributes">
+    <div class="name def">
+    <p>def <span class="ident">build_connection_pool_key_attributes</span>(</p><p>self, request, verify, cert=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Build the PoolKey attributes used by urllib3 to return a connection.</p>
+<p>This looks at the PreparedRequest, the user-specified verify value,
+and the value of the cert parameter to determine what PoolKey values
+to use to select a connection from a given urllib3 Connection Pool.</p>
+<p>The SSL related pool key arguments are not consistently set. As of
+this writing, use the following to determine what keys may be in that
+dictionary:</p>
+<ul>
+<li>If <code>verify</code> is <code>True</code>, <code>"ssl_context"</code> will be set and will be the
+  default Requests SSL Context</li>
+<li>If <code>verify</code> is <code>False</code>, <code>"ssl_context"</code> will not be set but
+  <code>"cert_reqs"</code> will be set</li>
+<li>If <code>verify</code> is a string, (i.e., it is a user-specified trust bundle)
+  <code>"ca_certs"</code> will be set if the string is not a directory recognized
+  by :py:func:<code>os.path.isdir</code>, otherwise <code>"ca_cert_dir"</code> will be
+  set.</li>
+<li>If <code>"cert"</code> is specified, <code>"cert_file"</code> will always be set. If
+  <code>"cert"</code> is a tuple with a second item, <code>"key_file"</code> will also
+  be present</li>
+</ul>
+<p>To override these settings, one may subclass this class, call this
+method and use the above logic to change parameters as desired. For
+example, if one wishes to use a custom :py:class:<code>ssl.SSLContext</code> one
+must both set <code>"ssl_context"</code> and based on what else they require,
+alter the other keys to ensure the desired behaviour.</p>
+<p>:param request:
+    The PreparedReqest being sent over the connection.
+:type request:
+    :class:<code>~requests.models.PreparedRequest</code>
+:param verify:
+    Either a boolean, in which case it controls whether
+    we verify the server's TLS certificate, or a string, in which case it
+    must be a path to a CA bundle to use.
+:param cert:
+    (optional) Any user-provided SSL certificate for client
+    authentication (a.k.a., mTLS). This may be a string (i.e., just
+    the path to a file which holds both certificate and key) or a
+    tuple of length 2 with the certificate file path and key file
+    path.
+:returns:
+    A tuple of two dictionaries. The first is the "host parameters"
+    portion of the Pool Key including scheme, hostname, and port. The
+    second is a dictionary of SSLContext related parameters.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.build_connection_pool_key_attributes', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.TlsHttpAdapter.build_connection_pool_key_attributes" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build_connection_pool_key_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build the PoolKey attributes used by urllib3 to return a connection.</span>
+<span class="sd">    This looks at the PreparedRequest, the user-specified verify value,</span>
+<span class="sd">    and the value of the cert parameter to determine what PoolKey values</span>
+<span class="sd">    to use to select a connection from a given urllib3 Connection Pool.</span>
+<span class="sd">    The SSL related pool key arguments are not consistently set. As of</span>
+<span class="sd">    this writing, use the following to determine what keys may be in that</span>
+<span class="sd">    dictionary:</span>
+<span class="sd">    * If ``verify`` is ``True``, ``&quot;ssl_context&quot;`` will be set and will be the</span>
+<span class="sd">      default Requests SSL Context</span>
+<span class="sd">    * If ``verify`` is ``False``, ``&quot;ssl_context&quot;`` will not be set but</span>
+<span class="sd">      ``&quot;cert_reqs&quot;`` will be set</span>
+<span class="sd">    * If ``verify`` is a string, (i.e., it is a user-specified trust bundle)</span>
+<span class="sd">      ``&quot;ca_certs&quot;`` will be set if the string is not a directory recognized</span>
+<span class="sd">      by :py:func:`os.path.isdir`, otherwise ``&quot;ca_cert_dir&quot;`` will be</span>
+<span class="sd">      set.</span>
+<span class="sd">    * If ``&quot;cert&quot;`` is specified, ``&quot;cert_file&quot;`` will always be set. If</span>
+<span class="sd">      ``&quot;cert&quot;`` is a tuple with a second item, ``&quot;key_file&quot;`` will also</span>
+<span class="sd">      be present</span>
+<span class="sd">    To override these settings, one may subclass this class, call this</span>
+<span class="sd">    method and use the above logic to change parameters as desired. For</span>
+<span class="sd">    example, if one wishes to use a custom :py:class:`ssl.SSLContext` one</span>
+<span class="sd">    must both set ``&quot;ssl_context&quot;`` and based on what else they require,</span>
+<span class="sd">    alter the other keys to ensure the desired behaviour.</span>
+<span class="sd">    :param request:</span>
+<span class="sd">        The PreparedReqest being sent over the connection.</span>
+<span class="sd">    :type request:</span>
+<span class="sd">        :class:`~requests.models.PreparedRequest`</span>
+<span class="sd">    :param verify:</span>
+<span class="sd">        Either a boolean, in which case it controls whether</span>
+<span class="sd">        we verify the server&#39;s TLS certificate, or a string, in which case it</span>
+<span class="sd">        must be a path to a CA bundle to use.</span>
+<span class="sd">    :param cert:</span>
+<span class="sd">        (optional) Any user-provided SSL certificate for client</span>
+<span class="sd">        authentication (a.k.a., mTLS). This may be a string (i.e., just</span>
+<span class="sd">        the path to a file which holds both certificate and key) or a</span>
+<span class="sd">        tuple of length 2 with the certificate file path and key file</span>
+<span class="sd">        path.</span>
+<span class="sd">    :returns:</span>
+<span class="sd">        A tuple of two dictionaries. The first is the &quot;host parameters&quot;</span>
+<span class="sd">        portion of the Pool Key including scheme, hostname, and port. The</span>
+<span class="sd">        second is a dictionary of SSLContext related parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_urllib3_request_context</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">poolmanager</span><span class="p">)</span>
 </pre></div>
 
   </div>
@@ -8537,7 +8636,9 @@ which closes any pooled connections.</p></div>
 
     
   
-    <div class="desc"><p>Returns a urllib3 connection for the given URL. This should not be
+    <div class="desc"><p>DEPRECATED: Users should move to <code>get_connection_with_tls_context</code>
+for all subclasses of HTTPAdapter using Requests&gt;=2.32.2.</p>
+<p>Returns a urllib3 connection for the given URL. This should not be
 called from user code, and is only exposed for use when subclassing the
 :class:<code>HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;</code>.</p>
 <p>:param url: The URL to connect to.
@@ -8547,13 +8648,24 @@ called from user code, and is only exposed for use when subclassing the
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.get_connection', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.TlsHttpAdapter.get_connection" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a urllib3 connection for the given URL. This should not be</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED: Users should move to `get_connection_with_tls_context`</span>
+<span class="sd">    for all subclasses of HTTPAdapter using Requests&gt;=2.32.2.</span>
+<span class="sd">    Returns a urllib3 connection for the given URL. This should not be</span>
 <span class="sd">    called from user code, and is only exposed for use when subclassing the</span>
 <span class="sd">    :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`.</span>
 <span class="sd">    :param url: The URL to connect to.</span>
 <span class="sd">    :param proxies: (optional) A Requests-style dictionary of proxies used on this request.</span>
 <span class="sd">    :rtype: urllib3.ConnectionPool</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="s2">&quot;`get_connection` has been deprecated in favor of &quot;</span>
+            <span class="s2">&quot;`get_connection_with_tls_context`. Custom HTTPAdapter subclasses &quot;</span>
+            <span class="s2">&quot;will need to migrate for Requests&gt;=2.32.2. Please see &quot;</span>
+            <span class="s2">&quot;https://github.com/psf/requests/pull/6710 for more details.&quot;</span>
+        <span class="p">),</span>
+        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
         <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">)</span>
@@ -8570,6 +8682,88 @@ called from user code, and is only exposed for use when subclassing the
         <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">geturl</span><span class="p">()</span>
         <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poolmanager</span><span class="o">.</span><span class="n">connection_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conn</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item" id="cloudgenix.TlsHttpAdapter.get_connection_with_tls_context">
+    <div class="name def">
+    <p>def <span class="ident">get_connection_with_tls_context</span>(</p><p>self, request, verify, proxies=None, cert=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns a urllib3 connection for the given request and TLS settings.
+This should not be called from user code, and is only exposed for use
+when subclassing the :class:<code>HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;</code>.</p>
+<p>:param request:
+    The :class:<code>PreparedRequest &lt;PreparedRequest&gt;</code> object to be sent
+    over the connection.
+:param verify:
+    Either a boolean, in which case it controls whether we verify the
+    server's TLS certificate, or a string, in which case it must be a
+    path to a CA bundle to use.
+:param proxies:
+    (optional) The proxies dictionary to apply to the request.
+:param cert:
+    (optional) Any user-provided SSL certificate to be used for client
+    authentication (a.k.a., mTLS).
+:rtype:
+    urllib3.ConnectionPool</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.TlsHttpAdapter.get_connection_with_tls_context', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.TlsHttpAdapter.get_connection_with_tls_context" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_connection_with_tls_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a urllib3 connection for the given request and TLS settings.</span>
+<span class="sd">    This should not be called from user code, and is only exposed for use</span>
+<span class="sd">    when subclassing the :class:`HTTPAdapter &lt;requests.adapters.HTTPAdapter&gt;`.</span>
+<span class="sd">    :param request:</span>
+<span class="sd">        The :class:`PreparedRequest &lt;PreparedRequest&gt;` object to be sent</span>
+<span class="sd">        over the connection.</span>
+<span class="sd">    :param verify:</span>
+<span class="sd">        Either a boolean, in which case it controls whether we verify the</span>
+<span class="sd">        server&#39;s TLS certificate, or a string, in which case it must be a</span>
+<span class="sd">        path to a CA bundle to use.</span>
+<span class="sd">    :param proxies:</span>
+<span class="sd">        (optional) The proxies dictionary to apply to the request.</span>
+<span class="sd">    :param cert:</span>
+<span class="sd">        (optional) Any user-provided SSL certificate to be used for client</span>
+<span class="sd">        authentication (a.k.a., mTLS).</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">        urllib3.ConnectionPool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">proxy</span> <span class="o">=</span> <span class="n">select_proxy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">host_params</span><span class="p">,</span> <span class="n">pool_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_connection_pool_key_attributes</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span>
+            <span class="n">verify</span><span class="p">,</span>
+            <span class="n">cert</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">proxy</span><span class="p">:</span>
+        <span class="n">proxy</span> <span class="o">=</span> <span class="n">prepend_scheme_if_needed</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">)</span>
+        <span class="n">proxy_url</span> <span class="o">=</span> <span class="n">parse_url</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">proxy_url</span><span class="o">.</span><span class="n">host</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidProxyURL</span><span class="p">(</span>
+                <span class="s2">&quot;Please check proxy URL. It is malformed &quot;</span>
+                <span class="s2">&quot;and could be missing the host.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">proxy_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy_manager_for</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">proxy_manager</span><span class="o">.</span><span class="n">connection_from_host</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">host_params</span><span class="p">,</span> <span class="n">pool_kwargs</span><span class="o">=</span><span class="n">pool_kwargs</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Only scheme should be lower case</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poolmanager</span><span class="o">.</span><span class="n">connection_from_host</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">host_params</span><span class="p">,</span> <span class="n">pool_kwargs</span><span class="o">=</span><span class="n">pool_kwargs</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">conn</span>
 </pre></div>
 
@@ -8722,6 +8916,8 @@ when subclassing the
         <span class="n">proxy_scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">using_socks_proxy</span> <span class="o">=</span> <span class="n">proxy_scheme</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;socks&quot;</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path_url</span>
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">):</span>  <span class="c1"># Don&#39;t confuse urllib3</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="k">if</span> <span class="n">is_proxied_http_request</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">using_socks_proxy</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">urldefragauth</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">url</span>
@@ -8775,7 +8971,9 @@ when subclassing the
 <span class="sd">    :rtype: requests.Response</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connection</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connection_with_tls_context</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span>
+        <span class="p">)</span>
     <span class="k">except</span> <span class="n">LocationValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cert_verify</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">)</span>
@@ -8863,7 +9061,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Explicit CA Certificate Bundle for API calls (CA Pinning).</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8873,7 +9071,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - DELETE</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8883,7 +9081,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - GET</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8893,7 +9091,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python Interactive SDK Helper functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8903,7 +9101,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - PATCH</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8913,7 +9111,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - POST</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8923,7 +9121,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - PUT</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8933,7 +9131,7 @@ when subclassing the
   
     <div class="desc"><p>CloudGenix Python SDK - WebSocket Functions</p>
 <p><strong>Author:</strong> CloudGenix</p>
-<p><strong>Copyright:</strong> (c) 2017-2025 CloudGenix, Inc</p>
+<p><strong>Copyright:</strong> (c) 2017-2026 CloudGenix, Inc</p>
 <p><strong>License:</strong> MIT</p></div>
 
       </div>
@@ -8943,7 +9141,7 @@ when subclassing the
       <footer id="footer">
         <p>
           Documentation generated by
-          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+          <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.13</a>
         </p>
       </footer>
     </article>

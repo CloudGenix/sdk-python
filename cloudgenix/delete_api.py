@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc
+**Copyright:** (c) 2017-2026 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2026 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2025 CloudGenix, Inc
+    Copyright (c) 2017-2026 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -202,7 +202,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates(self, sitetemplate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates API Function
+        delete site profile (v2.0)
 
           **Parameters:**:
 
@@ -230,7 +230,7 @@ class Delete(object):
 
     def bulkconfigurations_sitetemplates_deployments(self, sitetemplate_id, deployment_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function
+        Delete a deployment (v2.0)
 
           **Parameters:**:
 
@@ -258,37 +258,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def certificates(self, entitie_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Certificates API Function
-
-          **Parameters:**:
-
-          - **entitie_id**: Entitie ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/entities/{}/certificates".format(api_version,
-                                                                                   tenant_id,
-                                                                                   entitie_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
     def demsiteconfigs(self, site_id, demsiteconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Demsiteconfigs API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -318,7 +290,7 @@ class Delete(object):
 
     def deviceidconfigs_snmpdiscoverystartnodes(self, site_id, deviceidconfig_id, snmpdiscoverystartnode_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function
+        Delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -350,7 +322,7 @@ class Delete(object):
 
     def deviceidprofiles(self, deviceidprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Deviceidprofiles API Function
+        Delete device Id profile configuration (v2.0)
 
           **Parameters:**:
 
@@ -406,15 +378,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def directoryservices(self, directoryservice_id, tenant_id=None, api_version="v2.1"):
+    def directoryservices(self, directoryservice_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Directoryservices API Function
+        Delete Directory Service (v2.0)
 
           **Parameters:**:
 
           - **directoryservice_id**: Directory Service ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -524,7 +496,7 @@ class Delete(object):
 
     def element_deviceidconfigs(self, site_id, element_id, deviceidconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Element_Deviceidconfigs API Function
+        Delete device id element level (source interface) config (v2.0)
 
           **Parameters:**:
 
@@ -710,7 +682,7 @@ class Delete(object):
 
     def elementshells(self, site_id, elementshell_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Elementshells API Function
+        Delete an element shell (v2.1)
 
           **Parameters:**:
 
@@ -740,7 +712,7 @@ class Delete(object):
 
     def elementshells_interfaces(self, site_id, elementshell_id, interface_id, tenant_id=None, api_version="v2.4"):
         """
-        DELETE Elementshells_Interfaces API Function
+        Delete an element shell interface (v2.4)
 
           **Parameters:**:
 
@@ -1870,16 +1842,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def ngfwsecuritypolicyrules(self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version="v2.3"):
+    def ngfwsecuritypolicyrules(self, ngfwsecuritypolicyset_id, ngfwsecuritypolicyrule_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete an existing Security Policy V2 Rule under a policy set (v2.3)
+        Delete an existing Security Policy V2 Rule under a policy set (v2.2)
 
           **Parameters:**:
 
           - **ngfwsecuritypolicyset_id**: NGFW Security Policy Set ID
           - **ngfwsecuritypolicyrule_id**: NGFW Security Policy Rule ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1988,7 +1960,7 @@ class Delete(object):
 
     def ospfconfigs(self, site_id, element_id, ospfconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Ospfconfigs API Function
+        Deletes OSPF config (v2.0)
 
           **Parameters:**:
 
@@ -2108,7 +2080,7 @@ class Delete(object):
 
     def perfmgmtpolicysets(self, perfmgmtpolicyset_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysets API Function
+        Delete a PERFMGMT Policy Set (v2.0)
 
           **Parameters:**:
 
@@ -2136,7 +2108,7 @@ class Delete(object):
 
     def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, tenant_id=None, api_version="v2.2"):
         """
-        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function
+        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)
 
           **Parameters:**:
 
@@ -2166,7 +2138,7 @@ class Delete(object):
 
     def perfmgmtpolicysetstacks(self, perfmgmtpolicysetstack_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Perfmgmtpolicysetstacks API Function
+        Delete a PERFMGMT Policy Set Stack (v2.0)
 
           **Parameters:**:
 
@@ -2194,7 +2166,7 @@ class Delete(object):
 
     def perfmgmtthresholdprofiles(self, perfmgmtthresholdprofile_id, tenant_id=None, api_version="v2.1"):
         """
-        DELETE Perfmgmtthresholdprofiles API Function
+        Delete a Threshold Profile (v2.1)
 
           **Parameters:**:
 
@@ -2514,7 +2486,7 @@ class Delete(object):
 
     def prismasase_connections_configs(self, tenant_id=None, api_version="v3.1"):
         """
-        DELETE Prismasase_Connections_Configs API Function
+        Delete existing SASE connection config (v3.1)
 
           **Parameters:**:
 
@@ -2540,7 +2512,7 @@ class Delete(object):
 
     def probeconfigs(self, probeconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeconfigs API Function
+        Delete a Probe Config (v2.0)
 
           **Parameters:**:
 
@@ -2568,7 +2540,7 @@ class Delete(object):
 
     def probeprofiles(self, probeprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Probeprofiles API Function
+        Delete a PROBE Profile (v2.0)
 
           **Parameters:**:
 
@@ -2864,34 +2836,6 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/securitypolicysets/{}".format(api_version,
                                                                                 tenant_id,
                                                                                 securitypolicyset_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "delete")
-
-    def securityprofilegroups(self, securityprofilegroup_id, tenant_id=None, api_version="v2.0"):
-        """
-        DELETE Securityprofilegroups API Function
-
-          **Parameters:**:
-
-          - **securityprofilegroup_id**: Security Profile Group ID
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/securityprofilegroups/{}".format(api_version,
-                                                                                   tenant_id,
-                                                                                   securityprofilegroup_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -3372,15 +3316,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def syslogserverprofiles(self, syslogserverprofile_id, tenant_id=None, api_version="v2.1"):
+    def syslogserverprofiles(self, syslogserverprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete Syslog Server Profile (v2.1)
+        Delete Syslog Server Profile (v2.0)
 
           **Parameters:**:
 
           - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3400,9 +3344,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.3"):
+    def syslogservers(self, site_id, element_id, syslogserver_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete Syslog Server (v2.3)
+        Delete Syslog Server (v2.2)
 
           **Parameters:**:
 
@@ -3410,7 +3354,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **syslogserver_id**: SYSLOG server ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3434,11 +3378,11 @@ class Delete(object):
 
     def tacacs_plus_profiles(self, tacacs_plus_profile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tacacs_Plus_Profiles API Function
+        Delete TACACS+ Profile (v2.0)
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: TACACS Plus Profile ID
+          - **tacacs_plus_profile_id**: Tacacs Plus Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3462,13 +3406,13 @@ class Delete(object):
 
     def tacacs_plus_servers(self, site_id, element_id, tacacs_plus_server_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tacacs_Plus_Servers API Function
+        Delete TACACS+ Server (v2.0)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: TACACS Plus Server ID
+          - **tacacs_plus_server_id**: Tacacs Plus Server ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3716,9 +3660,37 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
+    def tenants_certificates(self, certificate_id, tenant_id=None, api_version="v2.0"):
+        """
+        Delete a certificate of tenant v2.0 (v2.0)
+
+          **Parameters:**:
+
+          - **certificate_id**: Certificate ID
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          certificate_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
     def useridagents(self, useridagent_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Useridagents API Function
+        Delete User ID Agent (v2.0)
 
           **Parameters:**:
 
@@ -3774,7 +3746,7 @@ class Delete(object):
 
     def vrfcontextprofiles(self, vrfcontextprofile_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontextprofiles API Function
+        Delete VRF Context Profile (v2.0)
 
           **Parameters:**:
 
@@ -3802,7 +3774,7 @@ class Delete(object):
 
     def vrfcontexts(self, vrfcontext_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Vrfcontexts API Function
+        Delete VRF segment (v2.0)
 
           **Parameters:**:
 
@@ -3951,8 +3923,8 @@ class Delete(object):
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
 
-    certificates_tenants = certificates
-    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
+    certificates_tenants = tenants_certificates
+    """ Backwards-compatibility alias of `certificates_tenants` to `tenants_certificates`"""
 
     configs_prismasase_connections = prismasase_connections_configs
     """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""

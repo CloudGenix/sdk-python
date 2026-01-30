@@ -14,11 +14,10 @@ Initial version requires knowledge of JSON/Dict objects for POST/PUT/PATCH opera
 
 #### Requirements
 * Active CloudGenix Account
-* Python >=3.7
+* Python >=3.6
 * Python modules:
-    * Requests - <http://docs.python-requests.org/en/master/>
-    * Websockets >= 8.1 - <https://websockets.readthedocs.io/en/stable/index.html>
-    * urllib3 >= 2.0.0 - <https://urllib3.readthedocs.io/en/stable/>
+    * Requests + Security Extras >= 2.22.0 - <http://docs.python-requests.org/en/master/>
+    * Websockets (if Python >= 3.6) >= 8.1 - <https://websockets.readthedocs.io/en/stable/index.html>
 
 #### Code Example
 Comes with `example.py` that shows usage to get a JSON list of sites.
@@ -44,6 +43,8 @@ MIT
 #### Version
 | Version   | Build  | Changes                                                                                                   |
 |-----------|--------|-----------------------------------------------------------------------------------------------------------|
+| **6.6.2** | **b1** | Support for February 2026 Controller release.                                                             |
+
 | **6.6.1** | **b1** | Support for October 2025 Controller release.                                                              |
 | **6.5.2** | **b4** | Support for February 2025 Controller release with Digicert CA.                                            |
 | **6.5.2** | **b1** | Support for February 2025 Controller release.                                                             |
