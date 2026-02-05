@@ -4,7 +4,7 @@ CloudGenix Python SDK - DELETE
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc
+**Copyright:** (c) 2017-2026 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2026 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2025 CloudGenix, Inc
+    Copyright (c) 2017-2026 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -168,9 +168,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v2.6"):
+    def bgppeers(self, site_id, element_id, bgppeer_id, tenant_id=None, api_version="v3.0"):
         """
-        Delete BGP Peer config (v2.6)
+        Delete BGP Peer config (v3.0)
 
           **Parameters:**:
 
@@ -178,7 +178,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **bgppeer_id**: BGP Peer ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -258,13 +258,13 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def certificates(self, entitie_id, tenant_id=None, api_version="v2.0"):
+    def certificates_tenants(self, certificate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Certificates API Function
+        DELETE Certificates_Tenants API Function
 
           **Parameters:**:
 
-          - **entitie_id**: Entitie ID
+          - **certificate_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -279,9 +279,9 @@ class Delete(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/entities/{}/certificates".format(api_version,
-                                                                                   tenant_id,
-                                                                                   entitie_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          certificate_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -293,7 +293,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: DEM Site Config ID
+          - **demsiteconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -766,6 +766,34 @@ class Delete(object):
                                                                                                   site_id,
                                                                                                   elementshell_id,
                                                                                                   interface_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def elementsystemlimitprofiles(self, elementsystemlimitprofile_id, tenant_id=None, api_version="v2.0"):
+        """
+        DELETE Elementsystemlimitprofiles API Function
+
+          **Parameters:**:
+
+          - **elementsystemlimitprofile_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementsystemlimitprofiles/{}".format(api_version,
+                                                                                        tenant_id,
+                                                                                        elementsystemlimitprofile_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -1994,7 +2022,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Config ID
+          - **ospfconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2053,7 +2081,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilterassociation_id**: Path Prefix Distribution Filter Association ID
+          - **pathprefixdistributionfilterassociation_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2083,7 +2111,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilter_id**: Path Prefix Distribution Filter ID
+          - **pathprefixdistributionfilter_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2285,7 +2313,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prefixdistributionspokelist_id**: Prefix Distribution Spoke List ID
+          - **prefixdistributionspokelist_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2544,7 +2572,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: Probe Config ID
+          - **probeconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2572,7 +2600,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: Probe Profile ID
+          - **probeprofile_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2874,7 +2902,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **securityprofilegroup_id**: Security Profile Group ID
+          - **securityprofilegroup_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3188,15 +3216,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sites(self, site_id, tenant_id=None, api_version="v4.12"):
+    def sites(self, site_id, tenant_id=None, api_version="v4.13"):
         """
-        Delete a site (v4.12)
+        Delete a site (v4.13)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.12)
+          - **api_version**: API version to use (default v4.13)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3438,7 +3466,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: TACACS Plus Profile ID
+          - **tacacs_plus_profile_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3468,7 +3496,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: TACACS Plus Server ID
+          - **tacacs_plus_server_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3950,9 +3978,6 @@ class Delete(object):
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
-
-    certificates_tenants = certificates
-    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
 
     configs_prismasase_connections = prismasase_connections_configs
     """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""

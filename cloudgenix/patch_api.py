@@ -4,7 +4,7 @@ CloudGenix Python SDK - PATCH
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc
+**Copyright:** (c) 2017-2026 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2026 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2025 CloudGenix, Inc
+    Copyright (c) 2017-2026 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ class Patch(object):
     # placeholder for parent class namespace
     _parent_class = None
 
-    def bgppeers(self, site_id, element_id, data, tenant_id=None, api_version="v2.6"):
+    def bgppeers(self, site_id, element_id, data, tenant_id=None, api_version="v3.0"):
         """
         PATCH Bgppeers API Function
 
@@ -62,7 +62,7 @@ class Patch(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to PATCH as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
           **Payload Attributes:** 
 
