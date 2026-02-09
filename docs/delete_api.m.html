@@ -2852,7 +2852,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **appdef_id**: Application Definition ID</span>
-<span class="sd">          - **override_id**: AppDef Override ID</span>
+<span class="sd">          - **override_id**: Override ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.3)</span>
 
@@ -2882,7 +2882,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: Static AUTH_TOKEN ID</span>
+<span class="sd">          - **authtoken_id**: Auth Token ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -2939,7 +2939,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">        delete site profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2967,7 +2967,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">        Delete a deployment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -2997,11 +2997,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Certificates_Tenants API Function</span>
+<span class="sd">        Delete a certificate of tenant v2.0 (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **certificate_id**: </span>
+<span class="sd">          - **certificate_id**: Certificate ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3025,12 +3025,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Demsiteconfigs API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **demsiteconfig_id**: </span>
+<span class="sd">          - **demsiteconfig_id**: DEM Site Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3055,13 +3055,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **deviceidconfig_id**: Device Id Config ID</span>
-<span class="sd">          - **snmpdiscoverystartnode_id**: SNMP Discovery Start Node ID</span>
+<span class="sd">          - **snmpdiscoverystartnode_id**: SNMP Discovery Startnode ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3087,7 +3087,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidprofiles API Function</span>
+<span class="sd">        Delete device Id profile configuration (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3145,7 +3145,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Directoryservices API Function</span>
+<span class="sd">        Delete Directory Service (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3261,7 +3261,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">        Delete device id element level (source interface) config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3330,7 +3330,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **passage_id**: Passage Configuration ID</span>
+<span class="sd">          - **passage_id**: Passage ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3390,7 +3390,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **elementpassageconfig_id**: Element Passage Configuration ID</span>
+<span class="sd">          - **elementpassageconfig_id**: Element Passage Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3421,7 +3421,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">          - **securityzone_id**: Security Zone ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3447,7 +3447,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells API Function</span>
+<span class="sd">        Delete an element shell (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3477,7 +3477,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">        Delete an element shell interface (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -3509,11 +3509,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementsystemlimitprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elementsystemlimitprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementsystemlimitprofiles API Function</span>
+<span class="sd">        Delete Element System Limit Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **elementsystemlimitprofile_id**: </span>
+<span class="sd">          - **elementsystemlimitprofile_id**: Element System Limit Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3805,7 +3805,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **idp_id**: SAML IDentity provider configuration ID</span>
+<span class="sd">          - **idp_id**: IDP ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v3.3)</span>
 
@@ -3867,7 +3867,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ipfix_id**: IPFix ID</span>
+<span class="sd">          - **ipfix_id**: IPFIX ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3897,7 +3897,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixcollectorcontext_id**: IPFix Collector Context ID</span>
+<span class="sd">          - **ipfixcollectorcontext_id**: IPFIX Collector Context ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3925,7 +3925,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixfiltercontext_id**: IPFix Filter Context ID</span>
+<span class="sd">          - **ipfixfiltercontext_id**: IPFIX Filter Context ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3953,7 +3953,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixglobalprefix_id**: IPFix Global Prefix ID</span>
+<span class="sd">          - **ipfixglobalprefix_id**: IPFIX Global Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -3981,7 +3981,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixprofile_id**: IPFix Profile ID</span>
+<span class="sd">          - **ipfixprofile_id**: IPFIX Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4009,7 +4009,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixtemplate_id**: IPFix Template ID</span>
+<span class="sd">          - **ipfixtemplate_id**: IPFIX Template ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4185,7 +4185,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **multicastrp_id**: Multicast RP ID</span>
+<span class="sd">          - **multicastrp_id**: Multicast Rp ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4753,13 +4753,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Ospfconfigs API Function</span>
+<span class="sd">        Deletes OSPF config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: </span>
+<span class="sd">          - **ospfconfig_id**: OSPF Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4789,7 +4789,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
+<span class="sd">          - **pathgroup_id**: Path Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -4818,7 +4818,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilterassociation_id**: </span>
+<span class="sd">          - **pathprefixdistributionfilterassociation_id**: Path Prefix Distribution Filter Association ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4848,7 +4848,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilter_id**: </span>
+<span class="sd">          - **pathprefixdistributionfilter_id**: Path Prefix Distribution Filter ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4873,7 +4873,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4901,12 +4901,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
-<span class="sd">          - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID</span>
+<span class="sd">          - **perfmgmtpolicyrule_id**: Perfmgmt Policy Rule ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
@@ -4931,11 +4931,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID</span>
+<span class="sd">          - **perfmgmtpolicysetstack_id**: Perfmgmt Policy Set Stack ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4959,11 +4959,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">        Delete a Threshold Profile (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID</span>
+<span class="sd">          - **perfmgmtthresholdprofile_id**: Perfmgmt Threshold Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -5050,7 +5050,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prefixdistributionspokelist_id**: </span>
+<span class="sd">          - **prefixdistributionspokelist_id**: Prefix Distribution Spoke List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5195,7 +5195,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **prioritypolicysetstack_id**: Priority Policy Stack ID</span>
+<span class="sd">          - **prioritypolicysetstack_id**: Priority Policy Set Stack ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5224,7 +5224,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prismaaccess_config_id**: Prisma Acceess Config ID</span>
+<span class="sd">          - **prismaaccess_config_id**: Prisma Access Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5279,7 +5279,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">        Delete existing SASE connection config (v3.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -5305,11 +5305,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeconfigs API Function</span>
+<span class="sd">        Delete a Probe Config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeconfig_id**: </span>
+<span class="sd">          - **probeconfig_id**: Probe Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5333,11 +5333,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeprofiles API Function</span>
+<span class="sd">        Delete a PROBE Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeprofile_id**: </span>
+<span class="sd">          - **probeprofile_id**: Probe Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5425,7 +5425,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID</span>
+<span class="sd">          - **routing_aspathaccesslist_id**: Routing As Path Access List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -5457,7 +5457,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_ipcommunitylist_id**: Routing IP Community List ID</span>
+<span class="sd">          - **routing_ipcommunitylist_id**: Routing Ipcommunity List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5489,7 +5489,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_prefixlist_id**: Routing IP Prefix List ID</span>
+<span class="sd">          - **routing_prefixlist_id**: Routing Prefix List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -5552,7 +5552,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
-<span class="sd">          - **config_id**: SDWAN App Config ID</span>
+<span class="sd">          - **config_id**: Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5635,11 +5635,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Securityprofilegroups API Function</span>
+<span class="sd">        Delete an existing Security Profile Group by tenant ID and its ID (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityprofilegroup_id**: </span>
+<span class="sd">          - **securityprofilegroup_id**: Security Profile Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5667,7 +5667,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">          - **securityzone_id**: Security Zone ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -5810,7 +5810,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6143,7 +6143,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
+<span class="sd">          - **syslogserverprofile_id**: Syslog Server Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -6173,7 +6173,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
+<span class="sd">          - **syslogserver_id**: Syslog Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.3)</span>
 
@@ -6199,11 +6199,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">        Delete TACACS+ Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: </span>
+<span class="sd">          - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6227,13 +6227,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">        Delete TACACS+ Server (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: </span>
+<span class="sd">          - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6319,7 +6319,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6483,7 +6483,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Useridagents API Function</span>
+<span class="sd">        Delete User ID Agent (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6539,7 +6539,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">        Delete VRF Context Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6567,7 +6567,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontexts API Function</span>
+<span class="sd">        Delete VRF segment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -6908,7 +6908,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **appdef_id**: Application Definition ID</span>
-<span class="sd">          - **override_id**: AppDef Override ID</span>
+<span class="sd">          - **override_id**: Override ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.3)</span>
 
@@ -6938,7 +6938,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **operator_id**: Operator ID</span>
-<span class="sd">          - **authtoken_id**: Static AUTH_TOKEN ID</span>
+<span class="sd">          - **authtoken_id**: Auth Token ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -6995,7 +6995,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">        delete site profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7023,7 +7023,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">        Delete a deployment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7053,11 +7053,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Certificates_Tenants API Function</span>
+<span class="sd">        Delete a certificate of tenant v2.0 (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **certificate_id**: </span>
+<span class="sd">          - **certificate_id**: Certificate ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7081,12 +7081,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Demsiteconfigs API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **demsiteconfig_id**: </span>
+<span class="sd">          - **demsiteconfig_id**: DEM Site Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7111,13 +7111,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">        Delete Start Network Node config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **deviceidconfig_id**: Device Id Config ID</span>
-<span class="sd">          - **snmpdiscoverystartnode_id**: SNMP Discovery Start Node ID</span>
+<span class="sd">          - **snmpdiscoverystartnode_id**: SNMP Discovery Startnode ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7143,7 +7143,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Deviceidprofiles API Function</span>
+<span class="sd">        Delete device Id profile configuration (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7201,7 +7201,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Directoryservices API Function</span>
+<span class="sd">        Delete Directory Service (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7317,7 +7317,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">        Delete device id element level (source interface) config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7386,7 +7386,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **passage_id**: Passage Configuration ID</span>
+<span class="sd">          - **passage_id**: Passage ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7446,7 +7446,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **elementpassageconfig_id**: Element Passage Configuration ID</span>
+<span class="sd">          - **elementpassageconfig_id**: Element Passage Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7477,7 +7477,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">          - **securityzone_id**: Security Zone ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7503,7 +7503,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells API Function</span>
+<span class="sd">        Delete an element shell (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7533,7 +7533,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">        Delete an element shell interface (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -7565,11 +7565,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementsystemlimitprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elementsystemlimitprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Elementsystemlimitprofiles API Function</span>
+<span class="sd">        Delete Element System Limit Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **elementsystemlimitprofile_id**: </span>
+<span class="sd">          - **elementsystemlimitprofile_id**: Element System Limit Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7861,7 +7861,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **idp_id**: SAML IDentity provider configuration ID</span>
+<span class="sd">          - **idp_id**: IDP ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v3.3)</span>
 
@@ -7923,7 +7923,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ipfix_id**: IPFix ID</span>
+<span class="sd">          - **ipfix_id**: IPFIX ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7953,7 +7953,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixcollectorcontext_id**: IPFix Collector Context ID</span>
+<span class="sd">          - **ipfixcollectorcontext_id**: IPFIX Collector Context ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7981,7 +7981,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixfiltercontext_id**: IPFix Filter Context ID</span>
+<span class="sd">          - **ipfixfiltercontext_id**: IPFIX Filter Context ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8009,7 +8009,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixglobalprefix_id**: IPFix Global Prefix ID</span>
+<span class="sd">          - **ipfixglobalprefix_id**: IPFIX Global Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8037,7 +8037,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixprofile_id**: IPFix Profile ID</span>
+<span class="sd">          - **ipfixprofile_id**: IPFIX Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8065,7 +8065,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixtemplate_id**: IPFix Template ID</span>
+<span class="sd">          - **ipfixtemplate_id**: IPFIX Template ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8241,7 +8241,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **multicastrp_id**: Multicast RP ID</span>
+<span class="sd">          - **multicastrp_id**: Multicast Rp ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8809,13 +8809,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Ospfconfigs API Function</span>
+<span class="sd">        Deletes OSPF config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: </span>
+<span class="sd">          - **ospfconfig_id**: OSPF Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8845,7 +8845,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
+<span class="sd">          - **pathgroup_id**: Path Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -8874,7 +8874,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilterassociation_id**: </span>
+<span class="sd">          - **pathprefixdistributionfilterassociation_id**: Path Prefix Distribution Filter Association ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8904,7 +8904,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilter_id**: </span>
+<span class="sd">          - **pathprefixdistributionfilter_id**: Path Prefix Distribution Filter ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8929,7 +8929,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8957,12 +8957,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
-<span class="sd">          - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID</span>
+<span class="sd">          - **perfmgmtpolicyrule_id**: Perfmgmt Policy Rule ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
@@ -8987,11 +8987,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">        Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID</span>
+<span class="sd">          - **perfmgmtpolicysetstack_id**: Perfmgmt Policy Set Stack ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9015,11 +9015,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">        Delete a Threshold Profile (v2.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID</span>
+<span class="sd">          - **perfmgmtthresholdprofile_id**: Perfmgmt Threshold Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -9106,7 +9106,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prefixdistributionspokelist_id**: </span>
+<span class="sd">          - **prefixdistributionspokelist_id**: Prefix Distribution Spoke List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9251,7 +9251,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **prioritypolicysetstack_id**: Priority Policy Stack ID</span>
+<span class="sd">          - **prioritypolicysetstack_id**: Priority Policy Set Stack ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9280,7 +9280,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prismaaccess_config_id**: Prisma Acceess Config ID</span>
+<span class="sd">          - **prismaaccess_config_id**: Prisma Access Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9335,7 +9335,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">        Delete existing SASE connection config (v3.1)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9361,11 +9361,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeconfigs API Function</span>
+<span class="sd">        Delete a Probe Config (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeconfig_id**: </span>
+<span class="sd">          - **probeconfig_id**: Probe Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9389,11 +9389,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Probeprofiles API Function</span>
+<span class="sd">        Delete a PROBE Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeprofile_id**: </span>
+<span class="sd">          - **probeprofile_id**: Probe Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9481,7 +9481,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID</span>
+<span class="sd">          - **routing_aspathaccesslist_id**: Routing As Path Access List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -9513,7 +9513,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_ipcommunitylist_id**: Routing IP Community List ID</span>
+<span class="sd">          - **routing_ipcommunitylist_id**: Routing Ipcommunity List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9545,7 +9545,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **routing_prefixlist_id**: Routing IP Prefix List ID</span>
+<span class="sd">          - **routing_prefixlist_id**: Routing Prefix List ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -9608,7 +9608,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **sdwanapp_id**: SDWAN Application ID</span>
-<span class="sd">          - **config_id**: SDWAN App Config ID</span>
+<span class="sd">          - **config_id**: Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9691,11 +9691,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Securityprofilegroups API Function</span>
+<span class="sd">        Delete an existing Security Profile Group by tenant ID and its ID (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityprofilegroup_id**: </span>
+<span class="sd">          - **securityprofilegroup_id**: Security Profile Group ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9723,7 +9723,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">          - **securityzone_id**: Security Zone ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -9866,7 +9866,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10199,7 +10199,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
+<span class="sd">          - **syslogserverprofile_id**: Syslog Server Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -10229,7 +10229,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **syslogserver_id**: SYSLOG server ID</span>
+<span class="sd">          - **syslogserver_id**: Syslog Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.3)</span>
 
@@ -10255,11 +10255,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">        Delete TACACS+ Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: </span>
+<span class="sd">          - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10283,13 +10283,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">        Delete TACACS+ Server (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: </span>
+<span class="sd">          - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10375,7 +10375,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10539,7 +10539,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Useridagents API Function</span>
+<span class="sd">        Delete User ID Agent (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10595,7 +10595,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">        Delete VRF Context Profile (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -10623,7 +10623,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DELETE Vrfcontexts API Function</span>
+<span class="sd">        Delete VRF segment (v2.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -11336,7 +11336,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>appdef_id</strong>: Application Definition ID</li>
-<li><strong>override_id</strong>: AppDef Override ID</li>
+<li><strong>override_id</strong>: Override ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.3)</li>
 </ul>
@@ -11349,7 +11349,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Delete application definition overrides for system appdef (v2.3)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **appdef_id**: Application Definition ID</span>
-<span class="sd">      - **override_id**: AppDef Override ID</span>
+<span class="sd">      - **override_id**: Override ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11387,7 +11387,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>operator_id</strong>: Operator ID</li>
-<li><strong>authtoken_id</strong>: Static AUTH_TOKEN ID</li>
+<li><strong>authtoken_id</strong>: Auth Token ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -11400,7 +11400,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Delete an auth token (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **operator_id**: Operator ID</span>
-<span class="sd">      - **authtoken_id**: Static AUTH_TOKEN ID</span>
+<span class="sd">      - **authtoken_id**: Auth Token ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11488,7 +11488,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Bulkconfigurations_Sitetemplates API Function</p>
+    <div class="desc"><p>delete site profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>sitetemplate_id</strong>: Site Template ID</li>
@@ -11501,7 +11501,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Bulkconfigurations_Sitetemplates API Function</span>
+<span class="sd">    delete site profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **sitetemplate_id**: Site Template ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -11536,7 +11536,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</p>
+    <div class="desc"><p>Delete a deployment (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>sitetemplate_id</strong>: Site Template ID</li>
@@ -11550,7 +11550,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.bulkconfigurations_sitetemplates_deployments" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bulkconfigurations_sitetemplates_deployments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sitetemplate_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Bulkconfigurations_Sitetemplates_Deployments API Function</span>
+<span class="sd">    Delete a deployment (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **sitetemplate_id**: Site Template ID</span>
 <span class="sd">      - **deployment_id**: Deployment ID</span>
@@ -11587,10 +11587,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Certificates_Tenants API Function</p>
+    <div class="desc"><p>Delete a certificate of tenant v2.0 (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>certificate_id</strong>: </li>
+<li><strong>certificate_id</strong>: Certificate ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11600,9 +11600,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.certificates_tenants" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Certificates_Tenants API Function</span>
+<span class="sd">    Delete a certificate of tenant v2.0 (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **certificate_id**: </span>
+<span class="sd">      - **certificate_id**: Certificate ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11635,11 +11635,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Demsiteconfigs API Function</p>
+    <div class="desc"><p>Delete Start Network Node config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>demsiteconfig_id</strong>: </li>
+<li><strong>demsiteconfig_id</strong>: DEM Site Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11649,10 +11649,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.demsiteconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">demsiteconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">demsiteconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Demsiteconfigs API Function</span>
+<span class="sd">    Delete Start Network Node config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **demsiteconfig_id**: </span>
+<span class="sd">      - **demsiteconfig_id**: DEM Site Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11686,12 +11686,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</p>
+    <div class="desc"><p>Delete Start Network Node config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>deviceidconfig_id</strong>: Device Id Config ID</li>
-<li><strong>snmpdiscoverystartnode_id</strong>: SNMP Discovery Start Node ID</li>
+<li><strong>snmpdiscoverystartnode_id</strong>: SNMP Discovery Startnode ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -11701,11 +11701,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.deviceidconfigs_snmpdiscoverystartnodes" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deviceidconfigs_snmpdiscoverystartnodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">snmpdiscoverystartnode_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Deviceidconfigs_Snmpdiscoverystartnodes API Function</span>
+<span class="sd">    Delete Start Network Node config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **deviceidconfig_id**: Device Id Config ID</span>
-<span class="sd">      - **snmpdiscoverystartnode_id**: SNMP Discovery Start Node ID</span>
+<span class="sd">      - **snmpdiscoverystartnode_id**: SNMP Discovery Startnode ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -11740,7 +11740,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Deviceidprofiles API Function</p>
+    <div class="desc"><p>Delete device Id profile configuration (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>deviceidprofile_id</strong>: Device Id Profile ID</li>
@@ -11753,7 +11753,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.deviceidprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deviceidprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deviceidprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Deviceidprofiles API Function</span>
+<span class="sd">    Delete device Id profile configuration (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **deviceidprofile_id**: Device Id Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -11839,7 +11839,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Directoryservices API Function</p>
+    <div class="desc"><p>Delete Directory Service (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>directoryservice_id</strong>: Directory Service ID</li>
@@ -11852,7 +11852,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.directoryservices" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">directoryservices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directoryservice_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Directoryservices API Function</span>
+<span class="sd">    Delete Directory Service (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **directoryservice_id**: Directory Service ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -12037,7 +12037,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Element_Deviceidconfigs API Function</p>
+    <div class="desc"><p>Delete device id element level (source interface) config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12052,7 +12052,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.element_deviceidconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">element_deviceidconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">deviceidconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Element_Deviceidconfigs API Function</span>
+<span class="sd">    Delete device id element level (source interface) config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
@@ -12149,7 +12149,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>passage_id</strong>: Passage Configuration ID</li>
+<li><strong>passage_id</strong>: Passage ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -12162,7 +12162,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Element_Passages API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **passage_id**: Passage Configuration ID</span>
+<span class="sd">      - **passage_id**: Passage ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -12251,7 +12251,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>elementpassageconfig_id</strong>: Element Passage Configuration ID</li>
+<li><strong>elementpassageconfig_id</strong>: Element Passage Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -12264,7 +12264,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Elementpassageconfigs API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **elementpassageconfig_id**: Element Passage Configuration ID</span>
+<span class="sd">      - **elementpassageconfig_id**: Element Passage Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -12303,7 +12303,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>securityzone_id</strong>: Security Zone (ZBFW) ID</li>
+<li><strong>securityzone_id</strong>: Security Zone ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -12317,7 +12317,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">      - **securityzone_id**: Security Zone ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -12352,7 +12352,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Elementshells API Function</p>
+    <div class="desc"><p>Delete an element shell (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12366,7 +12366,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.elementshells" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementshells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementshells API Function</span>
+<span class="sd">    Delete an element shell (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **elementshell_id**: Element Shell ID</span>
@@ -12403,7 +12403,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Elementshells_Interfaces API Function</p>
+    <div class="desc"><p>Delete an element shell interface (v2.4)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
@@ -12418,7 +12418,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.elementshells_interfaces" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementshells_interfaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">elementshell_id</span><span class="p">,</span> <span class="n">interface_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementshells_Interfaces API Function</span>
+<span class="sd">    Delete an element shell interface (v2.4)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **elementshell_id**: Element Shell ID</span>
@@ -12457,10 +12457,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Elementsystemlimitprofiles API Function</p>
+    <div class="desc"><p>Delete Element System Limit Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>elementsystemlimitprofile_id</strong>: </li>
+<li><strong>elementsystemlimitprofile_id</strong>: Element System Limit Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -12470,9 +12470,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.elementsystemlimitprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementsystemlimitprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elementsystemlimitprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Elementsystemlimitprofiles API Function</span>
+<span class="sd">    Delete Element System Limit Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **elementsystemlimitprofile_id**: </span>
+<span class="sd">      - **elementsystemlimitprofile_id**: Element System Limit Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -12958,7 +12958,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete idp (v3.3)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>idp_id</strong>: SAML IDentity provider configuration ID</li>
+<li><strong>idp_id</strong>: IDP ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v3.3)</li>
 </ul>
@@ -12970,7 +12970,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete idp (v3.3)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **idp_id**: SAML IDentity provider configuration ID</span>
+<span class="sd">      - **idp_id**: IDP ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v3.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13062,7 +13062,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ipfix_id</strong>: IPFix ID</li>
+<li><strong>ipfix_id</strong>: IPFIX ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13076,7 +13076,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ipfix_id**: IPFix ID</span>
+<span class="sd">      - **ipfix_id**: IPFIX ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13114,7 +13114,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a IPFix collector context (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixcollectorcontext_id</strong>: IPFix Collector Context ID</li>
+<li><strong>ipfixcollectorcontext_id</strong>: IPFIX Collector Context ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13126,7 +13126,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a IPFix collector context (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixcollectorcontext_id**: IPFix Collector Context ID</span>
+<span class="sd">      - **ipfixcollectorcontext_id**: IPFIX Collector Context ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13162,7 +13162,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a IPFix filter context (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixfiltercontext_id</strong>: IPFix Filter Context ID</li>
+<li><strong>ipfixfiltercontext_id</strong>: IPFIX Filter Context ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13174,7 +13174,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a IPFix filter context (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixfiltercontext_id**: IPFix Filter Context ID</span>
+<span class="sd">      - **ipfixfiltercontext_id**: IPFIX Filter Context ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13210,7 +13210,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a IPFix global prefix (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixglobalprefix_id</strong>: IPFix Global Prefix ID</li>
+<li><strong>ipfixglobalprefix_id</strong>: IPFIX Global Prefix ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13222,7 +13222,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a IPFix global prefix (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixglobalprefix_id**: IPFix Global Prefix ID</span>
+<span class="sd">      - **ipfixglobalprefix_id**: IPFIX Global Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13258,7 +13258,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete IPFix Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixprofile_id</strong>: IPFix Profile ID</li>
+<li><strong>ipfixprofile_id</strong>: IPFIX Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13270,7 +13270,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete IPFix Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixprofile_id**: IPFix Profile ID</span>
+<span class="sd">      - **ipfixprofile_id**: IPFIX Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13306,7 +13306,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a IPFix template (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixtemplate_id</strong>: IPFix Template ID</li>
+<li><strong>ipfixtemplate_id</strong>: IPFIX Template ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13318,7 +13318,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a IPFix template (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixtemplate_id**: IPFix Template ID</span>
+<span class="sd">      - **ipfixtemplate_id**: IPFIX Template ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -13605,7 +13605,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>multicastrp_id</strong>: Multicast RP ID</li>
+<li><strong>multicastrp_id</strong>: Multicast Rp ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -13619,7 +13619,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **multicastrp_id**: Multicast RP ID</span>
+<span class="sd">      - **multicastrp_id**: Multicast Rp ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14581,12 +14581,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Ospfconfigs API Function</p>
+    <div class="desc"><p>Deletes OSPF config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ospfconfig_id</strong>: </li>
+<li><strong>ospfconfig_id</strong>: OSPF Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -14596,11 +14596,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.ospfconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">ospfconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">ospfconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Ospfconfigs API Function</span>
+<span class="sd">    Deletes OSPF config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ospfconfig_id**: </span>
+<span class="sd">      - **ospfconfig_id**: OSPF Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14638,7 +14638,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete A Path Group of a tenant. (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>pathgroup_id</strong>: Path Group ID (for network service/DC routing)</li>
+<li><strong>pathgroup_id</strong>: Path Group ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -14650,7 +14650,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete A Path Group of a tenant. (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **pathgroup_id**: Path Group ID (for network service/DC routing)</span>
+<span class="sd">      - **pathgroup_id**: Path Group ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14687,7 +14687,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>pathprefixdistributionfilterassociation_id</strong>: </li>
+<li><strong>pathprefixdistributionfilterassociation_id</strong>: Path Prefix Distribution Filter Association ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -14700,7 +14700,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Pathprefixdistributionfilterassociation API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **pathprefixdistributionfilterassociation_id**: </span>
+<span class="sd">      - **pathprefixdistributionfilterassociation_id**: Path Prefix Distribution Filter Association ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14738,7 +14738,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>pathprefixdistributionfilter_id</strong>: </li>
+<li><strong>pathprefixdistributionfilter_id</strong>: Path Prefix Distribution Filter ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -14751,7 +14751,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Pathprefixdistributionfilters API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **pathprefixdistributionfilter_id**: </span>
+<span class="sd">      - **pathprefixdistributionfilter_id**: Path Prefix Distribution Filter ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14785,7 +14785,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysets API Function</p>
+    <div class="desc"><p>Delete a PERFMGMT Policy Set (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtpolicyset_id</strong>: Performance Management Policy Set ID</li>
@@ -14798,7 +14798,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysets" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysets API Function</span>
+<span class="sd">    Delete a PERFMGMT Policy Set (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -14833,11 +14833,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</p>
+    <div class="desc"><p>Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>perfmgmtpolicyset_id</strong>: Performance Management Policy Set ID</li>
-<li><strong>perfmgmtpolicyrule_id</strong>: Performance Management Policy Rule ID</li>
+<li><strong>perfmgmtpolicyrule_id</strong>: Perfmgmt Policy Rule ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
@@ -14847,10 +14847,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysets_perfmgmtpolicyrules" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysets_perfmgmtpolicyrules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicyset_id</span><span class="p">,</span> <span class="n">perfmgmtpolicyrule_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysets_Perfmgmtpolicyrules API Function</span>
+<span class="sd">    Delete PERFMGMT policy rule of tenant V2.2 (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **perfmgmtpolicyset_id**: Performance Management Policy Set ID</span>
-<span class="sd">      - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID</span>
+<span class="sd">      - **perfmgmtpolicyrule_id**: Perfmgmt Policy Rule ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14884,10 +14884,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtpolicysetstacks API Function</p>
+    <div class="desc"><p>Delete a PERFMGMT Policy Set Stack (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>perfmgmtpolicysetstack_id</strong>: Performance Management Policy Set Stack ID</li>
+<li><strong>perfmgmtpolicysetstack_id</strong>: Perfmgmt Policy Set Stack ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -14897,9 +14897,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtpolicysetstacks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtpolicysetstacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtpolicysetstack_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtpolicysetstacks API Function</span>
+<span class="sd">    Delete a PERFMGMT Policy Set Stack (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID</span>
+<span class="sd">      - **perfmgmtpolicysetstack_id**: Perfmgmt Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -14932,10 +14932,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Perfmgmtthresholdprofiles API Function</p>
+    <div class="desc"><p>Delete a Threshold Profile (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>perfmgmtthresholdprofile_id</strong>: Performance Management Policy Threshold Profile ID</li>
+<li><strong>perfmgmtthresholdprofile_id</strong>: Perfmgmt Threshold Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -14945,9 +14945,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.perfmgmtthresholdprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perfmgmtthresholdprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perfmgmtthresholdprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Perfmgmtthresholdprofiles API Function</span>
+<span class="sd">    Delete a Threshold Profile (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID</span>
+<span class="sd">      - **perfmgmtthresholdprofile_id**: Perfmgmt Threshold Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15083,7 +15083,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>prefixdistributionspokelist_id</strong>: </li>
+<li><strong>prefixdistributionspokelist_id</strong>: Prefix Distribution Spoke List ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15096,7 +15096,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Prefixdistributionspokelists API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **prefixdistributionspokelist_id**: </span>
+<span class="sd">      - **prefixdistributionspokelist_id**: Prefix Distribution Spoke List ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15331,7 +15331,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a PriorityPolicySetStack (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>prioritypolicysetstack_id</strong>: Priority Policy Stack ID</li>
+<li><strong>prioritypolicysetstack_id</strong>: Priority Policy Set Stack ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15343,7 +15343,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a PriorityPolicySetStack (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **prioritypolicysetstack_id**: Priority Policy Stack ID</span>
+<span class="sd">      - **prioritypolicysetstack_id**: Priority Policy Set Stack ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15380,7 +15380,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>prismaaccess_config_id</strong>: Prisma Acceess Config ID</li>
+<li><strong>prismaaccess_config_id</strong>: Prisma Access Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15393,7 +15393,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Delete a Prisma Access Config with remote networks and security processing node (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **prismaaccess_config_id**: Prisma Acceess Config ID</span>
+<span class="sd">      - **prismaaccess_config_id**: Prisma Access Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15478,7 +15478,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Prismasase_Connections_Configs API Function</p>
+    <div class="desc"><p>Delete existing SASE connection config (v3.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
@@ -15490,7 +15490,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.prismasase_connections_configs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Prismasase_Connections_Configs API Function</span>
+<span class="sd">    Delete existing SASE connection config (v3.1)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v3.1)</span>
@@ -15523,10 +15523,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Probeconfigs API Function</p>
+    <div class="desc"><p>Delete a Probe Config (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>probeconfig_id</strong>: </li>
+<li><strong>probeconfig_id</strong>: Probe Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15536,9 +15536,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.probeconfigs" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">probeconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeconfig_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Probeconfigs API Function</span>
+<span class="sd">    Delete a Probe Config (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **probeconfig_id**: </span>
+<span class="sd">      - **probeconfig_id**: Probe Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15571,10 +15571,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Probeprofiles API Function</p>
+    <div class="desc"><p>Delete a PROBE Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>probeprofile_id</strong>: </li>
+<li><strong>probeprofile_id</strong>: Probe Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15584,9 +15584,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.probeprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">probeprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probeprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Probeprofiles API Function</span>
+<span class="sd">    Delete a PROBE Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **probeprofile_id**: </span>
+<span class="sd">      - **probeprofile_id**: Probe Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15723,7 +15723,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>routing_aspathaccesslist_id</strong>: Routing AS-PATH Access List ID</li>
+<li><strong>routing_aspathaccesslist_id</strong>: Routing As Path Access List ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -15737,7 +15737,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID</span>
+<span class="sd">      - **routing_aspathaccesslist_id**: Routing As Path Access List ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15777,7 +15777,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>routing_ipcommunitylist_id</strong>: Routing IP Community List ID</li>
+<li><strong>routing_ipcommunitylist_id</strong>: Routing Ipcommunity List ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15791,7 +15791,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **routing_ipcommunitylist_id**: Routing IP Community List ID</span>
+<span class="sd">      - **routing_ipcommunitylist_id**: Routing Ipcommunity List ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15831,7 +15831,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>routing_prefixlist_id</strong>: Routing IP Prefix List ID</li>
+<li><strong>routing_prefixlist_id</strong>: Routing Prefix List ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -15845,7 +15845,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **routing_prefixlist_id**: Routing IP Prefix List ID</span>
+<span class="sd">      - **routing_prefixlist_id**: Routing Prefix List ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -15938,7 +15938,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>sdwanapp_id</strong>: SDWAN Application ID</li>
-<li><strong>config_id</strong>: SDWAN App Config ID</li>
+<li><strong>config_id</strong>: Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -15951,7 +15951,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    DELETE Sdwanapps_Configs API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **sdwanapp_id**: SDWAN Application ID</span>
-<span class="sd">      - **config_id**: SDWAN App Config ID</span>
+<span class="sd">      - **config_id**: Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16084,10 +16084,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Securityprofilegroups API Function</p>
+    <div class="desc"><p>Delete an existing Security Profile Group by tenant ID and its ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>securityprofilegroup_id</strong>: </li>
+<li><strong>securityprofilegroup_id</strong>: Security Profile Group ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -16097,9 +16097,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.securityprofilegroups" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">securityprofilegroups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">securityprofilegroup_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Securityprofilegroups API Function</span>
+<span class="sd">    Delete an existing Security Profile Group by tenant ID and its ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **securityprofilegroup_id**: </span>
+<span class="sd">      - **securityprofilegroup_id**: Security Profile Group ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16135,7 +16135,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete an existing security zone (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>securityzone_id</strong>: Security Zone (ZBFW) ID</li>
+<li><strong>securityzone_id</strong>: Security Zone ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -16147,7 +16147,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete an existing security zone (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **securityzone_id**: Security Zone (ZBFW) ID</span>
+<span class="sd">      - **securityzone_id**: Security Zone ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16379,7 +16379,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>ipfixlocalprefix_id</strong>: IPFix Local Prefix ID</li>
+<li><strong>ipfixlocalprefix_id</strong>: IPFIX Local Prefix ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -16392,7 +16392,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Delete a IPFix site prefix association (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">      - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16945,7 +16945,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete Syslog Server Profile (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>syslogserverprofile_id</strong>: Sys Log Server Profile ID </li>
+<li><strong>syslogserverprofile_id</strong>: Syslog Server Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -16957,7 +16957,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete Syslog Server Profile (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **syslogserverprofile_id**: Sys Log Server Profile ID </span>
+<span class="sd">      - **syslogserverprofile_id**: Syslog Server Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -16995,7 +16995,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>syslogserver_id</strong>: SYSLOG server ID</li>
+<li><strong>syslogserver_id</strong>: Syslog Server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.3)</li>
 </ul>
@@ -17009,7 +17009,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **syslogserver_id**: SYSLOG server ID</span>
+<span class="sd">      - **syslogserver_id**: Syslog Server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.3)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17044,10 +17044,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Tacacs_Plus_Profiles API Function</p>
+    <div class="desc"><p>Delete TACACS+ Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>tacacs_plus_profile_id</strong>: </li>
+<li><strong>tacacs_plus_profile_id</strong>: TACACS Plus Profile ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -17057,9 +17057,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.tacacs_plus_profiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tacacs_plus_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tacacs_plus_profile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tacacs_Plus_Profiles API Function</span>
+<span class="sd">    Delete TACACS+ Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **tacacs_plus_profile_id**: </span>
+<span class="sd">      - **tacacs_plus_profile_id**: TACACS Plus Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17092,12 +17092,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Tacacs_Plus_Servers API Function</p>
+    <div class="desc"><p>Delete TACACS+ Server (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>tacacs_plus_server_id</strong>: </li>
+<li><strong>tacacs_plus_server_id</strong>: TACACS Plus Server ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -17107,11 +17107,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.tacacs_plus_servers" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tacacs_plus_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">tacacs_plus_server_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Tacacs_Plus_Servers API Function</span>
+<span class="sd">    Delete TACACS+ Server (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **tacacs_plus_server_id**: </span>
+<span class="sd">      - **tacacs_plus_server_id**: TACACS Plus Server ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17245,7 +17245,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Delete a IPFix local prefix (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>ipfixlocalprefix_id</strong>: IPFix Local Prefix ID</li>
+<li><strong>ipfixlocalprefix_id</strong>: IPFIX Local Prefix ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -17257,7 +17257,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Delete a IPFix local prefix (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **ipfixlocalprefix_id**: IPFix Local Prefix ID</span>
+<span class="sd">      - **ipfixlocalprefix_id**: IPFIX Local Prefix ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -17530,7 +17530,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Useridagents API Function</p>
+    <div class="desc"><p>Delete User ID Agent (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>useridagent_id</strong>: User Id Agent ID</li>
@@ -17543,7 +17543,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.useridagents" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">useridagents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">useridagent_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Useridagents API Function</span>
+<span class="sd">    Delete User ID Agent (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **useridagent_id**: User Id Agent ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17626,7 +17626,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Vrfcontextprofiles API Function</p>
+    <div class="desc"><p>Delete VRF Context Profile (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>vrfcontextprofile_id</strong>: VRF Context Profile ID</li>
@@ -17639,7 +17639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.vrfcontextprofiles" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">vrfcontextprofiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontextprofile_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Vrfcontextprofiles API Function</span>
+<span class="sd">    Delete VRF Context Profile (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **vrfcontextprofile_id**: VRF Context Profile ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
@@ -17674,7 +17674,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
   
-    <div class="desc"><p>DELETE Vrfcontexts API Function</p>
+    <div class="desc"><p>Delete VRF segment (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>vrfcontext_id</strong>: VRF Context ID</li>
@@ -17687,7 +17687,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div id="source-cloudgenix.delete_api.Delete.vrfcontexts" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">vrfcontexts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vrfcontext_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    DELETE Vrfcontexts API Function</span>
+<span class="sd">    Delete VRF segment (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **vrfcontext_id**: VRF Context ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
