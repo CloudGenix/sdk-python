@@ -8170,7 +8170,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def status_snapshots(self, site_id, snapshot_id, tenant_id=None, api_version="v2.0"):
+    def snapshots_status(self, site_id, snapshot_id, tenant_id=None, api_version="v2.0"):
         """
         Status of the job (v2.0)
 
@@ -9911,6 +9911,9 @@ class Get(object):
 
     status_software_m = machines_software_status
     """ Backwards-compatibility alias of `status_software_m` to `machines_software_status`"""
+
+    status_snapshots = snapshots_status
+    """ Backwards-compatibility alias of `status_snapshots` to `snapshots_status`"""
 
     status_spokeclusters = spokeclusters_status
     """ Backwards-compatibility alias of `status_spokeclusters` to `spokeclusters_status`"""
