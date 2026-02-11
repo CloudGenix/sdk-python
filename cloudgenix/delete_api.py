@@ -115,7 +115,7 @@ class Delete(object):
           **Parameters:**:
 
           - **appdef_id**: Application Definition ID
-          - **override_id**: Override ID
+          - **override_id**: AppDef Override ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.3)
 
@@ -145,7 +145,7 @@ class Delete(object):
           **Parameters:**:
 
           - **operator_id**: Operator ID
-          - **authtoken_id**: Auth Token ID
+          - **authtoken_id**: Static AUTH_TOKEN ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -293,7 +293,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: DEM Site Config ID
+          - **demsiteconfig_id**: DEM Site Configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -324,7 +324,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **deviceidconfig_id**: Device Id Config ID
-          - **snmpdiscoverystartnode_id**: SNMP Discovery Startnode ID
+          - **snmpdiscoverystartnode_id**: SNMP Discovery Start Node ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -593,7 +593,7 @@ class Delete(object):
           **Parameters:**:
 
           - **element_id**: Element (Device) ID
-          - **passage_id**: Passage ID
+          - **passage_id**: Passage Configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -653,7 +653,7 @@ class Delete(object):
           **Parameters:**:
 
           - **element_id**: Element (Device) ID
-          - **elementpassageconfig_id**: Element Passage Config ID
+          - **elementpassageconfig_id**: Element Passage Configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -684,7 +684,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **securityzone_id**: Security Zone ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1068,7 +1068,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **idp_id**: IDP ID
+          - **idp_id**: SAML IDentity provider configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.3)
 
@@ -1130,7 +1130,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ipfix_id**: IPFIX ID
+          - **ipfix_id**: IPFix ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1160,7 +1160,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixcollectorcontext_id**: IPFIX Collector Context ID
+          - **ipfixcollectorcontext_id**: IPFix Collector Context ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1188,7 +1188,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixfiltercontext_id**: IPFIX Filter Context ID
+          - **ipfixfiltercontext_id**: IPFix Filter Context ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1216,7 +1216,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixglobalprefix_id**: IPFIX Global Prefix ID
+          - **ipfixglobalprefix_id**: IPFix Global Prefix ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1244,7 +1244,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixprofile_id**: IPFIX Profile ID
+          - **ipfixprofile_id**: IPFix Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1272,7 +1272,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixtemplate_id**: IPFIX Template ID
+          - **ipfixtemplate_id**: IPFix Template ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1448,7 +1448,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **multicastrp_id**: Multicast Rp ID
+          - **multicastrp_id**: Multicast RP ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2022,7 +2022,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Config ID
+          - **ospfconfig_id**: OSPF Configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2052,7 +2052,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **pathgroup_id**: Path Group ID
+          - **pathgroup_id**: Path Group ID (for network service/DC routing)
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2169,7 +2169,7 @@ class Delete(object):
           **Parameters:**:
 
           - **perfmgmtpolicyset_id**: Performance Management Policy Set ID
-          - **perfmgmtpolicyrule_id**: Perfmgmt Policy Rule ID
+          - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.2)
 
@@ -2198,7 +2198,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **perfmgmtpolicysetstack_id**: Perfmgmt Policy Set Stack ID
+          - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2226,7 +2226,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **perfmgmtthresholdprofile_id**: Perfmgmt Threshold Profile ID
+          - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2458,7 +2458,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **prioritypolicysetstack_id**: Priority Policy Set Stack ID
+          - **prioritypolicysetstack_id**: Priority Policy Stack ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2487,7 +2487,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prismaaccess_config_id**: Prisma Access Config ID
+          - **prismaaccess_config_id**: Prisma Acceess Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2572,7 +2572,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: Probe Config ID
+          - **probeconfig_id**: Probe Configuration ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2688,7 +2688,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_aspathaccesslist_id**: Routing As Path Access List ID
+          - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2720,7 +2720,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_ipcommunitylist_id**: Routing Ipcommunity List ID
+          - **routing_ipcommunitylist_id**: Routing IP Community List ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2752,7 +2752,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_prefixlist_id**: Routing Prefix List ID
+          - **routing_prefixlist_id**: Routing IP Prefix List ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2815,7 +2815,7 @@ class Delete(object):
           **Parameters:**:
 
           - **sdwanapp_id**: SDWAN Application ID
-          - **config_id**: Config ID
+          - **config_id**: SDWAN App Config ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2930,7 +2930,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **securityzone_id**: Security Zone ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -3073,7 +3073,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3406,7 +3406,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Syslog Server Profile ID
+          - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -3436,7 +3436,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **syslogserver_id**: Syslog Server ID
+          - **syslogserver_id**: SYSLOG server ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.3)
 
@@ -3466,7 +3466,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: TACACS Plus Profile ID
+          - **tacacs_plus_profile_id**: TACACS+ Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3496,7 +3496,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: TACACS Plus Server ID
+          - **tacacs_plus_server_id**: TACACS+ Server ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3582,7 +3582,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 

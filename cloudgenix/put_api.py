@@ -160,7 +160,7 @@ class Put(object):
           **Parameters:**:
 
           - **appdef_id**: Application Definition ID
-          - **override_id**: Override ID
+          - **override_id**: AppDef Override ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.3)
@@ -238,7 +238,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **appdefs_version_id**: Appdefs Version ID
+          - **appdefs_version_id**: Application Definition Version ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.2)
@@ -311,7 +311,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **bgpconfig_id**: BGP Config ID
+          - **bgpconfig_id**: BGP Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.5)
@@ -564,7 +564,7 @@ class Put(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: DEM Site Config ID
+          - **demsiteconfig_id**: DEM Site Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -637,7 +637,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **deviceidconfig_id**: Device Id Config ID
-          - **snmpdiscoverystartnode_id**: SNMP Discovery Startnode ID
+          - **snmpdiscoverystartnode_id**: SNMP Discovery Start Node ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -1484,7 +1484,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **securityzone_id**: Security Zone ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2377,7 +2377,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **idp_id**: IDP ID
+          - **idp_id**: SAML IDentity provider configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.3)
@@ -2688,7 +2688,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **iotservice_id**: IOT Service ID
+          - **iotservice_id**: IoT Service ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2723,7 +2723,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ipfix_id**: IPFIX ID
+          - **ipfix_id**: IPFix ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2788,7 +2788,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixcollectorcontext_id**: IPFIX Collector Context ID
+          - **ipfixcollectorcontext_id**: IPFix Collector Context ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2822,7 +2822,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixfiltercontext_id**: IPFIX Filter Context ID
+          - **ipfixfiltercontext_id**: IPFix Filter Context ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2856,7 +2856,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixglobalprefix_id**: IPFIX Global Prefix ID
+          - **ipfixglobalprefix_id**: IPFix Global Prefix ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2892,7 +2892,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixprofile_id**: IPFIX Profile ID
+          - **ipfixprofile_id**: IPFix Profile ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -2954,7 +2954,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixtemplate_id**: IPFIX Template ID
+          - **ipfixtemplate_id**: IPFix Template ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -3363,7 +3363,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **multicastrp_id**: Multicast Rp ID
+          - **multicastrp_id**: Multicast RP ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4431,7 +4431,6 @@ class Put(object):
 
           **Payload Attributes:** 
 
-           - **ntp_template_sync_type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4459,7 +4458,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Config ID
+          - **ospfconfig_id**: OSPF Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4520,7 +4519,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfglobalconfig_id**: OSPF Global Config ID
+          - **ospfglobalconfig_id**: OSPF Global Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4563,7 +4562,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **otpaccessconfig_id**: OTP Access Config ID
+          - **otpaccessconfig_id**: OTP Access configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4597,7 +4596,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **pathgroup_id**: Path Group ID
+          - **pathgroup_id**: Path Group ID (for network service/DC routing)
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -4803,7 +4802,7 @@ class Put(object):
           **Parameters:**:
 
           - **perfmgmtpolicyset_id**: Performance Management Policy Set ID
-          - **perfmgmtpolicyrule_id**: Perfmgmt Policy Rule ID
+          - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.2)
@@ -4878,7 +4877,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **perfmgmtpolicysetstack_id**: Perfmgmt Policy Set Stack ID
+          - **perfmgmtpolicysetstack_id**: Performance Management Policy Set Stack ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -4916,7 +4915,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **perfmgmtthresholdprofile_id**: Perfmgmt Threshold Profile ID
+          - **perfmgmtthresholdprofile_id**: Performance Management Policy Threshold Profile ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -5310,7 +5309,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **prioritypolicysetstack_id**: Priority Policy Set Stack ID
+          - **prioritypolicysetstack_id**: Priority Policy Stack ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5349,7 +5348,7 @@ class Put(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prismaaccess_config_id**: Prisma Access Config ID
+          - **prismaaccess_config_id**: Prisma Acceess Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5518,7 +5517,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: Probe Config ID
+          - **probeconfig_id**: Probe Configuration ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5746,7 +5745,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_aspathaccesslist_id**: Routing As Path Access List ID
+          - **routing_aspathaccesslist_id**: Routing AS-PATH Access List ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -5790,7 +5789,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_ipcommunitylist_id**: Routing Ipcommunity List ID
+          - **routing_ipcommunitylist_id**: Routing IP Community List ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -5833,7 +5832,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **routing_prefixlist_id**: Routing Prefix List ID
+          - **routing_prefixlist_id**: Routing IP Prefix List ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -5942,7 +5941,7 @@ class Put(object):
           **Parameters:**:
 
           - **sdwanapp_id**: SDWAN Application ID
-          - **config_id**: Config ID
+          - **config_id**: SDWAN App Config ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -6107,7 +6106,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **securityzone_id**: Security Zone ID
+          - **securityzone_id**: Security Zone (ZBFW) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -6377,7 +6376,7 @@ class Put(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -6978,7 +6977,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Syslog Server Profile ID
+          - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
@@ -7025,7 +7024,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **syslogserver_id**: Syslog Server ID
+          - **syslogserver_id**: SYSLOG server ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.3)
@@ -7075,7 +7074,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: TACACS Plus Profile ID
+          - **tacacs_plus_profile_id**: TACACS+ Profile ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -7120,7 +7119,7 @@ class Put(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: TACACS Plus Server ID
+          - **tacacs_plus_server_id**: TACACS+ Server ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
@@ -7244,7 +7243,7 @@ class Put(object):
 
           **Parameters:**:
 
-          - **ipfixlocalprefix_id**: IPFIX Local Prefix ID
+          - **ipfixlocalprefix_id**: IPFix Local Prefix ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
