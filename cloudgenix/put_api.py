@@ -511,33 +511,19 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def certificates_tenants(self, certificate_id, data, tenant_id=None, api_version="v2.0"):
+    def certificates(self, entitie_id, data, tenant_id=None, api_version="v2.0"):
         """
         Update certificate v2.0 (v2.0)
 
           **Parameters:**:
 
-          - **certificate_id**: Certificate ID
+          - **entitie_id**: Entitie ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
           **Payload Attributes:** 
 
-           - **algorithm:**  Type: string 
-           - **ca:**  Type: boolean 
-           - **certificate_file:**  Type: string 
-           - **format:**  Type: string 
-           - **issuer:**  Type: string 
-           - **issuer_hash:**  Type: string 
-           - **key_file:**  Type: string 
-           - **name:**  Type: string 
-           - **not_valid_after:**  Type: string 
-           - **not_valid_before:**  Type: string 
-           - **passphrase:**  Type: string 
-           - **subject:**  Type: string 
-           - **subject_hash:**  Type: string 
-           - **used_for:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -550,9 +536,9 @@ class Put(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
-                                                                          tenant_id,
-                                                                          certificate_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/entities/{}/certificates".format(api_version,
+                                                                                   tenant_id,
+                                                                                   entitie_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -8198,6 +8184,9 @@ class Put(object):
 
     cellular_modules_e = element_cellular_modules
     """ Backwards-compatibility alias of `cellular_modules_e` to `element_cellular_modules`"""
+
+    certificates_tenants = certificates
+    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
 
     configs_prismasase_connections = prismasase_connections_configs
     """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""

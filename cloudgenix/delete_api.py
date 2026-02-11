@@ -258,13 +258,13 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def certificates_tenants(self, certificate_id, tenant_id=None, api_version="v2.0"):
+    def certificates(self, entitie_id, tenant_id=None, api_version="v2.0"):
         """
         Delete a certificate of tenant v2.0 (v2.0)
 
           **Parameters:**:
 
-          - **certificate_id**: Certificate ID
+          - **entitie_id**: Entitie ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -279,9 +279,9 @@ class Delete(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
-                                                                          tenant_id,
-                                                                          certificate_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/entities/{}/certificates".format(api_version,
+                                                                                   tenant_id,
+                                                                                   entitie_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -3978,6 +3978,9 @@ class Delete(object):
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
+
+    certificates_tenants = certificates
+    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
 
     configs_prismasase_connections = prismasase_connections_configs
     """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""
