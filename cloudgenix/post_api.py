@@ -4,7 +4,7 @@ CloudGenix Python SDK - POST
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2025 CloudGenix, Inc
+**Copyright:** (c) 2017-2026 CloudGenix, Inc
 
 **License:** MIT
 """
@@ -12,11 +12,11 @@ import logging
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2025 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2026 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2025 CloudGenix, Inc
+    Copyright (c) 2017-2026 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ class Post(object):
 
     def activeuserips_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Activeuserips_Query API Function
+        Query active user mappings of tenant (v2.1)
 
           **Parameters:**:
 
@@ -64,21 +64,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -99,7 +100,7 @@ class Post(object):
 
     def anynetlinks_bulkoperations(self, site_id, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Anynetlinks_Bulkoperations API Function
+        POST Bulkoperations_Anynetlinks API Function
 
           **Parameters:**:
 
@@ -129,7 +130,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def anynetlinks_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
+    def anynetlinks_correlationevents_query(self, data, tenant_id=None, api_version="v2.2"):
         """
         POST Anynetlinks_Correlationevents_Query API Function
 
@@ -137,7 +138,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
@@ -161,7 +162,7 @@ class Post(object):
 
     def anynetlinks_query(self, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Anynetlinks_Query API Function
+        POST Query_Anynetlinks API Function
 
           **Parameters:**:
 
@@ -275,7 +276,7 @@ class Post(object):
 
     def appacceleration_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Appacceleration_Query API Function
+        Query App Acceleration status V2.0. (v2.0)
 
           **Parameters:**:
 
@@ -576,9 +577,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def bgppeers(self, site_id, element_id, data, tenant_id=None, api_version="v2.6"):
+    def bgppeers(self, site_id, element_id, data, tenant_id=None, api_version="v3.0"):
         """
-        Create BGP peer config (v2.6)
+        Create BGP peer config (v3.0)
 
           **Parameters:**:
 
@@ -586,7 +587,7 @@ class Post(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
           **Payload Attributes:** 
 
@@ -681,9 +682,9 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def bgppeers_query(self, site_id, element_id, data, tenant_id=None, api_version="v2.6"):
+    def bgppeers_query(self, site_id, element_id, data, tenant_id=None, api_version="v3.0"):
         """
-        Queries db for limit number of BGP peers that match query params. (v2.6)
+        Queries db for limit number of BGP peers that match query params. (v3.0)
 
           **Parameters:**:
 
@@ -691,7 +692,7 @@ class Post(object):
           - **element_id**: Element (Device) ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
           **Payload Attributes:** 
 
@@ -731,15 +732,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def bgppeers_status_query(self, data, tenant_id=None, api_version="v2.0"):
+    def bgppeers_status_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Bgppeers_Status_Query API Function
+        POST Query_Status_Bgppeers API Function
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -763,7 +764,7 @@ class Post(object):
 
     def bulkconfigurations_sitetemplates(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Bulkconfigurations_Sitetemplates API Function
+        Create site profile (v2.0)
 
           **Parameters:**:
 
@@ -773,12 +774,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **data:**  Type: string
-           - **site_id:**  Type: string
-           - **site_type:**  Type: string
-           - **template_description:**  Type: string
-           - **template_name:**  Type: string
-           - **variable_map:**  Type: object
+           - **data:**  Type: string 
+           - **site_id:**  Type: string 
+           - **site_type:**  Type: string 
+           - **template_description:**  Type: string 
+           - **template_name:**  Type: string 
+           - **variable_map:**  Type: object 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -799,7 +800,7 @@ class Post(object):
 
     def bulkconfigurations_sitetemplates_clone(self, sitetemplate_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Bulkconfigurations_Sitetemplates_Clone API Function
+        Clone Site Profile (v2.0)
 
           **Parameters:**:
 
@@ -831,7 +832,7 @@ class Post(object):
 
     def bulkconfigurations_sitetemplates_deployments(self, sitetemplate_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Bulkconfigurations_Sitetemplates_Deployments API Function
+        Deploy site (v2.0)
 
           **Parameters:**:
 
@@ -842,7 +843,7 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **variable_map:**  [Type: object]
+           - **variable_map:**  [Type: object] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -864,7 +865,7 @@ class Post(object):
 
     def bulkconfigurations_sitetemplates_deployments_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Bulkconfigurations_Sitetemplates_Deployments_Query API Function
+        Get all site profile (v2.0)
 
           **Parameters:**:
 
@@ -874,21 +875,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -909,7 +911,7 @@ class Post(object):
 
     def bulkconfigurations_sitetemplates_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Bulkconfigurations_Sitetemplates_Query API Function
+        Get all site profile (v2.0)
 
           **Parameters:**:
 
@@ -919,21 +921,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -952,21 +955,22 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def bulkoperations(self, data, tenant_id=None, api_version="v2.0"):
+    def bulkoperations(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Bulkoperations API Function
+        Bulk site update API (v2.1)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
-           - **site_ids:**  [Type: string]
-           - **type:**  Type: string
-           - **vrf_context_profile_id:**  Type: string
+           - **element_system_limit_profile_id:**  Type: string 
+           - **site_ids:**  [Type: string] 
+           - **type:**  Type: string 
+           - **vrf_context_profile_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1033,7 +1037,7 @@ class Post(object):
 
     def cellular_module_revoked_images(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Cellular_Module_Revoked_Images API Function
+        Create a Revoked Cellular Image (v2.0)
 
           **Parameters:**:
 
@@ -1043,6 +1047,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **carrier:**  Type: string 
+           - **fw_version:**  Type: string 
+           - **pri_version:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1109,7 +1116,7 @@ class Post(object):
 
     def cellular_modules_status_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Cellular_Modules_Status_Query API Function
+        Queries db for limit number of cellular module status that match query params. (v2.1)
 
           **Parameters:**:
 
@@ -1575,7 +1582,7 @@ class Post(object):
 
     def demsiteconfigs(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Demsiteconfigs API Function
+        Create dem site config (v2.0)
 
           **Parameters:**:
 
@@ -1586,9 +1593,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **adem_enabled:**  Type: boolean
-           - **site_id:**  Type: string
-           - **tenant_id:**  Type: string
+           - **adem_enabled:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1610,7 +1617,7 @@ class Post(object):
 
     def demsiteconfigs_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Demsiteconfigs_Query API Function
+        Queries db for Dem site config that match query params. (v2.0)
 
           **Parameters:**:
 
@@ -1620,21 +1627,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1720,7 +1728,7 @@ class Post(object):
 
     def deviceidconfigs_bulkdelete_snmpdiscoverystartnodes(self, site_id, deviceidconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Deviceidconfigs_Bulkdelete_Snmpdiscoverystartnodes API Function
+        Bulk delete Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -1732,15 +1740,15 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **start_nodes:**
-               - **description:**  Type: string
-               - **error_message:**  Type: string
-               - **id:**  Type: string
-               - **ipv4_address:**  Type: string
-               - **name:**  Type: string
-               - **scope:**
-                   - **ipv4_prefix:**  Type: string
-               - **tags:**  [Type: string]
+           - **start_nodes:**           
+               - **description:**  Type: string 
+               - **error_message:**  Type: string 
+               - **id:**  Type: string 
+               - **ipv4_address:**  Type: string 
+               - **name:**  Type: string 
+               - **scope:**           
+                   - **ipv4_prefix:**  Type: string 
+               - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1763,7 +1771,7 @@ class Post(object):
 
     def deviceidconfigs_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Deviceidconfigs_Query API Function
+        Get device id profiles (v2.0)
 
           **Parameters:**:
 
@@ -1773,21 +1781,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1808,7 +1817,7 @@ class Post(object):
 
     def deviceidconfigs_snmpdiscoverystartnodes(self, site_id, deviceidconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Deviceidconfigs_Snmpdiscoverystartnodes API Function
+        Create Start Network Node config (v2.0)
 
           **Parameters:**:
 
@@ -1820,12 +1829,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **ipv4_address:**  Type: string
-           - **name:**  Type: string
-           - **scope:**
-               - **ipv4_prefix:**  Type: string
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **ipv4_address:**  Type: string 
+           - **name:**  Type: string 
+           - **scope:**           
+               - **ipv4_prefix:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1848,7 +1857,7 @@ class Post(object):
 
     def deviceidprofiles(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Deviceidprofiles API Function
+        Create device id profile (v2.0)
 
           **Parameters:**:
 
@@ -1858,32 +1867,32 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **disabled:**  Type: boolean
-           - **disabled_reason:**  Type: string
-           - **inactive:**  Type: boolean
-           - **inactive_reason:**  Type: string
-           - **name:**  Type: string
-           - **num_associated_sites:**  Type: integer
-           - **region:**  Type: string
-           - **snmp_discovery_device_refresh_frequency:**  Type: integer
-           - **snmp_discovery_enabled:**  Type: boolean
-           - **snmp_discovery_network_refresh_frequency:**  Type: integer
-           - **snmp_discovery_use_local_neighbours:**  Type: boolean
-           - **snmp_version:**  Type: string
-           - **tags:**  [Type: string]
-           - **tenant_id:**  Type: string
-           - **v2_config:**
-               - **snmp_community_string:**  Type: string
-           - **v3_config:**
-               - **snmp_auth_password:**  Type: string
-               - **snmp_auth_password_encrypted:**  Type: string
-               - **snmp_auth_protocol:**  Type: string
-               - **snmp_privacy_password:**  Type: string
-               - **snmp_privacy_password_encrypted:**  Type: string
-               - **snmp_privacy_protocol:**  Type: string
-               - **snmp_security_level:**  Type: string
-               - **snmp_username:**  Type: string
+           - **description:**  Type: string 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **name:**  Type: string 
+           - **num_associated_sites:**  Type: integer 
+           - **region:**  Type: string 
+           - **snmp_discovery_device_refresh_frequency:**  Type: integer 
+           - **snmp_discovery_enabled:**  Type: boolean 
+           - **snmp_discovery_network_refresh_frequency:**  Type: integer 
+           - **snmp_discovery_use_local_neighbours:**  Type: boolean 
+           - **snmp_version:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
+           - **v2_config:**           
+               - **snmp_community_string:**  Type: string 
+           - **v3_config:**           
+               - **snmp_auth_password:**  Type: string 
+               - **snmp_auth_password_encrypted:**  Type: string 
+               - **snmp_auth_protocol:**  Type: string 
+               - **snmp_privacy_password:**  Type: string 
+               - **snmp_privacy_password_encrypted:**  Type: string 
+               - **snmp_privacy_protocol:**  Type: string 
+               - **snmp_security_level:**  Type: string 
+               - **snmp_username:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1904,7 +1913,7 @@ class Post(object):
 
     def deviceidprofiles_operations(self, deviceidprofile_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Deviceidprofiles_Operations API Function
+        Associate device id profile in bulk (v2.0)
 
           **Parameters:**:
 
@@ -1915,16 +1924,16 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **disabled:**  Type: boolean
-           - **disabled_reason:**  Type: string
-           - **inactive:**  Type: boolean
-           - **inactive_reason:**  Type: string
-           - **name:**  Type: string
-           - **region:**  Type: string
-           - **sites:**
-               - **site_id:**  Type: string
-           - **tenant_id:**  Type: string
-           - **type:**  Type: string
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **name:**  Type: string 
+           - **region:**  Type: string 
+           - **sites:**           
+               - **site_id:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2003,7 +2012,7 @@ class Post(object):
 
     def directoryservices(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Directoryservices API Function
+        Create Directory Service (v2.1)
 
           **Parameters:**:
 
@@ -2013,19 +2022,19 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **directory_tenant_id:**  Type: string
-           - **enabled:**  Type: boolean
-           - **group_attributes:**
-               - **email:**  Type: string
-               - **primary_name:**  Type: string
-           - **region:**  Type: string
-           - **tags:**  [Type: string]
-           - **user_attributes:**
-               - **alternate_username_1:**  Type: string
-               - **alternate_username_2:**  Type: string
-               - **alternate_username_3:**  Type: string
-               - **email:**  Type: string
-               - **primary_name:**  Type: string
+           - **directory_tenant_id:**  Type: string 
+           - **enabled:**  Type: boolean 
+           - **group_attributes:**           
+               - **email:**  Type: string 
+               - **primary_name:**  Type: string 
+           - **region:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **user_attributes:**           
+               - **alternate_username_1:**  Type: string 
+               - **alternate_username_2:**  Type: string 
+               - **alternate_username_3:**  Type: string 
+               - **email:**  Type: string 
+               - **primary_name:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2046,7 +2055,7 @@ class Post(object):
 
     def directoryservices_deltasync(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Directoryservices_Deltasync API Function
+        Force delta sync. (v2.0)
 
           **Parameters:**:
 
@@ -2076,7 +2085,7 @@ class Post(object):
 
     def directoryservices_sync(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Directoryservices_Sync API Function
+        Force full sync. (v2.0)
 
           **Parameters:**:
 
@@ -2106,7 +2115,7 @@ class Post(object):
 
     def directoryusergroups_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Directoryusergroups_Query API Function
+        Query users or groups. (v2.0)
 
           **Parameters:**:
 
@@ -2116,21 +2125,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2151,7 +2161,7 @@ class Post(object):
 
     def directoryusers_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Directoryusers_Query API Function
+        Query users. (v2.1)
 
           **Parameters:**:
 
@@ -2161,21 +2171,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2649,7 +2660,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def element_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
+    def element_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
         POST Element_Correlationevents_Query API Function
 
@@ -2657,7 +2668,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -2681,7 +2692,7 @@ class Post(object):
 
     def element_deviceidconfigs(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Element_Deviceidconfigs API Function
+        Create device id element level (source interface) config (v2.0)
 
           **Parameters:**:
 
@@ -2693,10 +2704,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **snmp_discovery_source_interface_id:**  Type: string
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **snmp_discovery_source_interface_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2862,23 +2873,8 @@ class Post(object):
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v3.0)
 
-          **Payload Attributes:**
+          **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2925,6 +2921,36 @@ class Post(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/elements/{}/elementaccessconfigs".format(api_version,
                                                                                            tenant_id,
                                                                                            element_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def elementaccessconfigs_query(self, data, tenant_id=None, api_version="v2.2"):
+        """
+        Query Element Access Config based on parameters (v2.2)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.2)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementaccessconfigs/query".format(api_version,
+                                                                                     tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -3018,7 +3044,7 @@ class Post(object):
 
     def elementshells(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Elementshells API Function
+        Create an element shell (v2.1)
 
           **Parameters:**:
 
@@ -3029,63 +3055,62 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **allowed_roles:**  [Type: string]
-           - **cluster_id:**  Type: string
-           - **cluster_insertion_mode:**  Type: string
-           - **cluster_member_id:**  Type: string
-           - **description:**  Type: string
-           - **device_mode:**  Type: string
-           - **device_profile_id:**  Type: string
-           - **element_id:**  Type: string
-           - **hub_cluster_config:**
-               - **intra_cluster_tunnel:**
-                   - **destination_ip:**  Type: string
-                   - **source_ip:**  Type: string
-                   - **status:**  Type: string
-               - **track:**
-                   - **hosts:**
-                       - **address_v4:**  Type: string
-                       - **address_v6:**  Type: string
-                       - **vrf_context_id:**  Type: string
-           - **hw_id:**  Type: string
-           - **l3_direct_private_wan_forwarding:**  Type: boolean
-           - **l3_lan_forwarding:**  Type: boolean
-           - **led_config:**
-               - **service_led_on:**  Type: boolean
-           - **main_power_usage_threshold:**  Type: integer
-           - **model_name:**  Type: string
-           - **name:**  Type: string
-           - **nat_policysetstack_id:**  Type: string
-           - **network_policysetstack_id:**  Type: string
-           - **priority_policysetstack_id:**  Type: string
-           - **role:**  Type: string
-           - **site_id:**  Type: string
-           - **software_version:**  Type: string
-           - **spoke_ha_config:**
-               - **cluster_id:**  Type: string
-               - **enable:**  Type: boolean
-               - **priority:**  Type: integer
-               - **source_interface:**  Type: string
-               - **track:**
-                   - **interfaces:**
-                       - **interface_id:**  Type: string
-                       - **reduce_priority:**  Type: integer
-                   - **waninterfaces:**
-                       - **reduce_priority:**  Type: integer
-                       - **wan_interface_id:**  Type: string
-           - **state:**  Type: string
-           - **switch_config:**
-               - **default_vlan_id:**  Type: integer
-               - **mstp_enabled:**  Type: boolean
-               - **stp_aging_timer:**  Type: integer
-               - **stp_forward_delay:**  Type: integer
-               - **stp_hello_time:**  Type: integer
-               - **stp_max_age:**  Type: integer
-               - **stp_mode:**  Type: string
-               - **stp_priority:**  Type: integer
-           - **tags:**  [Type: string]
-           - **tenant_id:**  Type: string
-           - **vpn_to_vpn_forwarding:**  Type: boolean
+           - **allowed_roles:**  [Type: string] 
+           - **cluster_id:**  Type: string 
+           - **cluster_insertion_mode:**  Type: string 
+           - **cluster_member_id:**  Type: string 
+           - **description:**  Type: string 
+           - **device_mode:**  Type: string 
+           - **device_profile_id:**  Type: string 
+           - **element_id:**  Type: string 
+           - **hub_cluster_config:**           
+               - **intra_cluster_tunnel:**           
+                   - **disabled:**  Type: boolean 
+                   - **source_interfaces:**  [Type: string] 
+               - **track:**           
+                   - **hosts:**           
+                       - **address_v4:**  Type: string 
+                       - **address_v6:**  Type: string 
+                       - **vrf_context_id:**  Type: string 
+           - **hw_id:**  Type: string 
+           - **l3_direct_private_wan_forwarding:**  Type: boolean 
+           - **l3_lan_forwarding:**  Type: boolean 
+           - **led_config:**           
+               - **service_led_on:**  Type: boolean 
+           - **main_power_usage_threshold:**  Type: integer 
+           - **model_name:**  Type: string 
+           - **name:**  Type: string 
+           - **nat_policysetstack_id:**  Type: string 
+           - **network_policysetstack_id:**  Type: string 
+           - **priority_policysetstack_id:**  Type: string 
+           - **role:**  Type: string 
+           - **site_id:**  Type: string 
+           - **software_version:**  Type: string 
+           - **spoke_ha_config:**           
+               - **cluster_id:**  Type: string 
+               - **enable:**  Type: boolean 
+               - **priority:**  Type: integer 
+               - **source_interface:**  Type: string 
+               - **track:**           
+                   - **interfaces:**           
+                       - **interface_id:**  Type: string 
+                       - **reduce_priority:**  Type: integer 
+                   - **waninterfaces:**           
+                       - **reduce_priority:**  Type: integer 
+                       - **wan_interface_id:**  Type: string 
+           - **state:**  Type: string 
+           - **switch_config:**           
+               - **default_vlan_id:**  Type: integer 
+               - **mstp_enabled:**  Type: boolean 
+               - **stp_aging_timer:**  Type: integer 
+               - **stp_forward_delay:**  Type: integer 
+               - **stp_hello_time:**  Type: integer 
+               - **stp_max_age:**  Type: integer 
+               - **stp_mode:**  Type: string 
+               - **stp_priority:**  Type: integer 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
+           - **vpn_to_vpn_forwarding:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3107,7 +3132,7 @@ class Post(object):
 
     def elementshells_copy_element_configurations(self, site_id, elementshell_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Elementshells_Copy_Element_Configurations API Function
+        Asynchronization call to Copy Interface Configurations from element to element shell (v2.0)
 
           **Parameters:**:
 
@@ -3119,274 +3144,274 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **element_configurations:**
-               - **allowed_roles:**  [Type: string]
-               - **cluster_id:**  Type: string
-               - **cluster_insertion_mode:**  Type: string
-               - **cluster_member_id:**  Type: string
-               - **description:**  Type: string
-               - **device_mode:**  Type: string
-               - **device_profile_id:**  Type: string
-               - **element_id:**  Type: string
-               - **hw_id:**  Type: string
-               - **id:**  Type: string
-               - **l3_direct_private_wan_forwarding:**  Type: boolean
-               - **l3_lan_forwarding:**  Type: boolean
-               - **led_config:**
-                   - **service_led_on:**  Type: boolean
-               - **main_power_usage_threshold:**  Type: integer
-               - **model_name:**  Type: string
-               - **name:**  Type: string
-               - **nat_policysetstack_id:**  Type: string
-               - **network_policysetstack_id:**  Type: string
-               - **priority_policysetstack_id:**  Type: string
-               - **role:**  Type: string
-               - **site_id:**  Type: string
-               - **software_version:**  Type: string
-               - **spoke_ha_config:**
-                   - **cluster_id:**  Type: string
-                   - **enable:**  Type: boolean
-                   - **priority:**  Type: integer
-                   - **source_interface:**  Type: string
-                   - **track:**
-                       - **interfaces:**
-                           - **interface_id:**  Type: string
-                           - **reduce_priority:**  Type: integer
-                       - **waninterfaces:**
-                           - **reduce_priority:**  Type: integer
-                           - **wan_interface_id:**  Type: string
-               - **state:**  Type: string
-               - **switch_config:**
-                   - **default_vlan_id:**  Type: integer
-                   - **mstp_enabled:**  Type: boolean
-                   - **stp_aging_timer:**  Type: integer
-                   - **stp_forward_delay:**  Type: integer
-                   - **stp_hello_time:**  Type: integer
-                   - **stp_max_age:**  Type: integer
-                   - **stp_mode:**  Type: string
-                   - **stp_priority:**  Type: integer
-               - **tags:**  [Type: string]
-               - **tenant_id:**  Type: string
-               - **vpn_to_vpn_forwarding:**  Type: boolean
-           - **interface_configurations:**
-               - **element_interface_id:**  Type: string
-               - **element_shell_interface_id:**  Type: string
-               - **interface_configuration:**
-                   - **admin_up:**  Type: boolean
-                   - **attached_lan_networks:**
-                       - **lan_network_id:**  Type: string
-                       - **vlan_id:**  Type: integer
-                   - **authentication_config:**
-                       - **fallback_retry_count:**  Type: integer
-                       - **mode:**  Type: string
-                       - **reauthentication_timeout:**  Type: integer
-                   - **bound_interfaces:**  [Type: string]
-                   - **bypass_pair:**
-                       - **lan:**  Type: string
-                       - **lan_state_propagation:**  Type: boolean
-                       - **use_relay:**  Type: boolean
-                       - **wan:**  Type: string
-                   - **cellular_config:**
-                       - **apn_config:**
-                           - **apn:**  Type: string
-                           - **authentication:**  Type: string
-                           - **clear_password:**  Type: boolean
-                           - **password:**  Type: string
-                           - **password_encrypted:**  Type: string
-                           - **user_name:**  Type: string
-                       - **apnprofile_id:**  Type: string
-                       - **auto_apn:**  Type: boolean
-                       - **parent_module_id:**  Type: string
-                       - **parent_sim_slot_number:**  Type: integer
-                   - **description:**  Type: string
-                   - **devicemgmt_policysetstack_id:**  Type: string
-                   - **dhcp_relay:**
-                       - **enabled:**  Type: boolean
-                       - **option_82:**
-                           - **circuit_id:**  Type: string
-                           - **enabled:**  Type: boolean
-                           - **reforwarding_policy:**  Type: string
-                           - **remote_id:**  Type: string
-                       - **server_ips:**  [Type: string]
-                       - **source_interface:**  Type: string
-                   - **directed_broadcast:**  Type: boolean
-                   - **ethernet_port:**
-                       - **full_duplex:**  Type: boolean
-                       - **port_id:**
-                           - **connector:**  Type: string
-                           - **device:**  Type: string
-                           - **disabled:**  Type: boolean
-                           - **disabled_reason:**  Type: string
-                           - **element_id:**  Type: string
-                           - **id:**  Type: string
-                           - **inactive:**  Type: boolean
-                           - **inactive_reason:**  Type: string
-                           - **max_mtu:**  Type: integer
-                           - **max_speed:**  Type: integer
-                           - **name:**  Type: string
-                           - **original_mac_address:**  Type: string
-                           - **region:**  Type: string
-                           - **site_id:**  Type: string
-                           - **tenant_id:**  Type: string
-                       - **port_name:**  Type: string
-                       - **speed:**  Type: integer
-                   - **id:**  Type: string
-                   - **interface_profile_id:**  Type: string
-                   - **ipfixcollectorcontext_id:**  Type: string
-                   - **ipfixfiltercontext_id:**  Type: string
-                   - **ipv4_config:**
-                       - **dhcp_config:**
-                           - **client_id:**  Type: string
-                           - **hostname:**  Type: string
-                       - **dns_v4_config:**
-                           - **name_servers:**  [Type: string]
-                           - **search:**  [Type: string]
-                       - **pppoe_config:**
-                           - **chap_passwd:**  Type: string
-                           - **chap_user:**  Type: string
-                           - **set_route:**  Type: boolean
-                       - **routes:**
-                           - **destination:**  Type: string
-                           - **via:**  Type: string
-                       - **static_config:**
-                           - **address:**  Type: string
-                       - **type:**  Type: string
-                   - **ipv6_config:**
-                       - **dhcp_config:**
-                           - **client_id:**  Type: string
-                           - **hostname:**  Type: string
-                       - **dns_v6_config:**
-                           - **name_servers:**  [Type: string]
-                           - **search:**  [Type: string]
-                       - **routes:**
-                           - **destination:**  Type: string
-                           - **via:**  Type: string
-                       - **static_config:**
-                           - **address:**  Type: string
-                           - **enable_prefix_distribution:**  Type: boolean
-                       - **type:**  Type: string
-                   - **lldp_enabled:**  Type: boolean
-                   - **mac_address:**  Type: string
-                   - **mtu:**  Type: integer
-                   - **multicast_config:**
-                       - **igmp_version:**  Type: string
-                       - **multicast_enabled:**  Type: boolean
-                   - **name:**  Type: string
-                   - **nat_address:**  Type: string
-                   - **nat_address_v6:**  Type: string
-                   - **nat_pools:**
-                       - **ipv4_ranges:**
-                           - **end:**  Type: string
-                           - **start:**  Type: string
-                       - **nat_pool_id:**  Type: string
-                   - **nat_port:**  Type: integer
-                   - **nat_port_v6:**  Type: integer
-                   - **nat_zone_id:**  Type: string
-                   - **network_context_id:**  Type: string
-                   - **parent:**  Type: string
-                   - **peer_bypasspair_wan_port_type:**  Type: string
-                   - **poe_enabled:**  Type: boolean
-                   - **power_usage_threshold:**  Type: integer
-                   - **pppoe_config:**
-                       - **host_uniq:**  Type: string
-                       - **ip_address_type:**  Type: string
-                       - **password:**  Type: string
-                       - **reconnection_delay:**  Type: integer
-                       - **service_name:**  Type: string
-                       - **username:**  Type: string
-                   - **scope:**  Type: string
-                   - **secondary_ip_configs:**
-                       - **ipv4_address:**  Type: string
-                       - **scope:**  Type: string
-                   - **service_link_config:**
-                       - **gre_config:**
-                           - **csum:**  Type: boolean
-                           - **keepalive_enable:**  Type: boolean
-                           - **keepalive_fail_count:**  Type: integer
-                           - **keepalive_interval:**  Type: integer
-                       - **ipsec_config:**
-                           - **authentication:**
-                               - **certificate:**  Type: string
-                               - **certificate_profile_id:**  Type: string
-                               - **comment:**  Type: string
-                               - **ikev1_params:**
-                                   - **xauth_id:**  Type: string
-                                   - **xauth_secret:**  Type: string
-                                   - **xauth_secret_encrypted:**  Type: string
-                                   - **xauth_secret_hash:**  Type: string
-                                   - **xauth_type:**  Type: string
-                               - **local_ca_certificate:**  Type: string
-                               - **local_id:**  Type: string
-                               - **local_id_custom:**  Type: string
-                               - **local_pa_certificate_id:**  Type: string
-                               - **pa_master_key_id:**  Type: string
-                               - **passphrase:**  Type: string
-                               - **passphrase_encrypted:**  Type: string
-                               - **peer_id_check:**  Type: string
-                               - **permit_peer_id_mismatch:**  Type: boolean
-                               - **private_key:**  Type: string
-                               - **private_key_encrypted:**  Type: string
-                               - **remote_ca_certificate:**  Type: string
-                               - **remote_id:**  Type: string
-                               - **secret:**  Type: string
-                               - **secret_encrypted:**  Type: string
-                               - **secret_hash:**  Type: string
-                               - **strict_validation_peer_extended_key_use:**  Type: boolean
-                               - **type:**  Type: string
-                               - **x509Objects:**
-                                   - **certHolder:**  Type: object
-                                   - **certificate:**  Type: string
-                                   - **is_local_ca_cert_set:**  Type: boolean
-                                   - **is_remote_ca_cert_set:**  Type: boolean
-                                   - **keyPair:**  Type: object
-                                   - **local_ca_certificate:**  Type: string
-                                   - **local_ca_certs_set:**  [Type: object]
-                                   - **passphrase:**  Type: string
-                                   - **pkcs12_certificate:**  Type: string
-                                   - **privateKey:**  Type: java.security.privatekey
-                                   - **private_key:**  Type: string
-                                   - **remote_ca_certificate:**  Type: string
-                                   - **remote_ca_certs_set:**  [Type: object]
-                           - **ipsec_profile_id:**  Type: string
-                       - **last_parent:**  Type: string
-                       - **parent:**  Type: string
-                       - **peer:**
-                           - **hostname:**  Type: string
-                           - **ip_addresses:**  [Type: string]
-                       - **service_endpoint_id:**  Type: string
-                       - **type:**  Type: string
-                   - **site_wan_interface_ids:**  [Type: string]
-                   - **static_arp_configs:**
-                       - **ipv4_address:**  Type: string
-                       - **mac_address:**  Type: string
-                   - **sub_interface:**
-                       - **vlan_id:**  Type: integer
-                   - **switch_port_config:**
-                       - **access_vlan_id:**  Type: integer
-                       - **bpdu_guard_enabled:**  Type: boolean
-                       - **forward_fast_enabled:**  Type: boolean
-                       - **native_vlan_id:**  Type: integer
-                       - **root_guard_enabled:**  Type: boolean
-                       - **storm_control_config:**
-                           - **broadcast_threshold:**  Type: integer
-                           - **multicast_threshold:**  Type: integer
-                           - **unicast_threshold:**  Type: integer
-                       - **stp_port_cost:**  Type: integer
-                       - **stp_port_enabled:**  Type: boolean
-                       - **stp_port_priority:**  Type: integer
-                       - **trunk_vlans:**  [Type: string]
-                       - **vlan_mode:**  Type: string
-                       - **voice_vlan_id:**  Type: integer
-                   - **tags:**  [Type: string]
-                   - **type:**  Type: string
-                   - **used_for:**  Type: string
-                   - **vlan_config:**
-                       - **mstp_instance:**  Type: integer
-                       - **vlan_id:**  Type: integer
-                       - **voice_enabled:**  Type: boolean
-                   - **vrf_context_id:**  Type: string
-               - **operation:**  Type: string
-           - **source_element_id:**  Type: string
+           - **element_configurations:**           
+               - **allowed_roles:**  [Type: string] 
+               - **cluster_id:**  Type: string 
+               - **cluster_insertion_mode:**  Type: string 
+               - **cluster_member_id:**  Type: string 
+               - **description:**  Type: string 
+               - **device_mode:**  Type: string 
+               - **device_profile_id:**  Type: string 
+               - **element_id:**  Type: string 
+               - **hw_id:**  Type: string 
+               - **id:**  Type: string 
+               - **l3_direct_private_wan_forwarding:**  Type: boolean 
+               - **l3_lan_forwarding:**  Type: boolean 
+               - **led_config:**           
+                   - **service_led_on:**  Type: boolean 
+               - **main_power_usage_threshold:**  Type: integer 
+               - **model_name:**  Type: string 
+               - **name:**  Type: string 
+               - **nat_policysetstack_id:**  Type: string 
+               - **network_policysetstack_id:**  Type: string 
+               - **priority_policysetstack_id:**  Type: string 
+               - **role:**  Type: string 
+               - **site_id:**  Type: string 
+               - **software_version:**  Type: string 
+               - **spoke_ha_config:**           
+                   - **cluster_id:**  Type: string 
+                   - **enable:**  Type: boolean 
+                   - **priority:**  Type: integer 
+                   - **source_interface:**  Type: string 
+                   - **track:**           
+                       - **interfaces:**           
+                           - **interface_id:**  Type: string 
+                           - **reduce_priority:**  Type: integer 
+                       - **waninterfaces:**           
+                           - **reduce_priority:**  Type: integer 
+                           - **wan_interface_id:**  Type: string 
+               - **state:**  Type: string 
+               - **switch_config:**           
+                   - **default_vlan_id:**  Type: integer 
+                   - **mstp_enabled:**  Type: boolean 
+                   - **stp_aging_timer:**  Type: integer 
+                   - **stp_forward_delay:**  Type: integer 
+                   - **stp_hello_time:**  Type: integer 
+                   - **stp_max_age:**  Type: integer 
+                   - **stp_mode:**  Type: string 
+                   - **stp_priority:**  Type: integer 
+               - **tags:**  [Type: string] 
+               - **tenant_id:**  Type: string 
+               - **vpn_to_vpn_forwarding:**  Type: boolean 
+           - **interface_configurations:**           
+               - **element_interface_id:**  Type: string 
+               - **element_shell_interface_id:**  Type: string 
+               - **interface_configuration:**           
+                   - **admin_up:**  Type: boolean 
+                   - **attached_lan_networks:**           
+                       - **lan_network_id:**  Type: string 
+                       - **vlan_id:**  Type: integer 
+                   - **authentication_config:**           
+                       - **fallback_retry_count:**  Type: integer 
+                       - **mode:**  Type: string 
+                       - **reauthentication_timeout:**  Type: integer 
+                   - **bound_interfaces:**  [Type: string] 
+                   - **bypass_pair:**           
+                       - **lan:**  Type: string 
+                       - **lan_state_propagation:**  Type: boolean 
+                       - **use_relay:**  Type: boolean 
+                       - **wan:**  Type: string 
+                   - **cellular_config:**           
+                       - **apn_config:**           
+                           - **apn:**  Type: string 
+                           - **authentication:**  Type: string 
+                           - **clear_password:**  Type: boolean 
+                           - **password:**  Type: string 
+                           - **password_encrypted:**  Type: string 
+                           - **user_name:**  Type: string 
+                       - **apnprofile_id:**  Type: string 
+                       - **auto_apn:**  Type: boolean 
+                       - **parent_module_id:**  Type: string 
+                       - **parent_sim_slot_number:**  Type: integer 
+                   - **description:**  Type: string 
+                   - **devicemgmt_policysetstack_id:**  Type: string 
+                   - **dhcp_relay:**           
+                       - **enabled:**  Type: boolean 
+                       - **option_82:**           
+                           - **circuit_id:**  Type: string 
+                           - **enabled:**  Type: boolean 
+                           - **reforwarding_policy:**  Type: string 
+                           - **remote_id:**  Type: string 
+                       - **server_ips:**  [Type: string] 
+                       - **source_interface:**  Type: string 
+                   - **directed_broadcast:**  Type: boolean 
+                   - **ethernet_port:**           
+                       - **full_duplex:**  Type: boolean 
+                       - **port_id:**           
+                           - **connector:**  Type: string 
+                           - **device:**  Type: string 
+                           - **disabled:**  Type: boolean 
+                           - **disabled_reason:**  Type: string 
+                           - **element_id:**  Type: string 
+                           - **id:**  Type: string 
+                           - **inactive:**  Type: boolean 
+                           - **inactive_reason:**  Type: string 
+                           - **max_mtu:**  Type: integer 
+                           - **max_speed:**  Type: integer 
+                           - **name:**  Type: string 
+                           - **original_mac_address:**  Type: string 
+                           - **region:**  Type: string 
+                           - **site_id:**  Type: string 
+                           - **tenant_id:**  Type: string 
+                       - **port_name:**  Type: string 
+                       - **speed:**  Type: integer 
+                   - **id:**  Type: string 
+                   - **interface_profile_id:**  Type: string 
+                   - **ipfixcollectorcontext_id:**  Type: string 
+                   - **ipfixfiltercontext_id:**  Type: string 
+                   - **ipv4_config:**           
+                       - **dhcp_config:**           
+                           - **client_id:**  Type: string 
+                           - **hostname:**  Type: string 
+                       - **dns_v4_config:**           
+                           - **name_servers:**  [Type: string] 
+                           - **search:**  [Type: string] 
+                       - **pppoe_config:**           
+                           - **chap_passwd:**  Type: string 
+                           - **chap_user:**  Type: string 
+                           - **set_route:**  Type: boolean 
+                       - **routes:**           
+                           - **destination:**  Type: string 
+                           - **via:**  Type: string 
+                       - **static_config:**           
+                           - **address:**  Type: string 
+                       - **type:**  Type: string 
+                   - **ipv6_config:**           
+                       - **dhcp_config:**           
+                           - **client_id:**  Type: string 
+                           - **hostname:**  Type: string 
+                       - **dns_v6_config:**           
+                           - **name_servers:**  [Type: string] 
+                           - **search:**  [Type: string] 
+                       - **routes:**           
+                           - **destination:**  Type: string 
+                           - **via:**  Type: string 
+                       - **static_config:**           
+                           - **address:**  Type: string 
+                           - **enable_prefix_distribution:**  Type: boolean 
+                       - **type:**  Type: string 
+                   - **lldp_enabled:**  Type: boolean 
+                   - **mac_address:**  Type: string 
+                   - **mtu:**  Type: integer 
+                   - **multicast_config:**           
+                       - **igmp_version:**  Type: string 
+                       - **multicast_enabled:**  Type: boolean 
+                   - **name:**  Type: string 
+                   - **nat_address:**  Type: string 
+                   - **nat_address_v6:**  Type: string 
+                   - **nat_pools:**           
+                       - **ipv4_ranges:**           
+                           - **end:**  Type: string 
+                           - **start:**  Type: string 
+                       - **nat_pool_id:**  Type: string 
+                   - **nat_port:**  Type: integer 
+                   - **nat_port_v6:**  Type: integer 
+                   - **nat_zone_id:**  Type: string 
+                   - **network_context_id:**  Type: string 
+                   - **parent:**  Type: string 
+                   - **peer_bypasspair_wan_port_type:**  Type: string 
+                   - **poe_enabled:**  Type: boolean 
+                   - **power_usage_threshold:**  Type: integer 
+                   - **pppoe_config:**           
+                       - **host_uniq:**  Type: string 
+                       - **ip_address_type:**  Type: string 
+                       - **password:**  Type: string 
+                       - **reconnection_delay:**  Type: integer 
+                       - **service_name:**  Type: string 
+                       - **username:**  Type: string 
+                   - **scope:**  Type: string 
+                   - **secondary_ip_configs:**           
+                       - **ipv4_address:**  Type: string 
+                       - **scope:**  Type: string 
+                   - **service_link_config:**           
+                       - **gre_config:**           
+                           - **csum:**  Type: boolean 
+                           - **keepalive_enable:**  Type: boolean 
+                           - **keepalive_fail_count:**  Type: integer 
+                           - **keepalive_interval:**  Type: integer 
+                       - **ipsec_config:**           
+                           - **authentication:**           
+                               - **certificate:**  Type: string 
+                               - **certificate_profile_id:**  Type: string 
+                               - **comment:**  Type: string 
+                               - **ikev1_params:**           
+                                   - **xauth_id:**  Type: string 
+                                   - **xauth_secret:**  Type: string 
+                                   - **xauth_secret_encrypted:**  Type: string 
+                                   - **xauth_secret_hash:**  Type: string 
+                                   - **xauth_type:**  Type: string 
+                               - **local_ca_certificate:**  Type: string 
+                               - **local_id:**  Type: string 
+                               - **local_id_custom:**  Type: string 
+                               - **local_pa_certificate_id:**  Type: string 
+                               - **pa_master_key_id:**  Type: string 
+                               - **passphrase:**  Type: string 
+                               - **passphrase_encrypted:**  Type: string 
+                               - **peer_id_check:**  Type: string 
+                               - **permit_peer_id_mismatch:**  Type: boolean 
+                               - **private_key:**  Type: string 
+                               - **private_key_encrypted:**  Type: string 
+                               - **remote_ca_certificate:**  Type: string 
+                               - **remote_id:**  Type: string 
+                               - **secret:**  Type: string 
+                               - **secret_encrypted:**  Type: string 
+                               - **secret_hash:**  Type: string 
+                               - **strict_validation_peer_extended_key_use:**  Type: boolean 
+                               - **type:**  Type: string 
+                               - **x509Objects:**           
+                                   - **certHolder:**  Type: object 
+                                   - **certificate:**  Type: string 
+                                   - **is_local_ca_cert_set:**  Type: boolean 
+                                   - **is_remote_ca_cert_set:**  Type: boolean 
+                                   - **keyPair:**  Type: object 
+                                   - **local_ca_certificate:**  Type: string 
+                                   - **local_ca_certs_set:**  [Type: object] 
+                                   - **passphrase:**  Type: string 
+                                   - **pkcs12_certificate:**  Type: string 
+                                   - **privateKey:**  Type: java.security.privatekey 
+                                   - **private_key:**  Type: string 
+                                   - **remote_ca_certificate:**  Type: string 
+                                   - **remote_ca_certs_set:**  [Type: object] 
+                           - **ipsec_profile_id:**  Type: string 
+                       - **last_parent:**  Type: string 
+                       - **parent:**  Type: string 
+                       - **peer:**           
+                           - **hostname:**  Type: string 
+                           - **ip_addresses:**  [Type: string] 
+                       - **service_endpoint_id:**  Type: string 
+                       - **type:**  Type: string 
+                   - **site_wan_interface_ids:**  [Type: string] 
+                   - **static_arp_configs:**           
+                       - **ipv4_address:**  Type: string 
+                       - **mac_address:**  Type: string 
+                   - **sub_interface:**           
+                       - **vlan_id:**  Type: integer 
+                   - **switch_port_config:**           
+                       - **access_vlan_id:**  Type: integer 
+                       - **bpdu_guard_enabled:**  Type: boolean 
+                       - **forward_fast_enabled:**  Type: boolean 
+                       - **native_vlan_id:**  Type: integer 
+                       - **root_guard_enabled:**  Type: boolean 
+                       - **storm_control_config:**           
+                           - **broadcast_threshold:**  Type: integer 
+                           - **multicast_threshold:**  Type: integer 
+                           - **unicast_threshold:**  Type: integer 
+                       - **stp_port_cost:**  Type: integer 
+                       - **stp_port_enabled:**  Type: boolean 
+                       - **stp_port_priority:**  Type: integer 
+                       - **trunk_vlans:**  [Type: string] 
+                       - **vlan_mode:**  Type: string 
+                       - **voice_vlan_id:**  Type: integer 
+                   - **tags:**  [Type: string] 
+                   - **type:**  Type: string 
+                   - **used_for:**  Type: string 
+                   - **vlan_config:**           
+                       - **mstp_instance:**  Type: integer 
+                       - **vlan_id:**  Type: integer 
+                       - **voice_enabled:**  Type: boolean 
+                   - **vrf_context_id:**  Type: string 
+               - **operation:**  Type: string 
+           - **source_element_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3409,7 +3434,7 @@ class Post(object):
 
     def elementshells_interfaces(self, site_id, elementshell_id, data, tenant_id=None, api_version="v2.4"):
         """
-        POST Elementshells_Interfaces API Function
+        Create a Interface (v2.4)
 
           **Parameters:**:
 
@@ -3421,228 +3446,228 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **admin_up:**  Type: boolean
-           - **attached_lan_networks:**
-               - **lan_network_id:**  Type: string
-               - **vlan_id:**  Type: integer
-           - **authentication_config:**
-               - **fallback_retry_count:**  Type: integer
-               - **mode:**  Type: string
-               - **reauthentication_timeout:**  Type: integer
-           - **bound_interfaces:**  [Type: string]
-           - **bypass_pair:**
-               - **lan:**  Type: string
-               - **lan_state_propagation:**  Type: boolean
-               - **use_relay:**  Type: boolean
-               - **wan:**  Type: string
-           - **cellular_config:**
-               - **apn_config:**
-                   - **apn:**  Type: string
-                   - **authentication:**  Type: string
-                   - **clear_password:**  Type: boolean
-                   - **password:**  Type: string
-                   - **password_encrypted:**  Type: string
-                   - **user_name:**  Type: string
-               - **apnprofile_id:**  Type: string
-               - **auto_apn:**  Type: boolean
-               - **parent_module_id:**  Type: string
-               - **parent_sim_slot_number:**  Type: integer
-           - **description:**  Type: string
-           - **devicemgmt_policysetstack_id:**  Type: string
-           - **dhcp_relay:**
-               - **enabled:**  Type: boolean
-               - **option_82:**
-                   - **circuit_id:**  Type: string
-                   - **enabled:**  Type: boolean
-                   - **reforwarding_policy:**  Type: string
-                   - **remote_id:**  Type: string
-               - **server_ips:**  [Type: string]
-               - **source_interface:**  Type: string
-           - **directed_broadcast:**  Type: boolean
-           - **ethernet_port:**
-               - **full_duplex:**  Type: boolean
-               - **port_id:**
-                   - **connector:**  Type: string
-                   - **device:**  Type: string
-                   - **disabled:**  Type: boolean
-                   - **disabled_reason:**  Type: string
-                   - **element_id:**  Type: string
-                   - **id:**  Type: string
-                   - **inactive:**  Type: boolean
-                   - **inactive_reason:**  Type: string
-                   - **max_mtu:**  Type: integer
-                   - **max_speed:**  Type: integer
-                   - **name:**  Type: string
-                   - **original_mac_address:**  Type: string
-                   - **region:**  Type: string
-                   - **site_id:**  Type: string
-                   - **tenant_id:**  Type: string
-               - **port_name:**  Type: string
-               - **speed:**  Type: integer
-           - **fec_mode:**  Type: string
-           - **interface_profile_id:**  Type: string
-           - **ipfixcollectorcontext_id:**  Type: string
-           - **ipfixfiltercontext_id:**  Type: string
-           - **ipv4_config:**
-               - **dhcp_config:**
-                   - **client_id:**  Type: string
-                   - **hostname:**  Type: string
-               - **dns_v4_config:**
-                   - **name_servers:**  [Type: string]
-                   - **search:**  [Type: string]
-               - **pppoe_config:**
-                   - **chap_passwd:**  Type: string
-                   - **chap_user:**  Type: string
-                   - **set_route:**  Type: boolean
-               - **routes:**
-                   - **destination:**  Type: string
-                   - **via:**  Type: string
-               - **static_config:**
-                   - **address:**  Type: string
-               - **type:**  Type: string
-           - **ipv6_config:**
-               - **dhcp_config:**
-                   - **client_id:**  Type: string
-                   - **hostname:**  Type: string
-               - **dns_v6_config:**
-                   - **name_servers:**  [Type: string]
-                   - **search:**  [Type: string]
-               - **routes:**
-                   - **destination:**  Type: string
-                   - **via:**  Type: string
-               - **static_config:**
-                   - **address:**  Type: string
-                   - **enable_prefix_distribution:**  Type: boolean
-               - **type:**  Type: string
-           - **lldp_enabled:**  Type: boolean
-           - **loopback_config:**
-               - **binding_interface_id:**  Type: string
-           - **mac_address:**  Type: string
-           - **mtu:**  Type: integer
-           - **multicast_config:**
-               - **igmp_version:**  Type: string
-               - **multicast_enabled:**  Type: boolean
-           - **name:**  Type: string
-           - **nat_address:**  Type: string
-           - **nat_address_v6:**  Type: string
-           - **nat_pools:**
-               - **ipv4_ranges:**
-                   - **end:**  Type: string
-                   - **start:**  Type: string
-               - **nat_pool_id:**  Type: string
-           - **nat_port:**  Type: integer
-           - **nat_port_v6:**  Type: integer
-           - **nat_zone_id:**  Type: string
-           - **network_context_id:**  Type: string
-           - **parent:**  Type: string
-           - **peer_bypasspair_wan_port_type:**  Type: string
-           - **poe_enabled:**  Type: boolean
-           - **port_channel_config:**
-               - **lacp_enabled:**  Type: boolean
-               - **transmission_mode:**  Type: string
-           - **power_usage_threshold:**  Type: integer
-           - **pppoe_config:**
-               - **host_uniq:**  Type: string
-               - **ip_address_type:**  Type: string
-               - **password:**  Type: string
-               - **reconnection_delay:**  Type: integer
-               - **service_name:**  Type: string
-               - **username:**  Type: string
-           - **scope:**  Type: string
-           - **secondary_ip_configs:**
-               - **ipv4_address:**  Type: string
-               - **scope:**  Type: string
-           - **service_link_config:**
-               - **gre_config:**
-                   - **csum:**  Type: boolean
-                   - **keepalive_enable:**  Type: boolean
-                   - **keepalive_fail_count:**  Type: integer
-                   - **keepalive_interval:**  Type: integer
-               - **ipsec_config:**
-                   - **authentication:**
-                       - **certificate:**  Type: string
-                       - **certificate_profile_id:**  Type: string
-                       - **comment:**  Type: string
-                       - **ikev1_params:**
-                           - **xauth_id:**  Type: string
-                           - **xauth_secret:**  Type: string
-                           - **xauth_secret_encrypted:**  Type: string
-                           - **xauth_secret_hash:**  Type: string
-                           - **xauth_type:**  Type: string
-                       - **local_ca_certificate:**  Type: string
-                       - **local_id:**  Type: string
-                       - **local_id_custom:**  Type: string
-                       - **local_pa_certificate_id:**  Type: string
-                       - **pa_master_key_id:**  Type: string
-                       - **passphrase:**  Type: string
-                       - **passphrase_encrypted:**  Type: string
-                       - **peer_id_check:**  Type: string
-                       - **permit_peer_id_mismatch:**  Type: boolean
-                       - **private_key:**  Type: string
-                       - **private_key_encrypted:**  Type: string
-                       - **remote_ca_certificate:**  Type: string
-                       - **remote_id:**  Type: string
-                       - **secret:**  Type: string
-                       - **secret_encrypted:**  Type: string
-                       - **secret_hash:**  Type: string
-                       - **strict_validation_peer_extended_key_use:**  Type: boolean
-                       - **type:**  Type: string
-                       - **x509Objects:**
-                           - **certHolder:**  Type: object
-                           - **certificate:**  Type: string
-                           - **is_local_ca_cert_set:**  Type: boolean
-                           - **is_remote_ca_cert_set:**  Type: boolean
-                           - **keyPair:**  Type: object
-                           - **local_ca_certificate:**  Type: string
-                           - **local_ca_certs_set:**  [Type: object]
-                           - **passphrase:**  Type: string
-                           - **pkcs12_certificate:**  Type: string
-                           - **privateKey:**  Type: java.security.privatekey
-                           - **private_key:**  Type: string
-                           - **remote_ca_certificate:**  Type: string
-                           - **remote_ca_certs_set:**  [Type: object]
-                   - **ipsec_profile_id:**  Type: string
-               - **last_parent:**  Type: string
-               - **parent:**  Type: string
-               - **passive_mode:**
-                   - **enable:**  Type: boolean
-                   - **peer_ip_dynamic:**  Type: boolean
-               - **peer:**
-                   - **hostname:**  Type: string
-                   - **ip_addresses:**  [Type: string]
-               - **service_endpoint_id:**  Type: string
-               - **type:**  Type: string
-           - **sgi_apply_static_tag:**  Type: boolean
-           - **site_wan_interface_ids:**  [Type: string]
-           - **static_arp_configs:**
-               - **ipv4_address:**  Type: string
-               - **mac_address:**  Type: string
-           - **sub_interface:**
-               - **vlan_id:**  Type: integer
-           - **switch_port_config:**
-               - **access_vlan_id:**  Type: integer
-               - **bpdu_guard_enabled:**  Type: boolean
-               - **forward_fast_enabled:**  Type: boolean
-               - **native_vlan_id:**  Type: integer
-               - **root_guard_enabled:**  Type: boolean
-               - **storm_control_config:**
-                   - **broadcast_threshold:**  Type: integer
-                   - **multicast_threshold:**  Type: integer
-                   - **unicast_threshold:**  Type: integer
-               - **stp_port_cost:**  Type: integer
-               - **stp_port_enabled:**  Type: boolean
-               - **stp_port_priority:**  Type: integer
-               - **trunk_vlans:**  [Type: string]
-               - **vlan_mode:**  Type: string
-               - **voice_vlan_id:**  Type: integer
-           - **tags:**  [Type: string]
-           - **type:**  Type: string
-           - **used_for:**  Type: string
-           - **vlan_config:**
-               - **mstp_instance:**  Type: integer
-               - **vlan_id:**  Type: integer
-               - **voice_enabled:**  Type: boolean
-           - **vrf_context_id:**  Type: string
+           - **admin_up:**  Type: boolean 
+           - **attached_lan_networks:**           
+               - **lan_network_id:**  Type: string 
+               - **vlan_id:**  Type: integer 
+           - **authentication_config:**           
+               - **fallback_retry_count:**  Type: integer 
+               - **mode:**  Type: string 
+               - **reauthentication_timeout:**  Type: integer 
+           - **bound_interfaces:**  [Type: string] 
+           - **bypass_pair:**           
+               - **lan:**  Type: string 
+               - **lan_state_propagation:**  Type: boolean 
+               - **use_relay:**  Type: boolean 
+               - **wan:**  Type: string 
+           - **cellular_config:**           
+               - **apn_config:**           
+                   - **apn:**  Type: string 
+                   - **authentication:**  Type: string 
+                   - **clear_password:**  Type: boolean 
+                   - **password:**  Type: string 
+                   - **password_encrypted:**  Type: string 
+                   - **user_name:**  Type: string 
+               - **apnprofile_id:**  Type: string 
+               - **auto_apn:**  Type: boolean 
+               - **parent_module_id:**  Type: string 
+               - **parent_sim_slot_number:**  Type: integer 
+           - **description:**  Type: string 
+           - **devicemgmt_policysetstack_id:**  Type: string 
+           - **dhcp_relay:**           
+               - **enabled:**  Type: boolean 
+               - **option_82:**           
+                   - **circuit_id:**  Type: string 
+                   - **enabled:**  Type: boolean 
+                   - **reforwarding_policy:**  Type: string 
+                   - **remote_id:**  Type: string 
+               - **server_ips:**  [Type: string] 
+               - **source_interface:**  Type: string 
+           - **directed_broadcast:**  Type: boolean 
+           - **ethernet_port:**           
+               - **full_duplex:**  Type: boolean 
+               - **port_id:**           
+                   - **connector:**  Type: string 
+                   - **device:**  Type: string 
+                   - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
+                   - **element_id:**  Type: string 
+                   - **id:**  Type: string 
+                   - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **max_mtu:**  Type: integer 
+                   - **max_speed:**  Type: integer 
+                   - **name:**  Type: string 
+                   - **original_mac_address:**  Type: string 
+                   - **region:**  Type: string 
+                   - **site_id:**  Type: string 
+                   - **tenant_id:**  Type: string 
+               - **port_name:**  Type: string 
+               - **speed:**  Type: integer 
+           - **fec_mode:**  Type: string 
+           - **interface_profile_id:**  Type: string 
+           - **ipfixcollectorcontext_id:**  Type: string 
+           - **ipfixfiltercontext_id:**  Type: string 
+           - **ipv4_config:**           
+               - **dhcp_config:**           
+                   - **client_id:**  Type: string 
+                   - **hostname:**  Type: string 
+               - **dns_v4_config:**           
+                   - **name_servers:**  [Type: string] 
+                   - **search:**  [Type: string] 
+               - **pppoe_config:**           
+                   - **chap_passwd:**  Type: string 
+                   - **chap_user:**  Type: string 
+                   - **set_route:**  Type: boolean 
+               - **routes:**           
+                   - **destination:**  Type: string 
+                   - **via:**  Type: string 
+               - **static_config:**           
+                   - **address:**  Type: string 
+               - **type:**  Type: string 
+           - **ipv6_config:**           
+               - **dhcp_config:**           
+                   - **client_id:**  Type: string 
+                   - **hostname:**  Type: string 
+               - **dns_v6_config:**           
+                   - **name_servers:**  [Type: string] 
+                   - **search:**  [Type: string] 
+               - **routes:**           
+                   - **destination:**  Type: string 
+                   - **via:**  Type: string 
+               - **static_config:**           
+                   - **address:**  Type: string 
+                   - **enable_prefix_distribution:**  Type: boolean 
+               - **type:**  Type: string 
+           - **lldp_enabled:**  Type: boolean 
+           - **loopback_config:**           
+               - **binding_interface_id:**  Type: string 
+           - **mac_address:**  Type: string 
+           - **mtu:**  Type: integer 
+           - **multicast_config:**           
+               - **igmp_version:**  Type: string 
+               - **multicast_enabled:**  Type: boolean 
+           - **name:**  Type: string 
+           - **nat_address:**  Type: string 
+           - **nat_address_v6:**  Type: string 
+           - **nat_pools:**           
+               - **ipv4_ranges:**           
+                   - **end:**  Type: string 
+                   - **start:**  Type: string 
+               - **nat_pool_id:**  Type: string 
+           - **nat_port:**  Type: integer 
+           - **nat_port_v6:**  Type: integer 
+           - **nat_zone_id:**  Type: string 
+           - **network_context_id:**  Type: string 
+           - **parent:**  Type: string 
+           - **peer_bypasspair_wan_port_type:**  Type: string 
+           - **poe_enabled:**  Type: boolean 
+           - **port_channel_config:**           
+               - **lacp_enabled:**  Type: boolean 
+               - **transmission_mode:**  Type: string 
+           - **power_usage_threshold:**  Type: integer 
+           - **pppoe_config:**           
+               - **host_uniq:**  Type: string 
+               - **ip_address_type:**  Type: string 
+               - **password:**  Type: string 
+               - **reconnection_delay:**  Type: integer 
+               - **service_name:**  Type: string 
+               - **username:**  Type: string 
+           - **scope:**  Type: string 
+           - **secondary_ip_configs:**           
+               - **ipv4_address:**  Type: string 
+               - **scope:**  Type: string 
+           - **service_link_config:**           
+               - **gre_config:**           
+                   - **csum:**  Type: boolean 
+                   - **keepalive_enable:**  Type: boolean 
+                   - **keepalive_fail_count:**  Type: integer 
+                   - **keepalive_interval:**  Type: integer 
+               - **ipsec_config:**           
+                   - **authentication:**           
+                       - **certificate:**  Type: string 
+                       - **certificate_profile_id:**  Type: string 
+                       - **comment:**  Type: string 
+                       - **ikev1_params:**           
+                           - **xauth_id:**  Type: string 
+                           - **xauth_secret:**  Type: string 
+                           - **xauth_secret_encrypted:**  Type: string 
+                           - **xauth_secret_hash:**  Type: string 
+                           - **xauth_type:**  Type: string 
+                       - **local_ca_certificate:**  Type: string 
+                       - **local_id:**  Type: string 
+                       - **local_id_custom:**  Type: string 
+                       - **local_pa_certificate_id:**  Type: string 
+                       - **pa_master_key_id:**  Type: string 
+                       - **passphrase:**  Type: string 
+                       - **passphrase_encrypted:**  Type: string 
+                       - **peer_id_check:**  Type: string 
+                       - **permit_peer_id_mismatch:**  Type: boolean 
+                       - **private_key:**  Type: string 
+                       - **private_key_encrypted:**  Type: string 
+                       - **remote_ca_certificate:**  Type: string 
+                       - **remote_id:**  Type: string 
+                       - **secret:**  Type: string 
+                       - **secret_encrypted:**  Type: string 
+                       - **secret_hash:**  Type: string 
+                       - **strict_validation_peer_extended_key_use:**  Type: boolean 
+                       - **type:**  Type: string 
+                       - **x509Objects:**           
+                           - **certHolder:**  Type: object 
+                           - **certificate:**  Type: string 
+                           - **is_local_ca_cert_set:**  Type: boolean 
+                           - **is_remote_ca_cert_set:**  Type: boolean 
+                           - **keyPair:**  Type: object 
+                           - **local_ca_certificate:**  Type: string 
+                           - **local_ca_certs_set:**  [Type: object] 
+                           - **passphrase:**  Type: string 
+                           - **pkcs12_certificate:**  Type: string 
+                           - **privateKey:**  Type: java.security.privatekey 
+                           - **private_key:**  Type: string 
+                           - **remote_ca_certificate:**  Type: string 
+                           - **remote_ca_certs_set:**  [Type: object] 
+                   - **ipsec_profile_id:**  Type: string 
+               - **last_parent:**  Type: string 
+               - **parent:**  Type: string 
+               - **passive_mode:**           
+                   - **enable:**  Type: boolean 
+                   - **peer_ip_dynamic:**  Type: boolean 
+               - **peer:**           
+                   - **hostname:**  Type: string 
+                   - **ip_addresses:**  [Type: string] 
+               - **service_endpoint_id:**  Type: string 
+               - **type:**  Type: string 
+           - **sgi_apply_static_tag:**  Type: boolean 
+           - **site_wan_interface_ids:**  [Type: string] 
+           - **static_arp_configs:**           
+               - **ipv4_address:**  Type: string 
+               - **mac_address:**  Type: string 
+           - **sub_interface:**           
+               - **vlan_id:**  Type: integer 
+           - **switch_port_config:**           
+               - **access_vlan_id:**  Type: integer 
+               - **bpdu_guard_enabled:**  Type: boolean 
+               - **forward_fast_enabled:**  Type: boolean 
+               - **native_vlan_id:**  Type: integer 
+               - **root_guard_enabled:**  Type: boolean 
+               - **storm_control_config:**           
+                   - **broadcast_threshold:**  Type: integer 
+                   - **multicast_threshold:**  Type: integer 
+                   - **unicast_threshold:**  Type: integer 
+               - **stp_port_cost:**  Type: integer 
+               - **stp_port_enabled:**  Type: boolean 
+               - **stp_port_priority:**  Type: integer 
+               - **trunk_vlans:**  [Type: string] 
+               - **vlan_mode:**  Type: string 
+               - **voice_vlan_id:**  Type: integer 
+           - **tags:**  [Type: string] 
+           - **type:**  Type: string 
+           - **used_for:**  Type: string 
+           - **vlan_config:**           
+               - **mstp_instance:**  Type: integer 
+               - **vlan_id:**  Type: integer 
+               - **voice_enabled:**  Type: boolean 
+           - **vrf_context_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3665,7 +3690,7 @@ class Post(object):
 
     def elementshells_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Elementshells_Query API Function
+        Queries db for limit number of element shells that match query params. (v2.1)
 
           **Parameters:**:
 
@@ -3675,21 +3700,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3704,6 +3730,71 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/elementshells/query".format(api_version,
                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def elementsystemlimitprofiles(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Create a new Element System Limit Profile (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **description:**  Type: string 
+           - **flow_acceptance_criteria:**           
+               - **flow_limit_percentage_per_source:**  Type: integer 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementsystemlimitprofiles".format(api_version,
+                                                                                     tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def elementsystemlimitprofiles_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query Element System Limit Profiles (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/elementsystemlimitprofiles/query".format(api_version,
+                                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -4006,7 +4097,7 @@ class Post(object):
 
     def events_operations(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Events_Operations API Function
+        POST Ops_Events API Function
 
           **Parameters:**:
 
@@ -4034,7 +4125,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def events_query(self, data, tenant_id=None, api_version="v3.6"):
+    def events_query(self, data, tenant_id=None, api_version="v3.7"):
         """
         POST Events_Query API Function
 
@@ -4042,7 +4133,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.6)
+          - **api_version**: API version to use (default v3.7)
 
           **Payload Attributes:** 
 
@@ -4172,6 +4263,7 @@ class Post(object):
 
            - **description:**  Type: string 
            - **filters:**           
+               - **ip_prefixes:**  [Type: string] 
                - **type:**  Type: string 
            - **name:**  Type: string 
 
@@ -4665,7 +4757,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def interfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
+    def interfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
         POST Interfaces_Correlationevents_Query API Function
 
@@ -4673,7 +4765,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -4697,7 +4789,7 @@ class Post(object):
 
     def interfaces_operations(self, site_id, element_id, interface_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Interfaces_Operations API Function
+        Reset action on interface (v2.0)
 
           **Parameters:**:
 
@@ -4779,7 +4871,7 @@ class Post(object):
 
     def interfaces_status_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Interfaces_Status_Query API Function
+        Query interface status (v2.0)
 
           **Parameters:**:
 
@@ -4809,7 +4901,7 @@ class Post(object):
 
     def iotdevicemappings_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Iotdevicemappings_Query API Function
+        Query the Active Device Profiles (v2.0)
 
           **Parameters:**:
 
@@ -4839,7 +4931,7 @@ class Post(object):
 
     def iotdictionary_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Iotdictionary_Query API Function
+        Query the Device Dictionary (v2.0)
 
           **Parameters:**:
 
@@ -4869,7 +4961,7 @@ class Post(object):
 
     def iotservices(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Iotservices API Function
+        POST the confidence score of the mappings stored in the IOT portal (v2.0)
 
           **Parameters:**:
 
@@ -4879,7 +4971,7 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **device_confidence_score:**  Type: integer
+           - **device_confidence_score:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5516,35 +5608,17 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **force_encapsulation:**  Type: boolean 
-               - **lifesize:**           
-                   - **units:**  Type: string 
-                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **responder_sase_proposals:**           
-                   - **dh_group:**  [Type: string] 
-                   - **encryption:**  [Type: string] 
-                   - **hash:**  [Type: string] 
            - **ike_group:**           
-               - **aggressive:**  Type: boolean 
-               - **authentication_multiple:**  Type: integer 
-               - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **reauth:**  Type: boolean 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
@@ -5625,35 +5699,17 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
-               - **force_encapsulation:**  Type: boolean 
-               - **lifesize:**           
-                   - **units:**  Type: string 
-                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **responder_sase_proposals:**           
-                   - **dh_group:**  [Type: string] 
-                   - **encryption:**  [Type: string] 
-                   - **hash:**  [Type: string] 
            - **ike_group:**           
-               - **aggressive:**  Type: boolean 
-               - **authentication_multiple:**  Type: integer 
-               - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
-               - **lifetime_units:**  Type: string 
-               - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
-                   - **prf:**  Type: string 
-               - **reauth:**  Type: boolean 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
@@ -5945,7 +6001,7 @@ class Post(object):
 
     def machines_allocate_to_shell(self, machine_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Machines_Allocate_To_Shell API Function
+        Allocate Element Shell to Machine (v2.0)
 
           **Parameters:**:
 
@@ -6016,6 +6072,41 @@ class Post(object):
         cur_ctlr = self._parent_class.controller
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/query".format(api_version,
+                                                                         tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def migratecbtoezb(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Trigger migration API (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **dry_run:**  Type: boolean 
+           - **forced:**  Type: boolean 
+           - **is_fawkes:**  Type: boolean 
+           - **retry:**  Type: boolean 
+           - **sdwan_only:**  Type: boolean 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/migratecbtoezb".format(api_version,
                                                                          tenant_id)
 
         api_logger.debug("URL = %s", url)
@@ -6113,7 +6204,7 @@ class Post(object):
 
     def monitor_agg_bw_stats(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Agg_Bw_Stats API Function
+        POST Agg_Bw_Stats_Monitor API Function
 
           **Parameters:**:
 
@@ -6143,7 +6234,7 @@ class Post(object):
 
     def monitor_aggregatebandwidth_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aggregatebandwidth_Query API Function
+        POST Query_Aggregatebandwidth_Monitor API Function
 
           **Parameters:**:
 
@@ -6503,7 +6594,7 @@ class Post(object):
 
     def monitor_app_acceleration(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_App_Acceleration API Function
+        POST App_Acceleration_Monitor API Function
 
           **Parameters:**:
 
@@ -6593,7 +6684,7 @@ class Post(object):
 
     def monitor_applicationstats_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Applicationstats_Query API Function
+        POST Query_Applicationstats_Monitor API Function
 
           **Parameters:**:
 
@@ -6623,7 +6714,7 @@ class Post(object):
 
     def monitor_applicationsummary_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Applicationsummary_Query API Function
+        POST Query_Applicationsummary_Monitor API Function
 
           **Parameters:**:
 
@@ -6893,7 +6984,7 @@ class Post(object):
 
     def monitor_metrics_probes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Metrics_Probes API Function
+        POST Probes_Metrics_Monitor API Function
 
           **Parameters:**:
 
@@ -7043,7 +7134,7 @@ class Post(object):
 
     def monitor_probe_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Probe_Point_Metrics API Function
+        POST Probe_Point_Metrics_Monitor API Function
 
           **Parameters:**:
 
@@ -7223,7 +7314,7 @@ class Post(object):
 
     def monitor_topn_traffic_vol_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Topn_Traffic_Vol_Query API Function
+        POST Query_Topn_Traffic_Vol_Monitor API Function
 
           **Parameters:**:
 
@@ -9505,7 +9596,7 @@ class Post(object):
 
     def ospfconfigs(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ospfconfigs API Function
+        Creates OSPF config (v2.0)
 
           **Parameters:**:
 
@@ -9517,31 +9608,31 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **areas:**
-               - **area_id:**  Type: integer
-               - **area_type:**  Type: string
-           - **description:**  Type: string
-           - **interfaces:**
-               - **area_id:**  Type: integer
-               - **interface_id:**  Type: string
-               - **ospf_config_override:**
-                   - **cost:**  Type: integer
-                   - **dead_interval:**  Type: integer
-                   - **hello_interval:**  Type: integer
-                   - **md5_key_id:**  Type: integer
-                   - **md5_secret:**  Type: string
-                   - **retransmit_interval:**  Type: integer
-                   - **transmit_delay:**  Type: integer
-           - **name:**  Type: string
-           - **prefix_adv_route_map_id:**  Type: string
-           - **prefix_adv_type_to_lan:**  Type: string
-           - **redistribute_bgp:**  Type: boolean
-           - **redistribute_route_map_id:**  Type: string
-           - **router_id:**  Type: string
-           - **scope:**  Type: string
-           - **shutdown:**  Type: boolean
-           - **tags:**  [Type: string]
-           - **vrf_context_id:**  Type: string
+           - **areas:**           
+               - **area_id:**  Type: integer 
+               - **area_type:**  Type: string 
+           - **description:**  Type: string 
+           - **interfaces:**           
+               - **area_id:**  Type: integer 
+               - **interface_id:**  Type: string 
+               - **ospf_config_override:**           
+                   - **cost:**  Type: integer 
+                   - **dead_interval:**  Type: integer 
+                   - **hello_interval:**  Type: integer 
+                   - **md5_key_id:**  Type: integer 
+                   - **md5_secret:**  Type: string 
+                   - **retransmit_interval:**  Type: integer 
+                   - **transmit_delay:**  Type: integer 
+           - **name:**  Type: string 
+           - **prefix_adv_route_map_id:**  Type: string 
+           - **prefix_adv_type_to_lan:**  Type: string 
+           - **redistribute_bgp:**  Type: boolean 
+           - **redistribute_route_map_id:**  Type: string 
+           - **router_id:**  Type: string 
+           - **scope:**  Type: string 
+           - **shutdown:**  Type: boolean 
+           - **tags:**  [Type: string] 
+           - **vrf_context_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9564,7 +9655,7 @@ class Post(object):
 
     def ospfconfigs_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ospfconfigs_Query API Function
+        Query OSPF config (v2.0)
 
           **Parameters:**:
 
@@ -9594,7 +9685,7 @@ class Post(object):
 
     def ospfdiscoveredneighbors_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ospfdiscoveredneighbors_Query API Function
+        POST Query_Ospfdiscoveredneighbors API Function
 
           **Parameters:**:
 
@@ -9624,7 +9715,7 @@ class Post(object):
 
     def ospfreachableprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ospfreachableprefixes_Query API Function
+        POST Query_Ospfreachableprefixes API Function
 
           **Parameters:**:
 
@@ -9834,7 +9925,7 @@ class Post(object):
 
     def pathprefixdistributionfilterassociation_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Pathprefixdistributionfilterassociation_Query API Function
+        POST Query_Pathprefixdistributionfilterassociation API Function
 
           **Parameters:**:
 
@@ -9896,7 +9987,7 @@ class Post(object):
 
     def pathprefixdistributionfilters_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Pathprefixdistributionfilters_Query API Function
+        POST Query_Pathprefixdistributionfilters API Function
 
           **Parameters:**:
 
@@ -9926,7 +10017,7 @@ class Post(object):
 
     def perfmgmtpolicyrules_query(self, data, tenant_id=None, api_version="v2.2"):
         """
-        POST Perfmgmtpolicyrules_Query API Function
+        Query PERFMGMT policy rules V2.2. (v2.2)
 
           **Parameters:**:
 
@@ -9936,21 +10027,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9971,7 +10063,7 @@ class Post(object):
 
     def perfmgmtpolicysets(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Perfmgmtpolicysets API Function
+        Create a new PERFMGMT Policy Set (v2.0)
 
           **Parameters:**:
 
@@ -9981,74 +10073,74 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **clone_from:**  Type: string
-           - **defaultrule_policyset:**  Type: boolean
-           - **description:**  Type: string
-           - **disabled:**  Type: boolean
-           - **disabled_reason:**  Type: string
-           - **inactive:**  Type: boolean
-           - **inactive_reason:**  Type: string
-           - **link_health_policyrule_order:**  [Type: string]
-           - **link_health_rules:**
-               - **actions:**
-                   - **action_type:**  Type: string
-                   - **always_on:**  Type: boolean
-                   - **app_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **circuit_utilization_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **lqm_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **probe_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **sys_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-               - **app_filters:**
-                   - **app_transfer_types:**  [Type: string]
-                   - **application_ids:**  [Type: string]
-               - **description:**  Type: string
-               - **enabled:**  Type: boolean
-               - **id:**  Type: string
-               - **name:**  Type: string
-               - **path_filters:**
-                   - **label:**  Type: string
-                   - **path_type:**  Type: string
-               - **service_label_ids:**  [Type: string]
-               - **tags:**  [Type: string]
-               - **thresholdprofile_id:**  Type: string
-               - **type:**  Type: string
-           - **name:**  Type: string
-           - **policy_rules:**
-               - **description:**  Type: string
-               - **disabled:**  Type: boolean
-               - **disabled_reason:**  Type: string
-               - **id:**  Type: string
-               - **inactive:**  Type: boolean
-               - **inactive_reason:**  Type: string
-               - **name:**  Type: string
-               - **policyset_id:**  Type: string
-               - **region:**  Type: string
-               - **tags:**  [Type: string]
-               - **tenant_id:**  Type: string
-           - **region:**  Type: string
-           - **send_to_element:**  Type: boolean
-           - **tags:**  [Type: string]
-           - **tenant_id:**  Type: string
+           - **clone_from:**  Type: string 
+           - **defaultrule_policyset:**  Type: boolean 
+           - **description:**  Type: string 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **link_health_policyrule_order:**  [Type: string] 
+           - **link_health_rules:**           
+               - **actions:**           
+                   - **action_type:**  Type: string 
+                   - **always_on:**  Type: boolean 
+                   - **app_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **circuit_utilization_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **lqm_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **probe_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **sys_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+               - **app_filters:**           
+                   - **app_transfer_types:**  [Type: string] 
+                   - **application_ids:**  [Type: string] 
+               - **description:**  Type: string 
+               - **enabled:**  Type: boolean 
+               - **id:**  Type: string 
+               - **name:**  Type: string 
+               - **path_filters:**           
+                   - **label:**  Type: string 
+                   - **path_type:**  Type: string 
+               - **service_label_ids:**  [Type: string] 
+               - **tags:**  [Type: string] 
+               - **thresholdprofile_id:**  Type: string 
+               - **type:**  Type: string 
+           - **name:**  Type: string 
+           - **policy_rules:**           
+               - **description:**  Type: string 
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **name:**  Type: string 
+               - **policyset_id:**  Type: string 
+               - **region:**  Type: string 
+               - **tags:**  [Type: string] 
+               - **tenant_id:**  Type: string 
+           - **region:**  Type: string 
+           - **send_to_element:**  Type: boolean 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10069,7 +10161,7 @@ class Post(object):
 
     def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, data, tenant_id=None, api_version="v2.2"):
         """
-        POST Perfmgmtpolicysets_Perfmgmtpolicyrules API Function
+        Create a new PERFMGMT Policy Rule V2.2 (v2.2)
 
           **Parameters:**:
 
@@ -10080,48 +10172,48 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **actions:**
-               - **action_type:**  Type: string
-               - **always_on:**  Type: boolean
-               - **app_perf:**
-                   - **bad_health_thresholds:**
-                       - **clear_below:**  Type: integer
-                       - **raise_above:**  Type: integer
-                   - **monitoring_approach:**  Type: string
-               - **circuit_utilization_perf:**
-                   - **bad_health_thresholds:**
-                       - **clear_below:**  Type: integer
-                       - **raise_above:**  Type: integer
-                   - **monitoring_approach:**  Type: string
-               - **lqm_perf:**
-                   - **bad_health_thresholds:**
-                       - **clear_below:**  Type: integer
-                       - **raise_above:**  Type: integer
-                   - **monitoring_approach:**  Type: string
-               - **probe_perf:**
-                   - **bad_health_thresholds:**
-                       - **clear_below:**  Type: integer
-                       - **raise_above:**  Type: integer
-                   - **monitoring_approach:**  Type: string
-               - **sys_perf:**
-                   - **bad_health_thresholds:**
-                       - **clear_below:**  Type: integer
-                       - **raise_above:**  Type: integer
-                   - **monitoring_approach:**  Type: string
-           - **app_filters:**
-               - **app_transfer_types:**  [Type: string]
-               - **application_ids:**  [Type: string]
-           - **description:**  Type: string
-           - **enabled:**  Type: boolean
-           - **name:**  Type: string
-           - **network_context_ids:**  [Type: string]
-           - **path_filters:**
-               - **label:**  Type: string
-               - **path_type:**  Type: string
-           - **service_label_ids:**  [Type: string]
-           - **tags:**  [Type: string]
-           - **thresholdprofile_id:**  Type: string
-           - **type:**  Type: string
+           - **actions:**           
+               - **action_type:**  Type: string 
+               - **always_on:**  Type: boolean 
+               - **app_perf:**           
+                   - **bad_health_thresholds:**           
+                       - **clear_below:**  Type: integer 
+                       - **raise_above:**  Type: integer 
+                   - **monitoring_approach:**  Type: string 
+               - **circuit_utilization_perf:**           
+                   - **bad_health_thresholds:**           
+                       - **clear_below:**  Type: integer 
+                       - **raise_above:**  Type: integer 
+                   - **monitoring_approach:**  Type: string 
+               - **lqm_perf:**           
+                   - **bad_health_thresholds:**           
+                       - **clear_below:**  Type: integer 
+                       - **raise_above:**  Type: integer 
+                   - **monitoring_approach:**  Type: string 
+               - **probe_perf:**           
+                   - **bad_health_thresholds:**           
+                       - **clear_below:**  Type: integer 
+                       - **raise_above:**  Type: integer 
+                   - **monitoring_approach:**  Type: string 
+               - **sys_perf:**           
+                   - **bad_health_thresholds:**           
+                       - **clear_below:**  Type: integer 
+                       - **raise_above:**  Type: integer 
+                   - **monitoring_approach:**  Type: string 
+           - **app_filters:**           
+               - **app_transfer_types:**  [Type: string] 
+               - **application_ids:**  [Type: string] 
+           - **description:**  Type: string 
+           - **enabled:**  Type: boolean 
+           - **name:**  Type: string 
+           - **network_context_ids:**  [Type: string] 
+           - **path_filters:**           
+               - **label:**  Type: string 
+               - **path_type:**  Type: string 
+           - **service_label_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
+           - **thresholdprofile_id:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10143,7 +10235,7 @@ class Post(object):
 
     def perfmgmtpolicysets_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Perfmgmtpolicysets_Query API Function
+        Query PERFMGMT Policy Set (v2.0)
 
           **Parameters:**:
 
@@ -10153,74 +10245,74 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **clone_from:**  Type: string
-           - **defaultrule_policyset:**  Type: boolean
-           - **description:**  Type: string
-           - **disabled:**  Type: boolean
-           - **disabled_reason:**  Type: string
-           - **inactive:**  Type: boolean
-           - **inactive_reason:**  Type: string
-           - **link_health_policyrule_order:**  [Type: string]
-           - **link_health_rules:**
-               - **actions:**
-                   - **action_type:**  Type: string
-                   - **always_on:**  Type: boolean
-                   - **app_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **circuit_utilization_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **lqm_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **probe_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-                   - **sys_perf:**
-                       - **bad_health_thresholds:**
-                           - **clear_below:**  Type: integer
-                           - **raise_above:**  Type: integer
-                       - **monitoring_approach:**  Type: string
-               - **app_filters:**
-                   - **app_transfer_types:**  [Type: string]
-                   - **application_ids:**  [Type: string]
-               - **description:**  Type: string
-               - **enabled:**  Type: boolean
-               - **id:**  Type: string
-               - **name:**  Type: string
-               - **path_filters:**
-                   - **label:**  Type: string
-                   - **path_type:**  Type: string
-               - **service_label_ids:**  [Type: string]
-               - **tags:**  [Type: string]
-               - **thresholdprofile_id:**  Type: string
-               - **type:**  Type: string
-           - **name:**  Type: string
-           - **policy_rules:**
-               - **description:**  Type: string
-               - **disabled:**  Type: boolean
-               - **disabled_reason:**  Type: string
-               - **id:**  Type: string
-               - **inactive:**  Type: boolean
-               - **inactive_reason:**  Type: string
-               - **name:**  Type: string
-               - **policyset_id:**  Type: string
-               - **region:**  Type: string
-               - **tags:**  [Type: string]
-               - **tenant_id:**  Type: string
-           - **region:**  Type: string
-           - **send_to_element:**  Type: boolean
-           - **tags:**  [Type: string]
-           - **tenant_id:**  Type: string
+           - **clone_from:**  Type: string 
+           - **defaultrule_policyset:**  Type: boolean 
+           - **description:**  Type: string 
+           - **disabled:**  Type: boolean 
+           - **disabled_reason:**  Type: string 
+           - **inactive:**  Type: boolean 
+           - **inactive_reason:**  Type: string 
+           - **link_health_policyrule_order:**  [Type: string] 
+           - **link_health_rules:**           
+               - **actions:**           
+                   - **action_type:**  Type: string 
+                   - **always_on:**  Type: boolean 
+                   - **app_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **circuit_utilization_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **lqm_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **probe_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+                   - **sys_perf:**           
+                       - **bad_health_thresholds:**           
+                           - **clear_below:**  Type: integer 
+                           - **raise_above:**  Type: integer 
+                       - **monitoring_approach:**  Type: string 
+               - **app_filters:**           
+                   - **app_transfer_types:**  [Type: string] 
+                   - **application_ids:**  [Type: string] 
+               - **description:**  Type: string 
+               - **enabled:**  Type: boolean 
+               - **id:**  Type: string 
+               - **name:**  Type: string 
+               - **path_filters:**           
+                   - **label:**  Type: string 
+                   - **path_type:**  Type: string 
+               - **service_label_ids:**  [Type: string] 
+               - **tags:**  [Type: string] 
+               - **thresholdprofile_id:**  Type: string 
+               - **type:**  Type: string 
+           - **name:**  Type: string 
+           - **policy_rules:**           
+               - **description:**  Type: string 
+               - **disabled:**  Type: boolean 
+               - **disabled_reason:**  Type: string 
+               - **id:**  Type: string 
+               - **inactive:**  Type: boolean 
+               - **inactive_reason:**  Type: string 
+               - **name:**  Type: string 
+               - **policyset_id:**  Type: string 
+               - **region:**  Type: string 
+               - **tags:**  [Type: string] 
+               - **tenant_id:**  Type: string 
+           - **region:**  Type: string 
+           - **send_to_element:**  Type: boolean 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10241,7 +10333,7 @@ class Post(object):
 
     def perfmgmtpolicysetstacks(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Perfmgmtpolicysetstacks API Function
+        Create a new PERFMGMT Policy Set Stack (v2.0)
 
           **Parameters:**:
 
@@ -10251,12 +10343,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **default_policysetstack:**  Type: boolean
-           - **defaultrule_policyset_id:**  Type: string
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **policyset_ids:**  [Type: string]
-           - **tags:**  [Type: string]
+           - **default_policysetstack:**  Type: boolean 
+           - **defaultrule_policyset_id:**  Type: string 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **policyset_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10277,7 +10369,7 @@ class Post(object):
 
     def perfmgmtpolicysetstacks_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Perfmgmtpolicysetstacks_Query API Function
+        Query PERFMGMT Policy Set Stack (v2.0)
 
           **Parameters:**:
 
@@ -10287,12 +10379,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **default_policysetstack:**  Type: boolean
-           - **defaultrule_policyset_id:**  Type: string
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **policyset_ids:**  [Type: string]
-           - **tags:**  [Type: string]
+           - **default_policysetstack:**  Type: boolean 
+           - **defaultrule_policyset_id:**  Type: string 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **policyset_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10313,7 +10405,7 @@ class Post(object):
 
     def perfmgmtthresholdprofiles(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Perfmgmtthresholdprofiles API Function
+        Create a new Threshold Profile (v2.1)
 
           **Parameters:**:
 
@@ -10323,21 +10415,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **hard_limit_app_metrics:**
-               - **max_init_failure_rate:**  Type: integer
-               - **max_rtt:**  Type: integer
-               - **udp_trt:**  Type: integer
-           - **lqm_thresholds:**
-               - **max_jitter:**  Type: integer
-               - **max_latency:**  Type: integer
-               - **max_packet_loss:**  Type: integer
-           - **name:**  Type: string
-           - **soft_limit_app_metrics:**
-               - **max_init_failure_rate:**  Type: integer
-               - **max_rtt:**  Type: integer
-               - **udp_trt:**  Type: integer
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **hard_limit_app_metrics:**           
+               - **max_init_failure_rate:**  Type: integer 
+               - **max_rtt:**  Type: integer 
+               - **udp_trt:**  Type: integer 
+           - **lqm_thresholds:**           
+               - **max_jitter:**  Type: integer 
+               - **max_latency:**  Type: integer 
+               - **max_packet_loss:**  Type: integer 
+           - **name:**  Type: string 
+           - **soft_limit_app_metrics:**           
+               - **max_init_failure_rate:**  Type: integer 
+               - **max_rtt:**  Type: integer 
+               - **udp_trt:**  Type: integer 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10358,7 +10450,7 @@ class Post(object):
 
     def perfmgmtthresholdprofiles_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Perfmgmtthresholdprofiles_Query API Function
+        Queries db for limit number of tenant level threshold profiles that match query params. (v2.1)
 
           **Parameters:**:
 
@@ -10368,46 +10460,46 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **circuit_utilization_metrics_thresholds:**
-               - **percentage_circuit_utilization:**  Type: integer
-           - **description:**  Type: string
-           - **flow_metrics_thresholds:**
-               - **percentage_flow_utilization:**  Type: integer
-           - **hard_limit_app_metrics:**
-               - **max_init_failure_rate:**  Type: integer
-               - **max_rtt:**  Type: integer
-               - **udp_trt:**  Type: integer
-           - **lqm_thresholds:**
-               - **max_jitter:**  Type: integer
-               - **max_latency:**  Type: integer
-               - **max_packet_loss:**  Type: integer
-               - **min_mos:**  Type: integer
-           - **name:**  Type: string
-           - **soft_limit_app_metrics:**
-               - **max_init_failure_rate:**  Type: integer
-               - **max_rtt:**  Type: integer
-               - **udp_trt:**  Type: integer
-           - **synthetic_probe_thresholds:**
-               - **dns_txn_failure_pct:**
-                   - **probe_config_id:**  Type: string
-                   - **value:**  Type: integer
-               - **init_failure_pct:**
-                   - **probe_config_id:**  Type: string
-                   - **value:**  Type: integer
-               - **jitter:**
-                   - **probe_config_id:**  Type: string
-                   - **value:**  Type: integer
-               - **latency:**
-                   - **probe_config_id:**  Type: string
-                   - **value:**  Type: integer
-               - **packet_loss:**
-                   - **probe_config_id:**  Type: string
-                   - **value:**  Type: integer
-           - **system_health_metrics_thresholds:**
-               - **cpu_utilization:**  Type: integer
-               - **disk_utilization:**  Type: integer
-               - **memory_utilization:**  Type: integer
-           - **tags:**  [Type: string]
+           - **circuit_utilization_metrics_thresholds:**           
+               - **percentage_circuit_utilization:**  Type: integer 
+           - **description:**  Type: string 
+           - **flow_metrics_thresholds:**           
+               - **percentage_flow_utilization:**  Type: integer 
+           - **hard_limit_app_metrics:**           
+               - **max_init_failure_rate:**  Type: integer 
+               - **max_rtt:**  Type: integer 
+               - **udp_trt:**  Type: integer 
+           - **lqm_thresholds:**           
+               - **max_jitter:**  Type: integer 
+               - **max_latency:**  Type: integer 
+               - **max_packet_loss:**  Type: integer 
+               - **min_mos:**  Type: integer 
+           - **name:**  Type: string 
+           - **soft_limit_app_metrics:**           
+               - **max_init_failure_rate:**  Type: integer 
+               - **max_rtt:**  Type: integer 
+               - **udp_trt:**  Type: integer 
+           - **synthetic_probe_thresholds:**           
+               - **dns_txn_failure_pct:**           
+                   - **probe_config_id:**  Type: string 
+                   - **value:**  Type: integer 
+               - **init_failure_pct:**           
+                   - **probe_config_id:**  Type: string 
+                   - **value:**  Type: integer 
+               - **jitter:**           
+                   - **probe_config_id:**  Type: string 
+                   - **value:**  Type: integer 
+               - **latency:**           
+                   - **probe_config_id:**  Type: string 
+                   - **value:**  Type: integer 
+               - **packet_loss:**           
+                   - **probe_config_id:**  Type: string 
+                   - **value:**  Type: integer 
+           - **system_health_metrics_thresholds:**           
+               - **cpu_utilization:**  Type: integer 
+               - **disk_utilization:**  Type: integer 
+               - **memory_utilization:**  Type: integer 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10742,6 +10834,7 @@ class Post(object):
           **Payload Attributes:** 
 
            - **filters:**           
+               - **ip_prefixes:**  [Type: string] 
                - **type:**  Type: string 
            - **prefix_filter_id:**  Type: string 
 
@@ -11282,7 +11375,7 @@ class Post(object):
 
     def prismasase_connections(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Prismasase_Connections API Function
+        Create a new SASE connection (v2.1)
 
           **Parameters:**:
 
@@ -11293,46 +11386,47 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **enabled_wan_interface_ids:**  [Type: string]
-           - **ipsec_tunnel_configs:**
-               - **anti_replay:**  Type: boolean
-               - **copy_tos:**  Type: boolean
-               - **enable_gre_encapsulation:**  Type: boolean
-               - **ike_key_exchange:**  Type: string
-               - **prismaaccess_ike_crypto_profile_id:**  Type: string
-               - **prismaaccess_ipsec_profile_id:**  Type: string
-               - **tunnel_monitoring:**  Type: boolean
-           - **is_active:**  Type: boolean
-           - **is_enabled:**  Type: boolean
-           - **prismaaccess_edge_location:**  [Type: string]
-           - **prismaaccess_qos_cir_mbps:**  Type: integer
-           - **prismaaccess_qos_profile_id:**  Type: string
-           - **remote_network_groups:**
-               - **ipsec_tunnels:**
-                   - **authentication:**
-                       - **branch_ike_identification:**  Type: string
-                       - **prismaaccess_ike_identification:**  Type: string
-                       - **psk:**  Type: string
-                   - **name:**  Type: string
-                   - **routing:**
-                       - **branch_as_number:**  Type: string
-                       - **branch_ip_address:**  Type: string
-                       - **prismaaccess_ip_address:**  Type: string
-                   - **routing_configs:**
-                       - **advertise_default_route:**  Type: boolean
-                       - **bgp_secret:**  Type: string
-                       - **export_routes:**  Type: boolean
-                       - **summarize_mobile_routes_before_advertise:**  Type: boolean
-                   - **wan_interface_id:**  Type: string
-               - **name:**  Type: string
-               - **spn_name:**  [Type: string]
-           - **routing_configs:**
-               - **advertise_default_route:**  Type: boolean
-               - **bgp_secret:**  Type: string
-               - **export_routes:**  Type: boolean
-               - **summarize_mobile_routes_before_advertise:**  Type: boolean
-           - **site_id:**  Type: string
-           - **tenant_id:**  Type: string
+           - **enabled_wan_interface_ids:**  [Type: string] 
+           - **ipsec_tunnel_configs:**           
+               - **anti_replay:**  Type: boolean 
+               - **copy_tos:**  Type: boolean 
+               - **enable_gre_encapsulation:**  Type: boolean 
+               - **ike_key_exchange:**  Type: string 
+               - **prismaaccess_ike_crypto_profile_id:**  Type: string 
+               - **prismaaccess_ipsec_profile_id:**  Type: string 
+               - **tunnel_monitoring:**  Type: boolean 
+           - **is_active:**  Type: boolean 
+           - **is_enabled:**  Type: boolean 
+           - **license_type:**  Type: string 
+           - **prismaaccess_edge_location:**  [Type: string] 
+           - **prismaaccess_qos_cir_mbps:**  Type: integer 
+           - **prismaaccess_qos_profile_id:**  Type: string 
+           - **remote_network_groups:**           
+               - **ipsec_tunnels:**           
+                   - **authentication:**           
+                       - **branch_ike_identification:**  Type: string 
+                       - **prismaaccess_ike_identification:**  Type: string 
+                       - **psk:**  Type: string 
+                   - **name:**  Type: string 
+                   - **routing:**           
+                       - **branch_as_number:**  Type: string 
+                       - **branch_ip_address:**  Type: string 
+                       - **prismaaccess_ip_address:**  Type: string 
+                   - **routing_configs:**           
+                       - **advertise_default_route:**  Type: boolean 
+                       - **bgp_secret:**  Type: string 
+                       - **export_routes:**  Type: boolean 
+                       - **summarize_mobile_routes_before_advertise:**  Type: boolean 
+                   - **wan_interface_id:**  Type: string 
+               - **name:**  Type: string 
+               - **spn_name:**  [Type: string] 
+           - **routing_configs:**           
+               - **advertise_default_route:**  Type: boolean 
+               - **bgp_secret:**  Type: string 
+               - **export_routes:**  Type: boolean 
+               - **summarize_mobile_routes_before_advertise:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11354,7 +11448,7 @@ class Post(object):
 
     def prismasase_connections_configs(self, data, tenant_id=None, api_version="v3.1"):
         """
-        POST Prismasase_Connections_Configs API Function
+        Create a new SASE connection config (v3.1)
 
           **Parameters:**:
 
@@ -11364,29 +11458,29 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **deployment_mode:**  Type: string
-           - **extended_tunnel_cidrs:**
-               - **extended_tunnel_cidr:**  Type: string
-               - **priority:**  Type: integer
-           - **ipsec_profile:**
-               - **dpd_delay:**  Type: integer
-               - **dpd_enable:**  Type: boolean
-               - **esp_group:**
-                   - **lifetime:**  Type: integer
-                   - **proposals:**
-                       - **dh_groups:**  Type: string
-                       - **encryption:**  Type: string
-                       - **hash:**  Type: string
-               - **ike_group:**
-                   - **lifetime:**  Type: integer
-                   - **proposals:**
-                       - **dh_groups:**  Type: string
-                       - **encryption:**  Type: string
-                       - **hash:**  Type: string
-           - **panorama_sub_tenant_name:**  Type: string
-           - **prisma_sdwan_bgp_as_number:**  Type: string
-           - **security_zone_id:**  Type: string
-           - **tunnel_cidr:**  Type: string
+           - **deployment_mode:**  Type: string 
+           - **extended_tunnel_cidrs:**           
+               - **extended_tunnel_cidr:**  Type: string 
+               - **priority:**  Type: integer 
+           - **ipsec_profile:**           
+               - **dpd_delay:**  Type: integer 
+               - **dpd_enable:**  Type: boolean 
+               - **esp_group:**           
+                   - **lifetime:**  Type: integer 
+                   - **proposals:**           
+                       - **dh_groups:**  Type: string 
+                       - **encryption:**  Type: string 
+                       - **hash:**  Type: string 
+               - **ike_group:**           
+                   - **lifetime:**  Type: integer 
+                   - **proposals:**           
+                       - **dh_groups:**  Type: string 
+                       - **encryption:**  Type: string 
+                       - **hash:**  Type: string 
+           - **panorama_sub_tenant_name:**  Type: string 
+           - **prisma_sdwan_bgp_as_number:**  Type: string 
+           - **security_zone_id:**  Type: string 
+           - **tunnel_cidr:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11407,7 +11501,7 @@ class Post(object):
 
     def prismasase_connections_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Prismasase_Connections_Query API Function
+        Get a list of SASE connections (v2.0)
 
           **Parameters:**:
 
@@ -11437,7 +11531,7 @@ class Post(object):
 
     def prismasase_connections_status_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Prismasase_Connections_Status_Query API Function
+        Get a list of SASE connection statuses (v2.0)
 
           **Parameters:**:
 
@@ -11447,21 +11541,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11482,7 +11577,7 @@ class Post(object):
 
     def probeconfigs(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probeconfigs API Function
+        Create a new Probe Config (v2.0)
 
           **Parameters:**:
 
@@ -11492,21 +11587,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **enabled:**  Type: boolean
-           - **endpoints:**
-               - **allow_insecure_https_connection:**  Type: boolean
-               - **dns_server_ip:**  Type: string
-               - **fqdn:**  Type: string
-               - **http_response_codes:**  [Type: integer]
-               - **http_response_string:**  Type: string
-               - **ipv4_address:**  Type: string
-               - **path_types:**  [Type: string]
-               - **probe_count:**  Type: integer
-               - **probe_cycle_duration:**  Type: integer
-               - **protocol:**  Type: string
-           - **name:**  Type: string
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **enabled:**  Type: boolean 
+           - **endpoints:**           
+               - **allow_insecure_https_connection:**  Type: boolean 
+               - **dns_server_ip:**  Type: string 
+               - **fqdn:**  Type: string 
+               - **http_response_codes:**  [Type: integer] 
+               - **http_response_string:**  Type: string 
+               - **ipv4_address:**  Type: string 
+               - **path_types:**  [Type: string] 
+               - **probe_count:**  Type: integer 
+               - **probe_cycle_duration:**  Type: integer 
+               - **protocol:**  Type: string 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11527,7 +11622,7 @@ class Post(object):
 
     def probeconfigs_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probeconfigs_Query API Function
+        Queries db for limit number of tenant level probe profiles that match query params. (v2.0)
 
           **Parameters:**:
 
@@ -11537,20 +11632,6 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11571,7 +11652,7 @@ class Post(object):
 
     def probeprofiles(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probeprofiles API Function
+        Create a new PROBE Profile (v2.0)
 
           **Parameters:**:
 
@@ -11581,10 +11662,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **probe_config_ids:**  [Type: string]
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **probe_config_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11605,7 +11686,7 @@ class Post(object):
 
     def probeprofiles_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probeprofiles_Query API Function
+        Queries db for limit number of tenant level probe profiles that match query params. (v2.0)
 
           **Parameters:**:
 
@@ -12502,7 +12583,7 @@ class Post(object):
 
     def securityprofilegroups(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Securityprofilegroups API Function
+        Create a Security Profile Group (v2.0)
 
           **Parameters:**:
 
@@ -12512,6 +12593,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **dns_security_profile:**           
+               - **cm_version:**  Type: string 
+               - **etag:**  Type: integer 
+               - **name:**  Type: string 
+               - **profile_id:**  Type: string 
+           - **name:**  Type: string 
+           - **predefined:**  Type: boolean 
+           - **spyware_profile:**           
+               - **cm_version:**  Type: string 
+               - **etag:**  Type: integer 
+               - **name:**  Type: string 
+               - **profile_id:**  Type: string 
+           - **url_filtering_profile:**           
+               - **cm_version:**  Type: string 
+               - **etag:**  Type: integer 
+               - **name:**  Type: string 
+               - **profile_id:**  Type: string 
+           - **vulnerability_profile:**           
+               - **cm_version:**  Type: string 
+               - **etag:**  Type: integer 
+               - **name:**  Type: string 
+               - **profile_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -12532,7 +12635,7 @@ class Post(object):
 
     def securityprofilegroups_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Securityprofilegroups_Query API Function
+        Query Security profile groups of a tenant (v2.0)
 
           **Parameters:**:
 
@@ -13044,7 +13147,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def site_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
+    def site_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
         POST Site_Correlationevents_Query API Function
 
@@ -13052,7 +13155,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -13351,7 +13454,7 @@ class Post(object):
 
     def site_operations(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Site_Operations API Function
+        Handle operations on site. (v2.0)
 
           **Parameters:**:
 
@@ -13417,15 +13520,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def site_query(self, data, tenant_id=None, api_version="v4.12"):
+    def site_query(self, data, tenant_id=None, api_version="v4.13"):
         """
-        Queries db for limit number of sites that match query params. (v4.12)
+        Queries db for limit number of sites that match query params. (v4.13)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.12)
+          - **api_version**: API version to use (default v4.13)
 
           **Payload Attributes:** 
 
@@ -13545,15 +13648,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sites(self, data, tenant_id=None, api_version="v4.12"):
+    def sites(self, data, tenant_id=None, api_version="v4.13"):
         """
-        Create a site (v4.12)
+        Create a site (v4.13)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v4.12)
+          - **api_version**: API version to use (default v4.13)
 
           **Payload Attributes:** 
 
@@ -13569,6 +13672,7 @@ class Post(object):
            - **branch_gateway:**  Type: boolean 
            - **description:**  Type: string 
            - **element_cluster_role:**  Type: string 
+           - **element_system_limit_profile_id:**  Type: string 
            - **extended_tags:**           
                - **key:**  Type: string 
                - **value:**  Type: string 
@@ -13679,6 +13783,130 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def sitesnapshots(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Create or retry a site deployment (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **yaml_configuration:**  Type: string 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sitesnapshots".format(api_version,
+                                                                        tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def sitesnapshots_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query import jobs with filters (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sitesnapshots/query".format(api_version,
+                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def snapshots(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Generate a snapshot of a particular site (v2.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **snapshot_name:**  Type: string 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/snapshots".format(api_version,
+                                                                             tenant_id,
+                                                                             site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def snapshots_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query export jobs (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/snapshots/query".format(api_version,
+                                                                                tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def snmpagents(self, site_id, element_id, data, tenant_id=None, api_version="v2.1"):
         """
         Create SNMP Agent (v2.1)
@@ -13732,7 +13960,7 @@ class Post(object):
 
     def snmpdiscoverystartnodes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Snmpdiscoverystartnodes_Query API Function
+        Query Start Network Node based on parameters (v2.0)
 
           **Parameters:**:
 
@@ -13742,21 +13970,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14012,7 +14241,7 @@ class Post(object):
 
     def spnnpnsitemigration_remotenetworks_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spnnpnsitemigration_Remotenetworks_Query API Function
+        Get all easy onboarding created remote networks for a tenant (v2.0)
 
           **Parameters:**:
 
@@ -14091,7 +14320,6 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **action:**  Type: string
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14160,7 +14388,7 @@ class Post(object):
 
     def spokeclusters_status_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spokeclusters_Status_Query API Function
+        Query Spoke Clusters Status (v2.0)
 
           **Parameters:**:
 
@@ -14409,7 +14637,7 @@ class Post(object):
 
     def tacacs_plus_profiles(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Tacacs_Plus_Profiles API Function
+        Create TACACS+ Profile (v2.0)
 
           **Parameters:**:
 
@@ -14419,17 +14647,17 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **authentication_protocol:**  Type: string
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **tacacs_plus_servers:**
-               - **secret:**  Type: string
-               - **server_fqdn:**  Type: string
-               - **server_ip:**  Type: string
-               - **server_ipv6:**  Type: string
-               - **server_port:**  Type: integer
-               - **timeout:**  Type: integer
-           - **tags:**  [Type: string]
+           - **authentication_protocol:**  Type: string 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **tacacs_plus_servers:**           
+               - **secret:**  Type: string 
+               - **server_fqdn:**  Type: string 
+               - **server_ip:**  Type: string 
+               - **server_ipv6:**  Type: string 
+               - **server_port:**  Type: integer 
+               - **timeout:**  Type: integer 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14450,7 +14678,7 @@ class Post(object):
 
     def tacacs_plus_servers(self, site_id, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Tacacs_Plus_Servers API Function
+        Create TACACS+ Servers (v2.0)
 
           **Parameters:**:
 
@@ -14462,20 +14690,20 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **authentication_protocol:**  Type: string
-           - **description:**  Type: string
-           - **enabled:**  Type: boolean
-           - **name:**  Type: string
-           - **source_interface_id:**  Type: string
-           - **tacacs_plus_profile_id:**  Type: string
-           - **tacacs_plus_servers:**
-               - **secret:**  Type: string
-               - **server_fqdn:**  Type: string
-               - **server_ip:**  Type: string
-               - **server_ipv6:**  Type: string
-               - **server_port:**  Type: integer
-               - **timeout:**  Type: integer
-           - **tags:**  [Type: string]
+           - **authentication_protocol:**  Type: string 
+           - **description:**  Type: string 
+           - **enabled:**  Type: boolean 
+           - **name:**  Type: string 
+           - **source_interface_id:**  Type: string 
+           - **tacacs_plus_profile_id:**  Type: string 
+           - **tacacs_plus_servers:**           
+               - **secret:**  Type: string 
+               - **server_fqdn:**  Type: string 
+               - **server_ip:**  Type: string 
+               - **server_ipv6:**  Type: string 
+               - **server_port:**  Type: integer 
+               - **timeout:**  Type: integer 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14568,15 +14796,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def tenant_bgppeers_query(self, data, tenant_id=None, api_version="v2.6"):
+    def tenant_bgppeers_query(self, data, tenant_id=None, api_version="v3.0"):
         """
-        Queries db for BGP peers that match query params. (v2.6)
+        Queries db for BGP peers that match query params. (v3.0)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.6)
+          - **api_version**: API version to use (default v3.0)
 
           **Payload Attributes:** 
 
@@ -14995,7 +15223,7 @@ class Post(object):
 
     def threatmetadata_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Threatmetadata_Query API Function
+        Query Threat Metadata. (v2.0)
 
           **Parameters:**:
 
@@ -15131,7 +15359,7 @@ class Post(object):
 
     def urlcategories_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Urlcategories_Query API Function
+        Query URL Categories. (v2.0)
 
           **Parameters:**:
 
@@ -15161,7 +15389,7 @@ class Post(object):
 
     def useridagents(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Useridagents API Function
+        Create User ID Agent (v2.0)
 
           **Parameters:**:
 
@@ -15171,24 +15399,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **authentication:**
-               - **collector_name:**  Type: string
-               - **collector_secret:**  Type: string
-               - **collector_secret_encrypted:**  Type: string
-               - **local_certificate:**  Type: string
-               - **local_private_key:**  Type: string
-               - **passphrase:**  Type: string
-               - **remote_ca_certificate:**  Type: string
-           - **description:**  Type: string
-           - **enabled:**  Type: boolean
-           - **name:**  Type: string
-           - **port:**  Type: integer
-           - **server_fqdn:**  Type: string
-           - **server_ip:**  Type: string
-           - **site_id:**  Type: string
-           - **source_interface:**  Type: string
-           - **tags:**  [Type: string]
-           - **tenant_id:**  Type: string
+           - **authentication:**           
+               - **collector_name:**  Type: string 
+               - **collector_secret:**  Type: string 
+               - **collector_secret_encrypted:**  Type: string 
+               - **local_certificate:**  Type: string 
+               - **local_private_key:**  Type: string 
+               - **passphrase:**  Type: string 
+               - **remote_ca_certificate:**  Type: string 
+           - **description:**  Type: string 
+           - **enabled:**  Type: boolean 
+           - **name:**  Type: string 
+           - **port:**  Type: integer 
+           - **server_fqdn:**  Type: string 
+           - **server_ip:**  Type: string 
+           - **site_id:**  Type: string 
+           - **source_interface:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15209,7 +15437,7 @@ class Post(object):
 
     def useridagents_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Useridagents_Query API Function
+        Query User ID Agents. (v2.0)
 
           **Parameters:**:
 
@@ -15219,21 +15447,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15586,7 +15815,7 @@ class Post(object):
 
     def vrfcontextprofiles(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Vrfcontextprofiles API Function
+        Create a new VRF context profile (v2.0)
 
           **Parameters:**:
 
@@ -15596,17 +15825,17 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **default_vrf_context_profile:**  Type: boolean
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **tags:**  [Type: string]
-           - **vrf_context_ids:**  [Type: string]
-           - **vrf_context_route_leak_rules:**
-               - **description:**  Type: string
-               - **dest_vrf_context_id:**  Type: string
-               - **ipv4_prefixes:**  [Type: string]
-               - **name:**  Type: string
-               - **src_vrf_context_id:**  Type: string
+           - **default_vrf_context_profile:**  Type: boolean 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **vrf_context_ids:**  [Type: string] 
+           - **vrf_context_route_leak_rules:**           
+               - **description:**  Type: string 
+               - **dest_vrf_context_id:**  Type: string 
+               - **ipv4_prefixes:**  [Type: string] 
+               - **name:**  Type: string 
+               - **src_vrf_context_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15627,7 +15856,7 @@ class Post(object):
 
     def vrfcontextprofiles_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Vrfcontextprofiles_Query API Function
+        Query VRF Context Profiles (v2.0)
 
           **Parameters:**:
 
@@ -15637,21 +15866,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15672,7 +15902,7 @@ class Post(object):
 
     def vrfcontexts(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Vrfcontexts API Function
+        Create a new VRF context (v2.0)
 
           **Parameters:**:
 
@@ -15682,9 +15912,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **description:**  Type: string
-           - **name:**  Type: string
-           - **tags:**  [Type: string]
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15705,7 +15935,7 @@ class Post(object):
 
     def vrfcontexts_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Vrfcontexts_Query API Function
+        Query VRF Contexts (v2.0)
 
           **Parameters:**:
 
@@ -15715,21 +15945,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **aggregate:**
-               - **field:**  Type: string
-               - **operator:**  Type: string
-           - **dest_page:**  Type: integer
-           - **getDeleted:**  Type: boolean
-           - **group_by:**  [Type: string]
-           - **isReadPreferenceSecondary:**  Type: boolean
-           - **last_query_ts:**  Type: integer
-           - **limit:**  Type: integer
-           - **next_query:**  Type: object
-           - **query_params:**  Type: object
-           - **retrieved_fields:**  [Type: string]
-           - **retrieved_fields_mask:**  Type: boolean
-           - **sort_params:**  Type: object
-           - **total_count:**  Type: integer
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15861,7 +16092,7 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def waninterfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.0"):
+    def waninterfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
         POST Waninterfaces_Correlationevents_Query API Function
 
@@ -15869,7 +16100,7 @@ class Post(object):
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -16434,11 +16665,17 @@ class Post(object):
     query_e = element_query
     """ Backwards-compatibility alias of `query_e` to `element_query`"""
 
+    query_elementaccessconfigs = elementaccessconfigs_query
+    """ Backwards-compatibility alias of `query_elementaccessconfigs` to `elementaccessconfigs_query`"""
+
     query_elementsecurityzones = elementsecurityzones_query
     """ Backwards-compatibility alias of `query_elementsecurityzones` to `elementsecurityzones_query`"""
 
     query_elementshells = elementshells_query
     """ Backwards-compatibility alias of `query_elementshells` to `elementshells_query`"""
+
+    query_elementsystemlimitprofiles = elementsystemlimitprofiles_query
+    """ Backwards-compatibility alias of `query_elementsystemlimitprofiles` to `elementsystemlimitprofiles_query`"""
 
     query_eventcorrelationpolicyrules = eventcorrelationpolicyrules_query
     """ Backwards-compatibility alias of `query_eventcorrelationpolicyrules` to `eventcorrelationpolicyrules_query`"""
@@ -16719,8 +16956,14 @@ class Post(object):
     query_sitesecurityzones_t = sitesecurityzones_query
     """ Backwards-compatibility alias of `query_sitesecurityzones_t` to `sitesecurityzones_query`"""
 
+    query_sitesnapshots = sitesnapshots_query
+    """ Backwards-compatibility alias of `query_sitesnapshots` to `sitesnapshots_query`"""
+
     query_sitetemplates_bulkconfigurations = bulkconfigurations_sitetemplates_query
     """ Backwards-compatibility alias of `query_sitetemplates_bulkconfigurations` to `bulkconfigurations_sitetemplates_query`"""
+
+    query_snapshots = snapshots_query
+    """ Backwards-compatibility alias of `query_snapshots` to `snapshots_query`"""
 
     query_snmpdiscoverystartnodes = snmpdiscoverystartnodes_query
     """ Backwards-compatibility alias of `query_snmpdiscoverystartnodes` to `snmpdiscoverystartnodes_query`"""
