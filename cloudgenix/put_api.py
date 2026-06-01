@@ -1968,7 +1968,7 @@ class Put(object):
 
     def enterpriseprefixset(self, data, tenant_id=None, api_version="v2.1"):
         """
-        PUT Enterpriseprefixset API Function
+        Update the tenant enterprise prefix set (v2.1)
 
           **Parameters:**:
 
@@ -1978,6 +1978,9 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **ipv4_enterprise_prefixes:**  [Type: string] 
+           - **ipv6_enterprise_prefixes:**  [Type: string] 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2166,7 +2169,7 @@ class Put(object):
 
     def events(self, event_id, data, tenant_id=None, api_version="v2.4"):
         """
-        PUT Events API Function
+        Put Events API (v2.4)
 
           **Parameters:**:
 
@@ -2177,6 +2180,24 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **acknowledged:**  Type: boolean 
+           - **acknowledgement_info:**  Type: string 
+           - **cleared:**  Type: boolean 
+           - **code:**  Type: string 
+           - **correlation_id:**  Type: string 
+           - **element_id:**  Type: string 
+           - **entity_ref:**  Type: string 
+           - **flap_event_details:**  Type: object 
+           - **info:**  Type: object 
+           - **notes:**  Type: string 
+           - **policy_info:**  Type: object 
+           - **priority:**  Type: string 
+           - **severity:**  Type: string 
+           - **site_id:**  Type: string 
+           - **suppressed:**  Type: string 
+           - **suppressed_info:**  Type: object 
+           - **time:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2198,7 +2219,7 @@ class Put(object):
 
     def externalcaconfigs(self, externalcaconfig_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Externalcaconfigs API Function
+        Update an existing certificate authority configuration (v2.0)
 
           **Parameters:**:
 
@@ -2209,6 +2230,20 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **ca_sign_timeout:**  Type: integer 
+           - **manual_renew_trigger_threshold:**  Type: integer 
+           - **renewal_window_from_expiry:**  Type: integer 
+           - **scep_config:**           
+               - **challenge_uri:**  Type: string 
+               - **enrollment_uri:**  Type: string 
+               - **https:**  Type: boolean 
+               - **num_challenge_passwords:**  Type: integer 
+               - **server_certificate:**  Type: string 
+               - **server_password:**  Type: string 
+               - **server_primary_address:**  Type: string 
+               - **server_username:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2243,8 +2278,12 @@ class Put(object):
 
            - **description:**  Type: string 
            - **filters:**           
+               - **elements:**  [Type: string] 
                - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
                - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
            - **name:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
@@ -3034,17 +3073,35 @@ class Put(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
+               - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
+               - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
+               - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **reauth:**  Type: boolean 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
@@ -3210,6 +3267,43 @@ class Put(object):
                                                                                                    tenant_id,
                                                                                                    machine_id,
                                                                                                    cellular_module_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "put", data=data)
+
+    def microsegments(self, site_id, microsegment_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Update microsegment (v2.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **microsegment_id**: Microsegment ID
+          - **data**: Dictionary containing data to PUT as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **microsegmentation_enabled:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **vlan_ids:**  [Type: integer] 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/microsegments/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    site_id,
+                                                                                    microsegment_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
@@ -4417,6 +4511,7 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **ntp_template_sync_type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4615,7 +4710,7 @@ class Put(object):
 
     def pathprefixdistributionfilterassociation(self, site_id, pathprefixdistributionfilterassociation_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Pathprefixdistributionfilterassociation API Function
+        Update Path Prefix Distribution Filter Association (v2.0)
 
           **Parameters:**:
 
@@ -4627,6 +4722,11 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **path_prefix_distribution_filter_id:**  Type: string 
+           - **peer_site_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4649,7 +4749,7 @@ class Put(object):
 
     def pathprefixdistributionfilters(self, site_id, pathprefixdistributionfilter_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Pathprefixdistributionfilters API Function
+        Update Path Prefix Distribution Filters List (v2.0)
 
           **Parameters:**:
 
@@ -4661,6 +4761,16 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **path_prefix_filter_list:**           
+               - **path_prefix_filters:**           
+                   - **ipv4_prefix:**  Type: string 
+                   - **ipv6_prefix:**  Type: string 
+                   - **order:**  Type: integer 
+                   - **permit:**  Type: boolean 
+               - **vrf_context_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5074,7 +5184,7 @@ class Put(object):
 
     def prefixdistributionspokelists(self, site_id, prefixdistributionspokelist_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Prefixdistributionspokelists API Function
+        Update Prefix Distribution Spoke List (v2.0)
 
           **Parameters:**:
 
@@ -5086,6 +5196,10 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **spoke_site_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5121,8 +5235,12 @@ class Put(object):
           **Payload Attributes:** 
 
            - **filters:**           
+               - **elements:**  [Type: string] 
                - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
                - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
            - **prefix_filter_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
@@ -5464,17 +5582,35 @@ class Put(object):
                - **dpd_delay:**  Type: integer 
                - **dpd_enable:**  Type: boolean 
                - **esp_group:**           
+                   - **force_encapsulation:**  Type: boolean 
+                   - **lifesize:**           
+                       - **units:**  Type: string 
+                       - **value:**  Type: integer 
                    - **lifetime:**  Type: integer 
+                   - **lifetime_units:**  Type: string 
+                   - **mode:**  Type: string 
                    - **proposals:**           
                        - **dh_groups:**  Type: string 
                        - **encryption:**  Type: string 
                        - **hash:**  Type: string 
+                       - **prf:**  Type: string 
+                   - **responder_sase_proposals:**           
+                       - **dh_group:**  [Type: string] 
+                       - **encryption:**  [Type: string] 
+                       - **hash:**  [Type: string] 
                - **ike_group:**           
+                   - **aggressive:**  Type: boolean 
+                   - **authentication_multiple:**  Type: integer 
+                   - **key_exchange:**  Type: string 
                    - **lifetime:**  Type: integer 
+                   - **lifetime_units:**  Type: string 
+                   - **port:**  Type: integer 
                    - **proposals:**           
                        - **dh_groups:**  Type: string 
                        - **encryption:**  Type: string 
                        - **hash:**  Type: string 
+                       - **prf:**  Type: string 
+                   - **reauth:**  Type: boolean 
            - **panorama_sub_tenant_name:**  Type: string 
            - **prisma_sdwan_bgp_as_number:**  Type: string 
            - **security_zone_id:**  Type: string 
@@ -5922,7 +6058,7 @@ class Put(object):
 
     def sdwanapps_configs(self, sdwanapp_id, config_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Sdwanapps_Configs API Function
+        Update SD-WAN application configuration (v2.0)
 
           **Parameters:**:
 
@@ -5934,6 +6070,9 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **state:**  Type: string 
+           - **user_config:**  Type: object 
+           - **version:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6086,20 +6225,21 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def securityzones(self, securityzone_id, data, tenant_id=None, api_version="v2.1"):
+    def securityzones(self, securityzone_id, data, tenant_id=None, api_version="v2.2"):
         """
-        Update an existing security zone (v2.1)
+        Update security zone (v2.2)
 
           **Parameters:**:
 
           - **securityzone_id**: Security Zone (ZBFW) ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
            - **description:**  Type: string 
+           - **is_l2:**  Type: boolean 
            - **name:**  Type: string 
            - **tcp_allow_non_syn:**  Type: boolean 
 
@@ -6202,6 +6342,7 @@ class Put(object):
                - **longitude:**  Type: number 
            - **name:**  Type: string 
            - **sase_properties:**           
+               - **active:**  Type: boolean 
                - **lqm_enabled:**  Type: boolean 
            - **service_link_peers:**           
                - **hostnames:**  [Type: string] 
@@ -6648,9 +6789,9 @@ class Put(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "put", data=data)
 
-    def sitesecurityzones(self, site_id, sitesecurityzone_id, data, tenant_id=None, api_version="v2.0"):
+    def sitesecurityzones(self, site_id, sitesecurityzone_id, data, tenant_id=None, api_version="v2.1"):
         """
-        Update an existing security zone (v2.0)
+        Update site security zone (v2.1)
 
           **Parameters:**:
 
@@ -6658,10 +6799,13 @@ class Put(object):
           - **sitesecurityzone_id**: Site Security Zone ID
           - **data**: Dictionary containing data to PUT as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
+           - **element_interfaces:**           
+               - **element_id:**  Type: string 
+               - **interfaces:**  [Type: string] 
            - **networks:**           
                - **network_id:**  Type: string 
                - **network_type:**  Type: string 
@@ -7193,7 +7337,7 @@ class Put(object):
 
     def tenant_anynetlinks(self, anynetlink_id, data, tenant_id=None, api_version="v4.0"):
         """
-        PUT Tenant_Anynetlinks API Function
+        Update anynet link (v4.0)
 
           **Parameters:**:
 
@@ -7204,6 +7348,22 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **admin_up:**  Type: boolean 
+           - **description:**  Type: string 
+           - **ep1_hub_cluster_id:**  Type: string 
+           - **ep1_site_id:**  Type: string 
+           - **ep1_wan_interface_id:**  Type: string 
+           - **ep2_hub_cluster_id:**  Type: string 
+           - **ep2_site_id:**  Type: string 
+           - **ep2_wan_interface_id:**  Type: string 
+           - **forced:**  Type: boolean 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
+           - **type:**  Type: string 
+           - **vpnlink_configuration:**           
+               - **keep_alive_failure_count:**  Type: integer 
+               - **keep_alive_interval:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -8137,7 +8297,7 @@ class Put(object):
 
     def ws_extensions(self, extension_id, data, tenant_id=None, api_version="v2.0"):
         """
-        PUT Ws_Extensions API Function
+        Update extensions configuration (v2.0)
 
           **Parameters:**:
 
@@ -8148,6 +8308,12 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **conf:**  Type: object 
+           - **disabled:**  Type: boolean 
+           - **entity_id:**  Type: string 
+           - **name:**  Type: string 
+           - **namespace:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

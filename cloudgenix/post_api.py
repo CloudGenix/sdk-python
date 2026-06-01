@@ -65,8 +65,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -100,7 +106,7 @@ class Post(object):
 
     def anynetlinks_bulkoperations(self, site_id, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Bulkoperations_Anynetlinks API Function
+        Create anynet link in Bulk (v4.0)
 
           **Parameters:**:
 
@@ -111,6 +117,27 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **items:**           
+               - **admin_up:**  Type: boolean 
+               - **description:**  Type: string 
+               - **ep1_hub_cluster_id:**  Type: string 
+               - **ep1_wan_interface_id:**  Type: string 
+               - **ep2_hub_cluster_id:**  Type: string 
+               - **ep2_site_id:**  Type: string 
+               - **ep2_wan_interface_id:**  Type: string 
+               - **forced:**  Type: boolean 
+               - **id:**  Type: string 
+               - **name:**  Type: string 
+               - **tags:**  [Type: string] 
+               - **tenant_id:**  Type: string 
+               - **type:**  Type: string 
+               - **vpnlink_configuration:**           
+                   - **keep_alive_failure_count:**  Type: integer 
+                   - **keep_alive_interval:**  Type: integer 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -132,7 +159,7 @@ class Post(object):
 
     def anynetlinks_correlationevents_query(self, data, tenant_id=None, api_version="v2.2"):
         """
-        POST Anynetlinks_Correlationevents_Query API Function
+        Query AnynetLink correlation events. (v2.2)
 
           **Parameters:**:
 
@@ -142,6 +169,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -162,7 +211,7 @@ class Post(object):
 
     def anynetlinks_query(self, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Query_Anynetlinks API Function
+        Query Anynet Links (v4.0)
 
           **Parameters:**:
 
@@ -172,6 +221,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -241,8 +312,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -286,6 +363,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -453,8 +552,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -488,7 +593,7 @@ class Post(object):
 
     def auditlog_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Auditlog_Query API Function
+        Get audit logs for given tenant as per specified query filters (v2.1)
 
           **Parameters:**:
 
@@ -498,6 +603,27 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**           
+               - **<field_name>|comparator:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -697,8 +823,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -734,7 +866,7 @@ class Post(object):
 
     def bgppeers_status_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Query_Status_Bgppeers API Function
+        Queries the BGP Peers Status (v2.1)
 
           **Parameters:**:
 
@@ -744,6 +876,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -811,6 +965,8 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **template_description:**  Type: string 
+           - **template_name:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -876,8 +1032,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -922,8 +1084,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -1002,8 +1170,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -1081,8 +1255,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -1126,6 +1306,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1293,8 +1495,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -1549,15 +1757,19 @@ class Post(object):
            - **esp_tenant_id:**  Type: string 
            - **hw_id:**  Type: string 
            - **image_version:**  Type: string 
-           - **inventory_op:**           - **machine_state:**           - **manufacture_id:**  Type: string 
+           - **inventory_op:**           
+           - **machine_state:**           
+           - **manufacture_id:**  Type: string 
            - **model_name:**  Type: string 
            - **ordering_info:**  Type: string 
            - **owner_tenant_id:**  Type: string 
            - **pki_op:**           
                - **ca_list:**  [Type: string] 
                - **operation:**  Type: string 
-           - **renew_state:**           - **sales_order_number:**  Type: string 
-           - **ship_state:**           - **sl_no:**  Type: string 
+           - **renew_state:**           
+           - **sales_order_number:**  Type: string 
+           - **ship_state:**           
+           - **sl_no:**  Type: string 
            - **tenant_id:**  Type: string 
            - **token:**  Type: string 
 
@@ -1628,8 +1840,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -1782,8 +2000,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2126,8 +2350,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2172,8 +2402,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2385,8 +2621,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2464,8 +2706,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2582,8 +2830,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2628,8 +2882,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2662,7 +2922,7 @@ class Post(object):
 
     def element_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Element_Correlationevents_Query API Function
+        Query Element correlation events. (v2.1)
 
           **Parameters:**:
 
@@ -2672,6 +2932,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2782,8 +3064,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2830,8 +3118,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -2865,7 +3159,7 @@ class Post(object):
 
     def element_rquery(self, data, tenant_id=None, api_version="v3.0"):
         """
-        POST Element_Rquery API Function
+        Query and get client elements across regions (v3.0)
 
           **Parameters:**:
 
@@ -2875,6 +3169,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2937,6 +3253,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3009,8 +3347,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -3701,8 +4045,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -3781,6 +4131,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3970,8 +4342,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4016,8 +4394,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4062,8 +4446,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4097,7 +4487,7 @@ class Post(object):
 
     def events_operations(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ops_Events API Function
+        EventOperationsAPI (v2.0)
 
           **Parameters:**:
 
@@ -4107,6 +4497,7 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **bulk_acknowledge:**  Type: object 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4127,7 +4518,7 @@ class Post(object):
 
     def events_query(self, data, tenant_id=None, api_version="v3.7"):
         """
-        POST Events_Query API Function
+        EventsQueryAPI (v3.7)
 
           **Parameters:**:
 
@@ -4137,6 +4528,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **_offset:**  Type: string 
+           - **acknowledged:**  Type: boolean 
+           - **dest_page:**  Type: integer 
+           - **element_cluster_roles:**  [Type: string] 
+           - **end_time:**  Type: string 
+           - **limit:**  Type: object 
+           - **priority:**  [Type: string] 
+           - **query:**  Type: object 
+           - **severity:**  [Type: string] 
+           - **start_time:**  Type: string 
+           - **suppressed:**  Type: boolean 
+           - **suppressed_info:**  Type: object 
+           - **temporal_scope:**  Type: string 
+           - **time_type:**  Type: string 
+           - **view:**  Type: object 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4157,7 +4563,7 @@ class Post(object):
 
     def events_summary(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Events_Summary API Function
+        EventSummaryAPI (v2.1)
 
           **Parameters:**:
 
@@ -4167,6 +4573,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **clients:**  [Type: string] 
+           - **element_cluster_role:**  Type: string 
+           - **end_time:**  Type: string 
+           - **group_by:**  [Type: string] 
+           - **query:**  Type: object 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4187,7 +4599,7 @@ class Post(object):
 
     def externalcaconfigs(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Externalcaconfigs API Function
+        Create a new certificate authority configuration (v2.0)
 
           **Parameters:**:
 
@@ -4197,6 +4609,20 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **ca_sign_timeout:**  Type: integer 
+           - **manual_renew_trigger_threshold:**  Type: integer 
+           - **renewal_window_from_expiry:**  Type: integer 
+           - **scep_config:**           
+               - **challenge_uri:**  Type: string 
+               - **enrollment_uri:**  Type: string 
+               - **https:**  Type: boolean 
+               - **num_challenge_passwords:**  Type: integer 
+               - **server_certificate:**  Type: string 
+               - **server_password:**  Type: string 
+               - **server_primary_address:**  Type: string 
+               - **server_username:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4263,8 +4689,12 @@ class Post(object):
 
            - **description:**  Type: string 
            - **filters:**           
+               - **elements:**  [Type: string] 
                - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
                - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
            - **name:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
@@ -4297,8 +4727,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4468,8 +4904,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4759,7 +5201,7 @@ class Post(object):
 
     def interfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Interfaces_Correlationevents_Query API Function
+        Query Interface correlation events. (v2.1)
 
           **Parameters:**:
 
@@ -4769,6 +5211,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4802,6 +5266,7 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **action:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4836,8 +5301,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -4881,6 +5352,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4911,6 +5404,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -4941,6 +5456,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5068,8 +5605,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5146,8 +5689,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5224,8 +5773,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5334,8 +5889,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5440,8 +6001,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5608,17 +6175,35 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
+               - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
+               - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
+               - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **reauth:**  Type: boolean 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
@@ -5699,17 +6284,35 @@ class Post(object):
            - **dpd_enable:**  Type: boolean 
            - **dpd_timeout:**  Type: integer 
            - **esp_group:**           
+               - **force_encapsulation:**  Type: boolean 
+               - **lifesize:**           
+                   - **units:**  Type: string 
+                   - **value:**  Type: integer 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **mode:**  Type: string 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **responder_sase_proposals:**           
+                   - **dh_group:**  [Type: string] 
+                   - **encryption:**  [Type: string] 
+                   - **hash:**  [Type: string] 
            - **ike_group:**           
+               - **aggressive:**  Type: boolean 
+               - **authentication_multiple:**  Type: integer 
+               - **key_exchange:**  Type: string 
                - **lifetime:**  Type: integer 
+               - **lifetime_units:**  Type: string 
+               - **port:**  Type: integer 
                - **proposals:**           
                    - **dh_groups:**  Type: string 
                    - **encryption:**  Type: string 
                    - **hash:**  Type: string 
+                   - **prf:**  Type: string 
+               - **reauth:**  Type: boolean 
            - **name:**  Type: string 
            - **tags:**  [Type: string] 
            - **used_for:**  Type: string 
@@ -5820,8 +6423,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5898,8 +6507,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -5966,8 +6581,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -6012,6 +6633,30 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **connected:**  Type: boolean 
+           - **console_conf_passphrase:**  Type: string 
+           - **element_shell_id:**  Type: string 
+           - **em_element_id:**  Type: string 
+           - **esp_tenant_id:**  Type: string 
+           - **hw_id:**  Type: string 
+           - **image_version:**  Type: string 
+           - **inventory_op:**  Type: string 
+           - **is_eval:**  Type: string 
+           - **machine_state:**  Type: string 
+           - **manufacture_id:**  Type: string 
+           - **model_name:**  Type: string 
+           - **ordering_info:**  Type: string 
+           - **owner_tenant_id:**  Type: string 
+           - **pki_op:**           
+               - **ca_list:**  [Type: string] 
+               - **operation:**  Type: string 
+           - **renew_state:**  Type: string 
+           - **sales_order_number:**  Type: string 
+           - **ship_state:**  Type: string 
+           - **sl_no:**  Type: string 
+           - **suspend_state:**  Type: string 
+           - **tenant_id:**  Type: string 
+           - **token:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6044,8 +6689,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -6073,6 +6724,93 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/machines/query".format(api_version,
                                                                          tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def microsegments(self, site_id, data, tenant_id=None, api_version="v2.0"):
+        """
+        Create microsegment (v2.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **microsegmentation_enabled:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **vlan_ids:**  [Type: integer] 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/microsegments".format(api_version,
+                                                                                 tenant_id,
+                                                                                 site_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def microsegments_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query all microsegments for tenant (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/microsegments/query".format(api_version,
+                                                                              tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -6114,7 +6852,7 @@ class Post(object):
 
     def monitor_aaa_client_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aaa_Client_Metrics API Function
+        Radius client metrics (v2.0)
 
           **Parameters:**:
 
@@ -6124,6 +6862,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **max_datapoints:**  Type: integer 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6144,7 +6890,7 @@ class Post(object):
 
     def monitor_aaa_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aaa_Metrics API Function
+        Radius metrics (v2.0)
 
           **Parameters:**:
 
@@ -6154,6 +6900,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **client_mac_address:**  [Type: string] 
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6174,7 +6938,7 @@ class Post(object):
 
     def monitor_aaa_metrics_topn(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aaa_Metrics_Topn API Function
+        Radius metrics Top N (v2.0)
 
           **Parameters:**:
 
@@ -6184,6 +6948,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**  Type: object 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **top_n:**           
+               - **limit:**  Type: integer 
+               - **type:**  Type: string 
+           - **topn_basis:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6204,7 +6976,7 @@ class Post(object):
 
     def monitor_agg_bw_stats(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Agg_Bw_Stats_Monitor API Function
+        Interface Stats (v2.0)
 
           **Parameters:**:
 
@@ -6214,6 +6986,20 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **site:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6234,7 +7020,7 @@ class Post(object):
 
     def monitor_aggregatebandwidth_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Aggregatebandwidth_Monitor API Function
+        Get aggregate bandwidth statistics (v2.0)
 
           **Parameters:**:
 
@@ -6244,6 +7030,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **interval:**  Type: string 
+           - **metrics:**  [Type: string] 
+           - **start_time:**  Type: string 
+           - **view:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6264,7 +7055,7 @@ class Post(object):
 
     def monitor_aggregates(self, data, tenant_id=None, api_version="v3.0"):
         """
-        POST Monitor_Aggregates API Function
+        Aggregate App stats (v3.0)
 
           **Parameters:**:
 
@@ -6274,6 +7065,18 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregates:**           
+               - **name:**  Type: string 
+               - **unit:**  Type: string 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **app:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **path_type:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6294,7 +7097,7 @@ class Post(object):
 
     def monitor_aggregates_application_qos(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aggregates_Application_Qos API Function
+        Query Application QOS Aggregates (v2.0)
 
           **Parameters:**:
 
@@ -6304,6 +7107,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregates:**           
+               - **name:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **application_name:**  Type: string 
+               - **direction:**  Type: string 
+               - **email:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **user:**  [Type: string] 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6324,7 +7143,7 @@ class Post(object):
 
     def monitor_aggregates_healthscore(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Monitor_Aggregates_Healthscore API Function
+        Aggregate HealthScore (v2.1)
 
           **Parameters:**:
 
@@ -6334,6 +7153,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregation:**  Type: string 
+           - **clients:**  [Type: string] 
+           - **end_time:**  Type: string 
+           - **healthscore_type:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6354,7 +7179,7 @@ class Post(object):
 
     def monitor_aggregates_multicast_mroute(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aggregates_Multicast_Mroute API Function
+        Query Multicast statistics (v2.0)
 
           **Parameters:**:
 
@@ -6364,6 +7189,16 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **element:**  [Type: string] 
+               - **group:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **source:**  [Type: string] 
+           - **is_active:**  Type: boolean 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6384,7 +7219,7 @@ class Post(object):
 
     def monitor_aggregates_multicast_wan_neighbor(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aggregates_Multicast_Wan_Neighbor API Function
+        Query WAN Neighbor statistics (v2.0)
 
           **Parameters:**:
 
@@ -6394,6 +7229,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **element:**  [Type: string] 
+               - **remote_site:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **name:**  Type: string 
+           - **object_type:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6414,7 +7257,7 @@ class Post(object):
 
     def monitor_aiops_aggregates(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Monitor_Aiops_Aggregates API Function
+        Query and get site or path level aggregated statistics (v2.1)
 
           **Parameters:**:
 
@@ -6424,6 +7267,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregates:**  [Type: object] 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **app:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6444,7 +7295,7 @@ class Post(object):
 
     def monitor_aiops_anomaly(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aiops_Anomaly API Function
+        Get circuit bandwidth anomaly (v2.0)
 
           **Parameters:**:
 
@@ -6454,6 +7305,36 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **anomaly:**           
+               - **actual_forecast_date:**  Type: string 
+               - **bw_site_anomaly:**  Type: number 
+               - **forecast_status:**  Type: boolean 
+               - **items:**           
+                   - **direction:**  Type: object 
+                   - **site:**  Type: string 
+                   - **wn_path:**  Type: string 
+               - **name:**  Type: string 
+               - **type:**  Type: string 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  Type: string 
+               - **site:**  [Type: string] 
+               - **wn_path:**  [Type: string] 
+           - **forecast:**           
+               - **actual_forecast_date:**  Type: string 
+               - **bw_site_anomaly:**  Type: number 
+               - **forecast_status:**  Type: boolean 
+               - **items:**           
+                   - **direction:**  Type: object 
+                   - **site:**  Type: string 
+                   - **wn_path:**  Type: string 
+               - **name:**  Type: string 
+               - **type:**  Type: string 
+           - **forecast_basis:**  [Type: string] 
+           - **forecast_date:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6474,7 +7355,7 @@ class Post(object):
 
     def monitor_aiops_forecast(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Monitor_Aiops_Forecast API Function
+        Get Capacity Prediction (v2.1)
 
           **Parameters:**:
 
@@ -6484,6 +7365,36 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **anomaly:**           
+               - **actual_forecast_date:**  Type: string 
+               - **bw_site_anomaly:**  Type: number 
+               - **forecast_status:**  Type: boolean 
+               - **items:**           
+                   - **direction:**  Type: object 
+                   - **site:**  Type: string 
+                   - **wn_path:**  Type: string 
+               - **name:**  Type: string 
+               - **type:**  Type: string 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  Type: string 
+               - **site:**  [Type: string] 
+               - **wn_path:**  [Type: string] 
+           - **forecast:**           
+               - **actual_forecast_date:**  Type: string 
+               - **bw_site_anomaly:**  Type: number 
+               - **forecast_status:**  Type: boolean 
+               - **items:**           
+                   - **direction:**  Type: object 
+                   - **site:**  Type: string 
+                   - **wn_path:**  Type: string 
+               - **name:**  Type: string 
+               - **type:**  Type: string 
+           - **forecast_basis:**  [Type: string] 
+           - **forecast_date:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6504,7 +7415,7 @@ class Post(object):
 
     def monitor_aiops_health(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aiops_Health API Function
+        Healthscore metrics (v2.0)
 
           **Parameters:**:
 
@@ -6514,6 +7425,15 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **application_health:**  [Type: string] 
+               - **link_health:**  [Type: string] 
+               - **site_health:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6534,7 +7454,7 @@ class Post(object):
 
     def monitor_aiops_object_stats(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Monitor_Aiops_Object_Stats API Function
+        Query and get App object statistics (v2.1)
 
           **Parameters:**:
 
@@ -6544,6 +7464,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **element:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **name:**  Type: string 
+           - **object_id:**  Type: string 
+           - **object_type:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6564,7 +7492,7 @@ class Post(object):
 
     def monitor_aiops_topn(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Aiops_Topn API Function
+        Get TopN data with metrics output (v2.0)
 
           **Parameters:**:
 
@@ -6574,6 +7502,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **top_n:**           
+               - **compare:**           
+                   - **end_time:**  Type: string 
+                   - **measurement:**  Type: string 
+                   - **start_time:**  Type: string 
+               - **filter:**           
+                   - **app:**  [Type: string] 
+                   - **direction:**  [Type: string] 
+                   - **element:**  [Type: string] 
+                   - **path:**  [Type: string] 
+                   - **path_type:**  [Type: string] 
+                   - **site:**  [Type: string] 
+                   - **waninterface:**  [Type: string] 
+               - **limit:**  Type: integer 
+               - **metrics:**           
+                   - **name:**  Type: string 
+                   - **statistics:**  [Type: string] 
+                   - **unit:**  Type: string 
+               - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6594,7 +7544,7 @@ class Post(object):
 
     def monitor_app_acceleration(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST App_Acceleration_Monitor API Function
+        Query App Acceleration details (v2.0)
 
           **Parameters:**:
 
@@ -6604,6 +7554,15 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **destination_ip:**  Type: string 
+               - **destination_port:**  Type: integer 
+               - **flow_id:**  Type: integer 
+               - **source_ip:**  Type: string 
+               - **source_port:**  Type: integer 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6624,7 +7583,7 @@ class Post(object):
 
     def monitor_application_qos_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Application_Qos_Metrics API Function
+        Query Time series Application QOS metrics (v2.0)
 
           **Parameters:**:
 
@@ -6634,6 +7593,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **application_name:**  Type: string 
+               - **direction:**  Type: string 
+               - **email:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **user:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6654,7 +7631,7 @@ class Post(object):
 
     def monitor_application_users(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Application_Users API Function
+        Query Application users (v2.0)
 
           **Parameters:**:
 
@@ -6664,6 +7641,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **application_name:**  Type: string 
+           - **end_time:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6684,7 +7665,7 @@ class Post(object):
 
     def monitor_applicationstats_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Applicationstats_Monitor API Function
+        Get application statistics (v2.0)
 
           **Parameters:**:
 
@@ -6694,6 +7675,13 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **health_score:**  Type: object 
+           - **interval:**  Type: string 
+           - **metrics:**  [Type: string] 
+           - **start_time:**  Type: string 
+           - **view:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6714,7 +7702,7 @@ class Post(object):
 
     def monitor_applicationsummary_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Applicationsummary_Monitor API Function
+        Get application summary statistics (v2.0)
 
           **Parameters:**:
 
@@ -6724,6 +7712,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **app:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**  [Type: string] 
+           - **start_time:**  Type: string 
+           - **view:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6772,18 +7768,38 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def monitor_cellular_metrics(self, data, tenant_id=None, api_version="v2.0"):
+    def monitor_cellular_metrics(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Monitor_Cellular_Metrics API Function
+        Cellular metrics for Version 2.1 (v2.1)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **active_gps_only:**  Type: boolean 
+               - **apn:**  [Type: string] 
+               - **carrier:**  [Type: string] 
+               - **cellular_module:**  [Type: string] 
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6804,7 +7820,7 @@ class Post(object):
 
     def monitor_cellular_metrics_topn(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Cellular_Metrics_Topn API Function
+        Cellular metrics Top N (v2.0)
 
           **Parameters:**:
 
@@ -6814,6 +7830,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**  Type: object 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **top_n:**           
+               - **limit:**  Type: integer 
+               - **type:**  Type: string 
+           - **topn_basis:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6832,18 +7856,48 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def monitor_flows(self, data, tenant_id=None, api_version="v3.11"):
+    def monitor_flows(self, data, tenant_id=None, api_version="v3.12"):
         """
-        POST Monitor_Flows API Function
+        Flows (v3.12)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.11)
+          - **api_version**: API version to use (default v3.12)
 
           **Payload Attributes:** 
 
+           - **debug_level:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **app:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **flow:**           
+                   - **destination_ip:**  [Type: string] 
+                   - **destination_port:**  [Type: integer] 
+                   - **flow_start_time_range:**           
+                       - **end:**  Type: string 
+                       - **start:**  Type: string 
+                   - **protocol:**  Type: integer 
+                   - **source_ip:**  [Type: string] 
+                   - **source_port:**  [Type: integer] 
+               - **flow_type:**  Type: string 
+               - **path:**  [Type: string] 
+               - **path_type:**  [Type: string] 
+               - **security_policy_destination_zone:**  [Type: string] 
+               - **security_policy_rule:**  [Type: string] 
+               - **security_policy_rule_action:**  Type: string 
+               - **security_policy_source_zone:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **max_datapoints:**  Type: integer 
+           - **name:**  Type: string 
+           - **page_size:**  Type: integer 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6864,7 +7918,7 @@ class Post(object):
 
     def monitor_insights(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Insights API Function
+        Insights API (v2.0)
 
           **Parameters:**:
 
@@ -6874,6 +7928,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **filter:**           
+               - **end_time:**  Type: string 
+               - **name:**  Type: string 
+               - **site:**  Type: string 
+               - **start_time:**  Type: string 
+               - **waninterface:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6894,7 +7954,7 @@ class Post(object):
 
     def monitor_insightslist(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Insightslist API Function
+        Insights List API (v2.0)
 
           **Parameters:**:
 
@@ -6904,6 +7964,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **site:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6924,7 +7989,7 @@ class Post(object):
 
     def monitor_lqm_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Lqm_Point_Metrics_Monitor API Function
+        LQM Point metrics (v2.0)
 
           **Parameters:**:
 
@@ -6934,6 +7999,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **elements:**  [Type: string] 
+               - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
+               - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6954,7 +8037,7 @@ class Post(object):
 
     def monitor_metrics(self, data, tenant_id=None, api_version="v2.6"):
         """
-        POST Monitor_Metrics API Function
+        Query and get monitor metrics (v2.6)
 
           **Parameters:**:
 
@@ -6964,6 +8047,30 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **anynet_link:**  [Type: string] 
+               - **app:**  [Type: string] 
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **path_type:**  [Type: string] 
+               - **probe_config:**  [Type: string] 
+               - **remote_site:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **sprid:**  Type: string 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6984,7 +8091,7 @@ class Post(object):
 
     def monitor_metrics_probes(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probes_Metrics_Monitor API Function
+        Query and get probe monitor metrics (v2.0)
 
           **Parameters:**:
 
@@ -6994,6 +8101,30 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **anynet_link:**  [Type: string] 
+               - **app:**  [Type: string] 
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **path_type:**  [Type: string] 
+               - **probe_config:**  [Type: string] 
+               - **remote_site:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **sprid:**  Type: string 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7014,7 +8145,7 @@ class Post(object):
 
     def monitor_network_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Network_Point_Metrics API Function
+        Network Point Metrics BandwidthUsage (v2.0)
 
           **Parameters:**:
 
@@ -7024,6 +8155,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  Type: string 
+               - **sites:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7044,7 +8190,7 @@ class Post(object):
 
     def monitor_network_point_metrics_bw(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Network_Point_Metrics_Bw API Function
+        Network Point Metrics BandwidthUsage (v2.0)
 
           **Parameters:**:
 
@@ -7054,6 +8200,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  Type: string 
+               - **sites:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7074,7 +8235,7 @@ class Post(object):
 
     def monitor_network_point_metrics_hs(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Network_Point_Metrics_Hs API Function
+        Network Point Metrics HealthScore (v2.0)
 
           **Parameters:**:
 
@@ -7084,6 +8245,21 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  Type: string 
+               - **sites:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7104,7 +8280,7 @@ class Post(object):
 
     def monitor_object_stats(self, data, tenant_id=None, api_version="v2.7"):
         """
-        POST Monitor_Object_Stats API Function
+        Query and get object statistics (v2.7)
 
           **Parameters:**:
 
@@ -7114,6 +8290,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **element:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **name:**  Type: string 
+           - **object_id:**  Type: string 
+           - **object_type:**  Type: string 
+           - **start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7134,7 +8318,7 @@ class Post(object):
 
     def monitor_probe_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Probe_Point_Metrics_Monitor API Function
+        Probe Point metrics (v2.0)
 
           **Parameters:**:
 
@@ -7144,6 +8328,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **elements:**  [Type: string] 
+               - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
+               - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7164,7 +8366,7 @@ class Post(object):
 
     def monitor_qos_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Qos_Metrics API Function
+        Query Qos metrics (v2.0)
 
           **Parameters:**:
 
@@ -7174,6 +8376,25 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **priority:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **traffic_type:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7192,18 +8413,35 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def monitor_sys_metrics(self, data, tenant_id=None, api_version="v2.3"):
+    def monitor_sys_metrics(self, data, tenant_id=None, api_version="v2.4"):
         """
-        POST Monitor_Sys_Metrics API Function
+        System metrics for Version 2.4 (v2.4)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **direction:**  Type: string 
+               - **element:**  [Type: string] 
+               - **interface:**  [Type: string] 
+               - **site:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **max_datapoints:**  Type: integer 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7224,7 +8462,7 @@ class Post(object):
 
     def monitor_sys_metrics_topn(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Topn_Sys_Metrics_Monitor API Function
+        Sysmetrics Top N V2.1 (v2.1)
 
           **Parameters:**:
 
@@ -7234,6 +8472,14 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**  Type: object 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **top_n:**           
+               - **limit:**  Type: integer 
+               - **type:**  Type: string 
+           - **topn_basis:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7254,7 +8500,7 @@ class Post(object):
 
     def monitor_sys_point_metrics(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Monitor_Sys_Point_Metrics API Function
+        Sys Point metrics (v2.0)
 
           **Parameters:**:
 
@@ -7264,6 +8510,24 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **elements:**  [Type: string] 
+               - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
+               - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
+           - **interval:**  Type: string 
+           - **metrics:**           
+               - **name:**  Type: string 
+               - **statistics:**  [Type: string] 
+               - **unit:**  Type: string 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **view:**           
+               - **individual:**  Type: string 
+               - **summary:**  Type: boolean 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7284,7 +8548,7 @@ class Post(object):
 
     def monitor_topn(self, data, tenant_id=None, api_version="v3.1"):
         """
-        POST Monitor_Topn API Function
+        Top N (v3.1)
 
           **Parameters:**:
 
@@ -7294,6 +8558,20 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **filter:**           
+               - **app:**  [Type: string] 
+               - **element:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **path_type:**  [Type: string] 
+               - **site:**  [Type: string] 
+               - **waninterface:**  [Type: string] 
+           - **name:**  Type: string 
+           - **start_time:**  Type: string 
+           - **top_n:**           
+               - **limit:**  Type: integer 
+               - **type:**  Type: string 
+           - **topn_basis:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7314,7 +8592,7 @@ class Post(object):
 
     def monitor_topn_traffic_vol_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Topn_Traffic_Vol_Monitor API Function
+        Top N Traffic Volume Stats (v2.0)
 
           **Parameters:**:
 
@@ -7324,6 +8602,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **end_time:**  Type: string 
+           - **interval:**  Type: string 
+           - **limit:**  Type: integer 
+           - **start_time:**  Type: string 
+           - **traffic_vol_end_time:**  Type: string 
+           - **traffic_vol_start_time:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7394,8 +8678,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7440,8 +8730,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7486,8 +8782,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7568,8 +8870,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7655,8 +8963,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7702,8 +9016,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7784,8 +9104,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7830,8 +9156,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -7910,8 +9242,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -8191,8 +9529,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -8425,8 +9769,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -8511,8 +9861,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -8655,8 +10011,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -8701,8 +10063,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9093,8 +10461,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9139,8 +10513,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9287,8 +10667,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9480,8 +10866,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9561,8 +10953,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9665,6 +11063,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9685,7 +11105,7 @@ class Post(object):
 
     def ospfdiscoveredneighbors_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Ospfdiscoveredneighbors API Function
+        Queries the OSPF discovered neighbors (v2.0)
 
           **Parameters:**:
 
@@ -9695,6 +11115,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9715,7 +11157,7 @@ class Post(object):
 
     def ospfreachableprefixes_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Ospfreachableprefixes API Function
+        Queries the OSPF reachable prefixes (v2.0)
 
           **Parameters:**:
 
@@ -9725,6 +11167,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9858,8 +11322,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -9893,7 +11363,7 @@ class Post(object):
 
     def pathprefixdistributionfilterassociation(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Pathprefixdistributionfilterassociation API Function
+        Create Path Prefix Distribution Filter Association  List (v2.0)
 
           **Parameters:**:
 
@@ -9904,6 +11374,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **path_prefix_distribution_filter_id:**  Type: string 
+           - **peer_site_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9925,7 +11400,7 @@ class Post(object):
 
     def pathprefixdistributionfilterassociation_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Pathprefixdistributionfilterassociation API Function
+        Queries the Path Prefix Distribution Filter Association (v2.0)
 
           **Parameters:**:
 
@@ -9935,6 +11410,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9955,7 +11452,7 @@ class Post(object):
 
     def pathprefixdistributionfilters(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Pathprefixdistributionfilters API Function
+        Create Path Prefix Distribution Filters List (v2.0)
 
           **Parameters:**:
 
@@ -9966,6 +11463,16 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **path_prefix_filter_list:**           
+               - **path_prefix_filters:**           
+                   - **ipv4_prefix:**  Type: string 
+                   - **ipv6_prefix:**  Type: string 
+                   - **order:**  Type: integer 
+                   - **permit:**  Type: boolean 
+               - **vrf_context_id:**  Type: string 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -9987,7 +11494,7 @@ class Post(object):
 
     def pathprefixdistributionfilters_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Query_Pathprefixdistributionfilters API Function
+        Queries the Path Prefix Distribution Filter List (v2.0)
 
           **Parameters:**:
 
@@ -9997,6 +11504,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10028,8 +11557,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -10584,8 +12119,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -10680,8 +12221,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -10725,8 +12272,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -10760,7 +12313,7 @@ class Post(object):
 
     def prefixdistributionspokelists(self, site_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Prefixdistributionspokelists API Function
+        Create Prefix Distribution Spoke List (v2.0)
 
           **Parameters:**:
 
@@ -10771,6 +12324,10 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **description:**  Type: string 
+           - **name:**  Type: string 
+           - **spoke_site_ids:**  [Type: string] 
+           - **tags:**  [Type: string] 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10792,7 +12349,7 @@ class Post(object):
 
     def prefixes_query(self, data, tenant_id=None, api_version="v3.1"):
         """
-        POST Prefixes_Query API Function
+        Queries the prefix set. (v3.1)
 
           **Parameters:**:
 
@@ -10802,6 +12359,32 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **ge:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **ipv4_prefix:**  Type: string 
+           - **ipv6_prefix:**  Type: string 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **le:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -10834,8 +12417,12 @@ class Post(object):
           **Payload Attributes:** 
 
            - **filters:**           
+               - **elements:**  [Type: string] 
                - **ip_prefixes:**  [Type: string] 
+               - **path:**  [Type: string] 
+               - **site:**  Type: object 
                - **type:**  Type: string 
+               - **wn_path:**  [Type: string] 
            - **prefix_filter_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
@@ -10938,8 +12525,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -10984,8 +12577,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -11079,8 +12678,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -11180,8 +12785,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -11262,8 +12873,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -11466,17 +13083,35 @@ class Post(object):
                - **dpd_delay:**  Type: integer 
                - **dpd_enable:**  Type: boolean 
                - **esp_group:**           
+                   - **force_encapsulation:**  Type: boolean 
+                   - **lifesize:**           
+                       - **units:**  Type: string 
+                       - **value:**  Type: integer 
                    - **lifetime:**  Type: integer 
+                   - **lifetime_units:**  Type: string 
+                   - **mode:**  Type: string 
                    - **proposals:**           
                        - **dh_groups:**  Type: string 
                        - **encryption:**  Type: string 
                        - **hash:**  Type: string 
+                       - **prf:**  Type: string 
+                   - **responder_sase_proposals:**           
+                       - **dh_group:**  [Type: string] 
+                       - **encryption:**  [Type: string] 
+                       - **hash:**  [Type: string] 
                - **ike_group:**           
+                   - **aggressive:**  Type: boolean 
+                   - **authentication_multiple:**  Type: integer 
+                   - **key_exchange:**  Type: string 
                    - **lifetime:**  Type: integer 
+                   - **lifetime_units:**  Type: string 
+                   - **port:**  Type: integer 
                    - **proposals:**           
                        - **dh_groups:**  Type: string 
                        - **encryption:**  Type: string 
                        - **hash:**  Type: string 
+                       - **prf:**  Type: string 
+                   - **reauth:**  Type: boolean 
            - **panorama_sub_tenant_name:**  Type: string 
            - **prisma_sdwan_bgp_as_number:**  Type: string 
            - **security_zone_id:**  Type: string 
@@ -11511,6 +13146,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11542,8 +13199,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -11632,6 +13295,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11696,6 +13381,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11796,7 +13503,7 @@ class Post(object):
 
     def reports_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Reports_Query API Function
+        Get report file (v2.0)
 
           **Parameters:**:
 
@@ -11806,6 +13513,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **dest_page:**  Type: integer 
+           - **folder:**  Type: string 
+           - **limit:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11826,7 +13536,7 @@ class Post(object):
 
     def reportsdir_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Reportsdir_Query API Function
+        Get files and folders in specified folder (v2.0)
 
           **Parameters:**:
 
@@ -11836,6 +13546,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **dest_page:**  Type: integer 
+           - **folder:**  Type: string 
+           - **limit:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -11968,8 +13681,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12060,8 +13779,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12155,8 +13880,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12266,8 +13997,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12314,8 +14051,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12349,7 +14092,7 @@ class Post(object):
 
     def sdwanapps_configs(self, sdwanapp_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Sdwanapps_Configs API Function
+        Create SD-WAN application configuration (v2.0)
 
           **Parameters:**:
 
@@ -12360,6 +14103,9 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **state:**  Type: string 
+           - **user_config:**  Type: object 
+           - **version:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -12468,8 +14214,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12548,8 +14300,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12645,6 +14403,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -12663,19 +14443,20 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def securityzones(self, data, tenant_id=None, api_version="v2.1"):
+    def securityzones(self, data, tenant_id=None, api_version="v2.2"):
         """
-        Create a new security zone (v2.1)
+        Create a new security zone (v2.2)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
            - **description:**  Type: string 
+           - **is_l2:**  Type: boolean 
            - **name:**  Type: string 
            - **tcp_allow_non_syn:**  Type: boolean 
 
@@ -12696,18 +14477,40 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def securityzones_query(self, data, tenant_id=None, api_version="v2.1"):
+    def securityzones_query(self, data, tenant_id=None, api_version="v2.2"):
         """
-        query (v2.1)
+        Query security zones (v2.2)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -12776,8 +14579,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -12850,6 +14659,7 @@ class Post(object):
                - **longitude:**  Type: number 
            - **name:**  Type: string 
            - **sase_properties:**           
+               - **active:**  Type: boolean 
                - **lqm_enabled:**  Type: boolean 
            - **service_link_peers:**           
                - **hostnames:**  [Type: string] 
@@ -12914,6 +14724,7 @@ class Post(object):
                - **longitude:**  Type: number 
            - **name:**  Type: string 
            - **sase_properties:**           
+               - **active:**  Type: boolean 
                - **lqm_enabled:**  Type: boolean 
            - **service_link_peers:**           
                - **hostnames:**  [Type: string] 
@@ -12988,8 +14799,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13115,8 +14932,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13149,7 +14972,7 @@ class Post(object):
 
     def site_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Site_Correlationevents_Query API Function
+        Query site correlation events. (v2.1)
 
           **Parameters:**:
 
@@ -13159,6 +14982,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -13228,8 +15073,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13311,8 +15162,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13465,6 +15322,11 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **action:**  Type: string 
+           - **enable_start_utc:**  Type: integer 
+           - **flow_status:**  Type: boolean 
+           - **parameters:**  Type: string 
+           - **time_remaining:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -13533,8 +15395,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13566,16 +15434,16 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def site_sitesecurityzones_query(self, site_id, data, tenant_id=None, api_version="v2.0"):
+    def site_sitesecurityzones_query(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
-        Query security zone for NB API. (v2.0)
+        Query site security zones (v2.1)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -13614,8 +15482,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -13715,19 +15589,22 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sitesecurityzones(self, site_id, data, tenant_id=None, api_version="v2.0"):
+    def sitesecurityzones(self, site_id, data, tenant_id=None, api_version="v2.1"):
         """
-        Create an association between site and security zone. (v2.0)
+        Create site security zone (v2.1)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
+           - **element_interfaces:**           
+               - **element_id:**  Type: string 
+               - **interfaces:**  [Type: string] 
            - **networks:**           
                - **network_id:**  Type: string 
                - **network_type:**  Type: string 
@@ -13751,15 +15628,15 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
-    def sitesecurityzones_query(self, data, tenant_id=None, api_version="v2.0"):
+    def sitesecurityzones_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        Query security zone. (v2.0)
+        Query all site security zone associations (v2.1)
 
           **Parameters:**:
 
           - **data**: Dictionary containing data to POST as JSON
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
           **Payload Attributes:** 
 
@@ -13826,6 +15703,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -13889,6 +15788,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -13971,8 +15892,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14068,8 +15995,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14114,8 +16047,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14160,8 +16099,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14206,8 +16151,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14251,6 +16202,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14308,7 +16281,7 @@ class Post(object):
 
     def spokeclusters_operations(self, site_id, spokecluster_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Spokeclusters_Operations API Function
+        Handle operations on spokecluster. (v2.0)
 
           **Parameters:**:
 
@@ -14320,6 +16293,7 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **action:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14353,8 +16327,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14398,6 +16378,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14477,8 +16479,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14512,7 +16520,7 @@ class Post(object):
 
     def support_operations(self, element_id, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Support_Operations API Function
+        Create a new System report using support_operations API (v2.0)
 
           **Parameters:**:
 
@@ -14523,6 +16531,27 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **action:**  Type: string 
+           - **arguments:**  Type: string 
+           - **chunksize:**  Type: integer 
+           - **cols:**  Type: integer 
+           - **command:**  Type: string 
+           - **cores:**  Type: boolean 
+           - **count:**  Type: integer 
+           - **ethertype:**  Type: string 
+           - **filesize:**  Type: integer 
+           - **interface:**  Type: string 
+           - **opcode:**  Type: string 
+           - **packetcount:**  Type: integer 
+           - **port:**  Type: integer 
+           - **protocol:**  Type: string 
+           - **reqid:**  Type: string 
+           - **rows:**  Type: integer 
+           - **sessiontimeout:**  Type: integer 
+           - **syslog:**  Type: boolean 
+           - **sysreport:**  Type: boolean 
+           - **target:**  Type: string 
+           - **version:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14768,7 +16797,7 @@ class Post(object):
 
     def tenant_anynetlinks(self, data, tenant_id=None, api_version="v4.0"):
         """
-        POST Tenant_Anynetlinks API Function
+        Create anynet link (v4.0)
 
           **Parameters:**:
 
@@ -14778,6 +16807,22 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **admin_up:**  Type: boolean 
+           - **description:**  Type: string 
+           - **ep1_hub_cluster_id:**  Type: string 
+           - **ep1_site_id:**  Type: string 
+           - **ep1_wan_interface_id:**  Type: string 
+           - **ep2_hub_cluster_id:**  Type: string 
+           - **ep2_site_id:**  Type: string 
+           - **ep2_wan_interface_id:**  Type: string 
+           - **forced:**  Type: boolean 
+           - **name:**  Type: string 
+           - **tags:**  [Type: string] 
+           - **tenant_id:**  Type: string 
+           - **type:**  Type: string 
+           - **vpnlink_configuration:**           
+               - **keep_alive_failure_count:**  Type: integer 
+               - **keep_alive_interval:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14809,8 +16854,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -14892,6 +16943,7 @@ class Post(object):
            - **disabled:**  Type: boolean 
            - **name:**  Type: string 
            - **namespace:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -14993,15 +17045,19 @@ class Post(object):
            - **esp_tenant_id:**  Type: string 
            - **hw_id:**  Type: string 
            - **image_version:**  Type: string 
-           - **inventory_op:**           - **machine_state:**           - **manufacture_id:**  Type: string 
+           - **inventory_op:**           
+           - **machine_state:**           
+           - **manufacture_id:**  Type: string 
            - **model_name:**  Type: string 
            - **ordering_info:**  Type: string 
            - **owner_tenant_id:**  Type: string 
            - **pki_op:**           
                - **ca_list:**  [Type: string] 
                - **operation:**  Type: string 
-           - **renew_state:**           - **sales_order_number:**  Type: string 
-           - **ship_state:**           - **sl_no:**  Type: string 
+           - **renew_state:**           
+           - **sales_order_number:**  Type: string 
+           - **ship_state:**           
+           - **sl_no:**  Type: string 
            - **tenant_id:**  Type: string 
            - **token:**  Type: string 
 
@@ -15109,8 +17165,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15188,8 +17250,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15233,6 +17301,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15253,7 +17343,7 @@ class Post(object):
 
     def toolkitsessions_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Toolkitsessions_Query API Function
+        Query db for sessions that match query parameters (v2.0)
 
           **Parameters:**:
 
@@ -15263,6 +17353,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15283,7 +17395,7 @@ class Post(object):
 
     def topology(self, data, tenant_id=None, api_version="v3.6"):
         """
-        POST Topology API Function
+        Query topology (v3.6)
 
           **Parameters:**:
 
@@ -15293,6 +17405,25 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **links:**  [Type: string] 
+           - **links_only:**  Type: boolean 
+           - **location:**           
+               - **end:**           
+                   - **description:**  Type: string 
+                   - **latitude:**  Type: number 
+                   - **longitude:**  Type: number 
+               - **start:**           
+                   - **description:**  Type: string 
+                   - **latitude:**  Type: number 
+                   - **longitude:**  Type: number 
+           - **nodes:**  [Type: string] 
+           - **servicelinks:**  Type: boolean 
+           - **site_id:**  Type: string 
+           - **sites:**           
+               - **ep1_id:**  Type: string 
+               - **ep2_id:**  Type: string 
+           - **stub_links:**  Type: boolean 
+           - **type:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15324,8 +17455,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15369,6 +17506,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -15448,8 +17607,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15535,8 +17700,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15621,7 +17792,8 @@ class Post(object):
 
           **Payload Attributes:** 
 
-           - **inventory_op:**           - **ions_count:**  Type: integer 
+           - **inventory_op:**           
+           - **ions_count:**  Type: integer 
            - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
@@ -15655,8 +17827,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15701,8 +17879,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15780,8 +17964,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15867,8 +18057,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -15946,8 +18142,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -16094,7 +18296,7 @@ class Post(object):
 
     def waninterfaces_correlationevents_query(self, data, tenant_id=None, api_version="v2.1"):
         """
-        POST Waninterfaces_Correlationevents_Query API Function
+        Query WAN Interface correlation events. (v2.1)
 
           **Parameters:**:
 
@@ -16104,6 +18306,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -16136,8 +18360,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -16218,8 +18448,14 @@ class Post(object):
           **Payload Attributes:** 
 
            - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
                - **field:**  Type: string 
+               - **name:**  Type: string 
                - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
            - **dest_page:**  Type: integer 
            - **getDeleted:**  Type: boolean 
            - **group_by:**  [Type: string] 
@@ -16286,7 +18522,7 @@ class Post(object):
 
     def ws_extensions(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ws_Extensions API Function
+        Create extension configuration (v2.0)
 
           **Parameters:**:
 
@@ -16296,6 +18532,12 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **conf:**  Type: object 
+           - **disabled:**  Type: boolean 
+           - **entity_id:**  Type: string 
+           - **name:**  Type: string 
+           - **namespace:**  Type: string 
+           - **tenant_id:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -16316,7 +18558,7 @@ class Post(object):
 
     def ws_extensions_query(self, data, tenant_id=None, api_version="v2.0"):
         """
-        POST Ws_Extensions_Query API Function
+        Queries db for limit number of tenant extensions that match the query params. (v2.0)
 
           **Parameters:**:
 
@@ -16326,6 +18568,28 @@ class Post(object):
 
           **Payload Attributes:** 
 
+           - **aggregate:**           
+               - **data:**           
+                   - **value:**  Type: number 
+                   - **view:**  Type: object 
+               - **field:**  Type: string 
+               - **name:**  Type: string 
+               - **operator:**  Type: string 
+               - **statistic:**  Type: string 
+               - **unit:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -16755,6 +19019,9 @@ class Post(object):
     query_machines_c = clients_machines_query
     """ Backwards-compatibility alias of `query_machines_c` to `clients_machines_query`"""
 
+    query_microsegments = microsegments_query
+    """ Backwards-compatibility alias of `query_microsegments` to `microsegments_query`"""
+
     query_mstp_instances = mstp_instances_query
     """ Backwards-compatibility alias of `query_mstp_instances` to `mstp_instances_query`"""
 
@@ -17105,6 +19372,9 @@ class Post(object):
 
     elements_query = element_query
     """ Backwards-compatibility alias of `elements_query` to `element_query`"""
+
+    elements_rquery = element_rquery
+    """ Backwards-compatibility alias of `elements_rquery` to `element_rquery`"""
 
     sites_bulk_config_state_query = site_bulk_config_state_query
     """ Backwards-compatibility alias of `sites_bulk_config_state_query` to `site_bulk_config_state_query`"""
