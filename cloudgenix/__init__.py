@@ -1,7 +1,7 @@
 """
 Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.6.2b1
+**Version:** v6.8.1b1
 
 **Author:** CloudGenix
 

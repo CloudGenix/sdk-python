@@ -2633,7 +2633,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.put_api.Put.lannetworks">lannetworks</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.localprefixfilters">localprefixfilters</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.machine_cellular_modules_firmware">machine_cellular_modules_firmware</a></li>
-    <li class="mono"><a href="#cloudgenix.put_api.Put.microsegments">microsegments</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.mstp_instances">mstp_instances</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.multicastglobalconfigs">multicastglobalconfigs</a></li>
     <li class="mono"><a href="#cloudgenix.put_api.Put.multicastpeergroups">multicastpeergroups</a></li>
@@ -6067,43 +6066,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update microsegment (v2.0)</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **microsegment_id**: Microsegment ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">          **Payload Attributes:** </span>
-
-<span class="sd">           - **microsegmentation_enabled:**  Type: boolean </span>
-<span class="sd">           - **site_id:**  Type: string </span>
-<span class="sd">           - **vlan_ids:**  [Type: integer] </span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                    <span class="n">site_id</span><span class="p">,</span>
-                                                                                    <span class="n">microsegment_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">mstp_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">mstp_instance_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update a MSTP Instance (v2.0)</span>
@@ -8281,9 +8243,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the SASE connection (v3.0) (v3.0)</span>
+<span class="sd">        PUT Prismasase_Connections API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -8291,54 +8253,50 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **prismasase_connection_id**: Prisma SASE Connection ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
-<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string] </span>
-<span class="sd">           - **ipsec_tunnel_configs:**           </span>
-<span class="sd">               - **anti_replay:**  Type: boolean </span>
-<span class="sd">               - **copy_tos:**  Type: boolean </span>
-<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean </span>
-<span class="sd">               - **ike_key_exchange:**  Type: string </span>
-<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
-<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string </span>
-<span class="sd">               - **tunnel_monitoring:**  Type: boolean </span>
-<span class="sd">           - **is_active:**  Type: boolean </span>
-<span class="sd">           - **is_enabled:**  Type: boolean </span>
-<span class="sd">           - **license_type:**  Type: string </span>
-<span class="sd">           - **prismaaccess_edge_location_config:**  [Type: string] </span>
-<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
-<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string </span>
-<span class="sd">           - **prismasase_connection_id:**  Type: string </span>
-<span class="sd">           - **remote_network_groups:**           </span>
-<span class="sd">               - **ipsec_tunnels:**           </span>
-<span class="sd">                   - **authentication:**           </span>
-<span class="sd">                       - **branch_ike_identification:**  Type: string </span>
-<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string </span>
-<span class="sd">                       - **psk:**  Type: string </span>
-<span class="sd">                   - **name:**  Type: string </span>
-<span class="sd">                   - **routing:**           </span>
-<span class="sd">                       - **branch_as_number:**  Type: string </span>
-<span class="sd">                       - **branch_ip_address:**  Type: string </span>
-<span class="sd">                       - **prismaaccess_ip_address:**  Type: string </span>
-<span class="sd">                   - **routing_configs:**           </span>
-<span class="sd">                       - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">                       - **bgp_secret:**  Type: string </span>
-<span class="sd">                       - **export_routes:**  Type: boolean </span>
-<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">                   - **wan_interface_id:**  Type: string </span>
-<span class="sd">               - **name:**  Type: string </span>
-<span class="sd">               - **spn_name:**  [Type: string] </span>
-<span class="sd">           - **routing_configs:**           </span>
-<span class="sd">               - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">               - **bgp_secret:**  Type: string </span>
-<span class="sd">               - **branch_as_number:**  Type: string </span>
-<span class="sd">               - **deployment_mode:**  Type: string </span>
-<span class="sd">               - **export_routes:**  Type: boolean </span>
-<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">           - **site_id:**  Type: string </span>
-<span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string]</span>
+<span class="sd">           - **ipsec_tunnel_configs:**</span>
+<span class="sd">               - **anti_replay:**  Type: boolean</span>
+<span class="sd">               - **copy_tos:**  Type: boolean</span>
+<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean</span>
+<span class="sd">               - **ike_key_exchange:**  Type: string</span>
+<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string</span>
+<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string</span>
+<span class="sd">               - **tunnel_monitoring:**  Type: boolean</span>
+<span class="sd">           - **is_active:**  Type: boolean</span>
+<span class="sd">           - **is_enabled:**  Type: boolean</span>
+<span class="sd">           - **prismaaccess_edge_location:**  [Type: string]</span>
+<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer</span>
+<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string</span>
+<span class="sd">           - **remote_network_groups:**</span>
+<span class="sd">               - **ipsec_tunnels:**</span>
+<span class="sd">                   - **authentication:**</span>
+<span class="sd">                       - **branch_ike_identification:**  Type: string</span>
+<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string</span>
+<span class="sd">                       - **psk:**  Type: string</span>
+<span class="sd">                   - **name:**  Type: string</span>
+<span class="sd">                   - **routing:**</span>
+<span class="sd">                       - **branch_as_number:**  Type: string</span>
+<span class="sd">                       - **branch_ip_address:**  Type: string</span>
+<span class="sd">                       - **prismaaccess_ip_address:**  Type: string</span>
+<span class="sd">                   - **routing_configs:**</span>
+<span class="sd">                       - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">                       - **bgp_secret:**  Type: string</span>
+<span class="sd">                       - **export_routes:**  Type: boolean</span>
+<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">                   - **wan_interface_id:**  Type: string</span>
+<span class="sd">               - **name:**  Type: string</span>
+<span class="sd">               - **spn_name:**  [Type: string]</span>
+<span class="sd">           - **routing_configs:**</span>
+<span class="sd">               - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">               - **bgp_secret:**  Type: string</span>
+<span class="sd">               - **export_routes:**  Type: boolean</span>
+<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">           - **site_id:**  Type: string</span>
+<span class="sd">           - **tenant_id:**  Type: string</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -14566,43 +14524,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update microsegment (v2.0)</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **microsegment_id**: Microsegment ID</span>
-<span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">          **Payload Attributes:** </span>
-
-<span class="sd">           - **microsegmentation_enabled:**  Type: boolean </span>
-<span class="sd">           - **site_id:**  Type: string </span>
-<span class="sd">           - **vlan_ids:**  [Type: integer] </span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                    <span class="n">site_id</span><span class="p">,</span>
-                                                                                    <span class="n">microsegment_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">mstp_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">mstp_instance_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update a MSTP Instance (v2.0)</span>
@@ -16780,9 +16701,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the SASE connection (v3.0) (v3.0)</span>
+<span class="sd">        PUT Prismasase_Connections API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -16790,54 +16711,50 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **prismasase_connection_id**: Prisma SASE Connection ID</span>
 <span class="sd">          - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
 <span class="sd">          **Payload Attributes:** </span>
 
-<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string] </span>
-<span class="sd">           - **ipsec_tunnel_configs:**           </span>
-<span class="sd">               - **anti_replay:**  Type: boolean </span>
-<span class="sd">               - **copy_tos:**  Type: boolean </span>
-<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean </span>
-<span class="sd">               - **ike_key_exchange:**  Type: string </span>
-<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
-<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string </span>
-<span class="sd">               - **tunnel_monitoring:**  Type: boolean </span>
-<span class="sd">           - **is_active:**  Type: boolean </span>
-<span class="sd">           - **is_enabled:**  Type: boolean </span>
-<span class="sd">           - **license_type:**  Type: string </span>
-<span class="sd">           - **prismaaccess_edge_location_config:**  [Type: string] </span>
-<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
-<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string </span>
-<span class="sd">           - **prismasase_connection_id:**  Type: string </span>
-<span class="sd">           - **remote_network_groups:**           </span>
-<span class="sd">               - **ipsec_tunnels:**           </span>
-<span class="sd">                   - **authentication:**           </span>
-<span class="sd">                       - **branch_ike_identification:**  Type: string </span>
-<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string </span>
-<span class="sd">                       - **psk:**  Type: string </span>
-<span class="sd">                   - **name:**  Type: string </span>
-<span class="sd">                   - **routing:**           </span>
-<span class="sd">                       - **branch_as_number:**  Type: string </span>
-<span class="sd">                       - **branch_ip_address:**  Type: string </span>
-<span class="sd">                       - **prismaaccess_ip_address:**  Type: string </span>
-<span class="sd">                   - **routing_configs:**           </span>
-<span class="sd">                       - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">                       - **bgp_secret:**  Type: string </span>
-<span class="sd">                       - **export_routes:**  Type: boolean </span>
-<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">                   - **wan_interface_id:**  Type: string </span>
-<span class="sd">               - **name:**  Type: string </span>
-<span class="sd">               - **spn_name:**  [Type: string] </span>
-<span class="sd">           - **routing_configs:**           </span>
-<span class="sd">               - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">               - **bgp_secret:**  Type: string </span>
-<span class="sd">               - **branch_as_number:**  Type: string </span>
-<span class="sd">               - **deployment_mode:**  Type: string </span>
-<span class="sd">               - **export_routes:**  Type: boolean </span>
-<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">           - **site_id:**  Type: string </span>
-<span class="sd">           - **tenant_id:**  Type: string </span>
+<span class="sd">           - **enabled_wan_interface_ids:**  [Type: string]</span>
+<span class="sd">           - **ipsec_tunnel_configs:**</span>
+<span class="sd">               - **anti_replay:**  Type: boolean</span>
+<span class="sd">               - **copy_tos:**  Type: boolean</span>
+<span class="sd">               - **enable_gre_encapsulation:**  Type: boolean</span>
+<span class="sd">               - **ike_key_exchange:**  Type: string</span>
+<span class="sd">               - **prismaaccess_ike_crypto_profile_id:**  Type: string</span>
+<span class="sd">               - **prismaaccess_ipsec_profile_id:**  Type: string</span>
+<span class="sd">               - **tunnel_monitoring:**  Type: boolean</span>
+<span class="sd">           - **is_active:**  Type: boolean</span>
+<span class="sd">           - **is_enabled:**  Type: boolean</span>
+<span class="sd">           - **prismaaccess_edge_location:**  [Type: string]</span>
+<span class="sd">           - **prismaaccess_qos_cir_mbps:**  Type: integer</span>
+<span class="sd">           - **prismaaccess_qos_profile_id:**  Type: string</span>
+<span class="sd">           - **remote_network_groups:**</span>
+<span class="sd">               - **ipsec_tunnels:**</span>
+<span class="sd">                   - **authentication:**</span>
+<span class="sd">                       - **branch_ike_identification:**  Type: string</span>
+<span class="sd">                       - **prismaaccess_ike_identification:**  Type: string</span>
+<span class="sd">                       - **psk:**  Type: string</span>
+<span class="sd">                   - **name:**  Type: string</span>
+<span class="sd">                   - **routing:**</span>
+<span class="sd">                       - **branch_as_number:**  Type: string</span>
+<span class="sd">                       - **branch_ip_address:**  Type: string</span>
+<span class="sd">                       - **prismaaccess_ip_address:**  Type: string</span>
+<span class="sd">                   - **routing_configs:**</span>
+<span class="sd">                       - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">                       - **bgp_secret:**  Type: string</span>
+<span class="sd">                       - **export_routes:**  Type: boolean</span>
+<span class="sd">                       - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">                   - **wan_interface_id:**  Type: string</span>
+<span class="sd">               - **name:**  Type: string</span>
+<span class="sd">               - **spn_name:**  [Type: string]</span>
+<span class="sd">           - **routing_configs:**</span>
+<span class="sd">               - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">               - **bgp_secret:**  Type: string</span>
+<span class="sd">               - **export_routes:**  Type: boolean</span>
+<span class="sd">               - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">           - **site_id:**  Type: string</span>
+<span class="sd">           - **tenant_id:**  Type: string</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -26542,69 +26459,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
-  <div class="item" id="cloudgenix.put_api.Put.microsegments">
-    <div class="name def">
-    <p>def <span class="ident">microsegments</span>(</p><p>self, site_id, microsegment_id, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>Update microsegment (v2.0)</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>site_id</strong>: Site ID</li>
-<li><strong>microsegment_id</strong>: Microsegment ID</li>
-<li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Payload Attributes:</strong> </p>
-<ul>
-<li><strong>microsegmentation_enabled:</strong>  Type: boolean </li>
-<li><strong>site_id:</strong>  Type: string </li>
-<li><strong>vlan_ids:</strong>  [Type: integer] </li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.microsegments', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.put_api.Put.microsegments" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Update microsegment (v2.0)</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **microsegment_id**: Microsegment ID</span>
-<span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">      **Payload Attributes:** </span>
-<span class="sd">       - **microsegmentation_enabled:**  Type: boolean </span>
-<span class="sd">       - **site_id:**  Type: string </span>
-<span class="sd">       - **vlan_ids:**  [Type: integer] </span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                <span class="n">tenant_id</span><span class="p">,</span>
-                                                                                <span class="n">site_id</span><span class="p">,</span>
-                                                                                <span class="n">microsegment_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
   <div class="item" id="cloudgenix.put_api.Put.mstp_instances">
     <div class="name def">
     <p>def <span class="ident">mstp_instances</span>(</p><p>self, site_id, element_id, mstp_instance_id, data, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -30738,140 +30592,132 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.put_api.Put.prismasase_connections">
     <div class="name def">
-    <p>def <span class="ident">prismasase_connections</span>(</p><p>self, site_id, prismasase_connection_id, data, tenant_id=None, api_version=&#39;v3.0&#39;)</p>
+    <p>def <span class="ident">prismasase_connections</span>(</p><p>self, site_id, prismasase_connection_id, data, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Update the SASE connection (v3.0) (v3.0)</p>
+    <div class="desc"><p>PUT Prismasase_Connections API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>prismasase_connection_id</strong>: Prisma SASE Connection ID</li>
 <li><strong>data</strong>: Dictionary containing data to PUT as JSON</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v3.0)</li>
+<li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
 <p><strong>Payload Attributes:</strong> </p>
 <ul>
-<li><strong>enabled_wan_interface_ids:</strong>  [Type: string] </li>
-<li><strong>ipsec_tunnel_configs:</strong>           <ul>
-<li><strong>anti_replay:</strong>  Type: boolean </li>
-<li><strong>copy_tos:</strong>  Type: boolean </li>
-<li><strong>enable_gre_encapsulation:</strong>  Type: boolean </li>
-<li><strong>ike_key_exchange:</strong>  Type: string </li>
-<li><strong>prismaaccess_ike_crypto_profile_id:</strong>  Type: string </li>
-<li><strong>prismaaccess_ipsec_profile_id:</strong>  Type: string </li>
-<li><strong>tunnel_monitoring:</strong>  Type: boolean </li>
+<li><strong>enabled_wan_interface_ids:</strong>  [Type: string]</li>
+<li><strong>ipsec_tunnel_configs:</strong><ul>
+<li><strong>anti_replay:</strong>  Type: boolean</li>
+<li><strong>copy_tos:</strong>  Type: boolean</li>
+<li><strong>enable_gre_encapsulation:</strong>  Type: boolean</li>
+<li><strong>ike_key_exchange:</strong>  Type: string</li>
+<li><strong>prismaaccess_ike_crypto_profile_id:</strong>  Type: string</li>
+<li><strong>prismaaccess_ipsec_profile_id:</strong>  Type: string</li>
+<li><strong>tunnel_monitoring:</strong>  Type: boolean</li>
 </ul>
 </li>
-<li><strong>is_active:</strong>  Type: boolean </li>
-<li><strong>is_enabled:</strong>  Type: boolean </li>
-<li><strong>license_type:</strong>  Type: string </li>
-<li><strong>prismaaccess_edge_location_config:</strong>  [Type: string] </li>
-<li><strong>prismaaccess_qos_cir_mbps:</strong>  Type: integer </li>
-<li><strong>prismaaccess_qos_profile_id:</strong>  Type: string </li>
-<li><strong>prismasase_connection_id:</strong>  Type: string </li>
-<li><strong>remote_network_groups:</strong>           <ul>
-<li><strong>ipsec_tunnels:</strong>           <ul>
-<li><strong>authentication:</strong>           <ul>
-<li><strong>branch_ike_identification:</strong>  Type: string </li>
-<li><strong>prismaaccess_ike_identification:</strong>  Type: string </li>
-<li><strong>psk:</strong>  Type: string </li>
+<li><strong>is_active:</strong>  Type: boolean</li>
+<li><strong>is_enabled:</strong>  Type: boolean</li>
+<li><strong>prismaaccess_edge_location:</strong>  [Type: string]</li>
+<li><strong>prismaaccess_qos_cir_mbps:</strong>  Type: integer</li>
+<li><strong>prismaaccess_qos_profile_id:</strong>  Type: string</li>
+<li><strong>remote_network_groups:</strong><ul>
+<li><strong>ipsec_tunnels:</strong><ul>
+<li><strong>authentication:</strong><ul>
+<li><strong>branch_ike_identification:</strong>  Type: string</li>
+<li><strong>prismaaccess_ike_identification:</strong>  Type: string</li>
+<li><strong>psk:</strong>  Type: string</li>
 </ul>
 </li>
-<li><strong>name:</strong>  Type: string </li>
-<li><strong>routing:</strong>           <ul>
-<li><strong>branch_as_number:</strong>  Type: string </li>
-<li><strong>branch_ip_address:</strong>  Type: string </li>
-<li><strong>prismaaccess_ip_address:</strong>  Type: string </li>
+<li><strong>name:</strong>  Type: string</li>
+<li><strong>routing:</strong><ul>
+<li><strong>branch_as_number:</strong>  Type: string</li>
+<li><strong>branch_ip_address:</strong>  Type: string</li>
+<li><strong>prismaaccess_ip_address:</strong>  Type: string</li>
 </ul>
 </li>
-<li><strong>routing_configs:</strong>           <ul>
-<li><strong>advertise_default_route:</strong>  Type: boolean </li>
-<li><strong>bgp_secret:</strong>  Type: string </li>
-<li><strong>export_routes:</strong>  Type: boolean </li>
-<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean </li>
+<li><strong>routing_configs:</strong><ul>
+<li><strong>advertise_default_route:</strong>  Type: boolean</li>
+<li><strong>bgp_secret:</strong>  Type: string</li>
+<li><strong>export_routes:</strong>  Type: boolean</li>
+<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean</li>
 </ul>
 </li>
-<li><strong>wan_interface_id:</strong>  Type: string </li>
+<li><strong>wan_interface_id:</strong>  Type: string</li>
 </ul>
 </li>
-<li><strong>name:</strong>  Type: string </li>
-<li><strong>spn_name:</strong>  [Type: string] </li>
+<li><strong>name:</strong>  Type: string</li>
+<li><strong>spn_name:</strong>  [Type: string]</li>
 </ul>
 </li>
-<li><strong>routing_configs:</strong>           <ul>
-<li><strong>advertise_default_route:</strong>  Type: boolean </li>
-<li><strong>bgp_secret:</strong>  Type: string </li>
-<li><strong>branch_as_number:</strong>  Type: string </li>
-<li><strong>deployment_mode:</strong>  Type: string </li>
-<li><strong>export_routes:</strong>  Type: boolean </li>
-<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean </li>
+<li><strong>routing_configs:</strong><ul>
+<li><strong>advertise_default_route:</strong>  Type: boolean</li>
+<li><strong>bgp_secret:</strong>  Type: string</li>
+<li><strong>export_routes:</strong>  Type: boolean</li>
+<li><strong>summarize_mobile_routes_before_advertise:</strong>  Type: boolean</li>
 </ul>
 </li>
-<li><strong>site_id:</strong>  Type: string </li>
-<li><strong>tenant_id:</strong>  Type: string </li>
+<li><strong>site_id:</strong>  Type: string</li>
+<li><strong>tenant_id:</strong>  Type: string</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.put_api.Put.prismasase_connections', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.put_api.Put.prismasase_connections" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Update the SASE connection (v3.0) (v3.0)</span>
+<span class="sd">    PUT Prismasase_Connections API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **prismasase_connection_id**: Prisma SASE Connection ID</span>
 <span class="sd">      - **data**: Dictionary containing data to PUT as JSON</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v3.0)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">      **Payload Attributes:** </span>
-<span class="sd">       - **enabled_wan_interface_ids:**  [Type: string] </span>
-<span class="sd">       - **ipsec_tunnel_configs:**           </span>
-<span class="sd">           - **anti_replay:**  Type: boolean </span>
-<span class="sd">           - **copy_tos:**  Type: boolean </span>
-<span class="sd">           - **enable_gre_encapsulation:**  Type: boolean </span>
-<span class="sd">           - **ike_key_exchange:**  Type: string </span>
-<span class="sd">           - **prismaaccess_ike_crypto_profile_id:**  Type: string </span>
-<span class="sd">           - **prismaaccess_ipsec_profile_id:**  Type: string </span>
-<span class="sd">           - **tunnel_monitoring:**  Type: boolean </span>
-<span class="sd">       - **is_active:**  Type: boolean </span>
-<span class="sd">       - **is_enabled:**  Type: boolean </span>
-<span class="sd">       - **license_type:**  Type: string </span>
-<span class="sd">       - **prismaaccess_edge_location_config:**  [Type: string] </span>
-<span class="sd">       - **prismaaccess_qos_cir_mbps:**  Type: integer </span>
-<span class="sd">       - **prismaaccess_qos_profile_id:**  Type: string </span>
-<span class="sd">       - **prismasase_connection_id:**  Type: string </span>
-<span class="sd">       - **remote_network_groups:**           </span>
-<span class="sd">           - **ipsec_tunnels:**           </span>
-<span class="sd">               - **authentication:**           </span>
-<span class="sd">                   - **branch_ike_identification:**  Type: string </span>
-<span class="sd">                   - **prismaaccess_ike_identification:**  Type: string </span>
-<span class="sd">                   - **psk:**  Type: string </span>
-<span class="sd">               - **name:**  Type: string </span>
-<span class="sd">               - **routing:**           </span>
-<span class="sd">                   - **branch_as_number:**  Type: string </span>
-<span class="sd">                   - **branch_ip_address:**  Type: string </span>
-<span class="sd">                   - **prismaaccess_ip_address:**  Type: string </span>
-<span class="sd">               - **routing_configs:**           </span>
-<span class="sd">                   - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">                   - **bgp_secret:**  Type: string </span>
-<span class="sd">                   - **export_routes:**  Type: boolean </span>
-<span class="sd">                   - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">               - **wan_interface_id:**  Type: string </span>
-<span class="sd">           - **name:**  Type: string </span>
-<span class="sd">           - **spn_name:**  [Type: string] </span>
-<span class="sd">       - **routing_configs:**           </span>
-<span class="sd">           - **advertise_default_route:**  Type: boolean </span>
-<span class="sd">           - **bgp_secret:**  Type: string </span>
-<span class="sd">           - **branch_as_number:**  Type: string </span>
-<span class="sd">           - **deployment_mode:**  Type: string </span>
-<span class="sd">           - **export_routes:**  Type: boolean </span>
-<span class="sd">           - **summarize_mobile_routes_before_advertise:**  Type: boolean </span>
-<span class="sd">       - **site_id:**  Type: string </span>
-<span class="sd">       - **tenant_id:**  Type: string </span>
+<span class="sd">       - **enabled_wan_interface_ids:**  [Type: string]</span>
+<span class="sd">       - **ipsec_tunnel_configs:**</span>
+<span class="sd">           - **anti_replay:**  Type: boolean</span>
+<span class="sd">           - **copy_tos:**  Type: boolean</span>
+<span class="sd">           - **enable_gre_encapsulation:**  Type: boolean</span>
+<span class="sd">           - **ike_key_exchange:**  Type: string</span>
+<span class="sd">           - **prismaaccess_ike_crypto_profile_id:**  Type: string</span>
+<span class="sd">           - **prismaaccess_ipsec_profile_id:**  Type: string</span>
+<span class="sd">           - **tunnel_monitoring:**  Type: boolean</span>
+<span class="sd">       - **is_active:**  Type: boolean</span>
+<span class="sd">       - **is_enabled:**  Type: boolean</span>
+<span class="sd">       - **prismaaccess_edge_location:**  [Type: string]</span>
+<span class="sd">       - **prismaaccess_qos_cir_mbps:**  Type: integer</span>
+<span class="sd">       - **prismaaccess_qos_profile_id:**  Type: string</span>
+<span class="sd">       - **remote_network_groups:**</span>
+<span class="sd">           - **ipsec_tunnels:**</span>
+<span class="sd">               - **authentication:**</span>
+<span class="sd">                   - **branch_ike_identification:**  Type: string</span>
+<span class="sd">                   - **prismaaccess_ike_identification:**  Type: string</span>
+<span class="sd">                   - **psk:**  Type: string</span>
+<span class="sd">               - **name:**  Type: string</span>
+<span class="sd">               - **routing:**</span>
+<span class="sd">                   - **branch_as_number:**  Type: string</span>
+<span class="sd">                   - **branch_ip_address:**  Type: string</span>
+<span class="sd">                   - **prismaaccess_ip_address:**  Type: string</span>
+<span class="sd">               - **routing_configs:**</span>
+<span class="sd">                   - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">                   - **bgp_secret:**  Type: string</span>
+<span class="sd">                   - **export_routes:**  Type: boolean</span>
+<span class="sd">                   - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">               - **wan_interface_id:**  Type: string</span>
+<span class="sd">           - **name:**  Type: string</span>
+<span class="sd">           - **spn_name:**  [Type: string]</span>
+<span class="sd">       - **routing_configs:**</span>
+<span class="sd">           - **advertise_default_route:**  Type: boolean</span>
+<span class="sd">           - **bgp_secret:**  Type: string</span>
+<span class="sd">           - **export_routes:**  Type: boolean</span>
+<span class="sd">           - **summarize_mobile_routes_before_advertise:**  Type: boolean</span>
+<span class="sd">       - **site_id:**  Type: string</span>
+<span class="sd">       - **tenant_id:**  Type: string</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
