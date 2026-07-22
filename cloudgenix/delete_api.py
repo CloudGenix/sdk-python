@@ -260,7 +260,7 @@ class Delete(object):
 
     def certificates(self, entitie_id, tenant_id=None, api_version="v2.0"):
         """
-        Delete a certificate of tenant v2.0 (v2.0)
+        DELETE Certificates API Function
 
           **Parameters:**:
 
@@ -588,7 +588,7 @@ class Delete(object):
 
     def element_passages(self, element_id, passage_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Element_Passages API Function
+        Delete passage from NB (v2.0)
 
           **Parameters:**:
 
@@ -618,7 +618,7 @@ class Delete(object):
 
     def element_toolkitsessions(self, element_id, toolkitsession_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Element_Toolkitsessions API Function
+        Delete Active Passage (v2.0)
 
           **Parameters:**:
 
@@ -648,7 +648,7 @@ class Delete(object):
 
     def elementpassageconfigs(self, element_id, elementpassageconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Elementpassageconfigs API Function
+        Deletes element passage configuration from NB (v2.0)
 
           **Parameters:**:
 
@@ -676,9 +676,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.0"):
+    def elementsecurityzones(self, site_id, element_id, securityzone_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete an existing security zone (v2.0)
+        Delete an existing security zone (v2.1)
 
           **Parameters:**:
 
@@ -686,7 +686,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **securityzone_id**: Security Zone (ZBFW) ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -946,7 +946,7 @@ class Delete(object):
 
     def externalcaconfigs(self, externalcaconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Externalcaconfigs API Function
+        Delete a existing CertificateAuthorityConfigDO object by tenant ID and ID (v2.0)
 
           **Parameters:**:
 
@@ -1294,15 +1294,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def ipsecprofiles(self, ipsecprofile_id, tenant_id=None, api_version="v2.2"):
+    def ipsecprofiles(self, ipsecprofile_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete a IPSEC Profile (v2.2)
+        Delete a IPSEC Profile (v2.3)
 
           **Parameters:**:
 
           - **ipsecprofile_id**: IPSEC Profile ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1756,16 +1756,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.4"):
+    def networkpolicyrules(self, networkpolicyset_id, networkpolicyrule_id, tenant_id=None, api_version="v2.5"):
         """
-        Delete network policy rule of tenant. (v2.4)
+        Delete network policy rule of tenant. (v2.5)
 
           **Parameters:**:
 
           - **networkpolicyset_id**: Network Policy Set ID
           - **networkpolicyrule_id**: Network Policy Rule ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v2.5)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2014,9 +2014,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def ospfconfigs(self, site_id, element_id, ospfconfig_id, tenant_id=None, api_version="v2.0"):
+    def ospfconfigs(self, site_id, element_id, ospfconfig_id, tenant_id=None, api_version="v2.1"):
         """
-        Deletes OSPF config (v2.0)
+        Deletes OSPF config (v2.1)
 
           **Parameters:**:
 
@@ -2024,7 +2024,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **ospfconfig_id**: OSPF Configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2076,7 +2076,7 @@ class Delete(object):
 
     def pathprefixdistributionfilterassociation(self, site_id, pathprefixdistributionfilterassociation_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Pathprefixdistributionfilterassociation API Function
+        Delete Path Prefix Distribution Filter Association (v2.0)
 
           **Parameters:**:
 
@@ -2106,7 +2106,7 @@ class Delete(object):
 
     def pathprefixdistributionfilters(self, site_id, pathprefixdistributionfilter_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Pathprefixdistributionfilters API Function
+        Delete Path Prefix Distribution Filters List (v2.0)
 
           **Parameters:**:
 
@@ -2162,16 +2162,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, tenant_id=None, api_version="v2.2"):
+    def perfmgmtpolicysets_perfmgmtpolicyrules(self, perfmgmtpolicyset_id, perfmgmtpolicyrule_id, tenant_id=None, api_version="v2.3"):
         """
-        Delete PERFMGMT policy rule of tenant V2.2 (v2.2)
+        Delete PERFMGMT policy rule of tenant V2.3 (v2.3)
 
           **Parameters:**:
 
           - **perfmgmtpolicyset_id**: Performance Management Policy Set ID
           - **perfmgmtpolicyrule_id**: Performance Management Policy Rule ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.2)
+          - **api_version**: API version to use (default v2.3)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2308,7 +2308,7 @@ class Delete(object):
 
     def prefixdistributionspokelists(self, site_id, prefixdistributionspokelist_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Prefixdistributionspokelists API Function
+        Delete Prefix Distribution Spoke List (v2.0)
 
           **Parameters:**:
 
@@ -2566,15 +2566,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def probeconfigs(self, probeconfig_id, tenant_id=None, api_version="v2.0"):
+    def probeconfigs(self, probeconfig_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete a Probe Config (v2.0)
+        Delete a Probe Config (v2.1)
 
           **Parameters:**:
 
           - **probeconfig_id**: Probe Configuration ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2810,7 +2810,7 @@ class Delete(object):
 
     def sdwanapps_configs(self, sdwanapp_id, config_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Sdwanapps_Configs API Function
+        Delete SD-WAN application configuration (v2.0)
 
           **Parameters:**:
 
@@ -2924,15 +2924,15 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def securityzones(self, securityzone_id, tenant_id=None, api_version="v2.1"):
+    def securityzones(self, securityzone_id, tenant_id=None, api_version="v2.2"):
         """
-        Delete an existing security zone (v2.1)
+        Delete security zone (v2.2) (v2.2)
 
           **Parameters:**:
 
           - **securityzone_id**: Security Zone (ZBFW) ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3244,16 +3244,16 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def sitesecurityzones(self, site_id, sitesecurityzone_id, tenant_id=None, api_version="v2.0"):
+    def sitesecurityzones(self, site_id, sitesecurityzone_id, tenant_id=None, api_version="v2.1"):
         """
-        Delete an existing security zone (v2.0)
+        Delete site security zone (v2.1) (v2.1)
 
           **Parameters:**:
 
           - **site_id**: Site ID
           - **sitesecurityzone_id**: Site Security Zone ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
+          - **api_version**: API version to use (default v2.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3406,7 +3406,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Sys Log Server Profile ID 
+          - **syslogserverprofile_id**: Sys Log Server Profile ID
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -3550,7 +3550,7 @@ class Delete(object):
 
     def tenant_anynetlinks(self, anynetlink_id, tenant_id=None, api_version="v4.0"):
         """
-        DELETE Tenant_Anynetlinks API Function
+        Delete anynet link (v4.0)
 
           **Parameters:**:
 
@@ -3718,7 +3718,7 @@ class Delete(object):
 
     def tenantpassageconfigs(self, tenantpassageconfig_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Tenantpassageconfigs API Function
+        Deletes tenant passage configuration from NB (v2.0)
 
           **Parameters:**:
 
