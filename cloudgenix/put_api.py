@@ -1343,7 +1343,7 @@ class Put(object):
 
     def elementaccessconfigs(self, element_id, elementaccessconfig_id, data, tenant_id=None, api_version="v2.3"):
         """
-        Update an Access Config on particular element. (v2.2)
+        Update an Access Config on particular element. (v2.3)
 
           **Parameters:**:
 
@@ -1355,6 +1355,12 @@ class Put(object):
 
           **Payload Attributes:** 
 
+           - **account_disable_interval:**  Type: integer
+           - **inactive_interval:**  Type: integer
+           - **otpkey_version:**  Type: integer
+           - **retry_login_count:**  Type: integer
+           - **ssh_enabled:**  Type: boolean
+           - **ssh_outbound_enabled:**  Type: boolean
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """

@@ -4105,7 +4105,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update an Access Config on particular element. (v2.2)</span>
+<span class="sd">        Update an Access Config on particular element. (v2.3)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -4117,6 +4117,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **account_disable_interval:**  Type: integer </span>
+<span class="sd">           - **inactive_interval:**  Type: integer </span>
+<span class="sd">           - **otpkey_version:**  Type: integer </span>
+<span class="sd">           - **retry_login_count:**  Type: integer </span>
+<span class="sd">           - **ssh_enabled:**  Type: boolean </span>
+<span class="sd">           - **ssh_outbound_enabled:**  Type: boolean </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -12563,7 +12569,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update an Access Config on particular element. (v2.2)</span>
+<span class="sd">        Update an Access Config on particular element. (v2.3)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -12575,6 +12581,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Payload Attributes:** </span>
 
+<span class="sd">           - **account_disable_interval:**  Type: integer </span>
+<span class="sd">           - **inactive_interval:**  Type: integer </span>
+<span class="sd">           - **otpkey_version:**  Type: integer </span>
+<span class="sd">           - **retry_login_count:**  Type: integer </span>
+<span class="sd">           - **ssh_enabled:**  Type: boolean </span>
+<span class="sd">           - **ssh_outbound_enabled:**  Type: boolean </span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
