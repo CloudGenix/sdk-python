@@ -4,19 +4,21 @@ CloudGenix Python SDK - PATCH
 
 **Author:** CloudGenix
 
-**Copyright:** (c) 2017-2026 CloudGenix, Inc
+**Copyright:** (c) 2017-2023 CloudGenix, Inc
 
 **License:** MIT
 """
+import functools
 import logging
+import warnings
 
 __author__ = "CloudGenix Developer Support <developers@cloudgenix.com>"
 __email__ = "developers@cloudgenix.com"
-__copyright__ = "Copyright (c) 2017-2026 CloudGenix, Inc"
+__copyright__ = "Copyright (c) 2017-2023 CloudGenix, Inc"
 __license__ = """
     MIT License
 
-    Copyright (c) 2017-2026 CloudGenix, Inc
+    Copyright (c) 2017-2023 CloudGenix, Inc
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +42,19 @@ __license__ = """
 # Set logging to function name
 api_logger = logging.getLogger(__name__)
 """logging.getlogger object to enable debug printing via `cloudgenix.API.set_debug`"""
+
+def _deprecated_alias(new_func, old_name):
+    """Wrap `new_func` so that calling it under its old name emits a DeprecationWarning."""
+    @functools.wraps(new_func)
+    def wrapper(*args, **kwargs):
+        warnings.warn("`%s` is deprecated and will be removed in the next release; use `%s` instead."
+                      % (old_name, new_func.__name__), DeprecationWarning, stacklevel=2)
+        return new_func(*args, **kwargs)
+    wrapper.__name__ = old_name
+    wrapper.__doc__ = ("**Deprecated:** use `%s` instead; `%s` will be removed in the next release.\n\n%s"
+                       % (new_func.__name__, old_name, new_func.__doc__ or ""))
+    return wrapper
+
 
 
 class Patch(object):
@@ -86,6 +101,36 @@ class Patch(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "patch", data=data)
 
+    def tenant_api_versions(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        PATCH Tenant_Api_Versions API Function
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to PATCH as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/api_versions".format(api_version,
+                                                                       tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "patch", data=data)
+
     def tenant_operators(self, operator_id, data, tenant_id=None, api_version="v2.2"):
         """
         Patch a tenant operator (v2.2)
@@ -99,6 +144,7 @@ class Patch(object):
 
           **Payload Attributes:** 
 
+           - **_etag:**  Type: integer 
            - **addresses:**           
                - **city:**  Type: string 
                - **country:**  Type: string 
@@ -107,17 +153,12 @@ class Patch(object):
                - **street:**  Type: string 
                - **street2:**  Type: string 
            - **custom_roles:**           
+               - **_etag:**  Type: integer 
                - **custom_permissions:**           
                    - **allowed_after_ms:**  Type: integer 
                    - **allowed_before_ms:**  Type: integer 
-                   - **disabled:**  Type: boolean 
-                   - **disabled_reason:**  Type: string 
                    - **disallow_permission:**  Type: boolean 
                    - **id:**  Type: string 
-                   - **inactive:**  Type: boolean 
-                   - **inactive_reason:**  Type: string 
-                   - **region:**  Type: string 
-                   - **tenant_id:**  Type: string 
                    - **value:**  Type: string 
                - **description:**  Type: string 
                - **disabled:**  Type: boolean 
@@ -155,6 +196,7 @@ class Patch(object):
            - **last_login:**  Type: string 
            - **last_name:**  Type: string 
            - **linked_accounts:**           
+               - **_etag:**  Type: integer 
                - **disabled:**  Type: boolean 
                - **disabled_reason:**  Type: string 
                - **failed_login_attempts:**  Type: integer 
@@ -211,7 +253,7 @@ class Patch(object):
 
           **Payload Attributes:** 
 
-           - **:**  Type: string 
+           - **_etag:**  Type: integer 
            - **address:**           
                - **city:**  Type: string 
                - **country:**  Type: string 
@@ -242,6 +284,7 @@ class Patch(object):
            - **is_support:**  Type: boolean 
            - **name:**  Type: string 
            - **operator:**           
+               - **_etag:**  Type: integer 
                - **addresses:**           
                    - **city:**  Type: string 
                    - **country:**  Type: string 
@@ -250,28 +293,29 @@ class Patch(object):
                    - **street:**  Type: string 
                    - **street2:**  Type: string 
                - **custom_roles:**           
+                   - **_etag:**  Type: integer 
                    - **custom_permissions:**           
                        - **allowed_after_ms:**  Type: integer 
                        - **allowed_before_ms:**  Type: integer 
-                       - **disabled:**  Type: boolean 
-                       - **disabled_reason:**  Type: string 
                        - **disallow_permission:**  Type: boolean 
                        - **id:**  Type: string 
-                       - **inactive:**  Type: boolean 
-                       - **inactive_reason:**  Type: string 
-                       - **region:**  Type: string 
-                       - **tenant_id:**  Type: string 
                        - **value:**  Type: string 
+                   - **description:**  Type: string 
                    - **disabled:**  Type: boolean 
+                   - **disabled_reason:**  Type: string 
                    - **disallow_permissions:**           
                        - **value:**  Type: string 
                    - **id:**  Type: string 
                    - **inactive:**  Type: boolean 
+                   - **inactive_reason:**  Type: string 
+                   - **is_system_owned:**  Type: boolean 
                    - **name:**  Type: string 
                    - **permissions:**           
                        - **value:**  Type: string 
+                   - **region:**  Type: string 
                    - **roles:**           
                        - **name:**  Type: string 
+                   - **tenant_id:**  Type: string 
                - **disable_idp_login:**  Type: boolean 
                - **disabled:**  Type: boolean 
                - **disabled_reason:**  Type: string 
@@ -294,6 +338,7 @@ class Patch(object):
                - **last_login:**  Type: string 
                - **last_name:**  Type: string 
                - **linked_accounts:**           
+                   - **_etag:**  Type: integer 
                    - **disabled:**  Type: boolean 
                    - **disabled_reason:**  Type: string 
                    - **failed_login_attempts:**  Type: integer 
@@ -352,6 +397,7 @@ class Patch(object):
            - **prisma_access_tenant_id:**  Type: string 
            - **provider_data:**           
                - **certificate:**           
+                   - **_etag:**  Type: integer 
                    - **certificate:**  Type: string 
                    - **certificate_expiry_utc:**  Type: integer 
                    - **certificate_type:**  Type: string 
@@ -381,6 +427,7 @@ class Patch(object):
                    - **version:**  Type: string 
                - **password_hash:**  Type: string 
                - **provider:**           
+                   - **_etag:**  Type: integer 
                    - **canonical_name:**  Type: string 
                    - **description:**  Type: string 
                    - **disabled:**  Type: boolean 
@@ -405,6 +452,7 @@ class Patch(object):
                - **app_id:**  Type: string 
                - **region:**  Type: string 
                - **tenant_id:**  Type: string 
+           - **x_panw_region:**  Type: string 
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -425,6 +473,9 @@ class Patch(object):
 
     # Public Digest compatibility maps below, mapping what is available via
     # /v2.0/permissions API versus what is used in this SDK.
+
+    api_versions_t = tenant_api_versions
+    """ Backwards-compatibility alias of `api_versions_t` to `tenant_api_versions`"""
 
     operators_t = tenant_operators
     """ Backwards-compatibility alias of `operators_t` to `tenant_operators`"""
