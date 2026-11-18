@@ -6552,6 +6552,54 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def microsegments_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query all microsegments for tenant (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **_etag:**  Type: integer 
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **distinct_field:**  Type: string 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/microsegments/query".format(api_version,
+                                                                              tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def migratecbtoezb(self, data, tenant_id=None, api_version="v2.0"):
         """
         Trigger migration API (v2.0)
@@ -10299,6 +10347,54 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def panetworks_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query db for PA networks that match query parameters (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+           - **_etag:**  Type: integer 
+           - **aggregate:**           
+               - **field:**  Type: string 
+               - **operator:**  Type: string 
+           - **dest_page:**  Type: integer 
+           - **distinct_field:**  Type: string 
+           - **getDeleted:**  Type: boolean 
+           - **group_by:**  [Type: string] 
+           - **isReadPreferenceSecondary:**  Type: boolean 
+           - **last_query_ts:**  Type: integer 
+           - **limit:**  Type: integer 
+           - **next_query:**  Type: object 
+           - **query_params:**  Type: object 
+           - **retrieved_fields:**  [Type: string] 
+           - **retrieved_fields_mask:**  Type: boolean 
+           - **sort_case_insensitive:**  Type: boolean 
+           - **sort_params:**  Type: object 
+           - **total_count:**  Type: integer 
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/panetworks/query".format(api_version,
+                                                                           tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def password_change(self, data, tenant_id=None, api_version="v2.0"):
         """
         Allows one to change password (v2.0)
@@ -12787,162 +12883,6 @@ class Post(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/probeprofiles/query".format(api_version,
                                                                               tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def query_links_topology(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Query topology links (paginated) (v2.0)
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/topology/links/query".format(api_version,
-                                                                               tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def query_microsegments(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Query all microsegments for tenant (v2.0)
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-           - **_etag:**  Type: integer 
-           - **aggregate:**           
-               - **field:**  Type: string 
-               - **operator:**  Type: string 
-           - **dest_page:**  Type: integer 
-           - **distinct_field:**  Type: string 
-           - **getDeleted:**  Type: boolean 
-           - **group_by:**  [Type: string] 
-           - **isReadPreferenceSecondary:**  Type: boolean 
-           - **last_query_ts:**  Type: integer 
-           - **limit:**  Type: integer 
-           - **next_query:**  Type: object 
-           - **query_params:**  Type: object 
-           - **retrieved_fields:**  [Type: string] 
-           - **retrieved_fields_mask:**  Type: boolean 
-           - **sort_case_insensitive:**  Type: boolean 
-           - **sort_params:**  Type: object 
-           - **total_count:**  Type: integer 
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/microsegments/query".format(api_version,
-                                                                              tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def query_nodes_topology(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Query topology nodes (paginated) (v2.0)
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/topology/nodes/query".format(api_version,
-                                                                               tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "post", data=data)
-
-    def query_panetworks(self, data, tenant_id=None, api_version="v2.0"):
-        """
-        Query db for PA networks that match query parameters (v2.0)
-
-          **Parameters:**:
-
-          - **data**: Dictionary containing data to POST as JSON
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.0)
-
-          **Payload Attributes:** 
-
-           - **_etag:**  Type: integer 
-           - **aggregate:**           
-               - **field:**  Type: string 
-               - **operator:**  Type: string 
-           - **dest_page:**  Type: integer 
-           - **distinct_field:**  Type: string 
-           - **getDeleted:**  Type: boolean 
-           - **group_by:**  [Type: string] 
-           - **isReadPreferenceSecondary:**  Type: boolean 
-           - **last_query_ts:**  Type: integer 
-           - **limit:**  Type: integer 
-           - **next_query:**  Type: object 
-           - **query_params:**  Type: object 
-           - **retrieved_fields:**  [Type: string] 
-           - **retrieved_fields_mask:**  Type: boolean 
-           - **sort_case_insensitive:**  Type: boolean 
-           - **sort_params:**  Type: object 
-           - **total_count:**  Type: integer 
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/panetworks/query".format(api_version,
-                                                                           tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
@@ -16891,6 +16831,66 @@ class Post(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "post", data=data)
 
+    def topology_links_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query topology links (paginated) (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/topology/links/query".format(api_version,
+                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
+    def topology_nodes_query(self, data, tenant_id=None, api_version="v2.0"):
+        """
+        Query topology nodes (paginated) (v2.0)
+
+          **Parameters:**:
+
+          - **data**: Dictionary containing data to POST as JSON
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+          **Payload Attributes:** 
+
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/topology/nodes/query".format(api_version,
+                                                                               tenant_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "post", data=data)
+
     def upgrade_status_query(self, data, tenant_id=None, api_version="v2.0"):
         """
         Query Machine Upgrade Status (v2.0)
@@ -18378,6 +18378,9 @@ class Post(object):
     query_lannetworks_t = lannetworks_query
     """ Backwards-compatibility alias of `query_lannetworks_t` to `lannetworks_query`"""
 
+    query_links_topology = topology_links_query
+    """ Backwards-compatibility alias of `query_links_topology` to `topology_links_query`"""
+
     query_localprefixfilters = localprefixfilters_query
     """ Backwards-compatibility alias of `query_localprefixfilters` to `localprefixfilters_query`"""
 
@@ -18389,6 +18392,9 @@ class Post(object):
 
     query_machines_c = clients_machines_query
     """ Backwards-compatibility alias of `query_machines_c` to `clients_machines_query`"""
+
+    query_microsegments = microsegments_query
+    """ Backwards-compatibility alias of `query_microsegments` to `microsegments_query`"""
 
     query_mstp_instances = mstp_instances_query
     """ Backwards-compatibility alias of `query_mstp_instances` to `mstp_instances_query`"""
@@ -18468,6 +18474,9 @@ class Post(object):
     query_ngfwsecuritypolicysetstacks = ngfwsecuritypolicysetstacks_query
     """ Backwards-compatibility alias of `query_ngfwsecuritypolicysetstacks` to `ngfwsecuritypolicysetstacks_query`"""
 
+    query_nodes_topology = topology_nodes_query
+    """ Backwards-compatibility alias of `query_nodes_topology` to `topology_nodes_query`"""
+
     query_ospfconfigs = ospfconfigs_query
     """ Backwards-compatibility alias of `query_ospfconfigs` to `ospfconfigs_query`"""
 
@@ -18476,6 +18485,9 @@ class Post(object):
 
     query_ospfreachableprefixes = ospfreachableprefixes_query
     """ Backwards-compatibility alias of `query_ospfreachableprefixes` to `ospfreachableprefixes_query`"""
+
+    query_panetworks = panetworks_query
+    """ Backwards-compatibility alias of `query_panetworks` to `panetworks_query`"""
 
     query_pathgroups = pathgroups_query
     """ Backwards-compatibility alias of `query_pathgroups` to `pathgroups_query`"""
