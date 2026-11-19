@@ -1,7 +1,7 @@
 """
 Python3 SDK for the CloudGenix AppFabric
 
-**Version:** v6.8.1b1
+**Version:** v7.0.1b1
 
 **Author:** CloudGenix
 
@@ -155,7 +155,7 @@ ws_logger = logging.getLogger('websockets')
 """websocket logger is handled slightly differently, so we will have a seperate handle."""
 
 # Version of SDK
-version = "6.8.1b1"
+version = "7.0.1b1"
 """SDK Version string"""
 __version__ = version
 

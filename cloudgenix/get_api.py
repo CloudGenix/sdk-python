@@ -858,6 +858,38 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def certificates_tenants(self, certificate_id=None, tenant_id=None, api_version="v2.0"):
+        """
+        Get all tenant certificates V2.0 (v2.0)
+
+          **Parameters:**:
+
+          - **certificate_id**: (optional) 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        if not certificate_id:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates".format(api_version,
+                                                                           tenant_id)
+        else:
+            url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
+                                                                              tenant_id,
+                                                                              certificate_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def clients_base_roles(self, client_id, tenant_id=None, api_version="v2.0"):
         """
         Get a list of client base roles (v2.0)
@@ -989,7 +1021,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: (optional) DEM Site Configuration ID
+          - **demsiteconfig_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1344,7 +1376,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **dnssecuritycategorie_id**: (optional) DNS Security Category ID
+          - **dnssecuritycategorie_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1376,7 +1408,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **dnssecurityprofile_id**: (optional) DNS Security Profile ID
+          - **dnssecurityprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1922,16 +1954,16 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.3"):
+    def elementaccessconfigs(self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version="v2.2"):
         """
-        Get all Element Access Configs v2.3 (v2.3)
+        Get all Element Access Configs (v2.2)
 
           **Parameters:**:
 
           - **element_id**: Element (Device) ID
           - **elementaccessconfig_id**: (optional) Element Access Config ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -1985,14 +2017,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def elementmodels(self, tenant_id=None, api_version="v3.8"):
+    def elementmodels(self, tenant_id=None, api_version="v3.9"):
         """
-        Get all element models (v3.8)
+        Get all element models (v3.9)
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.8)
+          - **api_version**: API version to use (default v3.9)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2218,7 +2250,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **elementsystemlimitprofile_id**: (optional) Element System Limit Profile ID
+          - **elementsystemlimitprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2542,15 +2574,15 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def events(self, event_id, tenant_id=None, api_version="v2.4"):
+    def events(self, event_id, tenant_id=None, api_version="v3.0"):
         """
-        Get Events API (v2.4)
+        Get Events API (v3.0)
 
           **Parameters:**:
 
           - **event_id**: Event ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -3066,7 +3098,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **iotdevicemapping_id**: IoT Device Mapping ID
+          - **iotdevicemapping_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3094,7 +3126,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **iotdictionary_id**: (optional) IoT Dictionary ID
+          - **iotdictionary_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3840,6 +3872,36 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
+    def microsegments(self, site_id, microsegment_id, tenant_id=None, api_version="v2.0"):
+        """
+        Get microsegment by ID (v2.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **microsegment_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/microsegments/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    site_id,
+                                                                                    microsegment_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "get")
+
     def migratecbtoezb(self, tenant_id=None, api_version="v2.0"):
         """
         Get migration API status (v2.0)
@@ -3992,32 +4054,6 @@ class Get(object):
 
         url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/anomaly".format(api_version,
                                                                                 tenant_id)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
-    def monitor_aiops_forecast(self, tenant_id=None, api_version="v2.1"):
-        """
-        GET Monitor Aiops Forecast API Function
-
-          **Parameters:**:
-
-          - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        if tenant_id is None and self._parent_class.tenant_id:
-            # Pull tenant_id from parent namespace cache.
-            tenant_id = self._parent_class.tenant_id
-        elif not tenant_id:
-            # No value for tenant_id.
-            raise TypeError("tenant_id is required but not set or cached.")
-        cur_ctlr = self._parent_class.cdl_url
-
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/monitor/aiops/forecast".format(api_version,
-                                                                                 tenant_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
@@ -4190,7 +4226,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **probe_id**: Probe ID
+          - **probe_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -4264,14 +4300,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def monitor_sys_metrics(self, tenant_id=None, api_version="v2.4"):
+    def monitor_sys_metrics(self, tenant_id=None, api_version="v3.0"):
         """
         GET Monitor_Sys_Metrics API Function
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.4)
+          - **api_version**: API version to use (default v3.0)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -5348,24 +5384,6 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def openapi(self, api_version="v2.0"):
-        """
-        GET Openapi API Function
-
-          **Parameters:**:
-
-          - **api_version**: API version to use (default v2.0)
-
-        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
-        """
-
-        cur_ctlr = self._parent_class.controller
-
-        url = str(cur_ctlr) + "/{}/api/openapi".format(api_version)
-
-        api_logger.debug("URL = %s", url)
-        return self._parent_class.rest_call(url, "get")
-
     def openapi_json(self, api_version="v2.0"):
         """
         GET Openapi_Json API Function
@@ -5427,7 +5445,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: (optional) OSPF Configuration ID
+          - **ospfconfig_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -5465,7 +5483,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Configuration ID
+          - **ospfconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5497,7 +5515,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Configuration ID
+          - **ospfconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5529,7 +5547,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfglobalconfig_id**: (optional) OSPF Global Configuration ID
+          - **ospfglobalconfig_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5651,7 +5669,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **panetwork_id**: (optional) PA Network ID
+          - **panetwork_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5742,7 +5760,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilterassociation_id**: (optional) Path Prefix Distribution Filter Association ID
+          - **pathprefixdistributionfilterassociation_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5777,7 +5795,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilter_id**: (optional) Path Prefix Distribution Filter ID
+          - **pathprefixdistributionfilter_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -5812,7 +5830,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **peersite_id**: Peer Site ID
+          - **peersite_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -6144,7 +6162,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prefixdistributionspokelist_id**: (optional) Prefix Distribution Spoke List ID
+          - **prefixdistributionspokelist_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -6401,7 +6419,7 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def prismasase_connections(self, site_id, prismasase_connection_id=None, tenant_id=None, api_version="v2.1"):
+    def prismasase_connections(self, site_id, prismasase_connection_id=None, tenant_id=None, api_version="v3.1"):
         """
         GET Prismasase_Connections API Function
 
@@ -6410,7 +6428,7 @@ class Get(object):
           - **site_id**: Site ID
           - **prismasase_connection_id**: (optional) Prisma SASE Connection ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6436,14 +6454,14 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def prismasase_connections_configs(self, tenant_id=None, api_version="v3.1"):
+    def prismasase_connections_configs(self, tenant_id=None, api_version="v3.2"):
         """
-        Get a specific SASE connection config (v3.1)
+        Get a specific SASE connection config (v3.2)
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.1)
+          - **api_version**: API version to use (default v3.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -6498,7 +6516,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: (optional) Probe Configuration ID
+          - **probeconfig_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -6530,7 +6548,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: (optional) Probe Profile ID
+          - **probeprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -6891,9 +6909,9 @@ class Get(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "get")
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.3"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version="v2.4"):
         """
-        Get all Route Map for Element (v2.3)
+        Get all Route Map for Element (v2.4)
 
           **Parameters:**:
 
@@ -6901,7 +6919,7 @@ class Get(object):
           - **element_id**: Element (Device) ID
           - **routing_routemap_id**: (optional) Routing Route Map ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -7211,7 +7229,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **securityprofilegroup_id**: (optional) Security Profile Group ID
+          - **securityprofilegroup_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -7818,7 +7836,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **sitesnapshot_id**: Site Snapshot ID
+          - **sitesnapshot_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -7846,7 +7864,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **sku_id**: (optional) SKU ID
+          - **sku_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -7879,7 +7897,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **snapshot_id**: Snapshot ID
+          - **snapshot_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -7909,7 +7927,7 @@ class Get(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **snapshot_id**: Snapshot ID
+          - **snapshot_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8196,7 +8214,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **spywareprofile_id**: (optional) Spyware Profile ID
+          - **spywareprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8298,7 +8316,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID
+          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -8368,7 +8386,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: (optional) TACACS+ Profile ID
+          - **tacacs_plus_profile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8402,7 +8420,7 @@ class Get(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: (optional) TACACS+ Server ID
+          - **tacacs_plus_server_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8924,7 +8942,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **urlcustomcategorie_id**: (optional) URL Custom Category ID
+          - **urlcustomcategorie_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -8982,7 +9000,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **urlfilteringprofile_id**: (optional) URL Filtering Profile ID
+          - **urlfilteringprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -9323,7 +9341,7 @@ class Get(object):
 
           **Parameters:**:
 
-          - **vulnerabilityprofile_id**: (optional) Vulnerability Profile ID
+          - **vulnerabilityprofile_id**: (optional) 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -9683,9 +9701,6 @@ class Get(object):
     cellular_modules_m = machine_cellular_modules
     """ Backwards-compatibility alias of `cellular_modules_m` to `machine_cellular_modules`"""
 
-    certificates_tenants = certificates
-    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
-
     clients_t = tenant_clients
     """ Backwards-compatibility alias of `clients_t` to `tenant_clients`"""
 
@@ -9748,9 +9763,6 @@ class Get(object):
 
     firmware_cellular_modules_m = machine_cellular_modules_firmware
     """ Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_cellular_modules_firmware`"""
-
-    forecast_aiops_monitor = monitor_aiops_forecast
-    """ Backwards-compatibility alias of `forecast_aiops_monitor` to `monitor_aiops_forecast`"""
 
     health_aiops_monitor = monitor_aiops_health
     """ Backwards-compatibility alias of `health_aiops_monitor` to `monitor_aiops_health`"""

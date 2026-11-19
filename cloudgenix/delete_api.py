@@ -258,13 +258,13 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def certificates(self, entitie_id, tenant_id=None, api_version="v2.0"):
+    def certificates_tenants(self, certificate_id, tenant_id=None, api_version="v2.0"):
         """
-        DELETE Certificates API Function
+        Delete a certificate of tenant v2.0 (v2.0)
 
           **Parameters:**:
 
-          - **entitie_id**: Entitie ID
+          - **certificate_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -279,9 +279,9 @@ class Delete(object):
             raise TypeError("tenant_id is required but not set or cached.")
         cur_ctlr = self._parent_class.controller
 
-        url = str(cur_ctlr) + "/{}/api/tenants/{}/entities/{}/certificates".format(api_version,
-                                                                                   tenant_id,
-                                                                                   entitie_id)
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/certificates/{}".format(api_version,
+                                                                          tenant_id,
+                                                                          certificate_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -293,7 +293,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **demsiteconfig_id**: DEM Site Configuration ID
+          - **demsiteconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -776,7 +776,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **elementsystemlimitprofile_id**: Element System Limit Profile ID
+          - **elementsystemlimitprofile_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -1376,6 +1376,36 @@ class Delete(object):
         url = str(cur_ctlr) + "/{}/api/tenants/{}/localprefixfilters/{}".format(api_version,
                                                                                 tenant_id,
                                                                                 localprefixfilter_id)
+
+        api_logger.debug("URL = %s", url)
+        return self._parent_class.rest_call(url, "delete")
+
+    def microsegments(self, site_id, microsegment_id, tenant_id=None, api_version="v2.0"):
+        """
+        Delete microsegment (v2.0)
+
+          **Parameters:**:
+
+          - **site_id**: Site ID
+          - **microsegment_id**: 
+          - **tenant_id**: Tenant ID
+          - **api_version**: API version to use (default v2.0)
+
+        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
+        """
+
+        if tenant_id is None and self._parent_class.tenant_id:
+            # Pull tenant_id from parent namespace cache.
+            tenant_id = self._parent_class.tenant_id
+        elif not tenant_id:
+            # No value for tenant_id.
+            raise TypeError("tenant_id is required but not set or cached.")
+        cur_ctlr = self._parent_class.controller
+
+        url = str(cur_ctlr) + "/{}/api/tenants/{}/sites/{}/microsegments/{}".format(api_version,
+                                                                                    tenant_id,
+                                                                                    site_id,
+                                                                                    microsegment_id)
 
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
@@ -2022,7 +2052,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **ospfconfig_id**: OSPF Configuration ID
+          - **ospfconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2081,7 +2111,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilterassociation_id**: Path Prefix Distribution Filter Association ID
+          - **pathprefixdistributionfilterassociation_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2111,7 +2141,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **pathprefixdistributionfilter_id**: Path Prefix Distribution Filter ID
+          - **pathprefixdistributionfilter_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2313,7 +2343,7 @@ class Delete(object):
           **Parameters:**:
 
           - **site_id**: Site ID
-          - **prefixdistributionspokelist_id**: Prefix Distribution Spoke List ID
+          - **prefixdistributionspokelist_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2510,7 +2540,7 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def prismasase_connections(self, site_id, prismasase_connection_id, tenant_id=None, api_version="v2.1"):
+    def prismasase_connections(self, site_id, prismasase_connection_id, tenant_id=None, api_version="v3.1"):
         """
         DELETE Prismasase_Connections API Function
 
@@ -2519,7 +2549,7 @@ class Delete(object):
           - **site_id**: Site ID
           - **prismasase_connection_id**: Prisma SASE Connection ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.1)
+          - **api_version**: API version to use (default v3.1)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2540,14 +2570,14 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def prismasase_connections_configs(self, tenant_id=None, api_version="v3.1"):
+    def prismasase_connections_configs(self, tenant_id=None, api_version="v3.2"):
         """
-        Delete existing SASE connection config (v3.1)
+        Delete existing SASE connection config (v3.2)
 
           **Parameters:**:
 
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v3.1)
+          - **api_version**: API version to use (default v3.2)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2572,7 +2602,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeconfig_id**: Probe Configuration ID
+          - **probeconfig_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -2600,7 +2630,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **probeprofile_id**: Probe Profile ID
+          - **probeprofile_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -2776,9 +2806,9 @@ class Delete(object):
         api_logger.debug("URL = %s", url)
         return self._parent_class.rest_call(url, "delete")
 
-    def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.3"):
+    def routing_routemaps(self, site_id, element_id, routing_routemap_id, tenant_id=None, api_version="v2.4"):
         """
-        Delete Route Map (v2.3)
+        Delete Route Map (v2.4)
 
           **Parameters:**:
 
@@ -2786,7 +2816,7 @@ class Delete(object):
           - **element_id**: Element (Device) ID
           - **routing_routemap_id**: Routing Route Map ID
           - **tenant_id**: Tenant ID
-          - **api_version**: API version to use (default v2.3)
+          - **api_version**: API version to use (default v2.4)
 
         **Returns:** requests.Response object extended with cgx_status and cgx_content properties.
         """
@@ -2902,7 +2932,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **securityprofilegroup_id**: Security Profile Group ID
+          - **securityprofilegroup_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3406,7 +3436,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **syslogserverprofile_id**: Sys Log Server Profile ID
+          - **syslogserverprofile_id**: Sys Log Server Profile ID 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.1)
 
@@ -3466,7 +3496,7 @@ class Delete(object):
 
           **Parameters:**:
 
-          - **tacacs_plus_profile_id**: TACACS+ Profile ID
+          - **tacacs_plus_profile_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3496,7 +3526,7 @@ class Delete(object):
 
           - **site_id**: Site ID
           - **element_id**: Element (Device) ID
-          - **tacacs_plus_server_id**: TACACS+ Server ID
+          - **tacacs_plus_server_id**: 
           - **tenant_id**: Tenant ID
           - **api_version**: API version to use (default v2.0)
 
@@ -3978,9 +4008,6 @@ class Delete(object):
 
     anynetlinks_t = tenant_anynetlinks
     """ Backwards-compatibility alias of `anynetlinks_t` to `tenant_anynetlinks`"""
-
-    certificates_tenants = certificates
-    """ Backwards-compatibility alias of `certificates_tenants` to `certificates`"""
 
     configs_prismasase_connections = prismasase_connections_configs
     """ Backwards-compatibility alias of `configs_prismasase_connections` to `prismasase_connections_configs`"""

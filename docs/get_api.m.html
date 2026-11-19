@@ -2604,6 +2604,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.cellular_modules_sim_security">cellular_modules_sim_security</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.certificates">certificates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.certificates_revoked">certificates_revoked</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.certificates_tenants">certificates_tenants</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.clients_base_roles">clients_base_roles</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.clients_machines">clients_machines</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.clients_roles">clients_roles</a></li>
@@ -2699,13 +2700,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.machines">machines</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.machines_software_status">machines_software_status</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.machinesystemstatus">machinesystemstatus</a></li>
+    <li class="mono"><a href="#cloudgenix.get_api.Get.microsegments">microsegments</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.migratecbtoezb">migratecbtoezb</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aaa_metrics">monitor_aaa_metrics</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_agg_bw_stats">monitor_agg_bw_stats</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aggregates">monitor_aggregates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aiops_aggregates">monitor_aiops_aggregates</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aiops_anomaly">monitor_aiops_anomaly</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aiops_forecast">monitor_aiops_forecast</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aiops_health">monitor_aiops_health</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_aiops_object_stats">monitor_aiops_object_stats</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.monitor_application_qos_metrics">monitor_application_qos_metrics</a></li>
@@ -2748,7 +2749,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <li class="mono"><a href="#cloudgenix.get_api.Get.ngfwsecuritypolicysetstacks">ngfwsecuritypolicysetstacks</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.ntp">ntp</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.ntp_status">ntp_status</a></li>
-    <li class="mono"><a href="#cloudgenix.get_api.Get.openapi">openapi</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.openapi_json">openapi_json</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.operator_sessions">operator_sessions</a></li>
     <li class="mono"><a href="#cloudgenix.get_api.Get.ospfconfigs">ospfconfigs</a></li>
@@ -3772,6 +3772,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all tenant certificates V2.0 (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **certificate_id**: (optional) </span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">certificate_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                              <span class="n">certificate_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">clients_base_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of client base roles (v2.0)</span>
@@ -3903,7 +3935,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **demsiteconfig_id**: (optional) DEM Site Configuration ID</span>
+<span class="sd">          - **demsiteconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4258,7 +4290,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **dnssecuritycategorie_id**: (optional) DNS Security Category ID</span>
+<span class="sd">          - **dnssecuritycategorie_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4290,7 +4322,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **dnssecurityprofile_id**: (optional) DNS Security Profile ID</span>
+<span class="sd">          - **dnssecurityprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -4836,16 +4868,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all Element Access Configs v2.3 (v2.3)</span>
+<span class="sd">        Get all Element Access Configs (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **elementaccessconfig_id**: (optional) Element Access Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4899,14 +4931,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.8&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.9&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all element models (v3.8)</span>
+<span class="sd">        Get all element models (v3.9)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.8)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.9)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5132,7 +5164,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **elementsystemlimitprofile_id**: (optional) Element System Limit Profile ID</span>
+<span class="sd">          - **elementsystemlimitprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -5456,15 +5488,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get Events API (v2.4)</span>
+<span class="sd">        Get Events API (v3.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **event_id**: Event ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5980,7 +6012,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **iotdevicemapping_id**: IoT Device Mapping ID</span>
+<span class="sd">          - **iotdevicemapping_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6008,7 +6040,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **iotdictionary_id**: (optional) IoT Dictionary ID</span>
+<span class="sd">          - **iotdictionary_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -6754,6 +6786,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get microsegment by ID (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **microsegment_id**: </span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">site_id</span><span class="p">,</span>
+                                                                                    <span class="n">microsegment_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">migratecbtoezb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get migration API status (v2.0)</span>
@@ -6906,32 +6968,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/anomaly&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                 <span class="n">tenant_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">monitor_aiops_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Monitor Aiops Forecast API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">cdl_url</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/forecast&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                 <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -7104,7 +7140,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probe_id**: Probe ID</span>
+<span class="sd">          - **probe_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -7178,14 +7214,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Monitor_Sys_Metrics API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -8262,24 +8298,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">openapi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Openapi API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/openapi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">openapi_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Openapi_Json API Function</span>
@@ -8341,7 +8359,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: (optional) OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -8379,7 +8397,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8411,7 +8429,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8443,7 +8461,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfglobalconfig_id**: (optional) OSPF Global Configuration ID</span>
+<span class="sd">          - **ospfglobalconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8565,7 +8583,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **panetwork_id**: (optional) PA Network ID</span>
+<span class="sd">          - **panetwork_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8656,7 +8674,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilterassociation_id**: (optional) Path Prefix Distribution Filter Association ID</span>
+<span class="sd">          - **pathprefixdistributionfilterassociation_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8691,7 +8709,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilter_id**: (optional) Path Prefix Distribution Filter ID</span>
+<span class="sd">          - **pathprefixdistributionfilter_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -8726,7 +8744,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **peersite_id**: Peer Site ID</span>
+<span class="sd">          - **peersite_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9058,7 +9076,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prefixdistributionspokelist_id**: (optional) Prefix Distribution Spoke List ID</span>
+<span class="sd">          - **prefixdistributionspokelist_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9315,7 +9333,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Prismasase_Connections API Function</span>
 
@@ -9324,7 +9342,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **prismasase_connection_id**: (optional) Prisma SASE Connection ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -9350,14 +9368,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a specific SASE connection config (v3.1)</span>
+<span class="sd">        Get a specific SASE connection config (v3.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -9412,7 +9430,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeconfig_id**: (optional) Probe Configuration ID</span>
+<span class="sd">          - **probeconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -9444,7 +9462,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeprofile_id**: (optional) Probe Profile ID</span>
+<span class="sd">          - **probeprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -9805,9 +9823,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all Route Map for Element (v2.3)</span>
+<span class="sd">        Get all Route Map for Element (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -9815,7 +9833,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **routing_routemap_id**: (optional) Routing Route Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -10125,7 +10143,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityprofilegroup_id**: (optional) Security Profile Group ID</span>
+<span class="sd">          - **securityprofilegroup_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10732,7 +10750,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **sitesnapshot_id**: Site Snapshot ID</span>
+<span class="sd">          - **sitesnapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10760,7 +10778,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **sku_id**: (optional) SKU ID</span>
+<span class="sd">          - **sku_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -10793,7 +10811,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **snapshot_id**: Snapshot ID</span>
+<span class="sd">          - **snapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -10823,7 +10841,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **snapshot_id**: Snapshot ID</span>
+<span class="sd">          - **snapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -11110,7 +11128,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **spywareprofile_id**: (optional) Spyware Profile ID</span>
+<span class="sd">          - **spywareprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -11212,7 +11230,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID</span>
+<span class="sd">          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -11282,7 +11300,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: (optional) TACACS+ Profile ID</span>
+<span class="sd">          - **tacacs_plus_profile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -11316,7 +11334,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: (optional) TACACS+ Server ID</span>
+<span class="sd">          - **tacacs_plus_server_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -11838,7 +11856,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **urlcustomcategorie_id**: (optional) URL Custom Category ID</span>
+<span class="sd">          - **urlcustomcategorie_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -11896,7 +11914,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **urlfilteringprofile_id**: (optional) URL Filtering Profile ID</span>
+<span class="sd">          - **urlfilteringprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -12237,7 +12255,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **vulnerabilityprofile_id**: (optional) Vulnerability Profile ID</span>
+<span class="sd">          - **vulnerabilityprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -12597,9 +12615,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">cellular_modules_m</span> <span class="o">=</span> <span class="n">machine_cellular_modules</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `cellular_modules_m` to `machine_cellular_modules`&quot;&quot;&quot;</span>
 
-    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">certificates</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `certificates`&quot;&quot;&quot;</span>
-
     <span class="n">clients_t</span> <span class="o">=</span> <span class="n">tenant_clients</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `clients_t` to `tenant_clients`&quot;&quot;&quot;</span>
 
@@ -12662,9 +12677,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="n">firmware_cellular_modules_m</span> <span class="o">=</span> <span class="n">machine_cellular_modules_firmware</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_cellular_modules_firmware`&quot;&quot;&quot;</span>
-
-    <span class="n">forecast_aiops_monitor</span> <span class="o">=</span> <span class="n">monitor_aiops_forecast</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `forecast_aiops_monitor` to `monitor_aiops_forecast`&quot;&quot;&quot;</span>
 
     <span class="n">health_aiops_monitor</span> <span class="o">=</span> <span class="n">monitor_aiops_health</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `health_aiops_monitor` to `monitor_aiops_health`&quot;&quot;&quot;</span>
@@ -13793,6 +13805,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all tenant certificates V2.0 (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **certificate_id**: (optional) </span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">certificate_id</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                           <span class="n">tenant_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                              <span class="n">tenant_id</span><span class="p">,</span>
+                                                                              <span class="n">certificate_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">clients_base_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of client base roles (v2.0)</span>
@@ -13924,7 +13968,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **demsiteconfig_id**: (optional) DEM Site Configuration ID</span>
+<span class="sd">          - **demsiteconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -14279,7 +14323,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **dnssecuritycategorie_id**: (optional) DNS Security Category ID</span>
+<span class="sd">          - **dnssecuritycategorie_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -14311,7 +14355,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **dnssecurityprofile_id**: (optional) DNS Security Profile ID</span>
+<span class="sd">          - **dnssecurityprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -14857,16 +14901,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all Element Access Configs v2.3 (v2.3)</span>
+<span class="sd">        Get all Element Access Configs (v2.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **elementaccessconfig_id**: (optional) Element Access Config ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -14920,14 +14964,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.8&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.9&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all element models (v3.8)</span>
+<span class="sd">        Get all element models (v3.9)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.8)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.9)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -15153,7 +15197,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **elementsystemlimitprofile_id**: (optional) Element System Limit Profile ID</span>
+<span class="sd">          - **elementsystemlimitprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -15477,15 +15521,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get Events API (v2.4)</span>
+<span class="sd">        Get Events API (v3.0)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **event_id**: Event ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -16001,7 +16045,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **iotdevicemapping_id**: IoT Device Mapping ID</span>
+<span class="sd">          - **iotdevicemapping_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -16029,7 +16073,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **iotdictionary_id**: (optional) IoT Dictionary ID</span>
+<span class="sd">          - **iotdictionary_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -16775,6 +16819,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get microsegment by ID (v2.0)</span>
+
+<span class="sd">          **Parameters:**:</span>
+
+<span class="sd">          - **site_id**: Site ID</span>
+<span class="sd">          - **microsegment_id**: </span>
+<span class="sd">          - **tenant_id**: Tenant ID</span>
+<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
+
+<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+            <span class="c1"># No value for tenant_id.</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                    <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                    <span class="n">site_id</span><span class="p">,</span>
+                                                                                    <span class="n">microsegment_id</span><span class="p">)</span>
+
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">migratecbtoezb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get migration API status (v2.0)</span>
@@ -16927,32 +17001,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
         <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/anomaly&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                                 <span class="n">tenant_id</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">monitor_aiops_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Monitor Aiops Forecast API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-            <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-            <span class="c1"># No value for tenant_id.</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">cdl_url</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/forecast&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                                 <span class="n">tenant_id</span><span class="p">)</span>
 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
@@ -17125,7 +17173,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probe_id**: Probe ID</span>
+<span class="sd">          - **probe_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -17199,14 +17247,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Monitor_Sys_Metrics API Function</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.0)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -18283,24 +18331,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">openapi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GET Openapi API Function</span>
-
-<span class="sd">          **Parameters:**:</span>
-
-<span class="sd">          - **api_version**: API version to use (default v2.0)</span>
-
-<span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/openapi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
-
-        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">openapi_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Openapi_Json API Function</span>
@@ -18362,7 +18392,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: (optional) OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -18400,7 +18430,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18432,7 +18462,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">          - **ospfconfig_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18464,7 +18494,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **ospfglobalconfig_id**: (optional) OSPF Global Configuration ID</span>
+<span class="sd">          - **ospfglobalconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18586,7 +18616,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **panetwork_id**: (optional) PA Network ID</span>
+<span class="sd">          - **panetwork_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18677,7 +18707,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilterassociation_id**: (optional) Path Prefix Distribution Filter Association ID</span>
+<span class="sd">          - **pathprefixdistributionfilterassociation_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18712,7 +18742,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **pathprefixdistributionfilter_id**: (optional) Path Prefix Distribution Filter ID</span>
+<span class="sd">          - **pathprefixdistributionfilter_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -18747,7 +18777,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **peersite_id**: Peer Site ID</span>
+<span class="sd">          - **peersite_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -19079,7 +19109,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **prefixdistributionspokelist_id**: (optional) Prefix Distribution Spoke List ID</span>
+<span class="sd">          - **prefixdistributionspokelist_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -19336,7 +19366,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        GET Prismasase_Connections API Function</span>
 
@@ -19345,7 +19375,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **prismasase_connection_id**: (optional) Prisma SASE Connection ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -19371,14 +19401,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a specific SASE connection config (v3.1)</span>
+<span class="sd">        Get a specific SASE connection config (v3.2)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v3.1)</span>
+<span class="sd">          - **api_version**: API version to use (default v3.2)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -19433,7 +19463,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeconfig_id**: (optional) Probe Configuration ID</span>
+<span class="sd">          - **probeconfig_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -19465,7 +19495,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **probeprofile_id**: (optional) Probe Profile ID</span>
+<span class="sd">          - **probeprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -19826,9 +19856,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all Route Map for Element (v2.3)</span>
+<span class="sd">        Get all Route Map for Element (v2.4)</span>
 
 <span class="sd">          **Parameters:**:</span>
 
@@ -19836,7 +19866,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          - **element_id**: Element (Device) ID</span>
 <span class="sd">          - **routing_routemap_id**: (optional) Routing Route Map ID</span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
-<span class="sd">          - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">          - **api_version**: API version to use (default v2.4)</span>
 
 <span class="sd">        **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -20146,7 +20176,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **securityprofilegroup_id**: (optional) Security Profile Group ID</span>
+<span class="sd">          - **securityprofilegroup_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -20753,7 +20783,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **sitesnapshot_id**: Site Snapshot ID</span>
+<span class="sd">          - **sitesnapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -20781,7 +20811,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **sku_id**: (optional) SKU ID</span>
+<span class="sd">          - **sku_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -20814,7 +20844,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **snapshot_id**: Snapshot ID</span>
+<span class="sd">          - **snapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -20844,7 +20874,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">          **Parameters:**:</span>
 
 <span class="sd">          - **site_id**: Site ID</span>
-<span class="sd">          - **snapshot_id**: Snapshot ID</span>
+<span class="sd">          - **snapshot_id**: </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -21131,7 +21161,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **spywareprofile_id**: (optional) Spyware Profile ID</span>
+<span class="sd">          - **spywareprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -21233,7 +21263,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID</span>
+<span class="sd">          - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.1)</span>
 
@@ -21303,7 +21333,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **tacacs_plus_profile_id**: (optional) TACACS+ Profile ID</span>
+<span class="sd">          - **tacacs_plus_profile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -21337,7 +21367,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          - **site_id**: Site ID</span>
 <span class="sd">          - **element_id**: Element (Device) ID</span>
-<span class="sd">          - **tacacs_plus_server_id**: (optional) TACACS+ Server ID</span>
+<span class="sd">          - **tacacs_plus_server_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -21859,7 +21889,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **urlcustomcategorie_id**: (optional) URL Custom Category ID</span>
+<span class="sd">          - **urlcustomcategorie_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -21917,7 +21947,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **urlfilteringprofile_id**: (optional) URL Filtering Profile ID</span>
+<span class="sd">          - **urlfilteringprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -22258,7 +22288,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="sd">          **Parameters:**:</span>
 
-<span class="sd">          - **vulnerabilityprofile_id**: (optional) Vulnerability Profile ID</span>
+<span class="sd">          - **vulnerabilityprofile_id**: (optional) </span>
 <span class="sd">          - **tenant_id**: Tenant ID</span>
 <span class="sd">          - **api_version**: API version to use (default v2.0)</span>
 
@@ -22618,9 +22648,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">cellular_modules_m</span> <span class="o">=</span> <span class="n">machine_cellular_modules</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `cellular_modules_m` to `machine_cellular_modules`&quot;&quot;&quot;</span>
 
-    <span class="n">certificates_tenants</span> <span class="o">=</span> <span class="n">certificates</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `certificates_tenants` to `certificates`&quot;&quot;&quot;</span>
-
     <span class="n">clients_t</span> <span class="o">=</span> <span class="n">tenant_clients</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `clients_t` to `tenant_clients`&quot;&quot;&quot;</span>
 
@@ -22683,9 +22710,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="n">firmware_cellular_modules_m</span> <span class="o">=</span> <span class="n">machine_cellular_modules_firmware</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `firmware_cellular_modules_m` to `machine_cellular_modules_firmware`&quot;&quot;&quot;</span>
-
-    <span class="n">forecast_aiops_monitor</span> <span class="o">=</span> <span class="n">monitor_aiops_forecast</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `forecast_aiops_monitor` to `monitor_aiops_forecast`&quot;&quot;&quot;</span>
 
     <span class="n">health_aiops_monitor</span> <span class="o">=</span> <span class="n">monitor_aiops_health</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Backwards-compatibility alias of `health_aiops_monitor` to `monitor_aiops_health`&quot;&quot;&quot;</span>
@@ -23157,17 +23181,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 
             </div>
-            <div class="item" id="cloudgenix.get_api.Get.certificates_tenants">
-            <p class="name">var <span class="ident">certificates_tenants</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Backwards-compatibility alias of <code>certificates_tenants</code> to <code>certificates</code></p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
             <div class="item" id="cloudgenix.get_api.Get.clients_t">
             <p class="name">var <span class="ident">clients_t</span></p>
             
@@ -23406,17 +23419,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   
     <div class="desc"><p>Backwards-compatibility alias of <code>firmware_cellular_modules_m</code> to <code>machine_cellular_modules_firmware</code></p></div>
-  <div class="source_cont">
-</div>
-
-            </div>
-            <div class="item" id="cloudgenix.get_api.Get.forecast_aiops_monitor">
-            <p class="name">var <span class="ident">forecast_aiops_monitor</span></p>
-            
-
-            
-  
-    <div class="desc"><p>Backwards-compatibility alias of <code>forecast_aiops_monitor</code> to <code>monitor_aiops_forecast</code></p></div>
   <div class="source_cont">
 </div>
 
@@ -25787,6 +25789,58 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.certificates_tenants">
+    <div class="name def">
+    <p>def <span class="ident">certificates_tenants</span>(</p><p>self, certificate_id=None, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Get all tenant certificates V2.0 (v2.0)</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>certificate_id</strong>: (optional) </li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.certificates_tenants', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.certificates_tenants" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">certificates_tenants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">certificate_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all tenant certificates V2.0 (v2.0)</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **certificate_id**: (optional) </span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">certificate_id</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                       <span class="n">tenant_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/certificates/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                          <span class="n">tenant_id</span><span class="p">,</span>
+                                                                          <span class="n">certificate_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.clients_base_roles">
     <div class="name def">
     <p>def <span class="ident">clients_base_roles</span>(</p><p>self, client_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -26004,7 +26058,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>demsiteconfig_id</strong>: (optional) DEM Site Configuration ID</li>
+<li><strong>demsiteconfig_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -26017,7 +26071,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Get all ADEM status for a site (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **demsiteconfig_id**: (optional) DEM Site Configuration ID</span>
+<span class="sd">      - **demsiteconfig_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -26584,7 +26638,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all the DNSCategories that are supported, this is a global resource (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>dnssecuritycategorie_id</strong>: (optional) DNS Security Category ID</li>
+<li><strong>dnssecuritycategorie_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -26596,7 +26650,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all the DNSCategories that are supported, this is a global resource (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **dnssecuritycategorie_id**: (optional) DNS Security Category ID</span>
+<span class="sd">      - **dnssecuritycategorie_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -26636,7 +26690,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all DNSSec profiles for a tenant (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>dnssecurityprofile_id</strong>: (optional) DNS Security Profile ID</li>
+<li><strong>dnssecurityprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -26648,7 +26702,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all DNSSec profiles for a tenant (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **dnssecurityprofile_id**: (optional) DNS Security Profile ID</span>
+<span class="sd">      - **dnssecurityprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -27535,32 +27589,32 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.elementaccessconfigs">
     <div class="name def">
-    <p>def <span class="ident">elementaccessconfigs</span>(</p><p>self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">elementaccessconfigs</span>(</p><p>self, element_id, elementaccessconfig_id=None, tenant_id=None, api_version=&#39;v2.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Get all Element Access Configs v2.3 (v2.3)</p>
+    <div class="desc"><p>Get all Element Access Configs (v2.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>elementaccessconfig_id</strong>: (optional) Element Access Config ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.elementaccessconfigs', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.elementaccessconfigs" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementaccessconfigs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">elementaccessconfig_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.2&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all Element Access Configs v2.3 (v2.3)</span>
+<span class="sd">    Get all Element Access Configs (v2.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **elementaccessconfig_id**: (optional) Element Access Config ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -27639,28 +27693,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.elementmodels">
     <div class="name def">
-    <p>def <span class="ident">elementmodels</span>(</p><p>self, tenant_id=None, api_version=&#39;v3.8&#39;)</p>
+    <p>def <span class="ident">elementmodels</span>(</p><p>self, tenant_id=None, api_version=&#39;v3.9&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Get all element models (v3.8)</p>
+    <div class="desc"><p>Get all element models (v3.9)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v3.8)</li>
+<li><strong>api_version</strong>: API version to use (default v3.9)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.elementmodels', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.elementmodels" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.8&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">elementmodels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.9&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all element models (v3.8)</span>
+<span class="sd">    Get all element models (v3.9)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v3.8)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.9)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -28020,7 +28074,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get All Element System Limit Profiles (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>elementsystemlimitprofile_id</strong>: (optional) Element System Limit Profile ID</li>
+<li><strong>elementsystemlimitprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -28032,7 +28086,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get All Element System Limit Profiles (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **elementsystemlimitprofile_id**: (optional) Element System Limit Profile ID</span>
+<span class="sd">      - **elementsystemlimitprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -28561,30 +28615,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.events">
     <div class="name def">
-    <p>def <span class="ident">events</span>(</p><p>self, event_id, tenant_id=None, api_version=&#39;v2.4&#39;)</p>
+    <p>def <span class="ident">events</span>(</p><p>self, event_id, tenant_id=None, api_version=&#39;v3.0&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Get Events API (v2.4)</p>
+    <div class="desc"><p>Get Events API (v3.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>event_id</strong>: Event ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.4)</li>
+<li><strong>api_version</strong>: API version to use (default v3.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.events', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.events" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get Events API (v2.4)</span>
+<span class="sd">    Get Events API (v3.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **event_id**: Event ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -29425,7 +29479,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get the active ip mappings (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>iotdevicemapping_id</strong>: IoT Device Mapping ID</li>
+<li><strong>iotdevicemapping_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -29437,7 +29491,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the active ip mappings (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **iotdevicemapping_id**: IoT Device Mapping ID</span>
+<span class="sd">      - **iotdevicemapping_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -29473,7 +29527,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all the XML Ingested data (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>iotdictionary_id</strong>: (optional) IoT Dictionary ID</li>
+<li><strong>iotdictionary_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -29485,7 +29539,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all the XML Ingested data (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **iotdictionary_id**: (optional) IoT Dictionary ID</span>
+<span class="sd">      - **iotdictionary_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -30717,6 +30771,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
+  <div class="item" id="cloudgenix.get_api.Get.microsegments">
+    <div class="name def">
+    <p>def <span class="ident">microsegments</span>(</p><p>self, site_id, microsegment_id, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Get microsegment by ID (v2.0)</p>
+<p><strong>Parameters:</strong>:</p>
+<ul>
+<li><strong>site_id</strong>: Site ID</li>
+<li><strong>microsegment_id</strong>: </li>
+<li><strong>tenant_id</strong>: Tenant ID</li>
+<li><strong>api_version</strong>: API version to use (default v2.0)</li>
+</ul>
+<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.microsegments', this);">Show source &equiv;</a></p>
+  <div id="source-cloudgenix.get_api.Get.microsegments" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">microsegments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">microsegment_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get microsegment by ID (v2.0)</span>
+<span class="sd">      **Parameters:**:</span>
+<span class="sd">      - **site_id**: Site ID</span>
+<span class="sd">      - **microsegment_id**: </span>
+<span class="sd">      - **tenant_id**: Tenant ID</span>
+<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
+<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
+        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
+        <span class="c1"># No value for tenant_id.</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
+    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/sites/</span><span class="si">{}</span><span class="s2">/microsegments/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                                                                <span class="n">tenant_id</span><span class="p">,</span>
+                                                                                <span class="n">site_id</span><span class="p">,</span>
+                                                                                <span class="n">microsegment_id</span><span class="p">)</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
   <div class="item" id="cloudgenix.get_api.Get.migratecbtoezb">
     <div class="name def">
     <p>def <span class="ident">migratecbtoezb</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.0&#39;)</p>
@@ -30977,51 +31082,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">cdl_url</span>
     <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/anomaly&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
                                                                             <span class="n">tenant_id</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item" id="cloudgenix.get_api.Get.monitor_aiops_forecast">
-    <div class="name def">
-    <p>def <span class="ident">monitor_aiops_forecast</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>GET Monitor Aiops Forecast API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.monitor_aiops_forecast', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.monitor_aiops_forecast" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_aiops_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Monitor Aiops Forecast API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># Pull tenant_id from parent namespace cache.</span>
-        <span class="n">tenant_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">tenant_id</span><span class="p">:</span>
-        <span class="c1"># No value for tenant_id.</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tenant_id is required but not set or cached.&quot;</span><span class="p">)</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">cdl_url</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/tenants/</span><span class="si">{}</span><span class="s2">/monitor/aiops/forecast&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
-                                                                             <span class="n">tenant_id</span><span class="p">)</span>
     <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
 </pre></div>
@@ -31322,7 +31382,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>GET Monitor Metrics Probes API Function</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>probe_id</strong>: Probe ID</li>
+<li><strong>probe_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -31334,7 +31394,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Monitor Metrics Probes API Function</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **probe_id**: Probe ID</span>
+<span class="sd">      - **probe_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -31451,7 +31511,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.monitor_sys_metrics">
     <div class="name def">
-    <p>def <span class="ident">monitor_sys_metrics</span>(</p><p>self, tenant_id=None, api_version=&#39;v2.4&#39;)</p>
+    <p>def <span class="ident">monitor_sys_metrics</span>(</p><p>self, tenant_id=None, api_version=&#39;v3.0&#39;)</p>
     </div>
     
 
@@ -31461,18 +31521,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.4)</li>
+<li><strong>api_version</strong>: API version to use (default v3.0)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.monitor_sys_metrics', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.monitor_sys_metrics" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">monitor_sys_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.0&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Monitor_Sys_Metrics API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.4)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -33213,42 +33273,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </div>
   
             
-  <div class="item" id="cloudgenix.get_api.Get.openapi">
-    <div class="name def">
-    <p>def <span class="ident">openapi</span>(</p><p>self, api_version=&#39;v2.0&#39;)</p>
-    </div>
-    
-
-    
-  
-    <div class="desc"><p>GET Openapi API Function</p>
-<p><strong>Parameters:</strong>:</p>
-<ul>
-<li><strong>api_version</strong>: API version to use (default v2.0)</li>
-</ul>
-<p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.openapi', this);">Show source &equiv;</a></p>
-  <div id="source-cloudgenix.get_api.Get.openapi" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">openapi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.0&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    GET Openapi API Function</span>
-<span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **api_version**: API version to use (default v2.0)</span>
-<span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cur_ctlr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">controller</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cur_ctlr</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">/api/openapi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
-    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;URL = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">rest_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
-</pre></div>
-
-  </div>
-</div>
-
-  </div>
-  
-            
   <div class="item" id="cloudgenix.get_api.Get.openapi_json">
     <div class="name def">
     <p>def <span class="ident">openapi_json</span>(</p><p>self, api_version=&#39;v2.0&#39;)</p>
@@ -33354,7 +33378,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ospfconfig_id</strong>: (optional) OSPF Configuration ID</li>
+<li><strong>ospfconfig_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -33368,7 +33392,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ospfconfig_id**: (optional) OSPF Configuration ID</span>
+<span class="sd">      - **ospfconfig_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33414,7 +33438,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ospfconfig_id</strong>: OSPF Configuration ID</li>
+<li><strong>ospfconfig_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33428,7 +33452,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">      - **ospfconfig_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33468,7 +33492,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ospfconfig_id</strong>: OSPF Configuration ID</li>
+<li><strong>ospfconfig_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33482,7 +33506,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ospfconfig_id**: OSPF Configuration ID</span>
+<span class="sd">      - **ospfconfig_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33522,7 +33546,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>ospfglobalconfig_id</strong>: (optional) OSPF Global Configuration ID</li>
+<li><strong>ospfglobalconfig_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33536,7 +33560,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **ospfglobalconfig_id**: (optional) OSPF Global Configuration ID</span>
+<span class="sd">      - **ospfglobalconfig_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33727,7 +33751,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get PA network contexts (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>panetwork_id</strong>: (optional) PA Network ID</li>
+<li><strong>panetwork_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33739,7 +33763,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get PA network contexts (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **panetwork_id**: (optional) PA Network ID</span>
+<span class="sd">      - **panetwork_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33877,7 +33901,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>pathprefixdistributionfilterassociation_id</strong>: (optional) Path Prefix Distribution Filter Association ID</li>
+<li><strong>pathprefixdistributionfilterassociation_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33890,7 +33914,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    GET Path Prefix Distribution Filter Association (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **pathprefixdistributionfilterassociation_id**: (optional) Path Prefix Distribution Filter Association ID</span>
+<span class="sd">      - **pathprefixdistributionfilterassociation_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33933,7 +33957,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>pathprefixdistributionfilter_id</strong>: (optional) Path Prefix Distribution Filter ID</li>
+<li><strong>pathprefixdistributionfilter_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -33946,7 +33970,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    GET Path Prefix Distribution Filter List (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **pathprefixdistributionfilter_id**: (optional) Path Prefix Distribution Filter ID</span>
+<span class="sd">      - **pathprefixdistributionfilter_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -33989,7 +34013,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>peersite_id</strong>: Peer Site ID</li>
+<li><strong>peersite_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -34002,7 +34026,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Get Path Prefixes (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **peersite_id**: Peer Site ID</span>
+<span class="sd">      - **peersite_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -34543,7 +34567,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>prefixdistributionspokelist_id</strong>: (optional) Prefix Distribution Spoke List ID</li>
+<li><strong>prefixdistributionspokelist_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -34556,7 +34580,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    GET Prefix Distribution Spoke List (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **prefixdistributionspokelist_id**: (optional) Prefix Distribution Spoke List ID</span>
+<span class="sd">      - **prefixdistributionspokelist_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -34961,7 +34985,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.prismasase_connections">
     <div class="name def">
-    <p>def <span class="ident">prismasase_connections</span>(</p><p>self, site_id, prismasase_connection_id=None, tenant_id=None, api_version=&#39;v2.1&#39;)</p>
+    <p>def <span class="ident">prismasase_connections</span>(</p><p>self, site_id, prismasase_connection_id=None, tenant_id=None, api_version=&#39;v3.1&#39;)</p>
     </div>
     
 
@@ -34973,20 +34997,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>prismasase_connection_id</strong>: (optional) Prisma SASE Connection ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.1)</li>
+<li><strong>api_version</strong>: API version to use (default v3.1)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.prismasase_connections', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.prismasase_connections" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">prismasase_connection_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GET Prismasase_Connections API Function</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **prismasase_connection_id**: (optional) Prisma SASE Connection ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -35017,28 +35041,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.prismasase_connections_configs">
     <div class="name def">
-    <p>def <span class="ident">prismasase_connections_configs</span>(</p><p>self, tenant_id=None, api_version=&#39;v3.1&#39;)</p>
+    <p>def <span class="ident">prismasase_connections_configs</span>(</p><p>self, tenant_id=None, api_version=&#39;v3.2&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Get a specific SASE connection config (v3.1)</p>
+    <div class="desc"><p>Get a specific SASE connection config (v3.2)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v3.1)</li>
+<li><strong>api_version</strong>: API version to use (default v3.2)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.prismasase_connections_configs', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.prismasase_connections_configs" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.1&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prismasase_connections_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3.2&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get a specific SASE connection config (v3.1)</span>
+<span class="sd">    Get a specific SASE connection config (v3.2)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v3.1)</span>
+<span class="sd">      - **api_version**: API version to use (default v3.2)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -35122,7 +35146,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get ProbeConfigList (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>probeconfig_id</strong>: (optional) Probe Configuration ID</li>
+<li><strong>probeconfig_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -35134,7 +35158,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get ProbeConfigList (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **probeconfig_id**: (optional) Probe Configuration ID</span>
+<span class="sd">      - **probeconfig_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -35174,7 +35198,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get ProbeProfileList (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>probeprofile_id</strong>: (optional) Probe Profile ID</li>
+<li><strong>probeprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -35186,7 +35210,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get ProbeProfileList (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **probeprofile_id**: (optional) Probe Profile ID</span>
+<span class="sd">      - **probeprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -35775,34 +35799,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
   <div class="item" id="cloudgenix.get_api.Get.routing_routemaps">
     <div class="name def">
-    <p>def <span class="ident">routing_routemaps</span>(</p><p>self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version=&#39;v2.3&#39;)</p>
+    <p>def <span class="ident">routing_routemaps</span>(</p><p>self, site_id, element_id, routing_routemap_id=None, tenant_id=None, api_version=&#39;v2.4&#39;)</p>
     </div>
     
 
     
   
-    <div class="desc"><p>Get all Route Map for Element (v2.3)</p>
+    <div class="desc"><p>Get all Route Map for Element (v2.4)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
 <li><strong>routing_routemap_id</strong>: (optional) Routing Route Map ID</li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
-<li><strong>api_version</strong>: API version to use (default v2.3)</li>
+<li><strong>api_version</strong>: API version to use (default v2.4)</li>
 </ul>
 <p><strong>Returns:</strong> requests.Response object extended with cgx_status and cgx_content properties.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-cloudgenix.get_api.Get.routing_routemaps', this);">Show source &equiv;</a></p>
   <div id="source-cloudgenix.get_api.Get.routing_routemaps" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.3&quot;</span><span class="p">):</span>
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">routing_routemaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">routing_routemap_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2.4&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get all Route Map for Element (v2.3)</span>
+<span class="sd">    Get all Route Map for Element (v2.4)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
 <span class="sd">      - **routing_routemap_id**: (optional) Routing Route Map ID</span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
-<span class="sd">      - **api_version**: API version to use (default v2.3)</span>
+<span class="sd">      - **api_version**: API version to use (default v2.4)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tenant_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_class</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">:</span>
@@ -36303,7 +36327,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all Security Profile Groups by tenant ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>securityprofilegroup_id</strong>: (optional) Security Profile Group ID</li>
+<li><strong>securityprofilegroup_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -36315,7 +36339,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all Security Profile Groups by tenant ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **securityprofilegroup_id**: (optional) Security Profile Group ID</span>
+<span class="sd">      - **securityprofilegroup_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -37298,7 +37322,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Retrieve deployment status by ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>sitesnapshot_id</strong>: Site Snapshot ID</li>
+<li><strong>sitesnapshot_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -37310,7 +37334,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieve deployment status by ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **sitesnapshot_id**: Site Snapshot ID</span>
+<span class="sd">      - **sitesnapshot_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -37346,7 +37370,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all licenses skus for a tenant (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>sku_id</strong>: (optional) SKU ID</li>
+<li><strong>sku_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -37358,7 +37382,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all licenses skus for a tenant (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **sku_id**: (optional) SKU ID</span>
+<span class="sd">      - **sku_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -37399,7 +37423,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>snapshot_id</strong>: Snapshot ID</li>
+<li><strong>snapshot_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -37412,7 +37436,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Retrieve yaml configuration by ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **snapshot_id**: Snapshot ID</span>
+<span class="sd">      - **snapshot_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -37450,7 +37474,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Parameters:</strong>:</p>
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
-<li><strong>snapshot_id</strong>: Snapshot ID</li>
+<li><strong>snapshot_id</strong>: </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -37463,7 +37487,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">    Status of the job (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
-<span class="sd">      - **snapshot_id**: Snapshot ID</span>
+<span class="sd">      - **snapshot_id**: </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -37924,7 +37948,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all Spyware Security Profiles by tenant ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>spywareprofile_id</strong>: (optional) Spyware Profile ID</li>
+<li><strong>spywareprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -37936,7 +37960,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all Spyware Security Profiles by tenant ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **spywareprofile_id**: (optional) Spyware Profile ID</span>
+<span class="sd">      - **spywareprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -38090,7 +38114,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get Syslog Server Profiles (v2.1)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>syslogserverprofile_id</strong>: (optional) Sys Log Server Profile ID</li>
+<li><strong>syslogserverprofile_id</strong>: (optional) Sys Log Server Profile ID </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.1)</li>
 </ul>
@@ -38102,7 +38126,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get Syslog Server Profiles (v2.1)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID</span>
+<span class="sd">      - **syslogserverprofile_id**: (optional) Sys Log Server Profile ID </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.1)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -38202,7 +38226,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get TACACS+ Profiles (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>tacacs_plus_profile_id</strong>: (optional) TACACS+ Profile ID</li>
+<li><strong>tacacs_plus_profile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -38214,7 +38238,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get TACACS+ Profiles (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **tacacs_plus_profile_id**: (optional) TACACS+ Profile ID</span>
+<span class="sd">      - **tacacs_plus_profile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -38256,7 +38280,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <ul>
 <li><strong>site_id</strong>: Site ID</li>
 <li><strong>element_id</strong>: Element (Device) ID</li>
-<li><strong>tacacs_plus_server_id</strong>: (optional) TACACS+ Server ID</li>
+<li><strong>tacacs_plus_server_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -38270,7 +38294,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="sd">      **Parameters:**:</span>
 <span class="sd">      - **site_id**: Site ID</span>
 <span class="sd">      - **element_id**: Element (Device) ID</span>
-<span class="sd">      - **tacacs_plus_server_id**: (optional) TACACS+ Server ID</span>
+<span class="sd">      - **tacacs_plus_server_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -39131,7 +39155,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all custom URL categories for a tenant (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>urlcustomcategorie_id</strong>: (optional) URL Custom Category ID</li>
+<li><strong>urlcustomcategorie_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -39143,7 +39167,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all custom URL categories for a tenant (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **urlcustomcategorie_id**: (optional) URL Custom Category ID</span>
+<span class="sd">      - **urlcustomcategorie_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -39228,7 +39252,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all URL Filtering Profiles by tenant ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>urlfilteringprofile_id</strong>: (optional) URL Filtering Profile ID</li>
+<li><strong>urlfilteringprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -39240,7 +39264,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all URL Filtering Profiles by tenant ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **urlfilteringprofile_id**: (optional) URL Filtering Profile ID</span>
+<span class="sd">      - **urlfilteringprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
@@ -39791,7 +39815,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="desc"><p>Get all Vulnerability Security Profiles by tenant ID (v2.0)</p>
 <p><strong>Parameters:</strong>:</p>
 <ul>
-<li><strong>vulnerabilityprofile_id</strong>: (optional) Vulnerability Profile ID</li>
+<li><strong>vulnerabilityprofile_id</strong>: (optional) </li>
 <li><strong>tenant_id</strong>: Tenant ID</li>
 <li><strong>api_version</strong>: API version to use (default v2.0)</li>
 </ul>
@@ -39803,7 +39827,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get all Vulnerability Security Profiles by tenant ID (v2.0)</span>
 <span class="sd">      **Parameters:**:</span>
-<span class="sd">      - **vulnerabilityprofile_id**: (optional) Vulnerability Profile ID</span>
+<span class="sd">      - **vulnerabilityprofile_id**: (optional) </span>
 <span class="sd">      - **tenant_id**: Tenant ID</span>
 <span class="sd">      - **api_version**: API version to use (default v2.0)</span>
 <span class="sd">    **Returns:** requests.Response object extended with cgx_status and cgx_content properties.</span>
